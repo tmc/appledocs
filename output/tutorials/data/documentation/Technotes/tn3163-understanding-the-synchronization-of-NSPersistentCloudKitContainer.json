@@ -1,0 +1,4021 @@
+{
+  "abstract": [
+    {
+      "text": "Explore the details inside the synchronization of ",
+      "type": "text"
+    },
+    {
+      "code": "NSPersistentCloudKitContainer",
+      "type": "codeVoice"
+    },
+    {
+      "text": " by capturing and analyzing a sysdiagnose.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3163: Understanding the synchronization of NSPersistentCloudKitContainer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "overridingTitle": "NSPersistentCloudKitContainer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSPersistentCloudKitContainer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is designed to provide end-to-end synchronization for apps. In many cases, apps use this API to set up a Core Data stack, and the Core Data store automatically synchronizes across devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Under the hood, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " separates the synchronization process into many tasks, and encapsulates all the implementation details. When performing a task, it generates logs, which are persisted as a part of a sysdiagnose. To understand what really happens in the process, which is sometimes necessary when diagnosing a synchronization issue, you need to look into a sysdiagnose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This technote unveils some details inside the synchronization by analyzing a sysdiagnose, and provides some representative logs that can be used to identify some important tasks and their state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-synchronization-in-a-nutshell",
+          "level": 2,
+          "text": "The synchronization in a nutshell",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a prerequisite, it’s important to understand how the synchronization works at a higher level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " associates a Core Data store with a CloudKit database. The store lives on the device to provide data to your app, the database lives on the remote CloudKit server to hold the server truth, and ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " takes care the synchronization between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The synchronization process is transparent to your app. You still use Core Data APIs to access the store. When you perform a fetch, Core Data returns the data currently existing in the store, without querying CloudKit for potentially unsynchronized changes on the server side. When you perform a save, Core Data writes the data to the store and records the changes in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/persistent-history",
+              "isActive": true,
+              "overridingTitle": "persistent history",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "persistent history",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". When appropriate, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "exports",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the local changes from the store to the database, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "imports",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the remote changes from the database to the store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiple system services get involved in the process. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "dasd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a system process that coordinates the execution of app activities to balance the use of system resources and achieve the best overall user experience; ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " works with the process to determine when it is appropriate to execute an import or export. ",
+              "type": "text"
+            },
+            {
+              "code": "apsd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+              "isActive": true,
+              "overridingTitle": "remote push notifications",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "remote push notifications",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from APNs server and delivers them to the target apps; ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relies on it to detect changes on the associated CloudKit private or shared database. ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also relies on ",
+              "type": "text"
+            },
+            {
+              "code": "cloudd",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the on-device CloudKit service, to do the data transportation between the device and the CloudKit server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see the following WWDC sessions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC19 session 202: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2019/202/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC20 session 10650: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10650/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC21 session 10015: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10015/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC22 session 10119: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10119/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To discover what happens inside an export or import and how the system services work together, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-export",
+              "isActive": true,
+              "overridingTitle": "Understand the export",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understand the export",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-import",
+              "isActive": true,
+              "overridingTitle": "Understand the import",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understand the import",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-and-analyze-a-sysdiagnose",
+          "level": 2,
+          "text": "Capture and analyze a sysdiagnose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sysdiagnose analysis is the only means for peeking at the details inside the synchronization, and is typically for investigating a synchronization issue. To do that, capture a sysdiagnose, use your favorite tools to find the relevant logs, and then explore the messages. Focus on finding errors or suspicious activities that may be relevant to the issue you are investigating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-a-sysdiagnose",
+          "level": 3,
+          "text": "Capture a sysdiagnose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before capturing a sysdiagnose, find a set of devices and steps that can reproduce the issue. A sysdiagnose won’t contain the relevant logs if it isn’t captured from a device where the issue recently happened. If you can’t reproduce the issue, consider reaching out to the users who reported the issue to you for help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://icloud.developer.apple.com/dashboard/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine if the issue happens on the exporting or importing side:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prepare two devices, A and B, that are well configured to access CloudKit and can reproduce the issue. To confirm that your devices and project are correctly configured, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-iCloud-on-your-devices",
+                      "isActive": true,
+                      "overridingTitle": "Configure iCloud on your devices",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Configure iCloud on your devices",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-CloudKit-in-your-project",
+                      "isActive": true,
+                      "overridingTitle": "Configure CloudKit in your project",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Configure CloudKit in your project",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reproduce the synchronization issue by adding some data on device A and observing the data not being synchronized to device B after some time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Try to find the associated CloudKit record with CloudKit Console. To learn how your Core Data model is mirrored to the CloudKit schema, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreData/sharing-core-data-objects-between-icloud-users#4288212",
+                      "isActive": true,
+                      "overridingTitle": "Create the CloudKit schema",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Create the CloudKit schema",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To query data in CloudKit Console, see WWDC22 session 10115: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10115/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If CloudKit Console can’t find the record, you determine that the data wasn’t exported, and so only need to focus on device A. Otherwise, the issue is either the system didn’t deliver the change to your app on device B, or your app didn’t present the data correctly. In this case, capture a sysdiagnose from each device in case your investigation needs the information from both sides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To capture a sysdiagnose from a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=CloudKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an iOS device, install ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=APNs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (search by “APNs”), in case you need to examine push notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reproduce the issue, and note the timestamps immediately before you make a change and after you determine that the change isn’t synchronized correctly. These timestamps are very important because they help dramatically narrow down the system logs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=CloudKit",
+                      "isActive": true,
+                      "overridingTitle": "the instructions",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "the instructions",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to capture the sysdiagnose from the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see WWDC22 session 10119: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10119/?time=1295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-a-sysdiagnose",
+          "level": 3,
+          "text": "Analyze a sysdiagnose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most relevant part in a sysdiagnose is the system logs, which are archived in the file named ",
+              "type": "text"
+            },
+            {
+              "code": "system_logs.logarchive",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use ",
+              "type": "text"
+            },
+            {
+              "code": "Console.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to find the relevant logs in the file and determine if the synchronization succeeds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The logs are typically very overwhelming. Use the timestamps you noted when capturing the sysdiagnose to narrow the scope down to the time frame when the issue occurs, and use filters, such as ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "subsystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to filter out the irrelevant logs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use Console.app, specify a custom time frame with the ",
+              "type": "text"
+            },
+            {
+              "code": "Showing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option below the log view, and use the search field in the toolbar to set up filters. Be sure that ",
+              "type": "text"
+            },
+            {
+              "code": "Include Info Messages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Include Debug Messages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " under the ",
+              "type": "text"
+            },
+            {
+              "code": "Action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " menu are checked. For more information about how to find log messages and activities in Console.app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/console/find-log-messages-and-activities-cnslbf30b61a/1.1/mac/14.0",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", specify the time frame with the ",
+              "type": "text"
+            },
+            {
+              "code": "--start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "--end",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options, and use ",
+              "type": "text"
+            },
+            {
+              "code": "--predicate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to set up filters. As an example, the following command extracts the logs generated between ",
+              "type": "text"
+            },
+            {
+              "code": "2023-12-07 12:22:47+0100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2023-12-07 12:33:53+0100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the process named ",
+              "type": "text"
+            },
+            {
+              "code": "YourCoolApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with the subsystem being ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.coredata",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the messages containing “import.” For the detailed syntax of ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see its man page; for how to read man pages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "log show --start \"2023-12-07 12:22:47+0100\" --end \"2023-12-07 12:33:53+0100\" ",
+            "    —info —debug ",
+            "    —predicate 'process = \"YourCoolApp\" ",
+            "                and subsystem = \"com.apple.coredata\" ",
+            "                and message contains[cd] \"import\"' ",
+            "    ./system_logs.logarchive"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these tools to explore what really happens inside the exports and imports. In the process, always use the timestamps and filters to find the relevant logs, and focus on finding the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The errors related to Core Data or CloudKit. For more information about how to handle some common errors, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer",
+                      "isActive": true,
+                      "overridingTitle": "Debugging the synchronization of NSPersistentCloudKitContainer",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Debugging the synchronization of NSPersistentCloudKitContainer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time frames when an activity should but doesn’t happen. If the activity is an export, confirm that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPersistentCloudKitContainer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " detects the change on the store; for an import related to a CloudKit private or shared database, confirm that the system gets the CloudKit notification and delivers it to your app. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-export",
+                      "isActive": true,
+                      "overridingTitle": "Understand the export",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Understand the export",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-import",
+                      "isActive": true,
+                      "overridingTitle": "Understand the import",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Understand the import",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The activities that last unusually long. If any, check if they are intentionally deferred by the system. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-system-throttles",
+                      "isActive": true,
+                      "overridingTitle": "Understand system throttles",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Understand system throttles",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-the-export",
+          "level": 2,
+          "text": "Understand the export",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An export has the following phases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe if the Core Data store is changed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that the export can proceed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This section shows the filters for tracing the phases, and provides the representative logs that can be used to identify the phases and their state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Observe-if-the-Core-Data-store-is-changed",
+          "level": 3,
+          "text": "Observe if the Core Data store is changed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When observing the app saving a managed object context (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext",
+              "isActive": true,
+              "overridingTitle": "NSManagedObjectContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSManagedObjectContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ") or a remote change notification (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3180044-nspersistentstoreremotechange",
+              "isActive": true,
+              "overridingTitle": "NSPersistentStoreRemoteChange",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSPersistentStoreRemoteChange",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ") that indicates the store being changed remotely, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " logs the event and starts to schedule an export. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (”<the app name>”), ",
+              "type": "text"
+            },
+            {
+              "code": "subsystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“com.apple.coredata”), and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“Observed”) filters to find the relevant logs, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "info  … 14:14:15.227567 …  YourCoolApp  debug: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate managedObjectContextSaved:](3097): ",
+            "<NSCloudKitMirroringDelegate: …>: Observed context save: ",
+            "<NSPersistentStoreCoordinator: …> - <NSManagedObjectContext: …>",
+            "",
+            "info  … 14:14:15.230887 …  YourCoolApp debug: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate remoteStoreDidChange:](3140): ",
+            "<NSCloudKitMirroringDelegate: …>: Observed remote store notification: ",
+            "<NSPersistentStoreCoordinator: …> - A73C42D5-ADEE-4758-B2A1-F75DEBF93702 - …"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For better readability, the logs in this technote are formatted to fit the page size, and some information in the logs is omitted.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you save a managed object context but can’t find the relevant logs, confirm that the save was successful. Be sure to save the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext/parent",
+                  "isActive": true,
+                  "overridingTitle": "parent context",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "parent context",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", if you use a nested context.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The logs contain the Core Data ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSStoreUUIDKey",
+              "isActive": true,
+              "overridingTitle": "store UUID",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "store UUID",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "A73C42D5-ADEE-4758-B2A1-F75DEBF93702",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this example, which can be used with the ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filter to filter out the logs irrelevant to the store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Confirm-that-the-export-can-proceed",
+          "level": 3,
+          "text": "Confirm that the export can proceed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After observing that the store was changed, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks the system if now is appropriate to do an export. An export activity has an identifier that contains the store UUID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“dasd”) and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ( “activity.export.<the-store-UUID>”) filters to find the logs that tell if the export was allowed. Most likely, you will see something like the following example, where “Can Proceed” means what it says – The export can proceed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:15.609957 …  dasd ",
+            "501:com.apple.coredata.cloudkit.activity.export.A73C42D5-ADEE-4758-B2A1-F75DEBF93702:0B1380:",
+            "[{name: Application Policy, policyWeight: 25.000, ",
+            "response: {Decision: Can Proceed, Score: 0.60}}",
+            "{name: Device Activity Policy, policyWeight: 2.000, ",
+            "response: {Decision: Can Proceed, Score: 0.41}",
+            "}] ",
+            "sumScores:60.704720, denominator:71.940000, ",
+            "FinalDecision: Can Proceed FinalScore: 0.843824}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, you might see the system decides that an activity “Must Not Proceed,” as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:16.316165 …  dasd ",
+            "501:com.apple.coredata.cloudkit.activity.export.A73C42D5-ADEE-4758-B2A1-F75DEBF93702:B1BC07:",
+            "[{name: Activity Group Policy, policyWeight: 0.500, ",
+            "response: {Decision: Must Not Proceed, Score: 0.00, ",
+            "Rationale: [{\"com.apple.coredata.cloudkit.YourCoolApp.A73C42D5-ADEE-4758-B2A1-F75DEBF93702\".currentAvailableLimit == 0}]}",
+            "}],FinalDecision: Must Not Proceed}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above message conveys a piece of important information – the policy that the system applied when deciding to throttle the export, or ",
+              "type": "text"
+            },
+            {
+              "code": "Activity Group Policy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It means that the throttle was enforced because the number of the app’s scheduled concurrent activities hit the limit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is another example that shows the system applied ",
+              "type": "text"
+            },
+            {
+              "code": "ActivityRateLimitPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to throttle the export because the app’s activities hit the rate limit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:16.657700 …  dasd ",
+            "501:com.apple.coredata.cloudkit.activity.export.A73C42D5-ADEE-4758-B2A1-F75DEBF93702:B1BC07:",
+            "[{name: ActivityRateLimitPolicy, policyWeight: 1.000, ",
+            "response: {Decision: Must Not Proceed, Score: 0.00, ",
+            "Rationale: [{[ratelimited]: Required:1.00, Observed:0.00},]}}",
+            "], FinalDecision: Must Not Proceed}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When hitting a throttle, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stops synchronization, until the throttle expires. The expiration time of a throttle depends on the policy. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-system-throttles",
+              "isActive": true,
+              "overridingTitle": "Understand system throttles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understand system throttles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Execute-the-export",
+          "level": 3,
+          "text": "Execute the export",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the system decides that the export can proceed, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts to execute it. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (”<the app name>”), ",
+              "type": "text"
+            },
+            {
+              "code": "subsystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“com.apple.coredata”), and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“export”) filters to find the logs that show the whole lifecycle. The following example shows an export was scheduled, enqueued, executed, and finished:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:16.621530 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _scheduleAutomatedExportWithLabel:activity:voucher:completionHandler:](3633):",
+            "<NSCloudKitMirroringDelegate: …> - Beginning automated export - ExportActivity:",
+            "<CKSchedulerActivity: …>",
+            "",
+            "default  … 14:14:16.621597 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate executeMirroringRequest:error:](969): ",
+            "<NSCloudKitMirroringDelegate: …>: Asked to execute request: ",
+            "<NSCloudKitMirroringExportRequest: …> EAD940DB-330A-4DDF-9892-41286F9FE95A",
+            "",
+            "default  … 14:14:16.621633 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _enqueueRequest:]_block_invoke(1003): ",
+            "<NSCloudKitMirroringDelegate: …>: enqueuing request: ",
+            "<NSCloudKitMirroringExportRequest: …> EAD940DB-330A-4DDF-9892-41286F9FE95A",
+            "",
+            "default  … 14:14:16.621675 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _enqueueRequest:]_block_invoke_2(1012): ",
+            "Enqueued request: <NSCloudKitMirroringExportRequest: …> EAD940DB-330A-4DDF-9892-41286F9FE95A",
+            "",
+            "default  … 14:14:16.621714 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate checkAndExecuteNextRequest]_block_invoke(3524): ",
+            "<NSCloudKitMirroringDelegate: …>: Executing: ",
+            "<NSCloudKitMirroringExportRequest: …> EAD940DB-330A-4DDF-9892-41286F9FE95A",
+            "",
+            "default  … 14:14:16.623737 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[PFCloudKitExporter analyzeHistoryInStore:withManagedObjectContext:error:](531): ",
+            "<PFCloudKitExporter: …>: Exporting changes since (0): ",
+            "<NSPersistentHistoryToken - {",
+            "    \"A73C42D5-ADEE-4758-B2A1-F75DEBF93702\" = 3177;",
+            "}>",
+            "",
+            "default  … 14:14:16.656255 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[PFCloudKitExporter exportIfNecessary]_block_invoke_2(345): ",
+            "<PFCloudKitExporter: …>: Found 0 objects needing export.",
+            "",
+            "default  … 14:14:16.656769 …  YourCoolApp  warning: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _exportFinishedWithResult:exporter:](1477): ",
+            "Finished export: <PFCloudKitExporter: …>",
+            "",
+            "default  … 14:14:16.656785 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _finishedRequest:withResult:](3542): ",
+            "Finished request: <NSCloudKitMirroringExportRequest: …> EAD940DB-330A-4DDF-9892-41286F9FE95A ",
+            "with result: <NSCloudKitMirroringResult: …> storeIdentifier: … ",
+            "success: 1 madeChanges: 0 error: (null)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may also see that an export was cancelled because there was already a pending request, as shown in the following example. In case the pending export was finished successfully later and new exports were scheduled, ignore the error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  …12:21:54.208523…  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _scheduleAutomatedExportWithLabel:activity:voucher:completionHandler:]_block_invoke(3647):",
+            "<NSCloudKitMirroringDelegate: …> - Finished automatic export - ExportActivity - with result: ",
+            "<NSCloudKitMirroringResult: …> storeIdentifier: … success: 0 madeChanges: 0 ",
+            "error: Error Domain=NSCocoaErrorDomain Code=134417 ",
+            "\"Request '<NSCloudKitMirroringExportRequest: …> B543EDAB-6D08-4ED2-B422-27BB0C872624' ",
+            "was cancelled because there is already a pending request of type 'NSCloudKitMirroringExportRequest'.\" …"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-the-import",
+          "level": 2,
+          "text": "Understand the import",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An import has the following phases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedule an import.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that the import can proceed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the import.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This section shows the filters for tracing the phases, and provides the representative logs that can be used to identify the phases and their state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Schedule-an-import",
+          "level": 3,
+          "text": "Schedule an import",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The associated CloudKit database can change (as a result of a peer’s export, for example). To merge the remote changes, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " schedules the following imports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A import for the initial synchronization, which happens in the app’s first launch session after being installed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Imports that happen at some points, like when the app is activated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An import when getting notified of a database change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with a CloudKit private or shared database, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " schedules an import when getting a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKNotification",
+              "isActive": true,
+              "overridingTitle": "CloudKit notification",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "CloudKit notification",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which is triggered when the database changes. A CloudKit public database doesn’t support this kind of notification, and so ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs to poll periodically for the database changes. To avoid draining the system resources, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " typically polls once every 30 minutes when working in the CloudKit development environment, and up to once every 24 hours in the production environment. For more information, see WWDC20 session 10650: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10650/",
+              "isActive": true,
+              "overridingTitle": "Sync a Core Data store with the CloudKit public database",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Sync a Core Data store with the CloudKit public database",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (”<the app name>”), ",
+              "type": "text"
+            },
+            {
+              "code": "subsystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“com.apple.coredata”), and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“checkAndSchedule”) filters to find the relevant logs. The following example shows that three imports were being scheduled:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 17:18:00.439094 …  YourCoolApp warning: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate checkAndScheduleImportIfNecessary:andStartAfterDate:]_block_invoke(3268): ",
+            "<NSCloudKitMirroringDelegate: …>: Scheduling automated import with activity ",
+            "(Database-LastFetchDate-2023-12-06 13:54:06 +0000): <CKSchedulerActivity: …>",
+            "",
+            "default  … 17:18:01.121638 …  YourCoolApp warning: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate checkAndScheduleImportIfNecessary:andStartAfterDate:]_block_invoke(3268): ",
+            "<NSCloudKitMirroringDelegate: …>: Scheduling automated import with activity ",
+            "(Zone-LastFetchDate-com.apple.coredata.cloudkit.zone-2023-12-06 13:51:34 +0000): <CKSchedulerActivity: …>",
+            "",
+            "default  … 17:26:17.667361 …  YourCoolApp warning: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate checkAndScheduleImportIfNecessary:andStartAfterDate:]_block_invoke(3268): ",
+            "<NSCloudKitMirroringDelegate: …>: Scheduling automated import with activity (Push): <CKSchedulerActivity: …>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The activity label (the text in the parentheses after “Scheduling automated import with activity”) in the logs conveys some important information. In this example, that is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The first import was to fetch the database changes, and the last fetch happened at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2023-12-06 13:54:06 +0000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The second one was to fetch the CloudKit zone changes, and the last fetch happened at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2023-12-06 13:51:34 +0000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The third one was an import triggered by a push notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this information to determine if an import is scheduled in a reasonable time frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you find no import after the other peer changed the private or shared database, confirm that the system receives the CloudKit notification. To do that, use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“apsd”) and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ( “Received message”) filters to find the representative logs, as shown in the following example. Note that the notification topic contains the app’s bundle ID, or ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.YourCoolApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " here.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 15:37:22.786196 …  apsd ",
+            "<APSUserCourier … development 0>: Received message ",
+            "for enabled topic 'com.apple.icloud-container.com.example.YourCoolApp' ",
+            "onInterface: <APSCourierConnectionProtocolConnection: …; NonCellular> ",
+            "with payload '<redacted __NSDictionaryI count:2>' with priority 5 ",
+            "for device token: YES isProxyMessage: NO"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To confirm that the system forwarded the notification to your app, use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (”<the app name>”) and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ( “Notification”) filters to find something like the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 15:37:22.885571 …  YourCoolApp",
+            "<CKNotificationListener: …> received push with payload <PKPushPayload: …>",
+            "",
+            "debug  … 15:37:22.886249 …  YourCoolApp",
+            "Received CKNotification: ",
+            "<CKDatabaseNotification: …; notificationType=4, ",
+            "notificationID=158bdf8b-4c6d-42d6-9628-9d3a9cf34dae, ",
+            "containerID=iCloud.com.example.YourCoolApp:Sandbox, ",
+            "subscriptionOwnerUserRecordID=…:(_defaultZone:defaultOwner), ",
+            "subscriptionID=com.apple.coredata.cloudkit.private.subscription, ",
+            "database=Private, ",
+            "zoneID=com.apple.coredata.cloudkit.zone:defaultOwner> for <CKNotificationListener: …>",
+            "",
+            "debug  … 15:37:22.886609 …  YourCoolApp",
+            "Checking notification's user record ID <CKRecordID: …> against container user record ID for ",
+            "<CKSubscriptionInfo: …; database=<CKDatabase: …; databaseScope=Private, ",
+            "containerImplementation=<… containerIdentifier=iCloud.com.example.YourCoolApp, environment=Sandbox>>> ",
+            "subscriptionID=com.apple.coredata.cloudkit.private.subscription>",
+            "",
+            "default  … 15:37:22.887476 …  YourCoolApp",
+            "Running handler for notification <CKDatabaseNotification: …>: {",
+            "    aps =     {",
+            "        \"content-available\" = 1;",
+            "    };",
+            "    ck =     {",
+            "        aux =         {",
+            "        };",
+            "        ce = 2;",
+            "        cid = \"iCloud.com.example.YourCoolApp\";",
+            "        ckuserid = …;",
+            "        met = {…};",
+            "        nid = \"158bdf8b-4c6d-42d6-9628-9d3a9cf34dae\";",
+            "    };",
+            "}",
+            "",
+            "default  … 15:37:22.887758 …  YourCoolApp  CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _respondToPushNotification:forSubscription:]_block_invoke(896): ",
+            "<NSCloudKitMirroringDelegate: …> - Got notification for subscription: ",
+            "com.apple.coredata.cloudkit.private.subscription <CKDatabaseNotification: …>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the system receives a CloudKit notification but doesn’t forward it to your app, confirm that the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Remote notification",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " background mode is on in your project, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreData/setting-up-core-data-with-cloudkit#3235668",
+                  "isActive": true,
+                  "overridingTitle": "Enable Remote Notifications in the Background",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Enable Remote Notifications in the Background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Confirm-that-the-import-can-proceed",
+          "level": 3,
+          "text": "Confirm that the import can proceed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As it does for an export, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " coordinates with the system on when to do an import. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“dasd”) and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“activity.import.<the-store-UUID>”) filters to find the relevant logs. The following example shows the system applied ",
+              "type": "text"
+            },
+            {
+              "code": "Activity Group Policy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to throttle an import, and let it go almost immediately because the throttle quickly expired:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:15.613580 …  dasd ",
+            "501:com.apple.coredata.cloudkit.activity.import.A73C42D5-ADEE-4758-B2A1-F75DEBF93702:CF81BC:",
+            "[{name: Activity Group Policy, policyWeight: 0.500, ",
+            "response: {Decision: Must Not Proceed, Score: 0.00, ",
+            "Rationale: [{\"com.apple.coredata.cloudkit.YourCoolApp.A73C42D5-ADEE-4758-B2A1-F75DEBF93702\".currentAvailableLimit == 0}]}",
+            "}], FinalDecision: Must Not Proceed}",
+            "…",
+            "default  … 14:14:15.746773 …  dasd ",
+            "501:com.apple.coredata.cloudkit.activity.import.A73C42D5-ADEE-4758-B2A1-F75DEBF93702:CF81BC:",
+            "[{name: Application Policy, policyWeight: 25.000, ",
+            "response: {Decision: Can Proceed, Score: 0.60}}",
+            "{name: Device Activity Policy, policyWeight: 2.000, ",
+            "response: {Decision: Can Proceed, Score: 0.41}}",
+            "] sumScores:60.704720, denominator:71.940000, ",
+            "FinalDecision: Can Proceed FinalScore: 0.843824}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-system-throttles",
+              "isActive": true,
+              "overridingTitle": "Understand system throttles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understand system throttles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Execute-the-import",
+          "level": 3,
+          "text": "Execute the import",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts to execute an import once the system determines the activity can proceed. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (”<the app name>”), ",
+              "type": "text"
+            },
+            {
+              "code": "subsystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (“com.apple.coredata”), and ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ( “import”) filters to find the relevant logs. The following example shows an import was scheduled, enqueued, executed, and finished. The scheduling messages include information about why an import was scheduled – In this example, ",
+              "type": "text"
+            },
+            {
+              "code": "ImportActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the import was scheduled in response to the system approving the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "default  … 14:14:15.841696 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _scheduleAutomatedImportWithLabel:activity:voucher:completionHandler:](3594): ",
+            "<NSCloudKitMirroringDelegate: …> - Beginning automated import - ImportActivity - ",
+            "in response to activity:<CKSchedulerActivity: …>",
+            "",
+            "default  … 14:14:15.841767 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate executeMirroringRequest:error:](969): ",
+            "<NSCloudKitMirroringDelegate: …>: Asked to execute request: ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "",
+            "default  … 14:14:15.841814 … YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _enqueueRequest:]_block_invoke(1003): ",
+            "<NSCloudKitMirroringDelegate: …>: enqueuing request: ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "",
+            "default  … 14:14:15.841866 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _enqueueRequest:]_block_invoke_2(1012): ",
+            "Enqueued request: <NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "",
+            "default  … 14:14:15.841911 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate checkAndExecuteNextRequest]_block_invoke(3524): ",
+            "<NSCloudKitMirroringDelegate: …>: Executing: ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "",
+            "default  … 14:14:16.287051 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[PFCloudKitImporter databaseFetchFinishWithContext:error:completion:]_block_invoke(304): ",
+            "<PFCloudKitImporter: …>: Import request finished: ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "- <PFCloudKitImportDatabaseContext: …> {",
+            "Token: <CKServerChangeToken: 0x6000022c6ef0; data=AQAAAYxEadbv>",
+            "Changed: {(<CKRecordZoneID: …; zoneName=com.apple.coredata.cloudkit.zone, ownerName=defaultOwner>)}}",
+            "",
+            "default  … 14:14:16.287167 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[PFCloudKitImporter processWorkItemsWithCompletion:](418): ",
+            "<PFCloudKitImporter: …>: Processing work items: (",
+            "\"<PFCloudKitImporterZoneChangedWorkItem: 0x6000017d3d30 - ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550>",
+            "{\\n(\\n \\\"<CKRecordZoneID: 0x600002ed7450; zoneName=com.apple.coredata.cloudkit.zone, ownerName=defaultOwner>\\\"\\n)\\n}\")",
+            "",
+            "default  … 14:14:16.535114 …  YourCoolApp warning: CoreData+CloudKit: ",
+            "-[PFCloudKitImportRecordsWorkItem newMirroringResultByApplyingAccumulatedChanges]_block_invoke(241): ",
+            "Finished importing changes for request: ",
+            "<NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "",
+            "default  … 14:14:16.535195 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[PFCloudKitImporter processWorkItemsWithCompletion:](418): ",
+            "<PFCloudKitImporter: …>: Processing work items: ()",
+            "",
+            "default  … 14:14:16.536834 …  YourCoolApp CloudKit: CoreData+CloudKit: ",
+            "-[NSCloudKitMirroringDelegate _finishedRequest:withResult:](3542): ",
+            "Finished request: <NSCloudKitMirroringImportRequest: …> 2D00459F-8C08-4E9A-BC44-FCE1CD29A550",
+            "with result: <NSCloudKitMirroringResult: …> storeIdentifier: … ",
+            "success: 1 madeChanges: 0 error: (null)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-system-throttles",
+          "level": 2,
+          "text": "Understand system throttles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system resources on a device are finite and shared by all apps. High utilization from one app can negatively affect others. To balance the use of the resources and achieve the best overall user experience on the device, the system includes a process to coordinate the execution of app activities, and that is ",
+              "type": "text"
+            },
+            {
+              "code": "dasd",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "dasd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " decides if an activity should be throttled based on a set of policies. To determine if your app hits throttles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-export-can-proceed",
+              "isActive": true,
+              "overridingTitle": "Confirm that the export can proceed",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Confirm that the export can proceed",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-import-can-proceed",
+              "isActive": true,
+              "overridingTitle": "Confirm that the import can proceed",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Confirm that the import can proceed",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Depending on the policy, a throttle can expire in a second or last for hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a throttle applied with ",
+              "type": "text"
+            },
+            {
+              "code": "Activity Group Policy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " expires when the preceding activity is finished, which is typically quick; a throttle with ",
+              "type": "text"
+            },
+            {
+              "code": "ActivityRateLimitPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is triggered by the app frequently doing too many activities, and can last for hours; a throttle with ",
+              "type": "text"
+            },
+            {
+              "code": "Low Power Mode Policy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is triggered because the device runs in the lower power mode, and may last until the battery level is back to a certain level, or the device is connected to a power adapter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When identifying a throttle in your system logs, check the policy to figure out why ",
+              "type": "text"
+            },
+            {
+              "code": "dasd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " made the decision, and see if you can avoid running into the situation. For example, a throttle with ",
+              "type": "text"
+            },
+            {
+              "code": "ActivityRateLimitPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can happen when you try to populate a large dataset to a Core Data store in a short time frame, and you might be able to avoid that by separating the dataset in batches and populating them lazily.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps don’t need to do anything about some kinds of throttles. As an example, it is as-designed that ",
+              "type": "text"
+            },
+            {
+              "code": "dasd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " throttles some activities when the device is in low energy mode. There is no API for apps to change the behavior. If you believe that it doesn’t make sense to trigger a throttle in your use case, consider ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Provide-actionable-feedback",
+              "isActive": true,
+              "overridingTitle": "providing your feedback",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "providing your feedback",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When hitting a throttle, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stops exporting or importing data, until the throttle expires. There is no API for apps to configure the expiration time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit can throttle the requests from ",
+              "type": "text"
+            },
+            {
+              "code": "NSPersistentCloudKitContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3162-understanding-CloudKit-throttles",
+              "isActive": true,
+              "overridingTitle": "Understanding CloudKit throttles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understanding CloudKit throttles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-actionable-feedback",
+          "level": 2,
+          "text": "Provide actionable feedback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you see a system behavior that doesn’t make sense in your use case, consider ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://developer.apple.com/bug-reporting/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It is important to make your report ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "actionable",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " by providing the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A clear description of the symptoms, and the detailed steps to reproduce them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name and bundle ID of your app, and the iCloud container ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sysdiagnose(s) and the timestamps, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Capture-a-sysdiagnose",
+                      "isActive": true,
+                      "overridingTitle": "Capture a sysdiagnose",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Capture a sysdiagnose",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The part of the system logs that shows the behavior, or why the behavior makes no sense to you.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Core Data store on the device(s).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve a Core Data store in your app’s container from an iOS device, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/11.4/#/dev816c242e1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your store is in another location, such as an App Group container, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreCoordinator/replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)",
+              "isActive": true,
+              "overridingTitle": "replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to copy it to a location where you have access. A Core Data store contains a main database file, multiple accompanying files (",
+              "type": "text"
+            },
+            {
+              "code": "-wal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "-shm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files), and potentially some hidden files. When zipping a store, zip the whole parent folder so all the files are included.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about filing a great feedback report, see WWDC22 session 10119: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10119/?time=1295",
+              "isActive": true,
+              "overridingTitle": "Optimize your use of Core Data and CloudKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Optimize your use of Core Data and CloudKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When providing feedback for other CloudKit APIs, such as the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+                  "isActive": true,
+                  "overridingTitle": "CloudKit",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "CloudKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " framework and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+                  "isActive": true,
+                  "overridingTitle": "NSUbiquitousKeyValueStore",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "NSUbiquitousKeyValueStore",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", make your report actionable as well by providing the same information, except the Core Data store that isn’t needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-28",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Adjusted some of the video links.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-20",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKNotification": {
+      "abstract": [
+        {
+          "text": "The abstract base class for CloudKit notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKNotification",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKNotification"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext": {
+      "abstract": [
+        {
+          "text": "An object space to manipulate and track changes to managed objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObjectContext",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSManagedObjectContext"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext/parent": {
+      "abstract": [
+        {
+          "text": "The parent of the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObjectContext/parent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSManagedObjectContext/parent"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPersistentCloudKitContainer",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSPersistentCloudKitContainer"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreCoordinator/replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)": {
+      "abstract": [
+        {
+          "text": "Replaces one persistent store with another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacePersistentStore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "destinationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPersistentStoreFrom"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sourceURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentStore",
+          "text": "NSPersistentStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So17NSPersistentStoreC8CoreDataE0B4TypeV",
+          "text": "StoreType"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreCoordinator/replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSPersistentStoreCoordinator/replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:type:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSStoreUUIDKey": {
+      "abstract": [
+        {
+          "text": "A key that provides the store’s UUID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStoreUUIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSStoreUUIDKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStoreUUIDKey",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSStoreUUIDKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/persistent-history": {
+      "abstract": [
+        {
+          "text": "Use persistent history tracking to determine what changes have occurred in the store since the enabling of persistent history tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/persistent-history",
+      "kind": "article",
+      "role": "article",
+      "title": "Persistent history",
+      "type": "topic",
+      "url": "/documentation/CoreData/persistent-history"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/setting-up-core-data-with-cloudkit#3235668": {
+      "abstract": [
+        {
+          "text": "Set up the classes and capabilities that sync your store to CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/setting-up-core-data-with-cloudkit#3235668",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Core Data with CloudKit",
+      "type": "topic",
+      "url": "/documentation/CoreData/setting-up-core-data-with-cloudkit"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/sharing-core-data-objects-between-icloud-users#4288212": {
+      "abstract": [
+        {
+          "text": "Use Core Data and CloudKit to synchronize data between devices of an iCloud user and share data between different iCloud users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/sharing-core-data-objects-between-icloud-users#4288212",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Sharing Core Data objects between iCloud users",
+      "type": "topic",
+      "url": "/documentation/CoreData/sharing-core-data-objects-between-icloud-users"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3180044-nspersistentstoreremotechange": {
+      "abstract": [
+        {
+          "text": "A notification that posts after another process writes to a persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreRemoteChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3180044-nspersistentstoreremotechange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPersistentStoreRemoteChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/3180044-nspersistentstoreremotechange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "abstract": [
+        {
+          "text": "An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user's connected devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquitousKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3162-understanding-CloudKit-throttles": {
+      "abstract": [
+        {
+          "text": "Learn how to identify and handle CloudKit throttles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3162-understanding-CloudKit-throttles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3162: Understanding CloudKit throttles",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3162-understanding-cloudkit-throttles"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Capture-a-sysdiagnose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Capture-a-sysdiagnose",
+      "kind": "section",
+      "title": "Capture a sysdiagnose",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Capture-a-sysdiagnose"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-export-can-proceed": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-export-can-proceed",
+      "kind": "section",
+      "title": "Confirm that the export can proceed",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Confirm-that-the-export-can-proceed"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-import-can-proceed": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Confirm-that-the-import-can-proceed",
+      "kind": "section",
+      "title": "Confirm that the import can proceed",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Confirm-that-the-import-can-proceed"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Provide-actionable-feedback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Provide-actionable-feedback",
+      "kind": "section",
+      "title": "Provide actionable feedback",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Provide-actionable-feedback"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-system-throttles": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-system-throttles",
+      "kind": "section",
+      "title": "Understand system throttles",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Understand-system-throttles"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-export": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-export",
+      "kind": "section",
+      "title": "Understand the export",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Understand-the-export"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-import": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3163-understanding-the-synchronization-of-NSPersistentCloudKitContainer#Understand-the-import",
+      "kind": "section",
+      "title": "Understand the import",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3163-understanding-the-synchronization-of-nspersistentcloudkitcontainer#Understand-the-import"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer": {
+      "abstract": [
+        {
+          "text": "Identify and resolve synchronization issues when working with ",
+          "type": "text"
+        },
+        {
+          "code": "NSPersistentCloudKitContainer",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3164: Debugging the synchronization of NSPersistentCloudKitContainer",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3164-debugging-the-synchronization-of-nspersistentcloudkitcontainer"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-CloudKit-in-your-project": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-CloudKit-in-your-project",
+      "kind": "section",
+      "title": "Configure CloudKit in your project",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3164-debugging-the-synchronization-of-nspersistentcloudkitcontainer#Configure-CloudKit-in-your-project"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-iCloud-on-your-devices": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3164-debugging-the-synchronization-of-NSPersistentCloudKitContainer#Configure-iCloud-on-your-devices",
+      "kind": "section",
+      "title": "Configure iCloud on your devices",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3164-debugging-the-synchronization-of-nspersistentcloudkitcontainer#Configure-iCloud-on-your-devices"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "http://developer.apple.com/bug-reporting/": {
+      "identifier": "http://developer.apple.com/bug-reporting/",
+      "title": "filing a feedback report",
+      "titleInlineContent": [
+        {
+          "text": "filing a feedback report",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/bug-reporting/"
+    },
+    "http://icloud.developer.apple.com/dashboard/": {
+      "identifier": "http://icloud.developer.apple.com/dashboard/",
+      "title": "CloudKit Console",
+      "titleInlineContent": [
+        {
+          "text": "CloudKit Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://icloud.developer.apple.com/dashboard/"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=APNs": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=APNs",
+      "title": "the APNs (Apple Push Notification service) for iOS profile",
+      "titleInlineContent": [
+        {
+          "text": "the APNs (Apple Push Notification service) for iOS profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=APNs"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=CloudKit": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=CloudKit",
+      "title": "the CloudKit profile",
+      "titleInlineContent": [
+        {
+          "text": "the CloudKit profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=CloudKit"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/202/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/202/",
+      "title": "Using Core Data with CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Using Core Data with CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/202/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10650/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10650/",
+      "title": "Sync a Core Data store with the CloudKit public database",
+      "titleInlineContent": [
+        {
+          "text": "Sync a Core Data store with the CloudKit public database",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10650/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10015/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10015/",
+      "title": "Build apps that share data through CloudKit and Core Data",
+      "titleInlineContent": [
+        {
+          "text": "Build apps that share data through CloudKit and Core Data",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10015/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10115/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10115/",
+      "title": "What’s new in CloudKit Console",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in CloudKit Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10115/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10119/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10119/",
+      "title": "Optimize your use of Core Data and CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Optimize your use of Core Data and CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10119/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10119/?time=1295": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10119/?time=1295",
+      "title": "Optimize your use of Core Data and CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Optimize your use of Core Data and CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10119/?time=1295"
+    },
+    "https://help.apple.com/xcode/mac/11.4/#/dev816c242e1": {
+      "identifier": "https://help.apple.com/xcode/mac/11.4/#/dev816c242e1",
+      "title": "View, download, and replace app containers on a device",
+      "titleInlineContent": [
+        {
+          "text": "View, download, and replace app containers on a device",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/11.4/#/dev816c242e1"
+    },
+    "https://support.apple.com/guide/console/find-log-messages-and-activities-cnslbf30b61a/1.1/mac/14.0": {
+      "identifier": "https://support.apple.com/guide/console/find-log-messages-and-activities-cnslbf30b61a/1.1/mac/14.0",
+      "title": "Console User Guide",
+      "titleInlineContent": [
+        {
+          "text": "Console User Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/console/find-log-messages-and-activities-cnslbf30b61a/1.1/mac/14.0"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSStoreUUIDKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStoreUUIDKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSManagedObjectContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSManagedObjectContext~1parent/title",
+          "value": "parentContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSManagedObjectContext~1parent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+              "text": "NSManagedObjectContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "parentContext"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSPersistentCloudKitContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPersistentContainer",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKNotification"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

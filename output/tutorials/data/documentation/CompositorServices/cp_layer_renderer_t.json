@@ -1,0 +1,506 @@
+{
+  "abstract": [
+    {
+      "text": "A type that provides the Metal types and timing information you need to draw your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@cp_layer_renderer_t",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "cp_layer_renderer_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "cp_layer_renderer_t"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "cp_layer_renderer_t"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A layer renderer type creates a bridge between a SwiftUI scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the Metal code you use to draw fully immersive experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you present an immersive space with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type and makes it available to the content’s closure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the information in the layer to set up your app’s rendering loop,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to start drawing frames of content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each layer has information that tells the system how to configure the Metal textures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and data types your app needs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Compositor Services provides a default configuration for layers, but you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customize the configuration of your layer as needed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specify your custom configuration details using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and pass a type with those details to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the initializer for your immersive space’s content .",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the layer’s capability information to validate any configuration choices you make.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create and configure a layer and use it to run your rendering loop,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer": {
+      "abstract": [
+        {
+          "text": "A type that you use with an immersive space to display fully immersive content using Metal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration": {
+      "abstract": [
+        {
+          "text": "An interface for specifying the texture configurations and rendering behaviors to use with your Metal rendering engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorLayerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorLayerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorLayerConfiguration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorlayerconfiguration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal": {
+      "abstract": [
+        {
+          "text": "Create a fully immersive experience in visionOS using a custom Metal-based rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing fully immersive content using Metal",
+      "type": "topic",
+      "url": "/documentation/compositorservices/drawing-fully-immersive-content-using-metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-layer-type",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer"
+      ],
+      "title": "Getting the layer type"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/cp_layer_renderer_t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,544 @@
+{
+  "abstract": [
+    {
+      "text": "Decide which tool works best for your network debugging problem.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a Network Debugging Tool"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Debugging network problems is challenging because of the fundamental nature of networking. Networking is asynchronous, time-sensitive, and error prone. Moreover, the two programs involved (for example, the client and the server) are often created by different developers, who disagree on the exact format of the data being exchanged. Fortunately, a variety of tools can help you debug such problems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A key goal of these tools is to divide the problem in two. For example, if you’re working on a network client that sends a request to a server and then gets an error back from that server, it’s important to know whether things failed because the request was incorrect (a problem with your client) or because the server is misbehaving. You can use these network debugging tools to view the traffic going over the network, and thus independently check the validity of that traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The best tool to use depends on the APIs you’re using and the type of problems you’ve encountered:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re working at the HTTP level, you may find that your request makes it to the server and then the server sends you a response indicating that it failed in some way (for example, you get an HTTP response with a status code of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "500 Internal Server Error",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "). See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or one of the subsystems that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " internally, you can enable CFNetwork diagnostic logging to get a detailed view of how your requests were processed. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you want a low-level view of the traffic exchanged over the network, you need a packet trace. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re working in Safari or one of the various web views (like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), you can use the Web Inspector to view the network requests issued by the page. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/safari/tools/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some of the most popular network debugging tools, like HTTP debugging proxies, are third-party products. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors": {
+      "abstract": [
+        {
+          "text": "Understand HTTP server-side errors and how to debug them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTP Server-Side Errors",
+      "type": "topic",
+      "url": "/documentation/network/debugging-http-server-side-errors"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging": {
+      "abstract": [
+        {
+          "text": "Use CFNetwork diagnostic logging to investigate HTTP and HTTPS problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTPS Problems with CFNetwork Diagnostic Logging",
+      "type": "topic",
+      "url": "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools": {
+      "abstract": [
+        {
+          "text": "Learn about the available third-party network debugging tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Third-Party Network Debugging Tools",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools"
+    },
+    "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app": {
+      "abstract": [
+        {
+          "text": "Learn how to verify your app on an L4S-capable host and network to improve your app’s responsiveness.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing and Debugging L4S in Your App",
+      "type": "topic",
+      "url": "/documentation/network/testing-and-debugging-l4s-in-your-app"
+    },
+    "https://developer.apple.com/safari/tools/": {
+      "identifier": "https://developer.apple.com/safari/tools/",
+      "title": "Web Development Tools",
+      "titleInlineContent": [
+        {
+          "text": "Web Development Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/safari/tools/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Network-Debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+        "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+        "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+        "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+      ],
+      "title": "Network Debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Network-Debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+                "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+                "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+              ],
+              "title": "Network Debugging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/choosing-a-network-debugging-tool"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/choosing-a-network-debugging-tool"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

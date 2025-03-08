@@ -1,0 +1,1076 @@
+{
+  "abstract": [
+    {
+      "text": "Guide learning by marking code that learners can change or copy forward.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Specifying Editable Regions in a Playground Page"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You mark a region of code as editable by surrounding the region with a special comment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "syntax. You use editable and noneditable regions of code to guide learners to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "part of the code they should change while completing the task on a page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, all of the code on a playground page is editable until you add at least",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one editable region. Marking any region in a playground page as editable locks the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rest of the code on the page. For playground pages geared toward beginners, restrict",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the editable area to a small region to avoid accidental edits that might be difficult",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to recover from.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-Inline-Editable-Areas",
+          "level": 3,
+          "text": "Mark Inline Editable Areas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use an inline editable area to let learners edit a small region of code. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you might want to progressively disclose how a larger region of code works",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by first letting a learner experiment with changing a single value or variable to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see how it influences the execution of the whole page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add an inline editable area by using the special comment expression:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-editable-regions-in-a-playground-page-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "placeholder text",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is text that’s displayed until the learner starts editing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and adds their own code. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "content",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is text that represents the default value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the Swift code until the value is edited.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The inline editable area in the example below displays “number of repetitions” until",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "edited, and uses ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the initial value for the Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var x = 0",
+            "for i in 1 ... /*#-editable-code number*/1/*#-end-editable-code*/ {",
+            "    x += 5",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When displayed on a playground page, the code from the example above is displayed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the placeholder text in a tappable button that activates editing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-editable-regions-in-a-playground-page-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-Multiline-Editable-Areas",
+          "level": 3,
+          "text": "Mark Multiline Editable Areas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the same special comment syntax to mark editable areas that span multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-editable-regions-in-a-playground-page-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The content you write inside multiline editable areas must be indented to the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "level as the surrounding code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-Editable-Areas-with-Placeholder-Tokens",
+          "level": 3,
+          "text": "Mark Editable Areas with Placeholder Tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add placeholder tokens to editable areas. Placeholder tokens are rendered",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as selectable labels and can contain spaces and special characters. You can include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name of any Swift type in a placeholder token to restrict the type of values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entered in the editable area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-editable-regions-in-a-playground-page-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting a placeholder on a playground page shows the shortcut bar. Selecting a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "placeholder with a defined type shows a type-specific popover, if one exists. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, if a typed placeholder specifies an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ";",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selecting the placeholder opens the number-entry popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows variable declarations with untyped and typed placeholders tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var untypedLlamaCount = /*#-editable-code*/<#number of llamas#>/*#-end-editable-code*/",
+            "",
+            "var typedLlamaCount = /*#-editable-code*/<#T##number of llamas##Int#>/*#-end-editable-code*/"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Mark-Editable-Areas-as-Copyable",
+          "level": 3,
+          "text": "Mark Editable Areas as Copyable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can mark editable areas with an identifier that lets learners reuse code between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pages. Mark an editable area as a source area by using the ",
+              "type": "text"
+            },
+            {
+              "code": "copy-source(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ")",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "end-copy-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " comment syntax. Mark another editable area as a copy destination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by using the ",
+              "type": "text"
+            },
+            {
+              "code": "copy-destination(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "playgroundpage",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ", ",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ")",
+              "type": "codeVoice"
+            },
+            {
+              "text": " comment syntax.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once you’ve marked both the source and destination areas, the code a learner types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the source area becomes available in the destination area if they’ve passed the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source page’s assessment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copy-source areas depend on information you specify in the playground page’s ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file’s ",
+              "type": "text"
+            },
+            {
+              "code": "CopyCodeSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. Use the following keys and values in the ",
+              "type": "text"
+            },
+            {
+              "code": "CopyCodeSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dictionary to configure a copy-source area:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The title for the copy command button. If you don’t specify a title, it’s set to “Copy my code.”",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CopyCommandButtonTitle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The title of the button used to copy the default code to the current playground page. If you don’t specify a title, it’s set to “Start with provided code.”",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DefaultCommandButtonTitle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The title for the navigate command button. If you don’t specify a title, it’s set to “Go to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "<PREVIOUS_PAGE>",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",” where ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "<PREVIOUS_PAGE>",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is substituted for the name of the previous page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NavigateCommandButtonTitle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The text to show when the code isn’t ready to be copied to the current page because the learner hasn’t passed the required assessment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NotReadyToCopyInstructions",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The text to show when the code is ready to be copied to the current page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ReadyToCopyInstructions",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on configuring a page’s manifest, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book#Specify-the-Page-Name-and-Metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below uses a copy-source area named ",
+              "type": "text"
+            },
+            {
+              "code": "id1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to arrange the page so that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when a learner changes the code in the editable area to a different emoji, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "🤔, the new emoji replaces the default emoji in copy destinations that reference ",
+              "type": "text"
+            },
+            {
+              "code": "id1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Pick a character",
+            "let character: Character = /*#-copy-source(id1)*//*#-editable-code*/\"😃\"/*#-end-editable-code*//*#-end-copy-source*/",
+            "",
+            "//#-hidden-code",
+            "import PlaygroundSupport",
+            "PlaygroundPage.current.assessmentStatus = .pass(message: nil)",
+            "//#-end-hidden-code"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following uses the identifier from the code above to determine which code to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "copy forward into a copy-destination area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let character: Character = /*#-editable-code*//*#-copy-destination(\"Page1.playgroundpage\", id1)*/\"😃\"/*#-end-copy-destination*//*#-end-editable-code*/"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book#Specify-the-Page-Name-and-Metadata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book#Specify-the-Page-Name-and-Metadata",
+      "kind": "section",
+      "title": "Specify the Page Name and Metadata",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-page-to-a-playground-book#Specify-the-Page-Name-and-Metadata"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar": {
+      "abstract": [
+        {
+          "text": "Guide learners toward a solution by hiding some symbols and showing others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Completions in the Shortcut Bar",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/customizing-the-completions-in-the-shortcut-bar"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Use special Swift comments to hide code from display but continue to run it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Hiding Code from a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/hiding-code-from-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, mark up code zones to replace them with code that’s localized for the current user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing Code Comments and String Literals",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/localizing-code-comments-and-string-literals"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Add comment markers in your Swift code to mark text as prose.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Prose for a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/writing-prose-for-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "specifying-editable-regions-in-a-playground-page-1": {
+      "alt": "A diagram showing “/",
+      "identifier": "specifying-editable-regions-in-a-playground-page-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a28fd46bb1114ace63b637c31e204c6b/specifying-editable-regions-in-a-playground-page-1@2x.png"
+        }
+      ]
+    },
+    "specifying-editable-regions-in-a-playground-page-2": {
+      "alt": "A screenshot showing the rendered version of the code listing above. ",
+      "identifier": "specifying-editable-regions-in-a-playground-page-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c19eb5382306077600467b0df026edf/specifying-editable-regions-in-a-playground-page-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e15fbf16aecc48cbed956a17c1af4efb/specifying-editable-regions-in-a-playground-page-2~dark@2x.png"
+        }
+      ]
+    },
+    "specifying-editable-regions-in-a-playground-page-3": {
+      "alt": null,
+      "identifier": "specifying-editable-regions-in-a-playground-page-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1fe225e19fb38fb8b5681d1be6b1c6fd/specifying-editable-regions-in-a-playground-page-3@2x.png"
+        }
+      ]
+    },
+    "specifying-editable-regions-in-a-playground-page-4": {
+      "alt": "Diagram showing placeholder token syntax. The first line shows “<#”, followed by placeholder text, terminated with “#>”. The second like shows “<#T##”, followed by placeholder text, followed by “##”, followed by the type name placeholder, terminated with “#>”. ",
+      "identifier": "specifying-editable-regions-in-a-playground-page-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d997569d0924f06a8395c824b875150c/specifying-editable-regions-in-a-playground-page-4@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals"
+      ],
+      "title": "Annotations"
+    }
+  ]
+}

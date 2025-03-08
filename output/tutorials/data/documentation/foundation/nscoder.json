@@ -1,0 +1,5137 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscoder"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412449,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCoder",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSCoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " declares the interface used by concrete subclasses to transfer objects and other values between memory and some other format. This capability provides the basis for archiving (storing objects and data on disk) and distribution (copying objects and data items between different processes or threads). The concrete subclasses provided by Foundation for these purposes are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " are “coder classes”, and instances of these classes are “coder objects” (or simply “coders”). A coder that can only encode values is an “encoder”, and one that can only decode values is a “decoder”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " operates on objects, scalars, C arrays, structures, strings, and on pointers to these types. It doesn’t handle types whose implementation varies across platforms, such as ",
+              "type": "text"
+            },
+            {
+              "code": "union",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "void *",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", function pointers, and long chains of pointers. A coder stores object type information along with the data, so an object decoded from a stream of bytes is normally of the same class as the object that was originally encoded into the stream. An object can change its class when encoded, however; this is described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695370",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AVFoundation framework adds methods to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to make it easier to create archives including Core Media time structures, and extract Core Media time structure from archives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770436",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details of how to create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1697366",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695370",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695370": {
+      "identifier": "devLink-1695370",
+      "title": "Archives and Serializations Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i"
+    },
+    "devLink-1697366": {
+      "identifier": "devLink-1697366",
+      "title": "Subclassing NSCoder",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Articles/subclassing.html#//apple_ref/doc/uid/20000951"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1385718-decodetimerange": {
+      "abstract": [
+        {
+          "text": "Returns the Core Media time range structure associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1385718-decodetimerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTimeRange(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1385718-decodetimerange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1386649-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a given Core Media time range structure and associates it with a specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CMTimeRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1386649-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1386649-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1388869-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a given Core Media time structure and associates it with a specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CMTime, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1388869-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1388869-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1389496-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a given Core Media time mapping structure and associates it with a specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CMTimeMapping, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1389496-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1389496-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1389544-decodetime": {
+      "abstract": [
+        {
+          "text": "Returns the Core Media time structure associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1389544-decodetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTime(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1389544-decodetime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1389860-decodetimemapping": {
+      "abstract": [
+        {
+          "text": "Returns the Core Media time mapping structure associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTimeMapping"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CMTimeMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1389860-decodetimemapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTimeMapping(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1389860-decodetimemapping"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391114-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a point and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSPoint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391114-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391114-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391116-decoderect": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSRect structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391287-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391116-decoderect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeRect(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391116-decoderect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391138-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSPoint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391138-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391138-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391144-decodesize": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSSize structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391291-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391144-decodesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeSize()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391144-decodesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391176-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a size structure and associates it with the given string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391176-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391176-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391189-decodepoint": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSPoint structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391138-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodePoint"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391189-decodepoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodePoint()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391189-decodepoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391214-decodepoint": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSPoint structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391114-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodePoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391214-decodepoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodePoint(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391214-decodepoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391253-decodesize": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSSize structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391176-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391253-decodesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeSize(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391253-decodesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391263-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a rectangle structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391263-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391263-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391269-decoderect": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSRect structure that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391263-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeRect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391269-decoderect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeRect()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391269-decoderect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391287-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a rectangle structure and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391287-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391287-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1391291-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a size structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSSize)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1391291-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1391291-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1407699-decodetoplevelobject": {
+      "abstract": [
+        {
+          "text": "Decodes a previously-encoded object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTopLevelObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1407699-decodetoplevelobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTopLevelObject()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1407699-decodetoplevelobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1407878-decodeint64": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a 64-bit integer value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInt64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1407878-decodeint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInt64(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1407878-decodeint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1408104-decodefloat": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a float value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1414384-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409008-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeFloat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1408104-decodefloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeFloat(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1408104-decodefloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1408354-decodearray": {
+      "abstract": [
+        {
+          "text": "Decodes an array of ",
+          "type": "text"
+        },
+        {
+          "code": "count",
+          "type": "codeVoice"
+        },
+        {
+          "text": " items, whose Objective-C type is given by ",
+          "type": "text"
+        },
+        {
+          "code": "itemType",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1408354-decodearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeArray(ofObjCType:count:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1408354-decodearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1408918-decodeint32": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a 32-bit integer value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInt32"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1408918-decodeint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInt32(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1408918-decodeint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409008-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a double-precision floating point value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409008-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409008-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409236-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a Boolean value and associates it with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409236-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409236-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an NSInteger value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInteger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInteger(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409246-decodeinteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409293-decodebool": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a boolean value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409236-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeBool"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409293-decodebool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeBool(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409293-decodebool"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409374-decodedouble": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a double value that was previously encoded with either ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1414384-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409008-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDouble"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409374-decodedouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDouble(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409374-decodedouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409439-encoderootobject": {
+      "abstract": [
+        {
+          "text": "An encoding method for subclasses to override to encode an interconnected group of objects, starting with the provided root object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRootObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409439-encoderootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRootObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409439-encoderootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding": {
+      "abstract": [
+        {
+          "text": "Indicates whether the archiver requires all archived classes to resist object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409845-requiressecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409876-decodedata": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411473-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". Subclasses must override this method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeData"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409876-decodedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeData()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409876-decodedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a 64-bit integer value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Int64, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1410440-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1410643-encodepropertylist": {
+      "abstract": [
+        {
+          "text": "Encodes a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodePropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410643-encodepropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodePropertyList(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1410643-encodepropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411168-decodecint": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an int value that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCInt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411168-decodecint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCInt(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411168-decodecint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411455-failwitherror": {
+      "abstract": [
+        {
+          "text": "Signals to this coder that the decode operation has failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "failWithError"
+        },
+        {
+          "kind": "text",
+          "text": "(any Error)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411455-failwitherror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "failWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411455-failwitherror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411473-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a given data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411473-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411473-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode": {
+      "abstract": [
+        {
+          "text": "Encodes an integer value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411551-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411568-encode": {
+      "abstract": [
+        {
+          "text": "Encodes an object and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411568-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411568-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411664-encodebytes": {
+      "abstract": [
+        {
+          "text": "Encodes a buffer of data of an unspecified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411664-encodebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBytes(_:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411664-encodebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411916-decodepropertylist": {
+      "abstract": [
+        {
+          "text": "Decodes a property list that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1410643-encodepropertylist",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodePropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411916-decodepropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodePropertyList()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411916-decodepropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1411987-decodebytes": {
+      "abstract": [
+        {
+          "text": "Decodes a buffer of data that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413078-encodebytes",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>?) -> UnsafePointer<UInt8>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411987-decodebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeBytes(forKey:returnedLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1411987-decodebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a 32-bit integer value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Int32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1412395-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1412486-allowedclasses": {
+      "abstract": [
+        {
+          "text": "The set of coded classes allowed for secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1412486-allowedclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1412486-allowedclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1413078-encodebytes": {
+      "abstract": [
+        {
+          "text": "Encodes a buffer of data, given its length and a pointer, and associates it with a string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<UInt8>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413078-encodebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBytes(_:length:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1413078-encodebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1413205-systemversion": {
+      "abstract": [
+        {
+          "text": "The system version in effect for the archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413205-systemversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1413205-systemversion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint": {
+      "abstract": [
+        {
+          "text": "Encodes a C integer value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeCInt"
+        },
+        {
+          "kind": "text",
+          "text": "(Int32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeCInt(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1413906-encodecint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1413918-encodeconditionalobject": {
+      "abstract": [
+        {
+          "text": "An encoding method for subclasses to override to conditionally encode an object, preserving common references to it, only if it has been unconditionally encoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeConditionalObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413918-encodeconditionalobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeConditionalObject(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1413918-encodeconditionalobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1414384-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a floating point value and associates it with the string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Float, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1414384-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1414384-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1414478-decodeobject": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an object that was previously encoded with any of the ",
+          "type": "text"
+        },
+        {
+          "code": "encode…Object",
+          "type": "codeVoice"
+        },
+        {
+          "text": " methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1414478-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1414478-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1414648-encodevalue": {
+      "abstract": [
+        {
+          "text": "Encodes a value of the given type at the given address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1414648-encodevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeValue(ofObjCType:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1414648-encodevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1415196-encodeconditionalobject": {
+      "abstract": [
+        {
+          "text": "An encoding method for subclasses to override to conditionally encode an object, preserving common references to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeConditionalObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1415196-encodeconditionalobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeConditionalObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1415196-encodeconditionalobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1415441-decodebytes": {
+      "abstract": [
+        {
+          "text": "Decodes a buffer of data whose types are unspecified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withReturnedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>) -> UnsafeMutableRawPointer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1415441-decodebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeBytes(withReturnedLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1415441-decodebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether an encoded value is available for a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1416125-containsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1416279-encodebyrefobject": {
+      "abstract": [
+        {
+          "text": "An encoding method for subclasses to override such that it creates a proxy, rather than a copy, when decoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeByrefObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1416279-encodebyrefobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeByrefObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1416279-encodebyrefobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1416284-decodepropertylist": {
+      "abstract": [
+        {
+          "text": "Returns a decoded property list for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodePropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1416284-decodepropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodePropertyList(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1416284-decodepropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417159-decodevalue": {
+      "abstract": [
+        {
+          "text": "Decodes a single value, whose Objective-C type is given by ",
+          "type": "text"
+        },
+        {
+          "code": "valueType",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417159-decodevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeValue(ofObjCType:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417159-decodevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver supports keyed coding of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsKeyedCoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsKeyedCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417541-allowskeyedcoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417647-encode": {
+      "abstract": [
+        {
+          "text": "Encodes an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417647-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417647-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417703-version": {
+      "abstract": [
+        {
+          "text": "This method is present for historical reasons and is not used with keyed archivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417703-version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "version(forClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417703-version"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417865-encodearray": {
+      "abstract": [
+        {
+          "text": "Encodes an array of the given Objective-C type, provided the number of items and a pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417865-encodearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeArray(ofObjCType:count:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417865-encodearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1418185-decodeobject": {
+      "abstract": [
+        {
+          "text": "Decodes and returns a previously-encoded object that was previously encoded with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1411568-encode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1413918-encodeconditionalobject",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and associated with the string ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1418185-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1418185-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1418225-encodebycopyobject": {
+      "abstract": [
+        {
+          "text": "An encoding method for subclasses to override such that it creates a copy, rather than a proxy, when decoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBycopyObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1418225-encodebycopyobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBycopyObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1418225-encodebycopyobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624472-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a rectangle and associates it with the specified key in the receiver’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624472-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624472-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624474-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624474-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624474-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624476-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from a vector data structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGVector) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624476-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624476-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624477-cgpoint": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics point structure corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624477-cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgPoint(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624477-cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624478-decodecgaffinetransform": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the Core Graphics affine transform structure associated with the specified key in the coder’s archive. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCGAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624478-decodecgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCGAffineTransform(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624478-decodecgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624481-encode": {
+      "abstract": [
+        {
+          "text": "Encodes edge inset data and associates it with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(UIEdgeInsets, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624481-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624481-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624482-encode": {
+      "abstract": [
+        {
+          "text": "Encodes size information and associates it with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624482-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624482-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624484-cgsize": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics size structure corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624484-cgsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgSize(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624484-cgsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624488-decodecgvector": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the Core Graphics vector data associated with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCGVector"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624488-decodecgvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCGVector(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624488-decodecgvector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624491-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from an offset structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UIOffset) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624491-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624491-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624492-decodeuiedgeinsets": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the UIKit edge insets structure associated with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeUIEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624492-decodeuiedgeinsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeUIEdgeInsets(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624492-decodeuiedgeinsets"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624494-encode": {
+      "abstract": [
+        {
+          "text": "Encodes offset data and associates it with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(UIOffset, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624494-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624494-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624497-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from an affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624497-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624497-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624502-encode": {
+      "abstract": [
+        {
+          "text": "Encodes an affine transform and associates it with the specified key in the receiver’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CGAffineTransform, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624502-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624502-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624504-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624504-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624504-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624505-cgaffinetransform": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics affine transform structure corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624505-cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgAffineTransform(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624505-cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624507-decodeuioffset": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the UIKit offset structure associated with the specified key in the coder’s archive. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeUIOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> UIOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624507-decodeuioffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeUIOffset(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624507-decodeuioffset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624508-cgrect": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics rectangle structure corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624508-cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgRect(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624508-cgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624509-uioffset": {
+      "abstract": [
+        {
+          "text": "Returns a UIKit offset structure corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uiOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> UIOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624509-uioffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uiOffset(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624509-uioffset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624513-cgvector": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics vector corresponding to the data in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgVector"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624513-cgvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgVector(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624513-cgvector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624514-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from a size data structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624514-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624514-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624519-decodecgsize": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the Core Graphics size structure associated with the specified key in the coder’s archive. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCGSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624519-decodecgsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCGSize(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624519-decodecgsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624520-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a point and associates it with the specified key in the receiver’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPoint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624520-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624520-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624522-decodecgrect": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the Core Graphics rectangle structure associated with the specified key in the coder’s archive. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCGRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624522-decodecgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCGRect(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624522-decodecgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624523-decodecgpoint": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the Core Graphics point structure associated with the specified key in the coder’s archive. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeCGPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624523-decodecgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeCGPoint(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624523-decodecgpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624525-uiedgeinsets": {
+      "abstract": [
+        {
+          "text": "Returns a UIKit edge insets structure based on the data in the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uiEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624525-uiedgeinsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uiEdgeInsets(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624525-uiedgeinsets"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624527-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from an edge insets structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UIEdgeInsets) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624527-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624527-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1624532-encode": {
+      "abstract": [
+        {
+          "text": "Encodes vector data and associates it with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(CGVector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1624532-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1624532-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "The action the coder should take when decoding fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodingFailurePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1643263-error": {
+      "abstract": [
+        {
+          "text": "An error in the top-level encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any Error)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1643263-error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1643263-error"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject": {
+      "abstract": [
+        {
+          "text": "Decode an object as an expected type, failing if the archived type doesn’t match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeObject"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedObjectType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObjectType.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> DecodedObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2292924-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2292925-decodetoplevelobject": {
+      "abstract": [
+        {
+          "text": "Decode an object as one of several expected types, failing if the archived type does not match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTopLevelObject"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedObjectType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObjectType.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> DecodedObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292925-decodetoplevelobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTopLevelObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2292925-decodetoplevelobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject": {
+      "abstract": [
+        {
+          "text": "Decode an object as one of several expected types, failing if the archived type doesn’t match any of the types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2292944-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2293221-decodetoplevelobject": {
+      "abstract": [
+        {
+          "text": "Decode an object as one of several expected types, failing if the archived type does not match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTopLevelObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2293221-decodetoplevelobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTopLevelObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2293221-decodetoplevelobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2293311-decodetoplevelobject": {
+      "abstract": [
+        {
+          "text": "Decodes the previously-encoded object associated by a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTopLevelObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2293311-decodetoplevelobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTopLevelObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2293311-decodetoplevelobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2865873-decodedirectionaledgeinsets": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the UIKit directional edge insets structure associated with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDirectionalEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2865873-decodedirectionaledgeinsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDirectionalEdgeInsets(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2865873-decodedirectionaledgeinsets"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2865874-encode": {
+      "abstract": [
+        {
+          "text": "Encodes directional edge inset data and associates it with the specified key in the coder’s archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "(NSDirectionalEdgeInsets, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2865874-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2865874-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2865946-string": {
+      "abstract": [
+        {
+          "text": "Returns a string formatted to contain the data from a directional edge insets structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": NSDirectionalEdgeInsets) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2865946-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2865946-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2865991-nsdirectionaledgeinsets": {
+      "abstract": [
+        {
+          "text": "Returns a directional edge insets structure based on data in the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nsDirectionalEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2865991-nsdirectionaledgeinsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nsDirectionalEdgeInsets(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2865991-nsdirectionaledgeinsets"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2919430-decodevalue": {
+      "abstract": [
+        {
+          "text": "Decodes a single value of a known type from the specified data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofObjCType"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2919430-decodevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeValue(ofObjCType:at:size:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2919430-decodevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/3650103-decodearrayofobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeArrayOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedObject>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObject.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [DecodedObject]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/3650103-decodearrayofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeArrayOfObjects(ofClass:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/3650103-decodearrayofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/3650104-decodearrayofobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeArrayOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/3650104-decodearrayofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeArrayOfObjects(ofClasses:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/3650104-decodearrayofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/3650105-decodedictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedKey, DecodedObject>("
+        },
+        {
+          "kind": "identifier",
+          "text": "withKeyClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedKey.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObject.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [DecodedKey : DecodedObject]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/3650105-decodedictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDictionary(withKeyClass:objectClass:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/3650105-decodedictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/3650106-decodedictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withKeysOfClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectsOfClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/3650106-decodedictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDictionary(withKeysOfClasses:objectsOfClasses:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/3650106-decodedictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "Policies describing the action the coder should take when encountering decode failures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder.DecodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscodererrormaximum": {
+      "abstract": [
+        {
+          "text": "The end of the range of error codes reserved for coder errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoderErrorMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscodererrormaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoderErrorMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/nscodererrormaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscodererrorminimum": {
+      "abstract": [
+        {
+          "text": "The start of the range of error codes reserved for coder errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoderErrorMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscodererrorminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoderErrorMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/nscodererrorminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoderinvalidvalueerror": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoderInvalidValueError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoderinvalidvalueerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoderInvalidValueError",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoderinvalidvalueerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoderreadcorrupterror": {
+      "abstract": [
+        {
+          "text": "Decoding failed due to corrupt data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoderReadCorruptError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoderreadcorrupterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoderReadCorruptError",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoderreadcorrupterror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscodervaluenotfounderror": {
+      "abstract": [
+        {
+          "text": "The requested data wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoderValueNotFoundError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscodervaluenotfounderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoderValueNotFoundError",
+      "type": "topic",
+      "url": "/documentation/foundation/nscodervaluenotfounderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer": {
+      "abstract": [
+        {
+          "text": "A value transformer that converts data to and from classes that support secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureUnarchiveFromDataTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureUnarchiveFromDataTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecureunarchivefromdatatransformer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunarchiver": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer"
+      ],
+      "title": "Keyed Archivers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651361",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting a Coder"
+    },
+    {
+      "anchor": "1651395",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417865-encodearray",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409236-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1418225-encodebycopyobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1416279-encodebyrefobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411664-encodebytes",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1413078-encodebytes",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1415196-encodeconditionalobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1413918-encodeconditionalobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411473-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409008-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1414384-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1413906-encodecint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411551-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1412395-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1410440-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417647-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411568-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391138-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391114-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1410643-encodepropertylist",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391263-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391287-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409439-encoderootobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391291-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391176-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1414648-encodevalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding General Data"
+    },
+    {
+      "anchor": "1651607",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624502-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624520-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624472-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624482-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624532-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2865874-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624481-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624494-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding Geometry-Based Data"
+    },
+    {
+      "anchor": "1651666",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1388869-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1386649-encode",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1389496-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding Core Media Time Structures"
+    },
+    {
+      "anchor": "1651915",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1412486-allowedclasses"
+      ],
+      "kind": "taskGroup",
+      "title": "Secure Coding"
+    },
+    {
+      "anchor": "3148908",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1407699-decodetoplevelobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2293311-decodetoplevelobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2292925-decodetoplevelobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2293221-decodetoplevelobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Decoding Top-Level Objects"
+    },
+    {
+      "anchor": "1651701",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1408354-decodearray",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409293-decodebool",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411987-decodebytes",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1415441-decodebytes",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409876-decodedata",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409374-decodedouble",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1408104-decodefloat",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411168-decodecint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1408918-decodeint32",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1407878-decodeint64",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1414478-decodeobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1418185-decodeobject",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391189-decodepoint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391214-decodepoint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411916-decodepropertylist",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391269-decoderect",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391116-decoderect",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391144-decodesize",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1391253-decodesize",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417159-decodevalue",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2919430-decodevalue",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1416284-decodepropertylist"
+      ],
+      "kind": "taskGroup",
+      "title": "Decoding General Data"
+    },
+    {
+      "anchor": "1651849",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624478-decodecgaffinetransform",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624523-decodecgpoint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624522-decodecgrect",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624519-decodecgsize",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624488-decodecgvector",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2865873-decodedirectionaledgeinsets",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624492-decodeuiedgeinsets",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624507-decodeuioffset"
+      ],
+      "kind": "taskGroup",
+      "title": "Decoding Geometry-Based Data"
+    },
+    {
+      "anchor": "1651890",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1389544-decodetime",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1385718-decodetimerange",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1389860-decodetimemapping"
+      ],
+      "kind": "taskGroup",
+      "title": "Decoding Core Media Time Structures"
+    },
+    {
+      "anchor": "3148597",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1411455-failwitherror",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1643263-error"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Decode Errors"
+    },
+    {
+      "anchor": "1651939",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1413205-systemversion",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417703-version"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Version Information"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Convenience methods for creating encodable and decodable types in Objective-C.",
+          "type": "text"
+        }
+      ],
+      "anchor": "3149819",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624505-cgaffinetransform",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624477-cgpoint",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624508-cgrect",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624484-cgsize",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624513-cgvector",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2865991-nsdirectionaledgeinsets",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624525-uiedgeinsets",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624509-uioffset",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624474-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624476-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624497-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624504-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624514-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/2865946-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624527-string",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1624491-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Representing Geometric Types as Strings"
+    },
+    {
+      "anchor": "2879037",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscodererrormaximum",
+        "doc://com.apple.documentation/documentation/foundation/nscodererrorminimum",
+        "doc://com.apple.documentation/documentation/foundation/nscoderreadcorrupterror",
+        "doc://com.apple.documentation/documentation/foundation/nscodervaluenotfounderror",
+        "doc://com.apple.documentation/documentation/foundation/nscoderinvalidvalueerror"
+      ],
+      "kind": "taskGroup",
+      "title": "Error Codes"
+    },
+    {
+      "anchor": "3567528",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/3650103-decodearrayofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/3650104-decodearrayofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/3650105-decodedictionary",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/3650106-decodedictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

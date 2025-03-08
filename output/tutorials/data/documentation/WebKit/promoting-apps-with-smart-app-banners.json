@@ -1,0 +1,900 @@
+{
+  "abstract": [
+    {
+      "text": "Create a banner to promote your app on the App Store from a website.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/promoting-apps-with-smart-app-banners"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Promoting Apps with Smart App Banners"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Smart App Banners vastly improve users’ browsing experience compared to other promotional methods. In iOS, Smart App Banners  provide a consistent look and feel that users come to recognize. They trust that tapping the banner will take them to the App Store and not a third-party advertisement. They appreciate unobtrusive banners at the top of a webpage, instead of a full screen that interrupts their experience with the web content. And with a large and prominent Close button, a banner is easy to dismiss. When the user returns to the webpage, the banner doesn’t reappear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3701613",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is already installed on a user’s device, the Smart App Banner intelligently changes its action, and tapping the banner simply opens the app. If the user doesn’t have your app on their device, tapping the banner takes them to the app’s entry in the App Store. When they return to your website, a progress bar appears in the banner, indicating how much longer the download will take to complete. When the app finishes downloading, the View button changes to an Open button, and tapping the banner opens the app while preserving the user’s content from your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3701614",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Smart App Banners automatically determine whether the user’s device supports your app. If it doesn’t, or if your app is unavailable in the user’s location, the banner doesn’t appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-a-Smart-App-Banner-on-Your-Website",
+          "level": 3,
+          "text": "Implement a Smart App Banner on Your Website",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a Smart App Banner to your website, include the following meta tag in the ",
+              "type": "text"
+            },
+            {
+              "code": "head",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element of each page where you’d like the banner to appear:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<meta name=\"apple-itunes-app\" content=\"app-id=myAppStoreID, app-argument=myURL\">"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include two comma-separated parameters in the content attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Required. Your app’s unique identifier. To find your app ID from ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://tools.applemediaservices.com/app-store",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", type the name of your app in the Search field, and select the appropriate country or region and media type. In the results, select your app. In the detail view for your app, find the Content Link. Your app ID is the number between ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "?",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Alternatively, select your app in App Store Connect. Under General, select App Information, then find your app ID in the General Information section that opens in the middle of the screen; your app ID is listed as Apple ID.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "app-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optional. A URL that provides context to your native app. If you include the URL and the user has your app installed, they can jump from your website to the corresponding position in your iOS app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "app-argument",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, it’s beneficial to retain navigational context because:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user is deep within the navigational hierarchy of your website, you can pass the document’s entire URL, and then parse it in your app to reroute the user to the correct location in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user performs a search on your website, you can pass the query string so the user can seamlessly continue the search in your app without having to retype their query.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user is in the midst of creating content, you can pass the session ID to download the web session state to your app so the user can nondestructively resume their work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can generate the ",
+              "type": "text"
+            },
+            {
+              "code": "app-argument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter for each page dynamically with a server-side script. You can format it however you like, as long as it’s a valid URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t display Smart App Banners inside a frame. Banners don’t appear in the iOS simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-Navigational-Context-to-Your-App",
+          "level": 3,
+          "text": "Provide Navigational Context to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:sourceApplication:annotation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": method in your app delegate, which fires when your app is launched from a URL. Then provide logic that can interpret the URL you pass. The value you set for the ",
+              "type": "text"
+            },
+            {
+              "code": "app-argument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is available as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code sample below is for a website that passes data to a native iOS app. It first detects whether the URL contains the string ",
+              "type": "text"
+            },
+            {
+              "code": "/profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If so, it opens the profile view controller and passes the profile ID number that’s in the query string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {",
+            "",
+            "    // In this example, the URL from which the user came is http://example.com/profile/?12345.",
+            "",
+            "    // Determine whether the user was viewing a profile.",
+            "    if ([[url path] isEqualToString:@\"/profile\"]) {",
+            "",
+            "        // Switch to the profile view controller.",
+            "        [self.tabBarController setSelectedViewController:profileViewController];",
+            "",
+            "        // Pull the profile ID number found in the query string.",
+            "        NSString *profileID = [url query];",
+            "",
+            "        // Pass the profile ID number to the profile view controller.",
+            "        [profileViewController loadProfile:profileID];",
+            "",
+            "    }",
+            "    return YES;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:sourceApplication:annotation:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to open a resource identified by a URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceApplication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "annotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:sourceApplication:annotation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:open:sourceApplication:annotation:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:open:sourceApplication:annotation:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url": {
+      "abstract": [
+        {
+          "text": "A URL object derived from the components object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1413469-url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari": {
+      "abstract": [
+        {
+          "text": "Improve the performance and appearance of video in your website in Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering Video Content for Safari",
+      "type": "topic",
+      "url": "/documentation/webkit/delivering-video-content-for-safari"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari": {
+      "abstract": [
+        {
+          "text": "Improve your website by optimizing it for Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Your Website for Safari",
+      "type": "topic",
+      "url": "/documentation/webkit/optimizing-your-website-for-safari"
+    },
+    "https://tools.applemediaservices.com/app-store": {
+      "identifier": "https://tools.applemediaservices.com/app-store",
+      "title": "App Store Marketing Tools",
+      "titleInlineContent": [
+        {
+          "text": "App Store Marketing Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.applemediaservices.com/app-store"
+    },
+    "media-3701613": {
+      "alt": "Smart App Banner with a View button above a web page for an app.",
+      "identifier": "media-3701613",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f824d208c04f48099940de5a48ccbb6c/media-3701613@2x.png"
+        }
+      ]
+    },
+    "media-3701614": {
+      "alt": "Smart App Banner with a Open button above a web page for an app.",
+      "identifier": "media-3701614",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac911ef324765f30b1c4156fa16be95e/media-3701614@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Safari-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+        "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari"
+      ],
+      "title": "Safari Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Safari-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+                "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari"
+              ],
+              "title": "Safari Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:sourceApplication:annotation:)/title",
+          "value": "application:openURL:sourceApplication:annotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:sourceApplication:annotation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sourceApplication:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sourceApplication"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "annotation:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "annotation"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlcomponents~11413469-url/title",
+          "value": "URL"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/promoting-apps-with-smart-app-banners"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/promoting-apps-with-smart-app-banners"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

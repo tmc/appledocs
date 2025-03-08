@@ -1,0 +1,1165 @@
+{
+  "abstract": [
+    {
+      "text": "A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1648958,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSTemporaryImage",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSTemporaryImage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSTemporaryImage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSTemporaryImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSImage",
+              "text": "MPSImage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects can provide a profound reduction in the aggregate texture memory and associated CPU-side allocation cost in your app. Metal Performance Shaders achieves this by automatically identifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects that do not overlap in time over the course of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s lifetime and can therefore reuse the same memory. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects leverage an internal cache of preallocated reusable memory to hold pixel data to avoid typical memory allocation performance penalties common to ordinary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid data corruption due to aliasing, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects impose some important restrictions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The underlying texture storage mode is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You cannot, for example, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/getBytes(_:bytesPerRow:from:mipmapLevel:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods with them. Temporary images are strictly read and written by the GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The temporary image may be used only on a single ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. This limits the chronology to a single linear time stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property must be managed correctly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Temporary images must also adhere to the general pixel format restrictions for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since temporary images can only be used with a single command buffer, and can not be used off the GPU, they generally should not be kept around past the completion of their associated command buffer. The lifetime of a temporary image is typically expected to be extremely short, perhaps spanning only a few lines of code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep the lifetime of the underlying texture allocation as short as possible, the texture is not allocated until the first time the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is used by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object or until the first time the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is read. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property serves to limit the lifetime of the texture on deallocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with the ",
+              "type": "text"
+            },
+            {
+              "code": "encode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, if ",
+              "type": "text"
+            },
+            {
+              "code": "featureChannels<=4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the texture conforms to the requirements of the given kernel. In such cases, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is not modified, since the enclosing object is not available. There is no locking mechanism provided to prevent a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object returned from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property from becoming invalid when the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property reaches 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects can otherwise be used wherever ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530624",
+          "level": 3,
+          "text": "The MPSTemporaryImage Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class extends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide advanced caching of unused memory, in order to increase performance and reduce memory footprint. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are intended as fast GPU-only storage for intermediate image data needed only transiently within a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. They accelerate the common case of image data which is created only to be consumed and destroyed immediately by the next operation(s) encoded in a command buffer. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects provide a convenient and simple way to save memory by automatically aliasing other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in the same command buffer. Because they alias (i.e., share texel storage with) other textures in the same command buffer, the valid lifetime of the data in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is extremely short, limited to a portion of a the command buffer itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can not read or write data to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the CPU, or use the data in other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Use regular ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects for more persistent storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metal/mtltexturedescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new Metal texture objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltexturedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "abstract": [
+        {
+          "text": "Build neural networks with layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "abstract": [
+        {
+          "text": "A texture that may have more than four channels for use in convolutional neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648903-texture"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the attributes used to create an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "abstract": [
+        {
+          "text": "A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSTemporaryImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097543-init": {
+      "abstract": [
+        {
+          "text": "Low-level interface for creating a temporary image using a texture descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097543-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(commandBuffer:textureDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097543-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097544-prefetchstorage": {
+      "abstract": [
+        {
+          "text": "A method that helps the framework decide which allocations to make ahead of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefetchStorage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageDescriptorList"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImageDescriptor])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097544-prefetchstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefetchStorage(with:imageDescriptorList:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097544-prefetchstorage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097545-init": {
+      "abstract": [
+        {
+          "text": "Initializes a temporary image for use on a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097545-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(commandBuffer:imageDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097545-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount": {
+      "abstract": [
+        {
+          "text": "The number of times a temporary image may be read by a CNN kernel before its contents become undefined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCount",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2867130-defaultallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2867130-defaultallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAllocator()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2867130-defaultallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2942489-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2942489-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(commandBuffer:textureDescriptor:featureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2942489-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "abstract": [
+        {
+          "text": "Simplify the creation of neural networks using networks of filter, image, and state nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "abstract": [
+        {
+          "text": "Create recurrent neural networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders": {
+      "abstract": [
+        {
+          "text": "Use an MPS neural network graph to train a simple neural network digit classifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Training a Neural Network with Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/getBytes(_:bytesPerRow:from:mipmapLevel:)": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/getBytes(_:bytesPerRow:from:mipmapLevel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytes(_:bytesPerRow:from:mipmapLevel:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/getbytes(_:bytesperrow:from:mipmaplevel:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/replace(region:mipmaplevel:withbytes:bytesperrow:)"
+    },
+    "link-2528269": {
+      "identifier": "link-2528269",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ],
+      "title": "Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2890164",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097545-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097543-init",
+        "doc://com.apple.documentation/documentation/metal/mtltexturedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2942489-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2317465",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097544-prefetchstorage"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods"
+    },
+    {
+      "anchor": "2868671",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2867130-defaultallocator",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods to Get an Image Allocator"
+    },
+    {
+      "anchor": "2317466",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+      ],
+      "kind": "taskGroup",
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpstemporaryimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpstemporaryimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

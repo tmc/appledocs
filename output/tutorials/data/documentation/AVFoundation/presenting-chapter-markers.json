@@ -1,0 +1,1364 @@
+{
+  "abstract": [
+    {
+      "text": "Add chapter markers to enable users to quickly navigate your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Presenting Chapter Markers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Chapter markers enable users to quickly navigate your content. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically presents a chapter-selection interface if it finds chapter markers in the currently played asset. You can also directly retrieve this data whenever you want to create your own custom chapter-selection interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-the-Timed-Metadata",
+          "level": 3,
+          "text": "Retrieve the Timed Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Chapter markers are a type of timed metadata that apply only to ranges of time within the asset’s timeline. You retrieve an asset’s chapter metadata using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. These methods become callable without blocking after you asynchronously load the value of the asset’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/availableChapterLocales",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let asset = AVAsset(url: <# Asset URL #>)",
+            "let chapterLocalesKey = \"availableChapterLocales\"",
+            " ",
+            "asset.loadValuesAsynchronously(forKeys: [chapterLocalesKey]) {",
+            "    var error: NSError?",
+            "    let status = asset.statusOfValue(forKey: chapterLocalesKey, error: &error)",
+            "    if status == .loaded {",
+            "        let languages = Locale.preferredLanguages",
+            "        let chapterMetadata = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: languages)",
+            "        // Process chapter metadata.",
+            "    }",
+            "    else {",
+            "        // Handle other status cases.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-Timed-Metadata-into-Chapter-Data",
+          "level": 3,
+          "text": "Convert Timed Metadata into Chapter Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value returned from the methods described above is an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, each representing an individual chapter marker. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", defining the time range to which its metadata applies, an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects representing the chapter’s title, and optionally, its thumbnail image. The following example shows how to convert the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data into an array of custom model objects, called ",
+              "type": "text"
+            },
+            {
+              "code": "Chapter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to pass to the app’s view layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func convertTimedMetadataGroupsToChapters(groups: [AVTimedMetadataGroup]) -> [Chapter] {",
+            "    return groups.map { group in",
+            "        // Retrieve the title metadata items.",
+            "        let titleItems = AVMetadataItem.metadataItems(from: group.items,",
+            "                                                      filteredByIdentifier: .commonIdentifierTitle)",
+            "",
+            "        // Retrieve the artwork metadata items.",
+            "        let artworkItems = AVMetadataItem.metadataItems(from: group.items,",
+            "                                                        filteredByIdentifier: .commonIdentifierArtwork)",
+            "",
+            "        var title = \"Default Title\"",
+            "        var image = UIImage(named: \"placeholder\")!",
+            "",
+            "        if let titleValue = titleItems.first?.stringValue {",
+            "            title = titleValue",
+            "        }",
+            "",
+            "        if let imgData = artworkItems.first?.dataValue, let imageValue = UIImage(data: imgData) {",
+            "            image = imageValue",
+            "        }",
+            "",
+            "        return Chapter(time: group.timeRange.start, title: title, image: image)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the relevant data converted, you can build a chapter-selection interface and use the time value of the chapter object to seek the current presentation using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/availableChapterLocales": {
+      "abstract": [
+        {
+          "text": "The locales of the asset’s chapter metadata.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableChapterLocales"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/availableChapterLocales",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableChapterLocales"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableChapterLocales",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/availablechapterlocales"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(bestMatchingPreferredLanguages:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of chapters with a locale that best matches the list of preferred languages.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bestMatchingPreferredLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVTimedMetadataGroup",
+          "text": "AVTimedMetadataGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/chaptermetadatagroups(bestmatchingpreferredlanguages:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of chapters that contain the specified title locale and common keys.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTitleLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "containingItemsWithCommonKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKey",
+          "text": "AVMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVTimedMetadataGroup",
+          "text": "AVTimedMetadataGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/chaptermetadatagroups(withtitlelocale:containingitemswithcommonkeys:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use within a specific date range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items associated with a timeline segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem": {
+      "abstract": [
+        {
+          "text": "A metadata item for an audiovisual asset or one of its tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadataitem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use within a specific range of dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabledaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabletimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r": {
+      "abstract": [
+        {
+          "text": "Requests that the player seek to a specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seekToTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "seek(to:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/seek(to:)-87h2r"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector": {
+      "abstract": [
+        {
+          "text": "The abstract base for media data collectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMediaDataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmediadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector": {
+      "abstract": [
+        {
+          "text": "An object used to capture the date range metadata defined for an HTTP Live Streaming asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avtimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback": {
+      "abstract": [
+        {
+          "text": "Manage the playback of media assets and interstitial content, independent of how you present that content in your interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-playback"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange": {
+      "abstract": [
+        {
+          "text": "A structure that represents a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTimeRange",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTimeRange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timed-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+      ],
+      "title": "Timed metadata"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Timed-metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+              ],
+              "title": "Timed metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/title",
+          "value": "AVPlayerItemMediaDataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/title",
+          "value": "AVPlayerItemMetadataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/title",
+          "value": "AVMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)/title",
+          "value": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1availableChapterLocales/title",
+          "value": "availableChapterLocales"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1availableChapterLocales/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableChapterLocales"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/title",
+          "value": "AVDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/title",
+          "value": "AVPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1chapterMetadataGroups(bestMatchingPreferredLanguages:)/title",
+          "value": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1chapterMetadataGroups(bestMatchingPreferredLanguages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/title",
+          "value": "AVMetadataItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTimeRange/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMTimeRange"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/title",
+          "value": "AVTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:)-87h2r/title",
+          "value": "seekToTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:)-87h2r/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "seekToTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/title",
+          "value": "AVMutableTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/title",
+          "value": "AVMutableDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/presenting-chapter-markers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/presenting-chapter-markers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

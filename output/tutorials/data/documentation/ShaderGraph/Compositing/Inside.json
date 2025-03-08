@@ -1,0 +1,1524 @@
+{
+  "abstract": [
+    {
+      "text": "Multiplies a mask to all channels of the input.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Inside"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_inside_float",
+    "images": [
+      {
+        "identifier": "purple.squareshape.squareshape.dashed.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Inside"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "In",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Mask",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Inside (float)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "In",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Mask",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Inside (color4f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "In",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Mask",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Inside (color3f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "In",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Half",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Mask",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Half",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Half",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Inside (half)"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input value to which the mask applies.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "In",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The value by which the input is multiplied.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Mask",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below is an example of a simple node graph that uses the Inside node to apply a mask to a brick texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "InsideGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below, the resulting texture applies to a cube.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "InsideMaterial1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Mask",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "InsideMaterial2",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Input",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "InsideMaterial3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "InsideGraph": {
+      "alt": null,
+      "identifier": "InsideGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddd60aabdacdc1bd721a5ddb67b271c7/InsideGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1291bf59c0ffab4724a58a0ca8b3567/InsideGraph~dark.png"
+        }
+      ]
+    },
+    "InsideMaterial1": {
+      "alt": null,
+      "identifier": "InsideMaterial1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22d385b227fa57a9a3f445794e022e8e/InsideMaterial1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c10f86ee86712aa2cdfb4a005f307c82/InsideMaterial1~dark.png"
+        }
+      ]
+    },
+    "InsideMaterial2": {
+      "alt": null,
+      "identifier": "InsideMaterial2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b8a12d9ac1244a778a30d88ebfe67b03/InsideMaterial2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/974f536074415b59d9f6daa97810a900/InsideMaterial2~dark.png"
+        }
+      ]
+    },
+    "InsideMaterial3": {
+      "alt": null,
+      "identifier": "InsideMaterial3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2855885be1ac1bb941d84e14a9c96c1c/InsideMaterial3.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4011a5c7c2d852fd6f3569d6529684ac/InsideMaterial3~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing": {
+      "abstract": [
+        {
+          "text": "Generate a single output from the combination of multiple data values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Compositing",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Additive-Mix": {
+      "abstract": [
+        {
+          "text": "Adds foreground and background values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Additive-Mix",
+      "images": [
+        {
+          "identifier": "purple.plus.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Additive Mix",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/additive-mix"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Burn": {
+      "abstract": [
+        {
+          "text": "A blend operation that darkens the foreground layer using the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Burn",
+      "images": [
+        {
+          "identifier": "purple.light.min.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Burn",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/burn"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Difference": {
+      "abstract": [
+        {
+          "text": "Outputs the distance between foreground and background values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Difference",
+      "images": [
+        {
+          "identifier": "purple.square.lefthalf.filled.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Difference",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/difference"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Disjoint-Over": {
+      "abstract": [
+        {
+          "text": "A merge operation that layers foreground over background color, but assumes no overlap in partially transparent areas covered by both.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Disjoint-Over",
+      "images": [
+        {
+          "identifier": "purple.arrow.turn.right.down.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Disjoint Over",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/disjoint-over"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Dodge": {
+      "abstract": [
+        {
+          "text": "A blend operation that lightens the background layer depending on the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Dodge",
+      "images": [
+        {
+          "identifier": "purple.light.max.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dodge",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/dodge"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/In": {
+      "abstract": [
+        {
+          "text": "Outputs areas of foreground that overlap with the alpha of background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/In",
+      "images": [
+        {
+          "identifier": "purple.arrow.down.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "In",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/in"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Inside": {
+      "abstract": [
+        {
+          "text": "Multiplies a mask to all channels of the input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Inside",
+      "images": [
+        {
+          "identifier": "purple.squareshape.squareshape.dashed.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Inside",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/inside"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Mask": {
+      "abstract": [
+        {
+          "text": "Outputs areas of background that overlap with the alpha of foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Mask",
+      "images": [
+        {
+          "identifier": "purple.circle.fill.square.fill.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Mask",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/mask"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Matte": {
+      "abstract": [
+        {
+          "text": "A merge operation that layers premultiplied foreground over background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Matte",
+      "images": [
+        {
+          "identifier": "purple.circle.fill.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Matte",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/matte"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Out": {
+      "abstract": [
+        {
+          "text": "Outputs areas of foreground that do not overlap with background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Out",
+      "images": [
+        {
+          "identifier": "purple.arrow.up.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Out",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/out"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Over": {
+      "abstract": [
+        {
+          "text": "A merge operation that layers foreground over background, using the alpha of the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Over",
+      "images": [
+        {
+          "identifier": "purple.arrow.turn.right.down.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Over",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/over"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Overlay": {
+      "abstract": [
+        {
+          "text": "A blend operation that multiplies dark areas and screens light areas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Overlay",
+      "images": [
+        {
+          "identifier": "purple.rectangle.on.rectangle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Overlay",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/overlay"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Premultiply": {
+      "abstract": [
+        {
+          "text": "Multiplies the RGB channels of the input by the alpha channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Premultiply",
+      "images": [
+        {
+          "identifier": "purple.multiply.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Premultiply",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/premultiply"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Screen": {
+      "abstract": [
+        {
+          "text": "A blend operation that lightens areas that are darker than white.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Screen",
+      "images": [
+        {
+          "identifier": "purple.desktopcomputer.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Screen",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/screen"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Subtractive-Mix": {
+      "abstract": [
+        {
+          "text": "Subtracts foreground from background values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Subtractive-Mix",
+      "images": [
+        {
+          "identifier": "purple.minus.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtractive Mix",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/subtractive-mix"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Unpremultiply": {
+      "abstract": [
+        {
+          "text": "Divides the RGB channels of the input by the alpha channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Unpremultiply",
+      "images": [
+        {
+          "identifier": "purple.divide.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unpremultiply",
+      "type": "topic",
+      "url": "/documentation/shadergraph/compositing/unpremultiply"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.arrow.down.png": {
+      "alt": "nil",
+      "identifier": "purple.arrow.down.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/633183d229ea35bd392e7a07c2cc987b/purple.arrow.down.png"
+        }
+      ]
+    },
+    "purple.arrow.turn.right.down.png": {
+      "alt": "nil",
+      "identifier": "purple.arrow.turn.right.down.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c7644188f03577658a32b8e15c497c2/purple.arrow.turn.right.down.png"
+        }
+      ]
+    },
+    "purple.arrow.up.png": {
+      "alt": "nil",
+      "identifier": "purple.arrow.up.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe6bf582947616c2d52e0fa81e0307ef/purple.arrow.up.png"
+        }
+      ]
+    },
+    "purple.circle.fill.png": {
+      "alt": "nil",
+      "identifier": "purple.circle.fill.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a95b8a25e0607f7da500f10039536943/purple.circle.fill.png"
+        }
+      ]
+    },
+    "purple.circle.fill.square.fill.png": {
+      "alt": "nil",
+      "identifier": "purple.circle.fill.square.fill.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/857e7d2769729205d2661f0a2375510a/purple.circle.fill.square.fill.png"
+        }
+      ]
+    },
+    "purple.desktopcomputer.png": {
+      "alt": "nil",
+      "identifier": "purple.desktopcomputer.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/007b689ac16a169cfbab35b59cb7f510/purple.desktopcomputer.png"
+        }
+      ]
+    },
+    "purple.divide.png": {
+      "alt": "nil",
+      "identifier": "purple.divide.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd14d98c8b9f22cdf54e1d43e136c0d3/purple.divide.png"
+        }
+      ]
+    },
+    "purple.light.max.png": {
+      "alt": "nil",
+      "identifier": "purple.light.max.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9f19853b12114b27a45b021c0ed18f5/purple.light.max.png"
+        }
+      ]
+    },
+    "purple.light.min.png": {
+      "alt": "nil",
+      "identifier": "purple.light.min.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36c48ce8204c441b79c48eb204a60fb3/purple.light.min.png"
+        }
+      ]
+    },
+    "purple.minus.png": {
+      "alt": "nil",
+      "identifier": "purple.minus.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13db209dc30b073496df8844fc233ed4/purple.minus.png"
+        }
+      ]
+    },
+    "purple.multiply.png": {
+      "alt": "nil",
+      "identifier": "purple.multiply.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d02838e0743eb15495cb2adf0da7377d/purple.multiply.png"
+        }
+      ]
+    },
+    "purple.plus.png": {
+      "alt": "nil",
+      "identifier": "purple.plus.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebad9addfe97e60de05acfe9e4971ad7/purple.plus.png"
+        }
+      ]
+    },
+    "purple.rectangle.on.rectangle.png": {
+      "alt": "nil",
+      "identifier": "purple.rectangle.on.rectangle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0d2144be9b8fc35d438b6a95fa4fb7f/purple.rectangle.on.rectangle.png"
+        }
+      ]
+    },
+    "purple.square.lefthalf.filled.png": {
+      "alt": "nil",
+      "identifier": "purple.square.lefthalf.filled.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90145f3c68d4c89d82b1e2a472727938/purple.square.lefthalf.filled.png"
+        }
+      ]
+    },
+    "purple.squareshape.squareshape.dashed.png": {
+      "alt": "nil",
+      "identifier": "purple.squareshape.squareshape.dashed.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41bd50175163d9c9981b9bf406cd5f58/purple.squareshape.squareshape.dashed.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Premultiply",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Unpremultiply",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Additive-Mix",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Subtractive-Mix",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Difference",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Burn",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Dodge",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Screen",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Overlay",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Disjoint-Over",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/In",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Mask",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Matte",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Out",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/Compositing/Over"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/compositing/inside"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1058 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your app to start collecting location data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/configuring-your-app-to-use-location-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your app to use location services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The location data available on most Apple devices gives you additional context and information to incorporate into your app’s content. You might use that data to show someone’s physical location on a map and help them navigate their environment. Or you might apply location data to a list of restaurants and shops to eliminate choices that aren’t nearby. You might also use location data to alert someone when they’re near a particular device or geographic region. For all of these use cases and more, the Core Location framework provides access to the location data you need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add code to support Core Location, plan for situations where location data isn’t available. The system also requires apps to gain permission to use location data, and prevents apps from acquiring locations without permission. If location data is unavailable for any reason, make the best app experience you can without it. Disable features that rely on location data or provide alternatives to get the behavior you need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Location data is sensitive information, and it’s important for you to secure any location data you collect. Encrypt any location data you store on disk or send over the network. In addition, provide a clear privacy policy that explains how you use someone’s location data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Check-the-availability-of-services-your-app-uses",
+          "level": 3,
+          "text": "Check the availability of services your app uses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always verify that location services are available before you attempt to use them. Services might be unavailable for many different reasons, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device is in Airplane mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device doesn’t have the required hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device doesn’t support a specific service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app doesn’t have authorization to use the service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a service isn’t available, disable any app-specific features that rely on that service. Disabling features in advance is a more reliable approach than using a service and responding to errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods to determine the availability of each service. Call the appropriate method for a given service immediately before you try to use that service. For example, an app that offers compass heading information might call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/headingAvailable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method before starting the service. If your app uses multiple services, call the appropriate method for each service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check if heading data is available.",
+            "if CLLocationManager.headingAvailable() {",
+            "    locationManager.startUpdatingHeading()",
+            "} else {",
+            "    // Disable compass features.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app can’t function without specific location services, declare those requirements in advance using your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For more information, see Declare the device capabilities your app requires below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-receiving-location-updates-and-authorization-status-changes",
+          "level": 3,
+          "text": "Start receiving location updates and authorization status changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can request location updates in your code immediately. If the system hasn’t requested authorization for your app, it does so when your code starts iterating over the asynchronous stream of updates. Because location data is sensitive personal information, the owner of a device controls which apps give access. They can grant or deny access to apps separately, and can change an app’s access at any time in system settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Begin requesting location updates where your app uses location data, such as from the view that displays location-related data. Don’t make requests at launch time or from a part of your app that isn’t connected to location, unless absolutely necessary. Someone might not fully understand why your app is asking for authorization and deny the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Location updates and authorization status changes arrive in an asynchronous fashion. Check for both the presence of a location update and authentication status changes within the loop. The loop doesn’t terminate unless you explicitly use ",
+              "type": "text"
+            },
+            {
+              "code": "return",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "break",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or throw an exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Obtain an asynchronous stream of updates.",
+            "let stream = CLLocationUpdate.liveUpdates()",
+            "",
+            "// Iterate over the stream and handle incoming updates.",
+            "for try await update in stream {",
+            "     if update.location != nil {",
+            "          // Process the location.",
+            "     } else if update.authorizationDenied {",
+            "          // Process the authorization denied state change.",
+            "     } else {",
+            "          // Process other state changes.",
+            "     }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app always needs authorization, it needs to create and hold a privileged session offered by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This class provides a single opportunity to upgrade from “While using” to “Always.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-the-device-capabilities-your-app-requires",
+          "level": 3,
+          "text": "Declare the device capabilities your app requires",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Location generates location updates using a combination of Wi-Fi, cellular, and GPS hardware, and it generates compass updates using magnetometer hardware. For location updates, Core Location doesn’t use every piece of hardware every time. You specify the level of precision you want in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and Core Location turns on the hardware it needs to deliver that data in the most power-efficient way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app can’t function without a particular piece of hardware, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The presence of this key tells the App Store to prevent the installation of your app on devices without the specified hardware or capabilities. The value of the key is an array of strings, and you can include one of the following strings for location-related requirements: ",
+              "type": "text"
+            },
+            {
+              "code": "location-services",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "gps",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "magnetometer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the ",
+              "type": "text"
+            },
+            {
+              "code": "gps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key only if you require the highest level of precision for location data. Typically, only navigation apps require that kind of precision, but other apps might also need it to ensure precise location is available when needed. If your app requires heading information, include the ",
+              "type": "text"
+            },
+            {
+              "code": "magnetometer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key if people can still use your app without location data. For example, don’t include the key if your app uses location data to filter search results for nearby restaurants. When location data isn’t available, you can find alternatives to get you what you need or work without that data. For example, if you want to filter search results by location, you might prompt someone to enter a postal code or other geographic information explicitly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-the-location-services",
+          "level": 3,
+          "text": "Start the location services",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you perform the initial checks and verify the authorization status of your app, start the location services you need. Core Location offers several different ways to access location-related information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Get the current location.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Offer navigation instructions, filter data sets based on location, share someone’s location with friends, or perform other tasks that use someone’s current location. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Detect when the device enters or exits a geographical region.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Alert someone to points-of-interest, deliver location-sensitive reminders, and more. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-the-user-s-proximity-to-geographic-regions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Determine the current compass heading.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Offer course-based navigation or display an onscreen compass. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Detect nearby iBeacon hardware.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Determine someone’s proximity to Bluetooth devices. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3": {
+      "abstract": [
+        {
+          "text": "An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBackgroundActivitySession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysession-3mzv3"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y": {
+      "abstract": [
+        {
+          "text": "An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLBackgroundActivitySession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysession-4nl4y"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/headingAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the location manager is able to generate heading-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/headingAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "headingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "headingAvailable()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/headingavailable()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location information the framework delivers with each update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationUpdate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationupdate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location": {
+      "abstract": [
+        {
+          "text": "Simplify location delivery using asynchronous events in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting live updates in Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation/adopting-live-updates-in-core-location"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device": {
+      "abstract": [
+        {
+          "text": "Detect beacons and determine the relative distance to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining the proximity to an iBeacon device",
+      "type": "topic",
+      "url": "/documentation/corelocation/determining-the-proximity-to-an-ibeacon-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information": {
+      "abstract": [
+        {
+          "text": "Use a device’s orientation and course information for navigation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting heading and course information",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-heading-and-course-information"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device": {
+      "abstract": [
+        {
+          "text": "Start location services and provide information the system needs to optimize power usage for those services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the current location of a device",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-the-current-location-of-a-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location": {
+      "abstract": [
+        {
+          "text": "Define boundaries and act on user location updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Monitoring location changes with Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation/monitoring-location-changes-with-core-location"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-the-user-s-proximity-to-geographic-regions": {
+      "abstract": [
+        {
+          "text": "Use condition monitoring to determine when the user enters or leaves a geographic region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-the-user-s-proximity-to-geographic-regions",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring the user’s proximity to geographic regions",
+      "type": "topic",
+      "url": "/documentation/corelocation/monitoring-the-user-s-proximity-to-geographic-regions"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps": {
+      "abstract": [
+        {
+          "text": "Enable background events by adding lifecycle event support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting live updates in SwiftUI and Mac Catalyst apps",
+      "type": "topic",
+      "url": "/documentation/corelocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities": {
+      "abstract": [
+        {
+          "text": "The device-related features that your app requires to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiredDeviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+        "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location",
+        "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1headingAvailable()/title",
+          "value": "headingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1headingAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "headingAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/configuring-your-app-to-use-location-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/configuring-your-app-to-use-location-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

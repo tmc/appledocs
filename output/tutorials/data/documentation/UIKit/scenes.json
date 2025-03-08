@@ -1,0 +1,1499 @@
+{
+  "abstract": [
+    {
+      "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/scenes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Scenes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit manages each instance of your app’s UI using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scene",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains the windows and view controllers for presenting one instance of your UI. Each scene also has a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which you use to coordinate interactions between UIKit and your app. Scenes run concurrently with each other, sharing the same memory and app process space. As a result, a single app may have multiple scenes and scene delegate objects active at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3335652",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Manage the configuration of new scenes from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest": {
+      "abstract": [
+        {
+          "text": "The information about the app’s scene-based life-cycle support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSceneManifest",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIOpenURLContext": {
+      "abstract": [
+        {
+          "text": "A system-provided object that contains the information you need to open a single URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIOpenURLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIOpenURLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIOpenURLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIOpenURLContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uiopenurlcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScene": {
+      "abstract": [
+        {
+          "text": "An object that represents one instance of your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScene"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScene",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscene"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScene/ActivationRequestOptions": {
+      "abstract": [
+        {
+          "text": "An object that contains information you want the system to use when activating the session associated with a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivationRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/ActivationRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivationRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScene.ActivationRequestOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscene/activationrequestoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScene/OpenExternalURLOptions": {
+      "abstract": [
+        {
+          "text": "Options you specify when asking a scene to open a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenExternalURLOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/OpenExternalURLOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenExternalURLOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScene.OpenExternalURLOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscene/openexternalurloptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneActivationConditions": {
+      "abstract": [
+        {
+          "text": "The set of conditions that define when UIKit activates the current scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneActivationConditions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneActivationConditions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneActivationConditions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneActivationConditions",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneactivationconditions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration": {
+      "abstract": [
+        {
+          "text": "Information about the objects and storyboard for UKit to use when creating a particular scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate": {
+      "abstract": [
+        {
+          "text": "The core methods you use to respond to life-cycle events occurring within a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDestructionRequestOptions": {
+      "abstract": [
+        {
+          "text": "An object you pass to UIKit to permanently remove a scene and its associated session from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneDestructionRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDestructionRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneDestructionRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneDestructionRequestOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedestructionrequestoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneError": {
+      "abstract": [
+        {
+          "text": "Errors returned during the creation or management of a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneError"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneError"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneError",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneerror"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for issues with scenes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneError.Code",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneerror/code"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for scene-related errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneErrorDomain",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneerrordomain"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneSession": {
+      "abstract": [
+        {
+          "text": "An object that contains information about one of your app’s scenes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenesession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowScene": {
+      "abstract": [
+        {
+          "text": "A scene that manages one or more windows for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowScene",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscene"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Additional methods that you use to manage app-specific tasks occurring in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscenedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDestructionRequestOptions": {
+      "abstract": [
+        {
+          "text": "An object that contains information to use when removing a window scene from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDestructionRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDestructionRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDestructionRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowSceneDestructionRequestOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscenedestructionrequestoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to be suspended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the background",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-background"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground": {
+      "abstract": [
+        {
+          "text": "Configure your app to appear onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the foreground",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-foreground"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app": {
+      "abstract": [
+        {
+          "text": "Initialize your app’s data structures, prepare your app to run, and respond to any launch-time requests from the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Responding to the launch of your app",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-the-launch-of-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports": {
+      "abstract": [
+        {
+          "text": "Tell the system about your app’s scenes, including the objects you use to manage each scene and its initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying the scenes your app supports",
+      "type": "topic",
+      "url": "/documentation/uikit/specifying-the-scenes-your-app-supports"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad": {
+      "abstract": [
+        {
+          "text": "Support side-by-side instances of your app’s interface and create new windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting multiple windows on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-multiple-windows-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "media-3335652": {
+      "alt": "An image showing two instances of the Notes app running side-by-side on iPad.",
+      "identifier": "media-3335652",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ca9357918eb89b8fdb96cf9e324b12a/media-3335652@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ca9357918eb89b8fdb96cf9e324b12a/media-3335652~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate"
+      ],
+      "title": "Life cycle"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Window-scenes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad",
+        "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+        "doc://com.apple.uikit/documentation/UIKit/UIScene",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate"
+      ],
+      "title": "Window scenes"
+    },
+    {
+      "anchor": "Configuration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneSession"
+      ],
+      "title": "Configuration"
+    },
+    {
+      "anchor": "Activation-and-destruction",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISceneActivationConditions",
+        "doc://com.apple.uikit/documentation/UIKit/UIScene/ActivationRequestOptions",
+        "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDestructionRequestOptions",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneDestructionRequestOptions"
+      ],
+      "title": "Activation and destruction"
+    },
+    {
+      "anchor": "URL-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIOpenURLContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIScene/OpenExternalURLOptions"
+      ],
+      "title": "URL management"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISceneError/Code",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneError",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneErrorDomain"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+                "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Window-scenes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad",
+                "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+                "doc://com.apple.uikit/documentation/UIKit/UIScene",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate"
+              ],
+              "title": "Window scenes"
+            },
+            {
+              "anchor": "Configuration",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneSession"
+              ],
+              "title": "Configuration"
+            },
+            {
+              "anchor": "Activation-and-destruction",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISceneActivationConditions",
+                "doc://com.apple.uikit/documentation/UIKit/UIScene/ActivationRequestOptions",
+                "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDestructionRequestOptions",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneDestructionRequestOptions"
+              ],
+              "title": "Activation and destruction"
+            },
+            {
+              "anchor": "URL-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIOpenURLContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIScene/OpenExternalURLOptions"
+              ],
+              "title": "URL management"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISceneError/Code",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneErrorDomain"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Life-cycle",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+                "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate"
+              ],
+              "title": "Life cycle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/title",
+          "value": "UIApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDestructionRequestOptions/title",
+          "value": "UISceneDestructionRequestOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDestructionRequestOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDestructionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDestructionRequestOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDestructionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneActivationConditions/title",
+          "value": "UISceneActivationConditions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneActivationConditions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneActivationConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneActivationConditions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneActivationConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1OpenExternalURLOptions/title",
+          "value": "UISceneOpenExternalURLOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1OpenExternalURLOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneOpenExternalURLOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1OpenExternalURLOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneOpenExternalURLOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneError~1Code/title",
+          "value": "UISceneErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/title",
+          "value": "UISceneSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene/title",
+          "value": "UIScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/title",
+          "value": "UISceneConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/title",
+          "value": "UIWindowSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDestructionRequestOptions/title",
+          "value": "UIWindowSceneDestructionRequestOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDestructionRequestOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDestructionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDestructionRequestOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDestructionRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneErrorDomain/title",
+          "value": "UISceneErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOpenURLContext/title",
+          "value": "UIOpenURLContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOpenURLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOpenURLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOpenURLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOpenURLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/title",
+          "value": "UIWindowScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1ActivationRequestOptions/title",
+          "value": "UISceneActivationRequestOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1ActivationRequestOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneActivationRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1ActivationRequestOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneActivationRequestOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/title",
+          "value": "UISceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/scenes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/scenes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

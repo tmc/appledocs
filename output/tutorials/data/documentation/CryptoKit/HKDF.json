@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "A standards-based implementation of an HMAC-based Key Derivation Function",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "(HKDF).",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9CryptoKit4HKDFV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKDF"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKDF"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HKDF"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKDF"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "H"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "H"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:9CryptoKit12HashFunctionP",
+              "text": "HashFunction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key derivation functions allow you to derive one or more secrets of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size of your choice from a main key or passcode. The key derivation function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is compliant with IETF RFC 5869. Use one of the ",
+              "type": "text"
+            },
+            {
+              "code": "deriveKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:outputByteCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:info:outputByteCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to derive a key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from a main secret or passcode in a single function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To derive a key with more fine-grained control, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/extract(inputKeyMaterial:salt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create cryptographically strong key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "material in the form of a hashed authentication code, then call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/expand(pseudoRandomKey:info:outputByteCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using that key material to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generate a symmetric key of the length you specify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF": {
+      "abstract": [
+        {
+          "text": "A standards-based implementation of an HMAC-based Key Derivation Function",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "(HKDF).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDF"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDF"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDF",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:info:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Derives a symmetric encryption key from a main key or passcode using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HKDF key derivation with information you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deriveKey"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputKeyMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:info:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deriveKey(inputKeyMaterial:info:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/derivekey(inputkeymaterial:info:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Derives a symmetric encryption key from a main key or passcode using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HKDF key derivation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deriveKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputKeyMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deriveKey(inputKeyMaterial:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/derivekey(inputkeymaterial:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:info:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Derives a symmetric encryption key from a main key or passcode using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HKDF key derivation with information and salt you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deriveKey"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputKeyMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "salt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:info:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deriveKey(inputKeyMaterial:salt:info:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/derivekey(inputkeymaterial:salt:info:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Derives a symmetric encryption key from a main key or passcode using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HKDF key derivation with salt that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deriveKey"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputKeyMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "salt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deriveKey(inputKeyMaterial:salt:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/derivekey(inputkeymaterial:salt:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/expand(pseudoRandomKey:info:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Expands cryptographically strong key material into a derived symmetric",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expand"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PRK"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pseudoRandomKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PRK"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Info"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/expand(pseudoRandomKey:info:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expand(pseudoRandomKey:info:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/expand(pseudorandomkey:info:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/extract(inputKeyMaterial:salt:)": {
+      "abstract": [
+        {
+          "text": "Creates cryptographically strong key material from a main key or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "passcode that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extract"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputKeyMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "salt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Salt"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit24HashedAuthenticationCodeV",
+          "text": "HashedAuthenticationCode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "H"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/extract(inputKeyMaterial:salt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extract(inputKeyMaterial:salt:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hkdf/extract(inputkeymaterial:salt:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction": {
+      "abstract": [
+        {
+          "text": "A type that performs cryptographically secure hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HashFunction",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hashfunction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Deriving-a-key",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:outputByteCount:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:info:outputByteCount:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:outputByteCount:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/deriveKey(inputKeyMaterial:salt:info:outputByteCount:)"
+      ],
+      "title": "Deriving a key"
+    },
+    {
+      "anchor": "Controlling-key-derivation",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/extract(inputKeyMaterial:salt:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HKDF/expand(pseudoRandomKey:info:outputByteCount:)"
+      ],
+      "title": "Controlling key derivation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptokit/hkdf"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

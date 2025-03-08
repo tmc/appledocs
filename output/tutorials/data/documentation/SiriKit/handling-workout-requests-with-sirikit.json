@@ -1,0 +1,1865 @@
+{
+  "abstract": [
+    {
+      "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Handling Workout Requests with SiriKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample project allows users to start, pause, resume, cancel, and end custom wall-climbing or bouldering workouts with Siri, as well as view historical workout data inside the main app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project consists of three targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Ascent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an iOS app that displays a history of climbing and bouldering workouts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AscentIntentsExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an Intent Extension that integrates with SiriKit to control workouts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AscentFramework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an embedded framework containing shared code needed by both the Intent Extension and the main app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+              "isActive": true,
+              "overridingTitle": "Creating an Intents App Extension",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating an Intents App Extension",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more information on the general process of adding an Intent Extension to your app, including how to enable the Siri capability and configure the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys in ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app can be run in the iOS Simulator without any special setup, but in order to run it on a device you will need to update the build settings and enable an App Group for the project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ascent.xcodeproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, set a new bundle identifier under Identity on the General pane for each of the three targets in the project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Capabilities pane, make sure that App Groups is switched on for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ascent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AscentIntentsExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an App Group identifier with the format ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.com.example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reference the new App Group identifier in the source code. Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WorkoutHistory.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and modify the implementation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sharedUserDefaults",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to reference the new identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each target in the project must preface its bundle identifier with the bundle identifier of the app’s main target. For example, if you set the bundle identifier for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Ascent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " target to ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.Ascent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", set the bundle identifier for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "AscentIntentsExtension",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " target to ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.Ascent.AscentIntentsExtension",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Recognize-and-Respond-to-Workout-Requests",
+          "level": 3,
+          "text": "Recognize and Respond to Workout Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for the Intent Extension to handle workout requests, the principal class of the extension must implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding/handler(for:)",
+              "isActive": true,
+              "overridingTitle": "handler(for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "handler(for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding",
+              "isActive": true,
+              "overridingTitle": "INIntentHandlerProviding",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "INIntentHandlerProviding",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Use this method to dispatch the request to a class configured to handle it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func handler(for intent: INIntent) -> Any {",
+            "    for handler in intentHandlers where handler.canHandle(intent) {",
+            "        return handler",
+            "    }",
+            "    preconditionFailure(\"Unexpected intent type\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for a class to handle a request from SiriKit to use the workout controls, the class must implement one of the workout intent handler protocols. In this sample project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "StartWorkoutIntentHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`INStartWorkoutIntentHandling`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PauseWorkoutIntentHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`INPauseWorkoutIntentHandling`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ResumeWorkoutIntentHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`INResumeWorkoutIntentHandling`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CancelWorkoutIntentHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`INCancelWorkoutIntentHandling`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EndWorkoutIntentHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`INEndWorkoutIntentHandling`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolve-Parameters",
+          "level": 3,
+          "text": "Resolve Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in handling a request from Siri with one of these classes is to resolve any parameters from the voice command. For example, when starting a workout the user may specify parameters such as the type of workout, a particular goal, and the location of the workout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Start a 30 minute outdoor wall climb with Ascent” specifies the workout goal, location, and name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Start a wall climb workout with Ascent” specifies only the name of the workout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Start a workout with Ascent” specifies no parameters, only that a workout should be started.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app must decide how to handle these situations using the available resolution methods for the intent type. To handle parameter resolution for ",
+              "type": "text"
+            },
+            {
+              "text": "`INStartWorkoutIntentHandling`",
+              "type": "text"
+            },
+            {
+              "text": ", implement one or more of the ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveWorkoutName(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveGoalValue(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveWorkoutGoalUnitType(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveWorkoutLocationType(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "text": "`resolveIsOpenEnded(for:with:)`",
+              "type": "text"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each of these calls, return an appropriate resolution result value by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block. For example, when handling the resolution of the workout name, return an ",
+              "type": "text"
+            },
+            {
+              "text": "`INSpeakableStringResolutionResult`",
+              "type": "text"
+            },
+            {
+              "text": " such as ",
+              "type": "text"
+            },
+            {
+              "text": "`success(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`confirmationRequired(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "text": "`disambiguation(with:)`",
+              "type": "text"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "text": "`needsValue()`",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func resolveWorkoutName(for intent: INStartWorkoutIntent, with completion: @escaping (INSpeakableStringResolutionResult) -> Void) {",
+            "    let result: INSpeakableStringResolutionResult",
+            "    let workoutHistory = WorkoutHistory.load()",
+            "",
+            "    if let name = intent.workoutName {",
+            "        // Try to determine the obstacle (wall or boulder) from the supplied workout name.",
+            "        if Workout.Obstacle(intentWorkoutName: name) != nil {",
+            "            result = INSpeakableStringResolutionResult.success(with: name)",
+            "        } else {",
+            "            result = INSpeakableStringResolutionResult.needsValue()",
+            "        }",
+            "    } else if let lastWorkout = workoutHistory.last {",
+            "        // A name hasn't been supplied so suggest the last obstacle.",
+            "        result = INSpeakableStringResolutionResult.confirmationRequired(with: lastWorkout.obstacle.intentWorkoutName)",
+            "    } else {",
+            "        result = INSpeakableStringResolutionResult.needsValue()",
+            "    }",
+            "",
+            "    completion(result)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "It is not necessary to implement ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "all",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " of the available parameter resolution methods, only those that need additional logic. For example, the extension in this sample doesn’t need to do any special processing of the goal value when starting a workout, so there is no implementation of ",
+                  "type": "text"
+                },
+                {
+                  "text": "`resolveGoalValue(for:with:)`",
+                  "type": "text"
+                },
+                {
+                  "text": ", although the app still recognizes and processes the goal value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To aid Siri with recognition of parameter names like “wall climb” and “boulder climb,” add an ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentVocabulary.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a project. More information on this file and how it can add vocabulary to Siri can be found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+              "isActive": true,
+              "overridingTitle": "Registering Custom Vocabulary with SiriKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Registering Custom Vocabulary with SiriKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once all parameters have been resolved, the system calls ",
+              "type": "text"
+            },
+            {
+              "text": "`confirm(intent:completion:)`",
+              "type": "text"
+            },
+            {
+              "text": ". Validate the resolved parameters and pass back an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponse",
+              "isActive": true,
+              "overridingTitle": "INStartWorkoutIntentResponse",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "INStartWorkoutIntentResponse",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode",
+              "isActive": true,
+              "overridingTitle": "INStartWorkoutIntentResponseCode",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "INStartWorkoutIntentResponseCode",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Complete-the-Request",
+          "level": 3,
+          "text": "Complete the Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the request to start the workout has been confirmed, the system calls ",
+              "type": "text"
+            },
+            {
+              "text": "`handle(intent:completion:)`",
+              "type": "text"
+            },
+            {
+              "text": ". Some requests from Siri will be better handled by the main app rather than the Intent Extension; for example, the main app can better respond to requests in which long-lived system services are needed to support the workout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To transfer control to the main app, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponse",
+              "isActive": true,
+              "overridingTitle": "INStartWorkoutIntentResponse",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "INStartWorkoutIntentResponse",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode/handleInApp",
+              "isActive": true,
+              "overridingTitle": "handleInApp",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "handleInApp",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " code and pass it to the completion block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(intent: INStartWorkoutIntent, completion: @escaping (INStartWorkoutIntentResponse) -> Void) {",
+            "    // `handleInApp` will transfer handling this activity to the main app and deliver the intent to the app delegate in the background.",
+            "    let response = INStartWorkoutIntentResponse(code: .handleInApp, userActivity: nil)",
+            "    completion(response)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an Intent Extension handles an intent with the ",
+              "type": "text"
+            },
+            {
+              "code": "handleInApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response code, it delivers the to the intent to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:handle:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "application(_:handle:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "application(_:handle:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the main app’s process in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, handle intent: INIntent, completionHandler: @escaping (INIntentResponse) -> Void) {",
+            "    if let intent = intent as? INStartWorkoutIntent {",
+            "        completionHandler(handle(intent))",
+            "    } else if let intent = intent as? INCancelWorkoutIntent {",
+            "        completionHandler(handle(intent))",
+            "    } else if let intent = intent as? INPauseWorkoutIntent {",
+            "        completionHandler(handle(intent))",
+            "    } else if let intent = intent as? INEndWorkoutIntent {",
+            "        completionHandler(handle(intent))",
+            "    } else if let intent = intent as? INResumeWorkoutIntent {",
+            "        completionHandler(handle(intent))",
+            "    } else {",
+            "        preconditionFailure(\"Trying to handle unknown intent type\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "0403d3e99e08/HandlingWorkoutRequestsWithSiriKit.zip": {
+      "checksum": "0403d3e99e081647f0335e868bfdef806206eaeddcb1f0de15c20458263768d0b69c9da5957c4dc5399f313ed42f3017dd81b0e49a7e93668403547a534c9c31",
+      "identifier": "0403d3e99e08/HandlingWorkoutRequestsWithSiriKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0403d3e99e08/HandlingWorkoutRequestsWithSiriKit.zip"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding": {
+      "abstract": [
+        {
+          "text": "The interface for dispatching intents to the custom objects that handle those intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentHandlerProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntentHandlerProviding",
+      "type": "topic",
+      "url": "/documentation/Intents/INIntentHandlerProviding"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding/handler(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the object capable of handling the specified intent in an extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntent",
+          "text": "INIntent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INIntentHandlerProviding/handler(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handler(for:)",
+      "type": "topic",
+      "url": "/documentation/Intents/INIntentHandlerProviding/handler(for:)"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a start workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INStartWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/Intents/INStartWorkoutIntentResponse"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the response state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INStartWorkoutIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/Intents/INStartWorkoutIntentResponseCode"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode/handleInApp": {
+      "abstract": [
+        {
+          "text": "A response code that indicates you want to handle the intent in your app instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleInApp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INStartWorkoutIntentResponseCode/handleInApp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INStartWorkoutIntentResponseCode.handleInApp",
+      "type": "topic",
+      "url": "/documentation/Intents/INStartWorkoutIntentResponseCode/handleInApp"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/SiriKit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Register your app’s custom terminology, and provide sample phrases for how to use your app with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering Custom Vocabulary with SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit/registering-custom-vocabulary-with-sirikit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:handle:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to handle the specified SiriKit intent directly.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntent",
+          "text": "INIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntentResponse",
+          "text": "INIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:handle:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:handle:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:handle:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Payment Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-payment-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Donate reservations and provide quick access to event details throughout the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating Your App with Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/integrating-your-app-with-siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Control audio playback and handle requests to add media using SiriKit Media Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing Audio with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/managing-audio-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "0403d3e99e08/HandlingWorkoutRequestsWithSiriKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+        "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentResponse"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntentResponse",
+              "text": "INIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INIntentHandlerProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INIntentHandlerProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartWorkoutIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentResponseCode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INIntentHandlerProviding~1handler(for:)/title",
+          "value": "handlerForIntent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INIntentHandlerProviding~1handler(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handlerForIntent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "intent"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartWorkoutIntentResponseCode~1handleInApp/title",
+          "value": "INStartWorkoutIntentResponseCodeHandleInApp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartWorkoutIntentResponseCode~1handleInApp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentResponseCodeHandleInApp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:handle:completionHandler:)/title",
+          "value": "application:handleIntent:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:handle:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleIntent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "intent"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntentResponse",
+              "text": "INIntentResponse"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "intentResponse"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

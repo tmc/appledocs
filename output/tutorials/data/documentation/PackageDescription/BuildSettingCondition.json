@@ -1,0 +1,1185 @@
+{
+  "abstract": [
+    {
+      "text": "A condition that limits the application of a build setting.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18PackageDescription21BuildSettingConditionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BuildSettingCondition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BuildSettingCondition"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "BuildSettingCondition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BuildSettingCondition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, build settings are applicable for all platforms and build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configurations. Use the ",
+              "type": "text"
+            },
+            {
+              "code": ".when",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to define a build setting for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific condition. Invalid usage of ",
+              "type": "text"
+            },
+            {
+              "code": ".when",
+              "type": "codeVoice"
+            },
+            {
+              "text": " emits an error during manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parsing. For example, it’s invalid to specify a ",
+              "type": "text"
+            },
+            {
+              "code": ".when",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition with both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters as ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to use build setting conditions with various",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...",
+            ".target(",
+            "    name: \"MyTool\",",
+            "    dependencies: [\"Utility\"],",
+            "    cSettings: [",
+            "        .headerSearchPath(\"path/relative/to/my/target\"),",
+            "        .define(\"DISABLE_SOMETHING\", .when(platforms: [.iOS], configuration: .release)),",
+            "    ],",
+            "    swiftSettings: [",
+            "        .define(\"ENABLE_SOMETHING\", .when(configuration: .release)),",
+            "    ],",
+            "    linkerSettings: [",
+            "        .linkLibrary(\"openssl\", .when(platforms: [.linux])),",
+            "    ]",
+            "),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildConfiguration": {
+      "abstract": [
+        {
+          "text": "The build configuration, such as debug or release.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BuildConfiguration"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BuildConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "BuildConfiguration",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildconfiguration"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition": {
+      "abstract": [
+        {
+          "text": "A condition that limits the application of a build setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "BuildSettingCondition",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a build setting condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "when"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription18BuildConfigurationV",
+          "text": "BuildConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription21BuildSettingConditionV",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "when(configuration:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition/when(configuration:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:)": {
+      "abstract": [
+        {
+          "text": "Creates a build setting condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "when"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8PlatformV",
+          "text": "Platform"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription21BuildSettingConditionV",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "when(platforms:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition/when(platforms:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-2991l": {
+      "abstract": [
+        {
+          "text": "Creates a build setting condition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "when"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8PlatformV",
+          "text": "Platform"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription18BuildConfigurationV",
+          "text": "BuildConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription21BuildSettingConditionV",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-2991l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "when(platforms:configuration:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition/when(platforms:configuration:)-2991l"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-475co": {
+      "abstract": [
+        {
+          "text": "Creates a build setting condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "when"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8PlatformV",
+          "text": "Platform"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription18BuildConfigurationV",
+          "text": "BuildConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription21BuildSettingConditionV",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-475co",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "when(platforms:configuration:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition/when(platforms:configuration:)-475co"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:traits:)": {
+      "abstract": [
+        {
+          "text": "Creates a build setting condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "when"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8PlatformV",
+          "text": "Platform"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription18BuildConfigurationV",
+          "text": "BuildConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription21BuildSettingConditionV",
+          "text": "BuildSettingCondition"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:traits:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "when(platforms:configuration:traits:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/buildsettingcondition/when(platforms:configuration:traits:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CSetting": {
+      "abstract": [
+        {
+          "text": "A C language build setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSetting"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSetting",
+      "type": "topic",
+      "url": "/documentation/packagedescription/csetting"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CXXSetting": {
+      "abstract": [
+        {
+          "text": "A CXX-language build setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXXSetting"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CXXSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXXSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXXSetting",
+      "type": "topic",
+      "url": "/documentation/packagedescription/cxxsetting"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/LinkerSetting": {
+      "abstract": [
+        {
+          "text": "A linker build setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkerSetting"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/LinkerSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkerSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkerSetting",
+      "type": "topic",
+      "url": "/documentation/packagedescription/linkersetting"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftSetting": {
+      "abstract": [
+        {
+          "text": "A Swift language build setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwiftSetting"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwiftSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "SwiftSetting",
+      "type": "topic",
+      "url": "/documentation/packagedescription/swiftsetting"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/PluginUsage": {
+      "abstract": [
+        {
+          "text": "A plug-in used in a target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PluginUsage"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/PluginUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PluginUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "Target.PluginUsage",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/pluginusage"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cSettings": {
+      "abstract": [
+        {
+          "text": "The target’s C build settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8CSettingV",
+          "text": "CSetting"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cSettings",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/csettings"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cxxSettings": {
+      "abstract": [
+        {
+          "text": "The target’s C++ build settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cxxSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription10CXXSettingV",
+          "text": "CXXSetting"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cxxSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cxxSettings",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/cxxsettings"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/linkerSettings": {
+      "abstract": [
+        {
+          "text": "The target’s linker settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkerSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription13LinkerSettingV",
+          "text": "LinkerSetting"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/linkerSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkerSettings",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/linkersettings"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/plugins": {
+      "abstract": [
+        {
+          "text": "The uses of package plug-ins by the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "plugins"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription6TargetC",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription6TargetC11PluginUsageO",
+          "text": "PluginUsage"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/plugins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "plugins",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/plugins"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/swiftSettings": {
+      "abstract": [
+        {
+          "text": "The target’s Swift build settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "swiftSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription12SwiftSettingV",
+          "text": "SwiftSetting"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/swiftSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "swiftSettings",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/swiftsettings"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-Target",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cSettings",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/cxxSettings",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/swiftSettings",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/linkerSettings",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/plugins",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildConfiguration",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CSetting",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/CXXSetting",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftSetting",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/LinkerSetting",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/PluginUsage"
+      ],
+      "title": "Configuring the Target"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-for-a-Build-Condition",
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(configuration:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-2991l",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:)-475co"
+      ],
+      "title": "Checking for a Build Condition"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/BuildSettingCondition/when(platforms:configuration:traits:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription/buildsettingcondition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

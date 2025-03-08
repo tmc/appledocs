@@ -1,0 +1,811 @@
+{
+  "abstract": [
+    {
+      "text": "A type that represents a single frame of content, manages the pace of animations,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and provides access to the drawable environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/frames"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Frames"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A frame represents a snapshot of your app’s content at a single moment in time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your rendering loop, you render your content into static images many times a second to create the illusion of animation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the Metal textures and information you need to render one of those images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During each iteration of your app’s rendering loop, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to retrieve the next frame to render.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system manages a finite number of frames and recycles them to maximize efficiency.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You typically draw only one frame at a time, starting work on each new frame only after completing the previous frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Separate the work you do for each frame into two phases: the update phase and the encode phase.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the update phase to perform tasks that don’t depend on the current device pose.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you might update your app’s data structures to reflect recent interactions with your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the submission phase to retrieve the current pose and render the frame’s content using that information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each frame provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type with access to the specific textures and rendering details for that frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished generating the GPU commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "endSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished updating the app-specific content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you need to render the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "endUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex": {
+      "abstract": [
+        {
+          "text": "The sequential index number of a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@cp_layer_frame_index_t",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_get_frame_index"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/frameindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you’re ready to generate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Metal commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you started updating the app-specific content for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "startUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_predict_timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_predict_timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_predict_timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable": {
+      "abstract": [
+        {
+          "text": "Returns the drawable type you use to retrieve the textures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and drawing environment for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_query_drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_query_drawable",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_query_drawable"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t": {
+      "abstract": [
+        {
+          "text": "A type that provides access to the timing information",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and data types you need to render a single frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time": {
+      "abstract": [
+        {
+          "text": "Returns the optimal time to start the frame submission process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_optimal_input_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_optimal_input_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_optimal_input_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time": {
+      "abstract": [
+        {
+          "text": "Returns the time at which the system displays the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_presentation_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_presentation_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_presentation_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline": {
+      "abstract": [
+        {
+          "text": "Returns the time at which you must finish all work for the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_rendering_deadline"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_rendering_deadline",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_rendering_deadline"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame": {
+      "abstract": [
+        {
+          "text": "Returns the next frame to use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_query_next_frame"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_query_next_frame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_query_next_frame",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_query_next_frame"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layer renderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layer-renderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/utilities": {
+      "abstract": [
+        {
+          "text": "Common types and utilities to manage your app’s rendering process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Utilities",
+      "type": "topic",
+      "url": "/documentation/compositorservices/utilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-loop-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/layer-renderer",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/utilities"
+      ],
+      "title": "Render-loop setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-timing-information",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t"
+      ],
+      "title": "Getting timing information"
+    },
+    {
+      "anchor": "Reporting-frame-update-times",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()"
+      ],
+      "title": "Reporting frame update times"
+    },
+    {
+      "anchor": "Getting-the-drawable-environment",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable"
+      ],
+      "title": "Getting the drawable environment"
+    },
+    {
+      "anchor": "Reporting-frame-submission-times",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()"
+      ],
+      "title": "Reporting frame submission times"
+    },
+    {
+      "anchor": "Getting-frame-related-details",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t"
+      ],
+      "title": "Getting frame-related details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/title",
+          "value": "cp_frame_end_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/title",
+          "value": "cp_frame_end_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_submission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1frameIndex/title",
+          "value": "cp_frame_get_frame_index"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1frameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_get_frame_index"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/title",
+          "value": "cp_frame_start_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/title",
+          "value": "cp_frame_start_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_submission"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/frames"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

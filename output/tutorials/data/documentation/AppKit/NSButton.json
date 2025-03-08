@@ -1,0 +1,5490 @@
+{
+  "abstract": [
+    {
+      "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSButton"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSButton",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSButton"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSButton"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSButton"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buttons are a standard control for initiating actions within your app. You can configure buttons with many different visual styles, but the behavior is the same. When a user clicks it, a button calls the action method of its associated target object. (If you configure a button as continuous, it calls its action method at timed intervals until the user releases the mouse button or the cursor leaves the button boundaries). You use the action method to perform your app-specific tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are multiple types of buttons, each with a different user interface and behavior. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButtonCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines the button types, and calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/setButtonType(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method configures them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you configure it as an accelerator button (type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAcceleratorButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMultiLevelAcceleratorButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), you can set a button to send action messages when changes in pressure occur when the user clicks the button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buttons can either have two states (on and off) or three states (on, off, and mixed). You enable a three-state button by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/allowsMixedState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. On and off (also referred to as alternate and normal) states indicate that the user clicked or didn’t click the button. Mixed is typically used for checkboxes or radio buttons, which allow for an additional intermediate state. For example, suppose the state of a checkbox denotes whether a text field contains bold text. If all text in the text field is bold, then the checkbox is on. If none of the text is bold, then the checkbox is off. If some of the text is bold, then the checkbox is mixed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most types of buttons, the value of the button matches its state—the value is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for on, ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for off, or ",
+              "type": "text"
+            },
+            {
+              "code": "-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for mixed. For pressure-sensitive buttons, the value of the button indicates pressure level instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMatrix",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " both provide a control view, which displays an ",
+              "type": "text"
+            },
+            {
+              "code": "NSButtonCell",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. However, while a matrix requires you to access the button cell objects directly, most button class methods act as “covers” for identically declared button cell methods. In other words, the implementation of the button method invokes the corresponding button cell method for you, allowing you to be unconcerned with the existence of the button cell. The only button cell methods that don’t have covers relate to the font you use to display the key equivalent and to specific methods for highlighting or showing the state of the button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAcceleratorButton": {
+      "abstract": [
+        {
+          "text": "A button that sends an action when the user first clicks the button and continues sending actions until the user releases pressure entirely.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSAcceleratorButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAcceleratorButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAcceleratorButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsacceleratorbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitybutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimatablepropertycontainer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/appkit/nsappearancecustomization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton": {
+      "abstract": [
+        {
+          "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/activeCompressionOptions": {
+      "abstract": [
+        {
+          "text": "The compression options active for this button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeCompressionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserInterfaceCompressionOptions",
+          "text": "NSUserInterfaceCompressionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/activeCompressionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeCompressionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeCompressionOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/activecompressionoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/allowsMixedState": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the button allows a mixed state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsMixedState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/allowsMixedState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsMixedState"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsMixedState",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/allowsmixedstate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateImage": {
+      "abstract": [
+        {
+          "text": "An alternate image that appears on the button when the button is in an on state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternateImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternateImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/alternateimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateTitle": {
+      "abstract": [
+        {
+          "text": "The title that the button displays when the button is in an on state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternateTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternateTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/alternatetitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedAlternateTitle": {
+      "abstract": [
+        {
+          "text": "The title that the button displays as an attributed string when the button is in an on state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedAlternateTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedAlternateTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedAlternateTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributedAlternateTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/attributedalternatetitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedTitle": {
+      "abstract": [
+        {
+          "text": "The title that the button displays in an off state, as an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributedTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/attributedtitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelColor": {
+      "abstract": [
+        {
+          "text": "The color of the button’s bezel, in appearances that support it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bezelColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bezelColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "bezelColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/bezelcolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The appearance of the button’s border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bezelStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSButton",
+          "text": "NSButton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSBezelStyle",
+          "text": "BezelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bezelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "bezelStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/bezelstyle-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)": {
+      "abstract": [
+        {
+          "text": "Sets the priority compression options for this button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPrioritizedCompressionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserInterfaceCompressionOptions",
+          "text": "NSUserInterfaceCompressionOptions"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compressWithPrioritizedCompressionOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compress(withPrioritizedCompressionOptions:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/compress(withprioritizedcompressionoptions:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/contentTintColor": {
+      "abstract": [
+        {
+          "text": "A tint color to use for the template image and text content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentTintColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/contentTintColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentTintColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentTintColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/contenttintcolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/getPeriodicDelay(_:interval:)": {
+      "abstract": [
+        {
+          "text": "Returns by reference the delay and interval periods for a continuous button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPeriodicDelay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/getPeriodicDelay(_:interval:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getPeriodicDelay:interval:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getPeriodicDelay(_:interval:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/getperiodicdelay(_:interval:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/hasDestructiveAction": {
+      "abstract": [
+        {
+          "text": "A Boolean value that defines whether a button’s action has a destructive effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasDestructiveAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/hasDestructiveAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasDestructiveAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasDestructiveAction",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/hasdestructiveaction"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/highlight(_:)": {
+      "abstract": [
+        {
+          "text": "Highlights (or unhighlights) the button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/highlight(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "highlight:"
+        }
+      ],
+      "role": "symbol",
+      "title": "highlight(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/highlight(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/image": {
+      "abstract": [
+        {
+          "text": "The image that appears on the button when it’s in an off state, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there is no such image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/image"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/imageHugsTitle": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines how the button’s image and title are positioned together within the button bezel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageHugsTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/imageHugsTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageHugsTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageHugsTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/imagehugstitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/imagePosition": {
+      "abstract": [
+        {
+          "text": "The position of the button’s image relative to its title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSControl",
+          "text": "NSControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCellImagePosition",
+          "text": "ImagePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/imagePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePosition",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/imageposition"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/imageScaling": {
+      "abstract": [
+        {
+          "text": "The scaling mode applied to make the cell’s image fit the frame of the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageScaling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageScaling",
+          "text": "NSImageScaling"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/imageScaling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageScaling"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageScaling",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/imagescaling"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a standard checkbox with the title you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "checkboxWithTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkboxWithTitle:target:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(checkboxWithTitle:target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/init(checkboxwithtitle:target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/init(image:target:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a standard push button with the image you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/init(image:target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "buttonWithImage:target:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(image:target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/init(image:target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a standard radio button with the title you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radioButtonWithTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "radioButtonWithTitle:target:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(radioButtonWithTitle:target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/init(radiobuttonwithtitle:target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:image:target:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a standard push button with a title and image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:image:target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "buttonWithTitle:image:target:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:image:target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/init(title:image:target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:target:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a standard push button with the title you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "buttonWithTitle:target:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/init(title:target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/isBordered": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the button has a border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBordered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/isBordered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bordered"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBordered",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/isbordered"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/isSpringLoaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether spring loading is enabled for the button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpringLoaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/isSpringLoaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "springLoaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSpringLoaded",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/isspringloaded"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/isTransparent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the button is transparent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTransparent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/isTransparent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transparent"
+        }
+      ],
+      "role": "symbol",
+      "title": "isTransparent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/istransparent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalent": {
+      "abstract": [
+        {
+          "text": "The key-equivalent character of the button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyEquivalent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyEquivalent"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyEquivalent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/keyequivalent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalentModifierMask": {
+      "abstract": [
+        {
+          "text": "The mask specifying the modifier keys for the button’s key equivalent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyEquivalentModifierMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSEventModifierFlags",
+          "text": "ModifierFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalentModifierMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyEquivalentModifierMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyEquivalentModifierMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/keyequivalentmodifiermask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/maxAcceleratorLevel": {
+      "abstract": [
+        {
+          "text": "An integer value indicating the maximum pressure level for a button of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMultiLevelAcceleratorButton",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxAcceleratorLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/maxAcceleratorLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxAcceleratorLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxAcceleratorLevel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/maxacceleratorlevel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/minimumSize(withPrioritizedCompressionOptions:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum size of the button by using the compression options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPrioritizedCompressionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserInterfaceCompressionOptions",
+          "text": "NSUserInterfaceCompressionOptions"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/minimumSize(withPrioritizedCompressionOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumSizeWithPrioritizedCompressionOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumSize(withPrioritizedCompressionOptions:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/minimumsize(withprioritizedcompressionoptions:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/performKeyEquivalent(with:)": {
+      "abstract": [
+        {
+          "text": "Checks the button’s key equivalent against the specified event and, if they match, simulates the button being clicked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performKeyEquivalent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/performKeyEquivalent(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performKeyEquivalent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performKeyEquivalent(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/performkeyequivalent(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/setButtonType(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the button’s type, which affects its user interface and behavior when clicked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setButtonType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSButton",
+          "text": "NSButton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSButtonType",
+          "text": "ButtonType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/setButtonType(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setButtonType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setButtonType(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/setbuttontype(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/setNextState()": {
+      "abstract": [
+        {
+          "text": "Sets the button to its next state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNextState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/setNextState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNextState"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNextState()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/setnextstate()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)": {
+      "abstract": [
+        {
+          "text": "Sets the message delay and interval periods for a continuous button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPeriodicDelay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPeriodicDelay:interval:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPeriodicDelay(_:interval:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/setperiodicdelay(_:interval:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/setTitleWithMnemonic:": {
+      "abstract": [
+        {
+          "text": "Sets the title of a button with a character denoting an access key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTitleWithMnemonic:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/setTitleWithMnemonic:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTitleWithMnemonic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTitleWithMnemonic:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/settitlewithmnemonic:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the button displays its border only when the pointer is over it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsBorderOnlyWhileMouseInside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsBorderOnlyWhileMouseInside"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsBorderOnlyWhileMouseInside",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/showsborderonlywhilemouseinside"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/sound": {
+      "abstract": [
+        {
+          "text": "The sound that plays when the user clicks the button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSound",
+          "text": "NSSound"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/sound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sound"
+        }
+      ],
+      "role": "symbol",
+      "title": "sound",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/sound"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/state": {
+      "abstract": [
+        {
+          "text": "The button’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSControl",
+          "text": "NSControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSControlStateValue",
+          "text": "StateValue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/state"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/symbolConfiguration": {
+      "abstract": [
+        {
+          "text": "The combination of point size, weight, and scale to use when sizing and displaying symbol images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/symbolConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "symbolConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "symbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/symbolconfiguration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton/title": {
+      "abstract": [
+        {
+          "text": "The title displayed on the button when it’s in an off state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton/title"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButtonCell": {
+      "abstract": [
+        {
+          "text": "An object that defines the user interface of a button or other clickable region of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButtonCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButtonCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSButtonCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSButtonCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbuttoncell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorWell": {
+      "abstract": [
+        {
+          "text": "A control that displays a color value and lets the user change that color value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorWell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorWell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorWell",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorwell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSComboButton": {
+      "abstract": [
+        {
+          "text": "A button with a pull-down menu and a default action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComboButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSComboButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSComboButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nscombobutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSControl": {
+      "abstract": [
+        {
+          "text": "A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSControl"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSControl",
+      "type": "topic",
+      "url": "/documentation/appkit/nscontrol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSControl/ImagePosition": {
+      "abstract": [
+        {
+          "text": "A constant for specifying the position of a button’s image relative to its title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImagePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl/ImagePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImagePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSControl.ImagePosition",
+      "type": "topic",
+      "url": "/documentation/appkit/nscontrol/imageposition"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator": {
+      "abstract": [
+        {
+          "text": "A visual representation of a level or quantity, using discrete values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLevelIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLevelIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLevelIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nslevelindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMatrix": {
+      "abstract": [
+        {
+          "text": "A legacy interface for grouping radio buttons or other types of cells together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMatrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMatrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMatrix",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmatrix"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMultiLevelAcceleratorButton": {
+      "abstract": [
+        {
+          "text": "A multilevel accelerator button is a variation of a normal accelerator button that allows for a configurable number of stepped pressure levels. As each one is reached, the user receives light tactile feedback and an action is sent.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSMultiLevelAcceleratorButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMultiLevelAcceleratorButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMultiLevelAcceleratorButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmultilevelacceleratorbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton": {
+      "abstract": [
+        {
+          "text": "A control for selecting an item from a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPopUpButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPopUpButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPopUpButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nspopupbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor": {
+      "abstract": [
+        {
+          "text": "A defined set of rules that allows the editing of predicate objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPredicateEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator": {
+      "abstract": [
+        {
+          "text": "An interface that provides visual feedback to the user about the status of an ongoing task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProgressIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSProgressIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSProgressIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprogressindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a rule-based list of options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRuleEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRuleEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRuleEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsruleeditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl": {
+      "abstract": [
+        {
+          "text": "Display one or more buttons in a single horizontal group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSegmentedControl"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSegmentedControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSegmentedControl",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegmentedcontrol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStatusBarButton": {
+      "abstract": [
+        {
+          "text": "The appearance and behavior of an item in the systemwide menu bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStatusBarButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStatusBarButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStatusBarButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStatusBarButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstatusbarbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a UI control should redisplay when space is restricted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceCompression"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceCompression"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceCompression",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacecompression"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/combo-box": {
+      "abstract": [
+        {
+          "text": "Display a list of values in a pop-up menu that lets the user select a value or type in a custom value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/combo-box",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Combo Box",
+      "type": "topic",
+      "url": "/documentation/appkit/combo-box"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/date-picker": {
+      "abstract": [
+        {
+          "text": "Display a calendar date and provide controls for editing the date value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/date-picker",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Date Picker",
+      "type": "topic",
+      "url": "/documentation/appkit/date-picker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/path-control": {
+      "abstract": [
+        {
+          "text": "A display of a file system path or virtual path information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/path-control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Path Control",
+      "type": "topic",
+      "url": "/documentation/appkit/path-control"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/search-field": {
+      "abstract": [
+        {
+          "text": "Provide a text field that is optimized for text-based search interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/search-field",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search Field",
+      "type": "topic",
+      "url": "/documentation/appkit/search-field"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/slider": {
+      "abstract": [
+        {
+          "text": "Display a range of values from which the user selects a single value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/slider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/appkit/slider"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action": {
+      "abstract": [
+        {
+          "text": "Handle user input by connecting buttons, sliders, and other controls to your app’s code using the target-action design pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to control-based events using target-action",
+      "type": "topic",
+      "url": "/documentation/UIKit/responding-to-control-based-events-using-target-action"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSControl"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSStatusBarButton"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+        "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+        "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+        "doc://com.apple.appkit/documentation/AppKit/combo-box",
+        "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+        "doc://com.apple.appkit/documentation/AppKit/date-picker",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+        "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/path-control",
+        "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+        "doc://com.apple.appkit/documentation/AppKit/search-field",
+        "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+        "doc://com.apple.appkit/documentation/AppKit/slider"
+      ],
+      "title": "Controls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Standard-Buttons",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/init(image:target:action:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:image:target:action:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:target:action:)"
+      ],
+      "title": "Creating Standard Buttons"
+    },
+    {
+      "anchor": "Configuring-the-Cell",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButtonCell"
+      ],
+      "title": "Configuring the Cell"
+    },
+    {
+      "anchor": "Configuring-Buttons",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/setButtonType(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/getPeriodicDelay(_:interval:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/contentTintColor",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/hasDestructiveAction",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedAlternateTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/title",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/symbolConfiguration",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/sound",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/isSpringLoaded",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/maxAcceleratorLevel"
+      ],
+      "title": "Configuring Buttons"
+    },
+    {
+      "anchor": "Configuring-Button-Images",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/image",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateImage",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/imagePosition",
+        "doc://com.apple.appkit/documentation/AppKit/NSControl/ImagePosition",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/isBordered",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/isTransparent",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelStyle-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelColor",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/imageHugsTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/imageScaling"
+      ],
+      "title": "Configuring Button Images"
+    },
+    {
+      "anchor": "Managing-Button-Compression",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/activeCompressionOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/minimumSize(withPrioritizedCompressionOptions:)"
+      ],
+      "title": "Managing Button Compression"
+    },
+    {
+      "anchor": "Managing-Button-State",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/allowsMixedState",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/state",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/setNextState()",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/highlight(_:)"
+      ],
+      "title": "Managing Button State"
+    },
+    {
+      "anchor": "Accessing-Key-Equivalents",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalent",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalentModifierMask"
+      ],
+      "title": "Accessing Key Equivalents"
+    },
+    {
+      "anchor": "Handling-Keyboard-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSButton/performKeyEquivalent(with:)"
+      ],
+      "title": "Handling Keyboard Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSButton"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Standard-Buttons",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/init(image:target:action:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/init(radioButtonWithTitle:target:action:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:image:target:action:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/init(title:target:action:)"
+              ],
+              "title": "Creating Standard Buttons"
+            },
+            {
+              "anchor": "Configuring-the-Cell",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButtonCell"
+              ],
+              "title": "Configuring the Cell"
+            },
+            {
+              "anchor": "Configuring-Buttons",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/setButtonType(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/getPeriodicDelay(_:interval:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/contentTintColor",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/hasDestructiveAction",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/attributedAlternateTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/title",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/setTitleWithMnemonic:",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/symbolConfiguration",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/sound",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/isSpringLoaded",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/maxAcceleratorLevel"
+              ],
+              "title": "Configuring Buttons"
+            },
+            {
+              "anchor": "Configuring-Button-Images",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/image",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/alternateImage",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/imagePosition",
+                "doc://com.apple.appkit/documentation/AppKit/NSControl/ImagePosition",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/isBordered",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/isTransparent",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelStyle-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/bezelColor",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/showsBorderOnlyWhileMouseInside",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/imageHugsTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/imageScaling"
+              ],
+              "title": "Configuring Button Images"
+            },
+            {
+              "anchor": "Managing-Button-Compression",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/activeCompressionOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/minimumSize(withPrioritizedCompressionOptions:)"
+              ],
+              "title": "Managing Button Compression"
+            },
+            {
+              "anchor": "Managing-Button-State",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/allowsMixedState",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/state",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/setNextState()",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/highlight(_:)"
+              ],
+              "title": "Managing Button State"
+            },
+            {
+              "anchor": "Accessing-Key-Equivalents",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalent",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/keyEquivalentModifierMask"
+              ],
+              "title": "Accessing Key Equivalents"
+            },
+            {
+              "anchor": "Handling-Keyboard-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSButton/performKeyEquivalent(with:)"
+              ],
+              "title": "Handling Keyboard Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSControl"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSStatusBarButton"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controls",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+                "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+                "doc://com.apple.appkit/documentation/AppKit/combo-box",
+                "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+                "doc://com.apple.appkit/documentation/AppKit/date-picker",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+                "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/path-control",
+                "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+                "doc://com.apple.appkit/documentation/AppKit/search-field",
+                "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+                "doc://com.apple.appkit/documentation/AppKit/slider"
+              ],
+              "title": "Controls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSButton"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSControl",
+                    "text": "NSControl"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1attributedAlternateTitle/title",
+          "value": "attributedAlternateTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1attributedAlternateTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributedAlternateTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/title",
+          "value": "NSProgressIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setPeriodicDelay(_:interval:)/title",
+          "value": "setPeriodicDelay:interval:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setPeriodicDelay(_:interval:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPeriodicDelay:interval:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1showsBorderOnlyWhileMouseInside/title",
+          "value": "showsBorderOnlyWhileMouseInside"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1showsBorderOnlyWhileMouseInside/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsBorderOnlyWhileMouseInside"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1symbolConfiguration/title",
+          "value": "symbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1symbolConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "symbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/title",
+          "value": "NSColorWell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/title",
+          "value": "NSLevelIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLevelIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLevelIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isSpringLoaded/title",
+          "value": "springLoaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isSpringLoaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "springLoaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/title",
+          "value": "NSImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(title:image:target:action:)/title",
+          "value": "buttonWithTitle:image:target:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(title:image:target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "buttonWithTitle:image:target:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/title",
+          "value": "NSButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setButtonType(_:)/title",
+          "value": "setButtonType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setButtonType(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setButtonType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1alternateTitle/title",
+          "value": "alternateTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1alternateTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternateTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1bezelStyle-swift.property/title",
+          "value": "bezelStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1bezelStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bezelStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1activeCompressionOptions/title",
+          "value": "activeCompressionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1activeCompressionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeCompressionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1contentTintColor/title",
+          "value": "contentTintColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1contentTintColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentTintColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isBordered/title",
+          "value": "bordered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isBordered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bordered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/title",
+          "value": "NSComboButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSComboButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSComboButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/title",
+          "value": "NSControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isTransparent/title",
+          "value": "transparent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1isTransparent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transparent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1keyEquivalentModifierMask/title",
+          "value": "keyEquivalentModifierMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1keyEquivalentModifierMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyEquivalentModifierMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1sound/title",
+          "value": "sound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1sound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButtonCell/title",
+          "value": "NSButtonCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButtonCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButtonCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButtonCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButtonCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/title",
+          "value": "NSUserInterfaceCompression"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceCompression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceCompression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1keyEquivalent/title",
+          "value": "keyEquivalent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1keyEquivalent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyEquivalent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imageHugsTitle/title",
+          "value": "imageHugsTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imageHugsTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageHugsTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1hasDestructiveAction/title",
+          "value": "hasDestructiveAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1hasDestructiveAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasDestructiveAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/title",
+          "value": "NSPredicateEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imagePosition/title",
+          "value": "imagePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imagePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imagePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/title",
+          "value": "NSSegmentedControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/title",
+          "value": "NSMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStatusBarButton/title",
+          "value": "NSStatusBarButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStatusBarButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStatusBarButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStatusBarButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStatusBarButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(image:target:action:)/title",
+          "value": "buttonWithImage:target:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(image:target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "buttonWithImage:target:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setNextState()/title",
+          "value": "setNextState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1setNextState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNextState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(radioButtonWithTitle:target:action:)/title",
+          "value": "radioButtonWithTitle:target:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(radioButtonWithTitle:target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "radioButtonWithTitle:target:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1minimumSize(withPrioritizedCompressionOptions:)/title",
+          "value": "minimumSizeWithPrioritizedCompressionOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1minimumSize(withPrioritizedCompressionOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "minimumSizeWithPrioritizedCompressionOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl~1ImagePosition/title",
+          "value": "NSCellImagePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl~1ImagePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCellImagePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl~1ImagePosition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCellImagePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/title",
+          "value": "NSPopUpButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopUpButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopUpButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1performKeyEquivalent(with:)/title",
+          "value": "performKeyEquivalent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1performKeyEquivalent(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performKeyEquivalent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1getPeriodicDelay(_:interval:)/title",
+          "value": "getPeriodicDelay:interval:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1getPeriodicDelay(_:interval:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getPeriodicDelay:interval:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/title",
+          "value": "NSAnimatablePropertyContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1compress(withPrioritizedCompressionOptions:)/title",
+          "value": "compressWithPrioritizedCompressionOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1compress(withPrioritizedCompressionOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "compressWithPrioritizedCompressionOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/title",
+          "value": "NSAppearanceCustomization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(title:target:action:)/title",
+          "value": "buttonWithTitle:target:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(title:target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "buttonWithTitle:target:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1maxAcceleratorLevel/title",
+          "value": "maxAcceleratorLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1maxAcceleratorLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxAcceleratorLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/title",
+          "value": "NSRuleEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRuleEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRuleEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/title",
+          "value": "NSAccessibilityButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/title",
+          "value": "NSDraggingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imageScaling/title",
+          "value": "imageScaling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1imageScaling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageScaling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1bezelColor/title",
+          "value": "bezelColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1bezelColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bezelColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1highlight(_:)/title",
+          "value": "highlight:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1highlight(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "highlight:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1alternateImage/title",
+          "value": "alternateImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1alternateImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternateImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(checkboxWithTitle:target:action:)/title",
+          "value": "checkboxWithTitle:target:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1init(checkboxWithTitle:target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkboxWithTitle:target:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1allowsMixedState/title",
+          "value": "allowsMixedState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1allowsMixedState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsMixedState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1attributedTitle/title",
+          "value": "attributedTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton~1attributedTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributedTitle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsbutton"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsbutton"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

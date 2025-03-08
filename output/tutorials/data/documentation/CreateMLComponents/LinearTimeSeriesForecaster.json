@@ -1,0 +1,2685 @@
+{
+  "abstract": [
+    {
+      "text": "A time-series forecasting estimator.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LinearTimeSeriesForecaster"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LinearTimeSeriesForecaster"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LinearTimeSeriesForecaster"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LinearTimeSeriesForecaster"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6CoreML19MLShapedArrayScalarP",
+              "text": "MLShapedArrayScalar"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SB",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SB",
+              "text": "BinaryFloatingPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only ",
+                  "type": "text"
+                },
+                {
+                  "code": "Float",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Double",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " are currently supported as the Scalar type. You may get faster training",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "when using ",
+                  "type": "text"
+                },
+                {
+                  "code": "Float",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "A time and date feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures": {
+      "abstract": [
+        {
+          "text": "A set of date and time features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatures",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatures"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that down samples the input stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Downsampler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/downsampler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster": {
+      "abstract": [
+        {
+          "text": "A time-series forecasting estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Annotation": {
+      "abstract": [
+        {
+          "text": "The annotation type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Annotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster.Annotation",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/annotation"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Configuration-swift.typealias": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Scalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MLShapedArrayScalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "BinaryFloatingPoint",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Configuration-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster.Configuration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/configuration-swift.typealias"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Model": {
+      "abstract": [
+        {
+          "text": "A linear time-series forecasting model.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Scalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MLShapedArrayScalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "BinaryFloatingPoint",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Model",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Model"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster.Model",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/model"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/SupervisedEstimator-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/SupervisedEstimator-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SupervisedEstimator Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/supervisedestimator-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Transformer": {
+      "abstract": [
+        {
+          "text": "The transformer type created by this estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster.Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/UpdatableSupervisedEstimator-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/UpdatableSupervisedEstimator-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UpdatableSupervisedEstimator Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/updatablesupervisedestimator-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/configuration-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV13Configurationa",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/configuration-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/configuration-swift.property"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a model to a sequence of examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(to:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/fitted(to:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a model to a sequence of examples with validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(to:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/fitted(to:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a model to a sequence of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toWindows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(toWindows:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/fitted(towindows:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a model to a sequence of annotated windows with validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toWindows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(toWindows:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/fitted(towindows:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/forecastWindowSize": {
+      "abstract": [
+        {
+          "text": "The number of predicted samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forecastWindowSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/forecastWindowSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forecastWindowSize",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/forecastwindowsize"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a linear time-series forecaster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/init(configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/init(configuration:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/inputWindowSize": {
+      "abstract": [
+        {
+          "text": "The number of input samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputWindowSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/inputWindowSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputWindowSize",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/inputwindowsize"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:with:)": {
+      "abstract": [
+        {
+          "text": "Updates a model with a new batch of examples.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Scalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MLShapedArrayScalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "BinaryFloatingPoint",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV11Transformera",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents14AnnotatedBatchV",
+          "text": "AnnotatedBatch"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:with:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/update(_:with:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:withWindows:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates a model with a sequence of windows.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Scalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MLShapedArrayScalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "BinaryFloatingPoint",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV",
+          "text": "LinearTimeSeriesForecaster"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withWindows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:withWindows:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:withWindows:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster/update(_:withwindows:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for a linear time-series forecaster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecasterConfiguration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecasterconfiguration"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that groups input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindowTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindowtransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "An estimator that creates a transformer by fitting to a data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature": {
+      "abstract": [
+        {
+          "text": "A temporal feature contains a segment identifier and a feature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFeature",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfeature"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment": {
+      "abstract": [
+        {
+          "text": "A URL and a time range identifying a specific segment of a time-based (temporal) file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFileSegment",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfilesegment"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier": {
+      "abstract": [
+        {
+          "text": "Uniquely identifiers a segment of a temporal sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSegmentIdentifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsegmentidentifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence": {
+      "abstract": [
+        {
+          "text": "Async sequence for temporal features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of forecasting windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterAnnotatedWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterannotatedwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches": {
+      "abstract": [
+        {
+          "text": "A sequence of forecaster batches on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterBatches",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterbatches"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "A supervised estimator that can be incrementally updated.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Scalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MLShapedArrayScalar",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "BinaryFloatingPoint",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdatableSupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdatableSupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdatableSupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/updatablesupervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader": {
+      "abstract": [
+        {
+          "text": "A video file reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to predict the class label of time-series signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series classifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-classifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster": {
+      "abstract": [
+        {
+          "text": "Forecast future data points by training a machine learning model using historical data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series forecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-forecaster"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP": {
+      "abstract": [
+        {
+          "text": "A type that associates a scalar with a shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayScalar"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLShapedArrayScalar",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLShapedArrayScalar"
+    },
+    "doc://com.externally.resolved.symbol/s:SB": {
+      "abstract": [
+        {
+          "text": "A radix-2 (binary) floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25ExpressibleByFloatLiteralP",
+          "text": "ExpressibleByFloatLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SF",
+          "text": "FloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/Swift/BinaryFloatingPoint"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-based-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment"
+      ],
+      "title": "Time-based components"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Model"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/init(configuration:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/configuration-swift.property",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/forecastWindowSize",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/inputWindowSize"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(to:validateOn:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/fitted(toWindows:validateOn:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:with:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/update(_:withWindows:eventHandler:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Annotation",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Configuration-swift.typealias",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/Transformer"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/SupervisedEstimator-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster/UpdatableSupervisedEstimator-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/lineartimeseriesforecaster"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

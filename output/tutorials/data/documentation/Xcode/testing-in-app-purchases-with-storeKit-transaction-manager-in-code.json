@@ -1,0 +1,1403 @@
+{
+  "abstract": [
+    {
+      "text": "Use the transaction manager within Xcode to test in-app purchases without requiring a connection to App Store servers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing in-app purchases with StoreKit transaction manager in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "transaction manager",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that you use with StoreKit Testing in Xcode.  With transaction manager, you can test in-app purchases at any stage of development. Testing in-app purchases before pushing your app live helps you ensure a seamless purchase flow, test various edge cases and logic, and validate that purchases behave correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the transaction manager to change settings and initiate test conditions, inspect transactions, and simulate different kinds of purchases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to set up StoreKit in Xcode before you can use the transaction manager for testing. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Change-settings-and-initiate-test-conditions",
+          "level": 3,
+          "text": "Change settings and initiate test conditions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select your StoreKit configuration file in the Project navigator and choose Editor to change the following settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/storefront",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " property on the transaction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Default Storefront",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the localization  that affects the currency display in the payment sheet and the values that return in the localized properties of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". You provide the localized data in your StoreKit configuration file.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Default Localization",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Changes the rate at which time passes for subscriptions in the test environment compared to real time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Subscription Renewal Rate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Causes the test environment to simulate a condition that prevents the customer from completing a purchase. Conditions that cause an interrupted purchase include a payment card expiring, or a customer needing to approve updated terms and conditions. Choose the Resolve Issue option in Debug > StoreKit > Manage Transactions to simulate the customer resolving the issue.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Interrupted Purchases",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Causes the test environment to simulate a condition where the customer’s payment for a renewal doesn’t succeed, and the subscription enters the billing retry state. Choose the Resolve Issue option in Debug > StoreKit > Manage Transactions to simulate a successful billing retry.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Billing Retry on Renewal",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enables Billing Grace Period for your app in the Xcode testing environment. To test this condition, set Enable Billing Retry on Renewal. When the subscription fails to renew, it goes into the billing retry state with Billing Grace Period enabled.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Billing Grace Period",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Causes the test environment to display the Ask to Buy prompt when the tester attempts a purchase. Choose the Approve Transaction or Decline Transaction option in the Debug > StoreKit > Manage Transactions menu to resolve the transaction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Ask to Buy",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Turn off this option to run your tests faster. When you turn this option off, you assume the user has confirmed payment. The system then suppresses confirmation animations and interactions during testing. Turn on this option to display all payment dialogs during testing.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Dialogs",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides a key that you use for signing a subscription offer in the test environment. Use this key instead of your regular key to generate the signature on your server. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for more information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Subscription Offers Key",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Causes the test environment to apply the error conditions you specify to enable you to test your app’s error handling.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Simulate StoreKit failures",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-editor",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-transactions-with-the-transaction-manager",
+          "level": 3,
+          "text": "Inspect transactions with the transaction manager",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the options in the transaction manager to perform steps in an in-app purchase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flow that normally occur outside your app, such as approving or declining Ask To Buy transactions, receiving refunds, and more. To open the transaction manager, choose Debug > StoreKit > Manage Transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-transaction-manager",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The transaction manager lists all the transactions for the running app. If you have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple apps running on multiple devices, select the app in the sidebar to view its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transactions. Use the transaction manager to perform these actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Filter transactions",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Type a search term in the filter box at the bottom of the dialog to narrow the number of transactions that display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Inspect a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Click a transaction, then view that transaction’s details in the inspector. Click the jump button next to a product or group to navigate to it in the StoreKit configuration file in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Create a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Click the plus button on the left of the filter bar. Select the product you want to create a transaction for, and then configure the transaction. Use this feature to test in-app purchases made outside of the device, and to simulate in-app purchases that customers complete on different devices. For more information about creating transactions, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "#Simulate-a-purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Delete a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Select a transaction and click Delete to retest a scenario that the customer can perform only once. For example, customers can purchase a non-consumable product only",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "once, so delete that transaction to retest the purchase. Delete subscription transactions",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to retest introductory offers. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If your app uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/in-app_purchase/original_api_for_in-app_purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", refresh the receipt to get an updated receipt without the deleted transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Send a purchase intent",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Simulate sending purchase intents to your app to ensure your app processes them correctly. For more information about receiving and handling purchase intents in your app, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/PurchaseIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  For more information about sending a purchase intent in the testing environment, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "#Send-a-purchase-intent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Approve or decline a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Click Approve or Decline to resolve",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a pending transaction that’s testing an Ask to Buy scenario.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Refund a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Click Refund to simulate a customer receiving",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a refund.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Resolve a transaction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Click Resolve to simulate a customer resolving",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "an interrupted purchase. To simulate the interruption, choose Editor > Enable Interrupted",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Purchases.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test a price increase",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Select a subscription transaction, then click the Request Price Increase Consent button in the toolbar. Test using the price increase sheet that the system presents in your app, or use the buttons to simulate the customer’s response from outside the app, such as from a push notification. Click the Approve button to indicate that the customer accepts the price increase. Click the Decline button to simulate the customer canceling the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test environment automatically syncs the transaction changes you make. You don’t need to rebuild and run your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Simulate-a-purchase",
+          "level": 3,
+          "text": "Simulate a purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The StoreKit configuration file lets you define in-app purchases in two sections.  Use the Products section to define consumable and non-consumable in-app purchases.  Use the Subscriptions section to define auto-renewable subscriptions and non-renewing subscriptions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a one-time in-app purchase, select the app from the left-hand side that you want to test,  then click the plus button on the left of the filter bar. From the product screen that displays, select the product you want to buy, then click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-product-selection",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the configuration pop-up that displays, you can either accept the defaults, or change the properties to reflect the purchase you want. After you configure your in-app purchase, click the Done button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-product-configuration",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your device or simulator aren’t running, the transaction appears as a new item at the top of the transaction manager screen in the unfinished state. Unfinished transactions appear with a warning symbol next to them. To complete the transaction, run your app on a device or simulator. You can then test that your app successfully completes the transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a test subscription purchase, return to the transaction manager main screen, click the plus button again, but this time choose an auto-renewable subscription from the products list, and then click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-filter-products",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the subscription configuration pop-up appears, either accept the defaults, or change the properties to reflect the kind of subscription you want. For example, if your subscription has multiple offer types, you can optionally select an offer code from the offer drop-down menu. To test different renewal options, select Automatically Renew to test how renewals behave by default in production, or select Don’t Renew, which creates one purchase, and then cancels the subscription. Click Done to trigger the subscription purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-subscription-configuration",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To complete the test purchase, launch the app on the device or simulator where your purchases occur, and see the purchase complete in the transaction manager and appear in the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-purchase-intent",
+          "level": 3,
+          "text": "Send a purchase intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Making in-app purchases isn’t the only way people can buy content for you app or game. As a developer, you can promote in-app purchases from the App Store. When a custom sees an in-app purchase in the App Store, they can initiate a purchase. The App Store then sends that purchase intent to the customer on their device. When the customer opens their device, they complete the purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To send a purchase intent, your app needs to implement the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/storekit/purchaseintent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This action of sending the purchase from the App Store to your app is called a purchase intent. And you can test this interaction in the transaction manager as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the plus sign to create a new purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the product to send a purchase intent for.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the purchase type below the product list to Purchase Intent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Done and check your device to continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "storekit-testing-send-purchase-intent",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the customer confirms the purchase on their device, the purchase completes. After that, the transaction appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "#Send-a-purchase-intent": {
+      "identifier": "#Send-a-purchase-intent",
+      "title": "Send a purchase intent",
+      "titleInlineContent": [
+        {
+          "text": "Send a purchase intent",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Send-a-purchase-intent"
+    },
+    "#Simulate-a-purchase": {
+      "identifier": "#Simulate-a-purchase",
+      "title": "Simulate a purchase",
+      "titleInlineContent": [
+        {
+          "text": "Simulate a purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Simulate-a-purchase"
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/PurchaseIntent": {
+      "abstract": [
+        {
+          "text": "An instance that emits purchase intents, which indicate that the customer initiated a purchase outside of your app, for your app to complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/PurchaseIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PurchaseIntent",
+      "type": "topic",
+      "url": "/documentation/StoreKit/PurchaseIntent"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/storefront": {
+      "abstract": [
+        {
+          "text": "The App Store storefront associated with the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storefront"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV",
+          "text": "Storefront"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/storefront",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storefront",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/storefront"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/generating-a-signature-for-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Create a signature to validate a promotional offer using your private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for promotional offers",
+      "type": "topic",
+      "url": "/documentation/StoreKit/generating-a-signature-for-promotional-offers"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/implementing-introductory-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer introductory pricing for auto-renewable subscriptions to eligible users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing introductory offers in your app",
+      "type": "topic",
+      "url": "/documentation/StoreKit/implementing-introductory-offers-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/storekit/in-app_purchase/original_api_for_in-app_purchase": {
+      "identifier": "https://developer.apple.com/documentation/storekit/in-app_purchase/original_api_for_in-app_purchase",
+      "title": "Original API for in-app purchase",
+      "titleInlineContent": [
+        {
+          "text": "Original API for in-app purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/in-app_purchase/original_api_for_in-app_purchase"
+    },
+    "https://developer.apple.com/documentation/storekit/purchaseintent": {
+      "identifier": "https://developer.apple.com/documentation/storekit/purchaseintent",
+      "title": "PurchaseIntent",
+      "titleInlineContent": [
+        {
+          "text": "PurchaseIntent",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/purchaseintent"
+    },
+    "storekit-testing-editor": {
+      "alt": "A screenshot in Xcode of a selected StoreKit configuration file in the Project navigator of Xcode. The sidebars shows the Configuration Settings option selected, and the main content area lists the various test conditions to test.",
+      "identifier": "storekit-testing-editor",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ccc489d2f5c4c8307e3f9f3c4ce2465/storekit-testing-editor@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/634c3d9ed93e5fe006391a95de068b07/storekit-testing-editor~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-filter-products": {
+      "alt": "A screenshot of the Storekit transaction manager product popup with a filtered subscription product selected. A filter text field in the upper right-hand corner contains the text pass. A filtered list of products appears in the center content area, with one of the subscription products selected. Near the bottom is a row listing the different types of in-app purchases as radio button selections. The default, Purchase, is selected. The bottom row lists three buttons: Cancel, Previous, and Next. The Next button is active and enabled.",
+      "identifier": "storekit-testing-filter-products",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2768cf2f30e3c07b25cdda422da45b8/storekit-testing-filter-products.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cfc1e40e0e442d0044747239dafb7104/storekit-testing-filter-products~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-product-configuration": {
+      "alt": "A screenshot of the product purchase configuration popup that displays a list of configuration options from top to bottom. The Quantity option has an entered value of 1. The Purchase Date text fields contain a date and time. The App Account Token text field is empty. The bottom row lists three buttons: Cancel, Previous, and Done. The Done button is active and enabled.",
+      "identifier": "storekit-testing-product-configuration",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2460821ce85c71d7bf7372dec740b018/storekit-testing-product-configuration.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2c8e70fea461a3dd061498c65dbeca7/storekit-testing-product-configuration~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-product-selection": {
+      "alt": "A screenshot of the Storekit products for a given app. The top of the window displays an empty search. The main content area lists the products with one of the products selected. The bottom section displays the various types of purchases that can be made (the default Purchase product is selected). The bottom row lists three buttons: Cancel, Previous, and Next. The Next button is active and enabled.",
+      "identifier": "storekit-testing-product-selection",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/54423ed37374f0c85b2cb4143ef50ddb/storekit-testing-product-selection.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93fe668a18ce641df12503a04072960d/storekit-testing-product-selection~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-send-purchase-intent": {
+      "alt": "A screenshot of the StoreKit transaction manager product of type Purchase Intent. The middle content area shows a selected product with the product type Purchase Intent radio button selected as its purchase type. Near the bottom is a row listing the different types of in-app purchases as radio button selections. The bottom row lists three buttons: Cancel, Previous, and Done. The Done button is active and enabled.",
+      "identifier": "storekit-testing-send-purchase-intent",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/797bf99068dfff9d8b3c011736aca5ce/storekit-testing-send-purchase-intent.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62b6df7cedab55b5556cdc15b3891194/storekit-testing-send-purchase-intent~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-subscription-configuration": {
+      "alt": "A screenshot that displays the product configuration options for a subscription. The first option displays Offers that can be selected from a menu. No offers are selected. Beneath it is a Purchase Date text field that contains a date and time. The Renewal Options section displays two radio button options: Automatically Renew and Don’t Renew. The Automatically Renew radio button is selected. Next is an App Account Token text field that is blank. The bottom row lists three buttons: Cancel, Previous, and Done.",
+      "identifier": "storekit-testing-subscription-configuration",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0474af989bc3a0701ef5cd34127b1f0f/storekit-testing-subscription-configuration.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2cd2f8482ba99a9c360e65483eb6f318/storekit-testing-subscription-configuration~dark@2x.png"
+        }
+      ]
+    },
+    "storekit-testing-transaction-manager": {
+      "alt": "A screenshot of the StoreKit transaction manager listing app transactions. The left-hand side of the window lists devices and simulators along with their respective installed apps. The main content area lists the transactions. Each translation has a title, timestamp, and short product description.",
+      "identifier": "storekit-testing-transaction-manager",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b0e0b4a54308d0f92232d5a4b160d227/storekit-testing-transaction-manager.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/32db1aeaa09254a1e1276daa14020572/storekit-testing-transaction-manager~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "StoreKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+      ],
+      "title": "StoreKit"
+    }
+  ]
+}

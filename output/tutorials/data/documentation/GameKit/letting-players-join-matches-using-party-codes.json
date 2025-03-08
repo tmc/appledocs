@@ -1,0 +1,706 @@
+{
+  "abstract": [
+    {
+      "text": "Add a rule that lets players invite players and join matches using a shared party code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Letting players join matches using party codes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can let players start a party or group game with other players who they share a party code with. You provide an interface in your game for creating a party code, and then starting and joining matches using that party code. Then use matchmaking rules to ensure that Game Center only matches players with the same party code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-custom-party-code-interface",
+          "level": 3,
+          "text": "Create a custom party code interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, implement a party code feature that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generates a unique party code for the local player",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initiates a match request from the local player using the party code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shares the party code with their friends and others who they want to invite",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Submits match requests from other players who receive a party code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The party code can be any combination of letters, numbers, or other characters that forms a unique identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share the party code, you can use in-game chat or data exchange in an existing match, or let the player copy the code and share outside of your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit match requests without presenting an interface using automatch, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Let-Game-Center-match-the-player-with-others",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-party-code-matchmaking-rule",
+          "level": 3,
+          "text": "Add a party code matchmaking rule",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create a compatible rule that finds players who have the same party code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a compatible rule, the ",
+              "type": "text"
+            },
+            {
+              "code": "requests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the expression contains two match requests to compare. Write an expression that returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the party code for the two requests is the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "requests[0].properties.partyCode == requests[1].properties.partyCode"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the party code rule using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. In the ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, set the rule’s ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to ",
+              "type": "text"
+            },
+            {
+              "code": "COMPATIBLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and pass the party code expression. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "referenceName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields to strings that make sense for your game. In the ",
+              "type": "text"
+            },
+            {
+              "code": "relationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, pass the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the rule set in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /v1/gameCenterMatchmakingRules",
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRules\",",
+            "        \"attributes\": {",
+            "            \"type\": \"COMPATIBLE\",",
+            "            \"description\": \"Check whether the players have the same party code.\",",
+            "            \"referenceName\": \"PartyCode\",",
+            "            \"expression\": \"requests[0].properties.partyCode == requests[1].properties.partyCode\"",
+            "        },",
+            "        \"relationships\": {",
+            "            \"ruleSet\": {",
+            "                \"data\": {",
+            "                    \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "                    \"id\": \"9e313753-2b8a-4762-b941-26f30c4184d2\"",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a rule set, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-match-requests-using-party-codes",
+          "level": 3,
+          "text": "Create match requests using party codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, create a match request that initiates or joins a party by adding a ",
+              "type": "text"
+            },
+            {
+              "code": "partyCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key-value pair to the request’s ",
+              "type": "text"
+            },
+            {
+              "code": "GKMatchRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a match request.",
+            "let request = GKMatchRequest()",
+            "",
+            "// Set the matchmaking rules queue name.",
+            "request.queueName = \"com.example.mygame.PartyCodeQueue\"",
+            "",
+            "// Set properties to the game-specific keys you use in the rules.",
+            "request.properties = [ \"partyCode\": partyCode]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game Center finds all compatible players in the queue that have the same party code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data structure of the request body for the rule set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingQueueCreateRequest.Data.Relationships.RuleSet.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingQueueCreateRequest.Data.Relationships.RuleSet.Data",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingQueueCreateRequest/Data-data.dictionary/Relationships-data.dictionary/RuleSet-data.dictionary/Data-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets": {
+      "abstract": [
+        {
+          "text": "Create a rule set to contain matchmaking rules and teams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create a rule set",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSets"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties": {
+      "abstract": [
+        {
+          "text": "The criteria for the local player that Game Center uses to find other players when using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest/properties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "properties"
+        }
+      ],
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest/properties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules": {
+      "abstract": [
+        {
+          "text": "Set criteria for assigning players to teams in your game using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Assigning players to teams using rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/assigning-players-to-teams-using-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility": {
+      "abstract": [
+        {
+          "text": "Add matchmaking rules that support previous classic matchmaking versions of your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating matchmaking rules for backward compatibility",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-matchmaking-rules-for-backward-compatibility"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Let-Game-Center-match-the-player-with-others": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Let-Game-Center-match-the-player-with-others",
+      "kind": "section",
+      "title": "Let Game Center match the player with others",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game#Let-Game-Center-match-the-player-with-others"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules",
+      "kind": "section",
+      "title": "Create rule sets that contain the matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels": {
+      "abstract": [
+        {
+          "text": "Add a rule to find players in a range of skill levels to balance competitive gameplay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding players with similar skill levels",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-players-with-similar-skill-levels"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rules",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels",
+        "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility"
+      ],
+      "title": "Rules"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rules",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels",
+                "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/creating-matchmaking-rules-for-backward-compatibility"
+              ],
+              "title": "Rules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1properties/title",
+          "value": "properties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest~1properties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "properties"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/letting-players-join-matches-using-party-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/letting-players-join-matches-using-party-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1838 @@
+{
+  "abstract": [
+    {
+      "text": "Tell Xcode how to build your project’s custom file types, and provide",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "dependency information to optimize the build process for each file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating build rules for custom file types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code and resource files in a project are typically in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editable format that a running app can’t use directly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During a build, Xcode transforms the files you’ve been editing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into a suitable runtime format. For example, it compiles your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files into machine instructions for a specific device. Each transformation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires a specific tool, and Xcode uses your project’s build rules, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the built-in build rules, to select the correct tool for each file type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A build rule maps a specific file type to the tools Xcode needs to generate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the required output for that file. For example, one build rule compiles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files into executable code using the Swift compiler. Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains built-in rules for many file types, including both code files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and resource files. You can create additional rules to transform other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file types into an appropriate final form, or override a built-in rule",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use a different tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A build rule is the preferred way to process files that are",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "independent from each other. The build system processes each file using",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a separate task, which allows for more parallelization. If you require",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the build system to process your files as a group in a single operation,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "create a custom Run Script build phase instead, as described in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-new-build-rule-for-a-custom-file-type",
+          "level": 3,
+          "text": "Add a new build rule for a custom file type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your project contains file types not covered by Xcode’s built-in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build rules, you can add new build rules to address those types. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a new build rule:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, select the target that contains your custom files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Build Rules tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) to create a new rule.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Process field, specify a filename matching string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the script text field, specify your custom script code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-rules-creating.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A build rule can use either a custom shell script or an existing tool to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process files. If you use an existing tool to handle your custom file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types, select that tool from the build rule’s Using field. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if your input files contain source code that a built-in compiler can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle, select the compiler from the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-match-criteria-for-source-files",
+          "level": 3,
+          "text": "Specify the match criteria for source files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To match custom file types, select the “Source files with names matching”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option in the Process field and specify a custom pattern string. Specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pattern strings that follow the same rules as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "fnmatch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the Standard C library. For example, to match",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all files with the names ",
+              "type": "text"
+            },
+            {
+              "code": "myfile.c",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "myfile.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", specify the string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "*/myfile.c */myfile.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". During a build, Xcode compares the full path",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of each project file against the specified pattern. When a match occurs,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system executes your custom script code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid choosing filename extensions that overlap with the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "extensions other file types use. Xcode selects the first rule that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "matches a given file, so any overlap might cause Xcode to run the wrong",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "tool.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about pattern matching using the ",
+              "type": "text"
+            },
+            {
+              "code": "fnmatch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the man page for that function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-input-and-output-files-for-your-shell-script",
+          "level": 3,
+          "text": "Specify the input and output files for your shell script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode detects one of your custom file types, it executes the shell",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "script associated with the matching build rule. In your script, get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the path to the source file from the ",
+              "type": "text"
+            },
+            {
+              "code": "SCRIPT_INPUT_FILE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable, and begin processing the file. If your script requires",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional input data, such as build configuration files, specify those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files in the Input Files section of your build rule, and access them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using environment variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your script code takes an input source file and generates an appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "output file. For example, a script that compiles source code might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generate an object file with machine instructions. You specify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "output files for your script in the Output Files section of your build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rule. Most scripts generate only one output file, but you can specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple files when appropriate. Xcode determines when to rebuild",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your source files based on the output files that you declare. When the source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file is newer than the output files, Xcode rebuilds it. If you don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify any output files, Xcode builds your source file every time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of whether the source file changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you specify input and output files in your build rule, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following variables to compose the path and filename information. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you might use ",
+              "type": "text"
+            },
+            {
+              "code": "$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).compiledData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to specify an output file based on the name of the original source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PROJECT_DIR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The root directory of your project’s source files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DERIVED_FILE_DIR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The directory in which to place generated output files. The build system manages this directory and can clean it when needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INPUT_FILE_BASE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base name of the script’s input file. For example, if the path to the input file is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$PROJECT_DIR/Images/Default.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", this variable contains the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Default",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INPUT_FILE_NAME",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the input file, including the filename extension. For example, if the path to the input file is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$PROJECT_DIR/Images/Default.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", this variable contains the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Default.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INPUT_FILE_DIR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The directory that contains the input file. For example, if the path to the input file is  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$PROJECT_DIR/Images/Default.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", this variable points to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Images",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory in your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INPUT_FILE_PATH",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The complete path to the input file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Place your script’s output files in the directory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "represented by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "DERIVED_FILE_DIR",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " variable. If you place them in other",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "locations, your version-control system might not find them, or Xcode",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "might not be able to remove them during a clean build operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-script-related-files-from-environment-variables",
+          "level": 3,
+          "text": "Access script-related files from environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shell scripts have access to the current target’s build settings and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the input and output files associated with the build rule. Before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "executing your build rule’s script, Xcode configures the shell",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment with several environment variables. To access the build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rule’s input and output files, use the environment variables in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The absolute path of the file to process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "OTHER_INPUT_FILE_FLAGS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additional command-line flags you assigned to the file in the Compile Sources build phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of paths in the Input Files section of your build rule.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The absolute path to one of the files in the Input Files section of your build rule. Xcode creates an environment variable for each file, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_INPUT_FILE_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file in the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of paths in the Output Files section of your build rule.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The absolute path to one of the files in the Output Files section of your build rule. Xcode creates an environment variable for each file, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file in the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_HEADER_VISIBILITY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that indicates a header’s visibility. If the current file is in the public or private section of the target’s Headers build phase, this string contains the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "private",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate its location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "HEADER_OUTPUT_DIR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The directory in which to copy header files. If the current file is in a Headers build phase, copy the file to the location in this environment variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In your shell scripts, place environment variables in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "quotation marks before you pass them as parameters to other scripts or tools.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The quotation marks prevent parsing errors when a variable contains spaces or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "special characters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of build setting environment variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-additional-build-dependencies-for-your-source-file",
+          "level": 3,
+          "text": "Specify additional build dependencies for your source file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To improve performance during incremental builds, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rebuilds only the files that require a rebuild. To determine whether a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file requires a rebuild, Xcode evaluates the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Did the contents of the source file change?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Does the source file depend on any other files that changed?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode determines whether a source file changed by comparing the modification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "date of that file to the modification date of its output file. If the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source file is newer, or if the output file doesn’t exist, Xcode builds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Analyzing the dependencies between source files is more complicated,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but is important to ensure builds are correct. If a source file imports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "headers or other files, the tool that builds the source file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reports the relationship to Xcode. For your custom file types, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report dependencies by generating a set of makefile rules for Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to execute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To report dependency rules for your custom source files, enable the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“Use discovered dependency file” option in your build rule. Xcode suggests",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a default naming pattern for your dependency files, but you can change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name to match your tool’s output. In your script code, create the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency file during each build cycle, and save the file with the appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the actual files in your script code when you build custom files.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Fill the contents of each dependencies file with a set of makefile rules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode build system analyzes these rules at build time to determine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether it needs to rebuild the matching source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "build-rules-creating.png": {
+      "alt": "A target contains a custom build rule that builds a custom file type using a shell script.",
+      "identifier": "build-rules-creating.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a23b1bb936328f1861ce2bb80e67b6d1/build-rules-creating@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f37c92452a089be495cd5c62a8122b7c/build-rules-creating~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "files to compile, the scripts to run, and the resources to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version": {
+      "abstract": [
+        {
+          "text": "Add conditional compilation markers around code that requires a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "particular family of devices or minimum operating system version to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version",
+      "kind": "article",
+      "role": "article",
+      "title": "Running code on a specific platform or OS version",
+      "type": "topic",
+      "url": "/documentation/xcode/running-code-on-a-specific-version"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build": {
+      "abstract": [
+        {
+          "text": "Execute custom shell scripts during the build process, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run tools or other commands that your project requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+      "kind": "article",
+      "role": "article",
+      "title": "Running custom scripts during a build",
+      "type": "topic",
+      "url": "/documentation/xcode/running-custom-scripts-during-a-build"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+        "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version"
+      ],
+      "title": "Build customization"
+    }
+  ]
+}

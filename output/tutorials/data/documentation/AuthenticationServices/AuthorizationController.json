@@ -1,0 +1,1217 @@
+{
+  "abstract": [
+    {
+      "text": "A SwiftUI environment value that views use to perform authorization requests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:31_AuthenticationServices_SwiftUI23AuthorizationControllerV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AuthorizationController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AuthenticationServices",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AuthorizationController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AuthorizationController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access an instance of this type, use the SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper and specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/authorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the environment value, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct AuthorizationControllerExample: View {",
+            "    // Get an instance of AuthorizationController using SwiftUI's @Environment ",
+            "    // property wrapper.",
+            "    @Environment(\\.authorizationController) private var authorizationController",
+            "",
+            "    var body: some View {",
+            "        Button(\"Sign In\") {",
+            "            Task {",
+            "                do {",
+            "                    // Create the authorization request.",
+            "                    async let request = makeAuthorizationRequest()",
+            "                    // Perform the request and await its result.",
+            "                    let result = try await authorizationController",
+            "                        .performRequest(request)",
+            "                    switch result {",
+            "                        // Process the request's result.",
+            "                    }",
+            "                } catch {",
+            "                    // Respond to any authorization errors.",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController": {
+      "abstract": [
+        {
+          "text": "A controller that manages authorization requests that a provider creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationResult": {
+      "abstract": [
+        {
+          "text": "Describes the outcome of a successful authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationresult"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController": {
+      "abstract": [
+        {
+          "text": "A SwiftUI environment value that views use to perform authorization requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequest(_:)": {
+      "abstract": [
+        {
+          "text": "Performs an AutoFill-assisted authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAutoFillAssistedRequest(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performautofillassistedrequest(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequests(_:)": {
+      "abstract": [
+        {
+          "text": "Performs an AutoFill-assisted authorization request from the provided array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequests"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequests(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAutoFillAssistedRequests(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performautofillassistedrequests(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:)": {
+      "abstract": [
+        {
+          "text": "Performs the specified authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequest(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequest(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:customMethods:)": {
+      "abstract": [
+        {
+          "text": "Performs the authorization request using a custom authorization method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "customMethods"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASAuthorizationCustomMethod",
+          "text": "ASAuthorizationCustomMethod"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:customMethods:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequest(_:customMethods:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequest(_:custommethods:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:options:)": {
+      "abstract": [
+        {
+          "text": "Performs the specified authorization request with explicit options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationController",
+          "text": "ASAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationControllerRequestOptions",
+          "text": "RequestOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequest(_:options:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequest(_:options:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:)": {
+      "abstract": [
+        {
+          "text": "Performs an authorization request from the provided array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequests(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequests(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:customMethods:)": {
+      "abstract": [
+        {
+          "text": "Performs an authorization request from the provided array using a custom authorization method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "customMethods"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASAuthorizationCustomMethod",
+          "text": "ASAuthorizationCustomMethod"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:customMethods:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequests(_:customMethods:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequests(_:custommethods:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:options:)": {
+      "abstract": [
+        {
+          "text": "Performs an authorization request, with explicit options, from the provided array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationRequest",
+          "text": "ASAuthorizationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationController",
+          "text": "ASAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationControllerRequestOptions",
+          "text": "RequestOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO",
+          "text": "ASAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performRequests(_:options:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authorizationcontroller/performrequests(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Environment"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/authorizationController": {
+      "abstract": [
+        {
+          "text": "A value provided in the SwiftUI environment that views can use to perform authorization requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI23AuthorizationControllerV",
+          "text": "AuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/authorizationController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationController",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/authorizationController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorization-requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationResult"
+      ],
+      "title": "Authorization requests"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Performing-requests",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:options:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:options:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequest(_:customMethods:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performRequests(_:customMethods:)"
+      ],
+      "title": "Performing requests"
+    },
+    {
+      "anchor": "Performing-assisted-requests",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequest(_:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/AuthorizationController/performAutoFillAssistedRequests(_:)"
+      ],
+      "title": "Performing assisted requests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/title",
+          "value": "ASAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/authorizationcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "abstract": [
+    {
+      "text": "Receive and respond to life-cycle notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/life-cycles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Life cycles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system reports changes in your app’s execution state to your SwiftUI environment and your extension delegate object. State changes correspond to major events in the lifetime of your app, such as the app launching or moving into the background. Use the state changes to trigger relevant tasks, such as loading shared resources and configuring your initial user interface. The table below shows the possible states and their implications for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "State",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not running",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The watchOS app isn’t running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inactive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The watchOS app is running in the foreground, but isn’t receiving actions from controls or gestures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Active",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The watchOS app is running in the foreground and receiving actions from controls and gestures. This is the normal mode for apps running on screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system has given the watchOS app a small amount of background execution time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Suspended",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app is in memory but isn’t executing code. The system may purge suspended apps at any time to make room for other apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-background-information",
+          "level": 3,
+          "text": "Receive background information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system receives background data, it may not immediately wake the watchOS app to process that data. Instead, it may delay delivery of the data to preserve battery life.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is currently running—either active and onscreen, or inactive and the frontmost app—the system immediately delivers the data to the app. If the app is in the background, the system wakes the app within 10 minutes to deliver the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession": {
+      "abstract": [
+        {
+          "text": "A session that continues to run your app after the user has stopped interacting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtendedRuntimeSession",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/watchkit/background-execution"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions": {
+      "abstract": [
+        {
+          "text": "Detect and respond to common state transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Common State Transitions",
+      "type": "topic",
+      "url": "/documentation/watchkit/handling-common-state-transitions"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity": {
+      "abstract": [
+        {
+          "text": "Detect and respond to user activity information from Handoff or a complication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling User Activity",
+      "type": "topic",
+      "url": "/documentation/watchkit/handling-user-activity"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh": {
+      "abstract": [
+        {
+          "text": "Keep your complications up-to-date by reading values from a Bluetooth peripheral while your app is running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with Bluetooth peripherals during background app refresh",
+      "type": "topic",
+      "url": "/documentation/watchkit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state": {
+      "abstract": [
+        {
+          "text": "Understand the frontmost app state, and the features it provides to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Frontmost App State",
+      "type": "topic",
+      "url": "/documentation/watchkit/taking-advantage-of-frontmost-app-state"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions": {
+      "abstract": [
+        {
+          "text": "Create an extended runtime session that continues running your app after the user stops interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using extended runtime sessions",
+      "type": "topic",
+      "url": "/documentation/watchkit/using-extended-runtime-sessions"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle": {
+      "abstract": [
+        {
+          "text": "Learn how the watchOS app life cycle operates and responds to life cycle notification methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with the watchOS app life cycle",
+      "type": "topic",
+      "url": "/documentation/watchkit/working-with-the-watchos-app-life-cycle"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+        "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+        "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+      ],
+      "title": "Runtime management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-life-cycle-events",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+        "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+        "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity",
+        "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state"
+      ],
+      "title": "Responding to life cycle events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-life-cycle-events",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+                "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+                "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity",
+                "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state"
+              ],
+              "title": "Responding to life cycle events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Runtime-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+                "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+                "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+              ],
+              "title": "Runtime management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/title",
+          "value": "WKExtendedRuntimeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/life-cycles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/life-cycles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

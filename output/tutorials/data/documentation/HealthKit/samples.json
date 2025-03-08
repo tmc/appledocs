@@ -1,0 +1,3017 @@
+{
+  "abstract": [
+    {
+      "text": "Create and save health and fitness samples.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/samples"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Samples"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HealthKit store saves most health and fitness data using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses. All sample subclasses record information at a specified time. If the sample’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties are the same, the sample represents a point in time. If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the sample represents a time interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HealthKit uses different ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses to store different types of data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects store quantities—a numerical value and units. Most HealthKit data types use quantity samples. For example, height, heart rate, and dietary energy consumed all use quantity samples.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects store a single option selected from a short list. For example, category samples record sleep data (the user can be in bed, asleep, or awake).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " samples combine two or more samples into a single value. For example, correlation samples represent food intake and blood pressure samples. A food sample contains any number of nutrition samples, while a blood pressure sample contains both a systolic and a diastolic sample.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HealthKit represents specialized data types with sample subclasses such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassification": {
+      "abstract": [
+        {
+          "text": "A classification of a score based on the steadiness of the user’s gait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAppleWalkingSteadinessClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAppleWalkingSteadinessClassification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAppleWalkingSteadinessClassification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkapplewalkingsteadinessclassification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity": {
+      "abstract": [
+        {
+          "text": "Provides a classification for a score that measures the steadiness of the user’s gait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "HKAppleWalkingSteadinessClassificationForQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKAppleWalkingSteadinessClassificationForQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkapplewalkingsteadinessclassificationforquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification": {
+      "abstract": [
+        {
+          "text": "Returns the maximum score for the steadiness of the user’s gait based on the provided classification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "HKAppleWalkingSteadinessMaximumQuantityForClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKAppleWalkingSteadinessMaximumQuantityForClassification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkapplewalkingsteadinessmaximumquantityforclassification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification": {
+      "abstract": [
+        {
+          "text": "Returns the minimum score for the steadiness of the user’s gait based on the provided classification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "HKAppleWalkingSteadinessMinimumQuantityForClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKAppleWalkingSteadinessMinimumQuantityForClassification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkapplewalkingsteadinessminimumquantityforclassification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment": {
+      "abstract": [
+        {
+          "text": "A file that is attached to a sample in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachment",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachment"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader": {
+      "abstract": [
+        {
+          "text": "A reader that provides access to an attachment’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentDataReader"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentDataReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachmentDataReader",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore": {
+      "abstract": [
+        {
+          "text": "The access point for attachments associated with samples in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachmentStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentstore"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSample": {
+      "abstract": [
+        {
+          "text": "A sample that stores an audiogram.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAudiogramSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAudiogramSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAudiogramSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkaudiogramsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSensitivityPoint": {
+      "abstract": [
+        {
+          "text": "A hearing sensitivity reading associated with a hearing test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAudiogramSensitivityPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSensitivityPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAudiogramSensitivityPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAudiogramSensitivityPoint",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkaudiogramsensitivitypoint"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample": {
+      "abstract": [
+        {
+          "text": "A Clinical Document Architecture (CDA) sample that stores a single document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCDADocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcdadocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample": {
+      "abstract": [
+        {
+          "text": "A sample with values from a short list of possible values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCategorySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCategorySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCategorySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcategorysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that stores a clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification": {
+      "abstract": [
+        {
+          "text": "An object that contains the contacts prescription data for one eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKContactsLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKContactsLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKContactsLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcontactslensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that store a prescription for contacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKContactsPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKContactsPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKContactsPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcontactsprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation": {
+      "abstract": [
+        {
+          "text": "A sample that groups multiple related samples into a single entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCorrelation"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCorrelation"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCorrelation",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcorrelation"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a cumulative quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCumulativeQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcumulativequantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySeriesSample": {
+      "abstract": [
+        {
+          "text": "A sample representing a series of cumulative quantity values.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySeriesSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySeriesSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySeriesSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCumulativeQuantitySeriesSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcumulativequantityseriessample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a discrete quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDiscreteQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDiscreteQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDiscreteQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a health document in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType": {
+      "abstract": [
+        {
+          "text": "A sample type used to create queries for documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA": {
+      "abstract": [
+        {
+          "text": "The CDA Document type identifier, used when requesting permission to read or share CDA documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CDA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKDocumentTypeIdentifier",
+          "text": "HKDocumentTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentTypeIdentifierCDA"
+        }
+      ],
+      "role": "symbol",
+      "title": "CDA",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttypeidentifier/cda"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram": {
+      "abstract": [
+        {
+          "text": "A sample for electrocardiogram data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogram"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogram"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement": {
+      "abstract": [
+        {
+          "text": "The voltage for all leads at a single point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoltageMeasurement"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VoltageMeasurement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram.VoltageMeasurement",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/voltagemeasurement"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource": {
+      "abstract": [
+        {
+          "text": "An object containing Fast Healthcare Interoperability Resources (FHIR) data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKFHIRResource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification": {
+      "abstract": [
+        {
+          "text": "An object that contains the glasses prescription data for one eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKGlassesLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKGlassesLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKGlassesLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkglasseslensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that stores a prescription for glasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKGlassesPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKGlassesPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKGlassesPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkglassesprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore": {
+      "abstract": [
+        {
+          "text": "The access point for all data managed by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object for incrementally building a heartbeat series.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHeartbeatSeriesBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkheartbeatseriesbuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesSample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a series of heartbeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHeartbeatSeriesSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkheartbeatseriessample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for lens specifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hklensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKObject": {
+      "abstract": [
+        {
+          "text": "A piece of data that can be stored inside the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKObject"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKObject",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobject"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType": {
+      "abstract": [
+        {
+          "text": "A type that identifies samples that store a prescription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPrescriptionType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPrescriptionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPrescriptionType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkprescriptiontype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a quantity, including the value and the units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object for incrementally building a sample that contains multiple quantities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplebuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample": {
+      "abstract": [
+        {
+          "text": "A HealthKit sample represents a piece of data associated with a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate": {
+      "abstract": [
+        {
+          "text": "The sample’s end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/enddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate": {
+      "abstract": [
+        {
+          "text": "The sample’s start date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/startdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject": {
+      "abstract": [
+        {
+          "text": "The subject associated with a signed clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecordSubject",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecordsubject"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that stores a vision prescription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVisionPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism": {
+      "abstract": [
+        {
+          "text": "Prescription data for eye alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrism"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrism"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVisionPrism",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout": {
+      "abstract": [
+        {
+          "text": "A workout sample that stores information about a single physical activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkout",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkout"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute": {
+      "abstract": [
+        {
+          "text": "A sample that contains a workout’s route data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRoute"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRoute"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRoute",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroute"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records": {
+      "abstract": [
+        {
+          "text": "Request authorization to query HealthKit for a user’s clinical records and display them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing a User’s Clinical Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-a-user-s-clinical-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card": {
+      "abstract": [
+        {
+          "text": "Query for and validate a verifiable clinical record.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Data from a SMART Health Card",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-data-from-a-smart-health-card"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records": {
+      "abstract": [
+        {
+          "text": "Read clinical record data from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Health Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-health-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator": {
+      "abstract": [
+        {
+          "text": "Set up sample accounts to build and test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Sample Data in the Simulator",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-sample-data-in-the-simulator"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/adding-digital-signatures": {
+      "abstract": [
+        {
+          "text": "Cryptographically sign samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/adding-digital-signatures",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Digital Signatures",
+      "type": "topic",
+      "url": "/documentation/healthkit/adding-digital-signatures"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app": {
+      "abstract": [
+        {
+          "text": "Create a health app that allows a clinical care team to send and receive mobility data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Mobility Health App",
+      "type": "topic",
+      "url": "/documentation/healthkit/creating-a-mobility-health-app"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/data-types": {
+      "abstract": [
+        {
+          "text": "Specify the kind of data used in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data types",
+      "type": "topic",
+      "url": "/documentation/healthkit/data-types"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys": {
+      "abstract": [
+        {
+          "text": "Constants used to add metadata to objects stored in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metadata Keys",
+      "type": "topic",
+      "url": "/documentation/healthkit/metadata-keys"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/queries": {
+      "abstract": [
+        {
+          "text": "Query health and fitness data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/reading-and-writing-healthkit-series-data": {
+      "abstract": [
+        {
+          "text": "Share and read heartbeat and quantity series data using series builders and queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/reading-and-writing-healthkit-series-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading and Writing HealthKit Series Data",
+      "type": "topic",
+      "url": "/documentation/healthkit/reading-and-writing-healthkit-series-data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit": {
+      "abstract": [
+        {
+          "text": "Use queries to request sample data from HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading data from HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/reading-data-from-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit": {
+      "abstract": [
+        {
+          "text": "Create and share HealthKit samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving data to HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/saving-data-to-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities": {
+      "abstract": [
+        {
+          "text": "Objects used to specify a quantity for a given unit, and to convert between units.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and quantities",
+      "type": "topic",
+      "url": "/documentation/healthkit/units-and-quantities"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos": {
+      "abstract": [
+        {
+          "text": "Incorporate HealthKit State of Mind into your app and visualize the data in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing HealthKit State of Mind in visionOS",
+      "type": "topic",
+      "url": "/documentation/healthkit/visualizing-healthkit-state-of-mind-in-visionos"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Health-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+        "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+        "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos"
+      ],
+      "title": "Health data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/reading-and-writing-healthkit-series-data"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Basic-samples",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation",
+        "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities",
+        "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys"
+      ],
+      "title": "Basic samples"
+    },
+    {
+      "anchor": "Series-data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesSample"
+      ],
+      "title": "Series data"
+    },
+    {
+      "anchor": "Electrocardiograms",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement"
+      ],
+      "title": "Electrocardiograms"
+    },
+    {
+      "anchor": "Audiograms",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAudiogramSensitivityPoint"
+      ],
+      "title": "Audiograms"
+    },
+    {
+      "anchor": "Medical-records",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType"
+      ],
+      "title": "Medical records"
+    },
+    {
+      "anchor": "Vision-prescriptions",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType"
+      ],
+      "title": "Vision prescriptions"
+    },
+    {
+      "anchor": "Walking-steadiness-classifications",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification"
+      ],
+      "title": "Walking steadiness classifications"
+    },
+    {
+      "anchor": "Attachments",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader"
+      ],
+      "title": "Attachments"
+    },
+    {
+      "anchor": "Digital-signatures",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/adding-digital-signatures"
+      ],
+      "title": "Digital signatures"
+    },
+    {
+      "anchor": "Abstract-superclasses",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKObject"
+      ],
+      "title": "Abstract superclasses"
+    },
+    {
+      "anchor": "Deprecated-classes",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySeriesSample"
+      ],
+      "title": "Deprecated classes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesBuilder/title",
+          "value": "HKHeartbeatSeriesBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/title",
+          "value": "HKQuantitySeriesSampleBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/title",
+          "value": "HKLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject/title",
+          "value": "HKObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/title",
+          "value": "HKClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/title",
+          "value": "HKDiscreteQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/title",
+          "value": "HKAttachmentStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachmentStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachmentStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/title",
+          "value": "HKHealthStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/title",
+          "value": "HKQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/title",
+          "value": "HKDocumentTypeIdentifierCDA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentTypeIdentifierCDA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/title",
+          "value": "HKGlassesPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/title",
+          "value": "HKWorkoutRoute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/title",
+          "value": "HKElectrocardiogramVoltageMeasurement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramVoltageMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramVoltageMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSample/title",
+          "value": "HKAudiogramSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAudiogramSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAudiogramSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySeriesSample/title",
+          "value": "HKCumulativeQuantitySeriesSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySeriesSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySeriesSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/title",
+          "value": "HKCorrelation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/title",
+          "value": "HKCDADocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/title",
+          "value": "HKAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/title",
+          "value": "HKVerifiableClinicalRecordSubject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/title",
+          "value": "HKDocumentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/title",
+          "value": "HKSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/title",
+          "value": "HKWorkout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSensitivityPoint/title",
+          "value": "HKAudiogramSensitivityPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSensitivityPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAudiogramSensitivityPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAudiogramSensitivityPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAudiogramSensitivityPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/title",
+          "value": "HKVerifiableClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/title",
+          "value": "HKVisionPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/title",
+          "value": "HKDocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/title",
+          "value": "HKCumulativeQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/title",
+          "value": "HKVisionPrism"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesSample/title",
+          "value": "HKHeartbeatSeriesSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/title",
+          "value": "HKGlassesLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/title",
+          "value": "HKFHIRResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/title",
+          "value": "HKElectrocardiogram"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/title",
+          "value": "HKContactsPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleWalkingSteadinessClassification/title",
+          "value": "HKAppleWalkingSteadinessClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleWalkingSteadinessClassification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAppleWalkingSteadinessClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleWalkingSteadinessClassification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAppleWalkingSteadinessClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/title",
+          "value": "HKCategorySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategorySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategorySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/title",
+          "value": "HKContactsLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/title",
+          "value": "HKPrescriptionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrescriptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrescriptionType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

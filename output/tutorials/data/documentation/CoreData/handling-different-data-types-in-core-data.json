@@ -1,0 +1,989 @@
+{
+  "abstract": [
+    {
+      "text": "Create, store, and present records for a variety of data types.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/handling-different-data-types-in-core-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Handling Different Data Types in Core Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps need to persist and present different kinds of information. Core Data provides different attributes, including those common for all databases, such as ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "Decimal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, and non-standard attributes handled with ",
+              "type": "text"
+            },
+            {
+              "code": "Transformable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. It also provides ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Derived",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes so apps can derive one piece of data from the other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to handle all these data types, by creating and presenting a set of book records. After you launch it, this sample automatically generates the records if they don’t already exist, and shows them in a list. The records are grouped by their published month and can be searched with their canonical form of title.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Derive-a-Non-Persistent-Value-Using-a-Transient-Attribute",
+          "level": 3,
+          "text": "Derive a Non-Persistent Value Using a Transient Attribute",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is derived from one or multiple stored attributes in the same entity. As its name implies, a ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute isn’t persisted to the store, so an app can use it to provide a new attribute based on the stored ones, without consuming extra storage space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make an attribute ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", select the Core Data model in Xcode Project Navigator, navigate to the Core Data entity, select the attribute in the attributes list, and check the ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " box in the Data Model Inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "code": "Transient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute derived from ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To implement the derivation, this sample provides a custom accessor for ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "setter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " nullifies ",
+              "type": "text"
+            },
+            {
+              "code": "primitivePublishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which allows the ",
+              "type": "text"
+            },
+            {
+              "code": "getter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to recalculate the value based on the current ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc public var publishDate: Date? {",
+            "    get {",
+            "        willAccessValue(forKey: Name.publishDate)",
+            "        defer { didAccessValue(forKey: Name.publishDate) }",
+            "        return primitivePublishDate",
+            "    }",
+            "    set {",
+            "        willChangeValue(forKey: Name.publishDate)",
+            "        defer { didChangeValue(forKey: Name.publishDate) }",
+            "        primitivePublishDate = newValue",
+            "        primitivePublishMonthID = nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "getter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " recalculates the value if ",
+              "type": "text"
+            },
+            {
+              "code": "primitivePublishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is nil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc public var publishMonthID: String? {",
+            "    willAccessValue(forKey: Name.publishMonthID)",
+            "    defer { didAccessValue(forKey: Name.publishMonthID) }",
+            "    ",
+            "    guard primitivePublishMonthID == nil, let date = primitivePublishDate else {",
+            "        return primitivePublishMonthID",
+            "    }",
+            "    let calendar = Calendar(identifier: .gregorian)",
+            "    let components = calendar.dateComponents([.year, .month], from: date)",
+            "    if let year = components.year, let month = components.month {",
+            "        primitivePublishMonthID = \"\\(year * 1000 + month)\"",
+            "    }",
+            "    return primitivePublishMonthID",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With these two methods, ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is associated with ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and always stays current.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case where ",
+              "type": "text"
+            },
+            {
+              "code": "publishMonthID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+              "isActive": true,
+              "overridingTitle": "key-value observed",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "key-value observed",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the following code ensures that the observations are triggered when ",
+              "type": "text"
+            },
+            {
+              "code": "publishDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class func keyPathsForValuesAffectingPublishMonthID() -> Set<String> {",
+            "    return [Name.publishDate]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Derive-One-Value-From-Another-Using-a-Derived-Attribute",
+          "level": 3,
+          "text": "Derive One Value From Another Using a Derived Attribute",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses a ",
+              "type": "text"
+            },
+            {
+              "code": "Derived",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, ",
+              "type": "text"
+            },
+            {
+              "code": "canonicalTitle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to support searching the canonical form of book titles. ",
+              "type": "text"
+            },
+            {
+              "code": "canonicalTitle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is configured as the canonical form of  ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by setting the following expression as the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "Derivation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field shown Xcode’s Data Model Inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "canonical:(title)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Derived",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes are used in cases where performance is more critical than storage space. In this sample, the app gets the same result by setting up a predicate with  ",
+              "type": "text"
+            },
+            {
+              "code": "CONTAINS[cd]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ( where ",
+              "type": "text"
+            },
+            {
+              "code": "cd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means case- and diacritic-insensitive ) to search ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directly. By searching ",
+              "type": "text"
+            },
+            {
+              "code": "canonicalTitle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which is persisted, the app performs more quickly because it doesn’t need to do diacritic-insensitive comparison for every book title.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Derived",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes are only updated when the user saves the managed context. Concretely, ",
+              "type": "text"
+            },
+            {
+              "code": "canonicalTitle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " won’t change if the sample app changes the ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute without saving it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-and-Implement-a-Non-Standard-Data-Type",
+          "level": 3,
+          "text": "Configure and Implement a Non-Standard Data Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Transformable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes store objects with a non-standard type, or a type that isn’t in the attribute type list in Xcode’s Data Model Inspector. To implement a ",
+              "type": "text"
+            },
+            {
+              "code": "Transformable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, configure it by setting its type to ",
+              "type": "text"
+            },
+            {
+              "code": "Transformable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and specifying the transformer and custom class name in Data Model Inspector, then register a transformer with code before an app loads its Core Data stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register the transformer at the very beginning.",
+            "// .colorToDataTransformer is a name defined with an NSValueTransformerName extension.",
+            "ValueTransformer.setValueTransformer(ColorToDataTransformer(), forName: .colorToDataTransformer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data requires the transformer be ",
+              "type": "text"
+            },
+            {
+              "code": "NSSecureUnarchiveFromData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or its subclass, and that its ",
+              "type": "text"
+            },
+            {
+              "code": "transformedValue(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method converts a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to an instance of the custom class specified in Data Model Inspector and that ",
+              "type": "text"
+            },
+            {
+              "code": "reverseTransformedValue(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " does the opposite – converts an instance of the custom class to a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Store-and-Present-a-Date-Type",
+          "level": 3,
+          "text": "Store and Present a Date Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a Core Data store, a ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is a ",
+              "type": "text"
+            },
+            {
+              "code": "double",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that represents a number of seconds since 1970. Using a variety of calendars, time zones, and locales, an app can convert a ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to different date strings, or convert a date string to different ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values. When parsing a date string, configure the ",
+              "type": "text"
+            },
+            {
+              "code": "DateFormatter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the right calendar, time zone, and locale. Typically, if the string is generated by the current user, the user-perceived calendar, time zone, and locale will be the current system ones, so an app can use a default ",
+              "type": "text"
+            },
+            {
+              "code": "DateFormatter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. In other cases, configure ",
+              "type": "text"
+            },
+            {
+              "code": "DateFormatter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the same way the app generated the string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Store-and-Present-a-Decimal-Type",
+          "level": 3,
+          "text": "Store and Present a Decimal Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses a ",
+              "type": "text"
+            },
+            {
+              "code": "Decimal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to represent the book price, which is then mapped to a variable of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDecimalNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. ",
+              "type": "text"
+            },
+            {
+              "code": "NSDecimalNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a convenient method to process a currency value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "newBook.price = NSDecimalNumber(mantissa: value, exponent: -2, isNegative: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSDecimalNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also provides a convenient way to present a value with locale in mind.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "cell.price.text = book.price?.description(withLocale: Locale.current)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "73ed48112035/HandlingDifferentDataTypesInCoreData.zip": {
+      "checksum": "73ed48112035bf09a58966132810bc448094ca6f77391c91f76bac9c92a8f33e9fd46b163ef5b2c5d29f06790e2b25cf95438eb1b1f8be867d645833ccacae4a",
+      "identifier": "73ed48112035/HandlingDifferentDataTypesInCoreData.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/73ed48112035/HandlingDifferentDataTypesInCoreData.zip"
+    },
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/core-data-stack": {
+      "abstract": [
+        {
+          "text": "Manage and persist your app’s model layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/core-data-stack",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Data stack",
+      "type": "topic",
+      "url": "/documentation/coredata/core-data-stack"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model": {
+      "abstract": [
+        {
+          "text": "Define your app’s object structure with a data model file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Data model",
+      "type": "topic",
+      "url": "/documentation/coredata/creating-a-core-data-model"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/linking-data-between-two-core-data-stores": {
+      "abstract": [
+        {
+          "text": "Organize data in two different stores and implement a link between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/linking-data-between-two-core-data-stores",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Linking Data Between Two Core Data Stores",
+      "type": "topic",
+      "url": "/documentation/coredata/linking-data-between-two-core-data-stores"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack": {
+      "abstract": [
+        {
+          "text": "Set up the classes that manage and persist your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a Core Data stack",
+      "type": "topic",
+      "url": "/documentation/coredata/setting-up-a-core-data-stack"
+    },
+    "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift": {
+      "abstract": [
+        {
+          "text": "Notify objects about changes to the properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Key-Value Observing in Swift",
+      "type": "topic",
+      "url": "/documentation/Swift/using-key-value-observing-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "73ed48112035/HandlingDifferentDataTypesInCoreData.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model",
+        "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+        "doc://com.apple.coredata/documentation/CoreData/core-data-stack",
+        "doc://com.apple.coredata/documentation/CoreData/linking-data-between-two-core-data-stores"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model",
+                "doc://com.apple.coredata/documentation/CoreData/setting-up-a-core-data-stack",
+                "doc://com.apple.coredata/documentation/CoreData/core-data-stack",
+                "doc://com.apple.coredata/documentation/CoreData/linking-data-between-two-core-data-stores"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/handling-different-data-types-in-core-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/handling-different-data-types-in-core-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

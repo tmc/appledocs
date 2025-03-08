@@ -1,0 +1,790 @@
+{
+  "abstract": [
+    {
+      "text": "Activate and deactivate contexts according to user interaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/informing-classkit-that-a-task-is-about-to-begin"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Informing ClassKit that a task is about to begin"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide hints to Schoolwork about which tasks are most recently and commonly used, activate the context that represents that task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Activate-contexts-when-users-begin-tasks",
+          "level": 3,
+          "text": "Activate contexts when users begin tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user navigates to a point in your app that corresponds to a particular context, you activate that context with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/becomeActive()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In many cases, contexts correspond directly to views in your app. This lets you associate view appearance with context activation. For example, if your app presents one section of a chapter as a scroll view, and the corresponding view controller has a handle on the model instance representing that section, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to activate the context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidAppear(_ animated: Bool) {",
+            "    super.viewDidAppear(animated)",
+            "",
+            "    let path = section.identifierPath",
+            "    CLSDataStore.shared.mainAppContext.descendant(matchingIdentifierPath: path) { context, _ in",
+            "        context?.becomeActive()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Deactivate-contexts-when-users-finish",
+          "level": 3,
+          "text": "Deactivate contexts when users finish",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you deactivate a context when the user leaves the corresponding area of your app using a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resignActive()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In the case of the section view, you can add the call to the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewWillDisappear(_ animated: Bool) {",
+            "    super.viewWillDisappear(animated)",
+            "",
+            "    let path = section.identifierPath",
+            "    CLSDataStore.shared.mainAppContext.descendant(matchingIdentifierPath: path) { context, _ in",
+            "        context?.resignActive()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only one context can be active at a time. If you activate a new context when one is already active, the framework automatically causes the old one to resign.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "As demonstrated above, it’s always best to ask the framework for the context when you need it, rather than storing it in a class property. That’s because the underlying instance may change from time to time as a result of ongoing network synchronization. If you always ask for the context this way, you can be sure that you’re working with the right instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/becomeActive()": {
+      "abstract": [
+        {
+          "text": "Tells a context to become the active context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "becomeActive"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/becomeActive()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "becomeActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "becomeActive()",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/becomeactive()"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean indicating whether the context is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/isactive"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resignActive()": {
+      "abstract": [
+        {
+          "text": "Tells a context to stop being the active context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resignActive"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resignActive()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resignActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "resignActive()",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/resignactive()"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/classkit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that its view was added to a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidAppear(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidAppear(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that its view is about to be removed from a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewWillDisappear(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewWillDisappear(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activating-and-deactivating-a-context",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/becomeActive()",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resignActive()",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/isActive"
+      ],
+      "title": "Activating and deactivating a context"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Activating-and-deactivating-a-context",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/becomeActive()",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resignActive()",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/isActive"
+              ],
+              "title": "Activating and deactivating a context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1resignActive()/title",
+          "value": "resignActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1resignActive()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resignActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewWillDisappear(_:)/title",
+          "value": "viewWillDisappear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewWillDisappear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillDisappear:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1becomeActive()/title",
+          "value": "becomeActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1becomeActive()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "becomeActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/title",
+          "value": "viewDidAppear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidAppear:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/title",
+          "value": "CLSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/informing-classkit-that-a-task-is-about-to-begin"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/informing-classkit-that-a-task-is-about-to-begin"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

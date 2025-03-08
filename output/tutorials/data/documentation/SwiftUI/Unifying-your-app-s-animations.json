@@ -1,0 +1,1674 @@
+{
+  "abstract": [
+    {
+      "text": "Create a consistent UI animation experience across SwiftUI, UIKit, and AppKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Unifying your app’s animations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps use a combination of SwiftUI, UIKit, and AppKit to build and animate their interfaces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In iOS 18 and later, you can use SwiftUI animations in UIKit and AppKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI provides a wide range of standard as well as custom animation types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Unifying-your-app-s-animations",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI, UIKit, and AppKit use different underlying implementations for animation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps that use multiple frameworks for animation might encounter certain issues, such as syncing animation timing or other inconsistencies, that can be difficult to troubleshoot and lead to a suboptimal user experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use SwiftUI animations to animate UI across all of these frameworks to create a more consistent and seamless experience on every platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-SwiftUI-animation",
+          "level": 3,
+          "text": "Create a SwiftUI animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a SwiftUI animation in UIKit or AppKit, import SwiftUI and create a SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, pass that animation as a parameter into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/animate(with:changes:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "code": "NSAnimationContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following examples compare how you can create a basic spring animation using a SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type across SwiftUI, UIKit, and AppKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct ContentView: View {",
+                    "    @State private var position = CGPoint(x: 200, y: 200)",
+                    "    @State private var frame = CGSize(width: 100, height: 100)",
+                    "    ",
+                    "    var body: some View {",
+                    "        Rectangle()",
+                    "            .fill(Color.blue)",
+                    "            .frame(width: frame.width, height: frame.height)",
+                    "            .position(position)",
+                    "        Button(\"Animate\") {",
+                    "            // Use a spring animation to animate the view to a new location.",
+                    "            let animation = Animation.spring(duration: 0.8)",
+                    "            withAnimation(animation) {",
+                    "                position = CGPoint(x: 100, y: 100)",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let position = CGPoint(x: 200, y: 200)",
+                    "let frame = CGSize(width: 100, height: 100)",
+                    "let buttonPosition = CGPoint(x: 200, y: 400)",
+                    "let buttonFrame = CGSize(width: 100, height: 100)",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "            ",
+                    "    let myView = UIView(frame: CGRect(origin: position, size: frame))",
+                    "    myView.backgroundColor = .systemBlue",
+                    "    ",
+                    "    let myButton = UIButton(primaryAction: UIAction(title: \"Animate\") { _ in",
+                    "        // Use a spring animation to animate the view to a new location.",
+                    "        let animation = SwiftUI.Animation.spring(duration: 0.8)",
+                    "        UIView.animate(animation) {",
+                    "            myView.center = CGPoint(x: 100, y: 100)",
+                    "        }",
+                    "    })",
+                    "    myButton.frame = CGRect(origin: buttonPosition, size: buttonFrame)",
+                    "    ",
+                    "    view.addSubview(myView)",
+                    "    view.addSubview(myButton)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let myView = NSView(frame: CGRect(origin: CGPoint(x: 50, y: 50), ",
+                    "                                  size: CGSize(width: 50, height: 50)))",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    let myButton = NSButton(title: \"Animate\", target: self, action: #selector(animateView))",
+                    "    view.addSubview(myButton)",
+                    "",
+                    "    myView.wantsLayer = true",
+                    "    myView.layer?.backgroundColor = NSColor.blue.cgColor",
+                    "    view.addSubview(myView)",
+                    "}",
+                    "",
+                    "@objc",
+                    "func animateView() {",
+                    "    // Use a spring animation to change the size of the view.",
+                    "    let animation = SwiftUI.Animation.spring(duration: 0.8)",
+                    "    NSAnimationContext.animate(animation) {",
+                    "        myView.frame.size = CGSize(width: 100, height: 100)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Use-completion-handlers-with-SwiftUI-animations",
+          "level": 3,
+          "text": "Use completion handlers with SwiftUI animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide an optional completion handler to these animation methods, which the system calls automatically after the animations complete.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following examples show a completion handler that changes the background color of the view to indicate when the animation completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct ContentView: View {",
+                    "    @State private var color = Color.blue",
+                    "    @State private var position = CGPoint(x: 200, y: 200)",
+                    "    @State private var frame = CGSize(width: 100, height: 100)",
+                    "    ",
+                    "    var body: some View {",
+                    "        Rectangle()",
+                    "            .fill(color)",
+                    "            .frame(width: frame.width, height: frame.height)",
+                    "            .position(position)",
+                    "        Button(\"Animate\") {",
+                    "            // Use a smooth spring animation to animate the view to a new location.",
+                    "            withAnimation(.smooth) {",
+                    "                position = CGPoint(x: 100, y: 100)",
+                    "            } completion: {",
+                    "                // When the animation completes, change the color of the view.",
+                    "                color = Color.red",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let position = CGPoint(x: 200, y: 200)",
+                    "let frame = CGSize(width: 100, height: 100)",
+                    "let buttonPosition = CGPoint(x: 200, y: 400)",
+                    "let buttonFrame = CGSize(width: 100, height: 100)",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "        ",
+                    "    let myView = UIView(frame: CGRect(origin: position, size: frame))",
+                    "    myView.backgroundColor = .systemBlue",
+                    "",
+                    "    let myButton = UIButton(primaryAction: UIAction(title: \"Animate\") { _ in",
+                    "        // Use a smooth spring animation to animate the view to a new location.",
+                    "        UIView.animate(.smooth) {",
+                    "            myView.center = CGPoint(x: 100, y: 100)",
+                    "        } completion: {",
+                    "            // When the animation completes, change the color of the view.",
+                    "            myView.backgroundColor = .systemRed",
+                    "        }",
+                    "    })",
+                    "    myButton.frame = CGRect(origin: buttonPosition, size: buttonFrame)",
+                    "",
+                    "    view.addSubview(myView)",
+                    "    view.addSubview(myButton)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let myView = NSView(frame: CGRect(origin: CGPoint(x: 50, y: 50), ",
+                    "                                  size: CGSize(width: 50, height: 50)))",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    let myButton = NSButton(title: \"Animate\", target: self, action: #selector(animateView))",
+                    "    view.addSubview(myButton)",
+                    "",
+                    "    myView.wantsLayer = true",
+                    "    myView.layer?.backgroundColor = NSColor.blue.cgColor",
+                    "    view.addSubview(myView)",
+                    "}",
+                    "",
+                    "@objc",
+                    "func animateView() {",
+                    "    // Use a smooth spring animation to change the size of the view.",
+                    "    NSAnimationContext.animate(.smooth) {",
+                    "        self.myView.frame.size = CGSize(width: 100, height: 100)",
+                    "    } completion: {",
+                    "        // When the animation completes, change the color of the view.",
+                    "        self.myView.layer?.backgroundColor = NSColor.red.cgColor",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Retarget-a-SwiftUI-animation",
+          "level": 3,
+          "text": "Retarget a SwiftUI animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to animations in SwiftUI views, you can smoothly retarget the animations you perform using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/animate(with:changes:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "code": "NSAnimationContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Retargeting a SwiftUI animation uses the velocity from the previous animations to carry the animation forward with continuous velocity, creating a fluid animation experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following examples show retargeting an in-progress animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct ContentView: View {",
+                    "    @State private var position = CGPoint(x: 200, y: 200)",
+                    "    @State private var frame = CGSize(width: 100, height: 100)",
+                    "    ",
+                    "    var body: some View {",
+                    "        Rectangle()",
+                    "            .fill(Color.blue)",
+                    "            .frame(width: frame.width, height: frame.height)",
+                    "            .position(position)",
+                    "        Button(\"Animate\") {",
+                    "            Task {",
+                    "                // Begin an animation to move the view to a new location.",
+                    "                withAnimation(.spring(duration: 1.0)) {",
+                    "                    position = .zero",
+                    "                }",
+                    "                ",
+                    "                try await Task.sleep(for: .seconds(0.5))",
+                    "",
+                    "                // Retarget the running animation to move the view to a different location.",
+                    "                withAnimation(.spring) {",
+                    "                    position = CGPoint(x: 100, y: 400)",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let position = CGPoint(x: 200, y: 200)",
+                    "let frame = CGSize(width: 100, height: 100)",
+                    "let buttonPosition = CGPoint(x: 200, y: 400)",
+                    "let buttonFrame = CGSize(width: 100, height: 100)",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    let myView = UIView(frame: CGRect(origin: position, size: frame))",
+                    "    myView.backgroundColor = .systemBlue",
+                    "    ",
+                    "    let myButton = UIButton(primaryAction: UIAction(title: \"Animate\") { _ in",
+                    "        Task { ",
+                    "            // Begin an animation to move the view to a new location.",
+                    "            UIView.animate(.spring(duration: 1.0)) {",
+                    "                myView.center = CGPoint(x: 200, y: 200)",
+                    "            }",
+                    "            ",
+                    "            try await Task.sleep(for: .seconds(0.5))",
+                    "            ",
+                    "            // Retarget the running animation to move the view to a different location.",
+                    "            UIView.animate(.spring) {",
+                    "                myView.center = CGPoint(x: 100, y: 400)",
+                    "            }",
+                    "        }",
+                    "    })",
+                    "    myButton.frame = CGRect(origin: buttonPosition, size: buttonFrame)",
+                    "    ",
+                    "    view.addSubview(myView)",
+                    "    view.addSubview(myButton)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "let myView = NSView(frame: CGRect(origin: CGPoint(x: 50, y: 50), ",
+                    "                                  size: CGSize(width: 50, height: 50)))",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    let myButton = NSButton(title: \"Animate\", target: self, action: #selector(animateView))",
+                    "    view.addSubview(myButton)",
+                    "",
+                    "    myView.wantsLayer = true",
+                    "    myView.layer?.backgroundColor = NSColor.blue.cgColor",
+                    "    view.addSubview(myView)",
+                    "}",
+                    "",
+                    "@objc",
+                    "func animateView() {",
+                    "    Task {",
+                    "        // Begin an animation to change the size of the view.",
+                    "        NSAnimationContext.animate(.spring(duration: 1)) {",
+                    "            myView.frame.size = CGSize(width: 100, height: 100)",
+                    "        }",
+                    "",
+                    "        try await Task.sleep(for: .seconds(0.5))",
+                    "",
+                    "        // Retarget the running animation to change the view to a different size.",
+                    "        NSAnimationContext.animate(.spring) {",
+                    "            myView.frame.size = CGSize(width: 75, height: 75)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Troubleshoot-animations",
+          "level": 3,
+          "text": "Troubleshoot animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Syncing animations across frameworks can surface differing behavior across implementations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Keep these tips in mind when you troubleshoot animations in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftUI animations run on a background thread in your app’s process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftUI animations don’t have a backing ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which differentiates them from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " animations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftUI animations aren’t compatible with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyframe animations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about providing a great animation experience in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc24/10145/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations": {
+      "alt": "A conceptual illustration of a disclosure indicator, shown animating frame by frame from its collapsed position to its expanded position.",
+      "identifier": "Unifying-your-app-s-animations",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70aba8e027da1b7fdcabec2b06e97de9/Unifying-your-app-s-animations@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/150c654fc982377ddd71ba6fdf6b78cf/Unifying-your-app-s-animations~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db26bd6bfe171a450c126a68c3bd92d4/Unifying-your-app-s-animations-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3559438f813d2163ecacac3918dbff5f/Unifying-your-app-s-animations-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation": {
+      "abstract": [
+        {
+          "text": "The way a view changes over time to create a smooth visual transition from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one state to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration": {
+      "abstract": [
+        {
+          "text": "Add AppKit views to your SwiftUI app, or use SwiftUI views in your AppKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/appkit-integration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController": {
+      "abstract": [
+        {
+          "text": "An AppKit view controller that hosts SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingController",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingcontroller"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu": {
+      "abstract": [
+        {
+          "text": "An AppKit menu with menu items that are defined by a SwiftUI View.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers manage aspects of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "associated window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSceneBridgingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingscenebridgingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers reflect their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content’s size into Auto Layout constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSizingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingsizingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView": {
+      "abstract": [
+        {
+          "text": "An AppKit view that hosts a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingView",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration": {
+      "abstract": [
+        {
+          "text": "Add UIKit views to your SwiftUI app, or use SwiftUI views in your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/uikit-integration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)": {
+      "abstract": [
+        {
+          "text": "Animates changes to one or more views using the specified SwiftUI animation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(with:changes:completion:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for animations in Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAAnimation",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAAnimation"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/animate(with:changes:completion:)": {
+      "abstract": [
+        {
+          "text": "Animates changes to one or more views using the specified SwiftUI animation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": " = Animation.default, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/animate(with:changes:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(with:changes:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/animate(with:changes:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator": {
+      "abstract": [
+        {
+          "text": "A class that animates changes to views and allows the dynamic modification of those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewPropertyAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewPropertyAnimator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewPropertyAnimator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10145/": {
+      "identifier": "https://developer.apple.com/wwdc24/10145/",
+      "title": "Enhance your UI animations and transitions",
+      "titleInlineContent": [
+        {
+          "text": "Enhance your UI animations and transitions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10145/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+        "doc://com.apple.documentation/documentation/UIKit/UIView/animate(with:changes:completion:)",
+        "doc://com.apple.documentation/documentation/AppKit/NSAnimationContext/animate(with:changes:completion:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Displaying-SwiftUI-views-in-AppKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions"
+      ],
+      "title": "Displaying SwiftUI views in AppKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAAnimation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewPropertyAnimator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewPropertyAnimator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/unifying-your-app-s-animations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

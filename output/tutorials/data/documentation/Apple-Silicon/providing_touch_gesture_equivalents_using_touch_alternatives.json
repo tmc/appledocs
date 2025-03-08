@@ -1,0 +1,497 @@
+{
+  "abstract": [
+    {
+      "text": "Enable Touch Alternatives to provide keyboard, mouse, and trackpad equivalents to your iOS app when it runs on a Mac with Apple silicon.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives"
+  },
+  "kind": "article",
+  "legacy_identifier": 4047855,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Providing touch gesture equivalents using Touch Alternatives"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Touch Alternatives is a feature that provides keyboard, mouse, and trackpad equivalents of certain touch gestures to iOS apps running on a Mac with Apple silicon. An app can enable Touch Alternatives by default, and a person can enable and disable the feature from the app’s Settings window (prior to macOS 13, the Settings window is known as the Preferences window).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app displays a circle that you can move around using touch gestures. You can use the app to explore Touch Alternatives on your Mac with Apple silicon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4056578",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download the sample and open the project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a development team in the Signing & Capabilities tab of the target settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select My Mac (Designed for iPad) as the destination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The My Mac (Designed for iPad) destination option is available only on a Mac with Apple silicon.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you launch the sample app for the first time, it enables Touch Alternatives. You can press the arrow keys to move the circle around the window. Press Space to return the circle to the center of the window. Use a mouse or trackpad to drag the circle around the window. You can also disable and enable the alternatives from the Touch Alternatives tab in the app’s Settings window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4056579",
+          "level": 3,
+          "text": "Enable Touch Alternatives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 11.3 and later, iOS apps that run on a Mac with Apple silicon can enable Touch Alternatives by default. To enable Touch Alternatives as the default for the sample app, the sample code project includes the property list file ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.uikit.inputalternatives.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the app bundle, and sets the ",
+              "type": "text"
+            },
+            {
+              "code": "defaultEnablement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the file to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The file can contain the following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "defaultEnablement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A Boolean value that indicates whether to enable Touch Alternatives by default when the app launches for the first time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "requiredOnboarding",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". An array of strings that indicate which alternatives to highlight in the Touch Alternatives tab of the app’s Settings window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "requiredOnboarding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array can contain any of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Tap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Press Space to tap the center of the app’s window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Arrow Swipe",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Press the arrow keys to swipe from the center of the app’s window toward the direction of the arrow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Scroll Drag",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Scroll with a mouse or trackpad to drag from the pointer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Trackpad Capture",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Press and hold Option to use a trackpad as a virtual touch screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Tilt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Press the W, A, S, and D keys to simulate tilting the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values in the array indicate which alternatives to highlight in the Touch Alternatives tab of the app’s Settings window. The array should include only those values that make sense for the app. For example, the sample app doesn’t detect the device’s motion, so it doesn’t include ",
+              "type": "text"
+            },
+            {
+              "code": "Tilt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>defaultEnablement</key>",
+            "    <true/>",
+            "    <key>requiredOnboarding</key>",
+            "    <array>",
+            "        <string>Tap</string>",
+            "        <string>Arrow Swipe</string>",
+            "        <string>Scroll Drag</string>",
+            "        <string>Trackpad Capture</string>",
+            "    </array>",
+            "</dict>",
+            "</plist>"
+          ],
+          "metadata": {
+            "anchor": "4056575",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with Xcode 14, developers can add the property list file ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.uikit.inputalternatives.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a project using the Touch Alternatives template, available in the Resource section of the iOS file templates. With earlier versions of Xcode, developers can use the Property List template.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple-silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/apple-silicon",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives#4056575": {
+      "identifier": "doc://com.apple.documentation/documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives#4056575",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives#4056575"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/7b13603f90/ProvidingTouchGestureEquivalentsUsingTouchAlternatives.zip": {
+      "checksum": "afbea8137056cc5d79e042c005d1efadf41eec227e5d931126e79062915902143f7f746827ada3bbb463f07d4527d669f7b40ed26ee128327ca8cb1801b6dd86",
+      "identifier": "https://docs-assets.developer.apple.com/published/7b13603f90/ProvidingTouchGestureEquivalentsUsingTouchAlternatives.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7b13603f90/ProvidingTouchGestureEquivalentsUsingTouchAlternatives.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/7b13603f90/ProvidingTouchGestureEquivalentsUsingTouchAlternatives.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/apple-silicon/providing_touch_gesture_equivalents_using_touch_alternatives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

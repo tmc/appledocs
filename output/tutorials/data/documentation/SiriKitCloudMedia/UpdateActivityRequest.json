@@ -1,0 +1,645 @@
+{
+  "abstract": [
+    {
+      "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:sirikit_media_api:UpdateActivityRequest",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "UpdateActivityRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UpdateActivityRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "UpdateActivityRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: SiriKit Cloud Media"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "UpdateActivityRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Limitations on the type and quantity of content to provide in a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "constraints",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:Constraints",
+              "text": "Constraints"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The content the client is playing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "nowPlaying",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:PlayerContext",
+              "text": "PlayerContext"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The content the client plays before the current content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "previouslyPlaying",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:PlayerContext",
+              "text": "PlayerContext"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The most-recent control the user interacts with, or the natural transition that occurs most recently.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "report",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:QueueActivityReportEvent",
+              "text": "QueueActivityReportEvent"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date and time of the reported event.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "timestamp",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A description of the playback queue the client is playing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userActivity",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:UserActivity",
+              "text": "UserActivity"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/[0-9]+\\.[0-9]+\\.[0-9]+/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SiriKitMediaAPI",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " library the client uses.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "version",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "contentFailure",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:ContentFailure",
+              "text": "ContentFailure"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints": {
+      "abstract": [
+        {
+          "text": "Client-originated limitations on how to process a request, such as including explicit content and how much content the client device can receive in a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "Constraints",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/constraints"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure": {
+      "abstract": [
+        {
+          "text": "An object that describes why the client can’t play a specific piece of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentFailure"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentFailure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentFailure",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentfailure"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext": {
+      "abstract": [
+        {
+          "text": "Information about the current playback content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayerContext",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playercontext"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue": {
+      "abstract": [
+        {
+          "text": "A sequence of media content for playback, with links to the previous and next segments of a full playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queue"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueActivityReportEvent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueactivityreportevent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest": {
+      "abstract": [
+        {
+          "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse": {
+      "abstract": [
+        {
+          "text": "Updates to the client’s queue and user activity in response to a report of playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity": {
+      "abstract": [
+        {
+          "text": "The context for playing a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/useractivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity": {
+      "abstract": [
+        {
+          "text": "Monitor progress through the playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Report Playback Progress and Activity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity": {
+      "abstract": [
+        {
+          "text": "Record the user’s preference for a specific media item or a broader category of media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateMediaAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Update Media Affinity Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity"
+      ],
+      "title": "Playback Events"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/updateactivityrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

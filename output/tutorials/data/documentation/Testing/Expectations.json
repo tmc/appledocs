@@ -1,0 +1,2148 @@
+{
+  "abstract": [
+    {
+      "text": "Check for expected values, outcomes, and asynchronous events in tests.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/Expectations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Expectations and confirmations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macros to validate expected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "outcomes. To validate that an error is thrown, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " thrown, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "testing library provides several overloads of the macros that you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/testing-for-errors-in-swift-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Confirmation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to confirm the occurrence of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronous event that you can’t check directly using an expectation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/testing-asynchronous-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Validate-your-codes-result",
+          "level": 3,
+          "text": "Validate your code’s result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate that your code produces an expected value, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This macro captures the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expression you pass, and provides detailed information when the code doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "satisfy the expectation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test func calculatingOrderTotal() {",
+            "  let calculator = OrderCalculator()",
+            "  #expect(calculator.total(of: [3, 3]) == 7)",
+            "  // Prints \"Expectation failed: (calculator.total(of: [3, 3]) → 6) == 7\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your test keeps running after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fails. To stop",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the test when the code doesn’t satisfy a requirement, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test func returningCustomerRemembersUsualOrder() throws {",
+            "  let customer = try #require(Customer(id: 123))",
+            "  // The test runner doesn't reach this line if the customer is nil.",
+            "  #expect(customer.usualOrder.countOfItems == 2)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " throws an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/ExpectationFailedError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when your code fails to satisfy the requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/Confirmation": {
+      "abstract": [
+        {
+          "text": "A type that can be used to confirm that an event occurs zero or more times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Confirmation"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Confirmation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Confirmation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Confirmation",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation"
+    },
+    "doc://org.swift.testing/documentation/Testing/CustomTestStringConvertible": {
+      "abstract": [
+        {
+          "text": "A protocol describing types with a custom string representation when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "presented as part of a test’s output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomTestStringConvertible"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/CustomTestStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomTestStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomTestStringConvertible",
+      "type": "topic",
+      "url": "/documentation/testing/customteststringconvertible"
+    },
+    "doc://org.swift.testing/documentation/Testing/Expectation": {
+      "abstract": [
+        {
+          "text": "A type describing an expectation that has been evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Expectation"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Expectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Expectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Expectation",
+      "type": "topic",
+      "url": "/documentation/testing/expectation"
+    },
+    "doc://org.swift.testing/documentation/Testing/ExpectationFailedError": {
+      "abstract": [
+        {
+          "text": "A type describing an error thrown when an expectation fails during",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpectationFailedError"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/ExpectationFailedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpectationFailedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpectationFailedError",
+      "type": "topic",
+      "url": "/documentation/testing/expectationfailederror"
+    },
+    "doc://org.swift.testing/documentation/Testing/SourceLocation": {
+      "abstract": [
+        {
+          "text": "A type representing a location in source code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SourceLocation"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/SourceLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SourceLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SourceLocation",
+      "type": "topic",
+      "url": "/documentation/testing/sourcelocation"
+    },
+    "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2": {
+      "abstract": [
+        {
+          "text": "Confirm that some event occurs during the invocation of a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expectedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing12ConfirmationV",
+          "text": "Confirmation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "sending "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confirmation(_:expectedCount:isolation:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation(_:expectedcount:isolation:sourcelocation:_:)-5mqz2"
+    },
+    "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il": {
+      "abstract": [
+        {
+          "text": "Confirm that some event occurs during the invocation of a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expectedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SX",
+          "text": "RangeExpression"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "> & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing12ConfirmationV",
+          "text": "Confirmation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "sending "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confirmation(_:expectedCount:isolation:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation(_:expectedcount:isolation:sourcelocation:_:)-l3il"
+    },
+    "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)": {
+      "abstract": [
+        {
+          "text": "Check that an expectation has passed after a condition has been evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expect(_:_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/expect(_:_:sourcelocation:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/expect(_:sourceLocation:performing:throws:)": {
+      "abstract": [
+        {
+          "text": "Check that an expression always throws an error matching some condition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/expect(_:sourceLocation:performing:throws:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expect(_:sourceLocation:performing:throws:)",
+      "type": "topic",
+      "url": "/documentation/testing/expect(_:sourcelocation:performing:throws:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-1hfms": {
+      "abstract": [
+        {
+          "text": "Check that an expression always throws an error of a given type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-1hfms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expect(throws:_:sourceLocation:performing:)",
+      "type": "topic",
+      "url": "/documentation/testing/expect(throws:_:sourcelocation:performing:)-1hfms"
+    },
+    "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-7du1h": {
+      "abstract": [
+        {
+          "text": "Check that an expression always throws a specific error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-7du1h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expect(throws:_:sourceLocation:performing:)",
+      "type": "topic",
+      "url": "/documentation/testing/expect(throws:_:sourcelocation:performing:)-7du1h"
+    },
+    "doc://org.swift.testing/documentation/Testing/known-issues": {
+      "abstract": [
+        {
+          "text": "Highlight known issues when running tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/known-issues",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Known issues",
+      "type": "topic",
+      "url": "/documentation/testing/known-issues"
+    },
+    "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q": {
+      "abstract": [
+        {
+          "text": "Check that an expectation has passed after a condition has been evaluated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and throw an error if it failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "require"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "require(_:_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/require(_:_:sourcelocation:)-5l63q"
+    },
+    "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-6w9oo": {
+      "abstract": [
+        {
+          "text": "Unwrap an optional value or, if it is ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", fail and throw an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "require"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-6w9oo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "require(_:_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/require(_:_:sourcelocation:)-6w9oo"
+    },
+    "doc://org.swift.testing/documentation/Testing/require(_:sourceLocation:performing:throws:)": {
+      "abstract": [
+        {
+          "text": "Check that an expression always throws an error matching some condition, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "throw an error if it does not.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "require"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/require(_:sourceLocation:performing:throws:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "require(_:sourceLocation:performing:throws:)",
+      "type": "topic",
+      "url": "/documentation/testing/require(_:sourcelocation:performing:throws:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-4djuw": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "require"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-4djuw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "require(throws:_:sourceLocation:performing:)",
+      "type": "topic",
+      "url": "/documentation/testing/require(throws:_:sourcelocation:performing:)-4djuw"
+    },
+    "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-7n34r": {
+      "abstract": [
+        {
+          "text": "Check that an expression always throws an error of a given type, and throw",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an error if it does not.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "require"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performing"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-7n34r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "require(throws:_:sourceLocation:performing:)",
+      "type": "topic",
+      "url": "/documentation/testing/require(throws:_:sourcelocation:performing:)-7n34r"
+    },
+    "doc://org.swift.testing/documentation/Testing/testing-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Validate whether your code causes expected events to happen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/testing-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing asynchronous code",
+      "type": "topic",
+      "url": "/documentation/testing/testing-asynchronous-code"
+    },
+    "doc://org.swift.testing/documentation/Testing/testing-for-errors-in-swift-code": {
+      "abstract": [
+        {
+          "text": "Ensure that your code handles errors in the way you expect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/testing-for-errors-in-swift-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing for errors in Swift code",
+      "type": "topic",
+      "url": "/documentation/testing/testing-for-errors-in-swift-code"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behavior-validation",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/known-issues"
+      ],
+      "title": "Behavior validation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-expectations",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/expect(_:_:sourceLocation:)",
+        "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-5l63q",
+        "doc://org.swift.testing/documentation/Testing/require(_:_:sourceLocation:)-6w9oo"
+      ],
+      "title": "Checking expectations"
+    },
+    {
+      "anchor": "Checking-that-errors-are-thrown",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/testing-for-errors-in-swift-code",
+        "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-1hfms",
+        "doc://org.swift.testing/documentation/Testing/expect(throws:_:sourceLocation:performing:)-7du1h",
+        "doc://org.swift.testing/documentation/Testing/expect(_:sourceLocation:performing:throws:)",
+        "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-7n34r",
+        "doc://org.swift.testing/documentation/Testing/require(throws:_:sourceLocation:performing:)-4djuw",
+        "doc://org.swift.testing/documentation/Testing/require(_:sourceLocation:performing:throws:)"
+      ],
+      "title": "Checking that errors are thrown"
+    },
+    {
+      "anchor": "Confirming-that-asynchronous-events-occur",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/testing-asynchronous-code",
+        "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2",
+        "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il",
+        "doc://org.swift.testing/documentation/Testing/Confirmation"
+      ],
+      "title": "Confirming that asynchronous events occur"
+    },
+    {
+      "anchor": "Retrieving-information-about-checked-expectations",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/Expectation",
+        "doc://org.swift.testing/documentation/Testing/ExpectationFailedError",
+        "doc://org.swift.testing/documentation/Testing/CustomTestStringConvertible"
+      ],
+      "title": "Retrieving information about checked expectations"
+    },
+    {
+      "anchor": "Representing-source-locations",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/SourceLocation"
+      ],
+      "title": "Representing source locations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/expectations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

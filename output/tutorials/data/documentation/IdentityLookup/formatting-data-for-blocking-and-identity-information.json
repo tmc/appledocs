@@ -1,0 +1,533 @@
+{
+  "abstract": [
+    {
+      "text": "Set up your PIR payload for call blocking and identity information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.identitylookup/documentation/IdentityLookup/formatting-data-for-blocking-and-identity-information"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SMS and Call Reporting"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Formatting data for blocking and identity information"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Live Caller ID Lookup, when a device receives an incoming call, the system reaches out to a third-party service to fetch private information retrieval (PIR) data from your server. You need to format that data so the system can make the following requests:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A blocking information request",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identity information request",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/swift-homomorphic-encryption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Block-a-caller",
+          "level": 3,
+          "text": "Block a caller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blocking information request is a single byte with two defined values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This value means don’t block the caller.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "0",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This value means block the caller.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "1",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Identify-caller-information",
+          "level": 3,
+          "text": "Identify caller information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identity request displays caller information on the device. This information is a serialized protocol buffer message of type ",
+              "type": "text"
+            },
+            {
+              "code": "CallIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following example shows the response formatting for an identity request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "syntax = \"proto3\";",
+            "",
+            "// The image format.",
+            "enum ImageFormat {",
+            "  // The unspecified format.",
+            "  IMAGE_FORMAT_UNSPECIFIED = 0;",
+            "  // The High Efficiency Image File Format (HEIF/HEIC).",
+            "  IMAGE_FORMAT_HEIC = 1;",
+            "}",
+            "",
+            "// The identity category.",
+            "// The system might show identity information differently based on the category. ",
+            "enum IdentityCategory {",
+            "  IDENTITY_CATEGORY_UNSPECIFIED = 0;",
+            "  IDENTITY_CATEGORY_PERSON = 1;",
+            "  IDENTITY_CATEGORY_BUSINESS = 2;",
+            "}",
+            "",
+            "// The icon.",
+            "message Icon {",
+            "  // The image format for the icon.",
+            "  ImageFormat format = 1;",
+            "  // The encoded image in the specified format.",
+            "  bytes image = 2;",
+            "}",
+            "",
+            "// The caller identity.",
+            "message CallIdentity {",
+            "  // The identity information.",
+            "  string name = 1;",
+            "  // The icon that displays the identity.",
+            "  Icon icon = 2;",
+            "  // The cache expiration in minutes.",
+            "  // The system reuses this response for the specified minutes before requesting it again.",
+            "  uint32 cache_expiry_minutes = 3;",
+            "  // The identity category.",
+            "  IdentityCategory category = 4;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup": {
+      "abstract": [
+        {
+          "text": "Create app extensions to manage and report unwanted SMS messages and spam calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SMS and Call Reporting",
+      "type": "topic",
+      "url": "/documentation/identitylookup"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/CallLookupExtensionStatus": {
+      "abstract": [
+        {
+          "text": "Returns a value with the current state of the app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CallLookupExtensionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/CallLookupExtensionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CallLookupExtensionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CallLookupExtensionStatus",
+      "type": "topic",
+      "url": "/documentation/identitylookup/calllookupextensionstatus"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that allows the system to query the app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveCallerIDLookupExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/identitylookup/livecalleridlookupextensionconfiguration"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionContext": {
+      "abstract": [
+        {
+          "text": "The information the system uses for configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveCallerIDLookupExtensionContext",
+      "type": "topic",
+      "url": "/documentation/identitylookup/livecalleridlookupextensioncontext"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupManager": {
+      "abstract": [
+        {
+          "text": "The entry point that provides access to a collection of functions that help manage the state of the Live Caller ID Lookup app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupManager"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveCallerIDLookupManager",
+      "type": "topic",
+      "url": "/documentation/identitylookup/livecalleridlookupmanager"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupProtocol": {
+      "abstract": [
+        {
+          "text": "Information the system uses to query the app extension for context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveCallerIDLookupProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveCallerIDLookupProtocol",
+      "type": "topic",
+      "url": "/documentation/identitylookup/livecalleridlookupprotocol"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/getting-up-to-date-calling-and-blocking-information-for-your-app": {
+      "abstract": [
+        {
+          "text": "Implement the Live Caller ID Lookup app extension to provide call-blocking and identity services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/getting-up-to-date-calling-and-blocking-information-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting up-to-date calling and blocking information for your app",
+      "type": "topic",
+      "url": "/documentation/identitylookup/getting-up-to-date-calling-and-blocking-information-for-your-app"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/setting-up-the-http-endpoints-for-live-caller-id-lookup": {
+      "abstract": [
+        {
+          "text": "Connect the on-device system to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/setting-up-the-http-endpoints-for-live-caller-id-lookup",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up the HTTP endpoints for Live Caller ID Lookup",
+      "type": "topic",
+      "url": "/documentation/identitylookup/setting-up-the-http-endpoints-for-live-caller-id-lookup"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/understanding-how-live-caller-id-lookup-preserves-privacy": {
+      "abstract": [
+        {
+          "text": "Use Live Caller ID Lookup to protect user privacy by hiding the client’s IP address, using anonymous authentication, and hiding the incoming phone number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/understanding-how-live-caller-id-lookup-preserves-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding how Live Caller ID Lookup preserves privacy",
+      "type": "topic",
+      "url": "/documentation/identitylookup/understanding-how-live-caller-id-lookup-preserves-privacy"
+    },
+    "https://github.com/apple/swift-homomorphic-encryption": {
+      "identifier": "https://github.com/apple/swift-homomorphic-encryption",
+      "title": "Swift homomorphic encryption library",
+      "titleInlineContent": [
+        {
+          "text": "Swift homomorphic encryption library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-homomorphic-encryption"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Live-Caller-ID-Lookup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/understanding-how-live-caller-id-lookup-preserves-privacy",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/setting-up-the-http-endpoints-for-live-caller-id-lookup",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/getting-up-to-date-calling-and-blocking-information-for-your-app",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupProtocol",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionConfiguration",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupExtensionContext",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/CallLookupExtensionStatus",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/LiveCallerIDLookupManager"
+      ],
+      "title": "Live Caller ID Lookup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

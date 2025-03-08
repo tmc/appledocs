@@ -1,0 +1,2470 @@
+{
+  "abstract": [
+    {
+      "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Xcode’s sanitizer tools.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Diagnosing memory, thread, and crash issues early"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identifying potential issues during development saves testing time later and improves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stability of your code. Xcode provides several runtime tools to identify potential",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issues in your code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Address Sanitizer—The ASan tool identifies potential memory-related corruption",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "issues.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Thread Sanitizer—The TSan tool detects race conditions between threads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Main Thread Checker—This tool verifies that system APIs that must run on the main",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "thread actually do run on that thread.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Undefined Behavior Sanitizer—The UBSan tool detects divide-by-zero errors, attempts",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to access memory using a misaligned pointer, and other undefined behaviors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These are LLVM-based tools that add specific checks to your code. You enable them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at build time using the Xcode scheme editor. Select the appropriate scheme for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project and choose Product > Scheme > Edit Scheme to display the scheme editor. Select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Run or Test schemes, navigate to the Diagnostics section, and select the sanitizers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The sanitizer tools support all C-based languages. The tools also support",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the Swift language, with the exception of the Undefined Behavior Sanitizer tool,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "which supports only C-based languages.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test your app with sanitizer tools enabled to catch otherwise difficult",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to catch bugs. Test your code using a comprehensive set of unit tests, and use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional integration and UI tests to exercise additional code at runtime. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Address Sanitizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Thread Sanitizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Undefined Behavior Sanitizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Main Thread Checker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values of a test plan configuration enable these sanitizers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "during test runs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about testing your code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-memory-corruption-issues-in-your-code",
+          "level": 3,
+          "text": "Locate memory corruption issues in your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessing memory improperly can introduce unexpected issues into your code, and even",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pose a security threat. The Address Sanitizer tool detects memory-access attempts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that don’t belong to an allocated block. To enable this tool, select Address Sanitizer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the Diagnostics section of the appropriate scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-memory-thread-and-crash-issues-early-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable ASan from the command line, use the following flags:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=address",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (clang)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-sanitize=address",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (swiftc)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-enableAddressSanitizer YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (xcodebuild)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Address Sanitizer tool replaces the ",
+              "type": "text"
+            },
+            {
+              "code": "malloc(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "free(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom implementations. The custom ",
+              "type": "text"
+            },
+            {
+              "code": "malloc(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function surrounds a requested memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "block with special off-limits regions, and reports attempts to access those regions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "free(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function places a deallocated block into a special quarantine queue,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and reports attempts to access that quarantined memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Address Sanitizer doesn’t detect memory leaks, attempts to access uninitialized",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "memory, or integer overflow errors. Use Instruments and the other sanitizer tools",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to find additional errors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most use cases, the overhead that Address Sanitizer adds to your code should",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be acceptable for daily development. Running your code with Address Sanitizer increases",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory usage by two to three times, and also adds 2x to 5x slowdown of your code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To improve your code’s memory usage, compile your code with the ",
+              "type": "text"
+            },
+            {
+              "code": "-O1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " optimization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-data-races-among-your-apps-threads",
+          "level": 3,
+          "text": "Detect data races among your app’s threads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Race conditions occur when multiple threads access the same memory without proper",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "synchronization. Race conditions are difficult to detect during regular testing because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they don’t occur consistently. However, fixing them is important because they cause",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code to behave unpredictably, and may even lead to memory corruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect race conditions and other thread-related issues, enable the Thread Sanitizer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tool from the Diagnostics section of the appropriate build scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-memory-thread-and-crash-issues-early-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable TSan from the command line, use the following flags:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=thread",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (clang)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-sanitize=thread",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (swiftc)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-enableThreadSanitizer YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (xcodebuild)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Thread Sanitizer tool inserts diagnostics into your code to record each memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "read or write operation. These diagnostics generate a timestamp for each operation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as its location in memory. The tool then reports any operations that occur",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the same location at approximately the same time. The tool also detects other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "thread-related bugs, such as uninitialized mutexes and thread leaks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can’t use Thread Sanitizer to diagnose iOS, iPadOS, tvOS, visionOS, and watchOS apps",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "running on a device. Use Thread Sanitizer only on your 64-bit macOS app,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or to diagnose your 64-bit iOS, iPadOS, tvOS, visionOS, or watchOS app running in Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Thread Sanitizer inserts diagnostics into your code, it increases memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "usage by five to ten times. Running your code with these diagnostics also introduces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a 2x to 20x slowdown of your app. To improve your code’s memory usage, compile your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code with the ",
+              "type": "text"
+            },
+            {
+              "code": "-O1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " optimization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-improper-UI-updates-on-background-threads",
+          "level": 3,
+          "text": "Detect improper UI updates on background threads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some system frameworks contain APIs that you must only call from your app’s main",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "thread. This requirement applies to most of the AppKit and UIKit user interface APIs,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and also applies to some other system APIs. Calling these APIs from the main thread",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prevents race conditions by serializing the execution of the associated tasks. Failure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to perform these operations on the main thread may result in visual defects, data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corruption, or crashes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Main Thread Checker tool ensures that all calls that must occur on the main thread",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "do so. To enable this tool, select Main Thread Checker from the Diagnostics section",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the appropriate scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-memory-thread-and-crash-issues-early-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Main Thread Checker tool dynamically replaces system methods that must execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the main thread with variants that check the current thread. The tool replaces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only system APIs with well-known thread requirements, and doesn’t replace all system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs. Because the replacements occur in system frameworks, Main Thread Checker doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "require you to recompile your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because Main Thread Checker doesn’t require you to recompile your code, you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "can run it on an existing macOS binary. Inject the dynamic library located at ",
+                  "type": "text"
+                },
+                {
+                  "code": "/Applications/Xcode.app/Contents/Developer/usr/lib/libMainThreadChecker.dylib",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "into your executable.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix problems identified by Main Thread Checker, dispatch calls to your app’s main",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "thread. The most common place where main thread errors occur is completion handler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blocks. The following code wraps the text label modification with an asynchronous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dispatch call to the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let task = URLSession.shared.dataTask(with: url) { (data, response, error) in",
+            "   if let data = data {",
+            "      // Redirect to the main thread.",
+            "      DispatchQueue.main.async {",
+            "         self.label.text = \"\\(data.count) bytes downloaded\"",
+            "      }",
+            "   }",
+            "}",
+            "task.resume()",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The performance impact of Main Thread Checker is minimal. The tool adds 1–2% CPU",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "overhead to your process, and increases process launch time by no more than 100 milliseconds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because of this minimal impact, Xcode enables Main Thread Checker by default for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your development-related schemes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-operations-with-undefined-semantics",
+          "level": 3,
+          "text": "Detect operations with undefined semantics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code that results in undefined behavior can lead to crashes or incorrect output.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In some cases, the code may not result in any problems at all initially, making it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even harder to diagnose the problem later when conditions are different. The Undefined",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Behavior Sanitizer tool checks C-based code for a variety of common runtime errors,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempts to divide by zero",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempts to load memory from a misaligned pointer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempts to dereference a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " pointer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Math operations that result in integer overflow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable this tool, select Undefined Behavior Sanitizer from the Diagnostics section",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the appropriate scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-memory-thread-and-crash-issues-early-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable UBSan from the command line, add the ",
+              "type": "text"
+            },
+            {
+              "code": "-fsanitize=undefined",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option in clang",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the ",
+              "type": "text"
+            },
+            {
+              "code": "enableUndefinedBehaviorSanitizer YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option in xcodebuild. To enable individual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sanitizer checks, use the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compiler flag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UBSan check",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=alignment",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=bool",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=bounds",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=enum",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=vptr",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=integer-divide-by-zero",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=float-divide-by-zero",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=float-cast-overflow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=nonnull-attribute",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=nullability-arg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=nullability-assign",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=returns-nonnull-attribute",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize-nullability-return",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=null",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=object-size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=shift",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-shift",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=signed-integer-overflow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/integer-overflow",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=unreachable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-fsanitize=vla-bound",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-variable-length-array",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Undefined Behavior Sanitizer tool inserts diagnostics into your code at compile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time. The nature of these checks differs according to the type of operation. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, before performing a mathematical operation on an integer value, the tool",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adds a check to determine if the operation triggers an integer overflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The performance impact of Undefined Behavior Sanitizer is minimal. The tool adds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an average of 20% CPU overhead to the debug version of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "diagnosing-memory-thread-and-crash-issues-early-1": {
+      "alt": "A screenshot of the Scheme Editor with the Address Sanitizer checkbox selected.",
+      "identifier": "diagnosing-memory-thread-and-crash-issues-early-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc57cd0c87d0f51db4549a5b2b4ce9ac/diagnosing-memory-thread-and-crash-issues-early-1@2x.png"
+        }
+      ]
+    },
+    "diagnosing-memory-thread-and-crash-issues-early-2": {
+      "alt": "A screenshot of the Scheme Editor with the Thread Sanitizer checkbox selected.",
+      "identifier": "diagnosing-memory-thread-and-crash-issues-early-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f4e9baa5ed4045dd526e1ad00f7f4c7/diagnosing-memory-thread-and-crash-issues-early-2@2x.png"
+        }
+      ]
+    },
+    "diagnosing-memory-thread-and-crash-issues-early-3": {
+      "alt": "A screenshot of the Scheme Editor with the Main Thread Checker checkbox selected.",
+      "identifier": "diagnosing-memory-thread-and-crash-issues-early-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04880faceb0dc2a0aa2a6a3445a0013f/diagnosing-memory-thread-and-crash-issues-early-3@2x.png"
+        }
+      ]
+    },
+    "diagnosing-memory-thread-and-crash-issues-early-4": {
+      "alt": "A screenshot of the Scheme Editor with the Undefined Behavior Sanitizer checkbox selected.",
+      "identifier": "diagnosing-memory-thread-and-crash-issues-early-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b962b1adca1dfcad379d29557171cd45/diagnosing-memory-thread-and-crash-issues-early-4@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/data-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/data-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Data races",
+      "type": "topic",
+      "url": "/documentation/xcode/data-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory": {
+      "abstract": [
+        {
+          "text": "Detects attempts to free deallocated memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Deallocation of deallocated memory",
+      "type": "topic",
+      "url": "/documentation/xcode/deallocation-of-deallocated-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory": {
+      "abstract": [
+        {
+          "text": "Detects attempts to free nonallocated memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Deallocation of nonallocated memory",
+      "type": "topic",
+      "url": "/documentation/xcode/deallocation-of-nonallocated-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/detecting-when-your-app-contacts-domains-that-may-be-profiling-users": {
+      "abstract": [
+        {
+          "text": "Use Instruments to assess whether your app or its third-party SDKs connect to domains that may profile users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/detecting-when-your-app-contacts-domains-that-may-be-profiling-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting when your app contacts domains that may be profiling users",
+      "type": "topic",
+      "url": "/documentation/xcode/detecting-when-your-app-contacts-domains-that-may-be-profiling-users"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app": {
+      "abstract": [
+        {
+          "text": "Inspect your running app to investigate issues in the appearance and placement of the content it displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing issues in the appearance of a running app",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-in-the-appearance-of-your-running-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/division-by-zero": {
+      "abstract": [
+        {
+          "text": "Detects division where the divisor is zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+      "kind": "article",
+      "role": "article",
+      "title": "Division by zero",
+      "type": "topic",
+      "url": "/documentation/xcode/division-by-zero"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation": {
+      "abstract": [
+        {
+          "text": "Detects when an object has the wrong dynamic type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamic type violation",
+      "type": "topic",
+      "url": "/documentation/xcode/dynamic-type-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/integer-overflow": {
+      "abstract": [
+        {
+          "text": "Detects overflow in arithmetic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/integer-overflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Integer overflow",
+      "type": "topic",
+      "url": "/documentation/xcode/integer-overflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean": {
+      "abstract": [
+        {
+          "text": "Detects when a program accesses a Boolean variable and its value isn’t true or false.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid Boolean value",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-boolean"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value": {
+      "abstract": [
+        {
+          "text": "Detects when an enumeration variable has an invalid value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid enumeration value",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-enumeration-value"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast": {
+      "abstract": [
+        {
+          "text": "Detects out-of-range casts to, from, or between floating-point types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid float cast",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-float-cast"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size": {
+      "abstract": [
+        {
+          "text": "Detects invalid pointer casts due to differences in the sizes of types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid object size",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-object-size"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-shift": {
+      "abstract": [
+        {
+          "text": "Detects invalid and overflowing shifts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-shift",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid shift",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-shift"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-variable-length-array": {
+      "abstract": [
+        {
+          "text": "Detects negative array bounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-variable-length-array",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid variable-length array",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-variable-length-array"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer": {
+      "abstract": [
+        {
+          "text": "Detects when code accesses a misaligned pointer or creates a misaligned reference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer",
+      "kind": "article",
+      "role": "article",
+      "title": "Misaligned pointer",
+      "type": "topic",
+      "url": "/documentation/xcode/misaligned-pointer"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation": {
+      "abstract": [
+        {
+          "text": "Detects when an argument incorrectly receives a null value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull argument violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-argument-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation": {
+      "abstract": [
+        {
+          "text": "Detects when a function incorrectly returns null.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull return value violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-return-value-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation": {
+      "abstract": [
+        {
+          "text": "Detects when you incorrectly assign null to a variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull variable assignment violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-variable-assignment-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference": {
+      "abstract": [
+        {
+          "text": "Detects the creation of null references and null pointer dereferences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference",
+      "kind": "article",
+      "role": "article",
+      "title": "Null reference creation and null pointer dereference",
+      "type": "topic",
+      "url": "/documentation/xcode/null-reference-creation-and-null-pointer-dereference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback": {
+      "abstract": [
+        {
+          "text": "Control the information you receive from your tests at different stages in the software engineering process by creating and configuring test plans.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving code assessment by organizing tests into test plans",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-tests-to-improve-feedback"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access": {
+      "abstract": [
+        {
+          "text": "Detects out-of-bounds access of arrays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Out-of-bounds array access",
+      "type": "topic",
+      "url": "/documentation/xcode/out-of-bounds-array-access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers": {
+      "abstract": [
+        {
+          "text": "Detects when you access memory outside of a buffer’s boundaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Overflow and underflow of buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/overflow-and-underflow-of-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers": {
+      "abstract": [
+        {
+          "text": "Detects when you access a C++ container outside its bounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers",
+      "kind": "article",
+      "role": "article",
+      "title": "Overflow of C++ containers",
+      "type": "topic",
+      "url": "/documentation/xcode/overflow-of-c-containers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis": {
+      "abstract": [
+        {
+          "text": "Detects when one thread accesses a mutable object while another thread is writing to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Races on collections and other APIs",
+      "type": "topic",
+      "url": "/documentation/xcode/races-on-collections-and-other-apis"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point": {
+      "abstract": [
+        {
+          "text": "Detects when a program reaches an unreachable point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point",
+      "kind": "article",
+      "role": "article",
+      "title": "Reaching of unreachable point",
+      "type": "topic",
+      "url": "/documentation/xcode/reaching-of-unreachable-point"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-access-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Swift access races",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-access-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/thread-leaks": {
+      "abstract": [
+        {
+          "text": "Detects when you don’t close threads after use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/thread-leaks",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread leaks",
+      "type": "topic",
+      "url": "/documentation/xcode/thread-leaks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes": {
+      "abstract": [
+        {
+          "text": "Detects when you use an uninitialized mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Uninitialized mutexes",
+      "type": "topic",
+      "url": "/documentation/xcode/uninitialized-mutexes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/use-of-deallocated-memory": {
+      "abstract": [
+        {
+          "text": "Detects the use of deallocated memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/use-of-deallocated-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Use of deallocated memory",
+      "type": "topic",
+      "url": "/documentation/xcode/use-of-deallocated-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory": {
+      "abstract": [
+        {
+          "text": "Detects access to variables outside of their declared scope.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Use of out-of-scope stack memory",
+      "type": "topic",
+      "url": "/documentation/xcode/use-of-out-of-scope-stack-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return": {
+      "abstract": [
+        {
+          "text": "Detects when you access stack variable memory after its declaring function returns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return",
+      "kind": "article",
+      "role": "article",
+      "title": "Use of stack memory after function return",
+      "type": "topic",
+      "url": "/documentation/xcode/use-of-stack-memory-after-function-return"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Debugging-strategies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+        "doc://com.apple.Xcode/documentation/Xcode/detecting-when-your-app-contacts-domains-that-may-be-profiling-users"
+      ],
+      "title": "Debugging strategies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Address-Sanitizer",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/use-of-deallocated-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return",
+        "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers"
+      ],
+      "title": "Address Sanitizer"
+    },
+    {
+      "anchor": "Thread-Sanitizer",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/data-races",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+        "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+        "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+        "doc://com.apple.Xcode/documentation/Xcode/thread-leaks"
+      ],
+      "title": "Thread Sanitizer"
+    },
+    {
+      "anchor": "Undefined-Behavior-Sanitizer",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean",
+        "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value",
+        "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point",
+        "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast",
+        "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-shift",
+        "doc://com.apple.Xcode/documentation/Xcode/integer-overflow",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-variable-length-array"
+      ],
+      "title": "Undefined Behavior Sanitizer"
+    }
+  ]
+}

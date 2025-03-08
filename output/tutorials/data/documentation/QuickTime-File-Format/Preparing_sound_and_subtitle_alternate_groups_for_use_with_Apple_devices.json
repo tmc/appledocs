@@ -1,0 +1,712 @@
+{
+  "abstract": [
+    {
+      "text": "Create collections of tracks that all serve the same purpose, where any track in the group can be substituted for another in a movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing sound and subtitle alternate groups for use with Apple devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternate groups are collections of tracks that all serve the same purpose, where any track in the group can be substituted for another in a movie. Members of the same alternate group have the same identifier value in the alternate group field in the ",
+              "type": "text"
+            },
+            {
+              "code": "'tkhd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (track header) atom; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an example of alternate tracks for different languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This section provides guidelines for the use of alternate groups in movies to be played on Apple devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 2,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each alternate group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The group must contain tracks of only one type; for example, only subtitle tracks or only sound tracks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All tracks of the same type must be in a single alternate group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One track in the group must be enabled; that is, the Track Enabled flag must be set (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x0001",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in its track header (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'tkhd'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All other tracks in the group must be disabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Alternate-subtitle-tracks",
+          "level": 2,
+          "text": "Alternate subtitle tracks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an alternate group that contains multiple subtitle (",
+              "type": "text"
+            },
+            {
+              "code": "'sbtl'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") tracks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The player must pick a subtitle track even when subtitle display is turned off.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If any of the requirements stated in the previous General section does not hold, players may act as though there is no alternate subtitle track information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a subtitle track can contain any combination of forced (must be displayed) and non-forced (optionally displayed) subtitle samples, including the possibility of a track that contains only forced subtitle samples. Even if a user indicates, directly or indirectly, that no subtitles should be displayed, any available appropriate subtitle track should be enabled so that any forced subtitles in the track can be displayed. A means by which a player can make a default selection among subtitle alternates in the absence of a user selection is covered in Relationships across alternate groups below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each language in a subtitle alternate group, subtitle tracks can be configured in either of the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Single track: Contains any combination of forced and non-forced (regular) subtitle samples.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Track pairs: One track contains any combination of forced and non-forced (regular) subtitle samples and has a track reference of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'forc'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that references the second track, which contains only forced samples, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user or player picks the language of a track pair, the player application then selects the appropriate track of the pair. It must select the regular subtitle track if subtitle display is on or the forced-only subtitle track if subtitle display is off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a track pair is present in a subtitle alternate group, a player that displays the track languages of subtitle tracks may choose to list the language only once. If a player lists both tracks of the pair, the player should display some kind of distinction between the tracks (for example, including the track names from the ",
+              "type": "text"
+            },
+            {
+              "code": "'tnam'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " user data in a menu).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Alternate-sound-tracks",
+          "level": 2,
+          "text": "Alternate sound tracks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an alternate group that contains multiple sound (",
+              "type": "text"
+            },
+            {
+              "code": "'soun'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") tracks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If more than one alternate group contains sound tracks, consider the alternate group that contains the enabled sound track to be the primary alternate sound track group. Ignore other alternate groups containing sound tracks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If there is more than one enabled sound track, or if there is an enabled sound track and a non-sound track inside the same alternate group, the player may act as though there is no alternate sound track information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Players may ignore sound tracks that use codecs that are unavailable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Relationships-across-alternate-groups",
+          "level": 2,
+          "text": "Relationships across alternate groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio alternate group and subtitle alternate group may need to use different languages because the first is the spoken language and the second is the written language and the BCP 47 language tags may differ. If there is not a need to differentiate, use the same language code and optionally extended language tag for tracks in both alternate groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sound tracks can have a track reference of type ",
+              "type": "text"
+            },
+            {
+              "code": "'folw'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for “follows”) to a single subtitle track; this track is the default to select if the sound track is selected. Use of a ",
+              "type": "text"
+            },
+            {
+              "code": "'folw'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " reference is a fallback in cases where the language tagging cannot be used for some reason (for example, the written language and spoken language use different extended language tags, as with Norwegian).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All subtitle tracks found in a subtitle track alternate group are candidate tracks for any chosen sound track. No facility to restrict the set of available subtitle tracks for a particular selected sound track is currently defined. However, to guide a player’s behavior in making a selection among subtitle alternates in the absence of a user selection or preference, a single subtitle track may be associated with a sound track as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sound track may include a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (“follows”) track reference to a corresponding subtitle track.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a sound track has a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " track reference to a subtitle track, that referenced subtitle track is the default subtitle track for that sound track.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each sound track can have either zero or one ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " track references to a subtitle track.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a subtitle track pair is to be made the default, the sound track should have a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " track reference to the forced subtitle track of the track pair.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If there is no ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " track reference to a subtitle track, a player most commonly determines the default subtitle track by matching aspects of the audio and subtitle tracks, typically by matching the extended language tag (or language code if there is no language tag) in the set of candidate tracks. If no match is found by language, a player might choose another candidate track based upon a user preference (for example, from a list of preferred languages). Another player might choose the first track in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'trak'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " box order in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'moov'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " among the candidate tracks. Another player might have another mechanism to choose the default. Possible fall-back approaches are neither enumerated nor restricted here. Note that selecting no subtitle track may be appropriate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the default matching between audio language tagging and subtitle track language tagging cannot be used, a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'folw'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " track reference must be authored in the media file. (For example, Norwegian as spoken uses a different language tag than the two language tags for Norwegian as written.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description": {
+      "abstract": [
+        {
+          "text": "Tell QuickTime which effect to execute and control how the effect behaves at runtime with an effect description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track reference atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that contains subtitle sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data",
+          "text": "Subtitle sample data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movie-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description"
+      ],
+      "title": "Movie features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/preparing_sound_and_subtitle_alternate_groups_for_use_with_apple_devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,658 @@
+{
+  "abstract": [
+    {
+      "text": "Create a simple DriverKit extension to override the default driver-matching behavior for USB devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremediaio/documentation/CoreMediaIO/overriding-the-default-usb-video-class-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media I/O"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Overriding the default USB video class extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in macOS 12.3, the operating system provides a class-compliant Core Media I/O (CMIO) extension that enables the use of USB cameras and other video capture devices. When you connect a USB camera, the system finds its default driver and connects it with the camera. To override the system’s default matching behavior so that you can load a custom CMIO extension instead, create a simple ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-DriverKit-extension",
+          "level": 3,
+          "text": "Create a DriverKit extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a standalone Xcode project, or as a target within an existing project, create a new DriverKit extension. In Xcode’s menu, select File > New and choose either the Project or Target menu items as appropriate. In the dialog that appears, select the DriverKit tab and the Driver template, and click the Next button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4029886",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the dialog that follows, give the driver an appropriate Product Name and click the Finish button to create it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default IOKit interface generator (",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and C++ implementation files that the template creates provide the sufficient implementation for your driver. The driver is effectively codeless, but the system requires a minimal binary for entitlement purposes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Infoplist-file",
+          "level": 3,
+          "text": "Configure the Info.plist file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify your matching parameters as one or more entries in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary inside the DriverKit extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The following example shows the standard configuration to provide within this file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>IOKitPersonalities</key>",
+            "<dict>",
+            "    <key>Camera-Identifier</key>",
+            "    <dict>",
+            "        <key>CFBundleIdentifierKernel</key>",
+            "        <string>com.apple.UVCService</string>",
+            "        <key>IOClass</key>",
+            "        <string>UVCService</string>",
+            "        <key>IOProviderClass</key>",
+            "        <string>IOUSBHostInterface</string>",
+            "        <key>bConfigurationValue</key>",
+            "        <string>*</string>",
+            "        <key>bInterfaceNumber</key>",
+            "        <string>*</string>",
+            "        <integer>14</integer>",
+            "        <key>bInterfaceSubClass</key>",
+            "        <string>*</string>",
+            "        <key>IOUserClass</key>",
+            "        <string>[DRIVERKIT CLASS NAME]</string>",
+            "        <key>IOUserServerName</key>",
+            "        <string>[DRIVERKIT SERVER NAME]</string>",
+            "        <key>IOProbeScore</key>",
+            "        <integer>9999</integer>",
+            "        <key>idVendor</key>",
+            "        <integer>123</integer>",
+            "        <key>idProduct</key>",
+            "        <integer>123</integer>",
+            "        <key>IOProviderMergeProperties</key>",
+            "        <dict>",
+            "            <key>CameraAssistantBundleID</key>",
+            "            <string>[YOUR CMIO EXTENSION ID]</string>",
+            "        </dict>",
+            "    </dict>",
+            "",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserServerName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values as appropriate for your newly created extension. Set a high ",
+              "type": "text"
+            },
+            {
+              "code": "IOProbeScore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to give priority to your driver, and set the identifiers of the vendor and product to match. In the ",
+              "type": "text"
+            },
+            {
+              "code": "IOProviderMergeProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", specify the identifier of your custom CMIO extension to load in place of the default driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the configuration of your DriverKit extension complete, refer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/installing-system-extensions-and-drivers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for information on how to package and install your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO": {
+      "abstract": [
+        {
+          "text": "Securely support custom camera devices in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media I/O",
+      "type": "topic",
+      "url": "/documentation/coremediaio"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider": {
+      "abstract": [
+        {
+          "text": "An object that manages device connections for a provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProvider",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionprovider"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties": {
+      "abstract": [
+        {
+          "text": "An object that manages the properties of an extension provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProviderProperties",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionproviderproperties"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that act as provider sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderSource"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProviderSource",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionprovidersource"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/creating-a-camera-extension-with-core-media-i-o": {
+      "abstract": [
+        {
+          "text": "Build high-performance camera drivers that are secure and simple to deploy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/creating-a-camera-extension-with-core-media-i-o",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a camera extension with Core Media I/O",
+      "type": "topic",
+      "url": "/documentation/coremediaio/creating-a-camera-extension-with-core-media-i-o"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities": {
+      "abstract": [
+        {
+          "text": "One or more groups of attributes that tell the system about the devices your driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOKitPersonalities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitPersonalities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/IOKitPersonalities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserClass": {
+      "abstract": [
+        {
+          "text": "The name of your driver’s main class, which is the entry point for interacting with your driver’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserClass",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/IOUserClass"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserServerName": {
+      "abstract": [
+        {
+          "text": "The name that the system uses to facilitate communication between your driver and other clients.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/IOUserServerName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserServerName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/IOUserServerName"
+    },
+    "doc://com.apple.documentation/documentation/SystemExtensions/installing-system-extensions-and-drivers": {
+      "abstract": [
+        {
+          "text": "Activate system extensions and drivers to make them available to the system, and update or deactivate them as needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/installing-system-extensions-and-drivers",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing System Extensions and Drivers",
+      "type": "topic",
+      "url": "/documentation/SystemExtensions/installing-system-extensions-and-drivers"
+    },
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers that run in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4029886": {
+      "alt": "An Xcode New Project dialog. At the top-left of the dialog is a label with the value Choose a template for your new project. Below the label shows a row of tabs, with the DriverKit tab selected. Below the tab bar shows the Driver template selected. Along the bottom of the dialog are three buttons. The left-most button has the title Cancel. The two right-most buttons have the titles Previous and Next, respectively. The Previous button is in a disabled state, and the Next button is in a highlighted state.",
+      "identifier": "media-4029886",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c764db2273d7db3036b9adbe5951627f/media-4029886@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a29835e2632920b24f6dc7ce4a466251/media-4029886~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/creating-a-camera-extension-with-core-media-i-o",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties"
+      ],
+      "title": "Providers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/creating-a-camera-extension-with-core-media-i-o",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties"
+              ],
+              "title": "Providers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/title",
+          "value": "CMIOExtensionProviderProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/title",
+          "value": "CMIOExtensionProviderSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/title",
+          "value": "CMIOExtensionProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremediaio/overriding-the-default-usb-video-class-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremediaio/overriding-the-default-usb-video-class-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

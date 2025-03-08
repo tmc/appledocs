@@ -1,0 +1,1495 @@
+{
+  "abstract": [
+    {
+      "text": "Combine two images by using blend modes to create a single output.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Compositing images with vImage blend modes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage provides a suite of functions for compositing two source images into one output. These ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blend mode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " functions implement different algorithms to determine the output color. For example, the multiply blend mode sets each output pixel as the product of the two corresponding input pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blend mode functions work on 8-bit RGBA source images in a premultiplied format. You can convert a nonpremultiplied buffer to a premultiplied format by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_RGBA8888(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blend mode functions accept two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures as the bottom and top layers of the compositing operation. The examples that follow use the image below on the left as the bottom layer and the image below on the right as the top layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3685982",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-layer source image consists of four sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The top-left quadrant is solid white (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[255, 255, 255]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The top-right quadrant is identical to the corresponding quadrant of the bottom image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bottom-left quadrant is solid mid-gray (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[127, 127, 127]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bottom-right quadrant is solid black (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[0, 0, 0]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both images are fully opaque.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Composite-images-using-the-lighten-blend-mode",
+          "level": 3,
+          "text": "Composite images using the lighten blend mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to composite two layers using the lighten blend mode. You can use the lighten blend mode to apply an overall lightening effect to images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lighten blend mode sets each channel of the destination pixel as the lightest value for the corresponding channel of the two source layers. The image below shows the result of compositing using the lighten blend mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3685983",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-left quadrant in the result is white because no pixels in the bottom layer are brighter than the corresponding pixels in the top layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom-left quadrant in the result looks washed out because the operation selects gray pixels from the top layer over corresponding dark pixels from the bottom layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Composite-images-using-the-darken-blend-mode",
+          "level": 3,
+          "text": "Composite images using the darken blend mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to composite two layers using the darken blend mode. You can use the darken blend mode to apply an overall darkening effect to images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The darken blend mode sets each channel of the destination pixel as the darkest value for the corresponding channel of the two source layers. The image below shows the result of compositing using the darken blend mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3685980",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom-right quadrant in the result is black because no pixels in the bottom layer are darker than the corresponding pixels in the top layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom-left quadrant in the result looks darker than the corresponding quadrant in the bottom layer. This is because the operation selects gray pixels from the top layer over corresponding light pixels from the bottom layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Composite-images-using-the-screen-blend-mode",
+          "level": 3,
+          "text": "Composite images using the screen blend mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to composite two layers using the screen blend mode. You can use the screen blend mode to lighten images without affecting the darkest areas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The screen blend mode sets the destination pixel as the inverted product of the inverted corresponding source pixels. The image below shows the result of compositing using the screen blend mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3685981",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom-right quadrant in the result is identical to the corresponding quadrant in the bottom layer because the operation multiplies each bottom-layer pixel value by ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, if the source pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the destination pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dest = 1 - (1 - 0.5) * (1 - 0.0) // dest = 0.5"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-right quadrant in the result is brighter than the corresponding quadrant in the bottom layer. In this quadrant, the top-layer and bottom-layer pixel values are identical. For example, if the source pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the destination pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.75",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dest = 1 - (1 - 0.5) * (1 - 0.5) // dest = 0.75"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Composite-images-using-the-multiply-blend-mode",
+          "level": 3,
+          "text": "Composite images using the multiply blend mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to composite two layers using the multiply blend mode. You can the use multiply blend mode to darken images without affecting the lightest areas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The multiply blend mode sets the destination pixel as the product of the corresponding source pixels. The image below shows the result of compositing using the multiply blend mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3685984",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom-right quadrant in the result is black because the operation multiplies each bottom-layer pixel value by ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the top layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-left quadrant in the result is identical to the corresponding quadrant in the bottom layer because the operation multiplies each bottom-layer pixel value by ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-right quadrant in the result is darker than the corresponding quadrant in the bottom layer. In this quadrant, the top-layer and bottom-layer pixel values are identical. For example, if the source pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the destination pixel value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.25",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dest = 0.5 * 0.5 // dest = 0.25"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/alpha-compositing": {
+      "abstract": [
+        {
+          "text": "Composite images together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/alpha-compositing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alpha compositing",
+      "type": "topic",
+      "url": "/documentation/accelerate/alpha-compositing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying geometric transforms to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-transforms-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs alpha compositing of two 8-bit-per-channel, 4-channel BGRA buffers using the darken blend mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendDarken_RGBA8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendDarken_RGBA8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultipliedalphablenddarken_rgba8888(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs alpha compositing of two 8-bit-per-channel, 4-channel BGRA buffers using the lighten blend mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendLighten_RGBA8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendLighten_RGBA8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultipliedalphablendlighten_rgba8888(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs alpha compositing of two 8-bit-per-channel, 4-channel BGRA buffers using the multiply blend mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendMultiply_RGBA8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendMultiply_RGBA8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultipliedalphablendmultiply_rgba8888(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs alpha compositing of two 8-bit-per-channel, 4-channel BGRA buffers using the screen blend mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendScreen_RGBA8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultipliedAlphaBlendScreen_RGBA8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultipliedalphablendscreen_rgba8888(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_RGBA8888(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Transforms an 8-bit-per-channel, 4-channel RGBA buffer from nonpremultiplied alpha format to premultiplied alpha format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultiplyData_RGBA8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_RGBA8888(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultiplyData_RGBA8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultiplyData_RGBA8888(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultiplydata_rgba8888(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3685980": {
+      "alt": "Three photographs. Two smaller photos are stacked on the left and an arrow points to a larger photograph on the right. The photograph on the bottom left is of a flower. The photograph on the top left is separated into four quadrants containing white in the top left, gray in the bottom left, black in the bottom right, and content from the bottom photograph in the top right. The photograph on the right is separated into four quadrants. The bottom-right quadrant is black, the bottom-left is a darker version of the content from the smaller photograph on the bottom left, and the two top quadrants are the same as the corresponding quadrants of the smaller photograph on the bottom left.",
+      "identifier": "media-3685980",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/676ec6eca727e59096f9b76c7971ecea/media-3685980@2x.png"
+        }
+      ]
+    },
+    "media-3685981": {
+      "alt": "Three photographs. Two smaller photos are stacked on the left and an arrow points to a larger photo on the right. The photograph on the bottom left is of a flower. The photograph on the top left is separated into four quadrants containing white in the top left, gray in the bottom left, black in the bottom right, and content from the bottom photograph in the top right. The photograph on the right is separated into four quadrants. The top-left quadrant is white, the top-right is a brighter version of the content from the smaller photograph on the bottom left, the bottom-left is a lighter version of that photograph, and the bottom-right is the same as the corresponding quadrant of that photograph.",
+      "identifier": "media-3685981",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2fd6a53808292a212809da13ad8b8786/media-3685981@2x.png"
+        }
+      ]
+    },
+    "media-3685982": {
+      "alt": "Two photographs. The photograph on the left is of a flower. The photograph on the right is separated into four quadrants containing white in the top left, gray in the bottom left, black in the bottom right, and content from the left photograph in the top right.",
+      "identifier": "media-3685982",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d8955f150b7c31402869edb09e4c2aa/media-3685982@2x.png"
+        }
+      ]
+    },
+    "media-3685983": {
+      "alt": "Three photographs. Two smaller photos are stacked on the left and an arrow points to a larger photograph on the right. The photograph on the bottom left is of a flower. The photograph on the top left is separated into four quadrants containing white in the top left, gray in the bottom left, black in the bottom right, and content from the bottom photograph in the top right. The photograph on the right is separated into four quadrants. The top-left quadrant is white, the bottom-left is a lighter version of the content from the smaller photograph on the bottom left, and the two right quadrants are the same as the corresponding quadrants of the smaller photograph on the bottom left.",
+      "identifier": "media-3685983",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2eb6c157289d94e6fc5c6b2f023df06e/media-3685983@2x.png"
+        }
+      ]
+    },
+    "media-3685984": {
+      "alt": "Three photographs. Two smaller photos are stacked on the left and an arrow points to a larger photo on the right. The photograph on the bottom left is of a flower. The photograph on the top left is separated into four quadrants containing white in the top left, gray in the bottom left, black in the bottom right, and content from the bottom photograph in the top right. The photograph on the right is separated into four quadrants. The bottom-right quadrant is black, the top-right and bottom-left are darker versions of the content from the smaller photograph on the bottom left, and the top-left is the same as the corresponding quadrant of that photograph.",
+      "identifier": "media-3685984",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/621f96b00e4e06cb86e86045ac707912/media-3685984@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/alpha-compositing"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)/title",
+          "value": "vImagePremultipliedAlphaBlendLighten_RGBA8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultipliedAlphaBlendLighten_RGBA8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)/title",
+          "value": "vImagePremultipliedAlphaBlendScreen_RGBA8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendScreen_RGBA8888(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultipliedAlphaBlendScreen_RGBA8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultiplyData_RGBA8888(_:_:_:)/title",
+          "value": "vImagePremultiplyData_RGBA8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultiplyData_RGBA8888(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultiplyData_RGBA8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)/title",
+          "value": "vImagePremultipliedAlphaBlendMultiply_RGBA8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendMultiply_RGBA8888(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultipliedAlphaBlendMultiply_RGBA8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)/title",
+          "value": "vImagePremultipliedAlphaBlendDarken_RGBA8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultipliedAlphaBlendDarken_RGBA8888(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultipliedAlphaBlendDarken_RGBA8888"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

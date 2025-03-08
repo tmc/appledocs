@@ -1,0 +1,4040 @@
+{
+  "abstract": [
+    {
+      "text": "Simplify user interaction by using onscreen controls for your FxPlug plug-in.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-onscreen-controls-to-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding onscreen controls to plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the Motion or Final Cut Pro inspector is a powerful way to adjust and animate plug-in parameters in your host application, many users prefer using onscreen controls (OSCs) to adjust their effects. These controls draw directly on the canvas, on top of the project’s footage and elements. By creating onscreen controls, you give your users a richer set of tools that let them directly manipulate your plug-in’s parameters—something that many users find more intuitive. For example, consider the onscreen control of the ring lens in the following illustration. It allows you to adjust the inside radius, outside radius, and position, all by dragging the visible rings in the canvas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3655263",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-onscreen-controls",
+          "level": 3,
+          "text": "Create onscreen controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Onscreen controls are written as a type of plug-in, just like filters and generators, and can be bundled in the same application bundle as the plug-in. To implement an onscreen control plug-in, create an NSObject subclass that implements the ",
+              "type": "text"
+            },
+            {
+              "code": "FxOnScreenControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. Then, add the OSC’s uuid to your plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to link them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in uses the ",
+              "type": "text"
+            },
+            {
+              "code": "FxOnScreenControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to draw controls and other UI elements on the screen. Plug-ins also use this protocol to handle mouse and keyboard events. The ",
+              "type": "text"
+            },
+            {
+              "code": "FxOnScreenControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol consists of methods for drawing onscreen controls as well as methods for handling input events from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FxPlug 4.0 introduced ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which has additional (optional) methods for handling mouse-moved events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-communication",
+          "level": 3,
+          "text": "Initialize communication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your onscreen control may also need access to the API Manager, to retrieve or set parameter values with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example. The host app sends your onscreen control plug-in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message, which includes a pointer to the API Manager object. Your plug-in can save this pointer for use later to communicate with the effect plug-in for which it provides an onscreen control UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-drawing-spaces",
+          "level": 3,
+          "text": "Identify drawing spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first thing an onscreen control plug-in needs to do is tell the host application which drawing space it plans to use: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "canvas space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "object space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "document space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Your plug-in should return the corresponding drawing space constant from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/drawingCoordinates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This tells the host application which space your plug-in is using. It also informs the host application as to what space it should use to transform mouse positions when it calls your plug-in to handle events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To provide the best user experience, have your plug-in draw in the canvas space. For example, when drawing in the canvas space, your plug-in can draw handles and other UI elements that are a consistent size and always face the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func drawingCoordinates() -> FxDrawingCoordinates",
+                    "{",
+                    "    return FxDrawingCoordinates(kFxDrawingCoordinates_CANVAS)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (FxDrawingCoordinates)drawingCoordinates",
+                    "{",
+                    "    return kFxDrawingCoordinates_CANVAS;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The drawing space types are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Canvas space",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The area of the host application where the user places their footage, interacts with it, and watches it play back. It can be larger or smaller than just the area that gets rendered when the user exports their project as a movie, and its size varies based on how the user arranges the windows and panes of the application. The user can zoom in the canvas to see more detail in their project, or zoom out to get a higher-level overview. Its pixels are addressed starting at (0,0) from the leftmost and bottommost pixels to whatever the width and height happen to be. This may make it seem somewhat daunting to work with, but as you’ll see, you almost always want to use this space for your drawing because it gives users the best experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Object space",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The space that your plug-in’s point parameters are already in. It’s the normalized space of the object your plug-in is applied to (or of the object itself in the case of a generator). Point parameters have values in the range 0 to 1 in both directions to represent the area of the object—(0,0) represents the lower-left corner of the object, and (1,1) represents the upper-right corner. As such, working with absolute pixel values is very cumbersome in object space. But working with points is very convenient because you can easily handle proxy resolution and pixel aspect ratio by simply multiplying the point’s coordinates by the width and height of the image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Document space",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Centered at the scene’s origin and always in project pixels. If you have a 1920 x 1080 pixel project, document space initially stretches from (–960,– 540) to (960,540) along the x and y axes and is in the same coordinates as the scene. As you move the camera, the coordinates stay anchored in the scene, rather than on the object or the canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3915367",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Draw-onscreen-controls",
+          "level": 3,
+          "text": "Draw onscreen controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is called when it is time for the plug-in to draw the onscreen controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func drawOSC(withWidth width: Int, height: Int, activePart: Int, destinationImage: FxImageTile, at time: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)drawOSCWithWidth:(NSInteger)width",
+                    "                  height:(NSInteger)height",
+                    "              activePart:(NSInteger)activePart",
+                    "        destinationImage:(FxImageTile*)destinationImage",
+                    "                  atTime:(CMTime)time;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Draw control parts in object space so that they align with your effect, but draw their handles in canvas space so that they always remain the same size and always face the user, regardless of the canvas zoom settings. You can convert between spaces by using methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI/convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Look at ",
+              "type": "text"
+            },
+            {
+              "code": "FxShapeOSC.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxShape",
+              "type": "codeVoice"
+            },
+            {
+              "text": " project to see some examples of how to convert coordinates from object space to canvas space and vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-a-hit-test-with-onscreen-controls",
+          "level": 3,
+          "text": "Perform a hit test with onscreen controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interacting with an OSC requires knowing if a user has clicked within a drawn control. Consider this method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func hitTestOSC(atMousePositionX mousePositionX: Double, mousePositionY: Double, activePart: UnsafeMutablePointer<Int>?, at time: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)hitTestOSCAtMousePositionX:(double)mousePositionX",
+                    "                    mousePositionY:(double)mousePositionY",
+                    "                        activePart:(NSInteger*)activePart",
+                    "                            atTime:(CMTime)time;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here, your plug-in’s OSC is given the mouse’s position and the time. Your plug-in should return an ",
+              "type": "text"
+            },
+            {
+              "code": "activePart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter consisting of a constant that represents the part number for the onscreen control that was returned as hit. Other event-driven messages use this ",
+              "type": "text"
+            },
+            {
+              "code": "activePart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier to keep the plug-in informed of how the user is interacting with your OSC. If a mouse click did not land on a point that has an OSC control, return zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how your plug-in might handle updating a control handle’s position on screen when the mouse is moved:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func mouseMoved(atPositionX mousePositionX: Double, positionY mousePositionY: Double, activePart: Int, modifiers: FxModifierKeys, forceUpdate: UnsafeMutablePointer<ObjCBool>?, at time: CMTime)",
+                    "    {  ",
+                    "    // Convert the mouse position into object relative",
+                    "    // coordinates for drawing later",
+                    "    let oscAPI = apiManager!.api(for: FxOnScreenControlAPI_v4.self) as! FxOnScreenControlAPI_v4",
+                    "",
+                    "    // The _mouseMovedPos variable is a class member",
+                    "    // that we’ll reference again in our",
+                    "    // mouseDown handler and drawing routines",
+                    " ",
+                    "    oscAPI.convertPoint(fromSpace: UInt(kFxDrawingCoordinates_CANVAS), fromX: mousePositionX, fromY: mousePositionY, toSpace: UInt(kFxDrawingCoordinates_OBJECT), toX: &_mouseMovedPos.x, toY: &_mouseMovedPos.y)",
+                    "",
+                    "    // Redraw the OSC so we see the change in position on the circle's handle",
+                    "",
+                    "    forceUpdate?.pointee = true",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)mouseMovedAtPositionX:(double)mousePositionX ",
+                    "                    positionY:(double)mousePositionY",
+                    "                   activePart:(int)activePart",
+                    "                    modifiers:(FxModifierKeys)modifiers",
+                    "                  forceUpdate:(BOOL *)forceUpdate",
+                    "                       atTime:(CMTime)time",
+                    "{",
+                    "    // Convert the mouse position into object relative",
+                    "    // coordinates for drawing later",
+                    "    id<FxOnScreenControlAPI_v4> oscAPI = [_apiManager apiForProtocol:@protocol(FxOnScreenControlAPI_v4)]; ",
+                    "",
+                    "    // The _mouseMovedPos variable is a class member",
+                    "    // that we’ll reference again in our",
+                    "    // mouseDown handler and drawing routines",
+                    " ",
+                    "    [oscAPI convertPointFromSpace:kFxDrawingCoordinates_CANVAS",
+                    "                            fromX:mousePositionX",
+                    "                            fromY:mousePositionY",
+                    "                          toSpace:kFxDrawingCoordinates_OBJECT",
+                    "                              toX:&_mouseMovedPos.x",
+                    "                              toY:&_mouseMovedPos.y];",
+                    "",
+                    "    // Redraw the OSC so we see the change in position on the circle's handle",
+                    "",
+                    "    *forceUpdate = YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Implement-mouse-and-keyboard-event-handling",
+          "level": 3,
+          "text": "Implement mouse and keyboard event handling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users need to interact with your controls, so you must implement mouse and keyboard event handling. The host app passes mouse coordinates to your plug-in, in its specified drawing space. For example, if your plug-in returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxDrawingCoordinates_CANVAS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/drawingCoordinates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, then your mouse event handlers will receive mouse coordinates in the canvas drawing space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in receives a call to these methods in response to actions that a user initiates with a mouse:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user clicked on one of your controls.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user dragged the mouse.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user released the mouse.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each of these methods, return ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "forceUpdate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter if you need the host app to redraw your controls (which you almost always will).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, as the mouse is dragged, you’ll be updating your plug-in’s parameters, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the current value of the parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calculate the new value, based on where the mouse was dragged to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the new value of the parameters based on the change in mouse position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s a longer example of how an OSC might update a point parameter as its lower-left corner handle is dragged:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func mouseDragged(atPositionX mousePositionX: Double, positionY mousePositionY: Double, activePart: Int, modifiers: FxModifierKeys, forceUpdate: UnsafeMutablePointer<ObjCBool>?, at time: CMTime)",
+                    "{",
+                    "    let oscAPI = apiManager!.api(for: FxOnScreenControlAPI_v4.self) as! FxOnScreenControlAPI_v4",
+                    "    let paramSetAPI = apiManager!.api(for: FxParameterSettingAPI_v5.self) as! FxParameterSettingAPI_v5",
+                    "    let paramGetAPI = apiManager!.api(for: FxParameterRetrievalAPI_v6.self) as! FxParameterRetrievalAPI_v6",
+                    "",
+                    "    var objectPos = (x:0.0, y:0.0)",
+                    "",
+                    "    oscAPI.convertPoint(fromSpace: UInt(kFxDrawingCoordinates_CANVAS), fromX: mousePositionX, fromY: mousePositionY, toSpace: UInt(kFxDrawingCoordinates_OBJECT), toX: &objectPos.x, toY: &objectPos.y)",
+                    "",
+                    "    let delta = (x: objectPos.x - lastObjectPosition.x, y: objectPos.y - lastObjectPosition.y)",
+                    "    lastObjectPosition = objectPos",
+                    "",
+                    "",
+                    "    if activePart == 1 /* kFSPart_Rectangle */",
+                    "    {",
+                    "        var ll = (x: 0.0, y: 0.0)",
+                    "        var ur = (x: 0.0, y: 0.0)",
+                    "        paramGetAPI.getXValue(&ll.x, yValue: &ll.y, fromParameter: UInt32(kLowerLeftID), at: time)",
+                    "        paramGetAPI.getXValue(&ur.x, yValue: &ur.y, fromParameter: UInt32(kUpperRightID), at: time)",
+                    "",
+                    "        ll.x += delta.x",
+                    "        ll.y += delta.y",
+                    "        ur.x += delta.x",
+                    "        ur.y += delta.y",
+                    "",
+                    "        paramSetAPI.setXValue(ll.x, yValue: ll.y, toParameter: UInt32(kLowerLeftID), at: time)",
+                    "        paramSetAPI.setXValue(ur.x, yValue: ur.y, toParameter: UInt32(kUpperRightID), at: time)",
+                    "    }",
+                    "    else if activePart == 2 /* kFSPart_Circle */",
+                    "    {",
+                    "        var cc = (x: 0.0, y: 0.0)",
+                    "        paramGetAPI.getXValue(&cc.x, yValue: &cc.y, fromParameter: UInt32(kCircleCenter), at: time)",
+                    "",
+                    "        cc.x += delta.x",
+                    "        cc.y += delta.y",
+                    "",
+                    "        paramSetAPI.setXValue(cc.x, yValue: cc.y, toParameter: UInt32(kCircleCenter), at: time)",
+                    "    }",
+                    "",
+                    "    forceUpdate?.pointee = true",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)mouseDraggedAtPositionX:(double)mousePositionX",
+                    "                      positionY:(double)mousePositionY",
+                    "                     activePart:(NSInteger)activePart",
+                    "                      modifiers:(FxModifierKeys)modifiers",
+                    "                    forceUpdate:(BOOL *)forceUpdate",
+                    "                         atTime:(CMTime)time",
+                    "{",
+                    "    id<FxOnScreenControlAPI_v4> oscAPI = [_apiManager apiForProtocol:@protocol(FxOnScreenControlAPI_v4)]; ",
+                    "    id<FxParameterSettingAPI_v5> paramSetAPI = [_apiManager apiForProtocol:@protocol(FxParameterSettingAPI_v5)]; ",
+                    "    id<FxParameterRetrievalAPI_v6> paramGetAPI = [_apiManager apiForProtocol:@protocol(FxParameterRetrievalAPI_v6)];",
+                    "    if ((oscAPI == nil) or (paramGetAPI == nil) or (paramSetAPI == nil))",
+                    "    {",
+                    "        NSLog (@\"Unable to obtain the OSC or parameter APIs in %s:%d\", __func__, __LINE__);",
+                    "        return;",
+                    "    }",
+                    "",
+                    "    // Get some info about the object",
+                    "    unsigned int    objWidth;",
+                    "    unsigned int    objHeight;",
+                    "    double          objPixelAspectRatio;",
+                    "",
+                    "    [oscAPI objectWidth:&objWidth",
+                    "                 height:&objHeight",
+                    "       pixelAspectRatio:&objPixelAspectRatio];",
+                    " ",
+                    "    // Get the point parameter's values",
+                    "    FxPoint2D   lowerLeft;",
+                    "    FxPoint2D   upperRight;",
+                    "    FxPoint2D   mousePosObjSpace;",
+                    "    [paramGetAPI getXValue:&lowerLeft.x",
+                    "                    YValue:&lowerLeft.y",
+                    "             fromParameter:kShape_LowerLeft",
+                    "                    atTime:time];",
+                    "",
+                    "    [paramGetAPI getXValue:&upperRight.x",
+                    "                    YValue:&upperRight.y",
+                    "             fromParameter:kShape_UpperRight",
+                    "                    atTime:time];",
+                    "    // Get the mouse position in object relative space",
+                    "    [oscAPI convertPointFromSpace:kFxDrawingCoordinates_CANVAS",
+                    "                            fromX:mousePositionX",
+                    "                            fromY:mousePositionY",
+                    "                          toSpace:kFxDrawingCoordinates_OBJECT",
+                    "                              toX:&mousePosObjSpace.x",
+                    "                              toY:&mousePosObjSpace.y];",
+                    "",
+                    "    // Find the change from the last time",
+                    "    FxPoint2D   delta   = {",
+                    "        mousePosObjSpace.x - _mouseDownPos.x,",
+                    "        mousePosObjSpace.y - _mouseDownPos.y",
+                    "    }; ",
+                    "",
+                    "    // Save the current location for the next time around",
+                    "    _mouseDownPos = mousePosObjSpace;",
+                    "    _mouseMovedPos = mousePosObjSpace;",
+                    "",
+                    "    // Tell the app to update",
+                    "    *forceUpdate = YES;",
+                    "",
+                    "    // Now respond to the part that the user clicked in",
+                    "    FxPoint2D   newLowerLeft;",
+                    "    switch (activePart)",
+                    "    {",
+                    "        ...",
+                    "        case kShapeOSC_LowerLeft:",
+                    "        newLowerLeft.x = mousePosObjSpace.x;",
+                    "        newLowerLeft.y = mousePosObjSpace.y;",
+                    "        newUpperRight = upperRight;",
+                    "        break; ",
+                    "        ... ",
+                    "    }",
+                    "    // Set the new values",
+                    "    // ... ",
+                    "    [paramSetAPI setXValue:newLowerLeft.x",
+                    "                    YValue:newLowerLeft.y",
+                    "               toParameter:kShape_LowerLeft",
+                    "                    atTime:time];",
+                    "    // ...",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to mouse events, you will also receive keyboard events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information when a key is pressed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information when a key is released.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The mouse and key methods mentioned so far are required to be implemented in your OSC. If you don’t need a particular method, leave the implementation empty and return ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "*didHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are also some mouse messages you can optionally receive; to do so, implement any of these:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information when the mouse pointer changes location.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information when the mouse pointer enters the view.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information when the mouse pointer leaves the view.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Add-onscreen-controls-to-the-Infoplist-file",
+          "level": 3,
+          "text": "Add onscreen controls to the Info.plist file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ProPlugPlugInList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file requires a separate entry for your onscreen control’s class, with its own UUID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI": {
+      "abstract": [
+        {
+          "text": "Commands that you can tell the host to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2": {
+      "abstract": [
+        {
+          "text": "Adds functionality to move the playhead to a specific timeline time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxCommandAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxCommandAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcommandapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates": {
+      "abstract": [
+        {
+          "text": "Constants used to identify coordinate spaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxDrawingCoordinates"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxDrawingCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxDrawingCoordinates",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxdrawingcoordinates"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxModifierKeys": {
+      "abstract": [
+        {
+          "text": "Specifies flags that identify modifier keys held down while an event is generated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxModifierKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxModifierKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxModifierKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxModifierKeys",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxmodifierkeys"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "FxOnScreenControlAPI",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines the methods the host application uses to draw controls and other user interface elements directly on the canvas where the user has applied the plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxOnScreenControlAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrolapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI/convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)": {
+      "abstract": [
+        {
+          "text": "Converts a position from object space to canvas space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxDrawingCoordinates",
+          "text": "FxDrawingCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxDrawingCoordinates",
+          "text": "FxDrawingCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI/convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPointFromSpace:fromX:fromY:toSpace:toX:toY:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrolapi/convertpoint(fromspace:fromx:fromy:tospace:tox:toy:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v2": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "FxOnScreenControlAPI_v2",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol specifies additions to the ",
+          "type": "text"
+        },
+        {
+          "code": "FxOnScreenControlAPI",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol which defines the methods the host application provides to manage conversions between various on-screen coordinate spaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxOnScreenControlAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrolapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v3": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "FxOnScreenControlAPI_v3",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol specifies additions to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol which defines the methods the host application provides to manage conversions between various on-screen coordinate spaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxOnScreenControlAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrolapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v4": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "FxOnScreenControlAPI_v4",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol specifies additions to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol which defines the methods the host application provides to manage conversions between various on-screen coordinate spaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControlAPI_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxOnScreenControlAPI_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrolapi_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4": {
+      "abstract": [
+        {
+          "text": "Defines the methods a plug-in must implement to create parameter controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControl_v4"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxOnScreenControl_v4"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxOnScreenControl_v4",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/drawingCoordinates()": {
+      "abstract": [
+        {
+          "text": "Defines the coordinate space for an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawingCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxDrawingCoordinates",
+          "text": "FxDrawingCoordinates"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/drawingCoordinates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawingCoordinates"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "drawingCoordinates()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/drawingcoordinates()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when a key is pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keyPressed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyDownAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/keydown(atpositionx:positiony:keypressed:modifiers:forceupdate:didhandle:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when a key is released.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keyPressed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyUpAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/keyup(atpositionx:positiony:keypressed:modifiers:forceupdate:didhandle:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the left mouse button is pressed and the pointer is on an image with an active plug-in control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDownAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mousedown(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the left mouse button is pressed and the pointer is moved with the mouse button still down.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mousedragged(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the mouse pointer enters the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseEntered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseEnteredAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mouseentered(atpositionx:positiony:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the mouse pointer leaves the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseExited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseExitedAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mouseexited(atpositionx:positiony:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the mouse pointer changes location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseMoved"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseMovedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mousemoved(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)": {
+      "abstract": [
+        {
+          "text": "Provides information when the left mouse button is released.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atPositionX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activePart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxModifierKeys",
+          "text": "FxModifierKeys"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forceUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4/mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxonscreencontrol_v4/mouseup(atpositionx:positiony:activepart:modifiers:forceupdate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6": {
+      "abstract": [
+        {
+          "text": "Defines the functions the application provides to retrieve parameter values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v6"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterRetrievalAPI_v6",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v6"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods to retrieve information about paths, shapes, and masks the user has drawn on an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxPathAPI_v3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxPathAPI_v3",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxpathapi_v3"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that allows the plug-in to request that the host create a window with a defined minimum and maximum size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxRemoteWindowAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxRemoteWindowAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxremotewindowapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)": {
+      "abstract": [
+        {
+          "text": "Initializes the API manager for your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "apiManager"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PROAPIAccessing",
+          "text": "PROAPIAccessing"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/init(apiManager:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAPIManager:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "init(apiManager:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/init(apimanager:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI": {
+      "abstract": [
+        {
+          "text": "An API that defines the methods that the host app implements to handle plug-in management of the host app’s undo queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxUndoAPI"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxUndoAPI",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxundoapi"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxDrawingCoordinates_CANVAS": {
+      "abstract": [
+        {
+          "text": "Canvas space coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxDrawingCoordinates_CANVAS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxDrawingCoordinates_CANVAS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxDrawingCoordinates_CANVAS"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxDrawingCoordinates_CANVAS",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxdrawingcoordinates_canvas"
+    },
+    "media-3655263": {
+      "alt": "An example of a plug-in with an onscreen control showing a large ring over an image, a circular position control in the center with an attached angle handle control.",
+      "identifier": "media-3655263",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e6c9a0654835e7d8162da80aee74710f/media-3655263@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0869faa01d1d391876c9543953fc8e43/media-3655263~dark@2x.png"
+        }
+      ]
+    },
+    "media-3915367": {
+      "alt": "An image showing the three drawing space types. From the left is a canvas space, in the middle is the object space, and on the right side is the document space. Each space shows the x and y axis and coordinates.",
+      "identifier": "media-3915367",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2187b15f3236b8321047314c02527c10/media-3915367@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bff9dd1aa437199eb0b66fe81fb5c92e/media-3915367~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Onscreen-Control-APIs",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v2",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v3",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v4"
+      ],
+      "title": "Onscreen Control APIs"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxModifierKeys",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Onscreen-Control-APIs",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControl_v4",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxOnScreenControlAPI_v4"
+              ],
+              "title": "Onscreen Control APIs"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxModifierKeys",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxDrawingCoordinates"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxPathAPI_v3",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxUndoAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxCommandAPI_v2",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxRemoteWindowAPI_v2"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)/title",
+          "value": "keyUpAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1keyUp(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyUpAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/title",
+          "value": "FxCommandAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxDrawingCoordinates_CANVAS/title",
+          "value": "kFxDrawingCoordinates_CANVAS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxDrawingCoordinates_CANVAS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxDrawingCoordinates_CANVAS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)/title",
+          "value": "keyDownAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1keyDown(atPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyDownAtPositionX:positionY:keyPressed:modifiers:forceUpdate:didHandle:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1init(apiManager:)/title",
+          "value": "initWithAPIManager:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1init(apiManager:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAPIManager:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseDownAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDown(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDownAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v4/title",
+          "value": "FxOnScreenControlAPI_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/title",
+          "value": "FxRemoteWindowAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseUp(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseUpAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/title",
+          "value": "FxDrawingCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDrawingCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxDrawingCoordinates/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxDrawingCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI/title",
+          "value": "FxOnScreenControlAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/title",
+          "value": "FxParameterRetrievalAPI_v6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v6/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)/title",
+          "value": "mouseEnteredAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseEntered(atPositionX:positionY:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseEnteredAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4/title",
+          "value": "FxOnScreenControl_v4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControl_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControl_v4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v3/title",
+          "value": "FxOnScreenControlAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI~1convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)/title",
+          "value": "convertPointFromSpace:fromX:fromY:toSpace:toX:toY:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI~1convertPoint(fromSpace:fromX:fromY:toSpace:toX:toY:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPointFromSpace:fromX:fromY:toSpace:toX:toY:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/title",
+          "value": "FxRemoteWindowAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxRemoteWindowAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxRemoteWindowAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxModifierKeys/title",
+          "value": "FxModifierKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxModifierKeys/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxModifierKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxModifierKeys/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxModifierKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1drawingCoordinates()/title",
+          "value": "drawingCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1drawingCoordinates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawingCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseMovedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseMoved(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseMovedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/title",
+          "value": "FxPathAPI_v3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxPathAPI_v3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxPathAPI_v3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/title",
+          "value": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseDragged(atPositionX:positionY:activePart:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDraggedAtPositionX:positionY:activePart:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/title",
+          "value": "FxCommandAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxCommandAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxCommandAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/title",
+          "value": "FxUndoAPI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxUndoAPI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxUndoAPI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v2/title",
+          "value": "FxOnScreenControlAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControlAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxOnScreenControlAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)/title",
+          "value": "mouseExitedAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxOnScreenControl_v4~1mouseExited(atPositionX:positionY:modifiers:forceUpdate:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseExitedAtPositionX:positionY:modifiers:forceUpdate:atTime:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adding-onscreen-controls-to-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/adding-onscreen-controls-to-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

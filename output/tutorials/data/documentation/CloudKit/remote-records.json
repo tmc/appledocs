@@ -1,0 +1,1632 @@
+{
+  "abstract": [
+    {
+      "text": "Use subscriptions and change tokens to efficiently manage modifications to remote records.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/remote-records"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Remote Records"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit stores your records in iCloud and uses subscriptions to notify your app in real time about record changes. You then use change tokens to handle these changes efficiently. Additionally, you can improve your app’s performance and support offline use by storing records in a local cache.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3743011",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app launches for the first time on a new device, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchDatabaseChangesOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to fetch any records you need to populate your cache. Each operation expects a change token, which is an opaque token that represents a specific point in the database’s history. For the initial fetch, pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the token to retrieve all changes in the database’s history. When the operation completes, save its change token so you can use it with your next fetch. Change tokens help reduce the amount of data CloudKit returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you fetch the records, subscribe to future changes. Subscriptions run in iCloud and listen for record changes, such as record creation, modification, and deletion. Create subscriptions, as necessary, in the public database, and the user’s private and shared databases. A subscription responds to changes to a database, to a custom record zone, or to records that match a specific set of criteria. You can further scope subscriptions to an individual record type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user modifies records on their device, save those changes to iCloud. In response, a subscription generates push notifications using the configuration you provide, and iCloud sends them to the user’s other devices. On receipt of a notification, fetch the changes from iCloud and update your cache. Use the change token from the previous fetch to limit the fetched records. Overwrite the token with the new one the fetch operation provides when it completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Subscriptions belong to the users that create them. iCloud can notify several users’ devices in response to a change in the public database. This is because each user’s subscription is tracking the same set of records.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every subscription type has a corresponding notification object that you can configure to meet your app’s needs. CloudKit supports high-priority visual notifications and medium-priority background notifications. A notification can include a limited number of fields from the changed record. You opt in to this behavior. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/desiredKeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the system coalesces notifications, don’t rely on them for specific changes. Consider notifications an indication of remote changes, and use the fetch operations to reliably retrieve all changes that occur after your most recent fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit supports the following subscription types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Database",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a database subscription when you don’t know what record zones exist, such as in the shared database. Only private and shared databases support database subscriptions. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Record zone",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a record zone subscription to track changes in a custom record zone in the user’s private database. You can’t use this subscription in public or shared databases. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneSubscription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Query",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a query subscription to track changes to records in a database that match a predicate. Only public and private databases support query subscriptions. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Integrate-Records-with-Your-Existing-Models",
+          "level": 3,
+          "text": "Integrate Records with Your Existing Models",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you already cache your app’s model objects, you don’t need to cache CloudKit records in tandem. Instead, attach a record’s metadata to a model to associate the two. The metadata includes the record’s ID, record type, record zone ID, and change tag, as well as other information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you fetch a record from iCloud, update the local model object using the record’s fields. Then encode the record’s metadata, attach it to the model, and save the model to the cache. To update a record in iCloud, decode the model’s metadata and use it to create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set the record’s fields to the model’s values and save it to iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to encode a record’s metadata and store it on a custom ",
+              "type": "text"
+            },
+            {
+              "code": "Product",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model. It also shows how to decode the metadata and use it to create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func storeCloudRecord(_ record: CKRecord, on product: Product) {",
+            "    ",
+            "    // Encode the record's metadata.",
+            "    let coder = NSKeyedArchiver(requiringSecureCoding: true)",
+            "    record.encodeSystemFields(with: coder)",
+            "    ",
+            "    // Attach the encoded metadata to the ",
+            "    // model object so you can store it in",
+            "    // your local cache.",
+            "    product.recordMetadata = coder.encodedData",
+            "}",
+            "    ",
+            "func extractCloudRecord(from product: Product) throws -> CKRecord? {",
+            "    guard let metadata = product.recordMetadata else { return nil }",
+            "    ",
+            "    // Create an unarchiver from the record's stored metadata",
+            "    // and use it to create an instance of CKRecord.",
+            "    let coder = try NSKeyedUnarchiver(forReadingFrom: metadata)",
+            "    let record = CKRecord(coder: coder)",
+            "    coder.finishDecoding()",
+            "",
+            "    // Return the record to the caller, which can update its ",
+            "    // fields using the product's properties before saving",
+            "    // it to iCloud.",
+            "    return record",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseNotification": {
+      "abstract": [
+        {
+          "text": "A notification that triggers when the contents of a database change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabaseNotification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabasenotification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation": {
+      "abstract": [
+        {
+          "text": "The abstract base class for operations that act upon databases in CloudKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabaseOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabaseoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription": {
+      "abstract": [
+        {
+          "text": "A subscription that generates push notifications when CloudKit modifies records in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabaseSubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabasesubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchDatabaseChangesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that fetches database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchDatabaseChangesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchDatabaseChangesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchDatabaseChangesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchDatabaseChangesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchdatabasechangesoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that fetches record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordZoneChangesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordZoneChangesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchRecordZoneChangesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordzonechangesoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchSubscriptionsOperation": {
+      "abstract": [
+        {
+          "text": "An operation for fetching subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchSubscriptionsOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchSubscriptionsOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchSubscriptionsOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchSubscriptionsOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchsubscriptionsoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation": {
+      "abstract": [
+        {
+          "text": "An operation for modifying one or more subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKModifySubscriptionsOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKModifySubscriptionsOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKModifySubscriptionsOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckmodifysubscriptionsoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKNotification": {
+      "abstract": [
+        {
+          "text": "The abstract base class for CloudKit notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKNotification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cknotification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification": {
+      "abstract": [
+        {
+          "text": "A notification that triggers when a record that matches the subscription’s predicate changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQueryNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQueryNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQueryNotification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerynotification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription": {
+      "abstract": [
+        {
+          "text": "A subscription that generates push notifications when CloudKit modifies records that match a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQuerySubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQuerySubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQuerySubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord": {
+      "abstract": [
+        {
+          "text": "A collection of key-value pairs that store your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneNotification": {
+      "abstract": [
+        {
+          "text": "A notification that triggers when the contents of a record zone change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZoneNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordZoneNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordZoneNotification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzonenotification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneSubscription": {
+      "abstract": [
+        {
+          "text": "A subscription that generates push notifications when CloudKit modifies records in a specific record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZoneSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordZoneSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordZoneSubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzonesubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKServerChangeToken": {
+      "abstract": [
+        {
+          "text": "An opaque token that represents a specific point in a database’s history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKServerChangeToken"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKServerChangeToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKServerChangeToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKServerChangeToken",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckserverchangetoken"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription": {
+      "abstract": [
+        {
+          "text": "An abstract base class for subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/desiredKeys": {
+      "abstract": [
+        {
+          "text": "The names of fields to include in the push notification’s payload.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/NotificationInfo-swift.class/desiredKeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "desiredKeys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/local-records": {
+      "abstract": [
+        {
+          "text": "Manipulate records on-device and save changes to the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/local-records"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/shared-records": {
+      "abstract": [
+        {
+          "text": "Share one or more records with other iCloud users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/shared-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/shared-records"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3743011": {
+      "alt": "A diagram that shows how a changed record syncs to each of the user’s devices. The originating device, an iPhone, saves the changed record to iCloud. CloudKit sends a notification to the user’s other devices, a MacBook, an iPad, and an Apple Watch. Each device then fetches the changed record from iCloud and saves it to their local cache.",
+      "identifier": "media-3743011",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae303f75473edc87d9035d05162d673b/media-3743011@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Records",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+        "doc://com.apple.cloudkit/documentation/CloudKit/shared-records"
+      ],
+      "title": "Records"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Database-Changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseNotification",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchDatabaseChangesOperation"
+      ],
+      "title": "Database Changes"
+    },
+    {
+      "anchor": "Record-Zone-Changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneSubscription",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneNotification",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation"
+      ],
+      "title": "Record Zone Changes"
+    },
+    {
+      "anchor": "Change-Tokens",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKServerChangeToken"
+      ],
+      "title": "Change Tokens"
+    },
+    {
+      "anchor": "Subscription-Management",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchSubscriptionsOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation"
+      ],
+      "title": "Subscription Management"
+    },
+    {
+      "anchor": "Predicate-Driven-Changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification"
+      ],
+      "title": "Predicate-Driven Changes"
+    },
+    {
+      "anchor": "Base-Objects",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKNotification",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation"
+      ],
+      "title": "Base Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Database-Changes",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseNotification",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchDatabaseChangesOperation"
+              ],
+              "title": "Database Changes"
+            },
+            {
+              "anchor": "Record-Zone-Changes",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneSubscription",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneNotification",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation"
+              ],
+              "title": "Record Zone Changes"
+            },
+            {
+              "anchor": "Change-Tokens",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKServerChangeToken"
+              ],
+              "title": "Change Tokens"
+            },
+            {
+              "anchor": "Subscription-Management",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchSubscriptionsOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation"
+              ],
+              "title": "Subscription Management"
+            },
+            {
+              "anchor": "Predicate-Driven-Changes",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification"
+              ],
+              "title": "Predicate-Driven Changes"
+            },
+            {
+              "anchor": "Base-Objects",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKNotification",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation"
+              ],
+              "title": "Base Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Records",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+                "doc://com.apple.cloudkit/documentation/CloudKit/shared-records"
+              ],
+              "title": "Records"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/title",
+          "value": "CKSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKNotification/title",
+          "value": "CKNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/title",
+          "value": "CKModifySubscriptionsOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifySubscriptionsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifySubscriptionsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneNotification/title",
+          "value": "CKRecordZoneNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZoneNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZoneNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/title",
+          "value": "CKDatabaseSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchDatabaseChangesOperation/title",
+          "value": "CKFetchDatabaseChangesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchDatabaseChangesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchDatabaseChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchDatabaseChangesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchDatabaseChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseNotification/title",
+          "value": "CKDatabaseNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/title",
+          "value": "CKDatabaseOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/title",
+          "value": "CKQueryNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/title",
+          "value": "CKRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/title",
+          "value": "CKFetchRecordZoneChangesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordZoneChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordZoneChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/title",
+          "value": "CKQuerySubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneSubscription/title",
+          "value": "CKRecordZoneSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZoneSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZoneSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZoneSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKServerChangeToken/title",
+          "value": "CKServerChangeToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKServerChangeToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKServerChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKServerChangeToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKServerChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchSubscriptionsOperation/title",
+          "value": "CKFetchSubscriptionsOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchSubscriptionsOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchSubscriptionsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchSubscriptionsOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchSubscriptionsOperation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/remote-records"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/remote-records"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "abstract": [
+    {
+      "text": "Manage Apple IDs within your organization effectively.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Associating an Apple ID with a Volume Purchase Program (VPP) User"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user’s managed Apple ID is tied to the same organization as the content manager’s Apple ID, the MDM server may associate the user’s managed Apple ID with the given VPP user. This removes the need to send out an invitation (email or push) to users and wait for them to join by going through an acceptance process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Managed-Apple-IDs",
+          "level": 3,
+          "text": "Managed Apple IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Managed Apple IDs may be associated with a VPP user by adding the optional parameter ",
+              "type": "text"
+            },
+            {
+              "code": "managedAppleIDStr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the requests for the following endpoints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These endpoints use the Apple ID passed in by the ",
+              "type": "text"
+            },
+            {
+              "code": "managedAppleIDStr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to look up the userʼs organization. If the content manager associated with the sToken provided in the request is also a managed Apple ID, and that Apple IDʼs organization is the same as the userʼs, the VPP user will be linked to the supplied Apple ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user’s Apple ID cannot be found in the iTunes database, or if the user is found but the userʼs organization does not match the organization of the ",
+              "type": "text"
+            },
+            {
+              "code": "sToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the endpoint will return the error ",
+              "type": "text"
+            },
+            {
+              "code": "9635,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " meaning the Apple ID can’t be used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Managed Apple IDs were introduced in iOS 9.3.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User": {
+      "abstract": [
+        {
+          "text": "Modify details about a user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Edit a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Edit a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/edit-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User": {
+      "abstract": [
+        {
+          "text": "Register a user with the volume-purchase program.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/register-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy": {
+      "abstract": [
+        {
+          "text": "Manage apps and books for your students and employees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/app-and-book-management-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and Book Management (Legacy)",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/app-and-book-management-legacy"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy": {
+      "abstract": [
+        {
+          "text": "Associate volume purchases with users or devices using endpoints for Mobile Device Management (MDM), provided by the Volume Purchase Program (VPP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-apps-and-books-through-web-services-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing Apps and Books Through Web Services",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-apps-and-books-through-web-services-legacy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/associating-an-apple-id-with-a-volume-purchase-program-vpp-user"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

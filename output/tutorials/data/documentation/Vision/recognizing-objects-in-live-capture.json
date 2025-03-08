@@ -1,0 +1,973 @@
+{
+  "abstract": [
+    {
+      "text": "Apply Vision algorithms to identify objects in real-time video.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/recognizing-objects-in-live-capture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Recognizing Objects in Live Capture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, you can recognize objects in live capture.  Starting in iOS 12, macOS 10.14, and tvOS 12, Vision requests made with a Core ML model return results as  ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, which identify objects found in the captured scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app shows you how to set up your camera for live capture, incorporate a Core ML model into Vision, and parse results as classified objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BananaCroissant.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-Live-Capture",
+          "level": 3,
+          "text": "Set Up Live Capture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although implementing AV live capture is similar from one capture app to another, configuring the camera to work best with Vision algorithms involves some subtle differences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Configure the camera to use for capture.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "  This sample app feeds camera output from AVFoundation into the main view controller.  Start by configuring an  ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let session = AVCaptureSession()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set your device and session resolution.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " It’s important to choose the right resolution for your app.  Don’t simply select the highest resolution available if your app doesn’t require it.  It’s better to select a lower resolution so Vision can process results more efficiently.  Check the model parameters in Xcode to find out if your app requires a resolution smaller than 640 x 480 pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the camera resolution to the nearest resolution that is greater than or equal to the resolution of images used in the model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let videoDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first",
+            "do {",
+            "    deviceInput = try AVCaptureDeviceInput(device: videoDevice!)",
+            "} catch {",
+            "    print(\"Could not create video device input: \\(error)\")",
+            "    return",
+            "}",
+            "",
+            "session.beginConfiguration()",
+            "session.sessionPreset = .vga640x480 // Model image size is smaller."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision will perform the remaining scaling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add video input to your session by adding the camera as a device:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard session.canAddInput(deviceInput) else {",
+            "    print(\"Could not add video device input to the session\")",
+            "    session.commitConfiguration()",
+            "    return",
+            "}",
+            "session.addInput(deviceInput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add video output to your session, being sure to specify the pixel format:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if session.canAddOutput(videoDataOutput) {",
+            "    session.addOutput(videoDataOutput)",
+            "    // Add a video data output",
+            "    videoDataOutput.alwaysDiscardsLateVideoFrames = true",
+            "    videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)]",
+            "    videoDataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)",
+            "} else {",
+            "    print(\"Could not add video data output to the session\")",
+            "    session.commitConfiguration()",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Process every frame, but don’t hold on to more than one Vision request at a time.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "  The camera will stop working if the buffer queue overflows available memory.  To simplify buffer management, in the capture output, Vision blocks the call for as long as the previous request requires.  As a result, AVFoundation may drop frames, if necessary.  The sample app keeps a queue size of 1; if a Vision request is already queued up for processing when another becomes available, skip it instead of holding on to extras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let captureConnection = videoDataOutput.connection(with: .video)",
+            "// Always process the frames",
+            "captureConnection?.isEnabled = true",
+            "do {",
+            "    try  videoDevice!.lockForConfiguration()",
+            "    let dimensions = CMVideoFormatDescriptionGetDimensions((videoDevice?.activeFormat.formatDescription)!)",
+            "    bufferSize.width = CGFloat(dimensions.width)",
+            "    bufferSize.height = CGFloat(dimensions.height)",
+            "    videoDevice!.unlockForConfiguration()",
+            "} catch {",
+            "    print(error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Commit the session configuration:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.commitConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up a preview layer on your view controller, so the camera can feed its frames into your app’s UI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "previewLayer = AVCaptureVideoPreviewLayer(session: session)",
+            "previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill",
+            "rootLayer = previewView.layer",
+            "previewLayer.frame = rootLayer.bounds",
+            "rootLayer.addSublayer(previewLayer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-Device-Orientation",
+          "level": 3,
+          "text": "Specify Device Orientation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must input the camera’s orientation properly using the device orientation.  Vision algorithms aren’t orientation-agnostic, so when you make a request, use an orientation that’s relative to that of the capture device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let curDeviceOrientation = UIDevice.current.orientation",
+            "let exifOrientation: CGImagePropertyOrientation",
+            "",
+            "switch curDeviceOrientation {",
+            "case UIDeviceOrientation.portraitUpsideDown:  // Device oriented vertically, home button on the top",
+            "    exifOrientation = .left",
+            "case UIDeviceOrientation.landscapeLeft:       // Device oriented horizontally, home button on the right",
+            "    exifOrientation = .upMirrored",
+            "case UIDeviceOrientation.landscapeRight:      // Device oriented horizontally, home button on the left",
+            "    exifOrientation = .down",
+            "case UIDeviceOrientation.portrait:            // Device oriented vertically, home button on the bottom",
+            "    exifOrientation = .up",
+            "default:",
+            "    exifOrientation = .up",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Designate-Labels-Using-a-Core-ML-Classifier",
+          "level": 3,
+          "text": "Designate Labels Using a Core ML Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core ML model you include in your app determines which labels are used in Vision’s object identifiers.  The model in this sample app was trained in Turi Create 4.3.2 using Darknet YOLO (You Only Look Once). See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://apple.github.io/turicreate/docs/userguide/object_detection/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn how to generate your own models using Turi Create. Vision analyzes these models and returns observations as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation",
+              "isActive": true,
+              "overridingTitle": "VNRecognizedObjectObservation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNRecognizedObjectObservation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Load the model using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vncoremlmodel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with that model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in",
+            "    DispatchQueue.main.async(execute: {",
+            "        // perform all the UI updates on the main queue",
+            "        if let results = request.results {",
+            "            self.drawVisionRequestResults(results)",
+            "        }",
+            "    })",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The completion handler could execute on a background queue, so perform UI updates on the main queue to provide immediate visual feedback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access results in the request’s completion handler, or through the ",
+              "type": "text"
+            },
+            {
+              "code": "requests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Parse-Recognized-Object-Observations",
+          "level": 3,
+          "text": "Parse Recognized Object Observations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is an array of observations, each with a set of labels and bounding boxes. Parse those observations by iterating through the array, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for observation in results where observation is VNRecognizedObjectObservation {",
+            "    guard let objectObservation = observation as? VNRecognizedObjectObservation else {",
+            "        continue",
+            "    }",
+            "    // Select only the label with the highest confidence.",
+            "    let topLabelObservation = objectObservation.labels[0]",
+            "    let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))",
+            "    ",
+            "    let shapeLayer = self.createRoundedRectLayerWithBounds(objectBounds)",
+            "    ",
+            "    let textLayer = self.createTextSubLayerInBounds(objectBounds,",
+            "                                                    identifier: topLabelObservation.identifier,",
+            "                                                    confidence: topLabelObservation.confidence)",
+            "    shapeLayer.addSublayer(textLayer)",
+            "    detectionOverlay.addSublayer(shapeLayer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "labels",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array lists each classification ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " along with its ",
+              "type": "text"
+            },
+            {
+              "code": "confidence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, ordered from highest confidence to lowest.  The sample app notes only the classification with the highest ",
+              "type": "text"
+            },
+            {
+              "code": "confidence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " score, at element ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  It then displays this classification and confidence in a textual overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bounding box tells where the object was observed. The sample uses this location to draw a bounding box around the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample simplifies classification by returning only the top classification; the array is ordered in decreasing order of confidence score.  However, your app could analyze the confidence score and show multiple classifications, either to further describe your detected objects, or to show competing classifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation",
+              "isActive": true,
+              "overridingTitle": "VNRecognizedObjectObservation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNRecognizedObjectObservation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " resulting from object recognition to initialize an object tracker such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntrackobjectrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For more information about tracking, see the article on object tracking: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/tracking-multiple-objects-or-rectangles-in-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4b9f61bcb221/RecognizingObjectsInLiveCapture.zip": {
+      "checksum": "4b9f61bcb22173c488e5d6b9cf207c7c31b97bdec47da551d115be56232cae23a48e9698440d0599d910fc33d07f7102bac5ff6178613091706521f1acdc6bde",
+      "identifier": "4b9f61bcb221/RecognizingObjectsInLiveCapture.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4b9f61bcb221/RecognizingObjectsInLiveCapture.zip"
+    },
+    "BananaCroissant.png": {
+      "alt": "Example screenshots of app identifying a croissant and bananas in live capture.",
+      "identifier": "BananaCroissant.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b50c403165ace192310571f86cebf6f3/BananaCroissant.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection": {
+      "abstract": [
+        {
+          "text": "Detect dice position and values shown in a camera frame, and determine the end of a roll by leveraging a dice detection model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Understanding a Dice Roll with Vision and Object Detection",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation": {
+      "abstract": [
+        {
+          "text": "A detected object observation with an array of classification labels that classify the recognized object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedObjectObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedObjectObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedObjectObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedobjectobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://apple.github.io/turicreate/docs/userguide/object_detection/": {
+      "identifier": "https://apple.github.io/turicreate/docs/userguide/object_detection/",
+      "title": "Object Detection",
+      "titleInlineContent": [
+        {
+          "text": "Object Detection",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://apple.github.io/turicreate/docs/userguide/object_detection/"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avcapturesession": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+      "title": "AVCaptureSession",
+      "titleInlineContent": [
+        {
+          "code": "AVCaptureSession",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avcapturesession"
+    },
+    "https://developer.apple.com/documentation/vision": {
+      "identifier": "https://developer.apple.com/documentation/vision",
+      "title": "Vision",
+      "titleInlineContent": [
+        {
+          "text": "Vision",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision"
+    },
+    "https://developer.apple.com/documentation/vision/tracking-multiple-objects-or-rectangles-in-video": {
+      "identifier": "https://developer.apple.com/documentation/vision/tracking-multiple-objects-or-rectangles-in-video",
+      "title": "Tracking Multiple Objects or Rectangles in Video",
+      "titleInlineContent": [
+        {
+          "code": "Tracking Multiple Objects or Rectangles in Video",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/tracking-multiple-objects-or-rectangles-in-video"
+    },
+    "https://developer.apple.com/documentation/vision/vncoremlmodel": {
+      "identifier": "https://developer.apple.com/documentation/vision/vncoremlmodel",
+      "title": "VNCoreMLModel",
+      "titleInlineContent": [
+        {
+          "code": "VNCoreMLModel",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vncoremlmodel"
+    },
+    "https://developer.apple.com/documentation/vision/vncoremlrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+      "title": "VNCoreMLRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNCoreMLRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vncoremlrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation",
+      "title": "VNRecognizedObjectObservation",
+      "titleInlineContent": [
+        {
+          "code": "VNRecognizedObjectObservation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation"
+    },
+    "https://developer.apple.com/documentation/vision/vntrackobjectrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntrackobjectrequest",
+      "title": "VNTrackObjectRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNTrackObjectRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntrackobjectrequest"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4b9f61bcb221/RecognizingObjectsInLiveCapture.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Object-recognition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation"
+      ],
+      "title": "Object recognition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Object-recognition",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+                "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation"
+              ],
+              "title": "Object recognition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedObjectObservation/title",
+          "value": "VNRecognizedObjectObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedObjectObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedObjectObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedObjectObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedObjectObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/recognizing-objects-in-live-capture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/recognizing-objects-in-live-capture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

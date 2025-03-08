@@ -1,0 +1,1060 @@
+{
+  "abstract": [
+    {
+      "text": "Arrange your training videos in multiple folders with labels that describe actions,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "or in a single folder with an annotation file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building an Action Classifier Data Source"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Create ML developer tool accepts several data-source types for an action classifier,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each with its own file-system arrangement. Typically, you use one of these two types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A collection of single-action video files you group into labeled folders",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Labeled folders",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A collection of single- or multi-action video files with an accompanying annotation file you group into a single folder",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Annotated videos",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve trimmed all your example video files and they demonstrate a single action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one or more times, you can use either data-source type. Otherwise, if you haven’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trimmed all your videos or if one or more is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "montage",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " video — a video file that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains two or more distinct actions — you must use annotated videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the action-classifier data-source types the Create ML",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "API supports, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier/DataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about how to create an action classifier, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-Data-Source-with-Labeled-Folders",
+          "level": 3,
+          "text": "Build a Data Source with Labeled Folders",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a parent folder to contain the labeled folders. Then, create a folder for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each action, using the name of the action for the label. Place each example video",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file into the folder with a label that matches the video’s action. For example, for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a data source that has folders named “Jumping Jacks” and “Squats,” place videos of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those actions into their corresponding folders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each video in a labeled folder’s data source must demonstrate a single",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "type of action.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-action-classifier-data-source-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each video file may have more than one instance of an action, but the videos must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "minimize the time between each instance. If you notice inactivity between action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances, remove the inactivity by breaking the video file into separate files and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trimming each video to the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-Data-Source-with-Annotated-Videos",
+          "level": 3,
+          "text": "Build a Data Source with Annotated Videos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a folder and place all your example video files in it. Then, create an annotation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file using either a CSV — with either ",
+              "type": "text"
+            },
+            {
+              "code": ".csv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file extensions — or JSON",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-action-classifier-data-source-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each entry in the annotation file must have these categories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A name or label that describes the action",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "label",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The file name or path of the video that contains the example action",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "video",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To mark the beginning and ending of an example video clip within a larger video file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your annotation file can also include time-index categories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The starting-time index in the video file",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "start",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ending-time index in the video file",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "end",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "end",
+              "type": "codeVoice"
+            },
+            {
+              "text": " time indices for a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "montage",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " video, which is a video that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "demonstrates two or more different types of action. If your annotation file omits",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category, Create ML defaults to the beginning of every video file for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "every entry. If your annotation file omits the ",
+              "type": "text"
+            },
+            {
+              "code": "end",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category, Create ML defaults",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the end of every video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "start",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "end",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " category for any annotation entry, you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "must provide a value for that category in all annotation entries.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML recognizes several different types of time indices including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An integer of seconds, for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A floating point number of seconds, for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "3.14",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "60.5",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string of minutes and seconds, for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "01:03",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string of minutes, seconds, and fractional seconds, for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "01:03.14",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string of hours, minutes, and seconds, for example: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "05:01:03",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the these indices to specify when an example clip begins and ends within its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video file. For example, if a single video file contains squats and lunges, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use that file in multiple annotations with different time indices, as shown in this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CSV file example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "video, label, start, end",
+            "lunge23.mov, Lunge, 0, 3.1",
+            "squats_13.mov, Squat, 0, 5",
+            "Jumping Jacks 1.mov, Jumping Jacks, 0, 4.7",
+            "Various_Exercises.mov, Lunge, 0.0, 2.2",
+            "Various_Exercises.mov, Lunge, 8:3.2, 8:4.5",
+            "Various_Exercises.mov, Squat, 1:59:5.8, 1:59:7",
+            "Various_Exercises.mov, Squat, 1:59:14, 1:59:15.1"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an annotation file in JSON format, create an array of annotation objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the root of the file. The following example shows the JSON equivalent of the preceding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CSV file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " [",
+            "  {",
+            "    \"video\" : \"lunge23.mov\",",
+            "    \"label\" : \"Lunge\",",
+            "    \"start\" : 0,",
+            "    \"end\"   : 3.1",
+            "  },",
+            "  {",
+            "    \"video\" : \"squats_13.mov\",",
+            "    \"label\" : \"Squat\",",
+            "    \"start\" : 0,",
+            "    \"end\"   : 5",
+            "  },",
+            "  {",
+            "    \"video\" : \"Jumping Jacks 1.mov\",",
+            "    \"label\" : \" Jumping Jacks\",",
+            "    \"start\" : 0,",
+            "    \"end\"   : 4.7",
+            "  },",
+            "  {",
+            "    \"video\" : \"Various_Exercises.mov\",",
+            "    \"label\" : \"Lunge\",",
+            "    \"start\" : 0.0,",
+            "    \"end\"   : 2.2",
+            "  },",
+            "  {",
+            "    \"video\" : \"Various_Exercises.mov\",",
+            "    \"label\" : \"Lunge\",",
+            "    \"start\" : \"8:3.2\",",
+            "    \"end\"   : \"8:4.5\"",
+            "  },",
+            "  {",
+            "    \"video\" : \"Various_Exercises.mov\",",
+            "    \"label\" : \"Squat\",",
+            "    \"start\" : \"1:59:5.8\",",
+            "    \"end\"   : \"1:59:7\"",
+            "  },",
+            "  {",
+            "    \"video\" : \"Various_Exercises.mov\",",
+            "    \"label\" : \"Squat\",",
+            "    \"start\" : \"1:59:14\",",
+            "    \"end\"   : \"1:59:15.1\"",
+            "  }",
+            "]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-an-action-classifier-data-source-1": {
+      "alt": "Flow diagram that shows a labeled directory data-source file arrangement. The parent folder, named Training Data 1 contains three labeled folders named, Squats, Lunges, and Jumping Jacks. Next to each labeled folder is a stack of video file icons with an arrow pointing toward its corresponding labeled directory.",
+      "identifier": "building-an-action-classifier-data-source-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90aaaf85e58dae5039cade10f6b01264/building-an-action-classifier-data-source-1@2x.png"
+        }
+      ]
+    },
+    "building-an-action-classifier-data-source-2": {
+      "alt": "Flow diagram of an annotated videos data-source file arrangement. The parent folder, named Training Data 2 contains 5 files named: annotations.csv, Squats1.mov, Squats2.mov, Jumping Jacks.mov, and Exercise montage 1.mov.",
+      "identifier": "building-an-action-classifier-data-source-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7bfdc48c5dc446a3bd08a467fa3c529/building-an-action-classifier-data-source-2@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier/DataSource": {
+      "abstract": [
+        {
+          "text": "A data source for an action classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier/DataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLActionClassifier.DataSource",
+      "type": "topic",
+      "url": "/documentation/createml/mlactionclassifier/datasource"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to recognize a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an Action Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier": {
+      "abstract": [
+        {
+          "text": "Collect quality example videos that effectively train action classifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering Training Videos for an Action Classifier",
+      "type": "topic",
+      "url": "/documentation/createml/gathering-training-videos-for-an-action-classifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Action-Classifier-Data-Sources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier"
+      ],
+      "title": "Action Classifier Data Sources"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/building-an-action-classifier-data-source"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

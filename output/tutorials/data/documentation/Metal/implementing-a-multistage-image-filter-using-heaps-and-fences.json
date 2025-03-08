@@ -1,0 +1,1387 @@
+{
+  "abstract": [
+    {
+      "text": "Use fences to synchronize access to resources allocated on a heap.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing a Multistage Image Filter Using Heaps and Fences"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating heaps for static and dynamic textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using aliasing to reduce the amount of memory used for temporary resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using fences to manage dependencies between encoders that produce and consume dynamic textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This implementation minimizes memory usage in an orderly fashion for a filter graph with a downsample and a Gaussian blur filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-fences-1-ImageFilteringWithHeapsAndFences",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS. Metal is not supported in the iOS or tvOS Simulator, so the iOS and tvOS schemes require a physical device to run the sample. The default scheme is macOS, which runs the sample as is on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-Resource-Allocation-and-Performance",
+          "level": 3,
+          "text": "Optimize Resource Allocation and Performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Storing textures in a heap gives the sample more control over how resource memory is allocated and accessed. It’s also much faster to allocate resources from a heap than from a device. When resources are allocated from a device, Metal creates and tracks additional state to ensure that the resource memory is allocated, synchronized, and made available throughout the lifetime of any command buffer that needs the given resource. It does so even if the resource itself is destroyed before the command buffer begins execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although Metal also carries out this process for heaps, it doesn’t do so for resources within the heap. Instead, the app must perform explicit fine-grained synchronization when it creates objects from the heap and reuses memory. However, the overall cost of allocating resources from a heap is much lower than that of allocating resources from a device, particularly in the middle of a frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Heap-for-Static-Textures",
+          "level": 3,
+          "text": "Create a Heap for Static Textures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample loads image files into an array called ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Instead of using ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directly, the sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "_imageHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from which it allocates static textures. The sample creates a heap large enough to store all the static textures by aggregating their sizes. For each texture in ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "heapTextureSizeAndAlignWithDescriptor:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to calculate the size and alignment values required to allocate sufficient memory backing for each texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(uint32_t i = 0; i < AAPLNumImages; i++)",
+            "{",
+            "    // Create a descriptor using the texture's properties",
+            "    MTLTextureDescriptor *descriptor = [AAPLRenderer newDescriptorFromTexture:_imageTextures[i]",
+            "                                                                  storageMode:heapDescriptor.storageMode];",
+            "",
+            "    // Determine the size needed for the heap from the given descriptor",
+            "    MTLSizeAndAlign sizeAndAlign = [_device heapTextureSizeAndAlignWithDescriptor:descriptor];",
+            "",
+            "    // Align the size so that more resources will fit after this texture",
+            "    sizeAndAlign.size = alignUp(sizeAndAlign.size, sizeAndAlign.align);",
+            "",
+            "    // Accumulate the size required for the heap to hold this texture",
+            "    heapDescriptor.size += sizeAndAlign.size;",
+            "}",
+            "",
+            "// Create a heap large enough to hold all resources",
+            "_imageHeap = [_device newHeapWithDescriptor:heapDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each texture in ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample allocates a new texture, ",
+              "type": "text"
+            },
+            {
+              "code": "heapTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLTextureDescriptor *descriptor = [AAPLRenderer newDescriptorFromTexture:_imageTextures[i]",
+            "                                                              storageMode:_imageHeap.storageMode];",
+            "",
+            "// Create a texture from the heap",
+            "id<MTLTexture> heapTexture = [_imageHeap newTextureWithDescriptor:descriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample blits the contents of ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures[i]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "heapTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then replaces ",
+              "type": "text"
+            },
+            {
+              "code": "_imageTextures[i]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "heapTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRegion region = MTLRegionMake2D(0, 0, _imageTextures[i].width, _imageTextures[i].height);",
+            "",
+            "for(NSUInteger level = 0; level < _imageTextures[i].mipmapLevelCount;  level++)",
+            "{",
+            "    for(NSUInteger slice = 0; slice < _imageTextures[i].arrayLength; slice++)",
+            "    {",
+            "        [blitEncoder copyFromTexture:_imageTextures[i]",
+            "                         sourceSlice:slice",
+            "                         sourceLevel:level",
+            "                        sourceOrigin:region.origin",
+            "                          sourceSize:region.size",
+            "                           toTexture:heapTexture",
+            "                    destinationSlice:slice",
+            "                    destinationLevel:level",
+            "                   destinationOrigin:region.origin];",
+            "    }",
+            "",
+            "    region.size.width /= 2;",
+            "    region.size.height /= 2;",
+            "    if(region.size.width == 0) region.size.width = 1;",
+            "    if(region.size.height == 0) region.size.height = 1;",
+            "}",
+            "",
+            "// Replace the original texture with new texture from the heap",
+            "_imageTextures[i] = heapTexture;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-fences-2-StaticTexturesHeap",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Heap-for-Dynamic-Textures",
+          "level": 3,
+          "text": "Create a Heap for Dynamic Textures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses a separate heap, ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from which it allocates dynamic textures with a temporary lifetime. These textures have the same properties of the static texture being filtered in a given frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLTexture> inTexture = _imageTextures[_currentImageIndex];",
+            "",
+            "[self createScratchHeap:inTexture];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to quickly allocate temporary textures for the downsample and Gaussian blur filters. Thus, the required size and alignment values for ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are equal to the sum of the same required values for each filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLSizeAndAlign downsampleSizeAndAlignRequirement = [_downsample heapSizeAndAlignWithInputTextureDescriptor:descriptor];",
+            "MTLSizeAndAlign gaussianBlurSizeAndAlignRequirement = [_gaussianBlur heapSizeAndAlignWithInputTextureDescriptor:descriptor];",
+            "",
+            "NSUInteger requiredAlignment = MAX(gaussianBlurSizeAndAlignRequirement.align, downsampleSizeAndAlignRequirement.align);",
+            "NSUInteger gaussianBlurSizeAligned = alignUp(gaussianBlurSizeAndAlignRequirement.size, requiredAlignment);",
+            "NSUInteger downsampleSizeAligned = alignUp(downsampleSizeAndAlignRequirement.size, requiredAlignment);",
+            "NSUInteger requiredSize = gaussianBlurSizeAligned + downsampleSizeAligned;",
+            "",
+            "if(!_scratchHeap || requiredSize > [_scratchHeap maxAvailableSizeWithAlignment:requiredAlignment])",
+            "{",
+            "    MTLHeapDescriptor *heapDesc = [[MTLHeapDescriptor alloc] init];",
+            "",
+            "    heapDesc.size        = requiredSize;",
+            "    heapDesc.storageMode = heapStorageMode;",
+            "",
+            "    _scratchHeap = [_device newHeapWithDescriptor:heapDesc];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any textures allocated from ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can also be deallocated, which allows the sample to reuse that same memory backing to allocate another texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-fences-3-DynamicTexturesHeap",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Dependencies-Between-Filters",
+          "level": 3,
+          "text": "Manage Dependencies Between Filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "_fence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to control access to dynamic textures allocated from ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and prevent GPU race conditions in the filter graph. This fence ensures that operations on dynamic textures are completed before the filter graph begins subsequent operations that depend on the results of previous operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first filter, implemented by the sample in ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLDownsampleFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", creates a dynamic texture, ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the heap and allocates enough space for mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLTextureDescriptor *textureDescriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:inTexture.pixelFormat",
+            "                                                                                             width:inTexture.width",
+            "                                                                                            height:inTexture.height",
+            "                                                                                         mipmapped:YES];",
+            "textureDescriptor.storageMode = heap.storageMode;",
+            "textureDescriptor.usage = MTLTextureUsageShaderWrite | MTLTextureUsageShaderRead;",
+            "",
+            "id <MTLTexture> outTexture = [heap newTextureWithDescriptor:textureDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The downsample filter then blits a source texture, ",
+              "type": "text"
+            },
+            {
+              "code": "inTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and generates the mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[blitCommandEncoder copyFromTexture:inTexture",
+            "                        sourceSlice:0",
+            "                        sourceLevel:0",
+            "                       sourceOrigin:(MTLOrigin){ 0, 0, 0 }",
+            "                         sourceSize:(MTLSize){ inTexture.width, inTexture.height, inTexture.depth }",
+            "                          toTexture:outTexture",
+            "                   destinationSlice:0",
+            "                   destinationLevel:0",
+            "                  destinationOrigin:(MTLOrigin){ 0, 0, 0}];",
+            "",
+            "[blitCommandEncoder generateMipmapsForTexture:outTexture];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the downsample filter calls the ",
+              "type": "text"
+            },
+            {
+              "code": "updateFence:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "endEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods to indicate that its operations are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[blitCommandEncoder updateFence:fence];",
+            "",
+            "[blitCommandEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second filter, implemented by the sample in ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLGaussianBlurFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", calls ",
+              "type": "text"
+            },
+            {
+              "code": "waitForFence:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " immediately after creating a compute command encoder. This forces the Gaussian blur filter to wait for the downsample filter to complete its work before beginning its own work. A waiting period is necessary because the Gaussian blur filter depends on dynamic texture data generated by the downsample filter. Without the fence, the GPU could execute both filters in parallel, and thus read uninitialized dynamic texture data allocated from the heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder waitForFence:fence];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-fences-4-FenceBetweenFilters",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reuse-Memory-and-Manage-Dependencies-Within-a-Filter",
+          "level": 3,
+          "text": "Reuse Memory and Manage Dependencies Within a Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Gaussian blur filter performs a horizontal blur and a vertical blur for each mipmap level of the dynamic texture produced by the downsample filter. For each mipmap level, the sample allocates a temporary texture, ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the dynamic textures heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id <MTLTexture> intermediaryTexture = [heap newTextureWithDescriptor:textureDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This texture is temporary because it’s used only as an output destination from the horizontal blur and as an input source to the vertical blur. After the sample executes these blurs, the final texture data is stored in ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (which is a texture view of ",
+              "type": "text"
+            },
+            {
+              "code": "inTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Therefore, the texture data contained in ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is unused after each mipmap level iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Perform horizontal blur using the input texture as an input",
+            "// and a view of the mipmap level of input texture as the output",
+            "",
+            "[computeEncoder setComputePipelineState:_horizontalKernel];",
+            "",
+            "[computeEncoder setTexture:inTexture",
+            "                   atIndex:AAPLBlurTextureIndexInput];",
+            "",
+            "[computeEncoder setTexture:intermediaryTexture",
+            "                   atIndex:AAPLBlurTextureIndexOutput];",
+            "",
+            "[computeEncoder setBytes:&mipmapLevel",
+            "                  length:sizeof(mipmapLevel)",
+            "                 atIndex:AAPLBlurBufferIndexLOD];",
+            "",
+            "[computeEncoder dispatchThreadgroups:threadgroupCount",
+            "               threadsPerThreadgroup:threadgroupSize];",
+            "",
+            "// Perform vertical blur using the horizontally blurred texture as an input",
+            "// and a view of the mipmap level of the input texture as the output",
+            "",
+            "[computeEncoder setComputePipelineState:_verticalKernel];",
+            "",
+            "[computeEncoder setTexture:intermediaryTexture",
+            "                   atIndex:AAPLBlurTextureIndexInput];",
+            "",
+            "[computeEncoder setTexture:outTexture",
+            "                   atIndex:AAPLBlurTextureIndexOutput];",
+            "",
+            "static const uint32_t mipmapLevelZero = 0;",
+            "[computeEncoder setBytes:&mipmapLevelZero",
+            "                  length:sizeof(mipmapLevelZero)",
+            "                 atIndex:AAPLBlurBufferIndexLOD];",
+            "",
+            "[computeEncoder dispatchThreadgroups:threadgroupCount",
+            "               threadsPerThreadgroup:threadgroupSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of allocating new memory for each mipmap level, the sample reuses the existing memory allocated for ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". After each mipmap level iteration, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "makeAliasable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that this memory can be reused by subsequent allocations from the same dynamic textures heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[intermediaryTexture makeAliasable];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This memory reuse creates dynamic texture dependencies between mipmap levels. Therefore, after blurring each mipmap level, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "updateFence:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "endEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods to indicate that the blur operations are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder updateFence:fence];",
+            "",
+            "[computeEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample already calls the ",
+              "type": "text"
+            },
+            {
+              "code": "waitForFence:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to wait for the downsample filter to complete its work, the sample leverages this same call to wait for any previous mipmap levels to complete their work before beginning a new mipmap level iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-fences-5-FenceWithinFilter",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5883d834b3ea/ImplementingAMultistageImageFilterUsingHeapsAndFences.zip": {
+      "checksum": "5883d834b3ea15c9368c6e1d08a57b45d66041b61230b0a6a8c77a50d97f57a30dd64bf70d431ad73927087b1438997418e2e374ad3aaa0f2b66c29e34ddce27",
+      "identifier": "5883d834b3ea/ImplementingAMultistageImageFilterUsingHeapsAndFences.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5883d834b3ea/ImplementingAMultistageImageFilterUsingHeapsAndFences.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a Metal memory heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeapDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeapDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeapDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheapdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeapType": {
+      "abstract": [
+        {
+          "text": "The options you use to choose the heap type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeapType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeapType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeapType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheaptype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign": {
+      "abstract": [
+        {
+          "text": "The size and alignment of a resource, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSizeAndAlign"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSizeAndAlign"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSizeAndAlign",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsizeandalign"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events": {
+      "abstract": [
+        {
+          "text": "Use events to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Events",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    },
+    "image-filtering-with-heaps-and-fences-1-ImageFilteringWithHeapsAndFences": {
+      "alt": "Screenshot of the sample app running to show a filtered image.",
+      "identifier": "image-filtering-with-heaps-and-fences-1-ImageFilteringWithHeapsAndFences",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0e0be8f7c006a6b14466de6eb449c11/image-filtering-with-heaps-and-fences-1-ImageFilteringWithHeapsAndFences.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-fences-2-StaticTexturesHeap": {
+      "alt": "Layout diagram that shows multiple static textures stored in a single heap.",
+      "identifier": "image-filtering-with-heaps-and-fences-2-StaticTexturesHeap",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c4bf41741c7141d9d43c106339955078/image-filtering-with-heaps-and-fences-2-StaticTexturesHeap.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-fences-3-DynamicTexturesHeap": {
+      "alt": "Layout diagram that shows multiple dynamic textures allocated from a single heap and deallocated back into the same heap.",
+      "identifier": "image-filtering-with-heaps-and-fences-3-DynamicTexturesHeap",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5ac077cceb8145797acc6d13b437a39/image-filtering-with-heaps-and-fences-3-DynamicTexturesHeap.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-fences-4-FenceBetweenFilters": {
+      "alt": "Timeline diagram that shows how a fence manages dependencies between filters.",
+      "identifier": "image-filtering-with-heaps-and-fences-4-FenceBetweenFilters",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b23d93b786cf65b2bf0c9ad0ba7100a/image-filtering-with-heaps-and-fences-4-FenceBetweenFilters.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-fences-5-FenceWithinFilter": {
+      "alt": "Timeline diagram that shows how a fence manages dependencies within a filter.",
+      "identifier": "image-filtering-with-heaps-and-fences-5-FenceWithinFilter",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3eaffb77d4c0f7034d33414743758c71/image-filtering-with-heaps-and-fences-5-FenceWithinFilter.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5883d834b3ea/ImplementingAMultistageImageFilterUsingHeapsAndFences.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resource-Memory-Allocation-and-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+        "doc://com.apple.metal/documentation/Metal/MTLHeap",
+        "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+        "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign"
+      ],
+      "title": "Resource Memory Allocation and Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resource-Memory-Allocation-and-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+                "doc://com.apple.metal/documentation/Metal/MTLHeap",
+                "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+                "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign"
+              ],
+              "title": "Resource Memory Allocation and Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/title",
+          "value": "MTLHeapDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/title",
+          "value": "MTLSizeAndAlign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSizeAndAlign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSizeAndAlign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/title",
+          "value": "MTLHeapType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

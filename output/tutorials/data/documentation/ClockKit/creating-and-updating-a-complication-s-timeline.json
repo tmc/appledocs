@@ -1,0 +1,3276 @@
+{
+  "abstract": [
+    {
+      "text": "Create complications that batch-load a timeline of future entries and run periodic background sessions to update the timeline.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating and updating a complication’s timeline"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Coffee Tracker app records a user’s caffeine intake.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each time the user adds a drink, the app recalculates the current caffeine levels",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the equivalent cups of coffee consumed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It then updates the complication timeline",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and estimates the decrease in the user’s caffeine level over the next 24 hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates the basic steps to set up and fill the complication’s timeline,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including setting up support for complications,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating entries to fill the complication’s timeline,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then updating the timeline every time the user makes a change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also updates the complications based on external changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that occur when the app isn’t running.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Coffee Tracker saves and reads caffeine samples to HealthKit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the app must respond to any external changes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as another app adding or deleting a caffeine sample from HealthKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Coffee Tracker uses a background observer query to monitor HealthKit for changes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and updates the app’s data and the complication timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the complication to an active watch face, start by building and running the sample code project in the simulator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Digital Crown to exit the app and return to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using the trackpad, firmly press the watch face to put the face in edit mode, then tap Edit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe left until the edit screen highlights the complications. Select the complication to modify.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll to the Coffee Tracker complication, and then click the Digital Crown again to save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the watch screen to exit the edit screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the Coffee Tracker complication to go back to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting up watch faces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT205536",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring and running the Coffee Tracker app, you can test the background updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Make sure the Coffee Tracker complication appears on the active watch face.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then build and run the app in the simulator, and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add one or more drinks using the app’s main view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Digital Crown to send the app to the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Settings, and scroll down to Health > Health Data > Nutrition > Caffeine.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Settings should show all the drinks you added to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Delete Caffeine Data to clear all the caffeine samples from HealthKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate back to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee Tracker updates the complication within 1 minute; however, the system may delay updates based on it’s current state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-support-for-complications",
+          "level": 3,
+          "text": "Set up support for complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app declares the ",
+              "type": "text"
+            },
+            {
+              "code": "ComplicationController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class as the complication’s data source.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode saves this setting in the WatchKit Extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the Coffee Tracker app implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods to configure the app’s timeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app declares the supported complications by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func complicationDescriptors() async -> [CLKComplicationDescriptor] {",
+            "    logger.debug(\"Accessing the complication descriptors.\")",
+            "    let descriptor = CLKComplicationDescriptor(identifier: \"Coffee_Tracker_Caffeine_Dose\",",
+            "                                               displayName: \"Caffeine Dose\",",
+            "                                               supportedFamilies: CLKComplicationFamily.allCases)",
+            "    return [descriptor]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit identifies complications based on their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps can declare support for multiple complications by giving each complication a unique identifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Coffee Tracker declares support for a single complication, returning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that declares support for the ",
+              "type": "text"
+            },
+            {
+              "code": "Coffee_Tracker_Caffeine_Dose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier for all families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because every copy of Coffee Tracker supports the same set of ",
+              "type": "text"
+            },
+            {
+              "code": "CLKComplicationDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app doesn’t need to implement the data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on defining the supported families, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-Future-Entries",
+          "level": 3,
+          "text": "Load Future Entries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the app can easily calculate caffeine levels in the future,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Coffee Tracker declares that it can batch-load future timeline entries",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and setting the end date for the timeline to 24 hours in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit can request batches of timeline entries up to that deadline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After that point, the caffeine level drops to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the data stops changing at that point,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ClockKit won’t need any additional timeline entries until the user adds another drink.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define how far into the future the app can provide data.",
+            "func timelineEndDate(for complication: CLKComplication) async -> Date? {",
+            "    ",
+            "    // Indicate that the app can provide timeline entries for the next 24 hours.",
+            "    Date().addingTimeInterval(24.0 * 60.0 * 60.0)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app sets the privacy behavior by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getPrivacyBehavior(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hiding the complication data on the user’s caffeine intake when the watch is locked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define whether the complication is visible when the watch is unlocked.",
+            "func privacyBehavior(for complication: CLKComplication) async -> CLKComplicationPrivacyBehavior {",
+            "",
+            "    // This is potentially sensitive data. Hide it on the lock screen.",
+            "    .hideOnLockScreen",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-current-data",
+          "level": 3,
+          "text": "Display current data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee Tracker uses three techniques to keep the complications up to date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app provides future timeline entries in five-minute increments",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that ClockKit uses to update the complications automatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While the app is running, Coffee Tracker updates its complications",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "whenever the user adds a drink.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This updates not just the current complication,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "but also reloads the entire complication timeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, the app uses a background observer query to monitor",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "HealthKit for any updates to its caffeine samples.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The app then updates its data based on any changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-timeline-entries",
+          "level": 3,
+          "text": "Create timeline entries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s an active complication on the watch face,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ClockKit calls the data source’s methods to keep the complication’s timeline filled.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ClockKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to get the current complication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Return the current timeline entry.",
+            "func currentTimelineEntry(for complication: CLKComplication) async -> CLKComplicationTimelineEntry? {",
+            "    logger.debug(\"Accessing the current timeline entry.\")",
+            "    return createTimelineEntry(forComplication: complication, date: Date())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "batch load future timeline entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Return future timeline entries.",
+            "func timelineEntries(for complication: CLKComplication,",
+            "                     after date: Date,",
+            "                     limit: Int) async -> [CLKComplicationTimelineEntry]? {",
+            "    logger.debug(\"Accessing timeline entries for dates after \\(DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)).\")",
+            "",
+            "    let fiveMinutes = 5.0 * 60.0",
+            "    let twentyFourHours = 24.0 * 60.0 * 60.0",
+            "",
+            "    // Create an array to hold the timeline entries.",
+            "    var entries: [CLKComplicationTimelineEntry] = []",
+            "",
+            "    // Calculate the start and end dates.",
+            "    var current = date.addingTimeInterval(fiveMinutes)",
+            "    let endDate = date.addingTimeInterval(twentyFourHours)",
+            "",
+            "    // Create a timeline entry for every five minutes from the start time.",
+            "    // Stop after you reach the limit or the end date.",
+            "    while current < endDate && entries.count < limit {",
+            "        entries.append(createTimelineEntry(forComplication: complication, date: current))",
+            "        current = current.addingTimeInterval(fiveMinutes)",
+            "    }",
+            "",
+            "    return entries",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit automatically calls these methods when it needs to refill the timeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Coffee Tracker, both of these methods call the ",
+              "type": "text"
+            },
+            {
+              "code": "createTimelineEntry(forComplication:date:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create the event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "createTimelineEntry(forComplication:date:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " then calls ",
+              "type": "text"
+            },
+            {
+              "code": "createTemplate(forComplication:date:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  to build the template, and wraps the template in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-fill-a-complication-template",
+          "level": 3,
+          "text": "Create and fill a complication template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit uses a template-driven user interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system divides the complications into a number of families",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "based on their size and capabilities,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and each family then provides a number of templates that define its layout.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When ClockKit asks the data source for a timeline entry,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app needs to instantiate a template for the specified identifier and family,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then fill the template with the required data,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before wrapping it in a ",
+              "type": "text"
+            },
+            {
+              "code": "CLKComplicationTimelineEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and returning it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Coffee Tracker uses only a single identifier, it starts by creating a ",
+              "type": "text"
+            },
+            {
+              "code": "switch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "covering all the families that the app supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Select the correct template based on the complication's family.",
+            "private func createTemplate(forComplication complication: CLKComplication, date: Date) -> CLKComplicationTemplate {",
+            "    switch complication.family {",
+            "    case .modularSmall:",
+            "        return createModularSmallTemplate(forDate: date)",
+            "    case .modularLarge:",
+            "        return createModularLargeTemplate(forDate: date)",
+            "    case .utilitarianSmall, .utilitarianSmallFlat:",
+            "        return createUtilitarianSmallFlatTemplate(forDate: date)",
+            "    case .utilitarianLarge:",
+            "        return createUtilitarianLargeTemplate(forDate: date)",
+            "    case .circularSmall:",
+            "        return createCircularSmallTemplate(forDate: date)",
+            "    case .extraLarge:",
+            "        return createExtraLargeTemplate(forDate: date)",
+            "    case .graphicCorner:",
+            "        return createGraphicCornerTemplate(forDate: date)",
+            "    case .graphicCircular:",
+            "        return createGraphicCircleTemplate(forDate: date)",
+            "    case .graphicRectangular:",
+            "        return createGraphicRectangularTemplate(forDate: date)",
+            "    case .graphicBezel:",
+            "        return createGraphicBezelTemplate(forDate: date)",
+            "    case .graphicExtraLarge:",
+            "        return createGraphicExtraLargeTemplate(forDate: date)",
+            "",
+            "    @unknown default:",
+            "        logger.error(\"Unknown Complication Family\")",
+            "        fatalError()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calls a helper method for each family that creates a template the family supports.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The helper method also creates all the data providers needed to fill the template.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following helper method creates a graphical corner template.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Return a graphic template that fills the corner of the watch face.",
+            "private func createGraphicCornerTemplate(forDate date: Date) -> CLKComplicationTemplate {",
+            "    // Create the data providers.",
+            "    let leadingValueProvider = CLKSimpleTextProvider(text: \"0\")",
+            "    leadingValueProvider.tintColor = data.color(forCaffeineDose: 0.0)",
+            "    ",
+            "    let trailingValueProvider = CLKSimpleTextProvider(text: \"500\")",
+            "    trailingValueProvider.tintColor = data.color(forCaffeineDose: 500.0)",
+            "    ",
+            "    let mgCaffeineProvider = CLKSimpleTextProvider(text: data.mgCaffeineString(atDate: date))",
+            "    let mgUnitProvider = CLKSimpleTextProvider(text: \"mg Caffeine\", shortText: \"mg\")",
+            "    mgUnitProvider.tintColor = data.color(forCaffeineDose: data.mgCaffeine(atDate: date))",
+            "    let combinedMGProvider = CLKTextProvider(format: \"%@ %@\", mgCaffeineProvider, mgUnitProvider)",
+            "    ",
+            "    let percentage = Float(min(data.mgCaffeine(atDate: date) / 500.0, 1.0))",
+            "    let gaugeProvider = CLKSimpleGaugeProvider(style: .fill,",
+            "                                               gaugeColors: [.green, .yellow, .red],",
+            "                                               gaugeColorLocations: [0.0, 300.0 / 500.0, 450.0 / 500.0] as [NSNumber],",
+            "                                               fillFraction: percentage)",
+            "    ",
+            "    // Create the template using the providers.",
+            "    return CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider,",
+            "                                                         leadingTextProvider: leadingValueProvider,",
+            "                                                         trailingTextProvider: trailingValueProvider,",
+            "                                                         outerTextProvider: combinedMGProvider)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example creates a curved gauge with text outside it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The gauge is a graphical element, like a thermometer or progress bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To fill the template, the app supplies a gauge provider,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which specifies the gauge’s start value, end value, current value,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the color gradient it uses.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app also provides two text providers for the labels at the start and end of the gauge.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, it adds another text provider for the main text.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on the watch face, the gauge and text may use the specified colors to provide additional information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reload-the-timeline",
+          "level": 3,
+          "text": "Reload the timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CoffeeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model object declares ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  as a ",
+              "type": "text"
+            },
+            {
+              "code": "@Published",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system alerts subscribers to any change to the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, SwiftUI uses the publisher to trigger updates to the main view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, the app also needs to update the complications and the app’s saved data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after the value is changed. To control this, the app declares the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " setter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as ",
+              "type": "text"
+            },
+            {
+              "code": "private",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and create an asyncronous ",
+              "type": "text"
+            },
+            {
+              "code": "drinkDataUpdated()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that it calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whenever it updates the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The list of drinks consumed.",
+            "// Because this is @Published property,",
+            "// Combine updates the app's main interface when a change occurs.",
+            "@Published public private(set) var currentDrinks: [Drink] = []",
+            "",
+            "// Asynchronously update any active complications and save",
+            "// the list of drinks after the current drinks property changes.",
+            "private func drinkDataUpdated() async {",
+            "    logger.debug(\"Updating the system based on the new current drinks property.\")",
+            "    ",
+            "    // Save the app's data.",
+            "    await store.save(currentDrinks)",
+            "    ",
+            "    // Update any complications on active watch faces.",
+            "    let server = CLKComplicationServer.sharedInstance()",
+            "    let complications = await server.getActiveComplications()",
+            "    ",
+            "    for complication in complications {",
+            "        server.reloadTimeline(for: complication)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "drinkDataUpdated()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method starts by saving the app’s data. Next, it accesses the list of active",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complications from the complication server, and tells the complication to reload its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timeline — deleting the existing timeline and loading new data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if the system launches the app to handle a background update, Coffee Tracker may call the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "drinkDataUpdated()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method before the complication server reattaches to the active complications.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Therefore, the app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "getActiveComplication()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to wait, if necessary, until the server connects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension CLKComplicationServer {",
+            "    ",
+            "    // Safely access the server's active complications.",
+            "    @MainActor",
+            "    func getActiveComplications() async -> [CLKComplication] {",
+            "        return await withCheckedContinuation { continuation in",
+            "            ",
+            "            // First, set up the notification.",
+            "            let center = NotificationCenter.default",
+            "            let mainQueue = OperationQueue.main",
+            "            var token: NSObjectProtocol?",
+            "            token = center.addObserver(forName: .CLKComplicationServerActiveComplicationsDidChange, object: nil, queue: mainQueue) { _ in",
+            "                center.removeObserver(token!)",
+            "                continuation.resume(returning: self.activeComplications!)",
+            "            }",
+            "            ",
+            "            // Then check to see if we have a valid active complications array.",
+            "            if activeComplications != nil {",
+            "                center.removeObserver(token!)",
+            "                continuation.resume(returning: self.activeComplications!)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method starts by setting up an observer for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627889-clkcomplicationserveractivecompl",
+              "isActive": true,
+              "overridingTitle": "CLKComplicationServerActiveComplicationsDidChange",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "CLKComplicationServerActiveComplicationsDidChange",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notification. Then it checks the value of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. If the property has a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, it cancels the observer and returns the value.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, it waits for the observer, and then returns the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Schedule-background-observer-queries",
+          "level": 3,
+          "text": "Schedule background observer queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before Coffee Tracker can communicate with HealthKit, it needs to authorize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "HealthKit and set up the background observer query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Authorize HealthKit and set up the background observer query.",
+            "public func setUpHealthKit() {",
+            "    ",
+            "    // Make sure HealthKit is available and authorized.",
+            "    guard isAvailable else { return }",
+            "    guard store.authorizationStatus(for: caffeineType) == .sharingAuthorized else { return }",
+            "    ",
+            "    // Return if an observer query is already running.",
+            "    guard backgroundObserver == nil else { return }",
+            "    ",
+            "    logger.debug(\"Setting up the background observer queries.\")",
+            "    ",
+            "    // Set up the background delivery rate.",
+            "    store.enableBackgroundDelivery(for: caffeineType, frequency: .immediate) { success, error in",
+            "        guard success else {",
+            "            self.logger.error(\"Unable to set up background delivery from HealthKit: \\(error!.localizedDescription)\")",
+            "            fatalError()",
+            "        }",
+            "    }",
+            "    ",
+            "    // Set up the observer query.",
+            "    backgroundObserver =",
+            "    HKObserverQuery(sampleType: caffeineType,",
+            "                    predicate: nil,",
+            "                    updateHandler: processUpdate(query:completionHandler:error:))",
+            "    ",
+            "    if let query = backgroundObserver {",
+            "        logger.debug(\"Starting the background observer query.\")",
+            "        store.execute(query)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee Tracker requests both read and write access to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615498-dietarycaffeine",
+              "isActive": true,
+              "overridingTitle": ".dietaryCaffeine",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".dietaryCaffeine",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "samples. Then it enables the background delivery for observer queries.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, it creates and executes an observer query for the ",
+              "type": "text"
+            },
+            {
+              "code": ".dietaryCaffeine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee tracker creates the background observer query immediately after it launches.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Setting up an observer query quickly after launch enables the observer to respond promptly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the system launches it in the background because of a change in HealthKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The query runs the ",
+              "type": "text"
+            },
+            {
+              "code": "processUpdate(query:,completionHandler:,error:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whenever it recieves an update from the observer query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func processUpdate(query: HKObserverQuery,",
+            "                   completionHandler: @escaping () -> Void,",
+            "                   error: Error?) {",
+            "    ",
+            "    logger.debug(\"Received an update from the background observer query.\")",
+            "    ",
+            "    // Check for any errors that occur while setting up the observer query.",
+            "    guard error == nil else {",
+            "        logger.error(\"Unable to set up a background observer query: \\(error!.localizedDescription)\")",
+            "        fatalError()",
+            "    }",
+            "    ",
+            "    logger.debug(\"Responding to a background query.\")",
+            "    ",
+            "    Task {",
+            "        ",
+            "        // Load the updated data from the HealthKit Store.",
+            "        let success = await loadNewDataFromHealthKit()",
+            "        ",
+            "        // Check for any errors.",
+            "        guard success == true else {",
+            "            logger.error(\"Unable to query for new or deleted caffeine samples.\")",
+            "            fatalError()",
+            "        }",
+            "        ",
+            "        // Call the completion handler when done.",
+            "        completionHandler()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method checks the update for errors. If there aren’t any errors, it asynchronously loads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the new data from HealthKit, calling the update’s completion handler as soon as it’s done",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "processing the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preserve battery life and maintain performance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "WatchKit carefully budgets each app’s time for background tasks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In general, if an app has a complication on the active watch face, it can safely use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "four updates per hour, shared between both the app’s background tasks and it’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background observer queries. However, HealthKit further limits the update on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "caffeine samples to a maximum of one per hour. And the system may further limit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background activity as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This means, the first update from HealthKit should trigger within a minute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the system may delay additional updates for up to an hour or more.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery",
+              "isActive": true,
+              "overridingTitle": "enableBackgroundDelivery(for:frequency:withCompletion:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "enableBackgroundDelivery(for:frequency:withCompletion:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also loads any new data from HealthKit whenever it enters the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "15770ba891b4/CreatingAndUpdatingAComplicationsTimeline.zip": {
+      "checksum": "15770ba891b449e1e8a6c26a1941567516b0651bc8b26260e8e2f0e2c52c2f94400bd8187d96c19043ef0c086c309ac8430ddcb8434aa27f2f2c551c209cf851",
+      "identifier": "15770ba891b4/CreatingAndUpdatingAComplicationsTimeline.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/15770ba891b4/CreatingAndUpdatingAComplicationsTimeline.zip"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family": {
+      "abstract": [
+        {
+          "text": "The family to which the complication belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "family"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationFamily",
+          "text": "CLKComplicationFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "family"
+        }
+      ],
+      "role": "symbol",
+      "title": "family",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/family"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier": {
+      "abstract": [
+        {
+          "text": "An identifier that specifies a complication if your app supports multiple complications per family.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/identifier"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)": {
+      "abstract": [
+        {
+          "text": "Returns the list of complication descriptors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptorsWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getComplicationDescriptors(handler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcomplicationdescriptors(handler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the timeline entry that you want to display now.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntryForComplication:withHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "getCurrentTimelineEntry(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getPrivacyBehavior(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns the privacy behavior for the specified complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPrivacyBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationPrivacyBehavior",
+          "text": "CLKComplicationPrivacyBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getPrivacyBehavior(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getPrivacyBehaviorForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getPrivacyBehavior(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getprivacybehavior(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the last date for the data that your app can supply.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEndDate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineenddate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves future timeline entries for the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEntries(for:after:limit:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the app about complications from a shared watch face.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleSharedComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleSharedComplicationDescriptors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleSharedComplicationDescriptors(_:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/handlesharedcomplicationdescriptors(_:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor that defines a complication and the families that it supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDescriptor",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdescriptor"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications": {
+      "abstract": [
+        {
+          "text": "The active complications for the current app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeComplications"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/activeComplications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeComplications"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeComplications",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationserver/activecomplications"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry": {
+      "abstract": [
+        {
+          "text": "A container for the complication template object to display and the time to display it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTimelineEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTimelineEntry",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtimelineentry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app": {
+      "abstract": [
+        {
+          "text": "Define the complications that your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring complications for your app",
+      "type": "topic",
+      "url": "/documentation/clockkit/declaring-complications-for-your-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date": {
+      "abstract": [
+        {
+          "text": "Replace or extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your complications up to date",
+      "type": "topic",
+      "url": "/documentation/clockkit/keeping-your-complications-up-to-date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events": {
+      "abstract": [
+        {
+          "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading future timeline events",
+      "type": "topic",
+      "url": "/documentation/clockkit/loading-future-timeline-events"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/providing-multiple-complications": {
+      "abstract": [
+        {
+          "text": "Present multiple complications for a single complication family using descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/providing-multiple-complications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Multiple Complications",
+      "type": "topic",
+      "url": "/documentation/clockkit/providing-multiple-complications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627889-clkcomplicationserveractivecompl": {
+      "abstract": [
+        {
+          "text": "Posted when the set of active complications changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationServerActiveComplicationsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627889-clkcomplicationserveractivecompl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationServerActiveComplicationsDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1627889-clkcomplicationserveractivecompl"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery": {
+      "abstract": [
+        {
+          "text": "Enables the delivery of updates to an app running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableBackgroundDelivery"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": HKObjectType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequency"
+        },
+        {
+          "kind": "text",
+          "text": ": HKUpdateFrequency, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": (Bool, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableBackgroundDelivery(for:frequency:withCompletion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/1614175-enablebackgrounddelivery"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615498-dietarycaffeine": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the amount of caffeine consumed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "dietaryCaffeine"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615498-dietarycaffeine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dietaryCaffeine",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615498-dietarycaffeine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/en-us/HT205536": {
+      "identifier": "https://support.apple.com/en-us/HT205536",
+      "title": "Change the watch face on your Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Change the watch face on your Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT205536"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "15770ba891b4/CreatingAndUpdatingAComplicationsTimeline.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-Code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/providing-multiple-complications"
+      ],
+      "title": "Sample Code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/title",
+          "value": "getComplicationDescriptorsWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getComplicationDescriptorsWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimelineEntry/title",
+          "value": "CLKComplicationTimelineEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimelineEntry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTimelineEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimelineEntry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTimelineEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getPrivacyBehavior(for:withHandler:)/title",
+          "value": "getPrivacyBehaviorForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getPrivacyBehavior(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getPrivacyBehaviorForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1family/title",
+          "value": "family"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1family/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "family"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/title",
+          "value": "getCurrentTimelineEntryForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentTimelineEntryForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1activeComplications/title",
+          "value": "activeComplications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1activeComplications/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeComplications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1healthkit~1hkquantitytypeidentifier~11615498-dietarycaffeine/title",
+          "value": "HKQuantityTypeIdentifierDietaryCaffeine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/title",
+          "value": "getTimelineEndDateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEndDateForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1handleSharedComplicationDescriptors(_:)/title",
+          "value": "handleSharedComplicationDescriptors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1handleSharedComplicationDescriptors(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleSharedComplicationDescriptors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/title",
+          "value": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/title",
+          "value": "CLKComplicationDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1healthkit~1hkhealthstore~11614175-enablebackgrounddelivery/title",
+          "value": "enableBackgroundDeliveryForType:frequency:withCompletion:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/creating-and-updating-a-complication-s-timeline"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

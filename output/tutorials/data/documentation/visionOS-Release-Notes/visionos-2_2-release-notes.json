@@ -1,0 +1,540 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS-Release-Notes/documentation/visionos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_2-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "visionOS 2.2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The visionOS 2.2 SDK provides support for developing apps for Apple Vision Pro devices running visionOS 2.2. The SDK comes bundled with Xcode 16.2, available from the Mac App Store. For information on the compatibility requirements for Xcode 16.2, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-16_2-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compatible-Apps",
+          "level": 3,
+          "text": "Compatible Apps",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the visionOS Simulator, iOS apps running against the “Apple Vision Pro (Designed for iPad)” target will crash upon launch if they link ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ImagePlayground.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (141228566) (FB16079366)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Apps behave correctly when running on-device. Test directly against Apple Vision Pro hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Mac-Virtual-Display",
+          "level": 3,
+          "text": "Mac Virtual Display",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Playing videos in Firefox does not work while using Mac Virtual Display with Vision Pro speakers.  (138642255)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: If you are not using the default Mac display resolution, the Mac Virtual Display window might get stuck when changing its aspect ratio.  (139087505)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Siri",
+          "level": 3,
+          "text": "Siri",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Siri does not work on the simulator.  (139096339)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Compiling in the Swift 6 language mode might cause an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Entry",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " error due to “static property ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "defaultValue",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not concurrency-safe because non-‘Sendable’ type”.  (133885814)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Views won’t accept dropped directories if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/directory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/fileurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are not in the list of accepted content types for drop.  (138158126)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "TabletopKit",
+          "level": 3,
+          "text": "TabletopKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Direct manipulation allows a user to pick up equipment up close and move it in a way that naturally follows their hands.  (138592898)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Local handoff allows a user to hand off equipment from one hand to the other without releasing the equipment.  (138854913)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The existing API ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tabletopGame(_ game, parent, automaticUpdate, interaction)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is erroneously annotated as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@available(visionOS, introduced: 2.2)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which causes an existing app that uses it to stop compiling, unless the deployment target is bumped to visionOS 2.2.  (139018795)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Unity-Applications",
+          "level": 3,
+          "text": "Unity Applications",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some Unity applications might render incorrectly. The content might swim more than expected and appear stretched.  (139384386)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Rebuild with Unity release 1.2.3 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-16_2-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-16_2-release-notes",
+      "title": "Xcode 16.2 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 16.2 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-16_2-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "visionOS 2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/visionos-release-notes/visionos-2-release-notes"
+    },
+    "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "visionOS 2.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/visionos-release-notes/visionos-2_1-release-notes"
+    },
+    "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "visionOS 2.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/visionos-release-notes/visionos-2_3-release-notes"
+    },
+    "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "visionOS 2.4 Beta 2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/visionos-release-notes/visionos-2_4-release-notes"
+    },
+    "doc://com.apple.visionOS-Release-Notes/documentation/visionos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the visionOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS-Release-Notes/documentation/visionos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/visionos-release-notes"
+    },
+    "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/directory": {
+      "identifier": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/directory",
+      "title": "UTType.directory",
+      "titleInlineContent": [
+        {
+          "text": "UTType.directory",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/directory"
+    },
+    "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/fileurl": {
+      "identifier": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/fileurl",
+      "title": "UTType.fileURL",
+      "titleInlineContent": [
+        {
+          "text": "UTType.fileURL",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/fileurl"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "visionOS-2",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_4-release-notes",
+        "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_3-release-notes",
+        "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2_1-release-notes",
+        "doc://com.apple.visionOS-Release-Notes/documentation/visionOS-Release-Notes/visionos-2-release-notes"
+      ],
+      "title": "visionOS 2"
+    }
+  ]
+}

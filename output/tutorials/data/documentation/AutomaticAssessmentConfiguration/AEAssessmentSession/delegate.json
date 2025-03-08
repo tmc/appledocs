@@ -1,0 +1,784 @@
+{
+  "abstract": [
+    {
+      "text": "A delegate to which the session provides state change updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AEAssessmentSession(py)delegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "delegate"
+      },
+      {
+        "kind": "text",
+        "text": ": (any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(pl)AEAssessmentSessionDelegate",
+        "text": "AEAssessmentSessionDelegate"
+      },
+      {
+        "kind": "text",
+        "text": ")?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Automatic Assessment Configuration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "delegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "delegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "weak"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            },
+            {
+              "kind": "text",
+              "text": ": (any "
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)AEAssessmentSessionDelegate",
+              "text": "AEAssessmentSessionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": ")? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An assessment session operates asynchronously because it takes time to make the changes associated with starting or stopping a session, and external events might affect the state of the session. Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to receive callbacks at key points in the session life cycle. Store your adopter in the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property before starting a session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By listening for delegate callbacks, you learn when you can safely start an assessment after calling the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/begin()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, when the session has finished after calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or if the session has been interrupted for some reason.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session calls all delegate methods on the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Enter single-app mode and prevent students from accessing specific system features while taking an exam.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automatic Assessment Configuration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession": {
+      "abstract": [
+        {
+          "text": "A session that your app uses to protect an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentSession",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/begin()": {
+      "abstract": [
+        {
+          "text": "Starts an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/begin()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "begin"
+        }
+      ],
+      "role": "symbol",
+      "title": "begin()",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession/begin()"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate to which the session provides state change updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AEAssessmentSessionDelegate",
+          "text": "AEAssessmentSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()": {
+      "abstract": [
+        {
+          "text": "Ends an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "end"
+        }
+      ],
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession/end()"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that the session uses to provide information about session state changes to a delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-session-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate"
+      ],
+      "title": "Responding to session updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-session-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSessionDelegate"
+              ],
+              "title": "Responding to session updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "weak"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Qoobjc(pl)AEAssessmentSessionDelegate",
+                    "text": "id<AEAssessmentSessionDelegate>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "delegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/title",
+          "value": "AEAssessmentSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1begin()/title",
+          "value": "begin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1begin()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "begin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1end()/title",
+          "value": "end"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1end()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "end"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSessionDelegate/title",
+          "value": "AEAssessmentSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSessionDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

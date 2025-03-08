@@ -1,0 +1,421 @@
+{
+  "abstract": [
+    {
+      "text": "An object that describes an error the server encounters while preparing download URLs for a request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:App Data Transfer:DownloadError",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "DownloadError"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Data Transfer"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DownloadError"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Data Transfer"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "DownloadError"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Data Transfer"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "DownloadError"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of seconds to wait before re-requesting the status.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusCheckDelay",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "error"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The outcome of the operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "in_progress",
+                "request_not_found",
+                "invalid_request_status"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reason the server encountered an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusMessage",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "statusMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field has one of these values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The download request isn’t complete and you need to request the download URLs again after ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "statusCheckDelay",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " seconds.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "invalid_request_status",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The request ID you provided isn’t recognized.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "request_not_found",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity about your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Data Transfer",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError": {
+      "abstract": [
+        {
+          "text": "An object that describes an error the server encounters while preparing download URLs for a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadError",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/downloaderror"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks": {
+      "abstract": [
+        {
+          "text": "An object that contains URLs to download someone’s data specific to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadLinks",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/downloadlinks"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to retrieve someone’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get one-time request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get one-time request download URLs",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-one-time-request-download-urls"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to download a snapshot of someone’s data specific to your app from a recurring series.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get recurring request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get recurring request download URLs",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-recurring-request-download-urls"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Downloads",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks"
+      ],
+      "title": "Downloads"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appdatatransfer/downloaderror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

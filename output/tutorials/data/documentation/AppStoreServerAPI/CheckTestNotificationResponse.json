@@ -1,0 +1,593 @@
+{
+  "abstract": [
+    {
+      "text": "A response that contains the contents of the App Store server’s test notification and the result from your server.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:app_store_server_api:CheckTestNotificationResponse",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "CheckTestNotificationResponse"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CheckTestNotificationResponse"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.5",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "CheckTestNotificationResponse"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "CheckTestNotificationResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of information the App Store server records for its attempts to send the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TEST",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification to your server. The array may contain a maximum of six ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sendAttempts",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:sendAttemptItem",
+              "text": "sendAttemptItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The signed payload, in JWS format, that contains the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TEST",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification that the App Store server sent to your server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "signedPayload",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/signedPayload",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:signedPayload",
+              "text": "signedPayload"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The result of the App Store server’s first attempt to send the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TEST",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification to your server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the first ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "sendAttempts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "firstSendAttemptResult",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint returns this response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sendAttempts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains up to six ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " items: one for the initial attempt, and up to five for the retries. Use this information to troubleshoot your server if it doesn’t receive notifications at its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "signedPayload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the ",
+              "type": "text"
+            },
+            {
+              "code": "TEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification that the App Store server attempted to send to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the contents of the App Store server’s test notification and the result from your server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CheckTestNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CheckTestNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CheckTestNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/checktestnotificationresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_": {
+      "abstract": [
+        {
+          "text": "Check the status of the test App Store server notification sent to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/notifications/test/{testNotificationToken}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Test Notification Status",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-notifications-test-_testnotificationtoken_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test": {
+      "abstract": [
+        {
+          "text": "Ask App Store Server Notifications to send a test notification to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/notifications/test"
+        }
+      ],
+      "role": "symbol",
+      "title": "Request a Test Notification",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-notifications-test"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the test notification token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendTestNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SendTestNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SendTestNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/sendtestnotificationresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem": {
+      "abstract": [
+        {
+          "text": "The success or error information and the date the App Store server records when it attempts to send a server notification to your server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendAttemptItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendAttemptItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendAttemptItem",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/sendattemptitem"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/signedPayload": {
+      "abstract": [
+        {
+          "text": "A cryptographically signed payload, in JSON Web Signature (JWS) format, containing the response body for a version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "signedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/signedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "signedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/signedpayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Store-Server-Notifications-testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse"
+      ],
+      "title": "App Store Server Notifications testing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-types",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/sendAttemptItem",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/signedPayload"
+      ],
+      "title": "Data types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/checktestnotificationresponse"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

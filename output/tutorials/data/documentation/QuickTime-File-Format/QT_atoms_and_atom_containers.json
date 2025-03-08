@@ -1,0 +1,1066 @@
+{
+  "abstract": [
+    {
+      "text": "An enhanced data structure that provide a more general-purpose storage format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "QT atoms and atom containers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QT atoms are an enhanced data structure that provide a more general-purpose storage format and remove some of the ambiguities that arise when using simple atoms. A QT atom has an expanded header; the size and type fields are followed by fields for an atom ID and a count of child atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This allows multiple child atoms of the same type to be specified through identification numbers. It also makes it possible to parse the contents of a QT atom of unknown type, by walking the tree of its child atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QT atoms are normally wrapped in an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "atom container",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a data structure with a header containing a lock count. Each atom container contains exactly one ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "root",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " atom, which is the QT atom. Atom containers are not atoms, and are not found in the hierarchy of atoms that makes up a QuickTime movie file. Atom containers may be found as data structures inside some atoms, however. Examples include media input maps and media property atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "atom container",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " the same as a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "container atom",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". An atom container is a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "container",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ", not an atom.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure depicts the layout of a QT atom. Each QT atom starts with a QT atom container header, followed by the root atom. The root atom’s type is the QT atom’s type. The root atom contains any other atoms that are part of the structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each container atom starts with a QT atom header followed by the atom’s contents. The contents are either child atoms or data, but never both. If an atom contains children, it also contains all of its children’s data and descendants. The root atom is always present and never has any siblings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "qt-atom-layout",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QT atom container header contains the following data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 10-byte element that must be set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reserved",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 16-bit integer that must be set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Lock count",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each QT atom header contains the following data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that indicates the size of the atom in bytes, including both the QT atom header and the atom’s contents. If the atom is a leaf atom, then this field contains the size of the single atom. The size of container atoms includes all of the contained atoms. You can walk the atom tree using the size and child count fields.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Size",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that contains the type of the atom. If this is the root atom, the type value is set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'sean'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Type",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that contains the atom’s ID value. This value must be unique among its siblings. The root atom always has an atom ID value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Atom ID",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 16-bit integer that must be set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reserved",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 16-bit integer that specifies the number of child atoms that an atom contains. This count includes only immediate children. If this field is set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the atom is a leaf atom and contains only data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Child count",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that must be set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reserved",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "QT-atom-containers",
+          "level": 2,
+          "text": "QT atom containers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QuickTime atom container is a basic structure for storing information in QuickTime. An atom container is a tree-structured hierarchy of QT atoms. You can think of a newly created QT atom container as the root of a tree structure that contains no children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An atom container is a container, not an atom. It has a reserved field and a lock count in its header, not a size field and type field. Atom containers are not found in the atom hierarchy of a QuickTime movie file, because they are not atoms. They may be found as data inside some atoms, however, such as in media input maps, media property atoms, video effects sample data, and tween sample data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A QT atom container contains QT atoms, as shown in the following figure. Each QT atom contains either data or other atoms. If a QT atom contains other atoms, it is a parent atom and the atoms it contains are its child atoms. Each parent’s child atom is uniquely identified by its atom type and atom ID. A QT atom that contains data is called a leaf atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "atom-container-parent-child",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each QT atom has an offset that describes the atom’s position within the QT atom container. In addition, each QT atom has a type and an ID. The atom type describes the kind of information the atom represents. The atom ID is used to differentiate child atoms of the same type with the same parent; an atom’s ID must be unique for a given parent and type. In addition to the atom ID, each atom has a 1-based index that describes its order relative to other child atoms of the same parent with the same atom type. You can uniquely identify a QT atom in one of three ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By its offset within its QT atom container",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By its parent atom, type, and index",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By its parent atom, type, and ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can store and retrieve atoms in a QT atom container by index, ID, or both. For example, to use a QT atom container as a dynamic array or tree structure, you can store and retrieve atoms by index. To use a QT atom container as a database, you can store and retrieve atoms by ID. You can also create, store, and retrieve atoms using both ID and index to create an arbitrarily complex, extensible data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Since QT atoms are offsets into a data structure, they can be changed during editing operations on QT atom containers, such as inserting or deleting atoms. For a given atom, editing child atoms is safe, but editing sibling or parent atoms invalidates that atom’s offset.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For cross-platform purposes, all data in a QT atom is expected to be in big-endian format. However, leaf data can be little-endian if it is custom to an application.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a QT atom container that has two child atoms. The first child atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is a leaf atom that has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'abcd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an index of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The second child atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 20",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'abcd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "900",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an index of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because the two child atoms have the same type, they must have different IDs. The second child atom is also a parent atom of three atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "atom-container-two-children",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first child atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 30",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'abcd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an index of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It does not have any children, nor does it have data. The second child atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 40",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'word'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an index of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The atom has data, so it is a leaf atom. The second atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 40",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") has the same ID as the first atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 30",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), but a different atom type. The third child atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'abcd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and an index of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Its atom type and ID are the same as that of another atom (",
+              "type": "text"
+            },
+            {
+              "code": "offset = 10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with a different parent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you are working with the QuickTime API, you do not need to parse QT atoms. Instead, the QT atom functions can be used to create atom containers, add atoms to and remove atoms from atom containers, search for atoms in atom containers, and retrieve data from atoms in atom containers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most QT atom functions take two parameters to specify a particular atom: the atom container that contains the atom, and the offset of the atom in the atom container data structure. You obtain an atom’s offset by calling either ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An atom’s offset may be invalidated if the QT atom container that contains it is modified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling any QT atom function for which you specify a parent atom as a parameter, you can pass the constant ",
+              "type": "text"
+            },
+            {
+              "code": "kParentAtomIsContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an atom offset to indicate that the specified parent atom is the atom container itself. For example, you would call the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and pass ",
+              "type": "text"
+            },
+            {
+              "code": "kParentAtomIsContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant for the parent atom parameter to indicate that the requested child atom is a child of the atom container itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "atom-container-parent-child": {
+      "alt": "A hierarchical chart with a QT atom container at the top. The QT atom container has lines drawn to two atoms below that it contains. The first atom, on the left, has a size, type, and data. The second atom, on the right, is labeled “Parent Atom” and has a size and type. That atom has lines drawn to two more atoms that it contains. The first atom, on the left, has a size and type. The second atom, on the right, is labeled “Child Atom” and has a size, type, and data. ",
+      "identifier": "atom-container-parent-child",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9bcb061e2424a3eee1add819d693367b/atom-container-parent-child@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1cc650c906695813bf2982f37bdd667/atom-container-parent-child~dark@2x.png"
+        }
+      ]
+    },
+    "atom-container-two-children": {
+      "alt": "A QT atom container with two child atoms.",
+      "identifier": "atom-container-two-children",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e6b77ea1544a788899dae8d2a70a6bfc/atom-container-two-children@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0bc5fe1c75c15cb32eb63c0b38c6cac/atom-container-two-children~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms": {
+      "abstract": [
+        {
+          "text": "The basic data unit in a QuickTime file is the atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files": {
+      "abstract": [
+        {
+          "text": "The QuickTime file format describes the characteristics of QuickTime movie files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QuickTime movie files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_movie_files"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "qt-atom-layout": {
+      "alt": "A container atom with an atom size and atom type, that contains another container atom with an atom size and atom type. The inner container atom contains two leaf atoms, each with an atom size, atom type, and atom data.",
+      "identifier": "qt-atom-layout",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/974094c3da9f0cf57041cafc03d9b3ac/qt-atom-layout@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/926762433a6d027cbf3dd5c926375e78/qt-atom-layout~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-in-QuickTime",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files"
+      ],
+      "title": "Building in QuickTime"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/qt_atoms_and_atom_containers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

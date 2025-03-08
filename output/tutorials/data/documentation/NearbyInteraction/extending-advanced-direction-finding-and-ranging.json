@@ -1,0 +1,1136 @@
+{
+  "abstract": [
+    {
+      "text": "Extend your app’s direction finding capabilities with data from Ultra Wideband devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/extending-advanced-direction-finding-and-ranging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Nearby Interaction"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Extending advanced direction finding and ranging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extended distance measurement (EDM) is a ranging capability available between devices with second generation Ultra Wideband (UWB) chips. EDM enables measuring precise distance between two Apple devices using ultra-wideband technology at significantly farther distances than was possible with the first generation UWB chip. In iOS 17 and watchOS 10 and later, EDM is available through the Nearby Interaction framework. This article describes the tradeoffs involved in using EDM and getting the best ranging performance for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-devices-and-their-capabilities",
+          "level": 3,
+          "text": "Detect devices and their capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new UWB communication protocol enables the EDM capabilities in second generation UWB chips. To use this new measurement technology, both sides have to have the second generation chip, this includes iPhone 15, Apple Watch Series 9, Apple Watch Ultra 2, and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices with the second generation UWB chip are backwards compatible with the ranging technologies available on the first generation UWB chip. Second generation UWB chip-equipped devices can communicate with first generation devices and Made for iPhone (MFI)-certified third-party chipsets. However, when communicating with first generation devices, second generation devices operate at the performance available on the first generation chip. This article refers to Nearby Interaction peer sessions that don’t have extended distance measurement enabled as “legacy” Nearby Interaction peer sessions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Measurement capabilities depend on both the capabilities of a person’s device and of the peer device they’re connecting to. Although someone might have a second generation UWB chip-equipped device, the peer devices they want to interact with might only support the first generation UWB chip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Possible interactions between first generation and second generation UWB chips, and third-party MFI devices, include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supports multiple Nearby Interaction peer sessions when communicating with first and second generation UWB equipped devices.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "First generation UWB chip",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supports multiple Nearby Interaction accessory sessions when communicating with third-party MFI chipsets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supports multiple legacy Nearby Interaction peer sessions when communicating with first generation UWB equipped devices.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Second generation UWB chip",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supports one Nearby Interaction peer EDM session and multiple Nearby Interaction peer sessions when communicating with second generation UWB-equipped devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supports multiple Nearby Interaction accessory sessions when communicating with third-party MFI chipsets",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information on the MFI program, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/nearby-interaction/specification/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Design your app with appropriate fallback options for interacting with devices that aren’t capable of EDM. For example, you could choose to show a limited experience that’s backwards compatible with first generation devices or, depending on your app’s intention, restrict interactions with peer devices that aren’t capable of using EDM. To identify a peer device’s measurement capabilities, query the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an example that demonstrates limiting interactions to compatible devices, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because EDM uses a new communications protocol, Nearby Interaction only supports one extended distance measurement session on a device at any given time. An EDM session can work concurrently with multiple legacy Nearby Interaction sessions on the same device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system may interrupt and pause an EDM session if required for critical use, such as when an authorized person uses Find My to locate another person’s device that’s in an EDM session. Additionally, the system may suspend EDM sessions when a person launches the Find My app. The app can listen for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/sessionSuspensionEnded(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback to determine when the app can resume the EDM session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-devices-using-ranging",
+          "level": 3,
+          "text": "Locate devices using ranging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The EDM support that the Nearby Interaction framework provides enables a new communication protocol that measures distances between devices using rapid packet exchanges. As a result, it’s susceptible to various wireless signal propagation effects. Most notably, obstruction between the two devices and reflections from the ground, walls, and parts of the local environment that affect the quality of distance measurements. These effects can significantly affect measurement quality at the longer measurement distances enabled by EDM. By design, Nearby Interaction tunes EDM to output measurements to your app at longer operating ranges. If your app requires high quality direction and distance measurements for the longer measurement distances enabled by EDM, estimate the quality of measurements and provide different user experiences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates a quality estimator for direction measurements is the ",
+              "type": "text"
+            },
+            {
+              "code": "MeasurementQualityEstimator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    class MeasurementQualityEstimator {",
+            "",
+            "        // Define the criteria that qualify a peer with \"good\" characteristics:",
+            "        // these include:",
+            "",
+            "        // A time window, in seconds.",
+            "        let freshnessWindow = TimeInterval(floatLiteral: 2.0)",
+            "        // A minimum number of samples in that time window.",
+            "        let minSamples: Int = 8",
+            "        // A maximim distance, in meters.",
+            "        let maxDistance: Float = 50",
+            "        // A minimum distance, in meters.",
+            "        let closeDistance: Float = 10",
+            "    ",
+            "        // A buffer to hold the individual quality measurements.",
+            "        private var measurements: [TimedNIObject] = []",
+            "    ",
+            "        // An enumeration that defines levels of peer quality.",
+            "        enum MeasurementQuality {",
+            "            // The peer fails to meet any of the measurement quality criteria.",
+            "            case unknown",
+            "",
+            "            // The extended distance measurements indicate the peer iPhone or device",
+            "            // satisfies the criteria for \"good\" quality and falls inside the",
+            "            // minimum and maximum acceptable distance.",
+            "            case good",
+            "",
+            "            // The extended distance measurements indicate the current device",
+            "            // satisfies the criteria for being \"close\" to the peer iPhone or device.",
+            "            case close",
+            "        }",
+            "",
+            "        // A structure that captures the range of a peer at a specific time.",
+            "        struct TimedNIObject {",
+            "            let time: TimeInterval",
+            "            let distance: Float",
+            "        }",
+            "",
+            "        func estimateQuality(update: NINearbyObject?) -> MeasurementQuality {",
+            "            let timeNow = NSDate().timeIntervalSinceReferenceDate",
+            "            if let distance = update?.distance {",
+            "                if let lastMeasureMent = measurements.last {",
+            "                    if lastMeasureMent.distance != distance {",
+            "                        // Before adding new measurement to the buffer, ",
+            "                        // check if the reported distance is unique.",
+            "                        measurements.append(TimedNIObject(time: timeNow, distance: distance))",
+            "                    }",
+            "                } else {",
+            "                    // If the buffer is empty, unconditionally add the new measurement.",
+            "                    measurements.append(TimedNIObject(time: timeNow, distance: distance))",
+            "                }",
+            "            }",
+            "            let validTimestamp = timeNow - freshnessWindow",
+            "            measurements.removeAll { $0.time < validTimestamp }",
+            "            if measurements.count > minSamples, let lastDistance = measurements.last?.distance {",
+            "                if lastDistance <= closeDistance { return .close }",
+            "                return lastDistance < maxDistance ? .good : .unknown",
+            "            }",
+            "            return .unknown",
+            "        }",
+            "    }   "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is a part of the Finding devices with precision sample for iOS 17 that demonstrates measurement quality estimation on devices capable of EDM. This estimator determines measurements are high quality if the framework generates eight or more distinct measurements in the last two seconds, and if the measurements are within a distance threshold of 50 meters. Experiment with different measurement quality metrics to vet the results to meet your app’s intended use cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS 16 and watchOS 9 introduced an API update to Nearby Interaction for locating stationary devices with high precision aided by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". With the EDM capabilities introduced in iOS 17 and watchOS 10, second generation UWB equipped devices can locate moving devices that also have the second generation UWB chip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Measure-the-distance-between-devices",
+          "level": 3,
+          "text": "Measure the distance between devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and watchOS 8 and later, devices equipped with the first generation UWB chip are capable of precise distance measurement through the Nearby Interaction Framework. Devices supporting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can locate stationary objects or devices. Devices equipped with the second generation UWB chip are capable of EDM. Pairs of devices supporting both extended distance measurement and Camera Assistance have the ability to locate moving devices. You can query these capabilities through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/deviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property check.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check a device’s EDM capability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    if NISession.deviceCapabilities.supportsExtendedDistanceMeasurement {",
+            "        // This device supports EDM.",
+            "    } else {",
+            "        // Implement a fallback strategy.",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine if a peer device supports EDM, examine the peer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    if token.deviceCapabilities.supportsExtendedDistanceMeasurement {",
+            "        // The peer has EDM capability.",
+            "    } else {",
+            "        // Fall back to first generation UWB chip capabilities.",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If both sides support EDM, they can run ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the configuration that has EDM enabled, as shown in the example below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let config = NINearbyPeerConfiguration(peerToken: token)",
+            "    config.isCameraAssistanceEnabled = true",
+            "    if #available(iOS 17.0, watchOS 10.0, *) {",
+            "        guard NISession.deviceCapabilities.supportsExtendedDistanceMeasurement else {",
+            "           NSLog(\"This device isn't capable of finding visitors.\")",
+            "           return",
+            "        }",
+            "        guard token.deviceCapabilities.supportsExtendedDistanceMeasurement else {",
+            "           NSLog(\"Peer device \\(peer.displayName) isn't capable of finding visitors.\")",
+            "           return",
+            "        }                   ",
+            "       config.isExtendedDistanceMeasurementEnabled = true",
+            "       NSLog(\"NISession can use extended distance measurement.\")                ",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction": {
+      "abstract": [
+        {
+          "text": "Locate and interact with nearby devices using identifiers, distance, and direction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Nearby Interaction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken": {
+      "abstract": [
+        {
+          "text": "An object that uniquely identifies a peer that participates in an interaction session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NIDiscoveryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NIDiscoveryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "NIDiscoveryToken",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nidiscoverytoken"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities": {
+      "abstract": [
+        {
+          "text": "A protocol object that describes the nearby interaction capabilities of a person’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NIDeviceCapability",
+          "text": "NIDeviceCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIDiscoveryToken/deviceCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nidiscoverytoken/devicecapabilities"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyAccessoryConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that enables interaction between iPhone and third-party accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NINearbyAccessoryConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyAccessoryConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NINearbyAccessoryConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NINearbyAccessoryConfiguration",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbyaccessoryconfiguration"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession": {
+      "abstract": [
+        {
+          "text": "An object that identifies a unique connection between two peer devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NISession"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NISession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NISession",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisession"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/deviceCapabilities": {
+      "abstract": [
+        {
+          "text": "An object that communicates the device’s supported framework features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NIDeviceCapability",
+          "text": "NIDeviceCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/deviceCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisession/devicecapabilities"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/sessionSuspensionEnded(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies you of the end of a session’s suspension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionSuspensionEnded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NISession",
+          "text": "NISession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISessionDelegate/sessionSuspensionEnded(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionSuspensionEnded:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionSuspensionEnded(_:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisessiondelegate/sessionsuspensionended(_:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision": {
+      "abstract": [
+        {
+          "text": "Leverage the spatial awareness of ARKit and Apple Ultra Wideband Chips in your app to guide users to a nearby device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Finding devices with precision",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/finding-devices-with-precision"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-spatial-interactions-with-third-party-accessories": {
+      "abstract": [
+        {
+          "text": "Establish a connection with a nearby accessory to receive periodic measurements of its distance from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-spatial-interactions-with-third-party-accessories",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing spatial interactions with third-party accessories",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/implementing-spatial-interactions-with-third-party-accessories"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session": {
+      "abstract": [
+        {
+          "text": "Measure the relative position of a nearby device and coach the user to sustain interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Initiating and maintaining a session",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/initiating-and-maintaining-a-session"
+    },
+    "https://developer.apple.com/nearby-interaction/specification/": {
+      "identifier": "https://developer.apple.com/nearby-interaction/specification/",
+      "title": "Nearby Interaction Accessory Protocol Specification",
+      "titleInlineContent": [
+        {
+          "text": "Nearby Interaction Accessory Protocol Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/nearby-interaction/specification/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Third-party-accessories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-spatial-interactions-with-third-party-accessories",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyAccessoryConfiguration"
+      ],
+      "title": "Third-party accessories"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/finding-devices-with-precision"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Third-party-accessories",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-spatial-interactions-with-third-party-accessories",
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyAccessoryConfiguration"
+              ],
+              "title": "Third-party accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1deviceCapabilities/title",
+          "value": "deviceCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1deviceCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyAccessoryConfiguration/title",
+          "value": "NINearbyAccessoryConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyAccessoryConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyAccessoryConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyAccessoryConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyAccessoryConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/title",
+          "value": "NISession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NISession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NISession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIDiscoveryToken~1deviceCapabilities/title",
+          "value": "deviceCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIDiscoveryToken~1deviceCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIDiscoveryToken/title",
+          "value": "NIDiscoveryToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIDiscoveryToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIDiscoveryToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIDiscoveryToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIDiscoveryToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISessionDelegate~1sessionSuspensionEnded(_:)/title",
+          "value": "sessionSuspensionEnded:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISessionDelegate~1sessionSuspensionEnded(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionSuspensionEnded:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/extending-advanced-direction-finding-and-ranging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/extending-advanced-direction-finding-and-ranging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

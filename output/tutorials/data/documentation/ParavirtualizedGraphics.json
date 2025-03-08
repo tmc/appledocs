@@ -1,0 +1,1324 @@
+{
+  "abstract": [
+    {
+      "text": "Add graphics acceleration to your guest driver stack.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ParavirtualizedGraphics",
+    "modules": [
+      {
+        "name": "Paravirtualized Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Paravirtualized Graphics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an app that implements hardware-level virtualization, performance inside the virtual machine is critical, particularly for graphics. The ParavirtualizedGraphics framework implements hardware-accelerated graphics for macOS running in a virtual machine, hereafter known as the guest. The operating system provides a graphics driver that runs inside the guest, communicating with the framework in the host operating system to take advantage of Metal-accelerated graphics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement accelerated graphics inside your virtualization solution, you need to take the following steps for each virtual machine:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advertise the virtual graphics card in the virtual machine hardware so that macOS can install the correct driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDeviceDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", providing the necessary blocks to connect your virtual machine implementation to the ParavirtualizedGraphics framework. Use this descriptor to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, which you keep alive as long as the virtual machine is still active. The ParavirtualizedGraphics framework calls your blocks when it needs to allocate memory or take other relevant actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for each virtual display that you want to connect to the device, specifying the display’s properties and blocks for the framework to call for display events. Use this descriptor to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. Handle the appropriate display events to display the graphics data that the framework provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics": {
+      "abstract": [
+        {
+          "text": "Add graphics acceleration to your guest driver stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Paravirtualized Graphics",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()": {
+      "abstract": [
+        {
+          "text": "Copies the URL of the ROM image to use on the guest graphics device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGCopyOptionROMURL"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGCopyOptionROMURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGCopyOptionROMURL()",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgcopyoptionromurl()"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGCreateDeviceWithDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PGDeviceDescriptor",
+          "text": "PGDeviceDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PGDevice",
+          "text": "PGDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGCreateDeviceWithDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGCreateDeviceWithDescriptor(_:)",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgcreatedevicewithdescriptor(_:)"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDevice": {
+      "abstract": [
+        {
+          "text": "A paravirtualized GPU device object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDevice",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdevice"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDeviceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the paravirtualized graphics device to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDeviceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDeviceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDeviceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDeviceDescriptor",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdevicedescriptor"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay": {
+      "abstract": [
+        {
+          "text": "An object that provides display functionality to the guest operating system in a way that the host-side virtual machine app can intercept.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplay"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplay",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t": {
+      "abstract": [
+        {
+          "text": "Coordinates that describe sizes or offsets within a 2D array of pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayCoord_t"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayCoord_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayCoord_t",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaycoord_t"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor for a virtual display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayDescriptor",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaydescriptor"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode": {
+      "abstract": [
+        {
+          "text": "A description of a supported display mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayMode",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaymode"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new paravirtualized graphics device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGNewDeviceWithDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PGDeviceDescriptor",
+          "text": "PGDeviceDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PGDevice",
+          "text": "PGDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGNewDeviceWithDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGNewDeviceWithDescriptor(_:)",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgnewdevicewithdescriptor(_:)"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PG_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PG_EXPORT",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_export"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PG_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PG_EXTERN",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_extern"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_BAR_MMIO": {
+      "abstract": [
+        {
+          "text": "The base address register to use when advertising the graphics stack inside a virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_BAR_MMIO"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_BAR_MMIO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_BAR_MMIO"
+        }
+      ],
+      "role": "symbol",
+      "title": "PG_PCI_BAR_MMIO",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_pci_bar_mmio"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_DEVICE_ID": {
+      "abstract": [
+        {
+          "text": "The PCI device identifier to use when advertising the graphics stack inside a virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_DEVICE_ID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_DEVICE_ID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_DEVICE_ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "PG_PCI_DEVICE_ID",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_pci_device_id"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_MAX_MSI_VECTORS": {
+      "abstract": [
+        {
+          "text": "The number of MSI vectors that you need to allocate for the graphics configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_MAX_MSI_VECTORS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_MAX_MSI_VECTORS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_MAX_MSI_VECTORS"
+        }
+      ],
+      "role": "symbol",
+      "title": "PG_PCI_MAX_MSI_VECTORS",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_pci_max_msi_vectors"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_VENDOR_ID": {
+      "abstract": [
+        {
+          "text": "The vendor identifier to use when advertising the graphics stack inside a virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_VENDOR_ID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_VENDOR_ID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PG_PCI_VENDOR_ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "PG_PCI_VENDOR_ID",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_pci_vendor_id"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_SUPPORT_CREATE_DEVICE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PG_SUPPORT_CREATE_DEVICE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_SUPPORT_CREATE_DEVICE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PG_SUPPORT_CREATE_DEVICE"
+        }
+      ],
+      "role": "symbol",
+      "title": "PG_SUPPORT_CREATE_DEVICE",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pg_support_create_device"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionNumber": {
+      "abstract": [
+        {
+          "text": "The framework’s current version number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ParavirtualizedGraphicsVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParavirtualizedGraphicsVersionNumber",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionnumber"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionString": {
+      "abstract": [
+        {
+          "text": "The framework’s version number expressed as a C string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ParavirtualizedGraphicsVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParavirtualizedGraphicsVersionString",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionstring"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ParavirtualizedGraphics Constants",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/paravirtualizedgraphics-constants"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ParavirtualizedGraphics Data Types",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/paravirtualizedgraphics-data-types"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ParavirtualizedGraphics Functions",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/paravirtualizedgraphics-functions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "PCI-Device-Characteristics",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_DEVICE_ID",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_VENDOR_ID",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_BAR_MMIO",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_MAX_MSI_VECTORS",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()"
+      ],
+      "title": "PCI Device Characteristics"
+    },
+    {
+      "anchor": "Devices",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDeviceDescriptor",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDevice"
+      ],
+      "title": "Devices"
+    },
+    {
+      "anchor": "Displays",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t"
+      ],
+      "title": "Displays"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-constants",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-functions",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-data-types"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_SUPPORT_CREATE_DEVICE"
+      ],
+      "title": "Variables"
+    },
+    {
+      "anchor": "Functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)"
+      ],
+      "title": "Functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "PCI-Device-Characteristics",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_DEVICE_ID",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_VENDOR_ID",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_BAR_MMIO",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_PCI_MAX_MSI_VECTORS",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()"
+              ],
+              "title": "PCI Device Characteristics"
+            },
+            {
+              "anchor": "Devices",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDeviceDescriptor",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDevice"
+              ],
+              "title": "Devices"
+            },
+            {
+              "anchor": "Displays",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t"
+              ],
+              "title": "Displays"
+            },
+            {
+              "anchor": "Versioning",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionNumber",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/ParavirtualizedGraphicsVersionString"
+              ],
+              "title": "Versioning"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-constants",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-functions",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/paravirtualizedgraphics-data-types"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Functions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)"
+              ],
+              "title": "Functions"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXPORT",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_EXTERN",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PG_SUPPORT_CREATE_DEVICE"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/title",
+          "value": "PGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_DEVICE_ID/title",
+          "value": "PG_PCI_DEVICE_ID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_DEVICE_ID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PG_PCI_DEVICE_ID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_SUPPORT_CREATE_DEVICE/title",
+          "value": "PG_SUPPORT_CREATE_DEVICE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_SUPPORT_CREATE_DEVICE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PG_SUPPORT_CREATE_DEVICE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/title",
+          "value": "PGDisplayCoord_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayCoord_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayCoord_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_VENDOR_ID/title",
+          "value": "PG_PCI_VENDOR_ID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_VENDOR_ID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PG_PCI_VENDOR_ID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_BAR_MMIO/title",
+          "value": "PG_PCI_BAR_MMIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_BAR_MMIO/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PG_PCI_BAR_MMIO"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGCopyOptionROMURL()/title",
+          "value": "PGCopyOptionROMURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGCopyOptionROMURL()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGCopyOptionROMURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/title",
+          "value": "PGDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/title",
+          "value": "PGDisplayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDevice/title",
+          "value": "PGDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGNewDeviceWithDescriptor(_:)/title",
+          "value": "PGNewDeviceWithDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGNewDeviceWithDescriptor(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGNewDeviceWithDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDeviceDescriptor/title",
+          "value": "PGDeviceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDeviceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDeviceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDeviceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDeviceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGCreateDeviceWithDescriptor(_:)/title",
+          "value": "PGCreateDeviceWithDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGCreateDeviceWithDescriptor(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGCreateDeviceWithDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_MAX_MSI_VECTORS/title",
+          "value": "PG_PCI_MAX_MSI_VECTORS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PG_PCI_MAX_MSI_VECTORS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PG_PCI_MAX_MSI_VECTORS"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/paravirtualizedgraphics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/paravirtualizedgraphics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

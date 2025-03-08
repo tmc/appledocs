@@ -1,0 +1,1475 @@
+{
+  "abstract": [
+    {
+      "text": "A key with a value that’s a string indicating whether the item synchronizes through iCloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@kSecAttrSynchronizable",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "kSecAttrSynchronizable"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CFStringRef",
+        "text": "CFString"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "kSecAttrSynchronizable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "kSecAttrSynchronizable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecAttrSynchronizable"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFString"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The corresponding value is of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and indicates whether the item in question is synchronized to other devices through iCloud. To add a new synchronizable item, or to obtain synchronizable results from a query, supply this key with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleantrue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the key is not supplied, or has a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then no synchronizable items are added or returned. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizableAny",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to query for both synchronizable and non-synchronizable results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A keychain item created in macOS with this attribute behaves like an iOS keychain item. For example, you share the item between apps using Access Groups instead of Access Control Lists. To create a keychain item in macOS that behaves like an iOS keychain item without making it synchronizable, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following caveats apply when you specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key on tvOS, but tvOS doesn’t synchronize your app’s keychain items through iCloud. Items that you store on tvOS never leave the device where you create them, and items that you store on other devices don’t synchronize to tvOS devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updating or deleting items using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key affects all copies of the item, not just the one on your local device. Be sure that it makes sense to use the same password on all devices before making a password synchronizable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starting in iOS 14, macOS 11, and watchOS 7, the keychain synchronizes passwords, certificates, and cryptographic keys. Earlier OS versions synchronize only passwords.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Items stored or obtained using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key cannot specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecAccess",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "-based access control with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccess",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If a password is intended to be shared between multiple applications, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key must be specified, and each application using this password must have the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " enabled, and a common access group specified.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Items stored or obtained using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key may not also specify a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessible",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value that is incompatible with syncing (namely, those whose names end with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ThisDeviceOnly",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Items stored or obtained using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key cannot be specified by reference. Use only ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecReturnAttributes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and/or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecReturnData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to retrieve results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Do not use persistent references to synchronizable items. They cannot be moved between devices, and may not resolve if the item is modified on some other device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When specifying a query that uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key, search keys are limited to the item’s class and attributes. The only search constant that may be used is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; other constants using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kSecMatch",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " prefix are not supported.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups": {
+      "abstract": [
+        {
+          "text": "The identifiers for the keychain groups that the app may share items with.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Keychain Access Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/keychain-access-groups"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean": {
+      "abstract": [
+        {
+          "text": "A reference to a CFBoolean object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBoolean"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse": {
+      "abstract": [
+        {
+          "text": "Boolean false value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFBooleanFalse"
+        },
+        {
+          "kind": "text",
+          "text": ": CFBoolean!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFBooleanFalse",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfbooleanfalse"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfbooleantrue": {
+      "abstract": [
+        {
+          "text": "Boolean true value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFBooleanTrue"
+        },
+        {
+          "kind": "text",
+          "text": ": CFBoolean!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleantrue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFBooleanTrue",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfbooleantrue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccess": {
+      "abstract": [
+        {
+          "text": "An opaque type that identifies a keychain item’s access information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccess"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccess",
+      "type": "topic",
+      "url": "/documentation/security/secaccess"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrAccess": {
+      "abstract": [
+        {
+          "text": "A key with a value that indicates access control list settings for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrAccess",
+      "type": "topic",
+      "url": "/documentation/security/ksecattraccess"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating the access group the item is in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrAccessGroup",
+      "type": "topic",
+      "url": "/documentation/security/ksecattraccessgroup"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrAccessible": {
+      "abstract": [
+        {
+          "text": "A key with a value that indicates when the keychain item is accessible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrAccessible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessible"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrAccessible",
+      "type": "topic",
+      "url": "/documentation/security/ksecattraccessible"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating whether the item synchronizes through iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrSynchronizable",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrsynchronizable"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrSynchronizableAny": {
+      "abstract": [
+        {
+          "text": "Specifies that both synchronizable and non-synchronizable results should be returned from a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizableAny"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrSynchronizableAny",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrSynchronizableAny"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrSynchronizableAny",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrsynchronizableany"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchLimit": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the match limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchLimit",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchlimit"
+    },
+    "doc://com.apple.security/documentation/Security/kSecReturnAttributes": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether or not to return item attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecReturnAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecReturnAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecReturnAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecReturnAttributes",
+      "type": "topic",
+      "url": "/documentation/security/ksecreturnattributes"
+    },
+    "doc://com.apple.security/documentation/Security/kSecReturnData": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether or not to return item data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecReturnData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecReturnData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecReturnData"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecReturnData",
+      "type": "topic",
+      "url": "/documentation/security/ksecreturndata"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates whether to treat macOS keychain items like iOS keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseDataProtectionKeychain",
+      "type": "topic",
+      "url": "/documentation/security/ksecusedataprotectionkeychain"
+    },
+    "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps": {
+      "abstract": [
+        {
+          "text": "Enable apps to share keychain items with each other by adding the apps to an access group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing access to keychain items among a collection of apps",
+      "type": "topic",
+      "url": "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFStringRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "kSecAttrSynchronizable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrSynchronizable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CFStringRef",
+                    "text": "CFStringRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "kSecAttrSynchronizable"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnAttributes/title",
+          "value": "kSecReturnAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecReturnAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessGroup/title",
+          "value": "kSecAttrAccessGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrAccessGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFStringRef/title",
+          "value": "CFStringRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnData/title",
+          "value": "kSecReturnData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecReturnData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/title",
+          "value": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseDataProtectionKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizableAny/title",
+          "value": "kSecAttrSynchronizableAny"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizableAny/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrSynchronizableAny"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfboolean/title",
+          "value": "CFBooleanRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccess/title",
+          "value": "kSecAttrAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrAccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizable/title",
+          "value": "kSecAttrSynchronizable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrSynchronizable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrSynchronizable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/title",
+          "value": "SecAccessRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccess/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimit/title",
+          "value": "kSecMatchLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessible/title",
+          "value": "kSecAttrAccessible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrAccessible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrAccessible"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/ksecattrsynchronizable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/ksecattrsynchronizable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

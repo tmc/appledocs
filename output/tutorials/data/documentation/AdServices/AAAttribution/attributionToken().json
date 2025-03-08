@@ -1,0 +1,2595 @@
+{
+  "abstract": [
+    {
+      "text": "Generates a token.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdServices/documentation/AdServices",
+        "doc://com.apple.AdServices/documentation/AdServices/AAAttribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AAAttribution(cm)attributionTokenWithError:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "attributionToken"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AdServices"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "attributionTokenWithError:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.1",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "attributionToken()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributionToken"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AdServices/documentation/AdServices/Changelog"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The token that the framework returns is a string and has a 24-hour TTL. You can provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the token to an MMP, or app developers can use it to make a ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API call to fetch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribution records within the 24-hour TTL window. Use a single token in the request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "body and use a content-type of ",
+              "type": "text"
+            },
+            {
+              "code": "text/plain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the header, as the following example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api-adservices.apple.com/api/v1/",
+            "--header 'Content-Type: text/plain' \\",
+            "--data-raw",
+            "",
+            "G9i5hC8lQJeGOfmS+MFycll/025oJEjtpZ+rs4AUkDEJh52fT8RrjwIR/ h+2JOpXz4MRdmtcemL8WTTHfNN52tjqjbWupke40AAAAVADAAAAvQAAAIAg QF1+XF4Tl2IZ7Bw/M6ufUHt+UcIhuBeJT8YenB2v36bnZKEjvq/ IH8rqXkRELTHdyiqOYtpy837+UjF/NjE6t1/ l7sIn71b0t3FEXJd8QOtl3Bi6iQyJgGeN8w8X0MK1PDqz9nLJtRD/ wl+p112qR2YrMDyyKnwNrbfRhnGB9AAAAB7wAXlwNHelWf5RT2bzSJcGflq ELMCGoDEHIl7jF6kAAACfAb9ylY8ffdbTlyJODQYQ/ 6V9qbaBAAAAhgUBW39MQI1A0SZgNmZFz4KPaF94BxBzd4rDkjr/ eSeuaXWCmEW3ZhBzE/MOM17hAPBVlDhTPcZ/2ybr3WYIkfb+AAg/ 7jxGpDXgTtco3fzTytnZpEaI5SenXHALIexQAUTBsfBW2HCMQuTRo+7anoW kf69656ZAWcSc3DEQ1CAkUSKO9X7iAAABBEQQBQA="
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A 404 response can occur if you make an API call too quickly after receiving a valid token. A best practice is to initiate retries at intervals of 5 seconds, with a maximum of three attempts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details about error codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Response-codes",
+          "level": 3,
+          "text": "Response codes",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Response",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Description",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "200",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Success. If the API finds a matching attribution record, the payload returns ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attribution=true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "If the API doesn’t find a matching attribution record, the payload returns ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attribution=false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". In this case, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " response is acknowledgment of the receipt of the data request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "400",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token is invalid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "404",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not found. The API is unable to retrieve the requested attribution record.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Tokens have a TTL of 24 hours. If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API call exceeds 24 hours, a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "404",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " response returns. If your token is valid, a best practice is to initiate retries at intervals of 5 seconds with a maximum of three attempts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "500",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Attribution-payload",
+          "level": 3,
+          "text": "Attribution payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API returns two types of attribution records: a standard response and a detailed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and later, the Allow Apps to Request to Track (AAtRtT) device-level setting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determines the response that the attribution server returns, as well as the details",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are available from the attribution payload. The AAtRtT setting allows users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to opt in or out of allowing apps to request user consent to access app-related data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for both attribution and tracking the user or the device. The following table shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the combination of tracking interactions and expected attribution payload response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Allow Apps to Request to Track setting (iOS 14 and later)",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Per-app tracking consent status",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Attribution payload response",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unknown ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Denied or restricted ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " / ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authorized ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detailed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Off",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unknown ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Off",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Denied or restricted ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " / ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Off",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authorized ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detailed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attribution record is a data dictionary with key-value pairs that correspond",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your Apple Search Ads campaigns and app downloads on Apple News and Stocks from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices running iOS 14 and later. See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdServices/documentation/AdServices/Changelog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A detailed payload resembles the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"attribution\": true,",
+            "  \"orgId\": 40669820,",
+            "  \"campaignId\": 542370539,",
+            "  \"conversionType\": \"Download\",",
+            "  \"clickDate\": \"2020-04-08T17:17Z\",",
+            "  \"claimType\": \"Click\",",
+            "  \"adGroupId\": 542317095,",
+            "  \"countryOrRegion\": \"US\",",
+            "  \"keywordId\": 87675432,",
+            "  \"adId\": 542317136",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A standard payload resembles the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"attribution\": true,",
+            "  \"orgId\": 40669820,",
+            "  \"campaignId\": 542370539,",
+            "  \"conversionType\": \"Download\",",
+            "  \"claimType\": \"Click\",",
+            "  \"adGroupId\": 542317095,",
+            "  \"countryOrRegion\": \"US\",",
+            "  \"keywordId\": 87675432,",
+            "  \"adId\": 542317136",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you receive test data in your payload responses, check to make sure your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "app isn’t in Developer Mode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run reports to review detailed campaign metadata in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://searchads.apple.com/advanced/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attribution-payload-descriptions",
+          "level": 3,
+          "text": "Attribution payload descriptions",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Field",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Data type",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Description",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "attribution",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The attribution value. A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " returns if a user clicks an Apple Search Ads impression up to 30 days before your app download. If the API can’t find a matching attribution record, the attribution value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "orgId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier of the organization that owns the campaign. Your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "orgId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the same as your account in the Apple Search Ads UI. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Obtain your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "orgId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_user_acl",
+                      "type": "text"
+                    },
+                    {
+                      "text": " in the Apple Search Ads Campaign Management API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "campaignId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier for the campaign. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_campaign-level_reports",
+                      "type": "text"
+                    },
+                    {
+                      "text": " in the Apple Search Ads Campaign Management API to correlate your attribution response by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "campaignId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/app-store/pre-orders/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " campaigns are attributed if the click date of the ad is within 30 days of the app release date.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "conversionType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of conversion is either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Download",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Conversion types appear in your campaign reports in the Apple Search Ads Campaign Management API. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/ExtendedSpendRow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "claimType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies that the app download was from a tap on an ad. Note that the tap-through attribution window is 30 days.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clickDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date/Time string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The date and time when the user clicks an ad in a corresponding campaign. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "This field only appears in the detailed attribution response payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "adGroupId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier for the ad group. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_ad_group-level_reports",
+                      "type": "text"
+                    },
+                    {
+                      "text": " to correlate your attribution response by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adGroupId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and its corresponding campaign in the Apple Search Ads Campaign Management API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "countryOrRegion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The country or region for the campaign. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_campaign-level_reports",
+                      "type": "text"
+                    },
+                    {
+                      "text": " to correlate your attribution response by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "countryOrRegion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Apple Search Ads Campaign Management API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "keywordId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier for the keyword. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_keyword-level_reports",
+                      "type": "text"
+                    },
+                    {
+                      "text": " in the Apple Search Ads Campaign Management API to correlate your attribution response by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keywordId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Note, when you enable search match, the API doesn’t return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keywordId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the attribution response. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "adId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier representing the assignment relationship between an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ad",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and an ad group. This applies to devices running iOS 15.2 and later. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/apple_search_ads/get_ad-level_reports",
+                      "type": "text"
+                    },
+                    {
+                      "text": " to correlate your attribution response by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Apple Search Ads Campaign Management API. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "Note, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t return in the attribution payload if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/custom-product-pages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " aren’t associated with the campaign. In campaigns using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/SupplySource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "APPSTORE_TODAY_TAB",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "APPSTORE_SEARCH_RESULTS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " returns in the response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdServices/documentation/AdServices": {
+      "abstract": [
+        {
+          "text": "Attribute app-download campaigns that originate from the App Store, Apple News, or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Stocks on iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdServices",
+      "type": "topic",
+      "url": "/documentation/adservices"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution": {
+      "abstract": [
+        {
+          "text": "The parent class that the framework uses to request a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AAAttribution"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AAAttribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttribution",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()": {
+      "abstract": [
+        {
+          "text": "Generates a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributionToken"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributionTokenWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributionToken()",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution/attributiontoken()"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError": {
+      "abstract": [
+        {
+          "text": "The error code that the parent class issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AAAttributionError"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AAAttributionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttributionError",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattributionerror"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/Changelog": {
+      "abstract": [
+        {
+          "text": "A log of Ad Services framework updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/Changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Changelog",
+      "type": "topic",
+      "url": "/documentation/adservices/changelog"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized": {
+      "abstract": [
+        {
+          "text": "The value that returns if the user authorizes access to app-related data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATTrackingManager.AuthorizationStatus.authorized",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/authorized"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied": {
+      "abstract": [
+        {
+          "text": "The value that returns if the user denies authorization to access app-related data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "denied"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATTrackingManager.AuthorizationStatus.denied",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/denied"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The value that returns when the app can’t determine the user’s authorization status for access to app-related data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATTrackingManager.AuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted": {
+      "abstract": [
+        {
+          "text": "The value that returns if authorization to access app-related data for tracking the user or the device has a restricted status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restricted"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATTrackingManager.AuthorizationStatus.restricted",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted"
+    },
+    "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups": {
+      "abstract": [
+        {
+          "text": "Create and manage ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Ad Groups",
+      "type": "topic",
+      "url": "/documentation/Apple_Search_Ads/ad-groups"
+    },
+    "doc://com.apple.documentation/documentation/Apple_Search_Ads/custom-product-pages": {
+      "abstract": [
+        {
+          "text": "View Custom Product Page details.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/custom-product-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom Product Pages",
+      "type": "topic",
+      "url": "/documentation/Apple_Search_Ads/custom-product-pages"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/ExtendedSpendRow": {
+      "abstract": [
+        {
+          "text": "The descriptions of metrics with dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtendedSpendRow"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/ExtendedSpendRow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExtendedSpendRow",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/ExtendedSpendRow"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/SupplySource": {
+      "abstract": [
+        {
+          "text": "The ad placements for a campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupplySource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/SupplySource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SupplySource",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/SupplySource"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "https://developer.apple.com/app-store/pre-orders/": {
+      "identifier": "https://developer.apple.com/app-store/pre-orders/",
+      "title": "Pre-order",
+      "titleInlineContent": [
+        {
+          "text": "Pre-order",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/pre-orders/"
+    },
+    "https://searchads.apple.com/advanced/": {
+      "identifier": "https://searchads.apple.com/advanced/",
+      "title": "Apple Search Ads Advanced",
+      "titleInlineContent": [
+        {
+          "text": "Apple Search Ads Advanced",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://searchads.apple.com/advanced/"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5f51b2395970bdf7acf42b6603b53c9/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.1",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "attributionTokenWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributionTokenWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.AdServices/documentation/AdServices",
+                "doc://com.apple.AdServices/documentation/AdServices/AAAttribution"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSString",
+                    "text": "NSString"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "attributionTokenWithError:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On output, a pointer to an error object that describes why the method failed, or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if no error occurred. If you are not interested in the error information, pass ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for this parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution~1attributionToken()/title",
+          "value": "attributionTokenWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution~1attributionToken()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributionTokenWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/title",
+          "value": "AAAttribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1denied/title",
+          "value": "ATTrackingManagerAuthorizationStatusDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1denied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ATTrackingManagerAuthorizationStatusDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1notDetermined/title",
+          "value": "ATTrackingManagerAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ATTrackingManagerAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1authorized/title",
+          "value": "ATTrackingManagerAuthorizationStatusAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ATTrackingManagerAuthorizationStatusAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1restricted/title",
+          "value": "ATTrackingManagerAuthorizationStatusRestricted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1AuthorizationStatus~1restricted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ATTrackingManagerAuthorizationStatusRestricted"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adservices/aaattribution/attributiontoken()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/adservices/aaattribution/attributiontoken()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

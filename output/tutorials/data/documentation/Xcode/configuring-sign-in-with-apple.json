@@ -1,0 +1,1790 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to create an account and sign in to your app with their Apple Account.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-sign-in-with-apple"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Sign in with Apple support"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign in with Apple gives your users the option to sign in to your app with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their existing Apple Account instead of creating a separate username and password.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All Apple devices support Sign in with Apple. For information about using this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature in the browser, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SigninwithAppleJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Sign in with Apple in your app, add the capability by configuring your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s target in Xcode, set up the user interface and necessary authorizations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and register your domain with Apple’s relay service to ensure you can send",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emails to your users’ personal inboxes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app targets an OS version that predates the availability",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of Sign in with Apple, use the JavaScript library to provide the same",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "functionality. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-Sign-in-with-Apple-capability-to-your-app",
+          "level": 3,
+          "text": "Add the Sign in with Apple capability to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the instructions in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you reach the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Capabilities library, choose Sign in with Apple. For watchOS apps with separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "WatchKit extensions, add the capability to the WatchKit Extension’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sign-in-with-apple",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the capability, Xcode updates the target’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlements to include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— an array that contains a single string of ",
+              "type": "text"
+            },
+            {
+              "code": "Default",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the value that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents normal operation. If you configure Xcode to automatically manage app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "signing, then at this point, Xcode also enables Sign in with Apple for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s App ID in your developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you later remove the Sign in with Apple capability in Xcode, you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "must manually update your App ID’s configuration in your developer account to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "disable Sign in with Apple.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users must provide their consent before Apple shares any information with your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. If you have a number of related apps — for example, an iOS app and a macOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app — group their App IDs so the user only needs to provide consent on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first device they use to access your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prompt-the-user-to-sign-in-with-their-Apple-Account",
+          "level": 3,
+          "text": "Prompt the user to sign in with their Apple Account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the Sign in with Apple capability to your Xcode project, update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s user interface to enable users to sign in with their Apple Account. For a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reference implementation of the following steps, see the sample code ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sign_in_with_apple/implementing_user_authentication_with_sign_in_with_apple",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a Sign in with Apple button to your app’s user interface using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a handler for the button that creates an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Make sure you set the request’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform the authorization request with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "prompting the user to sign in with their",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Apple Account and consent to Apple sharing their details with your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "protocol to determine the outcome of the authorization request and, if",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "successful, receive the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "credential",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " — an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that contains details about the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app stores account information on a remote server, send the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "credential’s contents to that server. The remote server verifies the data’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "legitimacy with the Apple Account servers before creating or updating a user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "account. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-updates-about-Apple-Account-changes",
+          "level": 3,
+          "text": "Receive updates about Apple Account changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses a remote server to manage user accounts, turn on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server-to-server notifications so that the Apple Account servers notify you when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "users make changes to their Apple Account. The Apple Account servers send notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when users change their mail forwarding preferences, delete their app account,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or permanently delete their Apple Account. Use these notifications to maintain a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "canonical list of users. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-emails-to-users-hidden-inboxes",
+          "level": 3,
+          "text": "Send emails to users’ hidden inboxes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope/email",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scope when you prompt the user for authorization, the system provides an option",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for that user to hide their real email address and instead use a unique, random",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "forwarding email address that Apple provides. To help prevent spam and ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that emails to users originate from your registered domains and email",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "addresses, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register the domains and subdomains that you use for email communication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register a list of unique email addresses that you use to send email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authenticate your registered domains using the Sender Policy Framework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(SPF) and DomainKeys Identified Mail (DKIM) protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must complete these steps before you can send emails to your users’ hidden",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inboxes. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-private-email-relay-service/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support": {
+      "abstract": [
+        {
+          "text": "Process payments in your app using the payment information the user stores on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Apple Pay support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-apple-pay-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support": {
+      "abstract": [
+        {
+          "text": "Access the user’s Wallet to add, update, and display your app’s passes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Wallet support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-wallet-support"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope": {
+      "abstract": [
+        {
+          "text": "The kinds of contact information that can be requested from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scope"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorization.Scope",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorization/Scope"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope/email": {
+      "abstract": [
+        {
+          "text": "A scope that includes the user’s email address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "email"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorization",
+          "text": "ASAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASAuthorizationScope",
+          "text": "Scope"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorization/Scope/email",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "email",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorization/Scope/email"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A control you add to your interface that enables users to initiate the Sign In with Apple flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDButton"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential": {
+      "abstract": [
+        {
+          "text": "A credential that results from a successful Apple ID authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDCredential",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest": {
+      "abstract": [
+        {
+          "text": "An OpenID authorization request that relies on the user’s Apple ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDRequest",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationController": {
+      "abstract": [
+        {
+          "text": "A controller that manages authorization requests that a provider creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationController"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for providing information about the outcome of an authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationControllerDelegate"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes": {
+      "abstract": [
+        {
+          "text": "The contact information to be requested from the user during authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedScopes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorization",
+          "text": "ASAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASAuthorizationScope",
+          "text": "Scope"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestedScopes",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin": {
+      "abstract": [
+        {
+          "text": "An entitlement that lets your app use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sign in with Apple Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.applesignin"
+    },
+    "doc://com.apple.documentation/documentation/SigninwithAppleJS": {
+      "abstract": [
+        {
+          "text": "Provide users a fast, secure way to sign in to your web service with their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SigninwithAppleJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple JS",
+      "type": "topic",
+      "url": "/documentation/SigninwithAppleJS"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger a Sign in with Apple request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton"
+    },
+    "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "doc://com.apple.documentation/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms": {
+      "abstract": [
+        {
+          "text": "Add Sign in with Apple capabilities to apps that can’t directly access Sign in with Apple JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Incorporating Sign in with Apple into other platforms",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/configure-private-email-relay-service/": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-private-email-relay-service/",
+      "title": "Configure Private Email Relay Service",
+      "titleInlineContent": [
+        {
+          "text": "Configure Private Email Relay Service",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-private-email-relay-service/"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications/": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications/",
+      "title": "Enabling Server to Server Notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enabling Server to Server Notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications/"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple/": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple/",
+      "title": "Group Apps for Sign in with Apple",
+      "titleInlineContent": [
+        {
+          "text": "Group Apps for Sign in with Apple",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple/"
+    },
+    "sign-in-with-apple": {
+      "alt": "A screenshot of Xcode’s Capabilities library. At the top is a filter button next to a search field that contains the placeholder text Capabilities. Below that, in the left pane, there’s a list of capabilities, such as Network Extensions, Wallet, and Sign in with Apple. The Sign in with Apple capability is in a selected state. On the right, there’s an information pane that contains the text Enabling Sign in with Apple allows your users to authenticate with their Apple Account.",
+      "identifier": "sign-in-with-apple",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/143aa5f00cf1ae88b7a3ef75cb88d5ec/sign-in-with-apple@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/163fe447e55d5b03d998caa836acd522/sign-in-with-apple~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commerce",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support"
+      ],
+      "title": "Commerce"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorization~1Scope/title",
+          "value": "ASAuthorizationScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorization~1Scope/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationScope"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationOpenIDRequest~1requestedScopes/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestedScopes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorization~1Scope~1email/title",
+          "value": "ASAuthorizationScopeEmail"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorization~1Scope~1email/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ASAuthorizationScope",
+              "text": "ASAuthorizationScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationScopeEmail"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)ASAuthorizationOpenIDRequest",
+              "text": "ASAuthorizationOpenIDRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

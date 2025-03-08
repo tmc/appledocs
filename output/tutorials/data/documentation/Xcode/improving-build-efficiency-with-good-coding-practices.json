@@ -1,0 +1,1409 @@
+{
+  "abstract": [
+    {
+      "text": "Shorten compile times by reducing the number of symbols your code exports and by",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "giving the compiler the explicit information it needs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving build efficiency with good coding practices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reducing build times by even a few seconds can have a significant impact over the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "course of development. Xcode does everything possible to build your code as fast",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as possible. It parallelizes build tasks and takes advantage of all available resources",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to output a finished product. However, you can help Xcode by making sure you’re not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating unnecessary work for the compiler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Over the years, Xcode’s compiler has introduced optimizations to speed up compile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times. Most of these optimizations are automatic, but some require you to make small",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes to your code. In addition, projects that support both Objective-C code to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift may require additional optimizations to ensure fast compile times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also optimize build times through project-level changes. For more",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "information on optimizing build times, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Include-framework-names-in-import-statements",
+          "level": 3,
+          "text": "Include framework names in import statements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import headers into your source files, always include the name of the parent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework or library in your import statement. In C-based code, importing headers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "usually copies the contents of the header file into your source. When you include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the framework name, the compiler has the option to use module maps to import the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "headers, which significantly reduces importation time. With module maps, the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loads and processes the framework’s header files once, and caches the resulting symbol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information on disk. When you import the same framework from another source file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the compiler reuses the cached data, eliminating the need to again read and preprocess",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the header files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include framework names for both system frameworks and any custom frameworks you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create in your projects. The following example shows import statements for both a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system and custom framework, both of which have module maps. The last import statement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "continues to load and process the header file contents directly, rather than using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an available module map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Imports the framework’s module map",
+            "#import <UIKit/UIKit.h>",
+            "#import <PetKit/PetKit.h>     // Custom framework",
+            "",
+            "// Performs a textual inclusion of the header file.",
+            "#import \"MyHeader.h\"",
+            ""
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to add a module map to your custom frameworks, see Create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Module Maps for Custom Frameworks and Libraries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Minimize-the-number-of-symbols-you-share-between-Swift-and-Objective-C",
+          "level": 3,
+          "text": "Minimize the number of symbols you share between Swift and Objective-C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you mix Swift and Objective-C code in your project, your Swift code might need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to know about portions of your Objective-C code, and vice versa. The compiler handles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this exchange of symbol information using two special header files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Objective-C bridging header determines which Objective-C symbols you make available",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to your Swift code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The compiler-generated Swift header is a list of all public Swift symbols you can",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "use in your Objective-C code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reducing the size of both header files reduces the compiler’s workload and improves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compilation times. A smaller file size means the compiler can process the headers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more quickly. It also means faster symbol lookup times when compiling source files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring the contents of your Objective-C bridging header, include only the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "headers and symbols you actually reference from your Swift source. If your Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code uses only part of an Objective-C class, move the symbols your Swift code doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use into categories in your implementation file or in an internal-only header file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates how you might separate the symbols you use externally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from those your class uses internally. The ",
+              "type": "text"
+            },
+            {
+              "code": "MyViewController.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header contains only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the subset of symbols you reference publicly from your Swift code. The ",
+              "type": "text"
+            },
+            {
+              "code": "MyViewController-Internal.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header includes the remaining symbols in category extensions on your class. Include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both headers in your Objective-C implementation file, but include only the public",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header in your Objective-C bridging file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-build-efficiency-with-good-coding-practices-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler makes all of your public Swift symbols available to your Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code automatically using a generated header. To minimize the size of this generated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header, update your Swift code in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mark internal methods and properties of your Swift classes as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "private",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The presence",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of that keyword prevents the inclusion of the symbol in the generated header file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose block-based APIs over function-based APIs. Blocks are part of your implementation,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and don’t generate public symbol information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support the most-recent version of the Swift language. Swift 3 and earlier automatically",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "infer Objective-C type information for most symbols, which increases the size of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the generated header. Later versions of Swift perform automatic type inference in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "fewer situations, reducing the overall size of the header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Provide-the-Swift-compiler-with-explicit-type-information",
+          "level": 3,
+          "text": "Provide the Swift compiler with explicit type information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift compiler is capable of inferring the type of a variable from the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you assign to it. For simple values, the inference process is quick. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you assign the value ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a property, the compiler can quickly determine that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the type is a floating-point number. However, if you assign a complex value to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable, the compiler must perform extra work to compute any type information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following structure, in which the ",
+              "type": "text"
+            },
+            {
+              "code": "bigNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property has no explicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type information. To determine the type of that property, the Swift compiler must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "evaluate the results of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function, which takes a nontrivial amount of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContrivedExample {",
+            "   var bigNumber = [4, 3, 2].reduce(1) {",
+            "      soFar, next in",
+            "      pow(next, soFar)",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of letting the compiler determine the type, the best practice is to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the type explicitly as shown in the example below. Providing explicit type information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reduces the work the compiler must do, and also allows it to do more error checking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContrivedExample {",
+            "   var bigNumber : Double = [4, 3, 2].reduce(1) {",
+            "      soFar, next in",
+            "      pow(next, soFar)",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-delegate-methods-in-explicit-protocols",
+          "level": 3,
+          "text": "Define delegate methods in explicit protocols",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Delegates are a standard design pattern on Apple platforms, and provide a useful",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "way to communicate between objects. Although delegation enables communication between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arbitrary objects, always provide explicit type information for your delegate objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following example of a delegate declared as an optional object of any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type. Although this declaration is perfectly legal, it actually creates more work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the compiler. The compiler must assume that any object in your project or referenced",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frameworks contains the function, and so it searches your entire project to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sure that function exists somewhere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "weak var delegate: AnyObject?",
+            "func reportSuccess() {",
+            "   delegate?.myOperationDidSucceed(self)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of using any object, a better approach is to supply specific type information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Typically, you specify the type information using a delegate protocol, as shown in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the example below. An explicit protocol helps the compiler find the method more quickly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also allows the compiler to perform additional type checking for objects you assign",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "code": "delegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "weak var delegate: MyOperationDelegate?",
+            "func reportSuccess() {",
+            "   delegate?.myOperationDidSucceed(self)",
+            "}",
+            "",
+            "protocol MyOperationDelegate {",
+            "   func myOperationDidSucceed(_ operation: MyOperation)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Simplify-complex-Swift-expressions",
+          "level": 3,
+          "text": "Simplify complex Swift expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift language allows you to write code in very expressive ways, but make sure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code doesn’t affect compile times. Consider an example of a function that uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "reduce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to sum a set of values. If you pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all the arguments,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the function returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but if you pass one or more arguments, it sums the sum",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of those arguments. The function takes advantage of a Swift feature, in which the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiler uses the one-line expression in the closure to determine the return type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of that closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sumNonOptional(i: Int?, j: Int?, k: Int?) -> Int? {",
+            "   return [i, j, k].reduce(0) {",
+            "      soFar, next in",
+            "      soFar != nil && next != nil ? soFar! + next! : (soFar != nil ? soFar! : (next != nil ? next! : nil))",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this function represents legal Swift syntax, the one-line closure makes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the code hard to read and harder for the compiler to evaluate. In fact, the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "aborts with an error that states it cannot type-check the expression in a reasonable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "amount of time. The one-line closure is also unnecessary. The definition of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function causes it to return the same type you pass in, which in this case is an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "optional integer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rather than use such a complex expression, it’s better to create something simpler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and more readable. The following code offers the same behavior as the single-line",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure version, but is easier to read and compiles quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sumNonOptional(i: Int?, j: Int?, k: Int?) -> Int? {",
+            "   return [i, j, k].reduce(0) {",
+            "      soFar, next in",
+            "      if let soFar = soFar {",
+            "         if let next = next { return soFar + next }",
+            "         return soFar",
+            "      } else {",
+            "         return next",
+            "      }",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies": {
+      "abstract": [
+        {
+          "text": "Reduce compile times by eliminating unnecessary module variants using the Xcode build system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with explicit module dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-explicit-module-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries": {
+      "abstract": [
+        {
+          "text": "Use mergeable dynamic libraries to get app launch times similar to static linking in release builds, without losing dynamically linked build times in debug builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your project to use mergeable libraries",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-project-to-use-mergeable-libraries"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds": {
+      "abstract": [
+        {
+          "text": "Tell the Xcode build system about your project’s target-related dependencies, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reduce the compiler workload during each build cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the speed of incremental builds",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-the-speed-of-incremental-builds"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of combining the elements of the sequence using the given closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reduce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "initialResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "nextPartialResult"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reduce(_:_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Array/reduce(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "improving-build-efficiency-with-good-coding-practices-1": {
+      "alt": "An illustration of one header file that contains public symbols and a separate header file that contains symbols intended only for internal use. ",
+      "identifier": "improving-build-efficiency-with-good-coding-practices-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea53988c2ab83ed6edae8b073984c8d1/improving-build-efficiency-with-good-coding-practices-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+        "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

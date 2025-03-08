@@ -1,0 +1,5593 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 12.5 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "type": "thematicBreak"
+        },
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 12.5 includes SDKs for iOS 14.5, iPadOS 14.5, tvOS 14.5, watchOS 7.4, and macOS Big Sur 11.3.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 12.5 release supports on-device debugging for iOS 9 and later, tvOS 9 and later, and watchOS 2 and later.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 12.5 requires a Mac running macOS Big Sur 11 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can create macOS File Provider extensions using the new File Provider Extension target template. (54054417)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Reveal Build Products Folder item in the Product menu opens Finder and selects the folder where Xcode builds the product. (72248847)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could cause code completion, live issues, and other code-analysis features to produce incorrect results after you moved any of the source files of an open Xcode project. (57054858)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large workspaces now open faster. (70276306)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could cause iOS 12.5, tvOS 14.5, watchOS 7.4, and earlier to set the minimum deployment target based on the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead of its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (76221112)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use the iOS ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MinimumOSVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " information property list key to declare the minimum release of macOS in which your app runs.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LSMinimumSystemVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead. (73890473)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Future releases of macOS ignore the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "MinimumOSVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key in Mac apps, including apps built with Mac Catalyst.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Future releases of macOS use the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "LSMinimumSystemVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key in iOS apps built with Xcode 12.5 or later.",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "If an iOS app doesn’t include an ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "LSMinimumSystemVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key, future releases of macOS compare the app’s ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "MinimumOSVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " with the version of its Mac Catalyst runtime to determine compatibility.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "libc++ no longer honors the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_LIBCPP_RAW_ITERATORS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " macro.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Use wrapped iterators instead. (63088925)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clang now infers the availability of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+new",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from availability annotations on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-init",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " methods.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Since ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+new",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[[Foo alloc] init]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+new",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t available unless ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+init",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is available. (75884815)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-System",
+          "level": 3,
+          "text": "Build System",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build system no longer re-signs the hosting app target when building app-hosted test targets; instead it builds test targets before the app target’s sign task runs.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This eliminates an extra ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " task, which speeds up builds for large apps with such test targets. (47322098)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-archive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag when creating an XCFramework, providing a shorthand method for creating an XCFramework from one or more archives. (64725832)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "xcodebuild -archive <archive_path1> -framework MyFramework.framework -archive <archive_path2> -framework MyFramework.framework -o <output_xcframework_path>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy Files Build Phase now properly signs code for embedded frameworks with a framework version that isn’t “A”. (55701162) (FB7323980)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now manually reorder schemes. (61456142)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer double-escapes the output of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -showBuildSettings -json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (63554669)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preprocess and Assemble single-file actions now work correctly when analyze-while-building is enabled, and no longer display an empty property list in the source editor. (70811963)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a dependency cycle involving hosted test targets when Parallelize Build is disabled.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode no longer creates a cycle when the test target depends on another target in addition to the hosting target. (73210420)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build system no longer emits a “duplicate tasks” error when both an app and a test target link with the same XCFramework. (74362639) (FB9005738)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Code-Completion",
+          "level": 3,
+          "text": "Code Completion",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion is more reliable in expressions that contain errors, and in expressions that are ambiguous without additional context. (71378252)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, given:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "func test(a: Int, b: String) -> Int { ... }",
+                    "func test(a: Int, b: Int) -> String { ... }",
+                    "func test(a: (Int, Int) -> Int) -> Int { ... }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invoking code completion after ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "test().prefix(3).",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " suggests members of String.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Invoking code completion after ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "test(a: 2).",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " suggests members of Int and String.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Invoking code completion after ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$0.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the following block suggests members of Int:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "test {",
+                    "  $0.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion now returns suggestions more quickly inside large function bodies. (58687608)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debugging",
+          "level": 3,
+          "text": "Debugging",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When debugging C++ programs using libc++, LLDB now offers improved expression evaluation support for STL containers and algorithms. (19866497)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "You can call member functions of STL containers, even if they are never called in the target program.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "LLDB can instantiate templated functions from the standard library.",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "This includes algorithms such as ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::sort",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::count",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::count_if",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", and so on.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When debugging Swift code, Xcode’s variable view and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "v",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "frame variable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") command now display variables with resilient types including Foundation value types such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLComponents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Notification",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IndexPath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Decimal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Global",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Measurement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (72101693)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode fails to launch apps when Nightstand Mode is enabled on Apple Watch. (61351690)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Disable Nightstand Mode on Apple Watch; Go to Settings > General > Nightstand Mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Instruments",
+          "level": 3,
+          "text": "Instruments",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "<(start|end)-pattern>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " elements in os-signpost-interval schema are now optional.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This allows Custom Instruments to match signposts by name and other properties without needing to specify the expected message format. (43850670)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Profiling XCTest with Instruments now automatically starts the recording, without a click on the record button. (50260328)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments can now import ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "os_log",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "os_signpost",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " data from the ktrace files that include logging-level data. (56037733)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom Instruments can now specify statically defined sub-tracks without needing to be driven by table column data. (61367995)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xctrace export",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now produces output in time-sorted order. (69804348)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Table of Contents query for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xctrace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now exposes metadata information about the run. (71320853)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xctrace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " wouldn’t pass a standard input to the launched process. (17842765)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launching an extension via Product > Profile in Xcode no longer causes Instruments to wait indefinitely for the process to start. (62275419) (FB7674284)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that sometimes occurred when you started recording after transferring a Metal app from Xcode to Instruments. (70655385) (FB8824932)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where plot elements wouldn’t draw using the color column specified in a point schema. (71680467) (FB8913696)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS 11.2 or earlier, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "leaks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and other command line analysis tools fail or crash when run against processes built with Mac Catalyst and processes running in iOS 14.5 or later on simulated devices. (74690398)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interface-Builder",
+          "level": 3,
+          "text": "Interface Builder",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now configure a Module for custom classes in the inspector for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSObjectController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and similar objects. (35971498)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "’s  “Image Only” Position setting now properly displays an image without a title at runtime. (16200971)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the assistant editor wouldn’t display source code for a selected object’s custom Swift class if the class was annotated with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@objc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (19623315)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where connect-to-source wouldn’t properly escape Swift keywords in Outlet and Action names. (22527929)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Editor > Debug Selected Views failed to attach to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@IBDesignable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " views for debugging. (45217745) (FB5645911)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added Dark Mode support for the connect-to-source bindings popover. (47583413) (FB5701084)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed iOS canvas appearance issues when importing project images with an unexpected scale. (63789933) (FB7719276)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the assistant editor could open the wrong source file for a selected object’s custom class if duplicate class names existed in the project. (67362709)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed the canvas drifting when resizing the document outline. (67505701)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where selecting the custom color item from an inspector’s color pop-up menu wouldn’t open the system colors picker window. (69365980) (FB8727901)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selecting a view in the canvas and performing Select All (Command-A) no longer selects the view’s layout guides. (69518746)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where certain connect-to-source popover labels didn’t show up in Dark Mode. (69713404)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the custom colors swatch in an inspector’s color properties displayed an incorrectly offset focus indicator. (72370447)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use Xcode to localize applications into all ISO 639 languages. (46806165) (FB5359472)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use workspaces to export a collection of projects for localization, generating a single localization catalog for all projects in the workspace.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "As part of this change, options to import and export for localization are now in the Product menu instead of  the Editor menu.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can also use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -importLocalizations",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -exportLocalizations",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-workspace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option to export or import a workspace. (48548375)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new Localization Export Supported build setting lets you disable localization export for a specific target or project that doesn’t require localization. (66606145)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the Application Language menu in the scheme editor doesn’t show all languages for which a project is localized. (28872507)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "*-InfoPlist.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files are now renamed to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InfoPlist.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " at build-time for bundles that require ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " localization.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This is consistent with existing behavior that renames ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files at build-time. (38686398)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exporting and importing for localization now produces an error if two files (ex: Main.strings and Main.storyboard) write translations to the same path. (39917359, 52412470) (FB6384066)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where exporting color sets for localization caused Xcode to crash. (63934393)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where new-style multiline Swift string literals weren’t properly extracted for localization. (64652467) (FB7742731)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Localizable keys in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files are now only automatically extracted on localization export for Application and App Extension targets. (66871236)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where strings were replaced with their keys at localization export if the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file was outside the directory hierarchy of the Xcode project. (69835864) (FB8761502)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Playgrounds",
+          "level": 3,
+          "text": "Playgrounds",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Playground in an app’s project can now access symbols from the app target.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "New playgrounds you create have this option on by default.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To enable this functionality in existing playground documents, turn on the Import App Types option in the File Inspector. (66357893)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inline results for deeply nested Swift arrays and structs now display more information in Xcode Playgrounds. (67344623)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could cause Xcode to show “No editor” when opening a Playground. (56484197)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredColorScheme(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier now applies the theme to the nearest enclosing presentation, and its contained views. (62745457)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Signing-and-Distribution",
+          "level": 3,
+          "text": "Signing and Distribution",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that prevented exporting distribution certificates from Xcode due to a keyboard focus issue in the authentication window. (71011727) (FB8880845)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that caused OS X 10.11 and earlier to reject packages signed in macOS 11 or later. (71695608, 75599040)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode doesn’t build projects with a signing certificate on a smart card, or that is accessed via a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CryptoTokenKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " extension. (58266781) (FB7516556)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Instead of signing in Xcode or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in a post-build step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OS X 10.11 or earlier may reject code signatures added to universal binaries by Xcode 12.5 running in macOS 11.2 or earlier. (70724583) (FB8830007)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--digest-algorithm=sha1,sha256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " utility at signing time.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "In Xcode, specify this using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OTHER_CODE_SIGN_FLAGS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " build setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you embed a binary that contains an old code signature in your app, your app may fail to install and launch on devices running iOS 14.5 with the error message “The code signature version is no longer supported.” (77494287)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To resolve this issue, first ensure that embedding the binary is necessary for your app to operate.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If the binary is a static library, it’s not necessary to embed it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stop embedding the binary in your app by following these steps:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Select your project in the Project Navigator.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Select your app’s target from the Targets list.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "In the General tab, under the Frameworks, Libraries, and Embedded Content section; click the Embed pop-up menu next to your static library, and then choose Do Not Embed.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "orderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If operating your app requires you to embed the binary, you can update its signature by following the instructions documented at ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator now supports recording video from within the app.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Hold Option when clicking on the screenshot button in the toolbar (or press Command-R) to record a video.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Click the red button to stop video recording. (63041314)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator can create animated GIFs from video recordings using the new Record Video feature.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "After recording a video, right-click on the video preview, then select Save as Animated GIF.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To keep both the video file and the animated GIF, press and hold Option and select Save Copy as Animated GIF.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can adjust the dimensions and size of the generated GIFs in Simulator Preferences. (65089299)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri isn’t available in simulated tvOS devices. (74261184, 75115292)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator may not respect the I/O > Keyboard > Use the Same Keyboard Language as macOS setting. (74897431)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Control",
+          "level": 3,
+          "text": "Source Control",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where some workspaces could fail to notice project file changes from source control operations until you quit and relaunched Xcode. (3920347)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you rename the default branch in your remote repository and don’t update ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HEAD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to point to the renamed branch, source code operations may fail and Xcode may return an error -100. (76070146)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "git",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line tool to re-point your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HEAD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; for example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/<your_default_branch_name>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "StoreKit Testing in Xcode now supports testing of non-renewing subscriptions. (59478394)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKitTest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework is now available on watchOS. (68152552)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Incremental compilation is faster in many cases.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When you change code within the body of a struct, class, enum, protocol, or extension, Swift now recompiles far fewer files in that module than before. (51230617)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implicit member expressions now support chains of member accesses. (57295228)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, this code is now valid:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "let milky: UIColor = .white.withAlphaComponent(0.5)",
+                    "let milky2: UIColor = .init(named: \"white\")!.withAlphaComponent(0.5)",
+                    "let milkyChance: UIColor? = .init(named: \"white\")?.withAlphaComponent(0.5)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As is the case with the existing implicit member expression syntax, the resulting type of the chain must be the same as the (implicit) base, so it isn’t well-formed to write ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "let cgMilky: CGColor = .white.withAlphaComponent(0.5).cgColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (unless appropriate white and withAlphaComponent members were defined on CGColor.).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Members of a “chain” can be properties, method calls, subscript accesses, force unwraps, or optional chaining question marks.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Furthermore, the type of each member along the chain is permitted to differ (again, as long as the base of the chain matches the resulting type) meaning the following successfully typechecks:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct Foo {",
+                    "  static var foo = Foo()",
+                    "  static var bar = Bar()",
+                    "",
+                    "  var anotherFoo: Foo { Foo() }",
+                    "  func getFoo() -> Foo { Foo() }",
+                    "  var optionalFoo: Foo? { Foo() }",
+                    "  subscript() -> Foo { Foo() }",
+                    "}",
+                    "",
+                    "struct Bar {",
+                    "  var anotherFoo = Foo()",
+                    "}",
+                    "",
+                    "let _: Foo? = .bar.anotherFoo.getFoo().optionalFoo?.optionalFoo![]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift includes more checks when bridging data from Objective-C.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "In particular, the runtime library aborts your program with a suitable error message if it detects a non-nullable pointer that contains a null value. (58650899)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Float16",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in code running on Apple silicon. (61937297)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property wrappers are now supported on local variables. (73377111)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functions, subscripts, and initializers may now have more than one variadic parameter.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When using variadic parameters, also label the parameter immediately following a variadic parameter. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0284-multiple-variadic-parameters.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 73676506)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This makes declarations like the following valid:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "func foo(_ a: Int..., b: Double...) { }",
+                    "",
+                    "struct Bar {",
+                    "  subscript(a: Int..., b b: Int...) -> [Int] { a + b }",
+                    "",
+                    "  init(a: String..., b: Float...) { }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property wrappers now work in local contexts. (74192307)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, this code is now valid:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@propertyWrapper",
+                    "struct Wrapper<T> {",
+                    "  var wrappedValue: T",
+                    "}",
+                    "",
+                    "func test() {",
+                    "  @Wrapper var value = 10",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with no arguments, it starts a REPL (Read-Eval-Print Loop) that uses LLDB.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The Swift compiler no longer contains the integrated REPL for compiler developers (formerly accessible by running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift -frontend -repl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). (74613702)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Swift compiler still supports running code as a script, for example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "swift myScript.swift"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When compiling a type that conforms to a protocol via an extension, Swift takes into account the availability of the extension when forming generic types that use this protocol conformance. (74614358)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, consider a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Box",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type whose conformance to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Hashable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " uses features only available on macOS 11:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "public struct Box {}",
+                    "",
+                    "@available(macOS 11, *)",
+                    "extension Box : Hashable {",
+                    "  func hash(into: inout Hasher) {",
+                    "    // call some new API to hash the value...",
+                    "  }",
+                    "}",
+                    "",
+                    "public func findBad(_: Set<Box>) -> Box {}",
+                    "// warning: conformance of 'Box' to 'Hashable' is only available in macOS 11 or newer",
+                    "",
+                    "@available(macOS 11, *)",
+                    "public func findGood(_: Set<Box>) -> Box {} // OK"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the above code, it isn’t valid for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "findBad()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to take a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Set<Box>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " because ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Set",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " requires that its element type conform to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Hashable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but the conformance of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Box",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Hashable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t available before macOS 11.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note that using an unavailable protocol conformance is a warning, not an error, to avoid potential source compatibility issues.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "In prior releases, you could write code that made use of unavailable protocol conformances but worked anyway — if the optimizer had eliminated all runtime dispatch through this conformance, or the code in question was entirely unreachable at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Protocol conformances can also be marked as completely unavailable or deprecated, by placing an appropriate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@available",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute on the extension:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@available(*, unavailable, message: \"Not supported anymore\")",
+                    "extension Box : Hashable {}",
+                    "",
+                    "@available(*, deprecated, message: \"Suggest using something else\")",
+                    "extension Box : Hashable {}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a protocol conformance is defined on the type itself, it inherits availability from the type.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can move the protocol conformance to an extension if you need it to have narrower availability than the type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@available",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute is no longer permitted on generic parameters, where it had no effect. (74614802)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct Bad<@available(macOS 11, *) T> {}",
+                    "// error: '@available' attribute can't be applied to this declaration",
+                    "",
+                    "struct Good<T> {} // equivalent"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Availability checking now rejects protocols that refine less available protocols. (74615650)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Previously, this was accepted by the compiler but could result in linker errors or runtime crashes; for example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@available(macOS 11, *)",
+                    "protocol Base {}",
+                    "",
+                    "protocol Bad : Base {}",
+                    "// error: 'Base' is only available in macOS 11 or newer",
+                    "",
+                    "@available(macOS 11, *)",
+                    "protocol Good : Base {} // OK"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Protocol conformance checking now considers ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "where",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " clauses when evaluating if a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "typealias",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a suitable witness for an associated type requirement. (74618612)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following code is now rejected:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "protocol Holder {",
+                    "  associatedtype Contents",
+                    "}",
+                    "",
+                    "struct Box<T> : Holder {}",
+                    "// error: type 'Box<T>' doesn't conform to protocol 'Holder'",
+                    "",
+                    "extension Box where T : Hashable {",
+                    "  typealias Contents = T",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In most cases, the compiler would either crash or produce surprising results when making use of a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "typealias",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with an unsatisfied ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "where",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " clause, but it is possible that some previously-working code is now rejected.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "In the above example, the conformance can be fixed in one of the following ways:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Make it conditional (move the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ": Holder",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " from the definition of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "Box",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " to the extension).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Move the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "typealias",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " from the extension to the type itself.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Relax the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "where",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " clause on the extension.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function overloading now works in local contexts, making the following valid:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "func outer(x: Int, y: String) {",
+                    "  func doIt(_: Int) {}",
+                    "  func doIt(_: String) {}",
+                    "",
+                    "  doIt(x)",
+                    "  doIt(y)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In this code, the first ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "doIt(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " calls with an Int value, and the second with a String value. (29312676)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that occurred when you initialized a floating-point value — such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Double",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — from a string representing a number outside the range for the given type.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Swift now returns a value of positive or negative ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".infinity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (36990878, 76728925) (FB9080490)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input strings representing values greater than the maximum positive finite normal value now return a value of positive ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ".infinity",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input strings representing values less than the maximum negative finite normal value now return a value of negative ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ".infinity",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input strings representing values closer to 0 than to the minimum positive non-zero subnormal value now return a value of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "+0",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input strings representing values closer to 0 than to the maximum negative non-zero subnormal value now return a value of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "-0",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The runtime and compiler support for Swift’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "as?",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "as!",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operators has been overhauled, providing more consistent and predictable behavior. (58991956)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app (including loaded OS binaries) contains multiple redundant protocol conformances, Swift now uses the first one it finds in the first binary loaded (including in OS binaries). (72049977)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that occurred when setting a value using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/ReferenceWritableKeyPath",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that was upcast to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/WritableKeyPath",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (74191390) (FB8999603)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS Playgrounds may crash on initial execution. (70826934)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Re-execute the Playground.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The compiler may generate incorrect code when you use an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "case",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with associated values to satisfy a protocol requirement. (72302307)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "protocol FileHandlerAction {",
+                    "  static func setFileURL(_ fileURL: NSURL) -> Self",
+                    "}",
+                    "",
+                    "enum AppAction : FileHandlerAction {",
+                    "  case setFileURL(NSURL)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Provide a static method to satisfy the requirement:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "enum AppAction : FileHandlerAction {",
+                    "  case _setFileURL(NSURL)",
+                    "",
+                    "  static func setFileURL(_ fileURL: NSURL) -> Self {",
+                    "    return ._setFileURL(fileURL)",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Swift compiler emits a warning for the use of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword as an unqualified identifier.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Wrap ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with back-ticks so Swift always treats it as an identifier, or fully qualify declarations named await.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " anytime you reference an instance member named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from within the instance. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 67000350)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Packages",
+          "level": 3,
+          "text": "Swift Packages",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift packages that specify a 5.4 tools version can now explicitly declare targets as executable, which allows the use of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@main",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword in package code. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://forums.swift.org/t/se-0294-declaring-executable-targets-in-package-manifests/42404",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 47691185)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Swift Package Manager now builds package products and targets as dynamic frameworks automatically, if doing so avoids duplication of library code at runtime. (59931771) (FB7608638)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift Package Manager caches package dependencies on a per-user basis, which reduces the amount of network traffic and increases performance of dependency resolution for subsequent uses of the same package.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If needed, you can disable cache use in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by using the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-disablePackageRepositoryCache",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag. (72204929)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest now supports marking test failures as “expected.”",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Expected test failures don’t impact the overall pass/fail result of the suite containing the test.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode displays expected failures differently in the Test Navigator and Test Report, and highlights the line of code where the expected failure occurred along with an optional user description.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Expected test failures provide a low-overhead tool for preserving the overall “green” state of a project’s test suite when there are failures which can’t be immediately resolved, ensuring that any new failures are clearly visible.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "In contrast to skipping a test with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", a test with an expected failure still runs, reporting any unexpected changes. (13408632)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To mark a failure as expected, call the new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/xctest/3726077-xctexpectfailure",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API in a test before the code which produces the test failure, for example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "XCTExpectFailure(\"…\")",
+                    "// Perform test which currently fails"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additionally, the scope of the expected failure can be limited by enclosing the failing code in a closure:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// Arrange and act on the test subject",
+                    "",
+                    "XCTExpectFailure(\"…\") {",
+                    "    XCTAssert(…) // Failing assertion",
+                    "}",
+                    "",
+                    "// Continue test with further assertions etc."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By default, if ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTExpectFailure",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is called but the test doesn’t record a failure, XCTest marks the test as having failed due to an “unmatched expected failure.”",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This can be suppressed for failures which occur non-deterministically, by passing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTExpectFailure",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTExpectedFailure.Options",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object as a parameter, with its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isStrict",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "let options = XCTExpectedFailure.Options()",
+                    "options.isStrict = false",
+                    "XCTExpectFailure(\"…\", options: options)",
+                    "// Perform test which sometimes fails"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now allows you to clean test results without having to re-open your workspace by selecting Clean Test Results from Xcode’s Product menu. (16527161)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now supports XCTest unit and UI tests for watchOS apps.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When creating a new watchOS app, check the Include tests checkbox to add a unit and UI test target to the newly created project.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For an existing project, add a unit or UI test target via File > New > Target, and then add the test target to the Test action of the WatchKit App scheme.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To run the tests, select a watch simulator or device from the run destinations menu in the toolbar, and then choose Product > Test.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Note that testing is supported on watchOS 7.4 or later. (21395998)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest now automatically includes specialized subclasses of Swift generic test classes when running tests on macOS 11.3, iOS 14.5, tvOS 14.5, watchOS 7.4, or later OS versions.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This allows you to use generics to improve reusability of test classes. (23493200)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest now includes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertIdentical(_:_:_:file:line:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertNotIdentical(_:_:_:file:line:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs to assert whether two object instances are identical (the same instance) and are stricter than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertEqual",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "===",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operator instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "==",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Swift. (46137782)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code coverage report now shows the number of executable lines per file. (68808019)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "message",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " String parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTSkip.init(_:file:line:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer includes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@autoclosure",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " incorrectly.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Unlike its conditional variants ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", XCTSkip’s initializer unconditionally evaluates its message string. (63827685)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a test times out (due to having Test Timeouts enabled in the active Test Plan), any content that the test emitted to standard out or standard error prior to the timeout is now included in the test log. (64591225)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now prevent the computer from sleeping while executing tests. (67493488)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If code under test crashes, and Xcode is able to collect a crash report, the error message that Xcode generates in the Test Report and Test Log includes the crashing symbol, as well as the Application Specific Information field from the crash report. (69755517)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where methods on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " threw an exception on watchOS. (72552791)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode no longer incorrectly reports a name that starts with “<unknown>” for tests that the test code dynamically generates at runtime. (73767460)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When running on a Mac with Apple silicon, Xcode doesn’t provide code coverage information for code in Swift packages. (71769076) (FB8919898)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you run lengthy uninterrupted CPU-bound computation in a test on Apple Watch devices, watchOS may terminate the test runner. (74301580)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Avoid performing heavy CPU-bound computation in your tests on Apple Watch devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode crashes when you attempt to view test results for an integration. (76126769)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Download the integration’s build logs and open the enclosed result bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode no longer includes XCTest’s legacy Swift overlay library (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libswiftXCTest.dylib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Use the library’s replacement, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libXCTestSwiftSupport.dylib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", instead.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For frameworks that encounter build issues because of the removal of the legacy library, delete the framework and library search paths for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libswiftXCTest.dylib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ENABLE_TESTING_SEARCH_PATHS=YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " build setting.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This setting automatically sets the target’s search paths so that it can locate the replacement XCTest library. (70365050)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_0_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_3-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_4-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.5.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_5_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSButton": {
+      "abstract": [
+        {
+          "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSButton",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSButton"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSObjectController": {
+      "abstract": [
+        {
+          "text": "A controller that can manage an object’s properties referenced by key-value paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSObjectController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectController",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSObjectController"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSMinimumSystemVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in iOS, iPadOS, tvOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MinimumOSVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/MinimumOSVersion"
+    },
+    "doc://com.apple.documentation/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/CryptoTokenKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKitTest": {
+      "abstract": [
+        {
+          "text": "Create and automate tests in Xcode for your app’s subscription and in-app purchase transactions, and SKAdNetwork implementations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKitTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit Test",
+      "type": "topic",
+      "url": "/documentation/StoreKitTest"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Float16": {
+      "abstract": [
+        {
+          "text": "A half-precision (16b), floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Float16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float16",
+      "type": "topic",
+      "url": "/documentation/Swift/Float16"
+    },
+    "doc://com.apple.documentation/documentation/Swift/ReferenceWritableKeyPath": {
+      "abstract": [
+        {
+          "text": "A key path that supports reading from and writing to the resulting value with reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceWritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/ReferenceWritableKeyPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReferenceWritableKeyPath",
+      "type": "topic",
+      "url": "/documentation/Swift/ReferenceWritableKeyPath"
+    },
+    "doc://com.apple.documentation/documentation/Swift/WritableKeyPath": {
+      "abstract": [
+        {
+          "text": "A key path that supports reading from and writing to the resulting value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/WritableKeyPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WritableKeyPath",
+      "type": "topic",
+      "url": "/documentation/Swift/WritableKeyPath"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/preferredColorScheme(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred color scheme for this presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredColorScheme"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "colorScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ColorSchemeO",
+          "text": "ColorScheme"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredColorScheme(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredColorScheme(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/preferredColorScheme(_:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTAssertEqual": {
+      "abstract": [
+        {
+          "text": "Asserts that two expressions have the same value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "#define"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTAssertEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression2"
+        },
+        {
+          "kind": "text",
+          "text": ", ...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertEqual",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTAssertEqual",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTAssertEqual"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTAssertIdentical(_:_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Asserts that two values are identical.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTAssertIdentical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " = \"\", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertIdentical(_:_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTAssertIdentical(_:_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTAssertIdentical(_:_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTAssertNotIdentical(_:_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Asserts that two values aren’t identical.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTAssertNotIdentical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " = \"\", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTAssertNotIdentical(_:_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTAssertNotIdentical(_:_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTAssertNotIdentical(_:_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the time that a performance test spends executing a signposted region of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTOSSignpostMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTOSSignpostMetric",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTOSSignpostMetric"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that causes the current test to cease executing and the test runner to mark the test as skipped when the test throws the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkip",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkip-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method if the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "#define"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipIf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ", ...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipIf",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipIf"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method unless the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "#define"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipUnless"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ", ...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipUnless",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipUnless"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/Xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xctest/3726077-xctexpectfailure": {
+      "abstract": [
+        {
+          "text": "Instructs the test to expect a failure in an upcoming assertion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xctest/3726077-xctexpectfailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTExpectFailure",
+      "type": "topic",
+      "url": "/documentation/xctest/3726077-xctexpectfailure"
+    },
+    "https://forums.swift.org/t/se-0294-declaring-executable-targets-in-package-manifests/42404": {
+      "identifier": "https://forums.swift.org/t/se-0294-declaring-executable-targets-in-package-manifests/42404",
+      "title": "SE-0294",
+      "titleInlineContent": [
+        {
+          "text": "SE-0294",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://forums.swift.org/t/se-0294-declaring-executable-targets-in-package-manifests/42404"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0284-multiple-variadic-parameters.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0284-multiple-variadic-parameters.md",
+      "title": "SE-0284",
+      "titleInlineContent": [
+        {
+          "text": "SE-0284",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0284-multiple-variadic-parameters.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md",
+      "title": "SE-0296",
+      "titleInlineContent": [
+        {
+          "text": "SE-0296",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-12",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes"
+      ],
+      "title": "Xcode 12"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSObjectController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSObjectController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSController",
+              "text": "NSController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTOSSignpostMetric/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTOSSignpostMetric"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1197 @@
+{
+  "abstract": [
+    {
+      "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making dependencies available to Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud combines the tools you use to create apps and frameworks: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/xcode/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, your Xcode project or workspace may require additional dependencies or third-party tools to compile your code. For example, you may use a library created by the open source community or Swift package dependencies to reuse and share code between apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Xcode Cloud can’t access a private dependency or a third-party tool, it won’t be able to successfully build your project. To avoid a failing build and save time when you start using Xcode Cloud, review your dependencies and make sure that Xcode Cloud can access them before configuring your project to use Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The temporary build environment that Xcode Cloud uses includes tools that are part of macOS and Xcode — for example, Python — and additionally ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://brew.sh",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to support installing third-party dependencies and tools. For more information, see the “Use a custom build script to install a third-party dependency or tool” section below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-Swift-package-dependencies-and-Git-submodules",
+          "level": 3,
+          "text": "Use Swift package dependencies and Git submodules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud supports Swift packages and dependencies that you manage using Git submodules without any separate configuration if their repositories are publicly accessible. If you use private dependencies, Xcode Cloud helps you access them. For more information on using them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Grant-Xcode-Cloud-access-to-private-dependencies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Following the best practice for using Swift package dependencies in a CI/CD environment, Xcode Cloud doesn’t use automatic package resolution and instead relies on the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to resolve your dependencies. If you use Swift package dependencies in your project, make sure to include the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in your Git repository and commit any changes to it. Don’t include the file in your ",
+              "type": "text"
+            },
+            {
+              "code": ".gitignore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Additionally, make sure the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file resides at ",
+              "type": "text"
+            },
+            {
+              "code": "$filename.xcodeproj/project.workspace/xcshareddata/swiftpm/Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Forcing Xcode Cloud to use automatic package resolution — for example, by changing settings in a custom build script — may result in undefined behavior and failing builds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information on building Swift packages in a continuous integration and delivery environment, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-apps-that-use-them-in-continuous-integration-workflows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grant-Xcode-Cloud-access-to-private-dependencies",
+          "level": 3,
+          "text": "Grant Xcode Cloud access to private dependencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure your project or workspace to use Xcode Cloud, Xcode detects the source code management (SCM) provider you use to host your code. It also detects the SCM provider for each private Git submodule, Swift package dependency, or Git repository you access in a custom script and helps you grant Xcode Cloud access to it. For example, if you host your code with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://bitbucket.org/product/enterprise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use a private dependency you host with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://gitlab.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", Xcode helps you connect both your Bitbucket Server and your GitLab account to Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add a new private package dependency that Xcode Cloud can’t access, the next build fails. To resolve the issue, navigate to the failed build’s build report, and let Xcode or App Store Connect help you connect Xcode Cloud to the dependency’s SCM provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to host your private dependencies with one of the supported SCM providers. For more information on supported SCM providers, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Building your project may require access to more than one instance of your self-hosted SCM provider — a common case for large teams. For example, you may use two different GitHub Enterprise instances where one hosts your app’s code and the other hosts your dependencies. If this scenario applies to you, finish the initial onboarding workflow for the project in Xcode and connect the instance that hosts your app’s code, then let the first build fail. After the build failure, Xcode suggests a fix to connect the other instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-third-party-dependencies",
+          "level": 3,
+          "text": "Review third-party dependencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use a third-party dependency manager like ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://cocoapods.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/Carthage/Carthage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or require an additional tool to successfully build your project, you’ll need to make changes to your project or workspace before you can use Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because third-party tools and dependencies require additional work, review and simplify your third-party dependencies before you configure your project or workspace to use Xcode Cloud. For example, you may be able to replace a dependency with a framework that Apple provides. Alternatively, see if its creator offers the dependency as a Swift package. If so, you can use the package and take advantage of the support for the Swift Package Manager without configuring Xcode Cloud to use a third-party tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If switching to a Swift package dependency or removing a dependency isn’t practical, follow the instructions below to ensure Xcode Cloud can access dependencies and required tooling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+          "level": 3,
+          "text": "Use a custom build script to install a third-party dependency or tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporary build environment Xcode Cloud uses to perform a build doesn’t include third-party tools or dependencies. However, it includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://brew.sh",
+              "isActive": true,
+              "overridingTitle": "Homebrew",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Homebrew",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", an open source package manager you can use to install additional software. For example, you can use Homebrew to install dependency managers like ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://cocoapods.org",
+              "isActive": true,
+              "overridingTitle": "CocoaPods",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "CocoaPods",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/Carthage/Carthage",
+              "isActive": true,
+              "overridingTitle": "Carthage",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Carthage",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install a tool with Homebrew:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a directory next to your Xcode project or workspace and name it ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_scripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an executable shell script, name it ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_post_clone.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and save it in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_scripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory. For example, use the Shell Script template in Xcode to create the file, and then make it an executable by running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "chmod +x ci_post_clone.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Terminal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the custom script in Xcode and add the necessary commands to install a tool with Homebrew.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use custom build scripts to perform a variety of tasks, but you can’t obtain administrator privileges by using ",
+                  "type": "text"
+                },
+                {
+                  "code": "sudo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about custom build scripts, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-CocoaPods-dependencies-available-to-Xcode-Cloud",
+          "level": 3,
+          "text": "Make CocoaPods dependencies available to Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CocoaPods is an open source dependency manager for Apple platforms. However, the temporary build environment that Xcode Cloud uses to perform a build doesn’t come with the tool pre-installed. If you use CocoaPods, first make sure you commit both your ",
+              "type": "text"
+            },
+            {
+              "code": "Podfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "Podfile.lock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Then, decide between one of the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Pods",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory to your Git repository by committing it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exclude the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Pods",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory from source control by adding it to your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".gitignore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you commit the ",
+              "type": "text"
+            },
+            {
+              "code": "Pods",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory and its contents, you won’t need to install CocoaPods to enable Xcode Cloud to build your project or workspace. It’s worth noting, however, that your source code repository takes up more space when adding the ",
+              "type": "text"
+            },
+            {
+              "code": "Pods",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Additionally, remember that committing binary dependencies can affect the performance of your Git repository. It’s a general issue when using Git and not specific to Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you decide to commit the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Pods",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory, consider using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://git-lfs.github.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " . It’s pre-installed on the temporary build environment Xcode Cloud uses to build your project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose to exclude the ",
+              "type": "text"
+            },
+            {
+              "code": "Pods",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory from source control, you’ll need to install CocoaPods using a custom build script. The benefit, however, is that the source code repository takes up less disk space and doesn’t slow down your Git repository. To install CocoaPods using a custom build script:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a post-clone script as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add commands to the script that install CocoaPods with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://brew.sh",
+                      "isActive": true,
+                      "overridingTitle": "Homebrew",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Homebrew",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and that download your CocoaPods dependencies. The following code snippet shows a basic script to achieve this:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "#!/bin/sh",
+                    "",
+                    "# Install CocoaPods using Homebrew.",
+                    "brew install cocoapods",
+                    "",
+                    "# Install dependencies you manage with CocoaPods.",
+                    "pod install"
+                  ],
+                  "syntax": "bash",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Make-Carthage-dependencies-available-to-Xcode-Cloud",
+          "level": 3,
+          "text": "Make Carthage dependencies available to Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Carthage is an open source dependency manager for Apple platforms. However, the temporary build environment that Xcode Cloud uses to build your project doesn’t come with the tool pre-installed. To facilitate projects that rely on the ",
+              "type": "text"
+            },
+            {
+              "code": "carthage copy-frameworks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command — most projects do — , install Carthage using a custom build script:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a post-clone script as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the necessary commands to the script to install Carthage using Homebrew and build your Carthage dependencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team": {
+      "abstract": [
+        {
+          "text": "Start using continuous integration and delivery with Xcode Cloud as a team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Xcode Cloud for your team",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Grant-Xcode-Cloud-access-to-private-dependencies": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Grant-Xcode-Cloud-access-to-private-dependencies",
+      "kind": "section",
+      "title": "Grant Xcode Cloud access to private dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud#Grant-Xcode-Cloud-access-to-private-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+      "kind": "section",
+      "title": "Use a custom build script to install a third-party dependency or tool",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Remove your project from Xcode Cloud to delete app and workflow data, disconnect your Git repository, and remove the Slack integration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing your project from Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/removing-your-project-from-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds": {
+      "abstract": [
+        {
+          "text": "Start numbering builds from a custom build number for your existing Mac app to avoid version collisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the next build number for Xcode Cloud builds",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-the-next-build-number-for-xcode-cloud-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Use custom aliases to share configurations with multiple workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing macOS and Xcode versions across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-custom-aliases-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Apply common configurations to multiple workflows by using shared environment variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing environment variables across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-environment-variables-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup": {
+      "abstract": [
+        {
+          "text": "Allow Xcode Cloud to access your Git repository.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Source-Code-Management-Setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source code management setup",
+      "type": "topic",
+      "url": "/documentation/xcode/source-code-management-setup"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts": {
+      "abstract": [
+        {
+          "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing custom build scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-custom-build-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-apps-that-use-them-in-continuous-integration-workflows": {
+      "abstract": [
+        {
+          "text": "Build Swift packages with an existing continuous integration setup and prepare apps",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that consume package dependencies within an existing CI pipeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-apps-that-use-them-in-continuous-integration-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages or apps that use them in continuous integration workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-apps-that-use-them-in-continuous-integration-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Add your Swift package or Swift Playgrounds app project to an Xcode project to build it in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages and Swift Playgrounds app projects with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app": {
+      "abstract": [
+        {
+          "text": "Add text files to your Xcode project to provide notes to beta testers about what to test.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Including notes for testers with a beta release of your app",
+      "type": "topic",
+      "url": "/documentation/xcode/including-notes-for-testers-with-a-beta-release-of-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://bitbucket.org/product/enterprise": {
+      "identifier": "https://bitbucket.org/product/enterprise",
+      "title": "Bitbucket Server",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org/product/enterprise"
+    },
+    "https://brew.sh": {
+      "identifier": "https://brew.sh",
+      "title": "Homebrew",
+      "titleInlineContent": [
+        {
+          "text": "Homebrew",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://brew.sh"
+    },
+    "https://cocoapods.org": {
+      "identifier": "https://cocoapods.org",
+      "title": "CocoaPods",
+      "titleInlineContent": [
+        {
+          "text": "CocoaPods",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://cocoapods.org"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/xcode/": {
+      "identifier": "https://developer.apple.com/xcode/",
+      "title": "Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode/"
+    },
+    "https://git-lfs.github.com": {
+      "identifier": "https://git-lfs.github.com",
+      "title": "Git LFS",
+      "titleInlineContent": [
+        {
+          "text": "Git LFS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://git-lfs.github.com"
+    },
+    "https://github.com/Carthage/Carthage": {
+      "identifier": "https://github.com/Carthage/Carthage",
+      "title": "Carthage",
+      "titleInlineContent": [
+        {
+          "text": "Carthage",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/Carthage/Carthage"
+    },
+    "https://gitlab.com": {
+      "identifier": "https://gitlab.com",
+      "title": "GitLab",
+      "titleInlineContent": [
+        {
+          "text": "GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gitlab.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup-and-maintenance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+        "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud"
+      ],
+      "title": "Setup and maintenance"
+    }
+  ]
+}

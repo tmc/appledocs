@@ -1,0 +1,1806 @@
+{
+  "abstract": [
+    {
+      "text": "A structure representing a compression stream.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compression/documentation/Compression"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compression/documentation/Compression/compression_stream"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@compression_stream",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "compression_stream"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compression"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "compression_stream"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "compression_stream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basic workflow for using the stream interface is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialize the state of your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "operation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter set to specify whether you are encoding or decoding, and the chosen algorithm specified by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "algorithm",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter.  This allocates storage for the state that allows you to resume encoding or decoding across calls.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dst_buffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dst_size",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "src_buffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "src_size",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to point to the next blocks that your code processes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  If no further input will be added to the stream via subsequent calls, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "flags",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " should be ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/COMPRESSION_STREAM_FINALIZE",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (otherwise 0). If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " returns ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/COMPRESSION_STATUS_END",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", there is no further output from the stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 2 and 3 as necessary to process the entire stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to free the state object in the stream structure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compression/documentation/Compression": {
+      "abstract": [
+        {
+          "text": "Leverage common compression algorithms for lossless data compression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compression",
+      "type": "topic",
+      "url": "/documentation/compression"
+    },
+    "doc://com.apple.compression/documentation/Compression/COMPRESSION_STATUS_END": {
+      "abstract": [
+        {
+          "text": "Indicates the stream has read all input from the source, and written all output to the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STATUS_END"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/COMPRESSION_STATUS_END",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STATUS_END"
+        }
+      ],
+      "role": "symbol",
+      "title": "COMPRESSION_STATUS_END",
+      "type": "topic",
+      "url": "/documentation/compression/compression_status_end"
+    },
+    "doc://com.apple.compression/documentation/Compression/COMPRESSION_STREAM_FINALIZE": {
+      "abstract": [
+        {
+          "text": "Indicates that the operation will add no further input blocks to the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STREAM_FINALIZE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_stream_flags",
+          "text": "compression_stream_flags"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/COMPRESSION_STREAM_FINALIZE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STREAM_FINALIZE"
+        }
+      ],
+      "role": "symbol",
+      "title": "COMPRESSION_STREAM_FINALIZE",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_finalize"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_algorithm": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent compression algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_algorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_algorithm",
+      "type": "topic",
+      "url": "/documentation/compression/compression_algorithm"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_status": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent the status of stream compression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_status"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_status",
+      "type": "topic",
+      "url": "/documentation/compression/compression_status"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream": {
+      "abstract": [
+        {
+          "text": "A structure representing a compression stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/dst_ptr": {
+      "abstract": [
+        {
+          "text": "A pointer to the first byte of the destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dst_ptr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/dst_ptr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dst_ptr"
+        }
+      ],
+      "role": "symbol",
+      "title": "dst_ptr",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/dst_ptr"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/dst_size": {
+      "abstract": [
+        {
+          "text": "The size, in bytes, of the destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dst_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/dst_size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dst_size"
+        }
+      ],
+      "role": "symbol",
+      "title": "dst_size",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/dst_size"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/init(dst_ptr:dst_size:src_ptr:src_size:state:)": {
+      "abstract": [
+        {
+          "text": "Returns a new compression stream structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dst_ptr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dst_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "src_ptr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "src_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/init(dst_ptr:dst_size:src_ptr:src_size:state:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dst_ptr:dst_size:src_ptr:src_size:state:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/init(dst_ptr:dst_size:src_ptr:src_size:state:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/src_ptr": {
+      "abstract": [
+        {
+          "text": "A pointer to the first byte of the source buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "src_ptr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/src_ptr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "src_ptr"
+        }
+      ],
+      "role": "symbol",
+      "title": "src_ptr",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/src_ptr"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/src_size": {
+      "abstract": [
+        {
+          "text": "The size, in bytes, of the source buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "src_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/src_size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "src_size"
+        }
+      ],
+      "role": "symbol",
+      "title": "src_size",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/src_size"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream/state": {
+      "abstract": [
+        {
+          "text": "The stream state object of the compression stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream/state"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)": {
+      "abstract": [
+        {
+          "text": "Frees any memory allocated by stream initialization function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_destroy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_destroy"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_destroy(_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_flags": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent stream compression flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_flags"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_flags"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_flags",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_flags"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a compression stream for either compression or decompression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_stream_operation",
+          "text": "compression_stream_operation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_init"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_init(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_init(_:_:_:)"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_operation": {
+      "abstract": [
+        {
+          "text": "A set of values used to represent a stream compression operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_operation"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_operation"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_operation",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_operation"
+    },
+    "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs compression or decompression using an initialized compression stream structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compression_stream_process"
+        }
+      ],
+      "role": "symbol",
+      "title": "compression_stream_process(_:_:)",
+      "type": "topic",
+      "url": "/documentation/compression/compression_stream_process(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiple-step-compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+        "doc://com.apple.compression/documentation/Compression/compression_status",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+        "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+        "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+      ],
+      "title": "Multiple-step compression"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.compression/documentation/Compression/compression_stream/init(dst_ptr:dst_size:src_ptr:src_size:state:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Compression-Stream-Properties",
+      "identifiers": [
+        "doc://com.apple.compression/documentation/Compression/compression_stream/dst_ptr",
+        "doc://com.apple.compression/documentation/Compression/compression_stream/dst_size",
+        "doc://com.apple.compression/documentation/Compression/compression_stream/src_ptr",
+        "doc://com.apple.compression/documentation/Compression/compression_stream/src_size",
+        "doc://com.apple.compression/documentation/Compression/compression_stream/state"
+      ],
+      "title": "Compression Stream Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "compression_stream"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.compression/documentation/Compression"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Compression-Stream-Properties",
+              "identifiers": [
+                "doc://com.apple.compression/documentation/Compression/compression_stream/dst_ptr",
+                "doc://com.apple.compression/documentation/Compression/compression_stream/dst_size",
+                "doc://com.apple.compression/documentation/Compression/compression_stream/src_ptr",
+                "doc://com.apple.compression/documentation/Compression/compression_stream/src_size",
+                "doc://com.apple.compression/documentation/Compression/compression_stream/state"
+              ],
+              "title": "Compression Stream Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multiple-step-compression",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.compression/documentation/Compression/compression_stream_init(_:_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_process(_:_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_destroy(_:)",
+                "doc://com.apple.compression/documentation/Compression/compression_status",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_flags",
+                "doc://com.apple.compression/documentation/Compression/compression_stream_operation",
+                "doc://com.apple.compression/documentation/Compression/compression_algorithm"
+              ],
+              "title": "Multiple-step compression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "compression_stream"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_process(_:_:)/title",
+          "value": "compression_stream_process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_process(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_process"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1dst_size/title",
+          "value": "dst_size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1dst_size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dst_size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1src_size/title",
+          "value": "src_size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1src_size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "src_size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/title",
+          "value": "compression_stream_operation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_operation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_operation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_operation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/title",
+          "value": "compression_stream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1src_ptr/title",
+          "value": "src_ptr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1src_ptr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "src_ptr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_destroy(_:)/title",
+          "value": "compression_stream_destroy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_destroy(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_destroy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1COMPRESSION_STREAM_FINALIZE/title",
+          "value": "COMPRESSION_STREAM_FINALIZE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1COMPRESSION_STREAM_FINALIZE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_STREAM_FINALIZE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/title",
+          "value": "compression_stream_flags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_flags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/title",
+          "value": "compression_status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_status/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/title",
+          "value": "compression_algorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_algorithm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1COMPRESSION_STATUS_END/title",
+          "value": "COMPRESSION_STATUS_END"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1COMPRESSION_STATUS_END/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_STATUS_END"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_init(_:_:_:)/title",
+          "value": "compression_stream_init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream_init(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compression_stream_init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1dst_ptr/title",
+          "value": "dst_ptr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compression~1documentation~1Compression~1compression_stream~1dst_ptr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dst_ptr"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compression/compression_stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/compression/compression_stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

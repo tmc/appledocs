@@ -1,0 +1,790 @@
+{
+  "abstract": [
+    {
+      "text": "Add AppKit views to your SwiftUI app, or use SwiftUI views in your AppKit app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppKit-integration"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "AppKit integration"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Integrate SwiftUI with your app’s existing content using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hosting controllers to add SwiftUI views into AppKit interfaces. A hosting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controller wraps a set of SwiftUI views in a form",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can then add to your storyboard-based app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "appkit-integration-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also add AppKit views and view controllers to your SwiftUI interfaces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A representable object wraps the designated view or view controller, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "facilitates communication between the wrapped object and your SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations-PageImage-card.png": {
+      "alt": "A conceptual illustration of a disclosure indicator, shown animating frame by frame from its collapsed position to its expanded position.",
+      "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db26bd6bfe171a450c126a68c3bd92d4/Unifying-your-app-s-animations-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3559438f813d2163ecacac3918dbff5f/Unifying-your-app-s-animations-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "appkit-integration-hero": {
+      "alt": null,
+      "identifier": "appkit-integration-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/afddaf77e2520d7c1a298575a9bbf6d5/appkit-integration-hero@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController": {
+      "abstract": [
+        {
+          "text": "An AppKit view controller that hosts SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingController",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingcontroller"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu": {
+      "abstract": [
+        {
+          "text": "An AppKit menu with menu items that are defined by a SwiftUI View.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers manage aspects of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "associated window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSceneBridgingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingscenebridgingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers reflect their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content’s size into Auto Layout constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSizingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingsizingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView": {
+      "abstract": [
+        {
+          "text": "An AppKit view that hosts a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingView",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper that you use to integrate an AppKit view controller into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewControllerRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewControllerRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewControllerRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewcontrollerrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your AppKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewControllerRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewControllerRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewControllerRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewcontrollerrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper that you use to integrate an AppKit view into your SwiftUI view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your AppKit view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI views that other Apple frameworks provide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Technology-specific views",
+      "type": "topic",
+      "url": "/documentation/swiftui/technology-specific-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration": {
+      "abstract": [
+        {
+          "text": "Add UIKit views to your SwiftUI app, or use SwiftUI views in your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/uikit-integration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations": {
+      "abstract": [
+        {
+          "text": "Create a consistent UI animation experience across SwiftUI, UIKit, and AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+      "images": [
+        {
+          "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Unifying your app’s animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/unifying-your-app-s-animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration": {
+      "abstract": [
+        {
+          "text": "Add WatchKit views to your SwiftUI app, or use SwiftUI views in your WatchKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WatchKit integration",
+      "type": "topic",
+      "url": "/documentation/swiftui/watchkit-integration"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-macos": {
+      "abstract": [
+        {
+          "text": "People rely on the power, spaciousness, and flexibility of a Mac as they perform in-depth productivity tasks, view media or content, and play games, often using several apps at once.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-macos",
+      "images": [
+        {
+          "identifier": "macos.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-macos-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for macOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-macos"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "macos.svg": {
+      "alt": null,
+      "identifier": "macos.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "macos",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9cfd7b3f84bbabf333f2d80741391d29/macos.svg"
+        }
+      ]
+    },
+    "platforms-designing-for-macos-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-macos-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d989c24bb6f6d5fda36a354e7a839b1/platforms-designing-for-macos-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b715538f806950fbc3d37fb8a07c5f8/platforms-designing-for-macos-thumbnail@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Framework-integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIKit-integration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WatchKit-integration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Technology-specific-views"
+      ],
+      "title": "Framework integration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Displaying-SwiftUI-views-in-AppKit",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions"
+      ],
+      "title": "Displaying SwiftUI views in AppKit"
+    },
+    {
+      "anchor": "Adding-AppKit-views-to-SwiftUI-view-hierarchies",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentableContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentableContext"
+      ],
+      "title": "Adding AppKit views to SwiftUI view hierarchies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/appkit-integration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

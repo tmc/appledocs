@@ -1,0 +1,2665 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that converts between floating-point values and their textual representations.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3766682,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation24FloatingPointFormatStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "FloatingPointFormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Structure",
+    "symbolKind": "struct",
+    "title": "FloatingPointFormatStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FloatingPointFormatStyle"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation24FloatingPointFormatStyleV5Valuexmfp",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation24FloatingPointFormatStyleV5Valuexmfp",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SB",
+              "text": "BinaryFloatingPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " create localized, human-readable text from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " numbers and parse string representations of numbers into instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " types. All of the Swift standard library’s floating-point types, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Float80",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and therefore work with this format style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes two nested types, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/percent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for working with percentages and currencies, respectively. Each format style includes a configuration that determines how it represents numeric values, for things like grouping, displaying signs, and variant presentations like scientific notation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/percent",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can customize numeric formatting for a style by adjusting its backing configuration. The system automatically caches unique configurations of a format style to enhance performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Foundation provides another format style type, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", for working with numbers that conform to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For Foundation’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " type, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4109976",
+          "level": 3,
+          "text": "Formatting floating-point values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a string representation of a floating-point value using the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let formattedDefault = 12345.67.formatted()",
+            "// formattedDefault is \"12,345.67\" in the en_US locale.",
+            "// Other locales may use different separator and grouping behavior."
+          ],
+          "metadata": {
+            "anchor": "4109974",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify a format style by providing an argument to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted(_:)-4ksqj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The following example shows the number ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represented in each of the available styles, in the ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locale:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let number = 0.1",
+            "",
+            "let formattedNumber = number.formatted(.number)",
+            "// formattedNumber is \"0.1\".",
+            "",
+            "let formattedPercent = number.formatted(.percent)",
+            "// formattedPercent is \"10%\".",
+            "",
+            "let formattedCurrency = number.formatted(.currency(code: \"USD\"))",
+            "// formattedCurrency is \"$0.10\"."
+          ],
+          "metadata": {
+            "anchor": "4109983",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each style provides methods for updating its numeric configuration, including the number of significant digits, grouping length, and more. You can specify a numeric configuration by calling as many of these methods as you need in any order you choose. The following example shows the same number with default and custom configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let exampleNumber = 123456.78",
+            "",
+            "let defaultFormatting = exampleNumber.formatted(.number)",
+            "// defaultFormatting is \"123 456,78\" for the \"fr_FR\" locale.",
+            "// defaultFormatting is \"123,456.78\" for the \"en_US\" locale.",
+            "",
+            "let customFormatting = exampleNumber.formatted(",
+            "    .number",
+            "        .grouping(.never)",
+            "        .sign(strategy: .always()))",
+            "// customFormatting is \"+123456.78\""
+          ],
+          "metadata": {
+            "anchor": "4109984",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4109981",
+          "level": 3,
+          "text": "Creating a floating-point format style instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous examples use static factory methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create format styles within the call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted(_:)-4ksqj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can also create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and use it to repeatedly format different values, with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766750-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let percentFormatStyle = FloatingPointFormatStyle<Double>.Percent()",
+            "",
+            "percentFormatStyle.format(0.5) // \"50%\"",
+            "percentFormatStyle.format(0.855) // \"85.5%\"",
+            "percentFormatStyle.format(1.0) // \"100%\"",
+            ""
+          ],
+          "metadata": {
+            "anchor": "4109977",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4109980",
+          "level": 3,
+          "text": "Parsing floating-point values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to parse strings into floating-point values. You can define the format style within the type’s initializer or pass in a format style created outside the function, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let price = try? Double(\"$3,500.63\",",
+            "                         format: .currency(code: \"USD\")) // 3500.63",
+            "",
+            "let priceFormatStyle = FloatingPointFormatStyle<Double>.Currency(code: \"USD\")",
+            "let salePrice = try? Double(\"$731.67\",",
+            "                             format: priceFormatStyle) // 731.67"
+          ],
+          "metadata": {
+            "anchor": "4109979",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4109975",
+          "level": 3,
+          "text": "Matching regular expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with parsing numeric values in strings, you can use theSwift regular expression domain-specific language to match and capture numeric substrings. The following example defines a percentage format style to match a percentage value using ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " numeric conventions. The rest of the regular expression ignores any characters prior to a ",
+              "type": "text"
+            },
+            {
+              "code": "\": \"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sequence that precedes the percentage substring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RegexBuilder",
+            "let source = \"Percentage complete: 55.1%\"",
+            "let matcher = Regex {",
+            "    OneOrMore(.any)",
+            "    \": \"",
+            "    Capture {",
+            "        One(.localizedDoublePercentage(locale: Locale(identifier: \"en_US\")))",
+            "    }",
+            "}",
+            "let match = source.firstMatch(of: matcher)",
+            "let localizedPercentage = match?.1",
+            "print(\"\\(localizedPercentage!)\") // 0.551"
+          ],
+          "metadata": {
+            "anchor": "4109982",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted()": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint/formatted()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted(_:)-4ksqj": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint/formatted(_:)-4ksqj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint/formatted(_:)-4ksqj"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryInteger",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomConsumingRegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/customconsumingregexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/swift/float"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float80": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float80",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float80",
+      "type": "topic",
+      "url": "/documentation/swift/float80"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CurrencyFormatStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/currencyformatstyleconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations": {
+      "abstract": [
+        {
+          "text": "Behaviors for traits like numeric precision, rounding, and scale, used for formatting and parsing numeric values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Format Style Configurations",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting/format_style_configurations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between decimal values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between floating-point values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109974": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109974",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109974"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109977": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109977",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109977"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109979": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109979",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109979"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109982": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109982",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109982"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109983": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109983",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109983"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109984": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle#4109984",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/floatingpointformatstyle#4109984"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766683": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>, FloatingPointFormatStyle<Value>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766683",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766683"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766684": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>, FloatingPointFormatStyle<Value>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766684",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766684"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766748-decimalseparator": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified decimal separator display strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimalSeparator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Value>.Configuration.DecimalSeparatorDisplayStrategy) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766748-decimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalSeparator(strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766748-decimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766749-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766749-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766749-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766750-format": {
+      "abstract": [
+        {
+          "text": "Formats a floating-point value, using this style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": "(Value) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766750-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766750-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766751-grouping": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified grouping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "grouping"
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>.Configuration.Grouping) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766751-grouping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "grouping(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766751-grouping"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766752-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766752-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766752-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766753-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766753-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766753-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766754-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766754-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766754-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766755-init": {
+      "abstract": [
+        {
+          "text": "Creates a floating-point format style that uses the given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766755-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766755-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766756-locale": {
+      "abstract": [
+        {
+          "text": "The locale of the format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766756-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766756-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "notation"
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>.Configuration.Notation) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notation(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766757-notation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766758-precision": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": "(FloatingPointFormatStyle<Value>.Configuration.Precision) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766758-precision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precision(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766758-precision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766759-rounded": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified rounding rule and increment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rounded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rule"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Value>.Configuration.RoundingRule, "
+        },
+        {
+          "kind": "identifier",
+          "text": "increment"
+        },
+        {
+          "kind": "text",
+          "text": ": Double?) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766759-rounded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rounded(rule:increment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766759-rounded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766760-scale": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": "(Double) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766760-scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766760-scale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766761-sign": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified sign display strategy for displaying or omitting sign symbols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Value>.Configuration.SignDisplayStrategy) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766761-sign",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sign(strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3766761-sign"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796498-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<MemberStyle, Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "memberStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": MemberStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.Width) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796498-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(memberStyle:type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3796498-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796499-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.Width) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796499-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3796499-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870080-attributed": {
+      "abstract": [
+        {
+          "text": "An attributed format style based on the floating-point format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributed"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Value>.Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870080-attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870080-attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870081-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use floating-point currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870081-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870081-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870082-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use integer currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<V>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870082-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870082-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870083-locale": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870083-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870083-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870084-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format temperature units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitTemperature>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitTemperature>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesScaleName"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870084-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:hidesScaleName:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870084-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870085-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format measurement units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<UnitType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitType>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitType>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870085-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870085-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number": {
+      "abstract": [
+        {
+          "text": "A floating-point format style instance for use with the Swift standard double-precision floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870086-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870087-number": {
+      "abstract": [
+        {
+          "text": "A floating-point format style instance for use with the Swift standard single-precision floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Float>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870087-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870087-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870088-number": {
+      "abstract": [
+        {
+          "text": "A floating-point format style instance for use with 16-bit floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Float16>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870088-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870088-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870089-parsestrategy": {
+      "abstract": [
+        {
+          "text": "The parse strategy that this format style uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parseStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointParseStrategy<FloatingPointFormatStyle<Value>>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870089-parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/3870089-parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020148-consuming": {
+      "abstract": [
+        {
+          "text": "Process the input string within the specified bounds, beginning at the given index, and return the end position (upper bound) of the match and the produced output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<String.Index>) -> ("
+        },
+        {
+          "kind": "identifier",
+          "text": "upperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": Value)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020148-consuming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "consuming(_:startingAt:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/4020148-consuming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020153-regex": {
+      "abstract": [
+        {
+          "text": "The regular expression represented by this component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "regex"
+        },
+        {
+          "kind": "text",
+          "text": ": Regex<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020153-regex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regex",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/4020153-regex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4049226-localizeddouble": {
+      "abstract": [
+        {
+          "text": "Creates a localized floating-point format style that uses the given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDouble"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale) -> FloatingPointFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4049226-localizeddouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedDouble(locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/4049226-localizeddouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/attributed": {
+      "abstract": [
+        {
+          "text": "A format style that converts integers into attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.Attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/configuration": {
+      "abstract": [
+        {
+          "text": "The type the format style uses for configuration settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/configuration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency": {
+      "abstract": [
+        {
+          "text": "A format style that converts between floating-point currency values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.Currency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.Currency",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatinput": {
+      "abstract": [
+        {
+          "text": "The type of data to format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatoutput": {
+      "abstract": [
+        {
+          "text": "The type of the formatted data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.FormatOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/formatoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/percent": {
+      "abstract": [
+        {
+          "text": "A format style that converts between floating-point percentage values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.Percent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/percent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.Percent",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/percent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/regexoutput": {
+      "abstract": [
+        {
+          "text": "The output type when you use this format style to match substrings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.RegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/regexoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.RegexOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/regexoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/strategy": {
+      "abstract": [
+        {
+          "text": "The type of parse strategy used by this format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle.Strategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle.Strategy",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle/strategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating floating-point values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that converts a given data type into a representation in another type, such as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext": {
+      "abstract": [
+        {
+          "text": "The capitalization formatting context used when formatting dates and times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyleCapitalizationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyleCapitalizationContext",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstylecapitalizationcontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between integer values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle": {
+      "abstract": [
+        {
+          "text": "A type that formats lists of items with a separator and conjunction appropriate for a given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ListFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ListFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that provides localized representations of measurements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "UnitType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Dimension",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Measurement.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Measurement.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/measurement/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration settings for formatting numbers of different types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumberFormatStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatstyleconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parseableformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseableFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/parseableformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stringstyle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stringstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StringStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/stringstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between URL instances and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/stringstyle",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations"
+      ],
+      "title": "Data formatting in Swift"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3793388",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766755-init",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4049226-localizeddouble",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870086-number",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870087-number",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870088-number"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a floating-point format style"
+    },
+    {
+      "anchor": "4098602",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766750-format"
+      ],
+      "kind": "taskGroup",
+      "title": "Formatting floating-point values"
+    },
+    {
+      "anchor": "3793390",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766748-decimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766751-grouping",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870083-locale",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766757-notation",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766758-precision",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766759-rounded",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766760-scale",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766761-sign",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/configuration",
+        "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing style behavior"
+    },
+    {
+      "anchor": "3798509",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766756-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing style locale"
+    },
+    {
+      "anchor": "3798510",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870082-currency",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870081-currency",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying currency styles"
+    },
+    {
+      "anchor": "3798523",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870085-measurement",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870084-measurement",
+        "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying measurement styles"
+    },
+    {
+      "anchor": "3798512",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796498-list",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3796499-list",
+        "doc://com.apple.documentation/documentation/foundation/listformatstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying list styles"
+    },
+    {
+      "anchor": "4098595",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870080-attributed",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/attributed"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating attributed strings"
+    },
+    {
+      "anchor": "3793395",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3870089-parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointparsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Parsing floating-point numbers"
+    },
+    {
+      "anchor": "4098600",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020153-regex",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/4020148-consuming"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating floating-point numbers with regular expressions"
+    },
+    {
+      "anchor": "3793392",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766754-init",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766749-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "3793387",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766752-hash",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766753-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "3793396",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766684",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/3766683"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing floating-point format styles"
+    },
+    {
+      "anchor": "4098601",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatinput",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/formatoutput",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/strategy",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/regexoutput",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/currency",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle/percent"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/floatingpointformatstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

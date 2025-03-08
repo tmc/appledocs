@@ -1,0 +1,926 @@
+{
+  "abstract": [
+    {
+      "text": "Model your app’s objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/modeling-data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/configuring-entities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Entities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An entity describes an object, including its name, attributes, and relationships. Create an entity for each of your app’s objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Entities",
+          "level": 3,
+          "text": "Add Entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create a Core Data model as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", add an entity to your project’s ",
+              "type": "text"
+            },
+            {
+              "code": ".xcdatamodeld",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Add Entity at the bottom of the editor area. A new entity with placeholder name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Entity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " appears in the Entities list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Entities list, double-click the newly added entity and rename it. This step updates both the entity name and class name visible in the Data Model inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842665",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the required name and class name fields, entities have a default setting for the required code generation field. If you need to add inheritance, unique constraints, versioning, or other optional information, configure your entity as described below. Otherwise, add the properties that compose your entity as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Entities",
+          "level": 3,
+          "text": "Configure Entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the data model inspector (choose View > Inspectors > Show Data Model Inspector) to configure your entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the entity in the managed object model. This field reflects the name shown in the Entities list.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Entity Name",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select the Abstract Entity checkbox if you won’t create any instances of the entity—for example, if it exists only as a parent entity that must never be instantiated directly. By default, this option is unselected, resulting in a concrete entity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Abstract Entity",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you have a number of similar entities, you can define the common properties in a parent entity, and have child entities inherit those properties. By default, this field is blank.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Parent Entity",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the class you’ll use when creating managed object instances from this entity. By default, the class name mirrors the entity name; however, if you change the class name, the entity name doesn’t reflect the changes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Class Name",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The module where the class for this entity resides. By default, Core Data locates class files in the global namespace.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Module",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Choose a code generation option for generating managed object subclass and properties files to support your entity. By default, this option is set to Class Definition, and Core Data generates both files for you automatically.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Codegen",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the options for code generation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/generating-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "After adding attributes as shown in ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", optionally enter the name of an attribute (or comma-separated list of attributes) to serve as unique constraints on the entity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Constraints",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unique constraints prevent duplicate records in the store. When saving a new record, the store checks whether any record already exists with the same value for the constrained attribute. In the case of a conflict, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMergePolicyType/mergeByPropertyObjectTrumpMergePolicyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " causes the new record to overwrite all fields in the existing record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " that Core Spotlight uses to display an instance of this entity. This expression may include keypaths,  language functions like ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/String/lowercased()",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/String/uppercased()",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", and custom functions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Spotlight Display Name",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary in which you can optionally store any application-specific information related to the entity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "User Info",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provide a hash modifier when maintaining multiple model versions if the structure of an entity is the same, but the format or content of its data has changed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Versioning Hash Modifier",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provide a renaming ID if you rename an entity between model versions. Set the renaming identifier in the new model to the name of the corresponding entity in the previous model.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Versioning Renaming ID",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSMergePolicyType/mergeByPropertyObjectTrumpMergePolicyType": {
+      "abstract": [
+        {
+          "text": "A property-based merge policy that applies in-memory changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeByPropertyObjectTrumpMergePolicyType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMergePolicyType/mergeByPropertyObjectTrumpMergePolicyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMergeByPropertyObjectTrumpMergePolicyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmergepolicytype/mergebypropertyobjecttrumpmergepolicytype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-attributes": {
+      "abstract": [
+        {
+          "text": "Describe the properties that compose an entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Attributes",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-attributes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-relationships": {
+      "abstract": [
+        {
+          "text": "Specify how entities relate and how change propagates between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Relationships",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-relationships"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model": {
+      "abstract": [
+        {
+          "text": "Define your app’s object structure with a data model file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/creating-a-core-data-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Data model",
+      "type": "topic",
+      "url": "/documentation/coredata/creating-a-core-data-model"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/generating-code": {
+      "abstract": [
+        {
+          "text": "Automatically or manually generate managed object subclasses from entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/generating-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating code",
+      "type": "topic",
+      "url": "/documentation/coredata/generating-code"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically": {
+      "abstract": [
+        {
+          "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your data model automatically",
+      "type": "topic",
+      "url": "/documentation/coredata/migrating-your-data-model-automatically"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/modeling-data": {
+      "abstract": [
+        {
+          "text": "Configure the data model file to contain your app’s object graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/modeling-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Modeling data",
+      "type": "topic",
+      "url": "/documentation/coredata/modeling-data"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/lowercased()": {
+      "abstract": [
+        {
+          "text": "Returns a lowercase version of the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowercased"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/lowercased()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercased()",
+      "type": "topic",
+      "url": "/documentation/Swift/String/lowercased()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/uppercased()": {
+      "abstract": [
+        {
+          "text": "Returns an uppercase version of the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uppercased"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/uppercased()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercased()",
+      "type": "topic",
+      "url": "/documentation/Swift/String/uppercased()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3842665": {
+      "alt": "A screenshot of Xcode’s Data Model editor, highlighting the Entities list on the left, the Data Model inspector on the right, and the Add Entity button in the toolbar at the bottom.",
+      "identifier": "media-3842665",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03b919c6f4246db81536152209fc34e2/media-3842665@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd237e8c3d7b6b298243ec304626f5a1/media-3842665~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-a-Core-Data-Model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+        "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+        "doc://com.apple.coredata/documentation/CoreData/generating-code"
+      ],
+      "title": "Configuring a Core Data Model"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-Core-Data-Model",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+                "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+                "doc://com.apple.coredata/documentation/CoreData/generating-code"
+              ],
+              "title": "Configuring a Core Data Model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMergePolicyType~1mergeByPropertyObjectTrumpMergePolicyType/title",
+          "value": "NSMergeByPropertyObjectTrumpMergePolicyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMergePolicyType~1mergeByPropertyObjectTrumpMergePolicyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMergeByPropertyObjectTrumpMergePolicyType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/configuring-entities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/configuring-entities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

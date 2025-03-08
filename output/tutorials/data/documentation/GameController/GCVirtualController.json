@@ -1,0 +1,1634 @@
+{
+  "abstract": [
+    {
+      "text": "A software emulation of a real controller that you configure specifically for your game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GCVirtualController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GCVirtualController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GCVirtualController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GCVirtualController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a virtual controller to display software controls that you can customize over your game. You create a virtual controller from a configuration where you choose the input elements to display. You can even customize the images for the elements. When you connect the controller to the device, users interact with it similarly to a real controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3830787",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a virtual controller to your game, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object containing the elements you want to appear in the controller. Then create the virtual controller by passing the configuration to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/init(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to display the virtual controller on the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize an element in the virtual controller, pass a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/ElementConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for the element to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You process input from a virtual controller similarly to a real controller. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/controller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to get the underlying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. You can either poll the elements of the controller object or set the element’s handlers to get callbacks when their input values change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController": {
+      "abstract": [
+        {
+          "text": "A software emulation of a real controller that you configure specifically for your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration": {
+      "abstract": [
+        {
+          "text": "The configuration of a virtual controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController.Configuration",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/configuration"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/ElementConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a virtual controller’s element that you can customize.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ElementConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/ElementConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ElementConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController.ElementConfiguration",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)": {
+      "abstract": [
+        {
+          "text": "Connects the virtual controller to the device and displays it on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectWithReplyHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connect(replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/connect(replyhandler:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/controller": {
+      "abstract": [
+        {
+          "text": "The underlying controller object that you use to access input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCController",
+          "text": "GCController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/controller",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "controller"
+        }
+      ],
+      "role": "symbol",
+      "title": "controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/controller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/disconnect()": {
+      "abstract": [
+        {
+          "text": "Disconnects the virtual controller from the device and removes it from the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/disconnect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "disconnect()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/disconnect()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a new virtual controller using the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualController",
+          "text": "GCVirtualController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualControllerConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/init(configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/init(configuration:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setPosition(_:forDirectionPadElement:)": {
+      "abstract": [
+        {
+          "text": "Changes the value of a directional pad element in the virtual controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDirectionPadElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setPosition(_:forDirectionPadElement:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPosition:forDirectionPadElement:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPosition(_:forDirectionPadElement:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/setposition(_:fordirectionpadelement:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)": {
+      "abstract": [
+        {
+          "text": "Changes the value of a button element in the virtual controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forButtonElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setValue:forButtonElement:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setValue(_:forButtonElement:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/setvalue(_:forbuttonelement:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)": {
+      "abstract": [
+        {
+          "text": "Changes the configuration for one of the virtual controller’s input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualController",
+          "text": "GCVirtualController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualControllerElementConfiguration",
+          "text": "ElementConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualController",
+          "text": "GCVirtualController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualControllerElementConfiguration",
+          "text": "ElementConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateConfigurationForElement:configuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateConfiguration(forElement:configuration:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/updateconfiguration(forelement:configuration:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:": {
+      "abstract": [
+        {
+          "text": "Creates a new virtual controller using the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "virtualControllerWithConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualControllerWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "virtualControllerWithConfiguration:",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/virtualcontrollerwithconfiguration:"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios": {
+      "abstract": [
+        {
+          "text": "Use touch input and virtual controllers to make your game available to players without controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding touch controls to games that support game controllers in iOS",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3830787": {
+      "alt": "Screenshot of a virtual controller showing left and right thumbsticks with A and B buttons on the right thumbstick.",
+      "identifier": "media-3830787",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/028437930f5ac469e6f776b5673ad0f2/media-3830787@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Touch-controller",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+      ],
+      "title": "Touch controller"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-virtual-controllers",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/init(configuration:)",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration"
+      ],
+      "title": "Creating virtual controllers"
+    },
+    {
+      "anchor": "Customizing-the-elements",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/ElementConfiguration"
+      ],
+      "title": "Customizing the elements"
+    },
+    {
+      "anchor": "Accessing-the-elements",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/controller"
+      ],
+      "title": "Accessing the elements"
+    },
+    {
+      "anchor": "Connecting-and-displaying-virtual-controllers",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/disconnect()"
+      ],
+      "title": "Connecting and displaying virtual controllers"
+    },
+    {
+      "anchor": "Presenting-a-custom-interface",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setPosition(_:forDirectionPadElement:)",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)"
+      ],
+      "title": "Presenting a custom interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GCVirtualController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamecontroller/documentation/GameController"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-virtual-controllers",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/init(configuration:)",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration"
+              ],
+              "title": "Creating virtual controllers"
+            },
+            {
+              "anchor": "Customizing-the-elements",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/ElementConfiguration"
+              ],
+              "title": "Customizing the elements"
+            },
+            {
+              "anchor": "Accessing-the-elements",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/controller"
+              ],
+              "title": "Accessing the elements"
+            },
+            {
+              "anchor": "Connecting-and-displaying-virtual-controllers",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/disconnect()"
+              ],
+              "title": "Connecting and displaying virtual controllers"
+            },
+            {
+              "anchor": "Presenting-a-custom-interface",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setPosition(_:forDirectionPadElement:)",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)"
+              ],
+              "title": "Presenting a custom interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Touch-controller",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+              ],
+              "title": "Touch controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GCVirtualController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1updateConfiguration(forElement:configuration:)/title",
+          "value": "updateConfigurationForElement:configuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1updateConfiguration(forElement:configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateConfigurationForElement:configuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1setPosition(_:forDirectionPadElement:)/title",
+          "value": "setPosition:forDirectionPadElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1setPosition(_:forDirectionPadElement:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPosition:forDirectionPadElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1connect(replyHandler:)/title",
+          "value": "connectWithReplyHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1connect(replyHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "connectWithReplyHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1controller/title",
+          "value": "controller"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1controller/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/title",
+          "value": "GCVirtualControllerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1disconnect()/title",
+          "value": "disconnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1disconnect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "disconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/title",
+          "value": "GCController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/title",
+          "value": "GCVirtualController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1ElementConfiguration/title",
+          "value": "GCVirtualControllerElementConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1ElementConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerElementConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1ElementConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerElementConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1setValue(_:forButtonElement:)/title",
+          "value": "setValue:forButtonElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1setValue(_:forButtonElement:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setValue:forButtonElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1init(configuration:)/title",
+          "value": "initWithConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1init(configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithConfiguration:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcvirtualcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcvirtualcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

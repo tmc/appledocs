@@ -1,0 +1,2059 @@
+{
+  "abstract": [
+    {
+      "text": "Provide space-efficient, context-dependent access to commands and controls.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Menus and commands"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a menu to provide people with easy access to common commands. You can add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items to a macOS app’s menu bar using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, or create context menus that people reveal near their current task",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "menus-and-commands-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create submenus by nesting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances inside others. Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view to create a separator between menu elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-menus-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-menus-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e7d9070f2a63e408a5246c51c1ba372/components-menus-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d891f3d082ca3de50c15a62208d6fe1/components-menus-thumbnail@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations": {
+      "abstract": [
+        {
+          "text": "Create smooth visual updates in response to state changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroup": {
+      "abstract": [
+        {
+          "text": "Groups of controls that you can add to existing command menus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommandGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/commandgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroupPlacement": {
+      "abstract": [
+        {
+          "text": "The standard locations that you can place new command groups relative to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandGroupPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroupPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandGroupPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommandGroupPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/commandgroupplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu": {
+      "abstract": [
+        {
+          "text": "Command menus are stand-alone, top-level containers for controls that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "perform related, app-specific commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommandMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/commandmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Commands": {
+      "abstract": [
+        {
+          "text": "Conforming types represent a group of related commands that can be exposed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the user via the main menu on macOS and key commands on iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Commands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Commands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Commands"
+        }
+      ],
+      "role": "symbol",
+      "title": "Commands",
+      "type": "topic",
+      "url": "/documentation/swiftui/commands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandsBuilder": {
+      "abstract": [
+        {
+          "text": "Constructs command sets from multi-expression closures. Like ",
+          "type": "text"
+        },
+        {
+          "code": "ViewBuilder",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "it supports up to ten expressions in the closure body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandsBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandsBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandsBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommandsBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/commandsbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContextMenu": {
+      "abstract": [
+        {
+          "text": "A container for views that you present as menu items in a context menu.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContextMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContextMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/contextmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Controls-and-indicators": {
+      "abstract": [
+        {
+          "text": "Display values and get user selections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Controls-and-indicators",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Controls and indicators",
+      "type": "topic",
+      "url": "/documentation/swiftui/controls-and-indicators"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider": {
+      "abstract": [
+        {
+          "text": "A visual element that can be used to separate other content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "role": "symbol",
+      "title": "Divider",
+      "type": "topic",
+      "url": "/documentation/swiftui/divider"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics": {
+      "abstract": [
+        {
+          "text": "Enhance your views with graphical effects and customized drawings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drawing and graphics",
+      "type": "topic",
+      "url": "/documentation/swiftui/drawing-and-graphics"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyCommands": {
+      "abstract": [
+        {
+          "text": "An empty group of commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptycommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuIndicatorVisibility": {
+      "abstract": [
+        {
+          "text": "The menu indicator visibility to apply to controls within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuIndicatorVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuIndicatorVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuIndicatorVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/menuindicatorvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuOrder": {
+      "abstract": [
+        {
+          "text": "The preferred order of items for menus presented from this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9MenuOrderV",
+          "text": "MenuOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuOrder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuOrder",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/menuorder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Images": {
+      "abstract": [
+        {
+          "text": "Add images and symbols to your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images",
+      "type": "topic",
+      "url": "/documentation/swiftui/images"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImportFromDevicesCommands": {
+      "abstract": [
+        {
+          "text": "A built-in set of commands that enables importing content from nearby",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImportFromDevicesCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImportFromDevicesCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImportFromDevicesCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImportFromDevicesCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/importfromdevicescommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/InspectorCommands": {
+      "abstract": [
+        {
+          "text": "A built-in set of commands for manipulating inspectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InspectorCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/InspectorCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InspectorCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "InspectorCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/inspectorcommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Menu": {
+      "abstract": [
+        {
+          "text": "A control for presenting a menu of actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Menu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Menu"
+        }
+      ],
+      "role": "symbol",
+      "title": "Menu",
+      "type": "topic",
+      "url": "/documentation/swiftui/menu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuActionDismissBehavior": {
+      "abstract": [
+        {
+          "text": "The set of menu dismissal behavior options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuActionDismissBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuActionDismissBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuActionDismissBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuActionDismissBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/menuactiondismissbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuButton": {
+      "abstract": [
+        {
+          "text": "A button that displays a menu containing a list of choices when pressed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/menubutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuOrder": {
+      "abstract": [
+        {
+          "text": "The order in which a menu presents its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuOrder",
+      "type": "topic",
+      "url": "/documentation/swiftui/menuorder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PullDownButton": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PullDownButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PullDownButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PullDownButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PullDownButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/pulldownbutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)": {
+      "abstract": [
+        {
+          "text": "Adds commands to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commands"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commands(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commands(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()": {
+      "abstract": [
+        {
+          "text": "Removes all commands defined by the modified scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandsRemoved"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandsRemoved()",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commandsremoved()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)": {
+      "abstract": [
+        {
+          "text": "Replaces all commands defined by the modified scene with the commands",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from the builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandsReplaced"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandsReplaced(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commandsreplaced(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes": {
+      "abstract": [
+        {
+          "text": "Trace and fill built-in and custom shapes with a color, gradient, or other pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shapes",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarCommands": {
+      "abstract": [
+        {
+          "text": "A built-in set of commands for manipulating window sidebars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SidebarCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SidebarCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "SidebarCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/sidebarcommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output": {
+      "abstract": [
+        {
+          "text": "Display formatted text and get text input from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text input and output",
+      "type": "topic",
+      "url": "/documentation/swiftui/text-input-and-output"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditingCommands": {
+      "abstract": [
+        {
+          "text": "A built-in group of commands for searching, editing, and transforming",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "selections of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextEditingCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditingCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextEditingCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextEditingCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/texteditingcommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFormattingCommands": {
+      "abstract": [
+        {
+          "text": "A built-in set of commands for transforming the styles applied to selections",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextFormattingCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFormattingCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextFormattingCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextFormattingCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/textformattingcommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarCommands": {
+      "abstract": [
+        {
+          "text": "A built-in set of commands for manipulating window toolbars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarCommands"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarCommands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarCommands"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarCommands",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbarcommands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration": {
+      "abstract": [
+        {
+          "text": "Adjust the characteristics of views in a hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View configuration",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-configuration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles": {
+      "abstract": [
+        {
+          "text": "Apply built-in and custom appearances and behaviors to different types of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View styles",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-styles"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)": {
+      "abstract": [
+        {
+          "text": "Adds an item-based context menu to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSelectionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "menu"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(forSelectionType:menu:primaryAction:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(forselectiontype:menu:primaryaction:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)": {
+      "abstract": [
+        {
+          "text": "Adds a context menu to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "MenuItems"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "menuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "MenuItems"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(menuItems:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(menuitems:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)": {
+      "abstract": [
+        {
+          "text": "Adds a context menu with a custom preview to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "menuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(menuItems:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(menuitems:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuActionDismissBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Tells a menu whether to dismiss after performing an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuActionDismissBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25MenuActionDismissBehaviorV",
+          "text": "MenuActionDismissBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuActionDismissBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuActionDismissBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/menuactiondismissbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuIndicator(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the menu indicator visibility for controls within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuIndicator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuIndicator(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuIndicator(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/menuindicator(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuOrder(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred order of items for menus presented from this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuOrder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9MenuOrderV",
+          "text": "MenuOrder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuOrder(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuOrder(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/menuorder(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for menus within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/menustyle(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus": {
+      "abstract": [
+        {
+          "text": "A menu reveals its options when people interact with it, making it a space-efficient way to present commands in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus",
+      "images": [
+        {
+          "identifier": "components-menus-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Menus",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/menus"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "menus-and-commands-hero": {
+      "alt": null,
+      "identifier": "menus-and-commands-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfe1ae858d3f19de19a190f122aaf44a/menus-and-commands-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Images",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Controls-and-indicators",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics"
+      ],
+      "title": "Views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-menu",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Menu",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)"
+      ],
+      "title": "Creating a menu"
+    },
+    {
+      "anchor": "Creating-context-menus",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)"
+      ],
+      "title": "Creating context menus"
+    },
+    {
+      "anchor": "Defining-commands",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Commands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandsBuilder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandGroupPlacement"
+      ],
+      "title": "Defining commands"
+    },
+    {
+      "anchor": "Getting-built-in-command-groups",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditingCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFormattingCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ImportFromDevicesCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/InspectorCommands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyCommands"
+      ],
+      "title": "Getting built-in command groups"
+    },
+    {
+      "anchor": "Showing-a-menu-indicator",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuIndicator(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuIndicatorVisibility"
+      ],
+      "title": "Showing a menu indicator"
+    },
+    {
+      "anchor": "Configuring-menu-dismissal",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuActionDismissBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuActionDismissBehavior"
+      ],
+      "title": "Configuring menu dismissal"
+    },
+    {
+      "anchor": "Setting-a-preferred-order",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuOrder(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/menuOrder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuOrder"
+      ],
+      "title": "Setting a preferred order"
+    },
+    {
+      "anchor": "Deprecated-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PullDownButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ContextMenu"
+      ],
+      "title": "Deprecated types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/menus-and-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

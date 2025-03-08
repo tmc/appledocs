@@ -1,0 +1,1491 @@
+{
+  "abstract": [
+    {
+      "text": "An object that indicates how to store preferences for multiple people on a shared device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)TVUserManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TVUserManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TVUserManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "TVUserManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some apps rely on profiles to maintain separate information for each person who uses a shared device, such as a video content app that retains which shows they watch. To avoid interrupting people with a profile picker each time they launch your app, you can save and retrieve the current user’s selection on a shared device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To create a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object, add the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " capability to your app or app extension in Xcode, and select the Runs as Current User, Only When User-Independent Keychain is Available option. This enables the system to take care of separating each user’s data for your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the current user’s profile, first check ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If that value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", display the profile picker to determine which profile to use for the current session, but don’t save the selected profile. If the value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and there isn’t a saved profile in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", display the profile picker and save the selected profile for future use. If the value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and there’s already a saved profile, skip the prompt and use the saved profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management": {
+      "abstract": [
+        {
+          "text": "The entitlement for distinguishing between multiple user accounts on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "User Management Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.user-management"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVAppProfileDescriptor": {
+      "abstract": [
+        {
+          "text": "A model object that you use to represent an app-specific profile.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVAppProfileDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVAppProfileDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVAppProfileDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVAppProfileDescriptor",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvappprofiledescriptor"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique string for differentiating between accounts on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVUserIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVUserIdentifier",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvuseridentifier"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager": {
+      "abstract": [
+        {
+          "text": "An object that indicates how to store preferences for multiple people on a shared device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVUserManager",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier representing the currently active Apple TV user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentUserIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TVUserIdentifier",
+          "text": "TVUserIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentUserIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentUserIdentifier",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/currentuseridentifier"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifierDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "The notification the system sends when a different user becomes current.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentUserIdentifierDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifierDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserManagerCurrentUserIdentifierDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentUserIdentifierDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/currentuseridentifierdidchangenotification"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a user-to-profile configuration panel, which lets the user specify their preferred profile.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentProfilePreferencePanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "currentSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TVUserIdentifier",
+          "text": "TVUserIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVAppProfileDescriptor",
+          "text": "TVAppProfileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "availableProfiles"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVAppProfileDescriptor",
+          "text": "TVAppProfileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TVUserIdentifier",
+          "text": "TVUserIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVAppProfileDescriptor",
+          "text": "TVAppProfileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentProfilePreferencePanelWithCurrentSettings:availableProfiles:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/presentprofilepreferencepanel(currentsettings:availableprofiles:completion:)"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferenceForCurrentUser(to:completion:)": {
+      "abstract": [
+        {
+          "text": "Prompts the user to save the specified profile as the preferred profile for the current user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldStorePreferenceForCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVAppProfileDescriptor",
+          "text": "TVAppProfileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferenceForCurrentUser(to:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldStorePreferenceForCurrentUserToProfile:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldStorePreferenceForCurrentUser(to:completion:)",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/shouldstorepreferenceforcurrentuser(to:completion:)"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app needs to retain a selected profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldStorePreferencesForCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldStorePreferencesForCurrentUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldStorePreferencesForCurrentUser",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/shouldstorepreferencesforcurrentuser"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/userIdentifiersForCurrentProfile": {
+      "abstract": [
+        {
+          "text": "An array of system user identifiers that you associated with the current app-specific profile.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userIdentifiersForCurrentProfile"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TVUserIdentifier",
+          "text": "TVUserIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/userIdentifiersForCurrentProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userIdentifiersForCurrentProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "userIdentifiersForCurrentProfile",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager/useridentifiersforcurrentprofile"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles": {
+      "abstract": [
+        {
+          "text": "Adapt the content of your app for the current viewer by using an entitlement and simplifying sign-in flows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Mapping Apple TV users to app profiles",
+      "type": "topic",
+      "url": "/documentation/tvservices/mapping-apple-tv-users-to-app-profiles"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv": {
+      "abstract": [
+        {
+          "text": "Use account-specific storage to segregate data on a multiuser system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "Personalizing Your App for Each User on Apple TV",
+      "type": "topic",
+      "url": "/documentation/tvservices/personalizing-your-app-for-each-user-on-apple-tv"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Store separate data for each user with the new Runs as Current User capability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Multiple Users in Your tvOS App",
+      "type": "topic",
+      "url": "/documentation/tvservices/supporting-multiple-users-in-your-tvos-app"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiple-users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+        "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+        "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles"
+      ],
+      "title": "Multiple users"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Retaining-profile-selection-for-the-current-Apple-TV-account",
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser"
+      ],
+      "title": "Retaining profile selection for the current Apple TV account"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifier",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifierDidChangeNotification",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferenceForCurrentUser(to:completion:)",
+        "doc://com.apple.tvservices/documentation/TVServices/TVAppProfileDescriptor",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserIdentifier",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/userIdentifiersForCurrentProfile"
+      ],
+      "title": "Deprecated symbols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "TVUserManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.tvservices/documentation/TVServices"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Retaining-profile-selection-for-the-current-Apple-TV-account",
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser"
+              ],
+              "title": "Retaining profile selection for the current Apple TV account"
+            },
+            {
+              "anchor": "Deprecated-symbols",
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifier",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/currentUserIdentifierDidChangeNotification",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/shouldStorePreferenceForCurrentUser(to:completion:)",
+                "doc://com.apple.tvservices/documentation/TVServices/TVAppProfileDescriptor",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserIdentifier",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager/userIdentifiersForCurrentProfile"
+              ],
+              "title": "Deprecated symbols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multiple-users",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+                "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+                "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles"
+              ],
+              "title": "Multiple users"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "TVUserManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1shouldStorePreferenceForCurrentUser(to:completion:)/title",
+          "value": "shouldStorePreferenceForCurrentUserToProfile:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1shouldStorePreferenceForCurrentUser(to:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldStorePreferenceForCurrentUserToProfile:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1userIdentifiersForCurrentProfile/title",
+          "value": "userIdentifiersForCurrentProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1userIdentifiersForCurrentProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userIdentifiersForCurrentProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/title",
+          "value": "TVUserManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)/title",
+          "value": "presentProfilePreferencePanelWithCurrentSettings:availableProfiles:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1presentProfilePreferencePanel(currentSettings:availableProfiles:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentProfilePreferencePanelWithCurrentSettings:availableProfiles:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1currentUserIdentifier/title",
+          "value": "currentUserIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1currentUserIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentUserIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1shouldStorePreferencesForCurrentUser/title",
+          "value": "shouldStorePreferencesForCurrentUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1shouldStorePreferencesForCurrentUser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldStorePreferencesForCurrentUser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1currentUserIdentifierDidChangeNotification/title",
+          "value": "TVUserManagerCurrentUserIdentifierDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager~1currentUserIdentifierDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManagerCurrentUserIdentifierDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserIdentifier/title",
+          "value": "TVUserIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVAppProfileDescriptor/title",
+          "value": "TVAppProfileDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVAppProfileDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVAppProfileDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVAppProfileDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVAppProfileDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/tvusermanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/tvusermanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

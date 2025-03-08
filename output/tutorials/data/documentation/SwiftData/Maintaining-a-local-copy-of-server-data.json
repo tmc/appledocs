@@ -1,0 +1,1934 @@
+{
+  "abstract": [
+    {
+      "text": "Create and update a persistent store to cache read-only network data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Maintaining a local copy of server data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app displays a list that contains a day’s worth of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "earthquakes, showing their time, location, and size. To help people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visualize the list, the app also pinpoints each earthquake on a map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can select an earthquake in the list to highlight it on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Maintaining-a-local-copy-of-server-data-1",
+              "metadata": {
+                "deviceFrame": "iPadPro12-9"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app downloads earthquake data from the network under the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assumptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Earthquake data is read-only",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — The app doesn’t need to synchronize local",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and remote changes. The server is always the source of truth.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "New earthquakes happen on a regular basis",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — The app needs to provide a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "way to get an initial list of earthquakes and to periodically refresh that list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Existing earthquake records can change",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — For example, the reported",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "magnitude of an earthquake might change as additional measurements",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "become available. The app needs to distinguish between new earthquakes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and updates to previously downloaded ones.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses SwiftData to persistently store the data that it downloads.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By caching the data locally, the app reduces its need to access the server.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftData also makes it easy for the app to manage updates when downloading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn how the app manages data presentation with",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "queries and predicates, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-apps-data-model",
+          "level": 3,
+          "text": "Define the app’s data model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app represents the information it needs for its interface by defining a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Quake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. The class definition includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro to tell the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system to store the data persistently using SwiftData:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftData",
+            "",
+            "@Model",
+            "class Quake {",
+            "    @Attribute(.unique) var code: String",
+            "    var magnitude: Double",
+            "    var time: Date",
+            "    var location: Location",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The model includes the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A unique code",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — By including the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro with the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property option, the app ensures that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "SwiftData stores only one earthquake with a particular value for this field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A magnitude",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — The size of the earthquake.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A timestamp",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — The moment in time when the earthquake happened, stored as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A location",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — A custom ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Location",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance that contains a location name",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and map coordinates:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct Location: Codable {",
+                    "    var name: String",
+                    "    var longitude: Double",
+                    "    var latitude: Double",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Quake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model can embed a location instance because the ",
+              "type": "text"
+            },
+            {
+              "code": "Location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Model-the-server-data",
+          "level": 3,
+          "text": "Model the server data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app loads data from a U.S. Geological Survey (USGS)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server, which provides earthquake data in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "format. To interpret this data, the app defines a ",
+              "type": "text"
+            },
+            {
+              "code": "GeoFeatureCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure with property names that match the names of relevant JSON properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GeoFeatureCollection: Decodable {",
+            "    let features: [Feature]",
+            "",
+            "    struct Feature: Decodable {",
+            "        let properties: Properties",
+            "        let geometry: Geometry",
+            "        ",
+            "        struct Properties: Decodable {",
+            "            let mag: Double",
+            "            let place: String",
+            "            let time: Date",
+            "            let code: String",
+            "        }",
+            "",
+            "        struct Geometry: Decodable {",
+            "            let coordinates: [Double]",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure and its substructures include elements relevant to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this app, namely magnitude, time, and location information. They omit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "many other fields that the server provides because the app doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need them. The structure also conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the app can use the structure to decode the downloaded data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-data-from-the-server",
+          "level": 3,
+          "text": "Download data from the server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve data, the app defines a ",
+              "type": "text"
+            },
+            {
+              "code": "fetchFeatures()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that uses a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to store the earthquake JSON in a ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = URLSession.shared",
+            "guard let (data, response) = try? await session.data(from: url),",
+            "      let httpResponse = response as? HTTPURLResponse,",
+            "      httpResponse.statusCode == 200",
+            "else {",
+            "    throw DownloadError.missingData",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method then parses the data with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "according to the definition provided by the decodable ",
+              "type": "text"
+            },
+            {
+              "code": "GeoFeatureCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let jsonDecoder = JSONDecoder()",
+            "    jsonDecoder.dateDecodingStrategy = .millisecondsSince1970",
+            "    return try jsonDecoder.decode(GeoFeatureCollection.self, from: data)",
+            "} catch {",
+            "    throw DownloadError.wrongDataFormat(error: error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For other examples of decoding JSON data, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Translate-server-data-into-model-data",
+          "level": 3,
+          "text": "Translate server data into model data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After retrieving a collection of features, the app interprets each feature",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as an earthquake. The ",
+              "type": "text"
+            },
+            {
+              "code": "Quake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines a convenience initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that creates a new earthquake from a feature instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "convenience init(from feature: GeoFeatureCollection.Feature) {",
+            "    self.init(",
+            "        code: feature.properties.code,",
+            "        magnitude: feature.properties.mag,",
+            "        time: feature.properties.time,",
+            "        name: feature.properties.place,",
+            "        longitude: feature.geometry.coordinates[0],",
+            "        latitude: feature.geometry.coordinates[1]",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This enables the app to translate the data from a format that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server provides to a format that’s convenient for the app. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the initializer converts longitude and latitude coordinates that appear",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as anonymous elements in the feature’s ",
+              "type": "text"
+            },
+            {
+              "code": "geometry.coordinates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "named parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Insert-or-update-new-earthquake-data",
+          "level": 3,
+          "text": "Insert or update new earthquake data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the app creates new earthquake instances, it persistently stores any that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have a magnitude greater than zero by calling the model context’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/insert(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for each one:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for feature in featureCollection.features {",
+            "    let quake = Quake(from: feature)",
+            "",
+            "    if quake.magnitude > 0 {",
+            "        modelContext.insert(quake)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app runs this loop for both the initial download and later refresh",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operations. When the app saves the changes — which happens automatically in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this case because the context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — SwiftData checks if the specified earthquake’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter matches the code of an earthquake that’s already in the store.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If so, the framework updates the stored earthquake’s other parameters using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values in the specified one. Otherwise, the framework adds a new earthquake to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The insert method works for both creating and updating earthquake model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances because the model indicates that the ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is unique.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This relies on the fact that the server ensures a unique, stable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code for each earthquake event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5e964e0daa88/SwiftDataLocalDataCacheSample.zip": {
+      "checksum": "5e964e0daa88c63ff8144b9ef4653fc104b8abf076637bb66e87ab8711cad2daab9423cbde2a62f576c096dafddb674c23b164a198205f20741444d18b407dd0",
+      "identifier": "5e964e0daa88/SwiftDataLocalDataCacheSample.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5e964e0daa88/SwiftDataLocalDataCacheSample.zip"
+    },
+    "Maintaining-a-local-copy-of-server-data-1": {
+      "alt": "A screenshot of the sample app on an iPad. The sidebar shows a list of earthquakes. An earthquake with magnitude 2.2 in Orange Cove, California is selected. The detail view shows a map centered on California with small multicolored circles scattered around to mark earthquake locations. One circle in the center of the map's visible region is highlighted.",
+      "identifier": "Maintaining-a-local-copy-of-server-data-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6025cf0d8cff930d1e73c209a7a362b3/Maintaining-a-local-copy-of-server-data-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a4e85581970d676d5c14c444651205e/Maintaining-a-local-copy-of-server-data-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom behavior that SwiftData applies to the annotated property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when managing the owning class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Attribute(_:originalName:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/attribute(_:originalname:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStore": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to read and write model data without",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "knowledge of the underlying storage mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStore"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStore",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastore"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching": {
+      "abstract": [
+        {
+          "text": "An interface that enables a custom data store to support batch requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStoreBatching"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStoreBatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStoreBatching",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastorebatching"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore": {
+      "abstract": [
+        {
+          "text": "A data store that uses Core Data as its undelying storage mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStore",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaultstore"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data": {
+      "abstract": [
+        {
+          "text": "Manage data store presentation using predicates and dynamic queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Filtering and sorting persistent data",
+      "type": "topic",
+      "url": "/documentation/swiftdata/filtering-and-sorting-persistent-data"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/model()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the context should automatically save",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "any pending changes when certain events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autosaveEnabled",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/autosaveenabled"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/insert(_:)": {
+      "abstract": [
+        {
+          "text": "Registers the specified model with the context so it can include the model in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the next save operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/insert(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/insert(_:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument": {
+      "abstract": [
+        {
+          "text": "A document type that uses SwiftData to manage its storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDocument",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modeldocument"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique": {
+      "abstract": [
+        {
+          "text": "Ensures the property’s value is unique across all models of the same type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unique"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unique",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/attribute/option/unique"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData": {
+      "abstract": [
+        {
+          "text": "Code along with the WWDC presenter to transform an app with SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document-based app using SwiftData",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types": {
+      "abstract": [
+        {
+          "text": "Encode and decode JSON data, regardless of its structure, using Swift’s JSON support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using JSON with Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/using_json_with_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes instances of a data type from JSON objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php": {
+      "identifier": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+      "title": "GeoJSON",
+      "titleInlineContent": [
+        {
+          "text": "GeoJSON",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5e964e0daa88/SwiftDataLocalDataCacheSample.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-storage",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStore",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching",
+        "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument"
+      ],
+      "title": "Model storage"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/maintaining-a-local-copy-of-server-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

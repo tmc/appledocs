@@ -1,0 +1,2563 @@
+{
+  "abstract": [
+    {
+      "text": "A wrapper for the Apple event descriptor data type.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415795,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAppleEventDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSAppleEventDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSAppleEventDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppleEventDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " represents a descriptor—the basic building block for Apple events. This class is a wrapper for the underlying Apple event descriptor data type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Scriptable Cocoa applications frequently work with instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", but should rarely need to work directly with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "descriptor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a data structure that stores data and an accompanying four-character code. A descriptor can store a value, or it can store a list of other descriptors (which may also be lists). All the information in an Apple event is stored in descriptors and lists of descriptors, and every Apple event is itself a descriptor list that matches certain criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An instance of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSAppleEventDescriptor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " can represent any kind of descriptor, from a simple value descriptor, to a descriptor list, to a full-fledged Apple event.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Descriptors can be used to build arbitrarily complex containers, so that one Apple event can represent a script statement such as ",
+              "type": "text"
+            },
+            {
+              "code": "tell application \"TextEdit\" to get word 3 of paragraph 6 of document 3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In working with Apple event descriptors, it can be useful to understand some of the underlying data types. You’ll find terms such as descriptor, descriptor list, Apple event record, and Apple event defined in Building an Apple Event in Apple Events Programming Guide. You’ll also find information on the four-character codes used to identify information within a descriptor. Apple event data types are defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The values of many four-character codes used by Apple (and in some cases reused by developers) can be found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-1670432",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common reason to construct an Apple event with an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is to supply information in a return Apple event. The most common situation where you might need to extract information from an Apple event (as an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is when an Apple event handler installed by your application is invoked, as described in “Installing an Apple Event Handler” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1698189",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In addition, if you execute an AppleScript script using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, you get an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the return value, from which you can extract any required information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you work with an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can access the underlying descriptor directly, if necessary, with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413715-aedesc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Other methods, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1534421-descriptorwithdescriptortype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " make it possible to create and initialize instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " without creating temporary instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The designated initializer for ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415233-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, it is unlikely that you will need to create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cocoa doesn’t currently provide a mechanism for applications to directly send raw Apple events (though compiling and executing an AppleScript script with ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may result in Apple events being sent). However, Cocoa applications have full access to the Apple Event Manager C APIs for working with Apple events. So, for example, you might use an instance of  ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to assemble an Apple event and call the Apple Event Manager function ",
+              "type": "text"
+            },
+            {
+              "code": "AESend(_:_:_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to send it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to send Apple events, or if you need more information on some of the Apple event concepts described here, see Apple Events Programming Guide and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1698189": {
+      "identifier": "devLink-1698189",
+      "title": "How Cocoa Applications Handle Apple Events",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedesc": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedesc"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor": {
+      "abstract": [
+        {
+          "text": "A wrapper for the Apple event descriptor data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407270-int32value": {
+      "abstract": [
+        {
+          "text": "The contents of the receiver as an integer, coercing (to ",
+          "type": "text"
+        },
+        {
+          "code": "typeSInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "int32Value"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407270-int32value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "int32Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1407270-int32value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407547-init": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor initialized with type ",
+          "type": "text"
+        },
+        {
+          "code": "typeType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that stores the specified type value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "typeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": OSType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407547-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(typeCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1407547-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407584-stringvalue": {
+      "abstract": [
+        {
+          "text": "The contents of the receiver as a Unicode text string, coercing to ",
+          "type": "text"
+        },
+        {
+          "code": "typeUnicodeText",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407584-stringvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1407584-stringvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408027-atindex": {
+      "abstract": [
+        {
+          "text": "Returns the descriptor at the specified (one-based) position in the receiving descriptor list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "atIndex"
+        },
+        {
+          "kind": "text",
+          "text": "(Int) -> NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408027-atindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atIndex(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1408027-atindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408039-enumcodevalue": {
+      "abstract": [
+        {
+          "text": "The contents of the receiver as an enumeration type, coercing to ",
+          "type": "text"
+        },
+        {
+          "code": "typeEnumerated",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumCodeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408039-enumcodevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumCodeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1408039-enumcodevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408495-descriptortype": {
+      "abstract": [
+        {
+          "text": "The descriptor type of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptorType"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408495-descriptortype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptorType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1408495-descriptortype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408591-appleevent": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor that represents an Apple event, initialized according to the specified information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withEventClass"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventClass, "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventID, "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEReturnID, "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": AETransactionID) -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408591-appleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appleEvent(withEventClass:eventID:targetDescriptor:returnID:transactionID:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1408591-appleevent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408981-transactionid": {
+      "abstract": [
+        {
+          "text": "The receiver’s transaction ID, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": AETransactionID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408981-transactionid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactionID",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1408981-transactionid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409080-setdescriptor": {
+      "abstract": [
+        {
+          "text": "Adds a descriptor, identified by a keyword, to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAppleEventDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409080-setdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDescriptor(_:forKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409080-setdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409337-sendevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor.SendOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval) -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409337-sendevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendEvent(options:timeout:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409337-sendevent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409448-fileurlvalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURLValue"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409448-fileurlvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileURLValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409448-fileurlvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409452-insert": {
+      "abstract": [
+        {
+          "text": "Inserts a descriptor at the specified (one-based) position in the receiving descriptor list, replacing the existing descriptor, if any, at that position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAppleEventDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409452-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409452-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409662-typecodevalue": {
+      "abstract": [
+        {
+          "text": "The contents of the receiver as a type, coercing to ",
+          "type": "text"
+        },
+        {
+          "code": "typeType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeCodeValue"
+        },
+        {
+          "kind": "text",
+          "text": ": OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409662-typecodevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeCodeValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409662-typecodevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409710-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409710-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(date:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1409710-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410136-isrecorddescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRecordDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410136-isrecorddescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRecordDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1410136-isrecorddescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410832-init": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor initialized with type ",
+          "type": "text"
+        },
+        {
+          "code": "typeBoolean",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that stores the specified Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "boolean"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410832-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(boolean:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1410832-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410955-eventclass": {
+      "abstract": [
+        {
+          "text": "The event class for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventClass"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410955-eventclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventClass",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1410955-eventclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411349-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411349-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1411349-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411435-init": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor initialized with Apple event type ",
+          "type": "text"
+        },
+        {
+          "code": "typeSInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that stores the specified integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "int32"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411435-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(int32:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1411435-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412353-removeparamdescriptor": {
+      "abstract": [
+        {
+          "text": "Removes the receiver’s parameter descriptor identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeParamDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412353-removeparamdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeParamDescriptor(withKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412353-removeparamdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412412-booleanvalue": {
+      "abstract": [
+        {
+          "text": "The contents of the receiver as a Boolean value, coercing (to ",
+          "type": "text"
+        },
+        {
+          "code": "typeBoolean",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "booleanValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412412-booleanvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "booleanValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412412-booleanvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412488-null": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a descriptor with no parameter or attribute values set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "null"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412488-null",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "null()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412488-null"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412763-paramdescriptor": {
+      "abstract": [
+        {
+          "text": "Returns a descriptor for the receiver’s Apple event parameter identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "paramDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword) -> NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412763-paramdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paramDescriptor(forKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412763-paramdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412834-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412834-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(applicationURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412834-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412854-list": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an empty list descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412854-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1412854-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413356-eventid": {
+      "abstract": [
+        {
+          "text": "The event ID for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413356-eventid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventID",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1413356-eventid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413358-init": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor initialized with type ",
+          "type": "text"
+        },
+        {
+          "code": "typeEnumerated",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that stores the specified enumerator data type value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "enumCode"
+        },
+        {
+          "kind": "text",
+          "text": ": OSType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413358-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(enumCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1413358-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413486-data": {
+      "abstract": [
+        {
+          "text": "The receiver’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413486-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1413486-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413644-remove": {
+      "abstract": [
+        {
+          "text": "Removes the descriptor at the specified (one-based) position in the receiving descriptor list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413644-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1413644-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413715-aedesc": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "AEDesc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure encapsulated by the receiver, if it has one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "aeDesc"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AEDesc>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413715-aedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aeDesc",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1413715-aedesc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414380-record": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a descriptor for an Apple event record whose data has yet to be set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "record"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414380-record",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "record()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1414380-record"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414999-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as a descriptor for an Apple event, initialized with the specified values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "eventClass"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventClass, "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEEventID, "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEReturnID, "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": AETransactionID)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414999-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(eventClass:eventID:targetDescriptor:returnID:transactionID:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1414999-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415227-init": {
+      "abstract": [
+        {
+          "text": "Creates a descriptor initialized with type ",
+          "type": "text"
+        },
+        {
+          "code": "typeUnicodeText",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that stores the text from the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415227-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1415227-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415233-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as a descriptor for the specified Carbon ",
+          "type": "text"
+        },
+        {
+          "code": "AEDesc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "aeDescNoCopy"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AEDesc>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415233-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(aeDescNoCopy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1415233-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415521-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415521-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bundleIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1415521-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415663-remove": {
+      "abstract": [
+        {
+          "text": "Removes the receiver’s descriptor identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415663-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(withKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1415663-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415786-returnid": {
+      "abstract": [
+        {
+          "text": "The receiver’s return ID (the ID for a reply Apple event).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnID"
+        },
+        {
+          "kind": "text",
+          "text": ": AEReturnID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415786-returnid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "returnID",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1415786-returnid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416093-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as a descriptor that is an Apple event record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "recordDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416093-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416093-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416147-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "double"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416147-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(double:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416147-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416261-setparam": {
+      "abstract": [
+        {
+          "text": "Adds a descriptor to the receiver as an Apple event parameter identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setParam"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAppleEventDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416261-setparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setParam(_:forKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416261-setparam"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416286-coerce": {
+      "abstract": [
+        {
+          "text": "Returns a descriptor obtained by coercing the receiver to the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "coerce"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toDescriptorType"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType) -> NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416286-coerce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coerce(toDescriptorType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416286-coerce"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416330-datevalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416330-datevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416330-datevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416351-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as an empty list descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "listDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416351-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(listDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416351-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416413-forkeyword": {
+      "abstract": [
+        {
+          "text": "Returns the receiver’s descriptor for the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": "(AEKeyword) -> NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416413-forkeyword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forKeyword(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416413-forkeyword"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416614-currentprocess": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentProcess"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416614-currentprocess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentProcess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416614-currentprocess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416786-numberofitems": {
+      "abstract": [
+        {
+          "text": "The number of descriptors in the receiver’s descriptor list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfItems"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416786-numberofitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfItems",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416786-numberofitems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416900-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "processIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": pid_t)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416900-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(processIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1416900-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417067-attributedescriptor": {
+      "abstract": [
+        {
+          "text": "Returns a descriptor for the receiver’s Apple event attribute identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword) -> NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417067-attributedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributeDescriptor(forKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1417067-attributedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417129-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as a descriptor with the specified descriptor type and data (from an instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptorType"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417129-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(descriptorType:data:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1417129-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417137-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated instance as a descriptor with the specified descriptor type and data (from an arbitrary sequence of bytes and a length count).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptorType"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417137-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(descriptorType:bytes:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1417137-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417535-keywordfordescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the keyword for the descriptor at the specified (one-based) position in the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keywordForDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> AEKeyword"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417535-keywordfordescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keywordForDescriptor(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1417535-keywordfordescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417847-doublevalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "doubleValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417847-doublevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doubleValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1417847-doublevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1418101-setattribute": {
+      "abstract": [
+        {
+          "text": "Adds a descriptor to the receiver as an attribute identified by the specified keyword.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAppleEventDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyword"
+        },
+        {
+          "kind": "text",
+          "text": ": AEKeyword)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1418101-setattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttribute(_:forKeyword:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1418101-setattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1534421-descriptorwithdescriptortype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptorWithDescriptorType:bytes:length:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1534421-descriptorwithdescriptortype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptorWithDescriptorType:bytes:length:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/1534421-descriptorwithdescriptortype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/sendoptions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventDescriptor.SendOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/sendoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventDescriptor.SendOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor/sendoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager": {
+      "abstract": [
+        {
+          "text": "A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventmanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-1670432": {
+      "identifier": "link-1670432",
+      "kind": "article",
+      "role": "link",
+      "title": "AppleScript Terminology and Apple Event Codes",
+      "type": "topic",
+      "url": "http://developer.apple.com/releasenotes/AppleScript/ASTerminology_AppleEventCodes/TermsAndCodes.html"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventmanager"
+      ],
+      "title": "Apple Event Handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651603",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408591-appleevent",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410832-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413358-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411435-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415227-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407547-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412854-list",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412488-null",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414380-record",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416351-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416093-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415233-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417137-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417129-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1414999-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing Descriptors"
+    },
+    {
+      "anchor": "1651724",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413715-aedesc",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412412-booleanvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416286-coerce",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413486-data",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408495-descriptortype",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408039-enumcodevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407270-int32value",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416786-numberofitems",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1407584-stringvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409662-typecodevalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About a Descriptor"
+    },
+    {
+      "anchor": "1651778",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408027-atindex",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409452-insert",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413644-remove"
+      ],
+      "kind": "taskGroup",
+      "title": "Working With List Descriptors"
+    },
+    {
+      "anchor": "1651800",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416413-forkeyword",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417535-keywordfordescriptor",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415663-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409080-setdescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Working With Record Descriptors"
+    },
+    {
+      "anchor": "1651822",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417067-attributedescriptor",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410955-eventclass",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1413356-eventid",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412763-paramdescriptor",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412353-removeparamdescriptor",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415786-returnid",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1418101-setattribute",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416261-setparam",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1408981-transactionid"
+      ],
+      "kind": "taskGroup",
+      "title": "Working With Apple Event Descriptors"
+    },
+    {
+      "anchor": "2881623",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/sendoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    },
+    {
+      "anchor": "2855247",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1412834-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1415521-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409710-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416147-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1411349-init",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416900-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2855248",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416330-datevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1417847-doublevalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409448-fileurlvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1410136-isrecorddescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2855249",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1409337-sendevent"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2855250",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor/1416614-currentprocess"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsappleeventdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsappleeventdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

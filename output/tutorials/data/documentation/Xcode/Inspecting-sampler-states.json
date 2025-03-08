@@ -1,0 +1,2264 @@
+{
+  "abstract": [
+    {
+      "text": "Verify your sampler state configurations by examining their properties.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting sampler states"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger allows you to inspect a sampler state with the Sampler State viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After opening a sampler state, you can view its associated properties and preview the sampling behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-your-sampler-state",
+          "level": 3,
+          "text": "Navigate your sampler state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Sampler State viewer shows the properties of your sampler state on the left (as configured by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and a preview on the right. The preview illustrates how pixels in a texture appear when using your sampler state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sv-outline.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The square region in the center of the preview corresponds to UV coordinates within the range of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sv-outline-green.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the preview to quickly verify the configuration for your sampler state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you want a texture to mirror, but it’s drawing a constant value instead, you can check the sampler state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the screenshot below, the sampler state is configured to clamp to a border color that’s opaque black, rather than using mirror repeat as the address mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Try-various-combinations",
+          "level": 3,
+          "text": "Try various combinations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The properties you configure when creating a sampler state determine how a texture looks when sampling it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The properties related to filtering control how pixels combine when the sample footprint is either larger or smaller than a pixel, or when it’s between mipmap levels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The address mode determines the texture coordinate at each pixel when a read falls outside the bounds of a texture. You can try using different combinations of filtering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and addressing modes until you achieve your desired look.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Properties",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preview",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToEdge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-clamp.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorClampToEdge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-mirror-clamp.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/repeat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-repeat.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorRepeat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-mirror.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToZero",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-zero.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueBlack",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-black.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueWhite",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-white.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/transparentBlack",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-transparent.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToEdge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-clamp.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToEdge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-mirror-clamp.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/repeat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-repeat.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorRepeat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-mirror.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToZero",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-zero.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueBlack",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-black.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueWhite",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-white.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/transparentBlack",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-transparent.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor": {
+      "abstract": [
+        {
+          "text": "Out-of-range texture coordinates return the value specified by the [`borderColor`](doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/borderColor) property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clampToBorderColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.clampToBorderColor",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/clampToBorderColor"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToEdge": {
+      "abstract": [
+        {
+          "text": "Texture coordinates are clamped between `0.0` and `1.0`, inclusive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clampToEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToEdge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.clampToEdge",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/clampToEdge"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToZero": {
+      "abstract": [
+        {
+          "text": "Out-of-range texture coordinates return transparent zero `(0,0,0,0)` for images with an alpha channel and return opaque zero `(0,0,0,1)` for images without an alpha channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clampToZero"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/clampToZero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.clampToZero",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/clampToZero"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorClampToEdge": {
+      "abstract": [
+        {
+          "text": "Between `-1.0` and `1.0`, the texture coordinates are mirrored across the axis; outside `-1.0` and `1.0`, texture coordinates are clamped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mirrorClampToEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorClampToEdge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.mirrorClampToEdge",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/mirrorClampToEdge"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorRepeat": {
+      "abstract": [
+        {
+          "text": "Between `-1.0` and `1.0`, the texture coordinates are mirrored across the axis; outside `-1.0` and `1.0`, the image is repeated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mirrorRepeat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/mirrorRepeat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.mirrorRepeat",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/mirrorRepeat"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/repeat": {
+      "abstract": [
+        {
+          "text": "Texture coordinates wrap to the other side of the texture, effectively keeping only the fractional part of the texture coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`repeat`"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerAddressMode/repeat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerAddressMode.repeat",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerAddressMode/repeat"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueBlack": {
+      "abstract": [
+        {
+          "text": "An opaque black color `(0,0,0,1)` for texture values outside the border",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opaqueBlack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueBlack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerBorderColor.opaqueBlack",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerBorderColor/opaqueBlack"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueWhite": {
+      "abstract": [
+        {
+          "text": "An opaque white color `(1,1,1,1)` for texture values outside the border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opaqueWhite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/opaqueWhite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerBorderColor.opaqueWhite",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerBorderColor/opaqueWhite"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/transparentBlack": {
+      "abstract": [
+        {
+          "text": "A transparent black color `(0,0,0,0)` for texture values outside the border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transparentBlack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerBorderColor/transparentBlack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerBorderColor.transparentBlack",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerBorderColor/transparentBlack"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure a texture sampler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerDescriptor",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerDescriptor"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear": {
+      "abstract": [
+        {
+          "text": "Select two pixels in each dimension and interpolate linearly between them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/linear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerMinMagFilter.linear",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerMinMagFilter/linear"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest": {
+      "abstract": [
+        {
+          "text": "Select the single pixel nearest to the sample point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nearest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLSamplerMinMagFilter/nearest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLSamplerMinMagFilter.nearest",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLSamplerMinMagFilter/nearest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-sv-linear-clamp-border-black.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and clamp-to-border address mode. The border color is opaque black.",
+      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-black.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18d540bcdb33316860ffb260e0c91799/gputools-metal-debugger-sv-linear-clamp-border-black.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5338855da61a2358e21dcd62d2023092/gputools-metal-debugger-sv-linear-clamp-border-black@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5aecf5dd55bf20686e01eb78b08e0179/gputools-metal-debugger-sv-linear-clamp-border-black~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d30b8dfe258b2928b4546c9ae33e332/gputools-metal-debugger-sv-linear-clamp-border-black~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-clamp-border-transparent.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and clamp-to-border address mode. The border color is transparent black.",
+      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-transparent.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b348d5bbed4b714a7ceb31f8decfc5d0/gputools-metal-debugger-sv-linear-clamp-border-transparent.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f473b96f45e1282b14919a43ad4149f8/gputools-metal-debugger-sv-linear-clamp-border-transparent@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8177e8e58404c5a6511332e0e47ad07/gputools-metal-debugger-sv-linear-clamp-border-transparent~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e945d1fd5b8d0f91251e923bc18d6fa/gputools-metal-debugger-sv-linear-clamp-border-transparent~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-clamp-border-white.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and clamp-to-border address mode. The border color is opaque white.",
+      "identifier": "gputools-metal-debugger-sv-linear-clamp-border-white.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38685315167018d1fde94ed7324b2ecf/gputools-metal-debugger-sv-linear-clamp-border-white.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/939248a8d3d668eae179561ed6e798bb/gputools-metal-debugger-sv-linear-clamp-border-white@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/775071f07a7a03bc313276664fac8f5d/gputools-metal-debugger-sv-linear-clamp-border-white~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f24ee5d7bc4336a08d5d8df0fe718fc2/gputools-metal-debugger-sv-linear-clamp-border-white~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-clamp.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and clamp-to-edge address mode.",
+      "identifier": "gputools-metal-debugger-sv-linear-clamp.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/934e5a49bffa3c98e7c679cfd85bba16/gputools-metal-debugger-sv-linear-clamp.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/84beb927bfd3cfa7311c3c2fef5e1833/gputools-metal-debugger-sv-linear-clamp@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17d80a4d762955f50b6a098d1f3c7ac6/gputools-metal-debugger-sv-linear-clamp~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e71b3a3559fae1d14c5a90b03d107ea5/gputools-metal-debugger-sv-linear-clamp~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-mirror-clamp.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and mirror-clamp-to-edge address mode.",
+      "identifier": "gputools-metal-debugger-sv-linear-mirror-clamp.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44f8cdef2ca77cae29a20f0e18befe6c/gputools-metal-debugger-sv-linear-mirror-clamp.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa81821d87772a5722661d0636aadb2c/gputools-metal-debugger-sv-linear-mirror-clamp@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b65ca877d7233f66f85b217a6d3edf8/gputools-metal-debugger-sv-linear-mirror-clamp~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f32146d8c9807cea1c7bfd4da01cf7d/gputools-metal-debugger-sv-linear-mirror-clamp~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-mirror.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and mirror-repeat address mode.",
+      "identifier": "gputools-metal-debugger-sv-linear-mirror.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6bc5c657103963d3508f6bc9463345d/gputools-metal-debugger-sv-linear-mirror.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b3e6fab82cacc166e20e196a959e97c/gputools-metal-debugger-sv-linear-mirror@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4ab913e8161299288fe68c352e82c45/gputools-metal-debugger-sv-linear-mirror~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4120c5f1b4fa00eb6f8cf4909bfcc574/gputools-metal-debugger-sv-linear-mirror~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-repeat.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and repeat address mode.",
+      "identifier": "gputools-metal-debugger-sv-linear-repeat.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17eec1550fa0948026a077c0db4a3acb/gputools-metal-debugger-sv-linear-repeat.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b4f5502fbd81fbd0f6d52e97e36550f/gputools-metal-debugger-sv-linear-repeat@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02d9fe19ef1bf1c5237366c62b4c9576/gputools-metal-debugger-sv-linear-repeat~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5aa26274226cdb169b9c87162ae32fe/gputools-metal-debugger-sv-linear-repeat~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-linear-zero.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with linear filtering and clamp-to-zero address mode.",
+      "identifier": "gputools-metal-debugger-sv-linear-zero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18d540bcdb33316860ffb260e0c91799/gputools-metal-debugger-sv-linear-zero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5338855da61a2358e21dcd62d2023092/gputools-metal-debugger-sv-linear-zero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5aecf5dd55bf20686e01eb78b08e0179/gputools-metal-debugger-sv-linear-zero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d30b8dfe258b2928b4546c9ae33e332/gputools-metal-debugger-sv-linear-zero~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-border address mode. The border color is opaque black.",
+      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42bcd3604d93771464199d601210726d/gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/947607b5464280b963c5b2aae0363c80/gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c96971e22fcf7ba7a87f1630854d80ce/gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d2708865d61c311dcd4f4e28ebe4f38c/gputools-metal-debugger-sv-nearest-clamp-border-black-plus-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-clamp-border-black.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-border address mode. The border color is opaque black.",
+      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-black.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/803490cc2398aa3cae184dc84b0406c5/gputools-metal-debugger-sv-nearest-clamp-border-black.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef4df8ec925e3e653f21fb4e8374b813/gputools-metal-debugger-sv-nearest-clamp-border-black@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5bf3eed4e1471e3e7c03703089d7356/gputools-metal-debugger-sv-nearest-clamp-border-black~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cba7595971b859415d3ec568afa598a3/gputools-metal-debugger-sv-nearest-clamp-border-black~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-clamp-border-transparent.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-border address mode. The border color is transparent black.",
+      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-transparent.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34bce18627c4dc819bea1524e80e4c8e/gputools-metal-debugger-sv-nearest-clamp-border-transparent.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/574d56e7b427682155ee48c7a04b3898/gputools-metal-debugger-sv-nearest-clamp-border-transparent@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2190647dfc861bd61bb70340fe3500ed/gputools-metal-debugger-sv-nearest-clamp-border-transparent~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/872381a5e074304be96c469c226c52f0/gputools-metal-debugger-sv-nearest-clamp-border-transparent~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-clamp-border-white.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-border address mode. The border color is opaque white.",
+      "identifier": "gputools-metal-debugger-sv-nearest-clamp-border-white.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/20482a1ecc2d0bf39688191eb40fd4f2/gputools-metal-debugger-sv-nearest-clamp-border-white.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82d1c051bf85e8d1cfbfe8a22960f47c/gputools-metal-debugger-sv-nearest-clamp-border-white@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42cbed171187ad4b2b6c4985bf09b8c3/gputools-metal-debugger-sv-nearest-clamp-border-white~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f41525221b85eeb5331f9897b2d28385/gputools-metal-debugger-sv-nearest-clamp-border-white~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-clamp.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-edge address mode.",
+      "identifier": "gputools-metal-debugger-sv-nearest-clamp.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/521debfe9a5a52b7e007241420528b1a/gputools-metal-debugger-sv-nearest-clamp.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b9f00a20daf0f04a3f7f885f457908c3/gputools-metal-debugger-sv-nearest-clamp@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10ad8c554b7be947f1e8a088256f8da4/gputools-metal-debugger-sv-nearest-clamp~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a69fdcfc09b3fb307c8f45de05e3294/gputools-metal-debugger-sv-nearest-clamp~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-mirror-clamp.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and mirror-clamp-to-edge address mode.",
+      "identifier": "gputools-metal-debugger-sv-nearest-mirror-clamp.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb7e79a97cf43850149ead4c320d1359/gputools-metal-debugger-sv-nearest-mirror-clamp.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbdbeef91680a8cd6322719b265ae42f/gputools-metal-debugger-sv-nearest-mirror-clamp@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13da50a1fd8c8106aeb166ccf2a6eb7d/gputools-metal-debugger-sv-nearest-mirror-clamp~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41bc8cafb5e344751965425bbb1e7389/gputools-metal-debugger-sv-nearest-mirror-clamp~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-mirror.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and mirror-repeat address mode.",
+      "identifier": "gputools-metal-debugger-sv-nearest-mirror.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/091b8c83c1c665126de25d53ef5b9f1d/gputools-metal-debugger-sv-nearest-mirror.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83abc3f7fc2fe582cafcfcb09d538224/gputools-metal-debugger-sv-nearest-mirror@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/252ca1f5bcad24d13611b7448cd5c6a1/gputools-metal-debugger-sv-nearest-mirror~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e4f18c01a50bb286180b86620707435/gputools-metal-debugger-sv-nearest-mirror~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-repeat.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and repeat address mode.",
+      "identifier": "gputools-metal-debugger-sv-nearest-repeat.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8bc4ef0a351935be0c30a8e0e15d04f/gputools-metal-debugger-sv-nearest-repeat.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c53b7bf29facfb4610ffc37167a82e26/gputools-metal-debugger-sv-nearest-repeat@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf5bf38265d6230d82c9f13c7e2b4779/gputools-metal-debugger-sv-nearest-repeat~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67a088190b9ac6393c793df5a673a975/gputools-metal-debugger-sv-nearest-repeat~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-nearest-zero.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-zero address mode.",
+      "identifier": "gputools-metal-debugger-sv-nearest-zero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/803490cc2398aa3cae184dc84b0406c5/gputools-metal-debugger-sv-nearest-zero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef4df8ec925e3e653f21fb4e8374b813/gputools-metal-debugger-sv-nearest-zero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5bf3eed4e1471e3e7c03703089d7356/gputools-metal-debugger-sv-nearest-zero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cba7595971b859415d3ec568afa598a3/gputools-metal-debugger-sv-nearest-zero~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-outline-green.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-edge address mode. The region in bounds is highlighted.",
+      "identifier": "gputools-metal-debugger-sv-outline-green.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcfcd99ff41714fc6b1ab8fb9174287a/gputools-metal-debugger-sv-outline-green.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50883e4e70e74eb4664a9a4377a816ae/gputools-metal-debugger-sv-outline-green@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec25291090c28a6604ed39d090bfcbee/gputools-metal-debugger-sv-outline-green~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3018009e795ff061eea40b1419f24df/gputools-metal-debugger-sv-outline-green~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sv-outline.png": {
+      "alt": "A screenshot of the Sampler State viewer displaying a sampler state configured with nearest filtering and clamp-to-edge address mode.",
+      "identifier": "gputools-metal-debugger-sv-outline.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1dc0443de8833c58b776306123415b1b/gputools-metal-debugger-sv-outline.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/814897e16f068945b3e238d74cdd1b6c/gputools-metal-debugger-sv-outline@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49c77488114561b930a2faa6fcc98e5c/gputools-metal-debugger-sv-outline~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83f18381f00d0b2e9cc5a6376ea3ba40/gputools-metal-debugger-sv-outline~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1mirrorRepeat/title",
+          "value": "MTLSamplerAddressModeMirrorRepeat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1mirrorRepeat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeMirrorRepeat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToEdge/title",
+          "value": "MTLSamplerAddressModeClampToEdge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToEdge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeClampToEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1repeat/title",
+          "value": "MTLSamplerAddressModeRepeat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1repeat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeRepeat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1opaqueWhite/title",
+          "value": "MTLSamplerBorderColorOpaqueWhite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1opaqueWhite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerBorderColorOpaqueWhite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1transparentBlack/title",
+          "value": "MTLSamplerBorderColorTransparentBlack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1transparentBlack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerBorderColorTransparentBlack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToZero/title",
+          "value": "MTLSamplerAddressModeClampToZero"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToZero/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeClampToZero"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerMinMagFilter~1nearest/title",
+          "value": "MTLSamplerMinMagFilterNearest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerMinMagFilter~1nearest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerMinMagFilterNearest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToBorderColor/title",
+          "value": "MTLSamplerAddressModeClampToBorderColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1clampToBorderColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeClampToBorderColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerMinMagFilter~1linear/title",
+          "value": "MTLSamplerMinMagFilterLinear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerMinMagFilter~1linear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerMinMagFilterLinear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1opaqueBlack/title",
+          "value": "MTLSamplerBorderColorOpaqueBlack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerBorderColor~1opaqueBlack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerBorderColorOpaqueBlack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1mirrorClampToEdge/title",
+          "value": "MTLSamplerAddressModeMirrorClampToEdge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLSamplerAddressMode~1mirrorClampToEdge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerAddressModeMirrorClampToEdge"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

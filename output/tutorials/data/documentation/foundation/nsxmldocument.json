@@ -1,0 +1,1606 @@
+{
+  "abstract": [
+    {
+      "text": "An XML document as internalized into a logical tree structure.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsxmldocument"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413781,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSXMLDocument",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSXMLDocument"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSXMLDocument"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSXMLNode",
+              "text": "NSXMLNode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can have multiple child nodes but only one element, the root element. Any other node must be a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing a comment or a processing instruction. If you attempt to add any other kind of child node to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object, such as an attribute, namespace, another document object, or an element other than the root, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " raises an exception. If you add a valid child node and that object already has a parent, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " raises an exception. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object may also have document-global attributes, such as XML version, character encoding, referenced DTD, and MIME type. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The initializers of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class read an external source of XML, whether it be a local file or remote website, parse it, and process it into the tree representation. You can also construct an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " programmatically. There are accessor methods for getting and setting document attributes, methods for transforming documents using XSLT, a method for dynamically validating a document, and methods for printing out the content of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as XML, XHTML, HTML, or plain text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is thread-safe as long as any given instance is used only in one thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1658909",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "anchor": "1658928",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSXMLDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you need to override the primary initializer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413086-initwithdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411693-rootelement",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407550-setchildren",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410060-removechildatindex",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413912-insertchild",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410987-characterencoding",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410987-characterencoding",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407426-documentcontentkind",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407426-documentcontentkind",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418474-dtd",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806529-setdtd",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408633-mimetype",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806541-setmimetype",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806533-isstandalone",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413655-standalone",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409066-version",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806549-seturi",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409066-version",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default ",
+              "type": "text"
+            },
+            {
+              "code": "NSXMLDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements the ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to perform a deep comparison: two ",
+              "type": "text"
+            },
+            {
+              "code": "NSXMLDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison does not consider the parent node (and hence the node’s location). If you want a different standard of comparison, override ",
+              "type": "text"
+            },
+            {
+              "code": "isEqual:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1658946",
+          "level": 4,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the class method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409660-replacementclassforclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return your custom class in place of an ",
+              "type": "text"
+            },
+            {
+              "code": "NSXML",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. If your custom class has no direct ",
+              "type": "text"
+            },
+            {
+              "code": "NSXML",
+              "type": "codeVoice"
+            },
+            {
+              "text": " counterpart—for example, it is a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSXMLNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XML Processing and Modeling",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument": {
+      "abstract": [
+        {
+          "text": "An XML document as internalized into a logical tree structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLDocument",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407426-documentcontentkind": {
+      "abstract": [
+        {
+          "text": "Sets the kind of output content for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407426-documentcontentkind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "documentContentKind",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1407426-documentcontentkind"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407550-setchildren": {
+      "abstract": [
+        {
+          "text": "Sets the child nodes of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setChildren:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407550-setchildren",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setChildren:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1407550-setchildren"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408561-validateandreturnerror": {
+      "abstract": [
+        {
+          "text": "Validates the document against the governing schema and returns whether the document conforms to the schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateAndReturnError:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408561-validateandreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateAndReturnError:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1408561-validateandreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408633-mimetype": {
+      "abstract": [
+        {
+          "text": "Returns the MIME type for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408633-mimetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MIMEType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1408633-mimetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409062-initwithrootelement": {
+      "abstract": [
+        {
+          "text": " Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with a single child, the root element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRootElement:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409062-initwithrootelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithRootElement:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1409062-initwithrootelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409066-version": {
+      "abstract": [
+        {
+          "text": "Sets the version of the receiver’s XML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409066-version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "version",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1409066-version"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409660-replacementclassforclass": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to substitute a custom class for an NSXML class that the parser uses to create node instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacementClassForClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409660-replacementclassforclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacementClassForClass:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1409660-replacementclassforclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409737-objectbyapplyingxsltstring": {
+      "abstract": [
+        {
+          "text": "Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectByApplyingXSLTString:arguments:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409737-objectbyapplyingxsltstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectByApplyingXSLTString:arguments:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1409737-objectbyapplyingxsltstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410060-removechildatindex": {
+      "abstract": [
+        {
+          "text": "Removes the child node of the receiver located at a specified position in its array of children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeChildAtIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410060-removechildatindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeChildAtIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1410060-removechildatindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410606-objectbyapplyingxsltaturl": {
+      "abstract": [
+        {
+          "text": "Applies the XSLT pattern rules and templates located at a specified URL to the receiver and returns a document object containing transformed XML markup or an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object containing plain text, RTF text, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectByApplyingXSLTAtURL:arguments:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410606-objectbyapplyingxsltaturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectByApplyingXSLTAtURL:arguments:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1410606-objectbyapplyingxsltaturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410987-characterencoding": {
+      "abstract": [
+        {
+          "text": "Sets the character encoding of the receiver to ",
+          "type": "text"
+        },
+        {
+          "code": "encoding",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410987-characterencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "characterEncoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1410987-characterencoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411660-xmldata": {
+      "abstract": [
+        {
+          "text": "Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411660-xmldata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1411660-xmldata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411693-rootelement": {
+      "abstract": [
+        {
+          "text": "Returns the root element of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411693-rootelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootElement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1411693-rootelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1412424-xmldatawithoptions": {
+      "abstract": [
+        {
+          "text": "Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLDataWithOptions:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1412424-xmldatawithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLDataWithOptions:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1412424-xmldatawithoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413086-initwithdata": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object created from an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithData:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413086-initwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithData:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1413086-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413655-standalone": {
+      "abstract": [
+        {
+          "text": "Sets a Boolean value that specifies whether the receiver represents a standalone XML document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413655-standalone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standalone",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1413655-standalone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413912-insertchild": {
+      "abstract": [
+        {
+          "text": "Inserts a node object at specified position in the receiver’s array of children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertChild:atIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413912-insertchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertChild:atIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1413912-insertchild"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415210-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415210-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1415210-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415610-setrootelement": {
+      "abstract": [
+        {
+          "text": "Set the root element of the receiver. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRootElement:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415610-setrootelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRootElement:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1415610-setrootelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415612-insertchildren": {
+      "abstract": [
+        {
+          "text": "Inserts an array of children at a specified position in the receiver’s array of children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertChildren:atIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415612-insertchildren",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertChildren:atIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1415612-insertchildren"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415740-addchild": {
+      "abstract": [
+        {
+          "text": "Adds a child node after the last of the receiver’s existing children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415740-addchild",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addChild:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1415740-addchild"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415843-objectbyapplyingxslt": {
+      "abstract": [
+        {
+          "text": "Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectByApplyingXSLT:arguments:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415843-objectbyapplyingxslt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectByApplyingXSLT:arguments:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1415843-objectbyapplyingxslt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416228-initwithxmlstring": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object created from a string containing XML markup text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithXMLString:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416228-initwithxmlstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithXMLString:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1416228-initwithxmlstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416857-replacechildatindex": {
+      "abstract": [
+        {
+          "text": "Replaces the child node of the receiver located at a specified position in its array of children with another node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceChildAtIndex:withNode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416857-replacechildatindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceChildAtIndex:withNode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1416857-replacechildatindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418467-initwithcontentsofurl": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an NSXMLDocument object created from the XML or HTML contents of a URL-referenced source",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418467-initwithcontentsofurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithContentsOfURL:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1418467-initwithcontentsofurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418474-dtd": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldtd",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object representing the internal DTD associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418474-dtd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DTD",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1418474-dtd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806529-setdtd": {
+      "abstract": [
+        {
+          "text": "Sets the internal DTD to be associated with the receiver. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806529-setdtd",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDTD:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1806529-setdtd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806533-isstandalone": {
+      "abstract": [
+        {
+          "text": "Returns whether the receiver represents a standalone XML document—that is, one without an external DTD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806533-isstandalone",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isStandalone",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1806533-isstandalone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806541-setmimetype": {
+      "abstract": [
+        {
+          "text": "Sets the MIME type of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806541-setmimetype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMIMEType:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1806541-setmimetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806545-uri": {
+      "abstract": [
+        {
+          "text": "Returns the URI identifying the source of this document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806545-uri",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "URI",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1806545-uri"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806549-seturi": {
+      "abstract": [
+        {
+          "text": "Sets the URI identifying the source of this document. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806549-seturi",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setURI:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/1806549-seturi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/document_content_types": {
+      "abstract": [
+        {
+          "text": "Define document types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/document_content_types",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Document Content Types",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/document_content_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocument/input_and_output_options": {
+      "abstract": [
+        {
+          "text": "Input and output options specifically intended for ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocument/input_and_output_options",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Input and Output Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocument/input_and_output_options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldocumentcontentkind": {
+      "abstract": [
+        {
+          "text": "Type used to define the kind of document content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldocumentcontentkind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLDocumentContentKind",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldocumentcontentkind"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldtd": {
+      "abstract": [
+        {
+          "text": "A representation of a Document Type Definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldtd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLDTD",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldtd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmldtdnode": {
+      "abstract": [
+        {
+          "text": "A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmldtdnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLDTDNode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmldtdnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlelement": {
+      "abstract": [
+        {
+          "text": "The element nodes in an XML tree structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLElement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode": {
+      "abstract": [
+        {
+          "text": "The nodes in the abstract, logical tree structure that represents an XML document. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLNode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual:",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldtd",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldtdnode",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlelement",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode"
+      ],
+      "title": "Tree-Based Processing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770335",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418467-initwithcontentsofurl",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413086-initwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409062-initwithrootelement",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416228-initwithxmlstring",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409660-replacementclassforclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing NSXMLDocument Objects"
+    },
+    {
+      "anchor": "1770340",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410987-characterencoding",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407426-documentcontentkind",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1418474-dtd",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806529-setdtd",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806533-isstandalone",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413655-standalone",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408633-mimetype",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806541-setmimetype",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806545-uri",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1806549-seturi",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409066-version"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Document Attributes"
+    },
+    {
+      "anchor": "1770343",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411693-rootelement",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415610-setrootelement"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Root Element"
+    },
+    {
+      "anchor": "1770345",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415740-addchild",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1413912-insertchild",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415612-insertchildren",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410060-removechildatindex",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1416857-replacechildatindex",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1407550-setchildren"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Child Nodes"
+    },
+    {
+      "anchor": "1770346",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415843-objectbyapplyingxslt",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1409737-objectbyapplyingxsltstring",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1410606-objectbyapplyingxsltaturl"
+      ],
+      "kind": "taskGroup",
+      "title": "Transforming a Document Using XSLT"
+    },
+    {
+      "anchor": "1770347",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1411660-xmldata",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1412424-xmldatawithoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Writing a Document as XML Data"
+    },
+    {
+      "anchor": "1770348",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1408561-validateandreturnerror"
+      ],
+      "kind": "taskGroup",
+      "title": "Validating a Document"
+    },
+    {
+      "anchor": "1659449",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/input_and_output_options",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocumentcontentkind",
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/document_content_types"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2857530",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmldocument/1415210-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsxmldocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/xmldocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

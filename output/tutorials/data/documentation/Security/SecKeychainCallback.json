@@ -1,0 +1,994 @@
+{
+  "abstract": [
+    {
+      "text": "A customized callback function that keychain services call when a keychain event has occurred.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "SecKeychain is deprecated",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/SecKeychainCallback"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@SecKeychainCallback",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SecKeychainCallback"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecKeychainCallback"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.10",
+        "introducedAt": "10.2",
+        "message": "SecKeychain is deprecated",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "SecKeychainCallback"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecKeychainEvent",
+              "text": "SecKeychainEvent"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sp",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@SecKeychainCallbackInfo",
+              "text": "SecKeychainCallbackInfo"
+            },
+            {
+              "kind": "text",
+              "text": ">, "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": "?) -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The keychain event that occurred. The type of event that can trigger your callback depends on the bit mask you passed in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "eventMask",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter of the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a list of possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keychainEvent"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a structure of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This structure provides your callback with information about the keychain event.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "info"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to application-defined storage that your application previously passed to the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". You can use this value to provide information that the callback function needs in order to properly handle the event, such as an object on which the callback function should call a method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "code": "Codes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You would declare your keychain callback function like this if you were to name it ",
+              "type": "text"
+            },
+            {
+              "code": "MyKeychainCallback",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Declaring a keychain callback function",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OSStatus MyKeychainCallback (",
+            "    SecKeychainEvent keychainEvent,",
+            "    SecKeychainCallbackInfo *info,",
+            "    void *context",
+            ");"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add your callback function, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. To remove your callback function, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers your keychain event callback function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainCallback",
+          "text": "SecKeychainCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainEventMask",
+          "text": "SecKeychainEventMask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddCallback(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAddCallback(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainaddcallback(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCallback": {
+      "abstract": [
+        {
+          "text": "A customized callback function that keychain services call when a keychain event has occurred.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCallback",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincallback"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo": {
+      "abstract": [
+        {
+          "text": "Information about a keychain event that keychain services deliver to your app via a callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallbackInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainCallbackInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainCallbackInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainCallbackInfo",
+      "type": "topic",
+      "url": "/documentation/security/seckeychaincallbackinfo"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainEvent": {
+      "abstract": [
+        {
+          "text": "The list of keychain events that can trigger a callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainEvent",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainevent"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters your keychain event callback function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainRemoveCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainCallback",
+          "text": "SecKeychainCallback"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainRemoveCallback(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainRemoveCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainRemoveCallback(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainremovecallback(_:)"
+    },
+    "doc://com.externally.resolved.symbol/s:Sp": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing and manipulating data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutablePointer"
+    },
+    "doc://com.externally.resolved.symbol/s:Sv": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.10",
+              "introducedAt": "10.2",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SecKeychainCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:*FI(#$@E@SecKeychainEvent#*$@S@SecKeychainCallbackInfo#*v)",
+                    "text": "int (*)(enum SecKeychainEvent, struct SecKeychainCallbackInfo *, void *)"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SecKeychainCallback"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SecKeychain is deprecated",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainRemoveCallback(_:)/title",
+          "value": "SecKeychainRemoveCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainRemoveCallback(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainRemoveCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddCallback(_:_:_:)/title",
+          "value": "SecKeychainAddCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddCallback(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAddCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/title",
+          "value": "SecKeychainCallbackInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallbackInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallbackInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallbackInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/title",
+          "value": "SecKeychainCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/title",
+          "value": "SecKeychainEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainEvent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/seckeychaincallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/seckeychaincallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

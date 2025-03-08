@@ -1,0 +1,1772 @@
+{
+  "abstract": [
+    {
+      "text": "Computes the dates that match (or most closely match) a given set of components, and calls the block once for each of them, until the enumeration is stopped.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/calendar",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscalendar/1413938-enumeratedates"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413938,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCalendar(im)enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "enumerateDates"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "startingAfter"
+      },
+      {
+        "kind": "text",
+        "text": ": Date, "
+      },
+      {
+        "kind": "identifier",
+        "text": "matching"
+      },
+      {
+        "kind": "text",
+        "text": ": DateComponents, "
+      },
+      {
+        "kind": "identifier",
+        "text": "options"
+      },
+      {
+        "kind": "text",
+        "text": ": NSCalendar.Options, "
+      },
+      {
+        "kind": "identifier",
+        "text": "using"
+      },
+      {
+        "kind": "text",
+        "text": ": (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSCalendar"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "enumerateDates(startingAfter:matching:options:using:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateDates"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "startingAfter"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "start"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "matching"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "comps"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation14DateComponentsV",
+              "text": "DateComponents"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "opts"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCalendar",
+              "text": "NSCalendar"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSCalendarOptions",
+              "text": "Options"
+            },
+            {
+              "kind": "text",
+              "text": " = []"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "using"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/objcbool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+              "text": "ObjCBool"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date for which to perform the calculation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "start"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date components to match. If no components are specified, the enumeration will not be executed. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "nanoseconds",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " component is set to a nonzero value, the resulting dates will have floating point ",
+                  "type": "text"
+                },
+                {
+                  "code": "seconds",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " values that most closely match the specified ",
+                  "type": "text"
+                },
+                {
+                  "code": "nanoseconds",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. Otherwise, the resulting dates will have an integer ",
+                  "type": "text"
+                },
+                {
+                  "code": "seconds",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "comps"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Options for the enumeration. For possible values, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For usage, see ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discussion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "opts"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block to apply to each enumerated date. The block takes three arguments:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "The enumerated date.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "date",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Whether ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "date",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " exactly matches the specified date components.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "idx",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "A reference to a Boolean value. The block can set the value to ",
+                            "type": "text"
+                          },
+                          {
+                            "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                            "isActive": false,
+                            "type": "reference"
+                          },
+                          {
+                            "text": " to stop further processing of the array. The stop argument is an out-only argument. You should only ever set this Boolean to ",
+                            "type": "text"
+                          },
+                          {
+                            "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                            "isActive": false,
+                            "type": "reference"
+                          },
+                          {
+                            "text": " within the Block.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "stop",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Executes a given block with dates that most closely match a given set of components after a given date, until the enumeration is stopped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Strict & Non-Strict Matching",
+                  "type": "text"
+                }
+              ],
+              "type": "inlineHead"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a strict matching option (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416455-matchstrictly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), this method searches as far as necessary looking for a match, up to a an implementation-defined limit. If an exact match is not possible, ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is passed to the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument of the block, and the enumeration is stopped. Otherwise, this method searches as far as the next instance of the next highest calendar unit in the given ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateComponents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you do not specify a strict matching option, you must specify one of the following options, or else an illegal argument exception will be thrown:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If specified, and there is no matching time before the end of the next instance of the next highest unit specified in the given ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSDateComponents",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " object, this method uses the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "previous",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " existing value of the missing unit and preserves the lower units' values.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1415759-matchprevioustimepreservingsmall",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If specified, and there is no matching time before the end of the next instance of the next highest unit specified in the given ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSDateComponents",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " object, this method uses the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "next",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " existing value of the missing unit and preserves the lower units' values. ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1417963-matchnexttimepreservingsmallerun",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If specified, and there is no matching time before the end of the next instance of the next highest unit specified in the given ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSDateComponents",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " object, this method uses the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "next",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " existing value of the missing unit and ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "does not",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " preserve the lower units' values. ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1411904-matchnexttime",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the date \"February 29th\" does not exist for a particular year, a non-strict match would return \"February 28th\" of that year instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2852008",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Strict and non-strict matching of month and day date components",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2852008",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As another example, if the time \"2:37AM\" does not exist for a particular day, such as when advancing by an hour at the beginning of Daylight Savings Time, the following is true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If strict matching is specified, \"2:37AM\" on the following the next day is used.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1415759-matchprevioustimepreservingsmall",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is specified, \"1:37AM\" would be used instead, if that time exists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1417963-matchnexttimepreservingsmallerun",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is specified, the date at the time \"3:37AM\" would be used instead, if that time exists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1411904-matchnexttime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is specified, the date at the time \"3:00AM\" would be used instead, if that time exists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2852011",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Strict and non-strict matching of hour and minute date components",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2852011",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Matching First or Last Occurrence",
+                  "type": "text"
+                }
+              ],
+              "type": "inlineHead"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a \"match first\" option (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1410281-matchfirst",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and there are two or more matching times (that is, all components are the same) before the end of the next instance of the next highest unit specified in the given ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateComponents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, this method uses the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "first",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurrence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a \"match last\" option (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1412627-matchlast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and there are two or more matching times (that is, all components are the same) before the end of the next instance of the next highest unit specified in the given ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateComponents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, this method uses the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "last",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurrence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If neither \"match first\" or \"match last\" options are specified or both options are specified, this method behaves as if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1410281-matchfirst",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " was specified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is no option to return middle occurrences of more than two occurrences of a matching time, if such exist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when Daylight Savings Time ends, clocks are set back by one hour at 2:00AM, such that times between 1:00AM and 1:59AM occur twice that day. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1410281-matchfirst",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1412627-matchlast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " search options return the first and last occurrence of these times. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2852012",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "First and last occurrence matching of hour and minute components",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2852012",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Forward & Backward Search",
+                  "type": "text"
+                }
+              ],
+              "type": "inlineHead"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a backward search option (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416053-searchbackwards",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), this method will search for previous matches before the given date. This method will return the same results as if the search were made in the forward direction from the distant past, but with the results in reverse order starting with the match most recent to the given date. That is, when searching backwards for a particular hour with no specified minute or second value, the resulting time is not \"59\" minutes and \"59\" seconds for the matching hour. When enumerating dates that repeat a time, such as when the clock turns back to 1:00AM from 2:00AM when Daylight Savings Time ends, the \"first\" time is determined as if the search were performed in the forwards direction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, given a date with a time of \"5:00AM\" when searching for a minute component equal to 30, a forward search returns the time \"5:30AM\" and a backward search returns \"4:30AM\".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2852013",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Forwards and backwards matching of minute date component",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2852013",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/calendar": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Calendar",
+      "type": "topic",
+      "url": "/documentation/foundation/calendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendar",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1413938-enumeratedates": {
+      "abstract": [
+        {
+          "text": "Computes the dates that match (or most closely match) a given set of components, and calls the block once for each of them, until the enumeration is stopped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateDates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "startingAfter"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": DateComponents, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1413938-enumeratedates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateDates(startingAfter:matching:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1413938-enumeratedates"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1416165-nextdate": {
+      "abstract": [
+        {
+          "text": "Returns the next date after a given date matching the given components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": DateComponents, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Options) -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1416165-nextdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDate(after:matching:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1416165-nextdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1416814-nextdate": {
+      "abstract": [
+        {
+          "text": "Returns the next date after a given date that matches the given hour, minute, and second, component values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchingHour"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "minute"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "second"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Options) -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1416814-nextdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDate(after:matchingHour:minute:second:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1416814-nextdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1417161-startofday": {
+      "abstract": [
+        {
+          "text": "Returns the first moment of a given date as a date instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startOfDay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1417161-startofday",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startOfDay(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1417161-startofday"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1417170-nextdate": {
+      "abstract": [
+        {
+          "text": "Returns the next date after a given date matching the given calendar unit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Options) -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1417170-nextdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDate(after:matching:value:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1417170-nextdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1430373-nswrapcalendarcomponents": {
+      "abstract": [
+        {
+          "text": "A legacy constant used to control overflow in date calculations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1430373-nswrapcalendarcomponents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSWrapCalendarComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1430373-nswrapcalendarcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options": {
+      "abstract": [
+        {
+          "text": "The options for arithmetic operations involving calendars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCalendar.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendar.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1410281-matchfirst": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1410281-matchfirst",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchFirst",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1410281-matchfirst"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1411904-matchnexttime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1411904-matchnexttime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchNextTime",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1411904-matchnexttime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1412627-matchlast": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1412627-matchlast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchLast",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1412627-matchlast"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1415759-matchprevioustimepreservingsmall": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1415759-matchprevioustimepreservingsmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPreviousTimePreservingSmallerUnits",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1415759-matchprevioustimepreservingsmall"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416053-searchbackwards": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416053-searchbackwards",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchBackwards",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1416053-searchbackwards"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416455-matchstrictly": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1416455-matchstrictly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchStrictly",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1416455-matchstrictly"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1417963-matchnexttimepreservingsmallerun": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/options/1417963-matchnexttimepreservingsmallerun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchNextTimePreservingSmallerUnits",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/options/1417963-matchnexttimepreservingsmallerun"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objcbool": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objcbool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObjCBool",
+      "type": "topic",
+      "url": "/documentation/objectivec/objcbool"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-2852008": {
+      "identifier": "link-media-2852008",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/nscalendar/1413938-enumeratedates#2852008"
+    },
+    "link-media-2852011": {
+      "identifier": "link-media-2852011",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/foundation/nscalendar/1413938-enumeratedates#2852011"
+    },
+    "link-media-2852012": {
+      "identifier": "link-media-2852012",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/foundation/nscalendar/1413938-enumeratedates#2852012"
+    },
+    "link-media-2852013": {
+      "identifier": "link-media-2852013",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/foundation/nscalendar/1413938-enumeratedates#2852013"
+    },
+    "media-2852008": {
+      "abstract": [
+        {
+          "text": "Strict and non-strict matching of month and day date components",
+          "type": "text"
+        }
+      ],
+      "alt": "Given the date \"January 1st, 2010\" and searching for the next date with month component equal to 2 and day component equal to 29, a strict match returns the date \"February 29th, 2012\", whereas a non-strict match returns the date \"February 28th, 2010\".",
+      "identifier": "media-2852008",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a06ed90205/f56a7ee1-0e07-4b47-b917-45d0fd5ec6be.png"
+        }
+      ]
+    },
+    "media-2852011": {
+      "abstract": [
+        {
+          "text": "Strict and non-strict matching of hour and minute date components",
+          "type": "text"
+        }
+      ],
+      "alt": "Given the date \"March 11th, 2012 at 12:00AM UTC\" and searching for the next date with hour component equal to 2 and minute component equal to 47, a strict match returns the date \"March 12th, 2012 at 2:47AM UTC\", a non-strict match specifying the previous time preserving smaller units returns the date \"March 11th, 2012 at 1:47AM UTC\", a non-strict match specifying the next time preserving smaller units returns the date \"March 11th, 2012 at 3:47AM UTC\", and a non-strict match specifying the next time returns the date \"March 11th, 2012 at 3:00AM UTC\".",
+      "identifier": "media-2852011",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a06ed90205/3e86b339-598d-4436-8230-adf2b98df1eb.png"
+        }
+      ]
+    },
+    "media-2852012": {
+      "abstract": [
+        {
+          "text": "First and last occurrence matching of hour and minute components",
+          "type": "text"
+        }
+      ],
+      "alt": "Given the date \"November 4th, 2012 at 12:00AM UTC\" and searching for the next date with hour component equal to 1 and minute component equal to 19, the match first option returns the first instance of \"November 4th, 2012 at 1:19AM UTC\", before Daylight Savings Time ends, and the match first option returns the second instance of \"November 4th, 2012 at 1:19AM UTC\", after Daylight Savings Time ends.",
+      "identifier": "media-2852012",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a06ed90205/f945f530-501e-4b46-9809-746b6973f764.png"
+        }
+      ]
+    },
+    "media-2852013": {
+      "abstract": [
+        {
+          "text": "Forwards and backwards matching of minute date component",
+          "type": "text"
+        }
+      ],
+      "alt": "Given the date \"July 18th, 2012 at 5:00AM UTC\" and searching for a minute component equal to 30, a forward search returns \"July 18th, 2012 at 5:30AM UTC\" and a backward search returns \"July 18th, 2012 at 4:30AM UTC\".",
+      "identifier": "media-2852013",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a06ed90205/eb8eff50-b638-44c0-94d9-90010880a74d.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/1417161-startofday",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/1416165-nextdate",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/1416814-nextdate",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/1417170-nextdate",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/options",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/1430373-nswrapcalendarcomponents"
+      ],
+      "title": "Scanning Dates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscalendar/1413938-enumeratedatesstartingafterdate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscalendar/1413938-enumeratedates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

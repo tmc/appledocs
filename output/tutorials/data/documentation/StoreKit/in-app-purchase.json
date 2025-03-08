@@ -1,0 +1,2414 @@
+{
+  "abstract": [
+    {
+      "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "In-App Purchase"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the In-App Purchase API, you can offer customers the opportunity to purchase digital content and services in your app. Customers can make the purchases within your app, and find your promoted products on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The StoreKit framework connects to the App Store on your app’s behalf to prompt for, and securely process, payments. The framework then notifies your app, making the transactions for In-App Purchases available to your app on all of the customer’s devices. For each transaction that represents a current purchase, your app delivers the purchased products. To validate purchases, you can verify transactions on your server, or rely on StoreKit’s verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4447232",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store can also communicate with your server. It notifies your server of transactions and auto-renewable subscription events through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and provides the same transaction information, and more, through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how adding In-App Purchases fits in an overall app development workflow for the App Store, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/pathway/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an overview of In-App Purchases and its features, including its configuration, testing capabilities, marketing for your products, and more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an overview on subscriptions, including creating subscription groups, Family Sharing, and more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-In-App-Purchases",
+          "level": 3,
+          "text": "Configure In-App Purchases",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the In-App Purchase API, you first need to configure the products that your app merchandises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the early stages of development, you can configure the products in the StoreKit configuration file in Xcode, and test your code without any dependency on App Store Connect. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you’re ready for sandbox testing and production, configure the products in App Store Connect. You can add or remove products and refine or reconfigure existing products as you develop your app. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also offer apps and In-App Purchases that run on multiple platforms as a single purchase. For more information on universal purchase, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-a-store-in-your-app",
+          "level": 3,
+          "text": "Support a store in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The In-App Purchase API takes advantage of Swift features like concurrency to simplify your In-App Purchase workflows, and SwiftUI to build stores with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the API to manage access to content and subscriptions, receive App Store-signed transaction information, get the history of all In-App Purchase transactions, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10114: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2021/10114/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC21",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The In-App Purchase API offers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transaction information that’s App Store-signed in JSON Web Signature (JWS) format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transaction and subscription status information that’s simple to parse in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An entitlements API, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", that simplifies determining entitlements to unlock content and services for your customers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 110404: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110404/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support a store in your app, implement the following functionality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listen for transaction state changes using the transaction listener, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", to provide up-to-date service and content while your app is running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to merchandise your products; or request products to display from the App Store with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/products(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and enable purchases using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Unlock purchased content and services based on the purchase result, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Iterate through a customer’s purchases anytime using the transaction sequence ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and unlock the purchased content and services.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, validate the signed transactions and signed subscription status information that you receive from the API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct": {
+      "abstract": [
+        {
+          "text": "A product configured as a generic SKU in App Store Connect for use with the Advanced Commerce API.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvancedCommerceProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvancedCommerceProduct"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvancedCommerceProduct",
+      "type": "topic",
+      "url": "/documentation/storekit/advancedcommerceproduct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore": {
+      "abstract": [
+        {
+          "text": "Interactions with the App Store, such as managing subscriptions, verifying devices, authorizing payments, synchronizing transactions, getting the environment, and more.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStore"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStore",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/PromotionInfo": {
+      "abstract": [
+        {
+          "text": "Information about a promoted In-App Purchase that customizes its order and visibility on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PromotionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PromotionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PromotionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.PromotionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/promotioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult": {
+      "abstract": [
+        {
+          "text": "The result of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.PurchaseResult",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchaseresult"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription, such as its status, period, subscription group, and subscription offer details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState": {
+      "abstract": [
+        {
+          "text": "The renewal states of auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalState",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct": {
+      "abstract": [
+        {
+          "text": "The renewal status information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.Status",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/status-swift.struct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer": {
+      "abstract": [
+        {
+          "text": "Information about a subscription offer that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType": {
+      "abstract": [
+        {
+          "text": "The types of offers for auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OfferType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer.OfferType",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer/offertype"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/products(for:)": {
+      "abstract": [
+        {
+          "text": "Requests product data from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "products"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/products(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "products(for:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/products(for:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)": {
+      "abstract": [
+        {
+          "text": "Initiates a purchase for the product with the App Store and displays the confirmation sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "purchase(options:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchase(options:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction": {
+      "abstract": [
+        {
+          "text": "An action that starts an In-App Purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseAction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseAction",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent": {
+      "abstract": [
+        {
+          "text": "An instance that emits purchase intents, which indicate that the customer initiated a purchase outside of your app, for your app to complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseIntent",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreKitError": {
+      "abstract": [
+        {
+          "text": "StoreKit In-App Purchase error codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreKitError"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreKitError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreKitError"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreKitError",
+      "type": "topic",
+      "url": "/documentation/storekit/storekiterror"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Storefront": {
+      "abstract": [
+        {
+          "text": "The region and unique identifier of the App Store storefront for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Storefront"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Storefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Storefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "Storefront",
+      "type": "topic",
+      "url": "/documentation/storekit/storefront"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Storefront/current": {
+      "abstract": [
+        {
+          "text": "The current App Store storefront for product purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV",
+          "text": "Storefront"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Storefront/current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/storekit/storefront/current"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Storefront/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits storefront information when the system updates the storefront.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV",
+          "text": "Storefront"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV11StorefrontsV",
+          "text": "Storefronts"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Storefront/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/storekit/storefront/updates"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod": {
+      "abstract": [
+        {
+          "text": "Represents the duration of time between subscription renewals.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriod"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriod"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionPeriod",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionperiod"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo": {
+      "abstract": [
+        {
+          "text": "Represents the renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionRenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionrenewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState": {
+      "abstract": [
+        {
+          "text": "The renewal states of auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRenewalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionRenewalState",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionrenewalstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus": {
+      "abstract": [
+        {
+          "text": "Represents the renewal status information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStatus",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstatus"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/all": {
+      "abstract": [
+        {
+          "text": "A sequence that emits all the customer’s transactions for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "all"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "all",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/all"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/updates"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/VerificationResult": {
+      "abstract": [
+        {
+          "text": "A type that describes the result of a StoreKit verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerificationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerificationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerificationResult",
+      "type": "topic",
+      "url": "/documentation/storekit/verificationresult"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/VerificationError": {
+      "abstract": [
+        {
+          "text": "Error cases for StoreKit JWS verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerificationError"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/VerificationError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerificationError"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerificationResult.VerificationError",
+      "type": "topic",
+      "url": "/documentation/storekit/verificationresult/verificationerror"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Use the latest API to support In-App Purchases in new or existing apps, or the original API to support In-App Purchases in earlier operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a StoreKit API for In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-storekit-api-for-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests": {
+      "abstract": [
+        {
+          "text": "Create signed JSON Web Signature (JWS) strings on your server to authorize your API requests in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JWS to sign App Store requests",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-jws-to-sign-app-store-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-a-store-in-your-app-using-the-storekit-api": {
+      "abstract": [
+        {
+          "text": "Offer In-App Purchases and manage entitlements using signed transactions and status information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-a-store-in-your-app-using-the-storekit-api",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a store in your app using the StoreKit API",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-a-store-in-your-app-using-the-storekit-api"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Present win-back offers to eligible customers in your app with the win-back offer sheet or by implementing custom merchandising.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Merchandising win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/sending-advanced-commerce-api-requests-from-your-app": {
+      "abstract": [
+        {
+          "text": "Send Advanced Commerce API requests from your app that you authorize with a JSON Web Signature (JWS) you generate on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/sending-advanced-commerce-api-requests-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending Advanced Commerce API requests from your app",
+      "type": "topic",
+      "url": "/documentation/storekit/sending-advanced-commerce-api-requests-from-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/storekit-views": {
+      "abstract": [
+        {
+          "text": "Display a customizable In-App Purchase store using StoreKit views for SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "StoreKit views",
+      "type": "topic",
+      "url": "/documentation/storekit/storekit-views"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app": {
+      "abstract": [
+        {
+          "text": "Display promoted In-App Purchases on your product page and handle purchases that users initiate on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting promoted In-App Purchases in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-promoted-in-app-purchases-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide subscription service for customers who redeem offer codes through the App Store or within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting subscription offer codes in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-subscription-offer-codes-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Re-engage previous subscribers with a free or discounted offer for an auto-renewable subscription, for a specific duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox": {
+      "abstract": [
+        {
+          "text": "Verify your implementation of In-App Purchases by testing your code throughout its development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing at all stages of development with Xcode and the sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Test your In-App Purchases before making your app available in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing promoted In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-promoted-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests": {
+      "abstract": [
+        {
+          "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing refund requests",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-refund-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode": {
+      "abstract": [
+        {
+          "text": "Validate your app’s handling of win-back offers that you configure for the testing environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-xcode"
+    },
+    "https://developer.apple.com/app-store/pathway/": {
+      "identifier": "https://developer.apple.com/app-store/pathway/",
+      "title": "App Store Pathway",
+      "titleInlineContent": [
+        {
+          "text": "App Store Pathway",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/pathway/"
+    },
+    "https://developer.apple.com/app-store/subscriptions/": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/",
+      "title": "Auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "title": "Configure In-App Purchase settings",
+      "titleInlineContent": [
+        {
+          "text": "Configure In-App Purchase settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases"
+    },
+    "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms/",
+      "title": "Add platforms",
+      "titleInlineContent": [
+        {
+          "text": "Add platforms",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-platforms/"
+    },
+    "https://developer.apple.com/in-app-purchase/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/",
+      "title": "Simple and safe In-App Purchases",
+      "titleInlineContent": [
+        {
+          "text": "Simple and safe In-App Purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10114/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10114/",
+      "title": "Meet StoreKit 2",
+      "titleInlineContent": [
+        {
+          "text": "Meet StoreKit 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10114/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110404/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110404/",
+      "title": "Implement proactive in-app purchase restore",
+      "titleInlineContent": [
+        {
+          "text": "Implement proactive in-app purchase restore",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110404/"
+    },
+    "media-4447232": {
+      "alt": "A diagram of the interactions between StoreKit, your app, the App Store, and your server that occur during a transaction.",
+      "identifier": "media-4447232",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cddba76b6de9f552b4afc2d69fd0799/media-4447232@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae92f04b4f95d6e3ffe803ae1a987704/media-4447232~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "In-App-Purchase-merchandising",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/storekit-views"
+      ],
+      "title": "In-App Purchase merchandising"
+    },
+    {
+      "anchor": "Product-and-subscription-information",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/implementing-a-store-in-your-app-using-the-storekit-api",
+        "doc://com.apple.storekit/documentation/StoreKit/Product",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus"
+      ],
+      "title": "Product and subscription information"
+    },
+    {
+      "anchor": "Purchase-requests-and-results",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult"
+      ],
+      "title": "Purchase requests and results"
+    },
+    {
+      "anchor": "Transaction-history-and-entitlements",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements"
+      ],
+      "title": "Transaction history and entitlements"
+    },
+    {
+      "anchor": "JWS-verification",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/VerificationResult",
+        "doc://com.apple.storekit/documentation/StoreKit/VerificationResult/VerificationError"
+      ],
+      "title": "JWS verification"
+    },
+    {
+      "anchor": "Subscription-status-and-renewal-information",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionRenewalState",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriod"
+      ],
+      "title": "Subscription status and renewal information"
+    },
+    {
+      "anchor": "Subscription-offers-and-offer-codes",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/OfferType"
+      ],
+      "title": "Subscription offers and offer codes"
+    },
+    {
+      "anchor": "Promoted-In-App-Purchases",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/PromotionInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases"
+      ],
+      "title": "Promoted In-App Purchases"
+    },
+    {
+      "anchor": "App-Store-interactions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AppStore",
+        "doc://com.apple.storekit/documentation/StoreKit/AppTransaction"
+      ],
+      "title": "App Store interactions"
+    },
+    {
+      "anchor": "Storefront-information",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Storefront",
+        "doc://com.apple.storekit/documentation/StoreKit/Storefront/current",
+        "doc://com.apple.storekit/documentation/StoreKit/Storefront/updates"
+      ],
+      "title": "Storefront information"
+    },
+    {
+      "anchor": "In-App-Purchase-Testing",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+      ],
+      "title": "In-App Purchase Testing"
+    },
+    {
+      "anchor": "Advanced-Commerce-API-interactions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct",
+        "doc://com.apple.storekit/documentation/StoreKit/sending-advanced-commerce-api-requests-from-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests"
+      ],
+      "title": "Advanced Commerce API interactions"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/StoreKitError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "In-App-Purchase-merchandising",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/storekit-views"
+              ],
+              "title": "In-App Purchase merchandising"
+            },
+            {
+              "anchor": "Product-and-subscription-information",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/implementing-a-store-in-your-app-using-the-storekit-api"
+              ],
+              "title": "Product and subscription information"
+            },
+            {
+              "anchor": "Subscription-offers-and-offer-codes",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app"
+              ],
+              "title": "Subscription offers and offer codes"
+            },
+            {
+              "anchor": "Promoted-In-App-Purchases",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases"
+              ],
+              "title": "Promoted In-App Purchases"
+            },
+            {
+              "anchor": "In-App-Purchase-Testing",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+              ],
+              "title": "In-App Purchase Testing"
+            },
+            {
+              "anchor": "Advanced-Commerce-API-interactions",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/sending-advanced-commerce-api-requests-from-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests"
+              ],
+              "title": "Advanced Commerce API interactions"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/in-app-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/in-app-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

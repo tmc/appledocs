@@ -1,0 +1,1897 @@
+{
+  "abstract": [
+    {
+      "text": "Follow subjects in real time using an iPhone that you mount on a DockKit accessory.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/controlling-a-dockkit-accessory-using-your-camera-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Controlling a DockKit accessory using your camera app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows you how to use your camera app with a DockKit accessory to frame and track subjects in real time. It demonstrates how DockKit system tracking works for your camera app, and how you can override system tracking to frame and track specific subjects using custom machine learning signals. It also shows you how to integrate physical buttons on your DockKit device with camera controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses SwiftUI and the features of Swift concurrency to build a responsive camera app with DockKit control. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/avcam-building-a-camera-app",
+              "isActive": true,
+              "overridingTitle": "AVCam: Building a camera app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCam: Building a camera app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more details about the camera implementation design. This sample code project uses the sample app from that project as a starting point to write a basic camera app.  The following diagram depicts the app’s design:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-assembly-overview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app defines two key services:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CaptureService",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is an actor that manages the interactions with the AVFoundation capture APIs. This object configures the capture pipeline and manages its life cycle, and it defines an asynchronous interface to capture videos. It also delegates handling of those operatons to the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MovieCapture",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DockControlService",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is an actor that manages interactions with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory",
+                      "isActive": true,
+                      "overridingTitle": "DockAccessory",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "DockAccessory",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " using DockKit APIs. This object listens to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DockAccessory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " connection/disconnection events, manages subscriptions to the connected ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DockAccessory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and controls its movements using an asynchronous interface. It also delegates camera control in response to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DockAccessory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " events to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CameraModel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Configuring and starting a capture session are blocking operations that can take time to complete. To keep the user interface responsive, the app defines ",
+                  "type": "text"
+                },
+                {
+                  "code": "CaptureService",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as an actor type to ensure that AVFoundation capture API calls don’t occur on the main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Simulator doesn’t have access to device cameras and can’t connect to a DockKit device, it isn’t suitable for running the sample app. To run the app, you need an iPhone with iOS 18 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-a-basic-camera-app-to-take-photos",
+          "level": 3,
+          "text": "Write a basic camera app to take photos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/avcam-building-a-camera-app",
+              "isActive": true,
+              "overridingTitle": "AVCam: Building a camera app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCam: Building a camera app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to learn how to write a basic camera app to capture videos using an iPhone’s front and rear cameras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-DockKit-accessory-manager",
+          "level": 3,
+          "text": "Configure the DockKit accessory manager",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is a singleton class that provides connection and disconnection notifications with a DockKit accessory by subscribing to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/accessoryStateChanges",
+              "isActive": true,
+              "overridingTitle": "accessoryStateChanges",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessoryStateChanges",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dock control service subscribes to ",
+              "type": "text"
+            },
+            {
+              "code": "accessoryStateChanges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "setUp(features: DockAccessoryFeatures)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Subscribe to accessory state changes.",
+            "for await stateEvent in try DockAccessoryManager.shared.accessoryStateChanges {",
+            "    // Save the DockKit accessory when docked (connected).",
+            "    if let newAccessory = stateEvent.accessory, stateEvent.state == .docked {",
+            "        dockkitAccessory = newAccessory",
+            "        await setupAccessorySubscriptions(for: newAccessory)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an accessory connects, DockKit sets it up to use system tracking, and to listen to accessory events and battery states in ",
+              "type": "text"
+            },
+            {
+              "code": "setupAccessorySubscriptions(for accesory: DockAccessory)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupAccessorySubscriptions(for accesory: DockAccessory) async {",
+            "    // Enable system tracking on the first connection.",
+            "    try await DockAccessoryManager.shared.setSystemTrackingEnabled(true)",
+            "    // Start the necessary subscriptions to accessory events and battery states.",
+            "    subscribeToAccessoryEvents(for: accesory)",
+            "    toggleBatterySummary(to: true, for: accesory)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-the-tracking-mode",
+          "level": 3,
+          "text": "Change the tracking mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides a tracking mode menu to switch between system tracking, custom tracking, and manual tracking. The default is system tracking, which the app sets by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)",
+              "isActive": true,
+              "overridingTitle": "setSystemTrackingEnabled(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "setSystemTrackingEnabled(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateTrackingMode(to trackingMode: TrackingMode) async {",
+            "    self.trackingMode = trackingMode",
+            "    // Call `systemTrackingEnabled` with `true` to enable the system tracking mode.",
+            "    try await DockAccessoryManager.shared.setSystemTrackingEnabled(trackingMode == .system ? true : false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides various menus and options to configure the selected subjects, selected frame, region to track, and more. All menus and buttons primarily live in the main DockKit menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Tap-to-track-the-subject",
+          "level": 3,
+          "text": "Tap to track the subject",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides a tap-to-track toggle to enable or disable selecting a specific subject to track by tapping the camera view. When the tap-to-track toggle is enabled, the ",
+              "type": "text"
+            },
+            {
+              "code": "selectSubject(at point: CGPoint?)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method allows people to select tapped subjects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectSubject(at point: CGPoint?) async -> Bool {",
+            "    if let point = point {",
+            "        // Select a specific subject at the point.",
+            "        try await accessory.selectSubject(at: point)",
+            "    } else {",
+            "        // Clear the selected subjects.",
+            "        try await accessory.selectSubjects([])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-region-of-interest",
+          "level": 3,
+          "text": "Set the region of interest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides a region-of-interest toggle to enable or disable setting a region of interest to frame the selected subjects by holding and dragging the camera view. When toggling the region of interest, the ",
+              "type": "text"
+            },
+            {
+              "code": "setRegionOfInterest(to region: CGRect)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method allows setting a region ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "overridingTitle": "CGRect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGRect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " in the camera view. The dock accessory keeps the subjects framed in the selected region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setRegionOfInterest(to region: CGRect) async {",
+            "    try await accessory.setRegionOfInterest(region)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-framing-mode",
+          "level": 3,
+          "text": "Set the framing mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides a framing mode menu to select a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/FramingMode-swift.enum",
+              "isActive": true,
+              "overridingTitle": "FramingMode",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "FramingMode",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateFraming(to framing: FramingMode) async -> Bool {",
+            "    try await accessory.setFramingMode(dockKitFramingMode(from: framing))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the helper function ",
+              "type": "text"
+            },
+            {
+              "code": "dockKitFramingMode(from: framing)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to map a local ",
+              "type": "text"
+            },
+            {
+              "code": "FramingMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration to ",
+              "type": "text"
+            },
+            {
+              "code": "DockAccessory.FramingMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dockKitFramingMode(from framingMode: FramingMode) -> DockAccessory.FramingMode {",
+            "    switch framingMode {",
+            "    case .auto:",
+            "        return DockAccessory.FramingMode.automatic",
+            "    case .center:",
+            "        return DockAccessory.FramingMode.center",
+            "    case .left:",
+            "        return DockAccessory.FramingMode.left",
+            "    case .right:",
+            "        return DockAccessory.FramingMode.right",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-manual-control-using-actuator-velocities",
+          "level": 3,
+          "text": "Implement manual control using actuator velocities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone sets the ",
+              "type": "text"
+            },
+            {
+              "code": "TrackingMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "TrackingMode.manual",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app provides chevrons to move ",
+              "type": "text"
+            },
+            {
+              "code": "DockAccessory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " up, left, right, and down by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/setAngularVelocity(_:)",
+              "isActive": true,
+              "overridingTitle": "setAngularVelocity(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "setAngularVelocity(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleChevronTapped(chevronType: ChevronType, speed: Double = 0.2) async {",
+            "    var velocity = Vector3D()",
+            "    switch chevronType {",
+            "    case .tiltUp:",
+            "        velocity.x = -speed",
+            "        break",
+            "    case .tiltDown:",
+            "        velocity.x = speed",
+            "        break",
+            "    case .panLeft:",
+            "        velocity.y = -speed",
+            "        break",
+            "    case .panRight:",
+            "        velocity.y = speed",
+            "        break",
+            "    }",
+            "    try await dockkitAccessory.setAngularVelocity(velocity)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Run-the-default-animations",
+          "level": 3,
+          "text": "Run the default animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides buttons to run the four default animations that ",
+              "type": "text"
+            },
+            {
+              "code": "DockAccessory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides. Before running the animation, the app disables system tracking. When the animation is complete, the app restores system tracking to its prior value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Disable the system tracking before running the animation.",
+            "try await DockAccessoryManager.shared.setSystemTrackingEnabled(false)",
+            "",
+            "// Run the animation and wait for it to finish.",
+            "let progress = try await dockkitAccessory.animate(motion: dockKitAnimation(from: animation))",
+            "while(!progress.isCancelled && !progress.isFinished) {",
+            "    try await Task.sleep(nanoseconds: NSEC_PER_SEC/10) // 0.1 sec",
+            "}",
+            "            ",
+            "// Restore the system tracking after running the animation.",
+            "try await DockAccessoryManager.shared.setSystemTrackingEnabled(trackingMode == .system ? true : false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the helper function ",
+              "type": "text"
+            },
+            {
+              "code": "dockKitAnimation(from animation: Animation)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to map a local animation enumeration to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/Animation",
+              "isActive": true,
+              "overridingTitle": "DockAccessory.Animation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "DockAccessory.Animation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dockKitAnimation(from animation: Animation) -> DockAccessory.Animation {",
+            "    switch animation {",
+            "    case .yes:",
+            "        return DockAccessory.Animation.yes",
+            "    case .nope:",
+            "        return DockAccessory.Animation.nope",
+            "    case .wakeup:",
+            "        return DockAccessory.Animation.wakeup",
+            "    case .kapow:",
+            "        return DockAccessory.Animation.kapow",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DockKit menu provides toggles to subscribe to various states, like battery and tracking, and displays them in the app’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-the-battery-state",
+          "level": 3,
+          "text": "Implement the battery state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dock control service subscribes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/batteryStates-swift.property",
+              "isActive": true,
+              "overridingTitle": "batteryStates",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "batteryStates",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to acquire the current battery state of the accessory. The current battery state includes the battery level, charging indicator, and so forth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await batterySummaryState in try dockkitAccessory.batteryStates {",
+            "    battery = .available(percentage: batterySummaryState.batteryLevel, charging: batterySummaryState.chargeState == .charging)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-the-tracking-states",
+          "level": 3,
+          "text": "Implement the tracking states",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dock control service subscribes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/TrackingStates-swift.struct",
+              "isActive": true,
+              "overridingTitle": "trackingStates",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "trackingStates",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to get a list of tracked subjects with attributes like saliency and speaking confidence. The dock control service delegates the handling of the conversion from a normalized subject rectangle to camera view space coordinates to the ",
+              "type": "text"
+            },
+            {
+              "code": "CameraModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which uses the capture service for the operation. The app uses these states, along with the transformed subject rectangle, to show an overlay on the faces of the subjects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await trackingSummaryState in try dockkitAccessory.trackingStates {",
+            "    for subject in trackingSummaryState.trackedSubjects {",
+            "        switch subject {",
+            "        case .person(let person):",
+            "            if let rect = await cameraCaptureDelegate?.convertToViewSpace(from: person.rect) {",
+            "                // Create a `DockAccessoryTrackedPerson` object from `TrackingState`.",
+            "                trackedPersons.append(DockAccessoryTrackedPerson(saliency: person.saliencyRank, rect: rect,",
+            "                                                                 speaking: person.speakingConfidence, looking: person.lookingAtCameraConfidence))",
+            "            }",
+            "        default:",
+            "            // Do nothing.",
+            "            break",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-camera-control-using-accessory-events",
+          "level": 3,
+          "text": "Implement camera control using accessory events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dock control service subscribes to an ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stream of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct",
+              "isActive": true,
+              "overridingTitle": "AccessoryEvents",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AccessoryEvents",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". A physical input on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory",
+              "isActive": true,
+              "overridingTitle": "DockAccessory",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "DockAccessory",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " triggers an accessory event. When the app receives an accessory event, it delegates handling of the event to the ",
+              "type": "text"
+            },
+            {
+              "code": "CameraModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which uses the capture service to perform camera operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await event in try accesory.accessoryEvents {",
+            "    switch (event) {",
+            "    case let .button(id, pressed):",
+            "        break",
+            "    case .cameraZoom(factor: let factor):",
+            "        let zoomType = factor > 0 ? CameraZoomType.increase : CameraZoomType.decrease",
+            "        // Implement the camera zoom.",
+            "        cameraCaptureDelegate?.zoom(type: zoomType, factor: 0.2)",
+            "        break",
+            "    case .cameraShutter:",
+            "        if (Date.now.timeIntervalSince(lastShutterEventTime) > 0.2) {",
+            "            // Implement the camera start capture or stop capture.",
+            "            cameraCaptureDelegate?.startOrStartCapture()",
+            "            lastShutterEventTime = .now",
+            "        }",
+            "        break",
+            "    case .cameraFlip:",
+            "        // Implement the camera flip.",
+            "        cameraCaptureDelegate?.switchCamera()",
+            "        break",
+            "    default: break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CameraModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and provides the helper methods to control the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-the-camera-zoom",
+          "level": 3,
+          "text": "Implement the camera zoom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture service implements the ",
+              "type": "text"
+            },
+            {
+              "code": "updateMagnification(for zoomType: CameraZoomType, by scale: Double = 0.2)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in response to a zoom event from the accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateMagnification(for zoomType: CameraZoomType, by scale: Double = 0.2) {",
+            "    try? currentDevice.lockForConfiguration()",
+            "    let magnification = (zoomType == .increase ? 1.0 : -1.0) * scale",
+            "    var newZoomFactor = currentDevice.videoZoomFactor + magnification",
+            "    newZoomFactor = max(min(newZoomFactor, self.maxZoomFactor), self.minZoomFactor)",
+            "    newZoomFactor = Double(round(10 * newZoomFactor) / 10)",
+            "    currentDevice.videoZoomFactor = newZoomFactor",
+            "    currentDevice.unlockForConfiguration()",
+            "    self.zoomFactor = newZoomFactor",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-the-camera-shutter",
+          "level": 3,
+          "text": "Implement the camera shutter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture service implements the ",
+              "type": "text"
+            },
+            {
+              "code": "startRecording()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in response to a start-capture shutter event, and a ",
+              "type": "text"
+            },
+            {
+              "code": "stopRecording()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in response to a stop-capture shutter event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startRecording() {",
+            "    movieCapture.startRecording()",
+            "}",
+            "",
+            "func stopRecording() async throws -> Movie {",
+            "    try await movieCapture.stopRecording()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-the-camera-flip",
+          "level": 3,
+          "text": "Implement the camera flip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture service implements the ",
+              "type": "text"
+            },
+            {
+              "code": "selectNextVideoDevice()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in reponse to the camera flip event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectNextVideoDevice() {",
+            "    // Change the session's active capture device.",
+            "    changeCaptureDevice(to: nextDevice)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8a91b3c4c6e5/ControllingADockKitAccessoryUsingYourCameraApp.zip": {
+      "checksum": "8a91b3c4c6e58cb0c2414ee373bf470d5f17c323f17e7398396f7052714b0f0bfa99f23c6eecd40a55e09eb0c4f1b378c752b8a4949f85922c0285e2009c20b1",
+      "identifier": "8a91b3c4c6e5/ControllingADockKitAccessoryUsingYourCameraApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8a91b3c4c6e5/ControllingADockKitAccessoryUsingYourCameraApp.zip"
+    },
+    "app-assembly-overview": {
+      "alt": "A diagram of two stacked flows depicting the relationships between app objects. The top flow consists of a horizontal rectangle labeled App Content View with arrows pointing to two stacked horizontal rectangles on the right labeled Camera and Dock Controller. The bottom flow has a horizontal rectangle labeled DockKit Camera App with arrows pointing to two horizontal rectangles on the right labeled Dock Controller Model and Camera Model. An arrow from the Dock Controller Model rectangle points right to a horizontal rectangle labeled Dock Control Service, and an arrow from that rectangle points upward to a horizontal rectangle labeled DockAccessory. An arrow from the Camera Model rectangle points right to a horizontal rectangle labeled Capture Service, and an arrow from that rectangle points downward to a horizontal rectangle labeled Movie Capture.  ",
+      "identifier": "app-assembly-overview",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f53701ae5a1f86d205d2a5b952c5b99/app-assembly-overview@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/241082b5baed8a8937edc7789360576d/app-assembly-overview~dark@2x.png"
+        }
+      ]
+    },
+    "building-a-camera-app-PageImage-card.png": {
+      "alt": null,
+      "identifier": "building-a-camera-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d739ff6cce86d4349988da7f8417e7d/building-a-camera-app-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/960411afd1a832784abd2a9293ada4c4/building-a-camera-app-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory": {
+      "abstract": [
+        {
+          "text": "Obtain accessory information and control tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager": {
+      "abstract": [
+        {
+          "text": "Observe the state of dock accessories and enable or disable system tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessoryManager",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError": {
+      "abstract": [
+        {
+          "text": "A list of errors that DockKit sends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockKitError"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockKitError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockKitError",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/avcam-building-a-camera-app": {
+      "abstract": [
+        {
+          "text": "Capture photos and record video using the front and rear iPhone and iPad cameras.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/avcam-building-a-camera-app",
+      "images": [
+        {
+          "identifier": "building-a-camera-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCam: Building a camera app",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/avcam-building-a-camera-app"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory": {
+      "abstract": [
+        {
+          "text": "Obtain accessory information and control tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockAccessory",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of dock accessory events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockAccessory.AccessoryEvents",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/Animation": {
+      "abstract": [
+        {
+          "text": "Character animations that describe how to move the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/Animation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockAccessory.Animation",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/Animation"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/FramingMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "The mode to control framing of the subject when tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FramingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/FramingMode-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockAccessory.FramingMode",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/FramingMode-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/TrackingStates-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of tracking session states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackingStates"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/TrackingStates-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockAccessory.TrackingStates",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/TrackingStates-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/batteryStates-swift.property": {
+      "abstract": [
+        {
+          "text": "Battery states from the accessory that indicate changes in battery charge or readiness",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC13BatteryStatesV",
+          "text": "BatteryStates"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/batteryStates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batteryStates",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/batteryStates-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessory/setAngularVelocity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the angular velocity of each axis of orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAngularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "angularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessory/setAngularVelocity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAngularVelocity(_:)",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessory/setAngularVelocity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/accessoryStateChanges": {
+      "abstract": [
+        {
+          "text": "Obtain a reference to a dock accessory and receive notifications about its state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryStateChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC12StateChangesV",
+          "text": "StateChanges"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/accessoryStateChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryStateChanges",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessoryManager/accessoryStateChanges"
+    },
+    "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)": {
+      "abstract": [
+        {
+          "text": "Enable and disable system tracking for camera-enabled apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSystemTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSystemTrackingEnabled(_:)",
+      "type": "topic",
+      "url": "/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8a91b3c4c6e5/ControllingADockKitAccessoryUsingYourCameraApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controlling-the-dock-accessory",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+        "doc://com.apple.DockKit/documentation/DockKit/DockKitError"
+      ],
+      "title": "Controlling the dock accessory"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/controlling-a-dockkit-accessory-using-your-camera-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

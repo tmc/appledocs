@@ -1,0 +1,698 @@
+{
+  "abstract": [
+    {
+      "text": "A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411014,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDistributedLock",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDistributedLock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDistributedLock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDistributedLock"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1412293-try",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to attempt to acquire a lock. You should generally use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1417238-unlock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to release the lock rather than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413425-break",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, nor does it have a ",
+              "type": "text"
+            },
+            {
+              "code": "lock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The protocol’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocking/1416318-lock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is intended to block the execution of the thread until successful. For an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object, this could mean polling the file system at some predetermined rate. A better solution is to provide the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1412293-try",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and let you determine the polling frequency that makes sense for your application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscondition": {
+      "abstract": [
+        {
+          "text": "A condition variable whose semantics follow those used for POSIX-style conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCondition",
+      "type": "topic",
+      "url": "/documentation/foundation/nscondition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconditionlock": {
+      "abstract": [
+        {
+          "text": "A lock that can be associated with specific, user-defined conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSConditionLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconditionlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConditionLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconditionlock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock": {
+      "abstract": [
+        {
+          "text": "A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDistributedLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistributedLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1410387-init": {
+      "abstract": [
+        {
+          "text": "Initializes an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDistributedLock",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object to use as the lock the file-system entry specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1410387-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(path:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock/1410387-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1412293-try": {
+      "abstract": [
+        {
+          "text": "Attempts to acquire the receiver and immediately returns a Boolean value that indicates whether the attempt was successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`try`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1412293-try",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "try()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock/1412293-try"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413425-break": {
+      "abstract": [
+        {
+          "text": "Forces the lock to be relinquished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`break`"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413425-break",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "break()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock/1413425-break"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413773-lockdate": {
+      "abstract": [
+        {
+          "text": "Returns the time the receiver was acquired by any of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSDistributedLock",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects using the same path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413773-lockdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock/1413773-lockdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1417238-unlock": {
+      "abstract": [
+        {
+          "text": "Relinquishes the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1417238-unlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlock()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock/1417238-unlock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslock": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the operation of multiple threads of execution within the same application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nslock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocking": {
+      "abstract": [
+        {
+          "text": "The elementary methods adopted by classes that define lock objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocking"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocking",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocking"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocking/1416318-lock": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocking/1416318-lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lock()",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocking/1416318-lock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrecursivelock": {
+      "abstract": [
+        {
+          "text": "A lock that may be acquired multiple times by the same thread without causing a deadlock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRecursiveLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrecursivelock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRecursiveLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrecursivelock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread": {
+      "abstract": [
+        {
+          "text": "A thread of execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Thread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread",
+        "doc://com.apple.documentation/documentation/foundation/nslocking",
+        "doc://com.apple.documentation/documentation/foundation/nslock",
+        "doc://com.apple.documentation/documentation/foundation/nsrecursivelock",
+        "doc://com.apple.documentation/documentation/foundation/nsconditionlock",
+        "doc://com.apple.documentation/documentation/foundation/nscondition"
+      ],
+      "title": "Threads and Locking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679574",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1410387-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an NSDistributedLock"
+    },
+    {
+      "anchor": "1679600",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1412293-try"
+      ],
+      "kind": "taskGroup",
+      "title": "Acquiring a Lock"
+    },
+    {
+      "anchor": "1679611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413425-break",
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1417238-unlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Relinquishing a Lock"
+    },
+    {
+      "anchor": "1679630",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock/1413773-lockdate"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Lock Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdistributedlock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdistributedlock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

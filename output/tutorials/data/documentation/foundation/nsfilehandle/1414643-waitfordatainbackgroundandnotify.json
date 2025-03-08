@@ -1,0 +1,541 @@
+{
+  "abstract": [
+    {
+      "text": "Asynchronously checks to see if data is available.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1414643-waitfordatainbackgroundandnotify"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414643,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileHandle(im)waitForDataInBackgroundAndNotifyForModes:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileHandle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "waitForDataInBackgroundAndNotifyForModes:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "waitForDataInBackgroundAndNotifyForModes:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSArray",
+              "text": "NSArray"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloopmode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRunLoopMode",
+              "text": "NSRunLoopMode"
+            },
+            {
+              "kind": "text",
+              "text": "> *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "modes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The runloop modes in which the data available notification can be posted.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "modes"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the data becomes available, this method posts a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandledataavailablenotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification on the current thread. This method differs from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409270-waitfordatainbackgroundandnotify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in that ",
+              "type": "text"
+            },
+            {
+              "code": "modes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the run-loop mode (or modes) in which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandledataavailablenotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can be posted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must call this method from a thread that has an active run loop. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle": {
+      "abstract": [
+        {
+          "text": "An object-oriented wrapper for a file descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409270-waitfordatainbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Asynchronously checks to see if data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForDataInBackgroundAndNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409270-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotify",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1409270-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1412997-acceptconnectioninbackgroundandn": {
+      "abstract": [
+        {
+          "text": "Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the “near” (client) end of the communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptConnectionInBackgroundAndNotifyForModes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1412997-acceptconnectioninbackgroundandn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptConnectionInBackgroundAndNotifyForModes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1412997-acceptconnectioninbackgroundandn"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413309-acceptconnectioninbackgroundandn": {
+      "abstract": [
+        {
+          "text": "Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the “near” (client) end of the communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptConnectionInBackgroundAndNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413309-acceptconnectioninbackgroundandn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptConnectionInBackgroundAndNotify",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1413309-acceptconnectioninbackgroundandn"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1414643-waitfordatainbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Asynchronously checks to see if data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForDataInBackgroundAndNotifyForModes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1414643-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotifyForModes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1414643-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1415313-readtoendoffileinbackgroundandno": {
+      "abstract": [
+        {
+          "text": "Reads to the end of file from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readToEndOfFileInBackgroundAndNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1415313-readtoendoffileinbackgroundandno",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readToEndOfFileInBackgroundAndNotify",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1415313-readtoendoffileinbackgroundandno"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416294-readinbackgroundandnotifyformode": {
+      "abstract": [
+        {
+          "text": "Reads from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInBackgroundAndNotifyForModes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416294-readinbackgroundandnotifyformode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotifyForModes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1416294-readinbackgroundandnotifyformode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417321-readtoendoffileinbackgroundandno": {
+      "abstract": [
+        {
+          "text": "Reads to the end of file from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readToEndOfFileInBackgroundAndNotifyForModes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417321-readtoendoffileinbackgroundandno",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readToEndOfFileInBackgroundAndNotifyForModes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1417321-readtoendoffileinbackgroundandno"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417635-readinbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Reads from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInBackgroundAndNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417635-readinbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotify",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1417635-readinbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandledataavailablenotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandledataavailablenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleDataAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandledataavailablenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloopmode": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloopmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoopMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloopmode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413309-acceptconnectioninbackgroundandn",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1412997-acceptconnectioninbackgroundandn",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417635-readinbackgroundandnotify",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416294-readinbackgroundandnotifyformode",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1415313-readtoendoffileinbackgroundandno",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1417321-readtoendoffileinbackgroundandno",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409270-waitfordatainbackgroundandnotify"
+      ],
+      "title": "Reading Asynchronously with Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilehandle/1414643-waitfordatainbackgroundandnotify"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

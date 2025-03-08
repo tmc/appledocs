@@ -1,0 +1,473 @@
+{
+  "abstract": [
+    {
+      "text": "Resolve, confirm, and handle user requests for your app’s services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Resolving and Handling Intents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit works with your Intents app extension to verify that you are able to fulfill the user’s request based on the provided information. During the resolution phase, you validate the individual parameters of an intent object and ask SiriKit for clarifications as needed. During the confirmation phase, you perform one final check of all intent parameters and verify that your services are ready to fulfill the intent. If you validate the intent successfully, SiriKit asks you to handle the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "watchOS does not support all intents. For example, an Intents app extension on watchOS cannot start a video call, set message attributes, or handle any intents in the CarPlay domain. Check the availability of any intents before trying to handle them on watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a parameter of an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/common-data-types": {
+      "abstract": [
+        {
+          "text": "Manage common data types such as strings, dates, currencies, images, and contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/common-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Data Types",
+      "type": "topic",
+      "url": "/documentation/sirikit/common-data-types"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Perform final validation of the intent parameters and verify that your services are ready to fulfill the intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Details of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/confirming-the-details-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent": {
+      "abstract": [
+        {
+          "text": "Fulfill the intent and provide feedback to SiriKit about what you did.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-handling-infrastructure": {
+      "abstract": [
+        {
+          "text": "Specify required permissions and provide handlers for the intents your app supports, and configure app extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-handling-infrastructure",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Handling Infrastructure",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-handling-infrastructure"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolution-results": {
+      "abstract": [
+        {
+          "text": "Resolve common types of data like strings and dates into specific values that your app recognizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolution-results",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolution Results",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolution-results"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Validate the parameters of an intent and make sure that you have the information you need to continue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving the Parameters of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-the-parameters-of-an-intent"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+        "doc://com.apple.sirikit/documentation/Intents/INIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResponse",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-handling-infrastructure",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolution-results",
+        "doc://com.apple.sirikit/documentation/SiriKit/common-data-types"
+      ],
+      "title": "Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-and-Handling-Intents",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent"
+      ],
+      "title": "Resolving and Handling Intents"
+    },
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResponse"
+      ],
+      "title": "Responses"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title",
+          "value": "INIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/title",
+          "value": "INIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/title",
+          "value": "INIntentResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

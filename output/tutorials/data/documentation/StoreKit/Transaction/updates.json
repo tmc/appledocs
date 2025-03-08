@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "StoreKit",
+    "externalID": "s:8StoreKit11TransactionV7updatesAC12TransactionsVvpZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "updates"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8StoreKit11TransactionV",
+        "text": "Transaction"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+        "text": "Transactions"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "updates"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "updates"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8StoreKit11TransactionV",
+              "text": "Transaction"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/Transactions",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+              "text": "Transactions"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive new transactions while the app is running. This sequence receives transactions that occur outside of the app, such as Ask to Buy transactions, subscription offer code redemptions, and purchases that customers make in the App Store. It also emits transactions that customers complete in your app on another device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that after a successful in-app purchase on the same device, StoreKit returns the transaction through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult/success(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Create a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to iterate through the transactions from the listener as soon as your app launches. If your app has unfinished transactions, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " listener receives them once, immediately after the app launches. Without the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to listen for these transactions, your app may miss them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a class that creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when it initializes. The task retrieves and processes any unfinished transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "final class TransactionObserver {",
+            "    ",
+            "    var updates: Task<Void, Never>? = nil",
+            "    ",
+            "    init() {",
+            "        updates = newTransactionListenerTask()",
+            "    }",
+            "",
+            "    deinit {",
+            "        // Cancel the update handling task when you deinitialize the class.",
+            "        updates?.cancel()",
+            "    }",
+            "    ",
+            "    private func newTransactionListenerTask() -> Task<Void, Never> {",
+            "        Task(priority: .background) {",
+            "            for await verificationResult in Transaction.updates {",
+            "                self.handle(updatedTransaction: verificationResult)",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    private func handle(updatedTransaction verificationResult: VerificationResult<Transaction>) {",
+            "        guard case .verified(let transaction) = verificationResult else {",
+            "            // Ignore unverified transactions.",
+            "            return",
+            "        }",
+            "",
+            "        if let revocationDate = transaction.revocationDate {",
+            "            // Remove access to the product identified by transaction.productID.",
+            "            // Transaction.revocationReason provides details about",
+            "            // the revoked transaction.",
+            "            <#...#>",
+            "        } else if let expirationDate = transaction.expirationDate,",
+            "            expirationDate < Date() {",
+            "            // Do nothing, this subscription is expired.",
+            "            return",
+            "        } else if transaction.isUpgraded {",
+            "            // Do nothing, there is an active transaction",
+            "            // for a higher level of service.",
+            "            return",
+            "        } else {",
+            "            // Provide access to the product identified by",
+            "            // transaction.productID.",
+            "            <#...#>",
+            "        }",
+            "    }",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " listener receives unfinished transactions just once at app launch, but you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/unfinished",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " listener to get your app’s unfinished transactions at any time. For information on finishing transactions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult/success(_:)": {
+      "abstract": [
+        {
+          "text": "The purchase succeeded and results in a transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "success"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit18VerificationResultO",
+          "text": "VerificationResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult/success(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.PurchaseResult.success(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchaseresult/success(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/Transactions": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of transactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/Transactions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction.Transactions",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/transactions"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/all": {
+      "abstract": [
+        {
+          "text": "A sequence that emits all the customer’s transactions for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "all"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "all",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/all"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()": {
+      "abstract": [
+        {
+          "text": "Indicates to the App Store that the app delivered the purchased content or enabled the service to finish the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finish"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/finish()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finish()",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/finish()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/unfinished": {
+      "abstract": [
+        {
+          "text": "A sequence that emits unfinished transactions for the customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unfinished"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/unfinished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unfinished",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/unfinished"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/updates"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Present win-back offers to eligible customers in your app with the win-back offer sheet or by implementing custom merchandising.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Merchandising win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide subscription service for customers who redeem offer codes through the App Store or within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting subscription offer codes in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-subscription-offer-codes-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Re-engage previous subscribers with a free or discounted offer for an auto-renewable subscription, for a specific duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles transactions that occur outside your app, such as subscription purchases, renewals, and offer and promo code redemptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing purchases made outside your app",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-purchases-made-outside-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles win-back offer transactions, including those made outside your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-the-sandbox-environment"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-subscription-offer-codes-in-your-app"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Transaction-history-and-entitlements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction/all",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements"
+      ],
+      "title": "Transaction history and entitlements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/transaction/updates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

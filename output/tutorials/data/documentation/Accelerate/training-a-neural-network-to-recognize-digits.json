@@ -1,0 +1,1474 @@
+{
+  "abstract": [
+    {
+      "text": "Build a simple neural network and train it to recognize randomly generated numbers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/training-a-neural-network-to-recognize-digits"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Training a neural network to recognize digits"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses the Basic Neural Network Subroutines (BNNS) library to create a simple neural network that’s capable of recognizing digits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample iterates over randomly generated digits in the training phase, incrementally improving its ability to recognize numbers. After the code completes the training phase, it evaluates its accuracy at recognizing numbers, and returns a score.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A 6 x 6 matrix represents each digit. For example, the code below represents the number 3:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let three: [Float] = [0, 1, 1, 1, 1, 0,  // ⚪️⚫️⚫️⚫️⚫️⚪️",
+            "                             0, 0, 0, 0, 1, 0,  // ⚪️⚪️⚪️⚪️⚫️⚪️",
+            "                             0, 1, 1, 1, 1, 0,  // ⚪️⚫️⚫️⚫️⚫️⚪️",
+            "                             0, 0, 0, 0, 1, 0,  // ⚪️⚪️⚪️⚪️⚫️⚪️",
+            "                             0, 1, 1, 1, 1, 0,  // ⚪️⚫️⚫️⚫️⚫️⚪️",
+            "                             0, 0, 0, 0, 0, 0]  // ⚪️⚪️⚪️⚪️⚪️⚪️"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The network consists of the three layers below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fused convolution-batch normalization layer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pooling layer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fully connected layer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the code completes a forward pass, it calculates its loss, which is a score that indicates how the predicted values deviate from the labels. The sample code project uses the gradients that the loss generates as the basis for the backward pass, where it backward-applies the three layers in reverse order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The backward passes generate gradient values that an optimizer uses to update the parameters below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convolution weights that the app initializes with random values, and bias",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Normalization beta (offset) and gamma (scale)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fully connected weights",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The optimizer’s gradual changes to the weights, bias, beta, and gamma increases the network’s efficacy in recognizing digits with each iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the relationships between the layers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "flow_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-filter-parameters",
+          "level": 3,
+          "text": "Define the filter parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This flag instructs the layers to keep the provided pointers at creation time, and to work directly from that data rather than use internal copies of the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var filterParameters = BNNSFilterParameters(",
+            "    flags: BNNSFlags.useClientPointer.rawValue,",
+            "    n_threads: 1,",
+            "    alloc_memory: nil,",
+            "    free_memory: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-fused-convolution-batch-normalization-layer",
+          "level": 3,
+          "text": "Create the fused convolution-batch normalization layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The convolution-batch normalization layer consists of two sublayers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convolution layers that generate their output by multiplying each input value and its neighbors by corresponding values in an array of weights, and then adding a corresponding bias. Each output value is the sum of each of those operations. Convolution layers are fundamental to convolutional neural networks and, with the correct weights and bias values, can identify features, such as horizontal and vertical lines.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Normalization layers that rescale their data so that all of the batches of data have the same standard deviation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app initializes the convolution weights array with random values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let convolutionWeights: BNNSNDArrayDescriptor = {",
+            "    let convolutionKernelSize = 3",
+            "    ",
+            "    let convolutionWeightsShape = BNNS.Shape.convolutionWeightsOIHW(",
+            "        convolutionKernelSize,",
+            "        convolutionKernelSize,",
+            "        convolutionInputImageChannels,",
+            "        convolutionOutputImageChannels)",
+            "    ",
+            "    guard let desc = BNNSNDArrayDescriptor.allocate(",
+            "        randomUniformUsing: randomGenerator,",
+            "        range: Float(-0.5)...Float(0.5),",
+            "        shape: convolutionWeightsShape) else {",
+            "        fatalError(\"Unable to create `convolutionWeightsArray`.\")",
+            "    }",
+            "    return desc",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app initializes the convolution bias and the batch normalization beta and gamma arrays with a repeated scalar value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let convolutionBias = BNNSNDArrayDescriptor.allocate(",
+            "    repeating: Float(0),",
+            "    shape: .vector(convolutionOutputImageChannels))",
+            "",
+            "static let featureMaps = convolutionOutputImageChannels",
+            "",
+            "static let batchNormBeta = BNNSNDArrayDescriptor.allocate(",
+            "    repeating: Float(0),",
+            "    shape: .vector(featureMaps),",
+            "    batchSize: batchSize)",
+            "",
+            "static let batchNormGamma = BNNSNDArrayDescriptor.allocate(",
+            "    repeating: Float(1),",
+            "    shape: .vector(featureMaps),",
+            "    batchSize: batchSize)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates the fused layer that applies convolution and normalization to the input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let fusedConvBatchNormLayer: BNNS.FusedParametersLayer = {",
+            "    ",
+            "    let convolutionParameters = BNNS.FusedConvolutionParameters(",
+            "        type: .standard,",
+            "        weights: convolutionWeights,",
+            "        bias: convolutionBias,",
+            "        stride: (1, 1),",
+            "        dilationStride: (1, 1),",
+            "        groupSize: 1,",
+            "        padding: .symmetric(x: convolutionPadding,",
+            "                            y: convolutionPadding))",
+            "    ",
+            "    let normalizationParameters = BNNS.FusedNormalizationParameters(",
+            "        type: .batch(movingMean: batchNormMovingMean,",
+            "                     movingVariance: batchNormMovingVariance),",
+            "        beta: batchNormBeta,",
+            "        gamma: batchNormGamma,",
+            "        momentum: 0.9,",
+            "        epsilon: 1e-07,",
+            "        activation: .rectifiedLinear)",
+            "    ",
+            "    guard let layer = BNNS.FusedParametersLayer(",
+            "        input: input,",
+            "        output: batchNormOutput,",
+            "        fusedLayerParameters: [convolutionParameters, normalizationParameters],",
+            "        filterParameters: filterParameters) else {",
+            "        fatalError(\"unable to create fusedConvBatchnormLayer\")",
+            "    }",
+            "    ",
+            "    return layer",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-pooling-layer",
+          "level": 3,
+          "text": "Create the pooling layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pooling layers downscale their input while preserving the most important information and produce an output that, in the case of this sample code project, consists of the maximum value in each input pixel’s local neighborhood.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates the pooling layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var poolingLayer: BNNS.PoolingLayer = {",
+            "    guard let poolingLayer = BNNS.PoolingLayer(",
+            "        type: .max(xDilationStride: 1, yDilationStride: 1),",
+            "        input: batchNormOutput,",
+            "        output: poolingOutput,",
+            "        bias: nil,",
+            "        activation: .identity,",
+            "        kernelSize: (2, 2),",
+            "        stride: (2, 2),",
+            "        padding: .zero,",
+            "        filterParameters: filterParameters) else {",
+            "        fatalError(\"Unable to create `poolingLayer`.\")",
+            "    }",
+            "    ",
+            "    return poolingLayer",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-fully-connected-layer",
+          "level": 3,
+          "text": "Create the fully connected layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fully connected layers compute the matrix-vector product of a weights matrix and its input, and flatten the data to predict the correct label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app initializes the fully connected weights array with random values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let fullyConnectedWeights: BNNSNDArrayDescriptor = {",
+            "    guard let desc = BNNSNDArrayDescriptor.allocate(",
+            "        randomUniformUsing: randomGenerator,",
+            "        range: Float(-0.5)...Float(0.5),",
+            "        shape: .matrixRowMajor(poolingOutputSize,",
+            "                               fullyConnectedOutputWidth)) else {",
+            "        fatalError(\"Unable to create `fullyConnectedWeightsArray`.\")",
+            "    }",
+            "    return desc",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates the fully connected layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var fullyConnectedLayer: BNNS.FullyConnectedLayer = {",
+            "    ",
+            "    let desc = BNNSNDArrayDescriptor(dataType: .float,",
+            "                                     shape: .vector(poolingOutputSize))",
+            "    ",
+            "    guard let fullyConnectedLayer = BNNS.FullyConnectedLayer(",
+            "            input: desc,",
+            "            output: fullyConnectedOutput,",
+            "            weights: fullyConnectedWeights,",
+            "            bias: nil,",
+            "            activation: .identity,",
+            "            filterParameters: filterParameters) else {",
+            "        fatalError(\"Unable to create `fullyConnectedLayer`.\")",
+            "    }",
+            "    ",
+            "    return fullyConnectedLayer",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-loss-layer",
+          "level": 3,
+          "text": "Create the loss layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The loss layer is responsible for quantifying a score that indicates how the predicted values deviate from the labels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates the loss layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var lossLayer: BNNS.LossLayer = {",
+            "    ",
+            "    guard let lossLayer = BNNS.LossLayer(input: fullyConnectedOutput,",
+            "                                         output: lossOutput,",
+            "                                         lossFunction: .softmaxCrossEntropy(labelSmoothing: 0),",
+            "                                         lossReduction: .reductionMean,",
+            "                                         filterParameters: filterParameters) else {",
+            "        fatalError(\"Unable to create `lossLayer`.\")",
+            "    }",
+            "    ",
+            "    return lossLayer",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-candidate-input",
+          "level": 3,
+          "text": "Create the candidate input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each iteration of the training phase, the sample creates a matrix that represents a random digit, and a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "one-hot",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " encoded tensor of the same digit. The sample places digits randomly in a 20 x 20 matrix, so a ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " might appear in the matrix as the image below. This example renders ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "⚪️",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "⚫️",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚫️⚫️⚫️⚫️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚫️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚫️⚫️⚫️⚫️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚫️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚫️⚫️⚫️⚫️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️",
+            "⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️⚪️"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The one-hot encoded tensor contains a ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the zero-based index of ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project uses a batch size of 32, so each iteration generates 32 random digits in random positions in the 20 x 20 grid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-the-forward-pass",
+          "level": 3,
+          "text": "Perform the forward pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the forward pass, the sample code calls ",
+              "type": "text"
+            },
+            {
+              "code": "apply",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the fused, pooling, and fully connected layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try fusedConvBatchNormLayer.apply(batchSize: batchSize,",
+            "                                  input: input,",
+            "                                  output: batchNormOutput,",
+            "                                  for: .training)",
+            "",
+            "try poolingLayer.apply(batchSize: batchSize,",
+            "                       input: batchNormOutput,",
+            "                       output: poolingOutput)",
+            "",
+            "try fullyConnectedLayer.apply(batchSize: batchSize,",
+            "                              input: poolingOutput,",
+            "                              output: fullyConnectedOutput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Calculate-the-loss-and-loss-gradient",
+          "level": 3,
+          "text": "Calculate the loss and loss gradient",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculating the loss evaluates the efficacy of the neural network. The loss layer generates its output, ",
+              "type": "text"
+            },
+            {
+              "code": "lossOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains a score that indicates how the predicted values deviate from the labels, and ",
+              "type": "text"
+            },
+            {
+              "code": "lossInputGradient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the output gradient parameter to the backward application of the fully connected layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try lossLayer.apply(batchSize: batchSize,",
+            "                    input: fullyConnectedOutput,",
+            "                    labels: oneHotLabels,",
+            "                    output: lossOutput,",
+            "                    generatingInputGradient: lossInputGradient)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-optimizer",
+          "level": 3,
+          "text": "Create the optimizer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The optimizer is responsible for updating the weights, biases, beta, and gamma. In the code below, the sample code project creates an optimizer using the Adam algorithm:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var adam = BNNS.AdamOptimizer(learningRate: 0.01,",
+            "                                     timeStep: 1,",
+            "                                     gradientScale: 1,",
+            "                                     regularizationScale: 0.01,",
+            "                                     gradientClipping: .byValue(bounds: -0.5 ... 0.5),",
+            "                                     regularizationFunction: BNNSOptimizerRegularizationL2)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-a-backward-pass-and-optimization-step-on-the-fully-connected-layer",
+          "level": 3,
+          "text": "Perform a backward pass and optimization step on the fully connected layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project performs the backward pass in reverse order to the forward pass. Therefore, the sample’s first step is to call ",
+              "type": "text"
+            },
+            {
+              "code": "applyBackward",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the fully connected layer, and perform an optimization step on its weights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "applyBackward",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call on the fully connected layer generates an input gradient that acts as the output gradient for the pooling layer’s backward apply, and a weights gradient that passes to the fully connected optimizer step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try fullyConnectedLayer.applyBackward(",
+            "    batchSize: batchSize,",
+            "    input: poolingOutput,",
+            "    output: fullyConnectedOutput,",
+            "    outputGradient: lossInputGradient,",
+            "    generatingInputGradient: fullyConnectedInputGradient,",
+            "    generatingWeightsGradient: fullyConnectedWeightGradient)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-a-backward-pass-on-the-pooling-layer",
+          "level": 3,
+          "text": "Perform a backward pass on the pooling layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The backward pass on the pooling layer generates an input gradient that’s the output gradient to the backward apply of the fused layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try poolingLayer.applyBackward(",
+            "    batchSize: batchSize,",
+            "    input: batchNormOutput,",
+            "    output: poolingOutput,",
+            "    outputGradient: fullyConnectedInputGradient,",
+            "    generatingInputGradient: poolingInputGradientArray)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-a-backward-pass-and-optimization-step-on-the-fused-layer",
+          "level": 3,
+          "text": "Perform a backward pass and optimization step on the fused layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "applyBackward",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the fused layer. This performs an optimization step on the convolution layer’s weights and bias, and the normalization layer’s beta and gamma.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let gradientParameters = [convolutionWeightGradient,",
+            "                          convolutionBiasGradient,",
+            "                          batchNormBetaGradient,",
+            "                          batchNormGammaGradient]",
+            "",
+            "try fusedConvBatchNormLayer.applyBackward(",
+            "    batchSize: batchSize,",
+            "    input: input,",
+            "    output: batchNormOutput,",
+            "    outputGradient: poolingInputGradientArray,",
+            "    generatingInputGradient: convolutionInputGradient,",
+            "    generatingParameterGradients: gradientParameters)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below performs the optimization step:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try adam.step(",
+            "    parameters: [fullyConnectedWeights,",
+            "                 convolutionWeights, convolutionBias,",
+            "                 batchNormBeta, batchNormGamma],",
+            "    gradients: [fullyConnectedWeightGradient,",
+            "                convolutionWeightGradient, convolutionBiasGradient,",
+            "                batchNormBetaGradient, batchNormGammaGradient],",
+            "    accumulators: [fullyConnectedWeightAccumulator1,",
+            "                   convolutionWeightAccumulator1, convolutionBiasAccumulator1,",
+            "                   batchNormBetaAccumulator1, batchNormGammaAccumulator1,",
+            "                   fullyConnectedWeightAccumulator2,",
+            "                   convolutionWeightAccumulator2, convolutionBiasAccumulator2,",
+            "                   batchNormBetaAccumulator2, batchNormGammaAccumulator2],",
+            "    filterParameters: filterParameters)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app completes all the optimization steps for this iteration, it increments the optimizer time step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "adam.timeStep += 1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Evaluate-the-neural-network",
+          "level": 3,
+          "text": "Evaluate the neural network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample iterates over the forward, loss, backward, and optimization steps, and with each iteration, the trend of the loss is to reduce. The following graph shows the loss, as a solid stroke, decreasing during training:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "loss_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in the sample defines a maximum number of iterations. Additionally, it calculates a moving average of recent loss values, which appear as a dashed stroke in the graph above. At each iteration, the sample checks whether the recent average loss is below that threshold, and, if it is, it breaks from the training phase early.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let maximumIterationCount = 1000",
+            "",
+            "// The `recentLosses` array contains the last `recentLossesCount` losses.",
+            "let recentLossesCount = 20",
+            "var recentLosses = [Float]()",
+            "",
+            "// The `averageRecentLossThreshold` constant defines the loss threshold",
+            "// at which to consider the training phase complete.",
+            "let averageRecentLossThreshold = Float(0.125)",
+            "",
+            "for epoch in 0 ..< maximumIterationCount {",
+            "    if epoch == 500 {",
+            "        adam.learningRate /= 10",
+            "    }",
+            "    ",
+            "    generateInputAndLabels()",
+            "    forwardPass()",
+            "    computeLoss()",
+            "    ",
+            "    guard let loss = lossOutput.makeArray(of: Float.self,",
+            "                                          batchSize: 1)?.first else {",
+            "        print(\"Unable to calculate loss.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    if recentLosses.isEmpty {",
+            "        recentLosses = [Float](repeating: loss,",
+            "                               count: recentLossesCount)",
+            "    }",
+            "    ",
+            "    recentLosses[epoch % recentLossesCount] = loss",
+            "    let averageRecentLoss = vDSP.mean(recentLosses)",
+            "    ",
+            "    if epoch % 10 == 0 {",
+            "        print(\"Epoch \\(epoch): \\(loss) : \\(averageRecentLoss)\")",
+            "    }",
+            "    ",
+            "    if averageRecentLoss < averageRecentLossThreshold {",
+            "        print(\"Recent average loss: \\(averageRecentLoss), breaking at epoch \\(epoch).\")",
+            "        break",
+            "    }",
+            "    ",
+            "    backwardPass()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the training phase completes, the sample calculates the accuracy of the network over a new dataset. It then creates a new batch of random digits and runs a forward pass of the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try fusedConvBatchNormLayer.apply(batchSize: batchSize,",
+            "                                  input: input,",
+            "                                  output: batchNormOutput,",
+            "                                  for: .inference)",
+            "",
+            "try poolingLayer.apply(batchSize: batchSize,",
+            "                       input: batchNormOutput,",
+            "                       output: poolingOutput)",
+            "",
+            "try fullyConnectedLayer.apply(batchSize: batchSize,",
+            "                              input: poolingOutput,",
+            "                              output: fullyConnectedOutput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app evaluates the accuracy of the network by comparing the values in the fully connected layer’s output to the one-hot labels. For example, when the recognized digit is ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", one-hot labels contain the values ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and values in the fully connected layer’s output might be as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[-2.51, -3.62, -0.10, 8.52, -0.42, 5.11, -1.65, 1.34,  0.82, -2.77]",
+            "[-3.94, -2.74, -0.30, 8.39, -1.45, 6.02, -0.66, 3.25,  0.49, -3.19]",
+            "[-2.51, -2.77, -0.77, 8.41, -0.82, 4.87, -0.37, 2.32, -0.49, -3.05]",
+            "[-3.01, -2.79,  0.48, 7.95, -2.57, 4.55, -1.05, 1.67,  1.38, -1.43]",
+            "[-2.48, -1.59, -0.97, 7.59, -2.52, 4.00,  0.95, 4.02, -2.10, -1.62]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that in each case, the highest value in the fully connected layer’s output is at index ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code performs that evaluation for each digit in the batch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let fullyConnected = fullyConnectedOutput.makeArray(",
+            "        of: Float.self,",
+            "        batchSize: batchSize),",
+            "    let labels = oneHotLabels.makeArray(",
+            "        of: Float.self,",
+            "        batchSize: batchSize) else {",
+            "    fatalError(\"Unable to create arrays for evaluation.\")",
+            "}",
+            "",
+            "var correctCount = 0",
+            "",
+            "for sample in 0 ..< batchSize {",
+            "    let offset = fullyConnectedOutputWidth * sample",
+            "    ",
+            "    let fullyConnectedBatch = fullyConnected[offset ..< offset + fullyConnectedOutputWidth]",
+            "    let predictedDigit = vDSP.indexOfMaximum(fullyConnectedBatch).0",
+            "    ",
+            "    let oneHotLabelsBatch = labels[offset ..< offset + fullyConnectedOutputWidth]",
+            "    let label = vDSP.indexOfMaximum(oneHotLabelsBatch).0",
+            "    ",
+            "    if label == predictedDigit {",
+            "        correctCount += 1",
+            "    }",
+            "    ",
+            "    print(\"Sample \\(sample) — digit: \\(label) | prediction: \\(predictedDigit)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The evaluation function prints out something like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Sample 0 — digit: 7 | prediction: 7",
+            "Sample 1 — digit: 5 | prediction: 5",
+            "Sample 2 — digit: 7 | prediction: 7",
+            "Sample 3 — digit: 7 | prediction: 7",
+            "Sample 4 — digit: 0 | prediction: 0",
+            "Sample 5 — digit: 8 | prediction: 8",
+            "Sample 6 — digit: 3 | prediction: 3",
+            "Sample 7 — digit: 6 | prediction: 6",
+            "Sample 8 — digit: 2 | prediction: 2",
+            "Sample 9 — digit: 7 | prediction: 7",
+            "[ ... ]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the neural network accurately predicts each ground truth digit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains common filter parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfilterparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the filter to use pointers to data you provide at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useClientPointer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSFlags",
+          "text": "BNNSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFlags/useClientPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useClientPointer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsflags/useclientpointer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/bnns-library": {
+      "abstract": [
+        {
+          "text": "Implement and run neural networks for training and inference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f8ec1f355918/TrainingANeuralNetworkToRecognizeDigits.zip": {
+      "checksum": "f8ec1f355918719641106fce0d657533c993a4be1728b726893b08a7a8147bfb09f46f80509b440a9ede70258701cf3fd5208880193376a00f1bdbf49d6e9963",
+      "identifier": "f8ec1f355918/TrainingANeuralNetworkToRecognizeDigits.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f8ec1f355918/TrainingANeuralNetworkToRecognizeDigits.zip"
+    },
+    "flow_2x.png": {
+      "alt": "A flow diagram that shows the flow of information during the training phase of the sample code project.",
+      "identifier": "flow_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddfb3aca1226c12e9b9d39e5f9b01151/flow_2x.png"
+        }
+      ]
+    },
+    "loss_2x.png": {
+      "alt": "A graph with loss as the y-axis and training epochs as the x-axis that shows loss decreasing during training.",
+      "identifier": "loss_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2194b12e310fe2c0d14164f29ae8d4b3/loss_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f8ec1f355918/TrainingANeuralNetworkToRecognizeDigits.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Neural-Networks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/bnns-library"
+      ],
+      "title": "Neural Networks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterParameters/title",
+          "value": "BNNSFilterParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterParameters"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

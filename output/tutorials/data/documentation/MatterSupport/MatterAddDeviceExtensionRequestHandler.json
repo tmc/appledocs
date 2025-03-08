@@ -1,0 +1,1390 @@
+{
+  "abstract": [
+    {
+      "text": "The object that handles configuration and commissioning of a device into an ecosystem.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MatterAddDeviceExtensionRequestHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MatterSupport"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MatterAddDeviceExtensionRequestHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MatterAddDeviceExtensionRequestHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@objc"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MatterAddDeviceExtensionRequestHandler"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class facilitates the user interface flow during the setup of a new Matter device. Subclass this class and override its methods, except for ",
+              "type": "text"
+            },
+            {
+              "code": "beginRequest(with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The principal class for the app’s extension declared by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the extension plist must inherit from this base class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest/Topology-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the request has two or more homes, the user interface flow displays a picker to allow selection of a home. If the object contains one home, that home is the selected home and the user interface flow doesn’t display a picker. If the object contains no home, then the user interface flow doesn’t display a picker, and any methods take a home parameter receive ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t call ",
+                  "type": "text"
+                },
+                {
+                  "code": "super",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " within the overridden method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MatterSupport/documentation/MatterSupport": {
+      "abstract": [
+        {
+          "text": "Coordinate and control compatible smart home accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MatterSupport",
+      "type": "topic",
+      "url": "/documentation/mattersupport"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem": {
+      "abstract": [
+        {
+          "text": "Allow people to add Matter accessories to your platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Matter support to your ecosystem",
+      "type": "topic",
+      "url": "/documentation/mattersupport/adding-matter-support-to-your-ecosystem"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler": {
+      "abstract": [
+        {
+          "text": "The object that handles configuration and commissioning of a device into an ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/DeviceCredential": {
+      "abstract": [
+        {
+          "text": "A collection of device credentials the device presents during commissioning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/DeviceCredential",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceCredential"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler.DeviceCredential",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/devicecredential"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadNetworkAssociation": {
+      "abstract": [
+        {
+          "text": "The description of an association to a Thread network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ThreadNetworkAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadNetworkAssociation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ThreadNetworkAssociation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/threadnetworkassociation"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadScanResult": {
+      "abstract": [
+        {
+          "text": "A result of a Thread-scan operation performed on the device",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ThreadScanResult"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadScanResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ThreadScanResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler.ThreadScanResult",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/threadscanresult"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiNetworkAssociation": {
+      "abstract": [
+        {
+          "text": "The description of an association to a Wi-Fi network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFiNetworkAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiNetworkAssociation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFiNetworkAssociation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/wifinetworkassociation"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiScanResult": {
+      "abstract": [
+        {
+          "text": "A result of a Wi-Fi-scan operation performed on the device",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WiFiScanResult"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiScanResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WiFiScanResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceExtensionRequestHandler.WiFiScanResult",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/wifiscanresult"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)": {
+      "abstract": [
+        {
+          "text": "Commissions the device with the onboarding payload.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commissionDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV",
+          "text": "MatterAddDeviceRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV4HomeV",
+          "text": "Home"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onboardingPayload"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commissioningID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commissionDevice(in:onboardingPayload:commissioningID:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/commissiondevice(in:onboardingpayload:commissioningid:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/configureDevice(named:in:)": {
+      "abstract": [
+        {
+          "text": "Configures the device with selected attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV",
+          "text": "MatterAddDeviceRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV4RoomV",
+          "text": "Room"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/configureDevice(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configureDevice(named:in:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/configuredevice(named:in:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/init()"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/rooms(in:)": {
+      "abstract": [
+        {
+          "text": "Provides rooms that correspond to a home in the device setup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rooms"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV",
+          "text": "MatterAddDeviceRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV4HomeV",
+          "text": "Home"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV",
+          "text": "MatterAddDeviceRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A16AddDeviceRequestV4RoomV",
+          "text": "Room"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/rooms(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rooms(in:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/rooms(in:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectThreadNetwork(from:)": {
+      "abstract": [
+        {
+          "text": "Provides the visible Thread networks to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectThreadNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC16ThreadScanResultV",
+          "text": "ThreadScanResult"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC24ThreadNetworkAssociationV",
+          "text": "ThreadNetworkAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectThreadNetwork(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectThreadNetwork(from:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/selectthreadnetwork(from:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectWiFiNetwork(from:)": {
+      "abstract": [
+        {
+          "text": "Provides the visible Wi-Fi networks to the Matter device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectWiFiNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC14WiFiScanResultV",
+          "text": "WiFiScanResult"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC22WiFiNetworkAssociationV",
+          "text": "WiFiNetworkAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectWiFiNetwork(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectWiFiNetwork(from:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/selectwifinetwork(from:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/validateDeviceCredential(_:)": {
+      "abstract": [
+        {
+          "text": "Performs verification and attestation checks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateDeviceCredential"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler",
+          "text": "MatterAddDeviceExtensionRequestHandler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC0D10CredentialV",
+          "text": "DeviceCredential"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/validateDeviceCredential(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateDeviceCredential(_:)",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddeviceextensionrequesthandler/validatedevicecredential(_:)"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest": {
+      "abstract": [
+        {
+          "text": "A request that adds and sets up a device into an ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MatterAddDeviceRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceRequest",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddevicerequest"
+    },
+    "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest/Topology-swift.struct": {
+      "abstract": [
+        {
+          "text": "Information describing the properties of the ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Topology"
+        }
+      ],
+      "identifier": "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest/Topology-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Topology"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatterAddDeviceRequest.Topology",
+      "type": "topic",
+      "url": "/documentation/mattersupport/matteradddevicerequest/topology-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass": {
+      "abstract": [
+        {
+          "text": "The name of the bundle’s main executable class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPrincipalClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrincipalClass",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPrincipalClass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-a-device",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/Adding-Matter-support-to-your-ecosystem",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceRequest"
+      ],
+      "title": "Adding a device"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-request-handler",
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/init()"
+      ],
+      "title": "Creating the request handler"
+    },
+    {
+      "anchor": "Configuring-and-validating-the-device",
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/configureDevice(named:in:)",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/validateDeviceCredential(_:)",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/DeviceCredential",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/rooms(in:)"
+      ],
+      "title": "Configuring and validating the device"
+    },
+    {
+      "anchor": "Commissioning-the-device",
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/commissionDevice(in:onboardingPayload:commissioningID:)"
+      ],
+      "title": "Commissioning the device"
+    },
+    {
+      "anchor": "Selecting-the-Thread-network",
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectThreadNetwork(from:)",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadScanResult",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/ThreadNetworkAssociation"
+      ],
+      "title": "Selecting the Thread network"
+    },
+    {
+      "anchor": "Selecting-the-Wi-Fi-network",
+      "identifiers": [
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/selectWiFiNetwork(from:)",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiScanResult",
+        "doc://com.apple.MatterSupport/documentation/MatterSupport/MatterAddDeviceExtensionRequestHandler/WiFiNetworkAssociation"
+      ],
+      "title": "Selecting the Wi-Fi network"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mattersupport/matteradddeviceextensionrequesthandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

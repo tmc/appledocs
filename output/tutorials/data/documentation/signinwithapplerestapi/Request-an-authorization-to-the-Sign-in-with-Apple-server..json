@@ -1,0 +1,1107 @@
+{
+  "abstract": [
+    {
+      "text": "Add a Sign in with Apple authorization flow to apps and web services that can’t directly access Sign in with Apple JS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Request-an-authorization-to-the-Sign-in-with-Apple-server."
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:appleid_signin_server_api:get:auth-authorize",
+    "modules": [
+      {
+        "name": "Sign in with Apple REST API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Request an authorization to the Sign in with Apple server."
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Sign in with Apple REST API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Request an authorization to the Sign in with Apple server"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appleid.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "auth/authorize"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier (App ID or Services ID) for your app. The identifier must not include your Team ID, to help prevent the possibility of exposing sensitive data to the end user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "client_id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique, single-use string that your app provides to associate a client session with the user’s identity token. This value is also used to prevent replay attacks, and allows you to correlate the initial authentication request with the identity token provided in the authorization response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "nonce",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The destination URI associated to your app, to which the authorization redirects. The URI must use the HTTPS protocool, include a domain name, can’t be an IP address or localhost, and must not contain a fragment identifer (#). Visit ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "redirect_uri",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of response mode expected. Valid values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "query",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "fragment",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "form_post",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you requested any scopes, the value must be ",
+                  "type": "text"
+                },
+                {
+                  "code": "form_post",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "response_mode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of response requested. Valid values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "code",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "id_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". You can request only ",
+                  "type": "text"
+                },
+                {
+                  "code": "code",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or both ",
+                  "type": "text"
+                },
+                {
+                  "code": "code",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "id_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Requesting only ",
+                  "type": "text"
+                },
+                {
+                  "code": "id_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is unsupported. When requesting ",
+                  "type": "text"
+                },
+                {
+                  "code": "id_token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "response_mode",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be either ",
+                  "type": "text"
+                },
+                {
+                  "code": "fragment",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "form_post",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "response_type",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The amount of user information requested from Apple. Valid values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "name",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "email",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". You can request one, both, or none. Use space separation and percent-encoding for multiple scopes; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"scope=name%20email\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "scope",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An arbitrary string that your app provides, representing the current state of the authorization request. This value is also used to mitigate cross-site request forgery attacks, by comparing against the state value contained in the authorization response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "state",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to request authorization for your app to receive the user’s information with Sign in with Apple. If your app is contained within an app group, the user credentials are associated with the primary app and shared across the group. To learn more about app groups, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-user-information-and-tokens",
+          "level": 3,
+          "text": "Get the user information and tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Sign in with Apple UI appears in the opened browser tab, the user can sign in and accept any terms and conditions for your app. After Apple processes the authorization request, the handling of the response depends on the value in ",
+              "type": "text"
+            },
+            {
+              "code": "response_mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "query",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, the response parameters are added to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirect_uri",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value as query parameters, and the browser is redirected to the resulting value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fragment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, the response parameters are added to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirect_uri",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value as a fragment, and the browser is redirected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "form_post",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, an HTTP POST request containing the results of the authorization is sent to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirectURI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The HTTP body contains the result parameters with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "application/x-www-form-urlencoded",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " content type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A successful response contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A single-use authorization grant code that’s valid for five minutes. To learn how to validate this code to obtain user tokens, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON web token (JWT) containing the user’s identity information. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "id_token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state contained in the authorization request. Compare against the state value provided in the initial authorization request to help prevent cross-site request forgery attacks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON string containing the data requested in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "scope",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " property. The returned data is in the following format: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "{ \"name\": { \"firstName\": string, \"lastName\": string }, \"email\": string }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "user",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For privacy, Apple doesn’t receive the user’s full name shared with the system UI. Therefore, the raw data is passed directly to your app from the browser and is not included in the user’s identity token. To prevent cross-site scripting attacks, validate and sanitize the user-submitted first and last name values before storing on your app servers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple only returns the user object the first time the user authorizes the app. Validate and persist this information from your app to your server. Subsequent authorization requests do not contain the ",
+              "type": "text"
+            },
+            {
+              "code": "user",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, however, the user’s email is provided in the identity token for all requests. For more information, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error occurs, the HTTP body contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The returned error code",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state contained in the authorization request. Compare against the state value provided in the initial authorization request to help prevent cross-site request forgery attacks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The only error code that might be returned is ",
+                  "type": "text"
+                },
+                {
+                  "code": "user_cancelled_authorize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This error code is returned if the user clicks the cancel button during the web flow.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-the-authorization-flow",
+          "level": 3,
+          "text": "Implement the authorization flow",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://appleid.apple.com/auth/authorize?client_id=[CLIENT_ID]&redirect_uri=[REDIRECT_URL]&response_type=code id_token&state=[STATE]&scope=[SCOPES]&response_mode=form_post"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "     \"authorization\": {",
+                    "       \"code\": \"[CODE]\",",
+                    "       \"id_token\": \"[ID_TOKEN]\",",
+                    "       \"state\": \"[STATE]\"",
+                    "     },",
+                    "     \"user\": {",
+                    "       \"email\": \"[EMAIL]\",",
+                    "       \"name\": {",
+                    "         \"firstName\": \"[FIRST_NAME]\",",
+                    "         \"lastName\": \"[LAST_NAME]\"",
+                    "       }",
+                    "     }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Return-control-to-the-app",
+          "level": 3,
+          "text": "Return control to the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the end of the authorization flow, Apple performs a ",
+              "type": "text"
+            },
+            {
+              "code": "form_post",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "redirect_uri",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value you provided in the request. At this point, the authorization flow is complete, and it’s your server’s responsibility to securely persist the data and return control to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platforms that support custom URL schemes — iOS 12.0 and earlier and Android — must handle the data resulting from the authorization flow by storing it on their app server in the logic of their ",
+              "type": "text"
+            },
+            {
+              "code": "redirect_uri",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. You then redirect the custom URL scheme to give control back to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To help prevent cross-site request forgery attacks, ensure the ",
+                  "type": "text"
+                },
+                {
+                  "code": "state",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " values contained in the request and response are identical before handling the redirect in your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI": {
+      "abstract": [
+        {
+          "text": "Communicate between your app servers and Apple’s authentication servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple REST API",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Generate and validate tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/generate-and-validate-tokens"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Request-an-authorization-to-the-Sign-in-with-Apple-server.": {
+      "abstract": [
+        {
+          "text": "Add a Sign in with Apple authorization flow to apps and web services that can’t directly access Sign in with Apple JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Request-an-authorization-to-the-Sign-in-with-Apple-server.",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request an authorization to the Sign in with Apple server."
+        }
+      ],
+      "role": "symbol",
+      "title": "Request an authorization to the Sign in with Apple server",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/request-an-authorization-to-the-sign-in-with-apple-server."
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Authenticate users with your web service by associating an existing app with a Services ID and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your environment for Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web",
+      "title": "Configure Sign in with Apple for the web",
+      "titleInlineContent": [
+        {
+          "text": "Configure Sign in with Apple for the web",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/signinwithapplerestapi/request-an-authorization-to-the-sign-in-with-apple-server."
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

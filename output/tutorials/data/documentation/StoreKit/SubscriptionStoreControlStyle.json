@@ -1,0 +1,2025 @@
+{
+  "abstract": [
+    {
+      "text": "A type that specifies the appearance and interaction of controls in the subscription store view instances within the view hierarchy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreControlStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreControlStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SubscriptionStoreControlStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SubscriptionStoreControlStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to configure the subscription store control style for a view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SubscriptionStoreView(groupID: \"SAMPLE\")",
+            "    .subscriptionStoreControlStyle(.prominentPicker)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also configure the control placement using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-custom-styles",
+          "level": 3,
+          "text": "Create custom styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom style, declare a type that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreControlStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and implement the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, you can define a style that adds price comparison captions to buttons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PriceComparisonButtonsSubscriptionStoreControlStyle: SubscriptionStoreControlStyle {",
+            "",
+            "    func makeBody(configuration: Configuration) -> some View {",
+            "        // Return a view displaying a captioned button for each option.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inside the method, use the ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, which is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value, to get the properties of the control, such as the subscriptions to merchandise. For examples that show constructing a view from the configuration value, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription store control style protocol has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Placement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " associated type, which represents the placements that the style supports. To optionally restrict the placements your custom style supports, explicitly declare a type alias named ",
+              "type": "text"
+            },
+            {
+              "code": "Placement",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about restricting placements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you don’t declare the type alias, your custom style automatically uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Placement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " associated type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example declares a ",
+              "type": "text"
+            },
+            {
+              "code": "Placement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type alias:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PriceComparisonButtonsSubscriptionStoreControlStyle: SubscriptionStoreControlStyle {",
+            "",
+            "    // Support the same placements as the standard buttons style.",
+            "    typealias Placement = ButtonsSubscriptionStoreControlStyle.Placement",
+            "",
+            "    func makeBody(configuration: Configuration) -> some View {",
+            "        // Return a view displaying a captioned button for each option.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide easy access to the new style, declare a corresponding static variable in an extension to ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreControlStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension SubscriptionStoreControlStyle where Self == ",
+            "PriceComparisonButtonsSubscriptionStoreControlStyle {",
+            "    static var priceComparisonButtons: Self { Self() }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, use your custom style as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SubscriptionStoreView(groupID: \"SAMPLE\")",
+            "    .subscriptionStoreControlStyle(.priceComparisonButtons)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style and control placement for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP9PlacementQa",
+          "text": "Placement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:placement:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlPlacement": {
+      "abstract": [
+        {
+          "text": "A system-defined placement for a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreControlPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreControlPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutomaticSubscriptionStoreControlPlacement",
+      "type": "topic",
+      "url": "/documentation/storekit/automaticsubscriptionstorecontrolplacement"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "The default in-app subscription store control style that resolves its appearance based on the view’s context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutomaticSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/automaticsubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ButtonsSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays a subscribe button for each subscription plan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonsSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ButtonsSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonsSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ButtonsSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/buttonssubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/CompactPickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a compact picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompactPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/CompactPickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompactPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompactPickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/compactpickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PagedPickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a paged picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PagedPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PagedPickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PagedPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PagedPickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/pagedpickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PagedProminentPickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a paged prominent picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PagedProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PagedProminentPickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PagedProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PagedProminentPickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/pagedprominentpickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/pickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProminentPickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a prominent picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProminentPickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProminentPickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/prominentpickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement": {
+      "abstract": [
+        {
+          "text": "A type that specifies the placement of a subscription control in a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlPlacement",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolplacement"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacementKey": {
+      "abstract": [
+        {
+          "text": "A placement for a subscription store control in a store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacementKey"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacementKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacementKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlPlacementKey",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolplacementkey"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A type that specifies the appearance and interaction of controls in the subscription store view instances within the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Body": {
+      "abstract": [
+        {
+          "text": "A view that represents the body of a subscription store control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Body",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/body"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Configuration": {
+      "abstract": [
+        {
+          "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/configuration"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Placement": {
+      "abstract": [
+        {
+          "text": "The placement of subscription controls in a subscription store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Placement"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA16ControlPlacementP",
+          "text": "SubscriptionStoreControlPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA16ControlPlacementV",
+          "text": "AutomaticSubscriptionStoreControlPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Placement",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Placement",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/placement"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscribeButton": {
+      "abstract": [
+        {
+          "text": "A button for subscribing to an in-app subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscribeButton"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscribeButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscribeButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle.SubscribeButton",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/subscribebutton"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPicker": {
+      "abstract": [
+        {
+          "text": "A composite control for selecting a subscription option and confirming the subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle.SubscriptionPicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/subscriptionpicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPickerOption": {
+      "abstract": [
+        {
+          "text": "A subscription option within a subscription picker control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPickerOption"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPickerOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPickerOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle.SubscriptionPickerOption",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/subscriptionpickeroption"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/automatic": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that resolves its appearance automatically, based on the current context.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AutomaticSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA12ControlStyleV",
+          "text": "AutomaticSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/automatic"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/buttons": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays a subscribe button for each subscription plan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttons"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI019ButtonsSubscriptionA12ControlStyleV",
+          "text": "ButtonsSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/buttons",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttons",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/buttons"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/compactPicker": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a compact control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "CompactPickerSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compactPicker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI025CompactPickerSubscriptionA12ControlStyleV",
+          "text": "CompactPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/compactPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compactPicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/compactpicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that represents the body of a subscription store control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBody"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeBody(configuration:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/makebody(configuration:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedPicker": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a paged picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PagedPickerSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pagedPicker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI023PagedPickerSubscriptionA12ControlStyleV",
+          "text": "PagedPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pagedPicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/pagedpicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedProminentPicker": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a prominent paged picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PagedProminentPickerSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pagedProminentPicker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI032PagedProminentPickerSubscriptionA12ControlStyleV",
+          "text": "PagedProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedProminentPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pagedProminentPicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/pagedprominentpicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/picker": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PickerSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "picker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI018PickerSubscriptionA12ControlStyleV",
+          "text": "PickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "picker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/picker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/prominentPicker": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a prominent picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ProminentPickerSubscriptionStoreControlStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prominentPicker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI027ProminentPickerSubscriptionA12ControlStyleV",
+          "text": "ProminentPickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/prominentPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prominentPicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/prominentpicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/ButtonsSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/CompactPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PagedPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PagedProminentPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/ProminentPickerSubscriptionStoreControlStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling-subscription-store-controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement"
+      ],
+      "title": "Styling subscription store controls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-built-in-subscription-store-control-styles",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/automatic",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/buttons",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/picker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/prominentPicker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedPicker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/pagedProminentPicker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/compactPicker"
+      ],
+      "title": "Getting built-in subscription store control styles"
+    },
+    {
+      "anchor": "Creating-custom-subscription-store-control-styles",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Configuration",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscribeButton",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPicker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/SubscriptionPickerOption",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacementKey",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Placement",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/Body"
+      ],
+      "title": "Creating custom subscription store control styles"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/ButtonsSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/ProminentPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/CompactPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PagedPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/PagedProminentPickerSubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreControlPlacement"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/subscriptionstorecontrolstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

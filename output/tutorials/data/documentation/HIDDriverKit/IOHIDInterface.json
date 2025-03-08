@@ -1,0 +1,655 @@
+{
+  "abstract": [
+    {
+      "text": "A provider object for a HID device’s interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOHIDInterface",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOHIDInterface"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOHIDInterface"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOHIDInterface"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOHIDInterface"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDInterface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object represents a specific interface of the HID device. Typically, you don’t create ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDInterface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects directly. Instead, you specify that your driver relies on an ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDInterface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its provider, and the system creates the interface object for you during the matching process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a HID interface object directly, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Open",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a new session between the interface and your custom driver. When calling that method, you specify an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to execute each time a new report is ready to process. When a new report arrives, the ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDInterface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object parses the device’s report data, puts the data into a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, and notifies your action object. Use your action object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/ReportAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to parse the element objects and dispatch events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.device",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "abstract": [
+        {
+          "text": "An object that executes your driver's custom behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice": {
+      "abstract": [
+        {
+          "text": "An object containing the low-level behavior for all HID device providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement": {
+      "abstract": [
+        {
+          "text": "An object that contains parsed information from a HID input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/AddReportToPool": {
+      "abstract": [
+        {
+          "text": "Adds a memory descriptor to the report pool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AddReportToPool"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/AddReportToPool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AddReportToPool",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/addreporttopool"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Close": {
+      "abstract": [
+        {
+          "text": "Closes the interface and stops the delivery of input reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Close"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Close",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/close"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/GetReport": {
+      "abstract": [
+        {
+          "text": "Retrieves a new input report from the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/GetReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/getreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Open": {
+      "abstract": [
+        {
+          "text": "Opens a session to the device and begins the delivery of input reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Open"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Open",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/open"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/ReportAvailable": {
+      "abstract": [
+        {
+          "text": "Notifies the interface that an updated report is available from the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/ReportAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportAvailable",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/reportavailable"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/SetReport": {
+      "abstract": [
+        {
+          "text": "Sends a report to the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/SetReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/setreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/commitElements": {
+      "abstract": [
+        {
+          "text": "Gets or sets the contents of the interface’s stored elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "commitElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/commitElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commitElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/commitelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/free": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/free"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/getElements": {
+      "abstract": [
+        {
+          "text": "Returns the array of elements that the interface uses to store  parsed report data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/getElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/getelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/init"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/processReport": {
+      "abstract": [
+        {
+          "text": "Parses the contents of the specified report and updates the interface’s elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "processReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/processReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface/processreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for devices that support interactions with users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for USB devices that support HID interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserUSBHostHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserUSBHostHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice"
+      ],
+      "title": "Providers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Interface",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/init",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/free"
+      ],
+      "title": "Running the Interface"
+    },
+    {
+      "anchor": "Managing-the-Session",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Open",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/Close"
+      ],
+      "title": "Managing the Session"
+    },
+    {
+      "anchor": "Getting-and-Setting-Input-Reports",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/ReportAvailable",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/AddReportToPool",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/processReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/GetReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/SetReport"
+      ],
+      "title": "Getting and Setting Input Reports"
+    },
+    {
+      "anchor": "Accessing-the-Elements-of-a-Report",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/getElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface/commitElements"
+      ],
+      "title": "Accessing the Elements of a Report"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/iohidinterface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

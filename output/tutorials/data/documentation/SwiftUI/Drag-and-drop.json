@@ -1,0 +1,1445 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to move or duplicate items by dragging them from one location to another.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drag and drop"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag and drop offers people a convenient way to move content from one part of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app to another, or from one app to another, using an intuitive dragging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gesture. Support this feature in your app by adding view modifiers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to potential source and destination views within your app’s interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "drag-and-drop-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your modifiers, provide or accept types that conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol, or that inherit from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When possible, prefer using transferable items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/drag-and-drop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI": {
+      "abstract": [
+        {
+          "text": "Enable drag-and-drop interactions in lists, tables and custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop using SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/adopting-drag-and-drop-using-swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by issuing Copy and Paste commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard",
+      "type": "topic",
+      "url": "/documentation/swiftui/clipboard"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DropDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that you implement to interact with a drop operation in a view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modified to accept drops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DropDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DropDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DropDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DropDelegate",
+      "type": "topic",
+      "url": "/documentation/swiftui/dropdelegate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DropInfo": {
+      "abstract": [
+        {
+          "text": "The current state of a drop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DropInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DropInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DropInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "DropInfo",
+      "type": "topic",
+      "url": "/documentation/swiftui/dropinfo"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DropOperation": {
+      "abstract": [
+        {
+          "text": "Operation types that determine how a drag and drop session resolves when the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user drops a drag item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DropOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DropOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DropOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DropOperation",
+      "type": "topic",
+      "url": "/documentation/swiftui/dropoperation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DropProposal": {
+      "abstract": [
+        {
+          "text": "The behavior of a drop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DropProposal"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DropProposal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DropProposal"
+        }
+      ],
+      "role": "symbol",
+      "title": "DropProposal",
+      "type": "topic",
+      "url": "/documentation/swiftui/dropproposal"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/springLoadingBehavior": {
+      "abstract": [
+        {
+          "text": "The behavior of spring loaded interactions for the views associated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "springLoadingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21SpringLoadingBehaviorV",
+          "text": "SpringLoadingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/springLoadingBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "springLoadingBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/springloadingbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus": {
+      "abstract": [
+        {
+          "text": "Identify and control which visible object responds to user interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/swiftui/focus"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures": {
+      "abstract": [
+        {
+          "text": "Define interactions from taps, clicks, and swipes to fine-grained gestures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events": {
+      "abstract": [
+        {
+          "text": "Respond to input from a hardware device, like a keyboard or a Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Input events",
+      "type": "topic",
+      "url": "/documentation/swiftui/input-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt draggable API to provide items for drag-and-drop operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/swiftui/making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringLoadingBehavior": {
+      "abstract": [
+        {
+          "text": "The options for controlling the spring loading behavior of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpringLoadingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringLoadingBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpringLoadingBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpringLoadingBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/springloadingbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events": {
+      "abstract": [
+        {
+          "text": "React to system events, like opening a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System events",
+      "type": "topic",
+      "url": "/documentation/swiftui/system-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)": {
+      "abstract": [
+        {
+          "text": "Defines the destination of a drag and drop operation that handles the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dropped content with a closure that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dropDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isTargeted"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dropDestination(for:action:isTargeted:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/dropdestination(for:action:istargeted:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/itemProvider(_:)": {
+      "abstract": [
+        {
+          "text": "Provides a closure that vends the drag representation to be used for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "particular data element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemProvider"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sq",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/itemProvider(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemProvider(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/itemprovider(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDrag"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDrag(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ondrag(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDrag"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDrag(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ondrag(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:delegate:)": {
+      "abstract": [
+        {
+          "text": "Defines the destination of a drag and drop operation using behavior",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "controlled by the delegate that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDrop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:delegate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDrop(of:delegate:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ondrop(of:delegate:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:isTargeted:perform:)": {
+      "abstract": [
+        {
+          "text": "Defines the destination of a drag-and-drop operation that handles the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dropped content with a closure that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDrop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isTargeted"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:isTargeted:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDrop(of:isTargeted:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ondrop(of:istargeted:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/springLoadingBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the spring loading behavior this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "springLoadingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21SpringLoadingBehaviorV",
+          "text": "SpringLoadingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/springLoadingBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "springLoadingBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/springloadingbehavior(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Using drag and drop, people can move or duplicate selected photos, text, and other content by dragging the selection from one location to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/drag-and-drop",
+      "images": [
+        {
+          "identifier": "drag-and-drop.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "patterns-drag-and-drop-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/drag-and-drop"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "drag-and-drop-hero": {
+      "alt": null,
+      "identifier": "drag-and-drop-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/389cb904528e698574c83a1ccfbb85d9/drag-and-drop-hero@2x.png"
+        }
+      ]
+    },
+    "drag-and-drop.svg": {
+      "alt": null,
+      "identifier": "drag-and-drop.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "drag-and-drop",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d720be488dd21a71d4a2f985ea3f46d/drag-and-drop.svg"
+        }
+      ]
+    },
+    "patterns-drag-and-drop-thumbnail.png": {
+      "alt": null,
+      "identifier": "patterns-drag-and-drop-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24cf0d568113f038cafae7fd775eb209/patterns-drag-and-drop-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82901508fc4ff06a8b4a46e5706adab3/patterns-drag-and-drop-thumbnail@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events"
+      ],
+      "title": "Event handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Moving-transferable-items",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dropDestination(for:action:isTargeted:)"
+      ],
+      "title": "Moving transferable items"
+    },
+    {
+      "anchor": "Moving-items-using-item-providers",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/itemProvider(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:preview:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrag(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:isTargeted:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onDrop(of:delegate:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DropDelegate",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DropProposal",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DropOperation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DropInfo"
+      ],
+      "title": "Moving items using item providers"
+    },
+    {
+      "anchor": "Configuring-spring-loading",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/springLoadingBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/springLoadingBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpringLoadingBehavior"
+      ],
+      "title": "Configuring spring loading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/drag-and-drop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

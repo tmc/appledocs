@@ -1,0 +1,509 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches information about a single user using the record name.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithUserRecordName"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instm/CloudKit.Container/discoverUserIdentityWithUserRecordName",
+    "modules": [
+      {
+        "name": "CloudKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "CloudKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "discoverUserIdentityWithUserRecordName"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: CloudKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "Promise<"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.UserIdentitiesResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "cl/CloudKit.UserIdentitiesResponse",
+              "text": "CloudKit.UserIdentitiesResponse"
+            },
+            {
+              "kind": "text",
+              "text": ","
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.CKError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "cl/CloudKit.CKError",
+              "text": "CloudKit.CKError"
+            },
+            {
+              "kind": "keyword",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "discoverUserIdentityWithUserRecordName"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "userRecordName"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the user record.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userRecordName"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "Promise",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that resolves to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.UserIdentitiesResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, or rejects to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit/CKError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to retrieve information about a user for whom you have the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "User",
+              "type": "codeVoice"
+            },
+            {
+              "text": " record. The user must meet the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user must be in the current user’s address book.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user must have run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user must have granted the permission to be discovered for this container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS": {
+      "abstract": [
+        {
+          "text": "Provide access from your web app to your CloudKit app’s containers and databases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit JS",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.CKError": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.CKError",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object encapsulates an error that may occur when you use CloudKit JS. This includes CloudKit server errors and local errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.CKError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CloudKit.CKError",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.ckerror"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object provides access to an app container, and through the app container, access to its databases. It also contains methods for authenticating and fetching users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CloudKit.Container",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverAllUserIdentities": {
+      "abstract": [
+        {
+          "text": "Fetches all user identities in the current user’s address book.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverAllUserIdentities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discoverAllUserIdentities",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/discoveralluseridentities"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentities": {
+      "abstract": [
+        {
+          "text": "Fetches all users in the specified array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discoverUserIdentities",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/discoveruseridentities"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithEmailAddress": {
+      "abstract": [
+        {
+          "text": "Fetches information about a single user based on the user’s email address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithEmailAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discoverUserIdentityWithEmailAddress",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/discoveruseridentitywithemailaddress"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithPhoneNumber": {
+      "abstract": [
+        {
+          "text": "Fetches information about a single user based on the user’s phone number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithPhoneNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discoverUserIdentityWithPhoneNumber",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/discoveruseridentitywithphonenumber"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithUserRecordName": {
+      "abstract": [
+        {
+          "text": "Fetches information about a single user using the record name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithUserRecordName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discoverUserIdentityWithUserRecordName",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/discoveruseridentitywithuserrecordname"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/fetchCurrentUserIdentity": {
+      "abstract": [
+        {
+          "text": "Fetches information about the current user asynchronously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/fetchCurrentUserIdentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchCurrentUserIdentity",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.container/fetchcurrentuseridentity"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.UserIdentitiesResponse": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.UserIdentitiesResponse",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object encapsulates the results of fetching user identities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.UserIdentitiesResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CloudKit.UserIdentitiesResponse",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit.useridentitiesresponse"
+    },
+    "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit/CKError": {
+      "abstract": [
+        {
+          "text": "Property to access the error codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit/CKError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKError",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs/cloudkit/ckerror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Discovering-Users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/fetchCurrentUserIdentity",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverAllUserIdentities",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentities",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithEmailAddress",
+        "doc://com.apple.cloudkitjs/documentation/CloudKitJS/CloudKit.Container/discoverUserIdentityWithPhoneNumber"
+      ],
+      "title": "Discovering Users"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkitjs/cloudkit.container/discoveruseridentitywithuserrecordname"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

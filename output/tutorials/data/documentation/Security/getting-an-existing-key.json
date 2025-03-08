@@ -1,0 +1,699 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to obtain an existing cryptographic key.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/getting-an-existing-key"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting an Existing Key"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Security framework defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " opaque type to hold key objects. You typically use a key reference to indicate the key to use for a particular cryptographic operation, such as encryption. How you get a key reference depends on where the key is stored. In particular, the source of a key might be one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "An identity.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When you read an identity from a password-protected file or from the keychain, you can extract the private key it contains, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/parsing-an-identity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". In macOS, you can also store a private key in an identity, along with its certificate, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/creating-an-identity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A trust.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When you have a trust object, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", you can extract the associated certificate’s public key with a call to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCopyPublicKey(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "  let publicKey = SecTrustCopyPublicKey(trust)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "  SecKeyRef publicKey = SecTrustCopyPublicKey(trust);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Another key.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When you have a private key, you can calculate the associated public key with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "  let publicKey = SecKeyCopyPublicKey(privateKey)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "  SecKeyRef publicKey = SecKeyCopyPublicKey(privateKey);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Data.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You can export a key as a data blob that you can store on disk or send to someone else. Your app or another process can then do the reverse and restore the key from the data, possibly at a later time. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-as-data",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The keychain.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You can place a key in a keychain to securely store it for later use. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKey": {
+      "abstract": [
+        {
+          "text": "An object that represents a cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKey"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKey",
+      "type": "topic",
+      "url": "/documentation/security/seckey"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the public key associated with the given private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyPublicKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyPublicKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCopyPublicKey(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycopypublickey(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustCopyPublicKey(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the public key for a leaf certificate after it has been evaluated.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustCopyPublicKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCopyPublicKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustCopyPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustCopyPublicKey(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustcopypublickey(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/creating-an-identity": {
+      "abstract": [
+        {
+          "text": "Create an identity from a certificate and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/creating-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Identity",
+      "type": "topic",
+      "url": "/documentation/security/creating-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result": {
+      "abstract": [
+        {
+          "text": "Learn what to expect when evaluating a trust object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating a Trust and Parsing the Result",
+      "type": "topic",
+      "url": "/documentation/security/evaluating-a-trust-and-parsing-the-result"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    },
+    "doc://com.apple.security/documentation/Security/parsing-an-identity": {
+      "abstract": [
+        {
+          "text": "Extract the private key and certificate from an identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/parsing-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Parsing an Identity",
+      "type": "topic",
+      "url": "/documentation/security/parsing-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/storing-keys-as-data": {
+      "abstract": [
+        {
+          "text": "Create an external representation of a key for transmission.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-as-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Keys as Data",
+      "type": "topic",
+      "url": "/documentation/security/storing-keys-as-data"
+    },
+    "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store and access cryptographic keys in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Keys in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-keys-in-the-keychain"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCopyPublicKey(_:)/title",
+          "value": "SecTrustCopyPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCopyPublicKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustCopyPublicKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/title",
+          "value": "SecKeyRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyPublicKey(_:)/title",
+          "value": "SecKeyCopyPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyPublicKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCopyPublicKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/getting-an-existing-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/getting-an-existing-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2533 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_3-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 15.3 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 15.3 includes SDKs for iOS 17.4, iPadOS 17.4, tvOS 17.4, watchOS 10.4, macOS Sonoma 14.4, and visionOS 1.1.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 15.3 release supports on-device debugging in iOS 12 and later, tvOS 12 and later, watchOS 4 and later, and visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 15.3 requires a Mac running macOS Sonoma 14 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Xcode is now deterministic about the order in which string comments are concatenated when updating String Catalogs.\u2028  (119389516)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some Macs recently received a macOS system update which disabled the simulator runtimes used by Xcode, including the simulators for iOS, tvOS, watchOS, and visionOS. If your Mac received this update, you will receive the following error message and will be unable to use the simulator:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " The com.apple.CoreSimulator.SimRuntime.iOS-17-2 simulator runtime is not available.",
+                    " Domain: com.apple.CoreSimulator.SimError",
+                    " Code: 401",
+                    " Failure Reason: runtime profile not found using \"System\" match policy",
+                    " Recovery Suggestion: Download the com.apple.CoreSimulator.SimRuntime.iOS-17-2 simulator runtime from the Xcode "
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(127498625)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " To resume using the simulator, please reboot your Mac.  After rebooting, check Xcode Preferences → Platforms to ensure that the simulator runtime you would like to use is still installed.  If it is missing, use the Get button to download it again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Intents",
+          "level": 3,
+          "text": "App Intents",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppIntents may fail to execute when the target’s minimum deployment target is iOS 15.0 or earlier  (123798206) (FB13664020)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Add the ENABLE_APPINTENTS_DEPLOYMENT_AWARE_PROCESSING=NO build flag to your target(s)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use API Notes to add attributes to C++ APIs declared in a C++ namespace.  (113403829)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The compiler now correctly applies API Notes attributes to globals declared in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "extern \"C++\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " blocks.  (114382260)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-System",
+          "level": 3,
+          "text": "Build System",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schemes provide a new “Override Architectures” build option, which controls the set of architectures that will be built for all targets in the workspace, including Swift packages. The recommended option (and default for new schemes) is “Match Run Destination”. Full details are available by clicking the information icon next to the “Override Architectures” setting on the scheme build options sheet in Xcode.  (66146584)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The scheme name is no longer included in the derived data intermediates path when performing archive builds or other builds where the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DEPLOYMENT_LOCATION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " build setting is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This may necessitate changes to custom build scripts.  (100990646)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a bug where when a mergeable library in a framework inside an XCFramework is merged into a larger binary, the library sometimes would not be removed from the framework when the framework is embedded in the product.  (114836725) (FB13100730)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a bug where in a workspace with multiple projects, if a target is configured to merge the binaries of its immediate dependencies into its binary, it would not see that those dependencies were built as mergeable if they were in different projects from itself.  (115400802) (FB13160508)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a bug where creating an xcframework from a framework or library located at a path containing a symlink (such as /var which is a symlink to /private/var) would fail.  (115786062) (FB13191683)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "C++-Standard-Library",
+          "level": 3,
+          "text": "C++ Standard Library",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following new features have been implemented:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P0645 - Text formatting (",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::format",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ")",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2286R8 - Formatting ranges",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P1206R7 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "ranges::to",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ": A function to convert any range to a container",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2520R0 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "move_iterator<T*>",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " should be a random access iterator",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P1328R1 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "constexpr type_info::operator==()",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2693R1 - Formatting ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "thread::id",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2505R5 - Monadic operations for ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::expected",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2711R1 - Making multi-param constructors of views ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "explicit",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2136R3 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::invoke_r",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2494R2 - Relaxing range adaptors to allow for move only types",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2585R0 - Improving default container formatting",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P0408R7 - Efficient access to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "basic_stringbuf",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": "’s buffer",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2474R2 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ranges::views::repeat",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P0009R18 - ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::mdspan",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "P2093R14 - Formatted output (",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ostream",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " overload is not implemented yet)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Algorithms like ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::equal",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ranges::equal",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::find",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ranges::find",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " are now lowered to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::memcmp",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " in some cases, which can lead to massive performance improvements (up to 40x)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The performance of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "dynamic_cast",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " on its hot path was greatly improved",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The performance of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::sort",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ranges::sort",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " was improved by up to 50% for arithmetic types  (120908845)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following items have been deprecated or removed:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "<experimental/coroutine>",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " header has been removed. Please use ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "<coroutine>",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " instead.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "<experimental/algorithm>",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "<experimental/functional>",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " headers have been removed, since all the contents have been implemented in namespace ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Several incidental transitive includes have been removed from libc++. If you get diagnostics for missing declarations after updating, please ensure that you have the appropriate includes in your source files.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The global variables ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::allocator_arg",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::defer_lock",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::try_to_lock",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::adopt_lock",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::piecewise_construct",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " have been removed in C++03 mode. They were previously provided as an extension, however that made it impossible to implement them correctly (as inline variables) in C++17 mode, which led to bugs. We decided to remove the niche extension and fix the C++17 bugs instead.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::strstreambuf",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::istrstream",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::ostrstream",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "std::strstream",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " classes have been marked as deprecated, according to the C++98 Standard.  (120909028)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "CarPlay-Simulator",
+          "level": 3,
+          "text": "CarPlay Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "List of preset configurations for you to use as well as the ability to create a new configuration. Switching between and modifying configurations is accessible via the CarPlay Simulator menu bar item.   (114585849)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigation metadata is now observable in CarPlay Simulator.  (117149888)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Devices",
+          "level": 3,
+          "text": "Devices",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Running a WatchOS app that requires the companion iOS app to be installed will result in the error “An application bundle was not found at the provided path” when the run destination is set to a Watch via iPhone Simulator pair.  (119640671)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Debug sessions may unexpectedly disconnect in periods of high memory utilization on device.  (122593837)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In certain circumstances, an app can’t read the contents of its own data container after replacing the content of the data container using Xcode or devicectl.  (116698465) (FB13253099)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Documentation",
+          "level": 3,
+          "text": "Documentation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Objective-C documentation builds can miss pages  (115195433)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Instruments",
+          "level": 3,
+          "text": "Instruments",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where recording CPU Profiler on a Simulator device causes only first second of data to be presented.  (106003509)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xctrace record",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now requires executing user to be an admin.  (114202990)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where xctrace would crash when recording with only the ‘Time Profiler’ Instrument.  (120422536) (FB13512248)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Xcode 15.3 or newer should be used for building Custom Instruments packages on macOS 14.4+.  (121143107)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After exporting localizations from the Product menu, Xcode will now reveal the exported files in Finder.  (40559853)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Newly created .strings and .stringsdict files are now marked as localized in the source language by default.\u2028  (64910037)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Xcode could fail to export or import localizations when the path to Xcode.app contains spaces.\u2028  (109700392) (FB12199098)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where “Export Localizations” could fail for targets supporting iOS and visionOS.\u2028  (113228759)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Languages in the String Catalog Editor will now show a minimum of 1% translation progress if any strings are translated at all.\u2028  (118790070) (FB13410677)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Metal-Debugger",
+          "level": 3,
+          "text": "Metal Debugger",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Metal Debugger will not work with connected devices in Xcode versions earlier than 15.3 when Xcode 15.3 or later is installed on the same system.  (121627817)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If Xcode 15.3 or later has been installed, use Xcode 15.3 or later when requiring the Metal Debugger to work with connected devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added the ability to export a screenshot of the current preview using the main menu: Editor > Canvas > Export Preview Screenshot  (49361141)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Crashes in an app under preview that happen after initial launch now show the crash report in the canvas.  (105087132)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews fail when Swift files  require more than 4096 compiler arguments  (92630764) (FB10004742)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could fail when previewing files in a widget shared by both a watchOS app and an iOS app.  (108017929)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Exporting previews diagnostics could hang Xcode  (114111390)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previewing two different devices could fail  (116060127)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could fail when a file is in multiple targets where one of them is unsupported and one of them is supported  (116861569) (FB13264099)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The previews canvas incorrectly shows some previews as still in the middle of updating  (117094988)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Crash reports for previewed processes do not show up readily in some cases  (117133804)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could fail for certain projects where the scheme contained test targets  (117681195) (FB13314466)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Proximity-Reader",
+          "level": 3,
+          "text": "Proximity Reader",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/proximityreader/mobiledocumentreadersession/requestdocument(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/proximityreader/paymentcardreadersession/readpaymentcard(_:)-8jol5",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from the iOS Simulator results in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unknown",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "readCancelled",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " errors being thrown.  (123651094)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Test your app on a physical iOS device or use Xcode 15.2 to debug your app on the iOS Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Signing--Distribution",
+          "level": 3,
+          "text": "Signing & Distribution",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: When archiving your target, if the run destination selected is not a generic device (ex. “Any iOS Device”), Xcode will attempt to archive for the appropriate generic device based on the selected run destination’s platform. There is now an option in the scheme editor “Allow Archiving for Simulator” which will enable Xcode to select the appropriate generic simulator device if a simulator is selected.  (121255551)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Resolved an issue where the app notarization workflow could fail to report informative errors when the development team was in a contract pending state on App Store Connect. Resolved an issue where the app notariation workflow could incorrectly report that a failed upload was successful.  (122816678)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When attempting to boot a simulator device shortly after installing its runtime or updating to a new version of macOS, Gatekeeper scanning may temporarily prevent boot.  This can appear as an “Unable to boot the Simulator” or “-308” error.  (118038020)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Wait a few minutes before trying the operation again to allow Gatekeeper to complete its scan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When attempting to boot a simulator device after an XProtect update is installed, Gatekeeper scanning may temporarily prevent boot.  This can appear as an “Unable to boot the Simulator” or “-308” error.  (124035288)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Wait a few minutes before trying the operation again to allow Gatekeeper to complete its scan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can enable and disable StoreKit dialogs in your app through the StoreKit Testing in Xcode configuration settings. This controls the same behavior as the StoreKitTest ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekittest/sktestsession/3579480-disabledialogs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property and it is enabled by default.  (107622572)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under strict concurrency checking, every global or static variable must be either isolated to a global actor or be both immutable and of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "   var mutableGlobal = 1",
+                    "   // warning: var 'mutableGlobal' is not concurrency-safe because it is non-isolated global shared mutable state",
+                    "   // (unless it is top-level code which implicitly isolates to @MainActor)",
+                    " ",
+                    "   final class NonsendableType {",
+                    "     init() {}",
+                    "   }",
+                    " ",
+                    "   struct S {",
+                    "     static let immutableNonsendable = NonsendableType()",
+                    "     // warning: static property 'immutableNonsendable' is not concurrency-safe because it is not either conforming to 'Sendable' or isolated to a global actor",
+                    "   }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The attribute ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonisolated(unsafe)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " can be used to annotate a global variable (or any form of storage) to disable static checking of data isolation, but note that without correct implementation of a synchronization mechanism to achieve data isolation, dynamic run-time analysis from exclusivity enforcement or tools such as Thread Sanitizer could still identify failures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "   nonisolated(unsafe) var global: String"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0412-strict-concurrency-for-global-variables.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  (121120491)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default value expressions can now have the same isolation as the enclosing function or the corresponding stored property:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "   @MainActor",
+                    "   func requiresMainActor() -> Int { ... }",
+                    " ",
+                    "   class C {",
+                    "     @MainActor",
+                    "     var x: Int = requiresMainActor()",
+                    "   }",
+                    " ",
+                    "   @MainActor func defaultArg(value: Int = requiresMainActor()) { ... }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For isolated default values of stored properties, the implicit initialization",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "only happens in the body of an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "init",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the same isolation. This closes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "an important data-race safety hole where global-actor-isolated default values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "could inadvertently run synchronously from outside the actor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0411-isolated-default-values.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  (121121487)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue under strict concurrency checking with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-strict-concurrency=complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-strict-concurrency=targeted",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " where the compiler would generate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " warnings on calls to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AsyncIteratorProtocol.next()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " generated by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "for await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " loops inside an actor-isolated context.  (119613738)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Swift 5.10 closes all known holes in the static data-race safety model under complete concurrency checking. When writing code with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-strict-concurrency=complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", all potential for data races will be diagnosed at compile time unless an explicit unsafe opt out, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonisolated(unsafe)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@unchecked Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", has been applied.  (120816587)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Under strict concurrency checking with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-strict-concurrency=complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the compiler will incorrectly apply ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonisolated",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to synthesized default and memberwise initializers of global actor isolated types in some cases involving property wrappers, init accessors, or private stored properties whose initializer expressions are global actor isolated. This will result in an error message about returning from the initializer without initializing the stored property.  (121282537)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Packages",
+          "level": 3,
+          "text": "Swift Packages",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When opening a package, Xcode no longer creates separate schemes for the package’s test targets. Instead, these are added to the Test scheme action for the appropriate scheme.  (117871488)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Templates",
+          "level": 3,
+          "text": "Templates",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The visionOS section is missing in the new File workflow (File -> New -> File).  (122595488)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an Objective-C or C++ exception is thrown on a background thread, including those owned by the Swift runtime, it will now be recorded as a test failure before the test process terminates.  (110073990)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: XCTest now requires iOS 13.0 and tvOS 13.0.  (104632233)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: XCTest UI Automation APIs are main-thread-bound. This is now enforced at compile-time.  (108214525)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTContext.runActivity(named:block:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now annotated ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@preconcurrency @MainActor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Swift. Most callers using it from a synchronous test function will be unaffected. Callers using it from an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " test function will need to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " it or mark their test function ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@MainActor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (110664415)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Starting in this release, synchronous closures passed to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XCTestCase.addTeardownBlock()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now explicitly isolated to the main actor in Swift. Previously, such closures would run on the main actor but not be explicitly isolated to it. Asynchronous teardown blocks are not affected.  (115078758)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tests with more than one test case targeting macOS may not produce screen recordings in the result bundle. In the case where screen recordings are not available, screenshots are provided.  (118342983)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Thread-Performance-Checker",
+          "level": 3,
+          "text": "Thread Performance Checker",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Thread Performance Checker emits a new category of runtime issues called “Known Hangs” which shows developers where in their code hangs are known to affect users of their apps.  (102045928)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "visionOS",
+          "level": 3,
+          "text": "visionOS",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: USDz assets appear as missing textures (pink stripes) for visionOS apps when viewing in the selectable preview in Xcode  (120443849)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: iOS apps with a deployment target set to 17.2, 17.3, or 17.4 fail to run on Apple Vision Pro.  (120444126)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Texture Coordinate nodes now behave as expected  (121959312)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 15 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-15-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_0_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 15.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-15_0_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 15.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-15_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 15.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-15_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 15.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-15_4-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/proximityreader/mobiledocumentreadersession/requestdocument(_:)": {
+      "identifier": "https://developer.apple.com/documentation/proximityreader/mobiledocumentreadersession/requestdocument(_:)",
+      "title": "MobileDocumentReaderSession.requestDocument(_:)",
+      "titleInlineContent": [
+        {
+          "text": "MobileDocumentReaderSession.requestDocument(_:)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/proximityreader/mobiledocumentreadersession/requestdocument(_:)"
+    },
+    "https://developer.apple.com/documentation/proximityreader/paymentcardreadersession/readpaymentcard(_:)-8jol5": {
+      "identifier": "https://developer.apple.com/documentation/proximityreader/paymentcardreadersession/readpaymentcard(_:)-8jol5",
+      "title": "PaymentCardReaderSession.readPaymentCard(_:)",
+      "titleInlineContent": [
+        {
+          "text": "PaymentCardReaderSession.readPaymentCard(_:)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/proximityreader/paymentcardreadersession/readpaymentcard(_:)-8jol5"
+    },
+    "https://developer.apple.com/documentation/storekittest/sktestsession/3579480-disabledialogs": {
+      "identifier": "https://developer.apple.com/documentation/storekittest/sktestsession/3579480-disabledialogs",
+      "title": "SKTestSession.disableDialogs",
+      "titleInlineContent": [
+        {
+          "text": "SKTestSession.disableDialogs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekittest/sktestsession/3579480-disabledialogs"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0411-isolated-default-values.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0411-isolated-default-values.md",
+      "title": "SE-0411",
+      "titleInlineContent": [
+        {
+          "text": "SE-0411",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0411-isolated-default-values.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0412-strict-concurrency-for-global-variables.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0412-strict-concurrency-for-global-variables.md",
+      "title": "SE-0412",
+      "titleInlineContent": [
+        {
+          "text": "SE-0412",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0412-strict-concurrency-for-global-variables.md"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-15",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15_0_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-15-release-notes"
+      ],
+      "title": "Xcode 15"
+    }
+  ]
+}

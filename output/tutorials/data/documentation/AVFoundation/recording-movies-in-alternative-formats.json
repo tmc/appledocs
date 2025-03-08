@@ -1,0 +1,1100 @@
+{
+  "abstract": [
+    {
+      "text": "Change the default format for capturing movie files.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/audio-and-video-capture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/recording-movies-in-alternative-formats"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Recording movies in alternative formats"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to capture QuickTime movie files, and the framework chooses the HEVC format by default on most iPhone and iPad models. However, you can change the default format in advance if you know you need a different format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app shares the captured video using a system share sheet, the system automatically converts the video to a format thatʼs compatible with the destination device. However, if your app saves or shares captured video internally, for applications outside the system share sheet, you need to use a video-capture format thatʼs compatible with all target devices. This article shows you how to change the capture format dynamically, so that videos captured in your app begin in the desired format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-default-capture-format",
+          "level": 3,
+          "text": "Change the default capture format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the default format at capture time by specifying it in the output settings for capturing movie files. Each capture device has a dictionary of settings that you adjust to control properties of the output movie file. For example, to capture video in H.264/MPEG-4 AVC, set the output settings key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/h264",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import AVFoundation",
+                    "",
+                    "let movieFileOutput = // Your AVCaptureMovieFileOutput. //",
+                    "",
+                    "if movieFileOutput.availableVideoCodecTypes.contains(.h264),",
+                    "    let connection = movieFileOutput.connection(with: .video) {",
+                    "    // Use the H.264 codec to encode the video.",
+                    "    movieFileOutput.setOutputSettings([AVVideoCodecKey: AVVideoCodecType.h264], for: connection)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <AVFoundation/AVFoundation.h>",
+                    "",
+                    "AVCaptureMovieFileOutput *movieFileOutput = // Your AVCaptureMovieFileOutput. //;",
+                    "    ",
+                    "if ([movieFileOutput.availableVideoCodecTypes containsObject:AVVideoCodecTypeH264]) {",
+                    "    AVCaptureConnection* connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];",
+                    "    // Use the H.264 codec to encode the video.",
+                    "    [movieFileOutput setOutputSettings:@{AVVideoCodecKey: AVVideoCodecTypeH264} forConnection:connection];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of supported capture codecs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-previously-captured-movie-files",
+          "level": 3,
+          "text": "Convert previously captured movie files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to saving or sharing captured video using a different default format, you can also convert existing movie file content by generating a new movie file based on the contents of the existing file. For details on how, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/exporting-video-to-alternative-formats",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAudioFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records audio and saves the recorded audio to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureAudioFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAudioFileOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureAudioFileOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureAudioFileOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureaudiofileoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutput": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for capture outputs that can record captured data to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureFileOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturefileoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for monitoring or controlling the output of a media file capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutputDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutputDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureFileOutputDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturefileoutputdelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for responding to events that occur while recording captured media to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutputRecordingDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureFileOutputRecordingDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureFileOutputRecordingDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturefileoutputrecordingdelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and audio to a QuickTime movie file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureMovieFileOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemoviefileoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecKey": {
+      "abstract": [
+        {
+          "text": "A key to access the name of the codec for compressing video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCodecKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodeckey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType": {
+      "abstract": [
+        {
+          "text": "A set of constants that describe the codecs the system supports for video capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCodecType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/h264": {
+      "abstract": [
+        {
+          "text": "The H.264 video codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "h264"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/h264",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecTypeH264"
+        }
+      ],
+      "role": "symbol",
+      "title": "h264",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype/h264"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/hevc": {
+      "abstract": [
+        {
+          "text": "The HEVC video codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hevc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/hevc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecTypeHEVC"
+        }
+      ],
+      "role": "symbol",
+      "title": "hevc",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype/hevc"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/jpeg": {
+      "abstract": [
+        {
+          "text": "The JPEG video codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jpeg"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/jpeg",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecTypeJPEG"
+        }
+      ],
+      "role": "symbol",
+      "title": "jpeg",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype/jpeg"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes422": {
+      "abstract": [
+        {
+          "text": "The Apple ProRes 422 video codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proRes422"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes422",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecTypeAppleProRes422"
+        }
+      ],
+      "role": "symbol",
+      "title": "proRes422",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype/prores422"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes4444": {
+      "abstract": [
+        {
+          "text": "The Apple ProRes 4444 video codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proRes4444"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes4444",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCodecTypeAppleProRes4444"
+        }
+      ],
+      "role": "symbol",
+      "title": "proRes4444",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocodectype/prores4444"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/audio-and-video-capture": {
+      "abstract": [
+        {
+          "text": "Capture audio and video directly to media files, or capture streams of media for direct access to media sample buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/audio-and-video-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio and video capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-and-video-capture"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/exporting-video-to-alternative-formats": {
+      "abstract": [
+        {
+          "text": "Convert an existing movie file to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/exporting-video-to-alternative-formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting video to alternative formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/exporting-video-to-alternative-formats"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/h264",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/hevc",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/jpeg",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes422",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes4444"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "File-capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAudioFileOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate"
+      ],
+      "title": "File capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/h264",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/hevc",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/jpeg",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes422",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCodecType/proRes4444"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "File-capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureAudioFileOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate"
+              ],
+              "title": "File capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAudioFileOutput/title",
+          "value": "AVCaptureAudioFileOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAudioFileOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureAudioFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureAudioFileOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureAudioFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/title",
+          "value": "AVCaptureMovieFileOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1jpeg/title",
+          "value": "AVVideoCodecTypeJPEG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1jpeg/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecTypeJPEG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1proRes4444/title",
+          "value": "AVVideoCodecTypeAppleProRes4444"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1proRes4444/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecTypeAppleProRes4444"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecKey/title",
+          "value": "AVVideoCodecKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputRecordingDelegate/title",
+          "value": "AVCaptureFileOutputRecordingDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputRecordingDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutputRecordingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputRecordingDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutputRecordingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutput/title",
+          "value": "AVCaptureFileOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1proRes422/title",
+          "value": "AVVideoCodecTypeAppleProRes422"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1proRes422/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecTypeAppleProRes422"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1hevc/title",
+          "value": "AVVideoCodecTypeHEVC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1hevc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecTypeHEVC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1h264/title",
+          "value": "AVVideoCodecTypeH264"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType~1h264/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecTypeH264"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputDelegate/title",
+          "value": "AVCaptureFileOutputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureFileOutputDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureFileOutputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType/title",
+          "value": "AVVideoCodecType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCodecType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCodecType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/recording-movies-in-alternative-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/recording-movies-in-alternative-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

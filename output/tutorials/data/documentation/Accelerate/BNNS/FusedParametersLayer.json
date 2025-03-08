@@ -1,0 +1,2794 @@
+{
+  "abstract": [
+    {
+      "text": "A layer object that wraps a fused layer and manages its deinitialization.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the BNNSGraph API instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate4BNNSO20FusedParametersLayerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FusedParametersLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FusedParametersLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": true,
+        "message": "Use the BNNSGraph API instead.",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "BNNS.FusedParametersLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FusedParametersLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to fuse component layers with the following configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convolution → Normalization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fully Connected → Normalization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transposed Convolution → Normalization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convolution → Quantization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fully Connected → Quantization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transposed Convolution → Quantization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Arithmetic → Normalization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BNNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedBinaryArithmeticParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused binary arithmetic layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedBinaryArithmeticParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedBinaryArithmeticParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedBinaryArithmeticParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedBinaryArithmeticParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedbinaryarithmeticparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionNormalizationLayer": {
+      "abstract": [
+        {
+          "text": "A layer object that wraps a fused, convolution normalization layer and manages its deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedConvolutionNormalizationLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionNormalizationLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedConvolutionNormalizationLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedConvolutionNormalizationLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedconvolutionnormalizationlayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused convolution layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedConvolutionParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedConvolutionParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedConvolutionParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedconvolutionparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedDequantizationParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused dequantization layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedDequantizationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedDequantizationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedDequantizationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedDequantizationParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fuseddequantizationparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedNormalizationLayer": {
+      "abstract": [
+        {
+          "text": "A layer object that wraps a fused, fully connected normalization layer and manages its deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedFullyConnectedNormalizationLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedNormalizationLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedFullyConnectedNormalizationLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedFullyConnectedNormalizationLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedfullyconnectednormalizationlayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused fully connected layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedFullyConnectedParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedFullyConnectedParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedFullyConnectedParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedfullyconnectedparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedLayer": {
+      "abstract": [
+        {
+          "text": "The base class for fused convolution-normalization and fully connected-normalization layers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedlayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedNormalizationParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused normalization layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedNormalizationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedNormalizationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedNormalizationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedNormalizationParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusednormalizationparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer": {
+      "abstract": [
+        {
+          "text": "A layer object that wraps a fused layer and manages its deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedParametersLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedParametersLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedParametersLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:inputC:output:for:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer to a set of input objects and writes the result to a set of output objects, where the first layer accepts two inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO13LearningPhaseO",
+          "text": "LearningPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:inputC:output:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(batchSize:inputA:inputB:inputC:output:for:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/apply(batchsize:inputa:inputb:inputc:output:for:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:output:for:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer to a set of input objects and writes the result to a set of output objects, where the first layer accepts two inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO13LearningPhaseO",
+          "text": "LearningPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:output:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(batchSize:inputA:inputB:output:for:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/apply(batchsize:inputa:inputb:output:for:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:inputC:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingInputCGradient:generatingParameterGradients:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer backward to generate input gradients, where the first layer accepts three inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyBackward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingInputAGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingInputBGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingInputCGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingParameterGradients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:inputC:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingInputCGradient:generatingParameterGradients:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyBackward(batchSize:inputA:inputB:inputC:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingInputCGradient:generatingParameterGradients:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/applybackward(batchsize:inputa:inputb:inputc:output:outputgradient:generatinginputagradient:generatinginputbgradient:generatinginputcgradient:generatingparametergradients:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingParameterGradients:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer backward to generate input gradients, where the first layer accepts two inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyBackward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingInputAGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingInputBGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingParameterGradients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingParameterGradients:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyBackward(batchSize:inputA:inputB:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingParameterGradients:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/applybackward(batchsize:inputa:inputb:output:outputgradient:generatinginputagradient:generatinginputbgradient:generatingparametergradients:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(input:output:fusedLayerParameters:filterParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a new fused layer from an array of layer parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fusedLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate22FusableLayerParametersP",
+          "text": "FusableLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(input:output:fusedLayerParameters:filterParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(input:output:fusedLayerParameters:filterParameters:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/init(input:output:fusedlayerparameters:filterparameters:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:inputC:output:fusedLayerParameters:filterParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a new fused layer from an array of layer parameters, where the first layer accepts three inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fusedLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate22FusableLayerParametersP",
+          "text": "FusableLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:inputC:output:fusedLayerParameters:filterParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(inputA:inputB:inputC:output:fusedLayerParameters:filterParameters:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/init(inputa:inputb:inputc:output:fusedlayerparameters:filterparameters:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:output:fusedLayerParameters:filterParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a new fused layer from an array of layer parameters, where the first layer accepts two inputs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fusedLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate22FusableLayerParametersP",
+          "text": "FusableLayerParameters"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:output:fusedLayerParameters:filterParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(inputA:inputB:output:fusedLayerParameters:filterParameters:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedparameterslayer/init(inputa:inputb:output:fusedlayerparameters:filterparameters:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedQuantizationParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused quantization layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedQuantizationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedQuantizationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedQuantizationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedQuantizationParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedquantizationparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedTernaryArithmeticParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused ternary arithmetic layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedTernaryArithmeticParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedTernaryArithmeticParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedTernaryArithmeticParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedTernaryArithmeticParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedternaryarithmeticparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedUnaryArithmeticParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters for a fused unary arithmetic layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusedUnaryArithmeticParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedUnaryArithmeticParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusedUnaryArithmeticParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.FusedUnaryArithmeticParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/fusedunaryarithmeticparameters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateFusedLayer(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new fused layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterCreateFusedLayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSFilterType",
+          "text": "BNNSFilterType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateFusedLayer(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterCreateFusedLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterCreateFusedLayer(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfiltercreatefusedlayer(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterType": {
+      "abstract": [
+        {
+          "text": "Constants that define the component filters of a fused layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterType"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterType",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfiltertype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a fused filter backward to generate input gradients.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBackwardBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBackwardBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfusedfilterapplybackwardbatch(_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a multiple-input fused filter backward to generate input gradients.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBackwardMultiInputBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBackwardMultiInputBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfusedfilterapplybackwardmultiinputbatch(_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a fused filter to a set of input objects, writing the result to a set of output objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfusedfilterapplybatch(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a multiple-input fused filter to a set of input objects, writing the result to a set of output objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyMultiInputBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFusedFilterApplyMultiInputBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfusedfilterapplymultiinputbatch(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FusableLayerParameters": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FusableLayerParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FusableLayerParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FusableLayerParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "FusableLayerParameters",
+      "type": "topic",
+      "url": "/documentation/accelerate/fusablelayerparameters"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedLayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fused-layers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/FusableLayerParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionNormalizationLayer",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedNormalizationLayer",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterType",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateFusedLayer(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)"
+      ],
+      "title": "Fused layers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Fused-Parameters-Layer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(input:output:fusedLayerParameters:filterParameters:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:output:fusedLayerParameters:filterParameters:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/init(inputA:inputB:inputC:output:fusedLayerParameters:filterParameters:)"
+      ],
+      "title": "Creating a Fused Parameters Layer"
+    },
+    {
+      "anchor": "Specifying-a-Layer-Parameter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedUnaryArithmeticParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedBinaryArithmeticParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedTernaryArithmeticParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedConvolutionParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedQuantizationParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedDequantizationParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedFullyConnectedParameters",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedNormalizationParameters"
+      ],
+      "title": "Specifying a Layer Parameter"
+    },
+    {
+      "anchor": "Applying-a-Fused-Parameters-Layer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:output:for:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/apply(batchSize:inputA:inputB:inputC:output:for:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingParameterGradients:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/FusedParametersLayer/applyBackward(batchSize:inputA:inputB:inputC:output:outputGradient:generatingInputAGradient:generatingInputBGradient:generatingInputCGradient:generatingParameterGradients:)"
+      ],
+      "title": "Applying a Fused Parameters Layer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "BNNSFusedFilterApplyBackwardMultiInputBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBackwardMultiInputBatch(_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFusedFilterApplyBackwardMultiInputBatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "BNNSFusedFilterApplyBackwardBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFusedFilterApplyBackwardBatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterType/title",
+          "value": "BNNSFilterType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterCreateFusedLayer(_:_:_:_:)/title",
+          "value": "BNNSFilterCreateFusedLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterCreateFusedLayer(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterCreateFusedLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)/title",
+          "value": "BNNSFusedFilterApplyMultiInputBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyMultiInputBatch(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFusedFilterApplyMultiInputBatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)/title",
+          "value": "BNNSFusedFilterApplyBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFusedFilterApplyBatch(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFusedFilterApplyBatch"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnns/fusedparameterslayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

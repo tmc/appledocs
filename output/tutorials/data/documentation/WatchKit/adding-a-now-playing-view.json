@@ -1,0 +1,654 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a view that controls the currently playing audio from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/adding-a-now-playing-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Now Playing View"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a Now Playing view, users can control current or recently played audio without leaving your app. When your app presents the Now Playing view, it immediately displays information about the current audio source, such as another app on the user’s Apple Watch or iPhone. For example, users can play and pause music from their Apple Watch’s Music app or control the volume of a podcast on their iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically selects the source. If the user is listening to audio on their watch or phone, the system selects that audio source. Otherwise, the system selects the most recently used source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-View-to-Your-Storyboard",
+          "level": 3,
+          "text": "Add the View to Your Storyboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the Now Playing view, drag it from the Library to an empty interface controller in your WatchKit app’s storyboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3377250",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always present the Now Playing view so that it fills the screen in a nonscrolling container. Don’t add any other elements to this scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you are using SwiftUI, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchkit/documentation/WatchKit/NowPlayingView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Now Playing view uses your app’s tint color, but otherwise has no attributes or properties that you can set. In addition, no public interface class exists for the Now Playing view. This means you can’t access or control the view programmatically. Your app just presents the view; the system handles the rest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a watchOS app should opt out of automatically launching when its companion iOS app starts playing audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PUICAutoLaunchAudioOptOut",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/NowPlayingView": {
+      "abstract": [
+        {
+          "text": "A view that displays the system’s Now Playing interface so that the user can control audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NowPlayingView"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/NowPlayingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NowPlayingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NowPlayingView",
+      "type": "topic",
+      "url": "/documentation/watchkit/nowplayingview"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset": {
+      "abstract": [
+        {
+          "text": "An object that stores a reference to an audio file and provides metadata information about that file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFileAsset",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileasset"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer": {
+      "abstract": [
+        {
+          "text": "An object that controls playback of a single audio item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFilePlayer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileplayer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation state of an audio file while it is playing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFilePlayerItem",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileplayeritem"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer": {
+      "abstract": [
+        {
+          "text": "An object that controls playback of one or more audio items.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileQueuePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileQueuePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFileQueuePlayer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofilequeueplayer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl": {
+      "abstract": [
+        {
+          "text": "An interface element that provides control of the audio volume from the watch or a paired iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceVolumeControl",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio": {
+      "abstract": [
+        {
+          "text": "Enable background audio in your app to provide a seamless playback experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing Background Audio",
+      "type": "topic",
+      "url": "/documentation/watchkit/playing-background-audio"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support": {
+      "abstract": [
+        {
+          "text": "Connect your code to storyboard elements using interface controllers, interface objects, and event handlers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storyboard support",
+      "type": "topic",
+      "url": "/documentation/watchkit/storyboard-support"
+    },
+    "media-3377250": {
+      "alt": "A screenshot showing the Now Playing view inside an interface controller in the storyboard.",
+      "identifier": "media-3377250",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5daf416d20b998f9195e06c5815073ff/media-3377250@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5daf416d20b998f9195e06c5815073ff/media-3377250~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset"
+      ],
+      "title": "Audio"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset"
+              ],
+              "title": "Audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/title",
+          "value": "WKAudioFileAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/title",
+          "value": "WKAudioFilePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/title",
+          "value": "WKInterfaceVolumeControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/title",
+          "value": "WKAudioFileQueuePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/title",
+          "value": "WKAudioFilePlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayerItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/adding-a-now-playing-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/adding-a-now-playing-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

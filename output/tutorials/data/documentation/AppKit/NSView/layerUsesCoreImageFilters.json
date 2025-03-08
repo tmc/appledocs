@@ -1,0 +1,1588 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value indicating whether the view’s layer uses Core Image filters and needs in-process rendering.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSView/layerUsesCoreImageFilters"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSView(py)layerUsesCoreImageFilters",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "layerUsesCoreImageFilters"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "layerUsesCoreImageFilters"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "layerUsesCoreImageFilters"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerUsesCoreImageFilters"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your view uses a custom layer and you assigned Core Image to that layer directly, you must set this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to let AppKit know of that fact. In macOS 10.9 and later, AppKit prefers to render layer trees out-of-process but cannot do so if any layers have Core Image filters attached to them. Specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for property lets AppKit know that it must move rendering of the layer hierarchy back into your app’s process. If the value of this property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", adding a filter to the view’s layer triggers an exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You do not need to modify this property if you assigned the filters using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/backgroundFilters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/compositingFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/contentFilters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the view. Those methods automatically let AppKit know that it needs to render the layer hierarchy in-process. Set it only if you set the filters on the layer directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum": {
+      "abstract": [
+        {
+          "text": "These constants specify the location of the layer content when the content is not rerendered in response to view resizing. For more information, see the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsPlacement-swift.property",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerContentsPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerContentsPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView.LayerContentsPlacement",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layercontentsplacement-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify how layer resizing is handled when a view is layer-backed or layer-hosting. For more information, see the  ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerContentsRedrawPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerContentsRedrawPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView.LayerContentsRedrawPolicy",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/backgroundFilters": {
+      "abstract": [
+        {
+          "text": "An array of Core Image filters to apply to the view’s background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundFilters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/backgroundFilters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundFilters"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundFilters",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/backgroundfilters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawSubviewsIntoLayer": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view incorporates content from its subviews into its own layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canDrawSubviewsIntoLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawSubviewsIntoLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canDrawSubviewsIntoLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "canDrawSubviewsIntoLayer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/candrawsubviewsintolayer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/compositingFilter": {
+      "abstract": [
+        {
+          "text": "The Core Image filter used to composite the view’s contents with its background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositingFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/compositingFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositingFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositingFilter",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/compositingfilter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/contentFilters": {
+      "abstract": [
+        {
+          "text": "An array of Core Image filters to apply to the contents of the view and its sublayers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentFilters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/contentFilters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentFilters"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentFilters",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/contentfilters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/layer": {
+      "abstract": [
+        {
+          "text": "The Core Animation layer that the view uses as its backing store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CALayer",
+          "text": "CALayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layer"
+        }
+      ],
+      "role": "symbol",
+      "title": "layer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsPlacement-swift.property": {
+      "abstract": [
+        {
+          "text": "The current layer contents placement policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerContentsPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSViewLayerContentsPlacement",
+          "text": "LayerContentsPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsPlacement-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerContentsPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "layerContentsPlacement",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layercontentsplacement-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property": {
+      "abstract": [
+        {
+          "text": "The contents redraw policy for the view’s layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerContentsRedrawPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSViewLayerContentsRedrawPolicy",
+          "text": "LayerContentsRedrawPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerContentsRedrawPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "layerContentsRedrawPolicy",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layercontentsredrawpolicy-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/layerUsesCoreImageFilters": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view’s layer uses Core Image filters and needs in-process rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerUsesCoreImageFilters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layerUsesCoreImageFilters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerUsesCoreImageFilters"
+        }
+      ],
+      "role": "symbol",
+      "title": "layerUsesCoreImageFilters",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layerusescoreimagefilters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/makeBackingLayer()": {
+      "abstract": [
+        {
+          "text": "Creates the view’s backing layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBackingLayer"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CALayer",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/makeBackingLayer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeBackingLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeBackingLayer()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/makebackinglayer()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/removeConstraint(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified constraint from the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/removeConstraint(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeConstraint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeConstraint(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/removeconstraint(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/wantsLayer": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view uses a layer as its backing store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/wantsLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsLayer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/wantslayer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/wantsUpdateLayer": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating which drawing path the view takes when updating its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsUpdateLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/wantsUpdateLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsUpdateLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsUpdateLayer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/wantsupdatelayer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewLayerContentScaleDelegate": {
+      "abstract": [
+        {
+          "text": "An optional layer delegate method for handling resolution changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewLayerContentScaleDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewLayerContentScaleDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewLayerContentScaleDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewLayerContentScaleDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewlayercontentscaledelegate"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/removeConstraint(_:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Managing-the-Views-Layer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/wantsLayer",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/wantsUpdateLayer",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/layer",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/makeBackingLayer()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsPlacement-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawSubviewsIntoLayer",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewLayerContentScaleDelegate"
+      ],
+      "title": "Managing the View’s Layer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "layerUsesCoreImageFilters"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerUsesCoreImageFilters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSView"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/removeConstraint(_:)"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Managing-the-Views-Layer",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/wantsLayer",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/wantsUpdateLayer",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/layer",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/makeBackingLayer()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsPlacement-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawSubviewsIntoLayer",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewLayerContentScaleDelegate"
+              ],
+              "title": "Managing the View’s Layer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "layerUsesCoreImageFilters"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsLayer/title",
+          "value": "wantsLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layer/title",
+          "value": "layer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsPlacement-swift.enum/title",
+          "value": "NSViewLayerContentsPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsPlacement-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentsPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsPlacement-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentsPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1removeConstraint(_:)/title",
+          "value": "removeConstraint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1removeConstraint(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeConstraint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1backgroundFilters/title",
+          "value": "backgroundFilters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1backgroundFilters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundFilters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1canDrawSubviewsIntoLayer/title",
+          "value": "canDrawSubviewsIntoLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1canDrawSubviewsIntoLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canDrawSubviewsIntoLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerContentsRedrawPolicy-swift.property/title",
+          "value": "layerContentsRedrawPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerContentsRedrawPolicy-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerContentsRedrawPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerContentsPlacement-swift.property/title",
+          "value": "layerContentsPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerContentsPlacement-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerContentsPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1contentFilters/title",
+          "value": "contentFilters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1contentFilters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentFilters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsUpdateLayer/title",
+          "value": "wantsUpdateLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsUpdateLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsUpdateLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsRedrawPolicy-swift.enum/title",
+          "value": "NSViewLayerContentsRedrawPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsRedrawPolicy-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentsRedrawPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1LayerContentsRedrawPolicy-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentsRedrawPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1makeBackingLayer()/title",
+          "value": "makeBackingLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1makeBackingLayer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeBackingLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1compositingFilter/title",
+          "value": "compositingFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1compositingFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compositingFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerUsesCoreImageFilters/title",
+          "value": "layerUsesCoreImageFilters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layerUsesCoreImageFilters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerUsesCoreImageFilters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewLayerContentScaleDelegate/title",
+          "value": "NSViewLayerContentScaleDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewLayerContentScaleDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentScaleDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewLayerContentScaleDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewLayerContentScaleDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsview/layerusescoreimagefilters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsview/layerusescoreimagefilters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

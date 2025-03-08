@@ -1,0 +1,2694 @@
+{
+  "abstract": [
+    {
+      "text": "A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKRuleSystem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKRuleSystem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKRuleSystem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKRuleSystem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKRuleSystem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object manages a list of rules (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects). A rule system also offers methods for evaluating its list of rules in a context defined by two features: a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary containing information to be tested by rules, and a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " representing the conclusions drawn as a result of rule evaluation. You can evaluate facts based on a binary truth state—that is, a fact either is or is not in the set—or on a continuously variable membership grade, representing different levels of veracity, confidence, or strength for use in fuzzy logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You construct a rule system by creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and adding them to the system’s list of rules. There are multiple ways to construct rules: for greater reusability, use the methods listed in Creating Data-Driven Rules; or for greater flexibility, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/init(blockPredicate:action:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKNSPredicateRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then, add rules to the system with the methods listed in Managing a System’s List of Rules below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To evaluate a system, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/evaluate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method processes each rule in the system in the order it appears in the system’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/agenda",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " list. You set this order with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/salience",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of each rule, or with the order in which you add rules to the system. As the system processes each rule, it tests the rule’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/evaluatePredicate(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to determine whether the rule is satisfied in the context of the system. If the rule’s predicate is satisfied, the system executes the rule’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/performAction(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and moves the rule to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/executed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " list (so the further evaluation of the agenda doesn’t repeatedly trigger the rule’s action).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rules typically use the system’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary as input and its set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as output. (However, more complex systems can include sets of rules whose predicates test facts or whose actions mutate the system’s state.) After evaluating a rule system, you can examine the set of facts it has produced using the methods listed in Drawing Conclusions from Facts below. You can then use the presence of a fact in the set, the value of its membership grade, or the combined membership grades of a group of facts to influence the behaviors in your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about rules and rule systems, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKNSPredicateRule": {
+      "abstract": [
+        {
+          "text": "A rule for use in a rule system that uses a Foundation ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object to evaluate itself.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKNSPredicateRule"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKNSPredicateRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKNSPredicateRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKNSPredicateRule",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gknspredicaterule"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule": {
+      "abstract": [
+        {
+          "text": "A rule to be used in the context of a rule system, with a predicate to be tested and an action to be executed when the test succeeds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKRule"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKRule",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrule"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/evaluatePredicate(in:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the rule has been satisfied in the context of the specified rule system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRuleSystem",
+          "text": "GKRuleSystem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/evaluatePredicate(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "evaluatePredicateWithSystem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "evaluatePredicate(in:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrule/evaluatepredicate(in:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/init(blockPredicate:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a rule whose predicate is evaluated and action is executed through the specified blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRuleSystem",
+          "text": "GKRuleSystem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRuleSystem",
+          "text": "GKRuleSystem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/init(blockPredicate:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ruleWithBlockPredicate:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(blockPredicate:action:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrule/init(blockpredicate:action:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/performAction(in:)": {
+      "abstract": [
+        {
+          "text": "Performs actions that should result when the rule is satisfied in the context of the specified rule system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRuleSystem",
+          "text": "GKRuleSystem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/performAction(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performActionWithSystem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performAction(in:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrule/performaction(in:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/salience": {
+      "abstract": [
+        {
+          "text": "The importance of the rule relative to others in a rule system’s agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "salience"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule/salience",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "salience"
+        }
+      ],
+      "role": "symbol",
+      "title": "salience",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrule/salience"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem": {
+      "abstract": [
+        {
+          "text": "A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKRuleSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKRuleSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKRuleSystem",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5": {
+      "abstract": [
+        {
+          "text": "Adds the specified rule to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRule",
+          "text": "GKRule"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRule:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/add(_:)-76jb5"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw": {
+      "abstract": [
+        {
+          "text": "Adds the specified list of rules to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRule",
+          "text": "GKRule"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRulesFromArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/add(_:)-7u5zw"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/agenda": {
+      "abstract": [
+        {
+          "text": "The list of rules to be considered when evaluating the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "agenda"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRule",
+          "text": "GKRule"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/agenda",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "agenda"
+        }
+      ],
+      "role": "symbol",
+      "title": "agenda",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/agenda"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified fact to the fact set with a membership grade of 1.0, and reevaluates the rules in the system’s agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assertFact"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assertFact:"
+        }
+      ],
+      "role": "symbol",
+      "title": "assertFact(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/assertfact(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)": {
+      "abstract": [
+        {
+          "text": "Increases the membership grade of the specified fact by the specified amount, adding it to the fact set if necessary, and reevaluates the rules in the system’s agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assertFact"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "grade"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assertFact:grade:"
+        }
+      ],
+      "role": "symbol",
+      "title": "assertFact(_:grade:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/assertfact(_:grade:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/evaluate()": {
+      "abstract": [
+        {
+          "text": "Evaluates the rule system, executing the list of rules in its agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/evaluate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        }
+      ],
+      "role": "symbol",
+      "title": "evaluate()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/evaluate()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/executed": {
+      "abstract": [
+        {
+          "text": "The list of rules whose actions have been performed during evaluation of the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executed"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRule",
+          "text": "GKRule"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/executed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executed"
+        }
+      ],
+      "role": "symbol",
+      "title": "executed",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/executed"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts": {
+      "abstract": [
+        {
+          "text": "The list of facts claimed by the rule system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "facts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "facts"
+        }
+      ],
+      "role": "symbol",
+      "title": "facts",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/facts"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/grade(forFact:)": {
+      "abstract": [
+        {
+          "text": "Returns the membership grade of the specified fact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFact"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/grade(forFact:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gradeForFact:"
+        }
+      ],
+      "role": "symbol",
+      "title": "grade(forFact:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/grade(forfact:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a new, empty rule system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/init()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)": {
+      "abstract": [
+        {
+          "text": "Returns the highest membership grade among the specified facts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumGrade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFacts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumGradeForFacts:"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumGrade(forFacts:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/maximumgrade(forfacts:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)": {
+      "abstract": [
+        {
+          "text": "Returns the lowest membership grade among the specified facts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumGrade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFacts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumGradeForFacts:"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumGrade(forFacts:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/minimumgrade(forfacts:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/removeAllRules()": {
+      "abstract": [
+        {
+          "text": "Removes all rules from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllRules"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/removeAllRules()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllRules()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/removeallrules()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/reset()": {
+      "abstract": [
+        {
+          "text": "Returns the rule system to its original agenda and clears all facts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/reset()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified fact from the fact set, and reevaluates the rules in the system’s agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retractFact"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retractFact:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retractFact(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/retractfact(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)": {
+      "abstract": [
+        {
+          "text": "Reduces the membership grade of the specified fact by the specified amount, removing it from the fact set if necessary, and reevaluates the rules in the system’s agenda.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retractFact"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "grade"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retractFact:grade:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retractFact(_:grade:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/retractfact(_:grade:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/rules": {
+      "abstract": [
+        {
+          "text": "The list of rules to be executed when evaluating the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRule",
+          "text": "GKRule"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/rules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rules"
+        }
+      ],
+      "role": "symbol",
+      "title": "rules",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/rules"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state": {
+      "abstract": [
+        {
+          "text": "A dictionary of state information to be evaluated by the system’s rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableDictionary",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrulesystem/state"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10",
+      "title": "Rule Systems",
+      "titleInlineContent": [
+        {
+          "text": "Rule Systems",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+      "title": "GameplayKit Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "GameplayKit Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rule-Systems",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKNSPredicateRule"
+      ],
+      "title": "Rule Systems"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Rule-System",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/init()"
+      ],
+      "title": "Creating a Rule System"
+    },
+    {
+      "anchor": "Managing-State-Information",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state"
+      ],
+      "title": "Managing State Information"
+    },
+    {
+      "anchor": "Managing-a-Systems-List-of-Rules",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/rules",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/removeAllRules()"
+      ],
+      "title": "Managing a System’s List of Rules"
+    },
+    {
+      "anchor": "Evaluating-a-Rule-System",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/evaluate()",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/agenda",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/executed",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/reset()"
+      ],
+      "title": "Evaluating a Rule System"
+    },
+    {
+      "anchor": "Asserting-and-Retracting-Facts",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)"
+      ],
+      "title": "Asserting and Retracting Facts"
+    },
+    {
+      "anchor": "Drawing-Conclusions-from-Facts",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/grade(forFact:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)"
+      ],
+      "title": "Drawing Conclusions from Facts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKRuleSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRuleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRuleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Rule-System",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/init()"
+              ],
+              "title": "Creating a Rule System"
+            },
+            {
+              "anchor": "Managing-State-Information",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/state"
+              ],
+              "title": "Managing State Information"
+            },
+            {
+              "anchor": "Managing-a-Systems-List-of-Rules",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/rules",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/removeAllRules()"
+              ],
+              "title": "Managing a System’s List of Rules"
+            },
+            {
+              "anchor": "Evaluating-a-Rule-System",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/evaluate()",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/agenda",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/executed",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/reset()"
+              ],
+              "title": "Evaluating a Rule System"
+            },
+            {
+              "anchor": "Asserting-and-Retracting-Facts",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/facts",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)"
+              ],
+              "title": "Asserting and Retracting Facts"
+            },
+            {
+              "anchor": "Drawing-Conclusions-from-Facts",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/grade(forFact:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)"
+              ],
+              "title": "Drawing Conclusions from Facts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rule-Systems",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRule",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKNSPredicateRule"
+              ],
+              "title": "Rule Systems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKRuleSystem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1rules/title",
+          "value": "rules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1rules/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1retractFact(_:)/title",
+          "value": "retractFact:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1retractFact(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retractFact:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1assertFact(_:)/title",
+          "value": "assertFact:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1assertFact(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "assertFact:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1add(_:)-7u5zw/title",
+          "value": "addRulesFromArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1add(_:)-7u5zw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRulesFromArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1grade(forFact:)/title",
+          "value": "gradeForFact:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1grade(forFact:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "gradeForFact:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1minimumGrade(forFacts:)/title",
+          "value": "minimumGradeForFacts:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1minimumGrade(forFacts:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "minimumGradeForFacts:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1performAction(in:)/title",
+          "value": "performActionWithSystem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1performAction(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performActionWithSystem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1add(_:)-76jb5/title",
+          "value": "addRule:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1add(_:)-76jb5/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRule:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKNSPredicateRule/title",
+          "value": "GKNSPredicateRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKNSPredicateRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNSPredicateRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKNSPredicateRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNSPredicateRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1retractFact(_:grade:)/title",
+          "value": "retractFact:grade:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1retractFact(_:grade:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retractFact:grade:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1removeAllRules()/title",
+          "value": "removeAllRules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1removeAllRules()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem/title",
+          "value": "GKRuleSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRuleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRuleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1executed/title",
+          "value": "executed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1executed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "executed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1evaluatePredicate(in:)/title",
+          "value": "evaluatePredicateWithSystem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1evaluatePredicate(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluatePredicateWithSystem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1agenda/title",
+          "value": "agenda"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1agenda/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "agenda"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1maximumGrade(forFacts:)/title",
+          "value": "maximumGradeForFacts:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1maximumGrade(forFacts:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumGradeForFacts:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1init(blockPredicate:action:)/title",
+          "value": "ruleWithBlockPredicate:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1init(blockPredicate:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "ruleWithBlockPredicate:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1evaluate()/title",
+          "value": "evaluate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1evaluate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1salience/title",
+          "value": "salience"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule~1salience/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "salience"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1facts/title",
+          "value": "facts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1facts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "facts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1assertFact(_:grade:)/title",
+          "value": "assertFact:grade:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRuleSystem~1assertFact(_:grade:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "assertFact:grade:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule/title",
+          "value": "GKRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRule"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkrulesystem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkrulesystem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

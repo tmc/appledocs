@@ -1,0 +1,648 @@
+{
+  "abstract": [
+    {
+      "text": "Saves the web history to the specified file.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkit",
+        "doc://com.apple.documentation/documentation/webkit/deprecated-symbols",
+        "doc://com.apple.documentation/documentation/webkit/accessing-previous-webpages-legacy",
+        "doc://com.apple.documentation/documentation/webkit/webhistory"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/webkit/webhistory/1521400-save"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1521400,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WebHistory(im)saveToURL:error:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "save"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "to"
+      },
+      {
+        "kind": "text",
+        "text": ": URL!)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "parent": {
+      "title": "WebHistory"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "save(to:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "save"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "to"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL of the file to contain the web history information. The file must be user-writable, but its format is private and should not be edited directly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "URL"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On output, ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the load was successful; otherwise, ",
+                  "type": "text"
+                },
+                {
+                  "code": "error",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which contains details of the failure. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if successful; otherwise, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When successful, this method posts a notification (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1521397-webhistorysaved",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Swift, this method returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "Void",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and is marked with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keyword to indicate that it throws an error in cases of failure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You call this method in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "try",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " expression and handle any errors in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "catch",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " clauses of a ",
+                  "type": "text"
+                },
+                {
+                  "code": "do",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " statement, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3023437",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3023438",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "About Imported Cocoa Error Parameters",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Handling Errors in Swift:",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1521397-webhistorysaved": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1521397-webhistorysaved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebHistorySaved",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1521397-webhistorysaved"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkit": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.documentation/documentation/webkit/accessing-previous-webpages-legacy": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/accessing-previous-webpages-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessing Previous Webpages (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/accessing-previous-webpages-legacy"
+    },
+    "doc://com.apple.documentation/documentation/webkit/deprecated-symbols": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/deprecated-symbols",
+      "kind": "article",
+      "role": "article",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/webkit/deprecated-symbols"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory": {
+      "abstract": [
+        {
+          "code": "WebHistory",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects are used to maintain the pages visited by users. Visited pages are represented by ",
+          "type": "text"
+        },
+        {
+          "text": " objects. You add and remove history items using the ",
+          "type": "text"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "text": " methods. These methods post appropriate notifications when items are added or removed so you can update the display. ",
+          "type": "text"
+        },
+        {
+          "code": "WebHistory",
+          "type": "codeVoice"
+        },
+        {
+          "text": " organizes the ",
+          "type": "text"
+        },
+        {
+          "code": "WebHistoryItem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects by the day they were visited, ordered from most recent to oldest. You can request all the days that contain history items using the ",
+          "type": "text"
+        },
+        {
+          "text": " method or request the items visited on a particular day using the ",
+          "type": "text"
+        },
+        {
+          "text": " method. ",
+          "type": "text"
+        },
+        {
+          "code": "WebHistory",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects can be loaded and saved by specifying a file URL (see ",
+          "type": "text"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebHistory",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521394-ordereditemslastvisited": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521394-ordereditemslastvisited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orderedItemsLastVisited(onDay:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521394-ordereditemslastvisited"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521400-save": {
+      "abstract": [
+        {
+          "text": "Saves the web history to the specified file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521400-save",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "save(to:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521400-save"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521402-load": {
+      "abstract": [
+        {
+          "text": "Loads the contents of the specified web history file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": URL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521402-load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(from:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521402-load"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521407-additems": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521407-additems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addItems(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521407-additems"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521409-removeitems": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521409-removeitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeItems(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521409-removeitems"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webhistory/1521412-orderedlastvisiteddays": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webhistory/1521412-orderedlastvisiteddays",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orderedLastVisitedDays",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistory/1521412-orderedlastvisiteddays"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebHistoryItem": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebHistoryItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebHistoryItem",
+      "type": "topic",
+      "url": "/documentation/webkit/webhistoryitem"
+    },
+    "link-3023437": {
+      "identifier": "link-3023437",
+      "kind": "article",
+      "role": "link",
+      "title": "Error Handling",
+      "type": "topic",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html"
+    },
+    "link-3023438": {
+      "identifier": "link-3023438",
+      "kind": "article",
+      "role": "link",
+      "title": "The Swift Programming Language",
+      "type": "topic",
+      "url": "https://docs.swift.org/swift-book/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkit/webhistory/1521402-load"
+      ],
+      "title": "Loading and Saving History Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/webkit/webhistory/1521400-savetourl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/webkit/webhistory/1521400-save"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1125 @@
+{
+  "abstract": [
+    {
+      "text": "Get the statuses for all of a customer’s auto-renewable subscriptions in your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_server_api:get:v1-subscriptions-{}",
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/subscriptions/{transactionId}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get All Subscription Statuses"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/subscriptions/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{transactionId}"
+        }
+      ]
+    },
+    {
+      "kind": "restEndpoint",
+      "title": "Sandbox URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit-sandbox.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/subscriptions/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{transactionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier of a transaction that belongs to the customer, and which may be an original transaction identifier (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "transactionId",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:transactionId",
+              "text": "transactionId"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional filter that indicates the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_/status",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " of subscriptions to include in the response. Your query may specify more than one ",
+                  "type": "text"
+                },
+                {
+                  "code": "status",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " query parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/status",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:status",
+              "text": "status"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:StatusResponse",
+              "text": "StatusResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppIdentifierError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidAppIdentifierError",
+              "text": "InvalidAppIdentifierError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionIdError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidTransactionIdError",
+              "text": "InvalidTransactionIdError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidStatusError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidStatusError",
+              "text": "InvalidStatusError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The JSON Web Token (JWT) in the authorization header is invalid. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:AccountNotFoundError",
+              "text": "AccountNotFoundError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundRetryableError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:AccountNotFoundRetryableError",
+              "text": "AccountNotFoundRetryableError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:AppNotFoundError",
+              "text": "AppNotFoundError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundRetryableError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:AppNotFoundRetryableError",
+              "text": "AppNotFoundRetryableError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:TransactionIdNotFoundError",
+              "text": "TransactionIdNotFoundError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request exceeded the rate limit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:RateLimitExceededError",
+              "text": "RateLimitExceededError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:GeneralInternalError",
+              "text": "GeneralInternalError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:GeneralInternalRetryableError",
+              "text": "GeneralInternalRetryableError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API returns the status for all of the customer’s subscriptions, organized by their subscription group identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify multiple values for the ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter to get a response that contains subscriptions with statuses that match any of the values. For example, the following request returns subscriptions that are active (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and subscriptions that are in the Billing Grace Period (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "4",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.storekit.itunes.apple.com/inApps/v1/subscriptions/{transactionId}?status=1&status=4"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the App Store account wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/accountnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundRetryableError": {
+      "abstract": [
+        {
+          "text": "An error response that indicates the App Store account wasn’t found, but you can try again.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountNotFoundRetryableError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AccountNotFoundRetryableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountNotFoundRetryableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountNotFoundRetryableError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/accountnotfoundretryableerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the app wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/appnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundRetryableError": {
+      "abstract": [
+        {
+          "text": "An error response that indicates the app wasn’t found, but you can try again.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppNotFoundRetryableError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/AppNotFoundRetryableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppNotFoundRetryableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppNotFoundRetryableError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/appnotfoundretryableerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get the statuses for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/subscriptions/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Subscription Statuses",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-subscriptions-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_/status": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-subscriptions-_transactionid_/status"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a general internal error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generalinternalerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError": {
+      "abstract": [
+        {
+          "text": "An error response that indicates an unknown error occurred, but you can try again.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalRetryableError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generalinternalretryableerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppIdentifierError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an invalid app identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidAppIdentifierError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidAppIdentifierError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidAppIdentifierError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidAppIdentifierError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidappidentifiererror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidStatusError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the status parameter is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidStatusError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidStatusError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidStatusError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidStatusError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidstatuserror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionIdError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an invalid transaction identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidTransactionIdError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidTransactionIdError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidTransactionIdError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidTransactionIdError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidtransactioniderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the request exceeded the rate limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RateLimitExceededError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/ratelimitexceedederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains status information for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/statusresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a transaction identifier wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionIdNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionidnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens signed with your private key to authorize requests for App Store Server API and External Purchase Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JSON Web Tokens for API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generating-json-web-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that apply to App Store Server API endpoints and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/identifying-rate-limits"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalTransactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/originaltransactionid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/status": {
+      "abstract": [
+        {
+          "text": "The status of an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/status"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId": {
+      "abstract": [
+        {
+          "text": "The unique identifier for a transaction, such as an In-App Purchase, restored In-App Purchase, or subscription renewal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "transactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-status",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse"
+      ],
+      "title": "Subscription status"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/get-v1-subscriptions-_transactionid_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

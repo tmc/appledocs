@@ -1,0 +1,506 @@
+{
+  "abstract": [
+    {
+      "text": "Establish your identity to the ClassKit Catalog server by providing a cryptographically signed token for each call.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authenticating Calls to the ClassKit Catalog API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You authenticate the calls you make to the ClassKit Catalog API by including a cryptographically signed ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You sign the JWT using a private key that you provision in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website, and then include the signed token as part of the header of each call that you make.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-a-Private-Key",
+          "level": 3,
+          "text": "Register a Private Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign in to the Apple Developer web site, and navigate to the “Certificates, IDs, & Profiles” page. Choose Keys in the sidebar, and then click the plus (+) button to add a new key. Name the key, and enable it for use with ClassKit Catalog. Complete the registration and download the private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3675465",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can download the private key only once. Apple doesn’t keep a copy of your key, so you can’t retrieve the key again. If you lose your key, you’ll need to revoke the key and create a new one. Similarly, if your private key is ever compromised, you’ll need to revoke the original key and create a new one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-Sign-a-Token",
+          "level": 3,
+          "text": "Create and Sign a Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compose a JWT as a combination of a header, a claim set, and a signature, as described in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "overridingTitle": "JSON Web Token (JWT)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "JSON Web Token (JWT)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " specification. Create the header as a JSON object with key-value pairs representing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key identifier, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Provide the key identifier reported to you by the Apple Developer site after provisioning the key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of token, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Provide a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JWT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicated a JSON web token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The algorithm used to sign the token, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Set the value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ES256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate the Elliptic Curve Digital Signature Algorithm (ECDSA) algorithm with the P-256 curve and SHA-256 hash algorithm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example header looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"kid\": \"9QVIE72P19\",",
+            "  \"typ\": \"JWT\",",
+            "  \"alg\": \"ES256\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a claim set as another JSON object with key-value pairs representing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The issuer claim that identifies you as the issuer of the JWT, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Provide your Apple Developer account team identifier as the value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The issued-at claim that indicates when you created the JWT, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Indicate the number of seconds after the Unix epoch when you created the token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The expiration-time claim that indicates a time after which the JWT is no longer valid, given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Indicate the number of seconds after the Unix epoch when the token should expire, which is typically 10 to 30 minutes after creation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example claim set looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"iss\": \"4J2MBDPZ6M\",",
+            "  \"iat\": 1587058400,",
+            "  \"exp\": 1587060200",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Base-64 encode and compute a signature over these two objects, as described in the JWT specification, using your private key with the P-256 ECDSA algorithm and a SHA-256 hash. The two encoded objects plus the computed signature, separated by periods, make up the JWT.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authenticate-Requests-with-the-Signed-Token",
+          "level": 3,
+          "text": "Authenticate Requests with the Signed Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the JWT with every request you make to the ClassKit Catalog API by adding ",
+              "type": "text"
+            },
+            {
+              "code": "Authorization: Bearer <JWT>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the header, where you replace <",
+              "type": "text"
+            },
+            {
+              "code": "JWT>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your actual token. Here is an example of making a request using the ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command line utility:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v -H \"Authorization: Bearer <JWT>\" \"https://classkit-catalog.apple.com/v1/contexts?identifierPath=%5B%22com.apple.www.Quizzer%22%5D&environment=production&locale=en-us\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation": {
+      "abstract": [
+        {
+          "text": "Verify your server interaction before deployment by operating in a development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Your ClassKit Catalog Implementation",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/testing-your-classkit-catalog-implementation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "Apple Developer",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "JSON Web Token (JWT)",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Token (JWT)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    },
+    "media-3675465": {
+      "alt": "Screenshot of the Apple Developer website showing the form for adding a new cryptographic key.",
+      "identifier": "media-3675465",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff35702215033cc574b718cdd5d24a2d/media-3675465@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/authenticating-calls-to-the-classkit-catalog-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

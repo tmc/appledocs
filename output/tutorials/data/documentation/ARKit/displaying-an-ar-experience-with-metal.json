@@ -1,0 +1,1574 @@
+{
+  "abstract": [
+    {
+      "text": "Control rendering of your app’s virtual content on top of a camera feed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying an AR Experience with Metal"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit includes view classes for easily displaying AR experiences with SceneKit or SpriteKit. However, if instead you build your own rendering engine using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ARKit also provides all the support necessary to display an AR experience with your custom view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2903215",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In any AR experience, the first step is to configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage camera capture and motion processing. A session defines and maintains a correspondence between the real-world space the device inhabits and a virtual space where you model AR content. To display your AR experience in a custom view, you’ll need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve video  frames and tracking information from the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Render those frame images as the backdrop for your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the tracking information to position and draw AR content atop the camera image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This article covers code found in Xcode project templates. For complete example code, create a new iOS application with the Augmented Reality template, and choose Metal from the Content Technology popup menu.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Get-Video-Frames-and-Tracking-Data-from-the-Session",
+          "level": 3,
+          "text": "Get Video Frames and Tracking Data from the Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create and maintain your own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and run it with a session configuration appropriate for the kind of AR experience you want to support. The session captures video from the camera, tracks the device’s position and orientation in a modeled 3D space, and provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each such object contains both an individual video frame image and position tracking information from the moment that frame was captured.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to access ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects produced by an AR session, depending on whether your app favors a pull or a push design pattern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you prefer to control frame timing (the pull design pattern), use the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to get the current frame image and tracking information each time you redraw your view’s contents. For example, see the following function that a custom renderer calls as part of its regular update process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateGameState() {        ",
+            "    guard let currentFrame = session.currentFrame else {",
+            "        return",
+            "    }    ",
+            "    updateSharedUniforms(frame: currentFrame)",
+            "    updateAnchors(frame: currentFrame)",
+            "    updateCapturedImageTextures(frame: currentFrame)",
+            "    ",
+            "    if viewportSizeDidChange {",
+            "        viewportSizeDidChange = false",
+            "        ",
+            "        updateImagePlane(frame: currentFrame)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if your app design favors a push pattern, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method, and the session will call it once for each video frame it captures (at 60 frames per second by default).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon obtaining a frame, you’ll need to draw the camera image, and update and render any overlay content your AR experience includes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Draw-the-Camera-Image",
+          "level": 3,
+          "text": "Draw the Camera Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains a pixel buffer captured from the device camera. To draw this image as the backdrop for your custom view, you’ll need to create textures from the image content and submit GPU rendering commands that use those textures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pixel buffer’s contents are encoded in a biplanar YCbCr (also called YUV) data format; to render the image you’ll need to convert this pixel data to a drawable RGB format. For rendering with Metal, you can perform this conversion most efficiently in GPU shader code. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvmetaltexturecache-q3j",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to create two Metal textures from the pixel buffer—one each for the buffer’s luma (Y) and chroma (CbCr) planes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateCapturedImageTextures(frame: ARFrame) {",
+            "    // Create two textures (Y and CbCr) from the provided frame's captured image.",
+            "    let pixelBuffer = frame.capturedImage",
+            "    if (CVPixelBufferGetPlaneCount(pixelBuffer) < 2) {",
+            "        return",
+            "    }",
+            "    capturedImageTextureY = createTexture(fromPixelBuffer: pixelBuffer, pixelFormat:.r8Unorm, planeIndex:0)!",
+            "    capturedImageTextureCbCr = createTexture(fromPixelBuffer: pixelBuffer, pixelFormat:.rg8Unorm, planeIndex:1)!",
+            "}",
+            "",
+            "func createTexture(fromPixelBuffer pixelBuffer: CVPixelBuffer, pixelFormat: MTLPixelFormat, planeIndex: Int) -> MTLTexture? {",
+            "    var mtlTexture: MTLTexture? = nil",
+            "    let width = CVPixelBufferGetWidthOfPlane(pixelBuffer, planeIndex)",
+            "    let height = CVPixelBufferGetHeightOfPlane(pixelBuffer, planeIndex)",
+            "    ",
+            "    var texture: CVMetalTexture? = nil",
+            "    let status = CVMetalTextureCacheCreateTextureFromImage(nil, capturedImageTextureCache, pixelBuffer, nil, pixelFormat, width, height, planeIndex, &texture)",
+            "    if status == kCVReturnSuccess {",
+            "        mtlTexture = CVMetalTextureGetTexture(texture!)",
+            "    }",
+            "    ",
+            "    return mtlTexture",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, encode render commands that draw those two textures using a fragment function that performs YCbCr to RGB conversion with a color transform matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4 capturedImageFragmentShader(ImageColorInOut in [[stage_in]],",
+            "                                            texture2d<float, access::sample> capturedImageTextureY [[ texture(kTextureIndexY) ]],",
+            "                                            texture2d<float, access::sample> capturedImageTextureCbCr [[ texture(kTextureIndexCbCr) ]]) {",
+            "    ",
+            "    constexpr sampler colorSampler(mip_filter::linear,",
+            "                                   mag_filter::linear,",
+            "                                   min_filter::linear);",
+            "    ",
+            "    const float4x4 ycbcrToRGBTransform = float4x4(",
+            "        float4(+1.0000f, +1.0000f, +1.0000f, +0.0000f),",
+            "        float4(+0.0000f, -0.3441f, +1.7720f, +0.0000f),",
+            "        float4(+1.4020f, -0.7141f, +0.0000f, +0.0000f),",
+            "        float4(-0.7010f, +0.5291f, -0.8860f, +1.0000f)",
+            "    );",
+            "    ",
+            "    // Sample Y and CbCr textures to get the YCbCr color at the given texture coordinate.",
+            "    float4 ycbcr = float4(capturedImageTextureY.sample(colorSampler, in.texCoord).r,",
+            "                          capturedImageTextureCbCr.sample(colorSampler, in.texCoord).rg, 1.0);",
+            "    ",
+            "    // Return the converted RGB color.",
+            "    return ycbcrToRGBTransform * ycbcr;",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method to make sure the camera image covers the entire view. For example use of this method, as well as complete Metal pipeline setup code, see the full Xcode template. (Create a new iOS application with the Augmented Reality template, and choose Metal from the Content Technology popup menu.)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Track-and-Render-Overlay-Content",
+          "level": 3,
+          "text": "Track and Render Overlay Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR experiences typically focus on rendering 3D overlay content so that the content appears to be part of the real world seen in the camera image. To achieve this illusion, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to model the position and orientation of your own 3D content relative to real-world space. Anchors provide transforms that you can reference during rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the Xcode template creates an anchor located about 20 cm in front of the device whenever a user taps on the screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleTap(gestureRecognize: UITapGestureRecognizer) {",
+            "    // Create an anchor using the camera's current position.",
+            "    if let currentFrame = session.currentFrame {",
+            "        ",
+            "        // Create a transform with a translation of 0.2 meters in front of the camera.",
+            "        var translation = matrix_identity_float4x4",
+            "        translation.columns.3.z = -0.2",
+            "        let transform = simd_mul(currentFrame.camera.transform, translation)",
+            "        ",
+            "        // Add a new anchor to the session.",
+            "        let anchor = ARAnchor(transform: transform)",
+            "        session.add(anchor: anchor)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your rendering engine, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to place visual content. The Xcode template uses each of the anchors added to the session in its ",
+              "type": "text"
+            },
+            {
+              "code": "handleTap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to position a simple cube mesh:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateAnchors(frame: ARFrame) {",
+            "    // Update the anchor's uniform buffer with transforms of the current frame's anchors.",
+            "    anchorInstanceCount = min(frame.anchors.count, kMaxAnchorInstanceCount)",
+            "    ",
+            "    var anchorOffset: Int = 0",
+            "    if anchorInstanceCount == kMaxAnchorInstanceCount {",
+            "        anchorOffset = max(frame.anchors.count - kMaxAnchorInstanceCount, 0)",
+            "    }",
+            "    ",
+            "    for index in 0..<anchorInstanceCount {",
+            "        let anchor = frame.anchors[index + anchorOffset]",
+            "        ",
+            "        // Flip the Z axis to convert geometry from right handed to left handed.",
+            "        var coordinateSpaceTransform = matrix_identity_float4x4",
+            "        coordinateSpaceTransform.columns.2.z = -1.0",
+            "        ",
+            "        let modelMatrix = simd_mul(anchor.transform, coordinateSpaceTransform)",
+            "        ",
+            "        let anchorUniforms = anchorUniformBufferAddress.assumingMemoryBound(to: InstanceUniforms.self).advanced(by: index)",
+            "        anchorUniforms.pointee.modelMatrix = modelMatrix",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In a more complex AR experience, you can use hit testing or plane detection to find the positions of real-world surfaces. For details, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property and the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. In both cases, ARKit provides results as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects, so you still use anchor transforms to place visual content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Render-with-Realistic-Lighting",
+          "level": 3,
+          "text": "Render with Realistic Lighting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure shaders for drawing 3D content in your scene, use the estimated lighting information in each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to produce more realistic shading. See the following code that an app’s custom renderer performs while updating its shared uniforms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the scene's lighting with the ambient intensity, if available.",
+            "var ambientIntensity: Float = 1.0",
+            "if let lightEstimate = frame.lightEstimate {",
+            "    ambientIntensity = Float(lightEstimate.ambientIntensity) / 1000.0",
+            "}",
+            "let ambientLightColor: vector_float3 = vector3(0.5, 0.5, 0.5)",
+            "uniforms.pointee.ambientLightColor = ambientLightColor * ambientIntensity"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For the complete set of Metal setup and rendering commands that go with this example, see the full Xcode template. (Create a new iOS application with the Augmented Reality template, and choose Metal from the Content Technology popup menu.)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage": {
+      "abstract": [
+        {
+          "text": "A pixel buffer containing the image captured by the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturedImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/capturedimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)": {
+      "abstract": [
+        {
+          "text": "Returns an affine transform for converting between normalized image coordinates and a coordinate space appropriate for rendering the camera image onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIInterfaceOrientation",
+          "text": "UIInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewportSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayTransformForOrientation:viewportSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayTransform(for:viewportSize:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/displaytransform(for:viewportsize:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)": {
+      "abstract": [
+        {
+          "text": "Searches for real-world objects or AR anchors in the captured camera image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTest(_:types:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/hittest(_:types:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame": {
+      "abstract": [
+        {
+          "text": "The most recent still frame captured by the active camera feed, including ARKit’s interpretation of it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/currentframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw": {
+      "abstract": [
+        {
+          "text": "Provides a newly captured camera image and accompanying AR information to the delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration’s plane detection options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARPlaneDetection",
+          "text": "PlaneDetection"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "planeDetection",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment": {
+      "abstract": [
+        {
+          "text": "Add visual effects to the user’s environment in an AR experience through the front or rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing Which Camera Feed to Augment",
+      "type": "topic",
+      "url": "/documentation/arkit/choosing-which-camera-feed-to-augment"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/configuration-objects": {
+      "abstract": [
+        {
+          "text": "Configure your augmented reality session to detect and track specific types of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/configuration-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configuration Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/configuration-objects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality": {
+      "abstract": [
+        {
+          "text": "Keep the user informed on the current session state and recover from interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Session Life Cycle and Tracking Quality",
+      "type": "topic",
+      "url": "/documentation/arkit/managing-session-life-cycle-and-tracking-quality"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvmetaltexturecache-q3j": {
+      "abstract": [
+        {
+          "text": "A cache used to create and manage Metal texture objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvmetaltexturecache-q3j",
+      "kind": "article",
+      "role": "article",
+      "title": "CVMetalTextureCache",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvmetaltexturecache-q3j"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2903215": {
+      "alt": null,
+      "identifier": "media-2903215",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e6a7b45df95eeca85dc610dd27c73c98/media-2903215@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aae16c88989a99aa916440f78c1e95fc/media-2903215~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+        "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession",
+        "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+                "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession",
+                "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/title",
+          "value": "planeDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "planeDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/title",
+          "value": "session:didUpdateFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1displayTransform(for:viewportSize:)/title",
+          "value": "displayTransformForOrientation:viewportSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1displayTransform(for:viewportSize:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayTransformForOrientation:viewportSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/title",
+          "value": "currentFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/title",
+          "value": "capturedImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "capturedImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1hitTest(_:types:)/title",
+          "value": "hitTest:types:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1hitTest(_:types:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:types:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/displaying-an-ar-experience-with-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/displaying-an-ar-experience-with-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

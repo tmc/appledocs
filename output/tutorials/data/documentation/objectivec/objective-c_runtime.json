@@ -1,0 +1,3520 @@
+{
+  "abstract": [
+    {
+      "text": "Describes the macOS Objective-C runtime library support functions and data structures.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1657527,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Objective-C Runtime"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Objective-C runtime is a runtime library that provides support for the dynamic properties of the Objective-C language, and as such is linked to by all Objective-C apps. Objective-C runtime library support functions are implemented in the shared library found at ",
+              "type": "text"
+            },
+            {
+              "code": "/usr/lib/libobjc.A.dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically don't need to use the Objective-C runtime library directly when programming in Objective-C. This API is useful primarily for developing bridge layers between Objective-C and other languages, or for low-level debugging. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS implementation of the Objective-C runtime library is unique to the Mac. For other platforms, the GNU Compiler Collection provides a different implementation with a similar API. This document covers only the macOS implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The low-level Objective-C runtime API is significantly updated in OS X version 10.5. Many functions and all existing data structures are replaced with new functions. The old functions and structures are deprecated in 32-bit and absent in 64-bit mode. The API constrains several values to 32-bit ints even in 64-bit mode—class count, protocol count, methods per class, ivars per class, arguments per method, sizeof(all arguments) per method, and class version number. In addition, the new Objective-C ABI (not described here) further constrains ",
+              "type": "text"
+            },
+            {
+              "code": "sizeof(anInstance)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to 32 bits, and three other values to 24 bits—methods per class, ivars per class, and sizeof(a single ivar). Finally, the obsolete ",
+              "type": "text"
+            },
+            {
+              "code": "NXHashTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NXMapTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are limited to 4 billion items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All ",
+                  "type": "text"
+                },
+                {
+                  "code": "char *",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the runtime API should be considered to have UTF-8 encoding.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "String encoding",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "“Deprecated” below means “deprecated in OS X version 10.5 for 32-bit code, and disallowed for 64-bit code.” ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1657559",
+          "level": 3,
+          "text": "Who Should Read This Document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The document is intended for readers who might be interested in learning about the Objective-C runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this isn’t a document about C, it assumes some prior acquaintance with that language. However, it doesn’t have to be an extensive acquaintance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1736433": {
+      "identifier": "devLink-1736433",
+      "title": "Objective-C Runtime Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418482-imp_removeblock": {
+      "abstract": [
+        {
+          "text": "Disassociates a block from an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " that was created using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/1418587-imp_implementationwithblock",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and releases the copy of the block that was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "imp_removeBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(IMP) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418482-imp_removeblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imp_removeBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418482-imp_removeblock"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418485-objc_copyclassnamesforimage": {
+      "abstract": [
+        {
+          "text": "Returns the names of all the classes within a specified library or framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_copyClassNamesForImage"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<UnsafePointer<CChar>>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418485-objc_copyclassnamesforimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_copyClassNamesForImage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418485-objc_copyclassnamesforimage"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418487-class_getclassvariable": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for a specified class variable of a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getClassVariable"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>) -> Ivar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418487-class_getclassvariable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getClassVariable(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418487-class_getclassvariable"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418488-method_gettypeencoding": {
+      "abstract": [
+        {
+          "text": "Returns a string describing a method's parameter and return types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getTypeEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> UnsafePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418488-method_gettypeencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getTypeEncoding(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418488-method_gettypeencoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418490-class_copymethodlist": {
+      "abstract": [
+        {
+          "text": "Describes the instance methods implemented by a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_copyMethodList"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<Method>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418490-class_copymethodlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_copyMethodList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418490-class_copymethodlist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418492-class_setversion": {
+      "abstract": [
+        {
+          "text": "Sets the version number of a class definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_setVersion"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Int32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418492-class_setversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_setVersion(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418492-class_setversion"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418494-protocol_addprotocol": {
+      "abstract": [
+        {
+          "text": "Adds a registered protocol to another protocol that is under construction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_addProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, Protocol)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418494-protocol_addprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_addProtocol(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418494-protocol_addprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418498-class_getsuperclass": {
+      "abstract": [
+        {
+          "text": "Returns the superclass of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getSuperclass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418498-class_getsuperclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getSuperclass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418498-class_getsuperclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418508-class_getweakivarlayout": {
+      "abstract": [
+        {
+          "text": "Returns a description of the layout of weak ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s for a given class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getWeakIvarLayout"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> UnsafePointer<UInt8>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418508-class_getweakivarlayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getWeakIvarLayout(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418508-class_getweakivarlayout"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418509-objc_setassociatedobject": {
+      "abstract": [
+        {
+          "text": "Sets an associated value for a given object using a given key and association policy. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_setAssociatedObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, UnsafeRawPointer, Any?, objc_AssociationPolicy)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418509-objc_setassociatedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_setAssociatedObject(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418509-objc_setassociatedobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418517-class_respondstoselector": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether instances of a class respond to a particular selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_respondsToSelector"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418517-class_respondstoselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_respondsToSelector(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418517-class_respondstoselector"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418530-class_getinstancemethod": {
+      "abstract": [
+        {
+          "text": "Returns a specified instance method for a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getInstanceMethod"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector) -> Method?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418530-class_getinstancemethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getInstanceMethod(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418530-class_getinstancemethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418537-class_getversion": {
+      "abstract": [
+        {
+          "text": "Returns the version number of a class definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getVersion"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418537-class_getversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getVersion(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418537-class_getversion"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418539-class_getimagename": {
+      "abstract": [
+        {
+          "text": "Returns the name of the dynamic library a class originated from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getImageName"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> UnsafePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418539-class_getimagename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getImageName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418539-class_getimagename"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418545-method_getdescription": {
+      "abstract": [
+        {
+          "text": "Returns a method description structure for a specified method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> UnsafeMutablePointer<objc_method_description>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418545-method_getdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getDescription(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418545-method_getdescription"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418547-object_getclassname": {
+      "abstract": [
+        {
+          "text": "Returns the class name of a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_getClassName"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418547-object_getclassname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_getClassName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418547-object_getclassname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418549-objc_copyprotocollist": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the protocols known to the runtime. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_copyProtocolList"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt32>?) -> AutoreleasingUnsafeMutablePointer<Protocol>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418549-objc_copyprotocollist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_copyProtocolList(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418549-objc_copyprotocollist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418551-method_getimplementation": {
+      "abstract": [
+        {
+          "text": "Returns the implementation of a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getImplementation"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> IMP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418551-method_getimplementation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getImplementation(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418551-method_getimplementation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418553-class_copypropertylist": {
+      "abstract": [
+        {
+          "text": "Describes the properties declared by a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_copyPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_t>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418553-class_copypropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_copyPropertyList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418553-class_copypropertylist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418557-sel_registername": {
+      "abstract": [
+        {
+          "text": "Registers a method with the Objective-C runtime system, maps the method name to a selector, and returns the selector value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sel_registerName"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418557-sel_registername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sel_registerName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418557-sel_registername"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418559-objc_allocateclasspair": {
+      "abstract": [
+        {
+          "text": "Creates a new class and metaclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_allocateClassPair"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>, Int) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418559-objc_allocateclasspair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_allocateClassPair(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418559-objc_allocateclasspair"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418569-ivar_gettypeencoding": {
+      "abstract": [
+        {
+          "text": "Returns the type string of an instance variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "ivar_getTypeEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "(Ivar) -> UnsafePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418569-ivar_gettypeencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ivar_getTypeEncoding(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418569-ivar_gettypeencoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418571-sel_getname": {
+      "abstract": [
+        {
+          "text": "Returns the name of the method specified by a given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sel_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418571-sel_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sel_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418571-sel_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418579-objc_getclasslist": {
+      "abstract": [
+        {
+          "text": "Obtains the list of registered class definitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getClassList"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<AnyClass>?, Int32) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418579-objc_getclasslist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getClassList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418579-objc_getclasslist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418585-protocol_addproperty": {
+      "abstract": [
+        {
+          "text": "Adds a property to a protocol that is under construction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_addProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, UnsafePointer<CChar>, UnsafePointer<objc_property_attribute_t>?, UInt32, Bool, Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418585-protocol_addproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_addProperty(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418585-protocol_addproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418587-imp_implementationwithblock": {
+      "abstract": [
+        {
+          "text": "Creates a pointer to a function that calls the specified block when the method is called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "imp_implementationWithBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> IMP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418587-imp_implementationwithblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imp_implementationWithBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418587-imp_implementationwithblock"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418591-method_getreturntype": {
+      "abstract": [
+        {
+          "text": "Returns by reference a string describing a method's return type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getReturnType"
+        },
+        {
+          "kind": "text",
+          "text": "(Method, UnsafeMutablePointer<CChar>, Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418591-method_getreturntype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getReturnType(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418591-method_getreturntype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418597-class_getproperty": {
+      "abstract": [
+        {
+          "text": "Returns a property with a given name of a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>) -> objc_property_t?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418597-class_getproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getProperty(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418597-class_getproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418599-objc_allocateprotocol": {
+      "abstract": [
+        {
+          "text": "Creates a new protocol instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_allocateProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Protocol?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418599-objc_allocateprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_allocateProtocol(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418599-objc_allocateprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418603-objc_registerclasspair": {
+      "abstract": [
+        {
+          "text": "Registers a class that was allocated using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/1418559-objc_allocateclasspair",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_registerClassPair"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418603-objc_registerclasspair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_registerClassPair(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418603-objc_registerclasspair"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418607-method_getargumenttype": {
+      "abstract": [
+        {
+          "text": "Returns by reference a string describing a single parameter type of a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getArgumentType"
+        },
+        {
+          "kind": "text",
+          "text": "(Method, UInt32, UnsafeMutablePointer<CChar>?, Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418607-method_getargumenttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getArgumentType(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418607-method_getargumenttype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418625-sel_getuid": {
+      "abstract": [
+        {
+          "text": "Registers a method name with the Objective-C runtime system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sel_getUid"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418625-sel_getuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sel_getUid(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418625-sel_getuid"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418627-class_ismetaclass": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a class object is a metaclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_isMetaClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418627-class_ismetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_isMetaClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418627-class_ismetaclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418629-object_getclass": {
+      "abstract": [
+        {
+          "text": "Returns the class of an object. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_getClass"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418629-object_getclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_getClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418629-object_getclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418635-class_getname": {
+      "abstract": [
+        {
+          "text": "Returns the name of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418635-class_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418635-class_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418643-class_getinstancevariable": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for a specified instance variable of a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getInstanceVariable"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>) -> Ivar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418643-class_getinstancevariable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getInstanceVariable(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418643-class_getinstancevariable"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418645-objc_duplicateclass": {
+      "abstract": [
+        {
+          "text": "Used by Foundation's Key-Value Observing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_duplicateClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass, UnsafePointer<CChar>, Int) -> AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418645-objc_duplicateclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_duplicateClass(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418645-objc_duplicateclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418661-objc_getrequiredclass": {
+      "abstract": [
+        {
+          "text": "Returns the class definition of a specified class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getRequiredClass"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418661-objc_getrequiredclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getRequiredClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418661-objc_getrequiredclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418675-property_copyattributelist": {
+      "abstract": [
+        {
+          "text": "Returns an array of property attributes for a given property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "property_copyAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": "(objc_property_t, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_attribute_t>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418675-property_copyattributelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "property_copyAttributeList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418675-property_copyattributelist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418677-class_replacemethod": {
+      "abstract": [
+        {
+          "text": "Replaces the implementation of a method for a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_replaceMethod"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector, IMP, UnsafePointer<CChar>?) -> IMP?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418677-class_replacemethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_replaceMethod(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418677-class_replacemethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418683-objc_removeassociatedobjects": {
+      "abstract": [
+        {
+          "text": "Removes all associations for a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_removeAssociatedObjects"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418683-objc_removeassociatedobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_removeAssociatedObjects(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418683-objc_removeassociatedobjects"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418685-class_conformstoprotocol": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a class conforms to a given protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_conformsToProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Protocol?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418685-class_conformstoprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_conformsToProtocol(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418685-class_conformstoprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418689-protocol_copypropertylist": {
+      "abstract": [
+        {
+          "text": "Returns an array of the properties declared by a protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_copyPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_t>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418689-protocol_copypropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_copyPropertyList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418689-protocol_copypropertylist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418693-objc_loadweak": {
+      "abstract": [
+        {
+          "text": "Loads the object referenced by a weak pointer and returns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_loadWeak"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<AnyObject?>) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418693-objc_loadweak",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_loadWeak(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418693-objc_loadweak"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418705-protocol_isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two protocols are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol?, Protocol?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418705-protocol_isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_isEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418705-protocol_isequal"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418707-method_setimplementation": {
+      "abstract": [
+        {
+          "text": "Sets the implementation of a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_setImplementation"
+        },
+        {
+          "kind": "text",
+          "text": "(Method, IMP) -> IMP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418707-method_setimplementation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_setImplementation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418707-method_setimplementation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418709-protocol_addmethoddescription": {
+      "abstract": [
+        {
+          "text": "Adds a method to a protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_addMethodDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, Selector, UnsafePointer<CChar>?, Bool, Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418709-protocol_addmethoddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_addMethodDescription(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418709-protocol_addmethoddescription"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418717-protocol_copyprotocollist": {
+      "abstract": [
+        {
+          "text": "Returns an array of the protocols adopted by a protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_copyProtocolList"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, UnsafeMutablePointer<UInt32>?) -> AutoreleasingUnsafeMutablePointer<Protocol>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418717-protocol_copyprotocollist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_copyProtocolList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418717-protocol_copyprotocollist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418721-objc_getmetaclass": {
+      "abstract": [
+        {
+          "text": "Returns the metaclass definition of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getMetaClass"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418721-objc_getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getMetaClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418721-objc_getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418736-sel_isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two selectors are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sel_isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector, Selector) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418736-sel_isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sel_isEqual(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418736-sel_isequal"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418740-protocol_getproperty": {
+      "abstract": [
+        {
+          "text": "Returns the specified property of a given protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_getProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, UnsafePointer<CChar>, Bool, Bool) -> objc_property_t?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418740-protocol_getproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_getProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418740-protocol_getproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418744-objc_enumerationmutation": {
+      "abstract": [
+        {
+          "text": "Inserted by the compiler when a mutation is detected during a foreach iteration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_enumerationMutation"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418744-objc_enumerationmutation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_enumerationMutation(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418744-objc_enumerationmutation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418749-class_setivarlayout": {
+      "abstract": [
+        {
+          "text": "Sets the ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": " layout for a given class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_setIvarLayout"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<UInt8>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418749-class_setivarlayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_setIvarLayout(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418749-class_setivarlayout"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418751-objc_setenumerationmutationhandl": {
+      "abstract": [
+        {
+          "text": "Sets the current mutation handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_setEnumerationMutationHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(((Any) -> Void)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418751-objc_setenumerationmutationhandl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_setEnumerationMutationHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418751-objc_setenumerationmutationhandl"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418756-class_addivar": {
+      "abstract": [
+        {
+          "text": "Adds a new instance variable to a class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_addIvar"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>, Int, UInt8, UnsafePointer<CChar>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418756-class_addivar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_addIvar(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418756-class_addivar"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418758-method_getname": {
+      "abstract": [
+        {
+          "text": "Returns the name of a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418758-method_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418758-method_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418760-objc_lookupclass": {
+      "abstract": [
+        {
+          "text": "Returns the class definition of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_lookUpClass"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418760-objc_lookupclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_lookUpClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418760-objc_lookupclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418762-objc_copyclasslist": {
+      "abstract": [
+        {
+          "text": "Creates and returns a list of pointers to all registered class definitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_copyClassList"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt32>?) -> AutoreleasingUnsafeMutablePointer<AnyClass>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418762-objc_copyclasslist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_copyClassList(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418762-objc_copyclasslist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418769-method_exchangeimplementations": {
+      "abstract": [
+        {
+          "text": "Exchanges the implementations of two methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_exchangeImplementations"
+        },
+        {
+          "kind": "text",
+          "text": "(Method, Method)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418769-method_exchangeimplementations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_exchangeImplementations(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418769-method_exchangeimplementations"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418771-class_getmethodimplementation_st": {
+      "abstract": [
+        {
+          "text": "Returns the function pointer that would be called if a particular message were sent to an instance of a class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getMethodImplementation_stret"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector) -> IMP?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418771-class_getmethodimplementation_st",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getMethodImplementation_stret(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418771-class_getmethodimplementation_st"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418773-class_addprotocol": {
+      "abstract": [
+        {
+          "text": "Adds a protocol to a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_addProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Protocol) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418773-class_addprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_addProtocol(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418773-class_addprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418777-method_copyreturntype": {
+      "abstract": [
+        {
+          "text": "Returns a string describing a method's return type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_copyReturnType"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> UnsafeMutablePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418777-method_copyreturntype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_copyReturnType(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418777-method_copyreturntype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418783-protocol_conformstoprotocol": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether one protocol conforms to another protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_conformsToProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol?, Protocol?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418783-protocol_conformstoprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_conformsToProtocol(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418783-protocol_conformstoprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418791-objc_storeweak": {
+      "abstract": [
+        {
+          "text": "Stores a new value in a ",
+          "type": "text"
+        },
+        {
+          "code": "__weak",
+          "type": "codeVoice"
+        },
+        {
+          "text": " variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_storeWeak"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<AnyObject?>, Any?) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418791-objc_storeweak",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_storeWeak(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418791-objc_storeweak"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418811-class_getmethodimplementation": {
+      "abstract": [
+        {
+          "text": "Returns the function pointer that would be called if a particular message were sent to an instance of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getMethodImplementation"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector) -> IMP?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418811-class_getmethodimplementation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getMethodImplementation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418811-class_getmethodimplementation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418820-imp_getblock": {
+      "abstract": [
+        {
+          "text": "Returns the block associated with an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " that was created using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/1418587-imp_implementationwithblock",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "imp_getBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(IMP) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418820-imp_getblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imp_getBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418820-imp_getblock"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418822-protocol_copymethoddescriptionli": {
+      "abstract": [
+        {
+          "text": "Returns an array of method descriptions of methods meeting a given specification for a given protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_copyMethodDescriptionList"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, Bool, Bool, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_method_description>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418822-protocol_copymethoddescriptionli",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_copyMethodDescriptionList(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418822-protocol_copymethoddescriptionli"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418826-protocol_getname": {
+      "abstract": [
+        {
+          "text": "Returns a the name of a protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418826-protocol_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418826-protocol_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418830-protocol_getmethoddescription": {
+      "abstract": [
+        {
+          "text": "Returns a method description structure for a specified method of a given protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol_getMethodDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol, Selector, Bool, Bool) -> objc_method_description"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418830-protocol_getmethoddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol_getMethodDescription(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418830-protocol_getmethoddescription"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418832-method_copyargumenttype": {
+      "abstract": [
+        {
+          "text": "Returns a string describing a single parameter type of a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_copyArgumentType"
+        },
+        {
+          "kind": "text",
+          "text": "(Method, UInt32) -> UnsafeMutablePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418832-method_copyargumenttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_copyArgumentType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418832-method_copyargumenttype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418852-class_setweakivarlayout": {
+      "abstract": [
+        {
+          "text": "Sets the layout for weak ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s for a given class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_setWeakIvarLayout"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<UInt8>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418852-class_setweakivarlayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_setWeakIvarLayout(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418852-class_setweakivarlayout"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418861-objc_registerprotocol": {
+      "abstract": [
+        {
+          "text": "Registers a newly created protocol with the Objective-C runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_registerProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(Protocol)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418861-objc_registerprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_registerProtocol(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418861-objc_registerprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418865-objc_getassociatedobject": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with a given object for a given key. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getAssociatedObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, UnsafeRawPointer) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418865-objc_getassociatedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getAssociatedObject(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418865-objc_getassociatedobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418870-objc_getprotocol": {
+      "abstract": [
+        {
+          "text": "Returns a specified protocol. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Protocol?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418870-objc_getprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getProtocol(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418870-objc_getprotocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418883-class_copyprotocollist": {
+      "abstract": [
+        {
+          "text": "Describes the protocols adopted by a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_copyProtocolList"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafeMutablePointer<UInt32>?) -> AutoreleasingUnsafeMutablePointer<Protocol>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418883-class_copyprotocollist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_copyProtocolList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418883-class_copyprotocollist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418887-class_getclassmethod": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the data structure describing a given class method for a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getClassMethod"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector) -> Method?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418887-class_getclassmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getClassMethod(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418887-class_getclassmethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418891-class_replaceproperty": {
+      "abstract": [
+        {
+          "text": "Replace a property of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_replaceProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>, UnsafePointer<objc_property_attribute_t>?, UInt32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418891-class_replaceproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_replaceProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418891-class_replaceproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418899-object_setivar": {
+      "abstract": [
+        {
+          "text": "Sets the value of an instance variable in an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_setIvar"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, Ivar, Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418899-object_setivar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_setIvar(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418899-object_setivar"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418901-class_addmethod": {
+      "abstract": [
+        {
+          "text": "Adds a new method to a class with a given name and implementation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_addMethod"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, Selector, IMP, UnsafePointer<CChar>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418901-class_addmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_addMethod(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418901-class_addmethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418903-property_getname": {
+      "abstract": [
+        {
+          "text": "Returns the name of a property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "property_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(objc_property_t) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418903-property_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "property_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418903-property_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418905-object_setclass": {
+      "abstract": [
+        {
+          "text": "Sets the class of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_setClass"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, AnyClass) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418905-object_setclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_setClass(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418905-object_setclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418907-class_getinstancesize": {
+      "abstract": [
+        {
+          "text": "Returns the size of instances of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getInstanceSize"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418907-class_getinstancesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getInstanceSize(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418907-class_getinstancesize"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418909-property_getattributes": {
+      "abstract": [
+        {
+          "text": "Returns the attribute string of a property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "property_getAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(objc_property_t) -> UnsafePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418909-property_getattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "property_getAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418909-property_getattributes"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418910-class_copyivarlist": {
+      "abstract": [
+        {
+          "text": "Describes the instance variables declared by a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_copyIvarList"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<Ivar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418910-class_copyivarlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_copyIvarList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418910-class_copyivarlist"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418912-objc_disposeclasspair": {
+      "abstract": [
+        {
+          "text": "Destroys a class and its associated metaclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_disposeClassPair"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418912-objc_disposeclasspair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_disposeClassPair(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418912-objc_disposeclasspair"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418918-class_getivarlayout": {
+      "abstract": [
+        {
+          "text": "Returns a description of the ",
+          "type": "text"
+        },
+        {
+          "code": "Ivar",
+          "type": "codeVoice"
+        },
+        {
+          "text": " layout for a given class. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_getIvarLayout"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?) -> UnsafePointer<UInt8>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418918-class_getivarlayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_getIvarLayout(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418918-class_getivarlayout"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418922-ivar_getname": {
+      "abstract": [
+        {
+          "text": "Returns the name of an instance variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "ivar_getName"
+        },
+        {
+          "kind": "text",
+          "text": "(Ivar) -> UnsafePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418922-ivar_getname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ivar_getName(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418922-ivar_getname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418944-property_copyattributevalue": {
+      "abstract": [
+        {
+          "text": "Returns the value of a property attribute given the attribute name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "property_copyAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "(objc_property_t, UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418944-property_copyattributevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "property_copyAttributeValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418944-property_copyattributevalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418946-class_addproperty": {
+      "abstract": [
+        {
+          "text": "Adds a property to a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_addProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, UnsafePointer<CChar>, UnsafePointer<objc_property_attribute_t>?, UInt32) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418946-class_addproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_addProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418946-class_addproperty"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418952-objc_getclass": {
+      "abstract": [
+        {
+          "text": "Returns the class definition of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_getClass"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418952-objc_getclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_getClass(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418952-objc_getclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418960-object_getivar": {
+      "abstract": [
+        {
+          "text": "Reads the value of an instance variable in an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_getIvar"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, Ivar) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418960-object_getivar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_getIvar(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418960-object_getivar"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418968-method_getnumberofarguments": {
+      "abstract": [
+        {
+          "text": "Returns the number of arguments accepted by a method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "method_getNumberOfArguments"
+        },
+        {
+          "kind": "text",
+          "text": "(Method) -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418968-method_getnumberofarguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "method_getNumberOfArguments(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418968-method_getnumberofarguments"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418970-objc_copyimagenames": {
+      "abstract": [
+        {
+          "text": "Returns the names of all the loaded Objective-C frameworks and dynamic libraries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_copyImageNames"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<UnsafePointer<CChar>>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418970-objc_copyimagenames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_copyImageNames(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418970-objc_copyimagenames"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418976-ivar_getoffset": {
+      "abstract": [
+        {
+          "text": "Returns the offset of an instance variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "ivar_getOffset"
+        },
+        {
+          "kind": "text",
+          "text": "(Ivar) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418976-ivar_getoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ivar_getOffset(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418976-ivar_getoffset"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1441508-object_getindexedivars": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to any extra bytes allocated with a instance given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object_getIndexedIvars"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?) -> UnsafeMutableRawPointer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1441508-object_getindexedivars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object_getIndexedIvars(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1441508-object_getindexedivars"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1441536-class_setsuperclass": {
+      "abstract": [
+        {
+          "text": "Sets the superclass of a given class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "class_setSuperclass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass, AnyClass) -> AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1441536-class_setsuperclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class_setSuperclass(_:_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/1441536-class_setsuperclass"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/category": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/category",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Category",
+      "type": "topic",
+      "url": "/documentation/objectivec/category"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/ivar": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an instance variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Ivar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/ivar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Ivar",
+      "type": "topic",
+      "url": "/documentation/objectivec/ivar"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/method": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a method in a class definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Method"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/method",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Method",
+      "type": "topic",
+      "url": "/documentation/objectivec/method"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_method_description": {
+      "abstract": [
+        {
+          "text": "Defines an Objective-C method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_method_description"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_method_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_method_description",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_method_description"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_object": {
+      "abstract": [
+        {
+          "text": "A pointer to an instance of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_object"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_object",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_object"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t": {
+      "abstract": [
+        {
+          "text": "Defines a property attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_property_attribute_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_property_attribute_t",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_property_attribute_t"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_property_t": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an Objective-C declared property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_property_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_property_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_property_t",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_property_t"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objc_super": {
+      "abstract": [
+        {
+          "text": "Specifies the superclass of an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "objc_super"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_super",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_super",
+      "type": "topic",
+      "url": "/documentation/objectivec/objc_super"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/dispatch_function_prototypes": {
+      "abstract": [
+        {
+          "text": "This macro indicates whether dispatch functions must be cast to an appropriate function pointer type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/dispatch_function_prototypes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Function Prototypes",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/dispatch_function_prototypes"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/imp",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "IMP",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/imp"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1736433"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1657594",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418635-class_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418498-class_getsuperclass",
+        "doc://com.apple.documentation/documentation/objectivec/1441536-class_setsuperclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418627-class_ismetaclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418907-class_getinstancesize",
+        "doc://com.apple.documentation/documentation/objectivec/1418643-class_getinstancevariable",
+        "doc://com.apple.documentation/documentation/objectivec/1418487-class_getclassvariable",
+        "doc://com.apple.documentation/documentation/objectivec/1418756-class_addivar",
+        "doc://com.apple.documentation/documentation/objectivec/1418910-class_copyivarlist",
+        "doc://com.apple.documentation/documentation/objectivec/1418918-class_getivarlayout",
+        "doc://com.apple.documentation/documentation/objectivec/1418749-class_setivarlayout",
+        "doc://com.apple.documentation/documentation/objectivec/1418508-class_getweakivarlayout",
+        "doc://com.apple.documentation/documentation/objectivec/1418852-class_setweakivarlayout",
+        "doc://com.apple.documentation/documentation/objectivec/1418597-class_getproperty",
+        "doc://com.apple.documentation/documentation/objectivec/1418553-class_copypropertylist",
+        "doc://com.apple.documentation/documentation/objectivec/1418901-class_addmethod",
+        "doc://com.apple.documentation/documentation/objectivec/1418530-class_getinstancemethod",
+        "doc://com.apple.documentation/documentation/objectivec/1418887-class_getclassmethod",
+        "doc://com.apple.documentation/documentation/objectivec/1418490-class_copymethodlist",
+        "doc://com.apple.documentation/documentation/objectivec/1418677-class_replacemethod",
+        "doc://com.apple.documentation/documentation/objectivec/1418811-class_getmethodimplementation",
+        "doc://com.apple.documentation/documentation/objectivec/1418771-class_getmethodimplementation_st",
+        "doc://com.apple.documentation/documentation/objectivec/1418517-class_respondstoselector",
+        "doc://com.apple.documentation/documentation/objectivec/1418773-class_addprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418946-class_addproperty",
+        "doc://com.apple.documentation/documentation/objectivec/1418891-class_replaceproperty",
+        "doc://com.apple.documentation/documentation/objectivec/1418685-class_conformstoprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418883-class_copyprotocollist",
+        "doc://com.apple.documentation/documentation/objectivec/1418537-class_getversion",
+        "doc://com.apple.documentation/documentation/objectivec/1418492-class_setversion"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Classes"
+    },
+    {
+      "anchor": "1658072",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418559-objc_allocateclasspair",
+        "doc://com.apple.documentation/documentation/objectivec/1418912-objc_disposeclasspair",
+        "doc://com.apple.documentation/documentation/objectivec/1418603-objc_registerclasspair",
+        "doc://com.apple.documentation/documentation/objectivec/1418645-objc_duplicateclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding Classes"
+    },
+    {
+      "anchor": "1658212",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1441508-object_getindexedivars",
+        "doc://com.apple.documentation/documentation/objectivec/1418960-object_getivar",
+        "doc://com.apple.documentation/documentation/objectivec/1418899-object_setivar",
+        "doc://com.apple.documentation/documentation/objectivec/1418547-object_getclassname",
+        "doc://com.apple.documentation/documentation/objectivec/1418629-object_getclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418905-object_setclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Instances"
+    },
+    {
+      "anchor": "1658337",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418579-objc_getclasslist",
+        "doc://com.apple.documentation/documentation/objectivec/1418762-objc_copyclasslist",
+        "doc://com.apple.documentation/documentation/objectivec/1418760-objc_lookupclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418952-objc_getclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418661-objc_getrequiredclass",
+        "doc://com.apple.documentation/documentation/objectivec/1418721-objc_getmetaclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining Class Definitions"
+    },
+    {
+      "anchor": "1658454",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418922-ivar_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418569-ivar_gettypeencoding",
+        "doc://com.apple.documentation/documentation/objectivec/1418976-ivar_getoffset"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Instance Variables"
+    },
+    {
+      "anchor": "1658519",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418509-objc_setassociatedobject",
+        "doc://com.apple.documentation/documentation/objectivec/1418865-objc_getassociatedobject",
+        "doc://com.apple.documentation/documentation/objectivec/1418683-objc_removeassociatedobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Associative References"
+    },
+    {
+      "anchor": "1658640",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418758-method_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418551-method_getimplementation",
+        "doc://com.apple.documentation/documentation/objectivec/1418488-method_gettypeencoding",
+        "doc://com.apple.documentation/documentation/objectivec/1418777-method_copyreturntype",
+        "doc://com.apple.documentation/documentation/objectivec/1418832-method_copyargumenttype",
+        "doc://com.apple.documentation/documentation/objectivec/1418591-method_getreturntype",
+        "doc://com.apple.documentation/documentation/objectivec/1418968-method_getnumberofarguments",
+        "doc://com.apple.documentation/documentation/objectivec/1418607-method_getargumenttype",
+        "doc://com.apple.documentation/documentation/objectivec/1418545-method_getdescription",
+        "doc://com.apple.documentation/documentation/objectivec/1418707-method_setimplementation",
+        "doc://com.apple.documentation/documentation/objectivec/1418769-method_exchangeimplementations"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Methods"
+    },
+    {
+      "anchor": "1658854",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418970-objc_copyimagenames",
+        "doc://com.apple.documentation/documentation/objectivec/1418539-class_getimagename",
+        "doc://com.apple.documentation/documentation/objectivec/1418485-objc_copyclassnamesforimage"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Libraries"
+    },
+    {
+      "anchor": "1658940",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418571-sel_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418557-sel_registername",
+        "doc://com.apple.documentation/documentation/objectivec/1418625-sel_getuid",
+        "doc://com.apple.documentation/documentation/objectivec/1418736-sel_isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Selectors"
+    },
+    {
+      "anchor": "1659067",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418870-objc_getprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418549-objc_copyprotocollist",
+        "doc://com.apple.documentation/documentation/objectivec/1418599-objc_allocateprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418861-objc_registerprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418709-protocol_addmethoddescription",
+        "doc://com.apple.documentation/documentation/objectivec/1418494-protocol_addprotocol",
+        "doc://com.apple.documentation/documentation/objectivec/1418585-protocol_addproperty",
+        "doc://com.apple.documentation/documentation/objectivec/1418826-protocol_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418705-protocol_isequal",
+        "doc://com.apple.documentation/documentation/objectivec/1418822-protocol_copymethoddescriptionli",
+        "doc://com.apple.documentation/documentation/objectivec/1418830-protocol_getmethoddescription",
+        "doc://com.apple.documentation/documentation/objectivec/1418689-protocol_copypropertylist",
+        "doc://com.apple.documentation/documentation/objectivec/1418740-protocol_getproperty",
+        "doc://com.apple.documentation/documentation/objectivec/1418717-protocol_copyprotocollist",
+        "doc://com.apple.documentation/documentation/objectivec/1418783-protocol_conformstoprotocol"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Protocols"
+    },
+    {
+      "anchor": "1817551",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418903-property_getname",
+        "doc://com.apple.documentation/documentation/objectivec/1418909-property_getattributes",
+        "doc://com.apple.documentation/documentation/objectivec/1418944-property_copyattributevalue",
+        "doc://com.apple.documentation/documentation/objectivec/1418675-property_copyattributelist"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Properties"
+    },
+    {
+      "anchor": "1659511",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418744-objc_enumerationmutation",
+        "doc://com.apple.documentation/documentation/objectivec/1418751-objc_setenumerationmutationhandl",
+        "doc://com.apple.documentation/documentation/objectivec/1418587-imp_implementationwithblock",
+        "doc://com.apple.documentation/documentation/objectivec/1418820-imp_getblock",
+        "doc://com.apple.documentation/documentation/objectivec/1418482-imp_removeblock",
+        "doc://com.apple.documentation/documentation/objectivec/1418693-objc_loadweak",
+        "doc://com.apple.documentation/documentation/objectivec/1418791-objc_storeweak"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Objective-C Language Features"
+    },
+    {
+      "anchor": "1659714",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/method",
+        "doc://com.apple.documentation/documentation/objectivec/ivar",
+        "doc://com.apple.documentation/documentation/objectivec/category",
+        "doc://com.apple.documentation/documentation/objectivec/objc_property_t",
+        "doc://com.apple.documentation/documentation/objectivec/objc_method_description",
+        "doc://com.apple.documentation/documentation/objectivec/objc_property_attribute_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Class-Definition Data Structures"
+    },
+    {
+      "anchor": "1660202",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "These are the data types that represent objects, classes, and superclasses.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          },
+          {
+            "items": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_object",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " pointer to an instance of a class.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_object",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " represents an instance of a class.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/objectivec/objc_super",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " specifies the superclass of an instance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            ],
+            "type": "unorderedList"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/objc_object",
+        "doc://com.apple.documentation/documentation/objectivec/objc_super"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Data Types"
+    },
+    {
+      "anchor": "1660513",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/dispatch_function_prototypes"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/objective-c_runtime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/objective-c_runtime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

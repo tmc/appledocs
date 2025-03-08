@@ -1,0 +1,550 @@
+{
+  "abstract": [
+    {
+      "text": "A list of allowed leaf certificates for a given domain name.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSPinnedLeafIdentities",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPinnedLeafIdentities"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "dictionary",
+    "title": "NSPinnedLeafIdentities"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "NSPinnedLeafIdentities",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": true,
+            "baseType": "dictionary "
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide an array of dictionaries as the value for this key. Each dictionary in the array contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key with a value that represents the Base64-encoded SHA-256 digest of an X.509 certificate’s DER-encoded ASN.1 Subject Public Key Info (SPKI) structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPinnedLeafIdentities : Array {",
+            "    Dictionary {",
+            "        SPKI-SHA256-BASE64 : String",
+            "    }",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When making a network connection to a named domain, App Transport Security (ATS) blocks the connection unless it can find the SPKI digest of the leaf certificate presented by the server among the digests in this array. Consider including more than one leaf certificate to allow for server-side configuration changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must include this key or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key or both in each domain-specific ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSPinnedDomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subdictionary. If you include both, then both must produce a match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSPinnedDomains": {
+      "abstract": [
+        {
+          "text": "A collection of certificates that App Transport Security expects when connecting to named domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSPinnedDomains",
+      "kind": "symbol",
+      "name": "NSPinnedDomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedDomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nspinneddomains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities": {
+      "abstract": [
+        {
+          "text": "A list of allowed Certificate Authority certificates for a given domain name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities",
+      "kind": "symbol",
+      "name": "NSPinnedCAIdentities",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedCAIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedCAIdentities",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedcaidentities"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities": {
+      "abstract": [
+        {
+          "text": "A list of allowed leaf certificates for a given domain name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities",
+      "kind": "symbol",
+      "name": "NSPinnedLeafIdentities",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedLeafIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedLeafIdentities",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedleafidentities"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64": {
+      "abstract": [
+        {
+          "text": "The digest of an X.509 certificate’s Subject Public Key Info structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64",
+      "kind": "symbol",
+      "name": "SPKI-SHA256-BASE64",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SPKI-SHA256-BASE64"
+        }
+      ],
+      "role": "symbol",
+      "title": "SPKI-SHA256-BASE64",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedleafidentities/spki-sha256-base64"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Identities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities"
+      ],
+      "title": "Identities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Key-Digests",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64"
+      ],
+      "title": "Key Digests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPinnedLeafIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "dictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedLeafIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Key-Digests",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64"
+              ],
+              "title": "Key Digests"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Identities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities"
+              ],
+              "title": "Identities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/title",
+          "value": "NSPinnedLeafIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedLeafIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities~1SPKI-SHA256-BASE64/title",
+          "value": "SPKI-SHA256-BASE64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities~1SPKI-SHA256-BASE64/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SPKI-SHA256-BASE64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSPinnedDomains/title",
+          "value": "NSPinnedDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSPinnedDomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedCAIdentities/title",
+          "value": "NSPinnedCAIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedCAIdentities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedCAIdentities"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nspinnedleafidentities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nspinnedleafidentities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

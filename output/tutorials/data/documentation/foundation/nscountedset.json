@@ -1,0 +1,846 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable, unordered collection of distinct objects that may appear more than once in the collection.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscountedset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411512,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCountedSet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCountedSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSCountedSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCountedSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMutableSet",
+              "text": "NSMutableSet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each distinct object inserted into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object has a counter associated with it. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object even if the object has been added to the set multiple times. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method defined by the superclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " classes are provided for static and dynamic sets, respectively, whose elements are distinct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " are not toll-free bridged, they provide similar functionality. For more information about ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1680084",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is not a class cluster, it does not have primitive methods that provide the basis for its implementation. In general, there should be little need for subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1680086",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", you must override any method of which you want to change the behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the primitive behavior of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", for instance if you change how objects are stored, you must override all of the affected methods. These include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1413212-add",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1415902-remove",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1408123-objectenumerator",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1408658-count",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the primitive behavior, you must also override the primitive methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset": {
+      "abstract": [
+        {
+          "text": "A mutable, unordered collection of distinct objects that may appear more than once in the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCountedSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCountedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1408123-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the set once, independent of its count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1408123-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1408123-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1408658-count": {
+      "abstract": [
+        {
+          "text": "Returns the count associated with a given object in the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1408658-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1408658-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1411730-init": {
+      "abstract": [
+        {
+          "text": "Returns a counted set object initialized with the contents of a given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1411730-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(set:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1411730-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1413212-add": {
+      "abstract": [
+        {
+          "text": "Adds a given object to the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1413212-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1413212-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1415625-init": {
+      "abstract": [
+        {
+          "text": "Returns a counted set object initialized with enough memory to hold a given number of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1415625-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1415625-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1415902-remove": {
+      "abstract": [
+        {
+          "text": "Removes a given object from the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1415902-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1415902-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset/1416767-init": {
+      "abstract": [
+        {
+          "text": "Returns a counted set object initialized with the contents of a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset/1416767-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(array:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset/1416767-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableorderedset": {
+      "abstract": [
+        {
+          "text": "A dynamic, ordered collection of unique objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableOrderedSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableOrderedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableorderedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorderedset": {
+      "abstract": [
+        {
+          "text": "A static, ordered collection of unique objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOrderedSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorderedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416229-count"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsorderedset",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableorderedset"
+      ],
+      "title": "Specialized Sets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651274",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1416767-init",
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1411730-init",
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1415625-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Counted Set"
+    },
+    {
+      "anchor": "1651307",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1413212-add",
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1415902-remove"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Entries"
+    },
+    {
+      "anchor": "1651399",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1408658-count",
+        "doc://com.apple.documentation/documentation/foundation/nscountedset/1408123-objectenumerator"
+      ],
+      "kind": "taskGroup",
+      "title": "Examining a Counted Set"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscountedset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscountedset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1032 @@
+{
+  "abstract": [
+    {
+      "text": "A constant that represents a 4D array of rotated convolution weights.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsIOHrWr"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@EA@BNNSDataLayout@BNNSDataLayoutConvolutionWeightsIOHrWr",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@EA@BNNSDataLayout",
+        "text": "BNNSDataLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@BNNSDataLayout",
+              "text": "BNNSDataLayout"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value ",
+              "type": "text"
+            },
+            {
+              "code": "(kx, ky, InChannel, OutChannel)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is at index:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "(kw - 1 - kx) * stride[0] + (kh - 1 - ky) * stride[1] +  InChannel * stride[2] + OutChannel * stride[3]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size[0]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the convolution kernel width in pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size[1]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the convolution kernel height in pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size[2]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the number of input channels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size[3]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the number of output channels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "size[0]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kx",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is between ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kw-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "size[1]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ky",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is between ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kh-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout": {
+      "abstract": [
+        {
+          "text": "Constants that describe the data type of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayout",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayout"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DFirstMajor": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D first-major tensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout4DFirstMajor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DFirstMajor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout4DFirstMajor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayout4DFirstMajor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayout4dfirstmajor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DLastMajor": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D last-major tensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout4DLastMajor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DLastMajor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout4DLastMajor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayout4DLastMajor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayout4dlastmajor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsIOHrWr": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D array of rotated convolution weights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsIOHrWr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayoutConvolutionWeightsIOHrWr",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayoutconvolutionweightsiohrwr"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D array of convolution weights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHW"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHW"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayoutConvolutionWeightsOIHW",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayoutconvolutionweightsoihw"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW_Pack32": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D array of packed convolution weights with 32-output channel packing and 128-byte array address alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHW_Pack32"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW_Pack32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHW_Pack32"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayoutConvolutionWeightsOIHW_Pack32",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayoutconvolutionweightsoihw_pack32"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHrWr": {
+      "abstract": [
+        {
+          "text": "A constant that represents a 4D array of rotated convolution weights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHrWr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHrWr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutConvolutionWeightsOIHrWr"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayoutConvolutionWeightsOIHrWr",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayoutconvolutionweightsoihrwr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "4D-Data-Layouts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHrWr",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW_Pack32",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DFirstMajor",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DLastMajor"
+      ],
+      "title": "4D Data Layouts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "4D-Data-Layouts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHrWr",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutConvolutionWeightsOIHW_Pack32",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DFirstMajor",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout4DLastMajor"
+              ],
+              "title": "4D Data Layouts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHW/title",
+          "value": "BNNSDataLayoutConvolutionWeightsOIHW"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHW/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsOIHW"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHrWr/title",
+          "value": "BNNSDataLayoutConvolutionWeightsOIHrWr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHrWr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsOIHrWr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHW_Pack32/title",
+          "value": "BNNSDataLayoutConvolutionWeightsOIHW_Pack32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsOIHW_Pack32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsOIHW_Pack32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsIOHrWr/title",
+          "value": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutConvolutionWeightsIOHrWr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutConvolutionWeightsIOHrWr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout4DLastMajor/title",
+          "value": "BNNSDataLayout4DLastMajor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout4DLastMajor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout4DLastMajor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/title",
+          "value": "BNNSDataLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout4DFirstMajor/title",
+          "value": "BNNSDataLayout4DFirstMajor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout4DFirstMajor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout4DFirstMajor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsdatalayoutconvolutionweightsiohrwr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsdatalayoutconvolutionweightsiohrwr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

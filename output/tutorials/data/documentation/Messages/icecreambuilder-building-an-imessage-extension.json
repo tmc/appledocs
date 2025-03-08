@@ -1,0 +1,1037 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to collaborate on the design of ice cream sundae stickers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/icecreambuilder-building-an-imessage-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "IceCreamBuilder: Building an iMessage Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample project, two or more users work together to build ice cream sundae stickers inside an iMessage Extension. Each completed sticker consists of a base, scoops of ice cream, and a topping. The process of building the sundae is collaborative and each step can be completed by any user who has the app installed. The participants can then send the stickers as images or attach them to any sent message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project consists of two targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS application that in this sample has no functionality, but would usually contain your main application.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iMessage Extension target that contains all logic for building and displaying the stickers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iMessage Extension target uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass that presents child view controllers to either show the history of previously created ice cream sundaes or the collaboration interface to build a new sticker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the iMessage Extension target is first initialized, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willbecomeactive(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "code": "MessagesViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures and displays the appropriate child view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Presentation-Styles",
+          "level": 3,
+          "text": "Use Presentation Styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iMessage Extensions can be required to display in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This sample code demonstrates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Ice Cream Builder app icon is tapped from the Messages app drawer, the extension initially opens in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact",
+              "isActive": true,
+              "overridingTitle": "compact",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compact",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " mode where the initial view controller replaces the system keyboard. In this case, the ",
+              "type": "text"
+            },
+            {
+              "code": "MessagesViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds the ",
+              "type": "text"
+            },
+            {
+              "code": "IceCreamsViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a child view controller to display the history of previously created ice cream sundaes, along with an “Add” button to start creating a new one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The UI for creating a new ice cream sundae sticker benefits from a larger view controller so when the user taps the “Add” button the app requests the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded",
+              "isActive": true,
+              "overridingTitle": "expanded",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "expanded",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " presentation style by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/requestpresentationstyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system then calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willtransition(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "MessagesViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " where the sample code instantiates a view controller to either continue building the sundae, or to display the completed sundae.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let controller: UIViewController",
+            "if presentationStyle == .compact {",
+            "    // Show a list of previously created ice creams.",
+            "    controller = instantiateIceCreamsController()",
+            "} else {",
+            "     // Parse an `IceCream` from the conversation's `selectedMessage` or create a new `IceCream`.",
+            "    let iceCream = IceCream(message: conversation.selectedMessage) ?? IceCream()",
+            "",
+            "    // Show either the in process construction process or the completed ice cream.",
+            "    if iceCream.isComplete {",
+            "        controller = instantiateCompletedIceCreamController(with: iceCream)",
+            "    } else {",
+            "        controller = instantiateBuildIceCreamController(with: iceCream)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attach-Stickers-to-Messages",
+          "level": 3,
+          "text": "Attach Stickers to Messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "IceCreamsViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses a collection view to display all previously created ice cream sundae stickers. Each cell uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msstickerview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that displays a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/mssticker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and also implements the standard functionality of dragging and dropping stickers to attach them to messages in the transcript, or sending the sticker as an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-Data-with-Messages",
+          "level": 3,
+          "text": "Pass Data with Messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All data passed between users in a conversation needs to be encoded in a URL; you should use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/urlcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to build and parse these URLs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var queryItems: [URLQueryItem] {",
+            "    var items = [URLQueryItem]()",
+            "    ",
+            "    if let part = base {",
+            "        items.append(part.queryItem)",
+            "    }",
+            "    if let part = scoops {",
+            "        items.append(part.queryItem)",
+            "    }",
+            "    if let part = topping {",
+            "        items.append(part.queryItem)",
+            "    }",
+            "    ",
+            "    return items",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current state of the ice cream sundae also needs to be represented visually in the Messages transcript using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagetemplatelayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this sample, the image property contains a rendering of the current state of the ice cream sundae.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the message is ready to be sent, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulating the message data and layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileprivate func composeMessage(with iceCream: IceCream, caption: String, session: MSSession? = nil) -> MSMessage {",
+            "    var components = URLComponents()",
+            "    components.queryItems = iceCream.queryItems",
+            "    ",
+            "    let layout = MSMessageTemplateLayout()",
+            "    layout.image = iceCream.renderSticker(opaque: true)",
+            "    layout.caption = caption",
+            "    ",
+            "    let message = MSMessage(session: session ?? MSSession())",
+            "    message.url = components.url!",
+            "    message.layout = layout",
+            "    ",
+            "    return message",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a message has been composed, it can be sent by accessing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/activeconversation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller",
+              "isActive": true,
+              "overridingTitle": "MSMessagesAppViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MSMessagesAppViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the message to the conversation.",
+            "conversation.insert(message) { error in",
+            "    if let error = error {",
+            "        print(error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msconversation/insert(_:completionhandler:)-3g248",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method used in this code will place the composed message into the conversation field, but will ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " send it immediately, requiring the user to still tap the send button. If you prefer to send the message immediately then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-9krz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method instead. This method is available on iOS 11 and above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "653791dcf16d/IceCreamBuilderBuildingAnIMessageExtension.zip": {
+      "checksum": "653791dcf16d2692c3c1cf0ec8bb4541968080928659bc80150dcd4aa88f8bbea502c6f0650cb5d6b9587bf98bff14350d581a43186b1a3524f7f3d5bec3053a",
+      "identifier": "653791dcf16d/IceCreamBuilderBuildingAnIMessageExtension.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/653791dcf16d/IceCreamBuilderBuildingAnIMessageExtension.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle": {
+      "abstract": [
+        {
+          "text": "Presentation styles that describe your iMessage app’s appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppPresentationStyle",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapppresentationstyle"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation": {
+      "abstract": [
+        {
+          "text": "A protocol that provides support for displaying live messages in the transcript of the Messages app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppTranscriptPresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppTranscriptPresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppTranscriptPresentation",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapptranscriptpresentation"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController": {
+      "abstract": [
+        {
+          "text": "The principal view controller for iMessage apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/creating-a-sticker-app-with-a-custom-layout": {
+      "abstract": [
+        {
+          "text": "Expand on the Messages sticker app template to create an app with a customized user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/creating-a-sticker-app-with-a-custom-layout",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Sticker App with a Custom Layout",
+      "type": "topic",
+      "url": "/documentation/messages/creating-a-sticker-app-with-a-custom-layout"
+    },
+    "https://developer.apple.com/documentation/foundation/urlcomponents": {
+      "identifier": "https://developer.apple.com/documentation/foundation/urlcomponents",
+      "title": "URLComponents",
+      "titleInlineContent": [
+        {
+          "code": "URLComponents",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/urlcomponents"
+    },
+    "https://developer.apple.com/documentation/messages/msconversation/insert(_:completionhandler:)-3g248": {
+      "identifier": "https://developer.apple.com/documentation/messages/msconversation/insert(_:completionhandler:)-3g248",
+      "title": "insert(_:completionHandler:)",
+      "titleInlineContent": [
+        {
+          "code": "insert(_:completionHandler:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msconversation/insert(_:completionhandler:)-3g248"
+    },
+    "https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-9krz": {
+      "identifier": "https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-9krz",
+      "title": "send(_:completionHandler:)",
+      "titleInlineContent": [
+        {
+          "code": "send(_:completionHandler:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-9krz"
+    },
+    "https://developer.apple.com/documentation/messages/msmessage": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessage",
+      "title": "MSMessage",
+      "titleInlineContent": [
+        {
+          "code": "MSMessage",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessage"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle",
+      "title": "several different presentation styles",
+      "titleInlineContent": [
+        {
+          "text": "several different presentation styles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact",
+      "title": "compact",
+      "titleInlineContent": [
+        {
+          "code": "compact",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded",
+      "title": "expanded",
+      "titleInlineContent": [
+        {
+          "code": "expanded",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller",
+      "title": "MSMessagesAppViewController",
+      "titleInlineContent": [
+        {
+          "code": "MSMessagesAppViewController",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/activeconversation": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/activeconversation",
+      "title": "activeConversation",
+      "titleInlineContent": [
+        {
+          "code": "activeConversation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/activeconversation"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/requestpresentationstyle(_:)": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/requestpresentationstyle(_:)",
+      "title": "requestPresentationStyle(_:)",
+      "titleInlineContent": [
+        {
+          "code": "requestPresentationStyle(_:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/requestpresentationstyle(_:)"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willbecomeactive(with:)": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willbecomeactive(with:)",
+      "title": "willBecomeActive(with:)",
+      "titleInlineContent": [
+        {
+          "code": "willBecomeActive(with:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willbecomeactive(with:)"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willtransition(to:)": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willtransition(to:)",
+      "title": "willTransition(to:)",
+      "titleInlineContent": [
+        {
+          "code": "willTransition(to:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/willtransition(to:)"
+    },
+    "https://developer.apple.com/documentation/messages/msmessagetemplatelayout": {
+      "identifier": "https://developer.apple.com/documentation/messages/msmessagetemplatelayout",
+      "title": "MSMessageTemplateLayout",
+      "titleInlineContent": [
+        {
+          "code": "MSMessageTemplateLayout",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msmessagetemplatelayout"
+    },
+    "https://developer.apple.com/documentation/messages/mssticker": {
+      "identifier": "https://developer.apple.com/documentation/messages/mssticker",
+      "title": "MSSticker",
+      "titleInlineContent": [
+        {
+          "code": "MSSticker",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/mssticker"
+    },
+    "https://developer.apple.com/documentation/messages/msstickerview": {
+      "identifier": "https://developer.apple.com/documentation/messages/msstickerview",
+      "title": "MSStickerView",
+      "titleInlineContent": [
+        {
+          "code": "MSStickerView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/messages/msstickerview"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "653791dcf16d/IceCreamBuilderBuildingAnIMessageExtension.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-iMessage-app-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/creating-a-sticker-app-with-a-custom-layout",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle"
+      ],
+      "title": "Custom iMessage app interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-iMessage-app-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/creating-a-sticker-app-with-a-custom-layout",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle"
+              ],
+              "title": "Custom iMessage app interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/title",
+          "value": "MSMessagesAppViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/title",
+          "value": "MSMessagesAppPresentationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/title",
+          "value": "MSMessagesAppTranscriptPresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppTranscriptPresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppTranscriptPresentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/icecreambuilder-building-an-imessage-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/icecreambuilder-building-an-imessage-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2639 @@
+{
+  "abstract": [
+    {
+      "text": "Create your own plug-in in Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building an FxPlug plug-in manually"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every FxPlug plug-in is contained within an application bundle, and uses an XPC service to communicate with the host applications, Final Cut Pro and Motion. In most cases, you can use the Xcode template that’s installed with the FxPlug SDK as a base your FxPlug plug-in (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). However, if you’re creating an especially complex plug-in (or if you’re the type who likes to know behind-the- scenes details), then this article is for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create your own FxPlug plug-in that’s discoverable by Motion and ready to be developed for your specific rendering goals. Begin by creating your plug-in’s structure, making the plug-in discoverable, and building and running your project to check for errors. Next, create your plug-in class, cache the host API manager, and define a properties dictionary. You then implement required methods to specify how the plug-in will render and to establish the plug-in state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This document describes how to create a plug-in with FxPlug 4. FxPlug 3 isn’t supported in Final Cut Pro and Motion. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-the-structure-for-your-plug-in",
+          "level": 3,
+          "text": "Build the structure for your plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build the structure for your plug-in, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Create an empty app.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Launch Xcode and create a new project. Select macOS to display the appropriate macOS templates. Then, select the App template, and click Next. Enter \u2028",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxPlugBrightness",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the Product Name for your app. For this example, choose Objective-C or Swift as the language, and select XIB for User Interface. Deselect Include Tests. Click Next. Specify a location for your project, and then click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559538",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The plug-in application bundle can also present a UI made with Storyboards or SwiftUI.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "In the Xcode Editor toolbar, click the “Build and run” button.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Once the build successfully completes, a typical macOS application launches and displays an empty default window. (If you select the window, you see the name of your app, FxPlugBrightness, in the menu bar). Quit the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Add an XPC service inside your new app.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In Xcode, click the “Show projects and targets list” button to toggle a list of your app’s project and build targets in the sidebar. In the Targets pane, select your app (if it’s not already selected). Click the plus sign (+) at the bottom of the pane, select XPC Service from the Framework & Library section, and click Next. Give your XPC service a name, such as “FxBrightnessXPC”. This is the name used to report any problems your host application has in the discovery process, so be sure to make note of it. Make sure the name of your app is displayed in the Embed in Application option, and then click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Add the FxPlug and PluginManager frameworks.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In the Xcode Project and Targets sidebar pane, select the XPC service target you just added. Select General from the project menu bar, locate the Frameworks and Libraries section, and click the plus sign at the bottom of that section. Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxPlug.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the list of frameworks and click add. Repeat for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PluginManager.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". You may need to click “Add Other,” and locate the frameworks, which are installed in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/Developer/Frameworks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559534",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Add a Copy Files phase.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Choose Build Phases from the Project menu bar and click the plus sign in the upper-left corner of that pane. Choose New Copy Files Phase from the menu and then expand the new section. Click the plus sign at the bottom of the new Copy Files section, select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxPlug.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and click Add. Repeat for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PluginManager.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in#Code-sign-embedded-frameworks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for information on scripting the copy and code sign phase for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PluginManager.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 5,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559531",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Add a framework search path.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In the Targets pane, select your XPC service target and choose Build Settings from the project menu bar. Select All to make sure you’re seeing all available settings. In the Build Settings pane, search for Framework Search Paths. Expand the Framework Search Paths item, click the plus sign, and enter the path to where the FxPlug SDK is installed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/Frameworks $(inherited)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Do this for both debug and release.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 6,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559530",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Add Additional SDKs path.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " With your XPC service target still selected in the Targets pane, search for “Additional SDKs” and add the path ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/Developer/SDKs/FxPlug.sdk",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as shown below. Do this for both debug and release.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 7,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3559532",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-your-plug-in-discoverable",
+          "level": 3,
+          "text": "Make your plug-in discoverable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS uses a technology called PlugInKit to discover and register plug-ins on your system. When a host application launches, PluginKit reports a list of plug-ins that are available for that host. To make your plug-in discoverable by PluginKit, make ",
+              "type": "text"
+            },
+            {
+              "code": "pluginkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " your Wrapper Extension. In the Targets list, select your XPC service, select Build Settings from the Project menu bar, and select All to make sure you’re seeing all available settings. It’s helpful to search for “packaging” to find the correct section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, enter ",
+              "type": "text"
+            },
+            {
+              "code": "pluginkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in place of the default Wrapper Extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3665056",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tell Xcode where to embed the plug-in bundle in your application bundle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your wrapper app from the Targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Project menu bar, select Build Phases. If you don’t already have a Copy Files phase item, first add one by clicking the Add A New Build Phase (+) button and then selecting New Copy Files Phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find and expand the Copy Files phase item and then click the Add Items (+) button and at the Destination option, choose your XPC service. For example, the FxBrightnessXPC service would look like this, embedded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3665055",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your plug-in to be recognized as an FxPlug plug-in by modifying the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for your XPC service. For a complete list of configuration requirements, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3375356",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-the-host-application-to-the-plug-in",
+          "level": 3,
+          "text": "Connect the host application to the plug-in",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The host application must make an XPC connection to your plug-in. To do that, your plug-in’s XPC must call the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPrincipal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starting method in its ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Be sure to import the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlug/FxPlugSDK.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file. In Objective-C, import it in your ",
+              "type": "text"
+            },
+            {
+              "code": "main.m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. In Swift, import it in your ",
+              "type": "text"
+            },
+            {
+              "code": "XPC Service-Bridging-Header.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <FxPlug/FxPlugSDK.h>"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <FxPlug/FxPlugSDK.h>",
+                    "int main(int argc, const char *argv[])",
+                    "",
+                    "{ ",
+                    "    [FxPrincipal startServicePrincipal];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using Swift, also add the following code to your ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "FxPrincipal.startServicePrincipal()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Build-and-run-your-project",
+          "level": 3,
+          "text": "Build and run your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you finish editing your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", build and run your project. It should compile without errors and launch without complications. When you launch Motion, you see your plug-in either in the filter list or in the generator list (depending on whether your entry in ",
+              "type": "text"
+            },
+            {
+              "code": "protocolNames",
+              "type": "codeVoice"
+            },
+            {
+              "text": " was ",
+              "type": "text"
+            },
+            {
+              "code": "FxFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FxGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as you indicated when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Confirm that your plug-in was discovered by querying ",
+              "type": "text"
+            },
+            {
+              "code": "PlugInKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In Terminal, type the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pluginkit -m -p FxPlug"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminal displays a list of every FxPlug plug-in on your system. If this list is very long, you can search the Terminal output for the specific name of your plug-in, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pluginkit -m -p FxPlug | grep “FxPlugBrightness”"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminal now displays ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlugBrightness(1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you want more information about your discovered plug-in, add the verbose option like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pluginkit -mv -p FxPlug | grep “FxPlugBrightness”"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminal now displays the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "FxPlugBrightness(1.0)DE175335-4588-4C40-84D6-BCD4F0BCAC44 2019-07-09 15:41:18 +0000 /Users/your_username/Desktop/FxPlugBrightness/Build/Products/Debug/ FxPlugBrightness.app/Contents/PlugIns/FxPlugBrightness.pluginkit"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Even though your plug-in has been discovered, it’s still not ready to use. If you use the plug-in in the library, you get unexpected results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-your-plug-in-class",
+          "level": 3,
+          "text": "Create your plug-in class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a host application instantiates your plug-in, it looks for the ",
+              "type": "text"
+            },
+            {
+              "code": "className",
+              "type": "codeVoice"
+            },
+            {
+              "text": " item in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for your XPC service. This class is where you write your plug-in code — making sure that it conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New > File and add a class to your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the name of the class to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "className",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " you entered in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. For example, call it ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxPlugBrightnessFilter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the Target Membership of the new class to the XPC service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the source file that defines your class. In Objective-C, open the header file. In Swift, open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " source file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, import ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FxPlugSDK.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " at the top of your header file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make your class conform to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol, as shown in the following example.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@objc(FxBrightnessFilter) class FxBrightnessFilter : NSObject, FxTileableEffect {"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <Foundation/Foundation.h>",
+                    "#import <FxPlug/FxPlugSDK.h>",
+                    "",
+                    "@interface FxPlugBrightnessFilter : NSObject <FxTileableEffect>",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Cache-the-host-API-manager",
+          "level": 3,
+          "text": "Cache the host API manager",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can add methods for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, use the following code to cache the host API manager. For more on the role of the host API, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare the API Manager and initializer in your source file. For example, add this code to the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlugBrightnessFilter.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in Swift, or to the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlugBrightnessFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file in Objective-C.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    let _apiManager : PROAPIAccessing!",
+                    "    ",
+                    "    required init?(apiManager: PROAPIAccessing) {",
+                    "        _apiManager = apiManager",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@property (assign) id<PROAPIAccessing> apiManager; "
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, add the code for the initializer to the ",
+              "type": "text"
+            },
+            {
+              "code": "FxPlugBrightnessFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation ",
+              "type": "text"
+            },
+            {
+              "code": ".m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (nullable instancetype)initWithAPIManager:",
+            "(id<PROAPIAccessing>)newApiManager;",
+            "{ ",
+            "    self=[super init];",
+            "    if (self !=nil)",
+            "    { ",
+            "        _apiManager = newApiManager;",
+            "    } ",
+            "    return self;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-properties-dictionary",
+          "level": 3,
+          "text": "Define a properties dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every plug-in defines a properties dictionary that holds configuration values unique to how that plug-in operates, including keys that specify if the plug-in can change its output size and if it supports tiled rendering. To define a properties dictionary for your plug-in, implement this method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func properties(_ properties: AutoreleasingUnsafeMutablePointer<NSDictionary>?) throws {",
+                    "        let swiftProps = [",
+                    "            kFxPropertyKey_MayRemapTime : NSNumber(booleanLiteral: false),",
+                    "            kFxPropertyKey_PixelTransformSupport : NSNumber(value: kFxPixelTransform_Full),",
+                    "            kFxPropertyKey_VariesWhenParamsAreStatic: NSNumber(booleanLiteral: false),",
+                    "            kFxPropertyKey_ChangesOutputSize : NSNumber(booleanLiteral: false)",
+                    "        ]",
+                    "        let props = NSDictionary(dictionary: swiftProps)",
+                    "        properties?.pointee = props",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)properties:(NSDictionary * _Nonnull *)properties",
+                    "             error:(NSError * _Nullable *)error",
+                    "{",
+                    "    *properties = @{",
+                    "                    kFxPropertyKey_ChangesOutputSize : @NO,",
+                    "                    kFxPropertyKey_NeedsFullBuffer : @NO,",
+                    "                    kFxPropertyKey_VariesWhenParamsAreStatic : @NO",
+                    "                    };",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on other available key values, see ",
+              "type": "text"
+            },
+            {
+              "code": "FxBaseEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "and",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". There are many options, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates if this plug-in needs the entire image to do its processing, and can’t tile its rendering.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that your plug-in samples input from times other than the current time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_MayRemapTime",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates whether this effect changes its rendering even when the parameters don’t change.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_VariesWhenParamsAreStatic",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The property keys ",
+                  "type": "text"
+                },
+                {
+                  "code": "kFxPropertyKey_IsThreadSafe",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "kFxPropertyKey_UsesRationalTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " are ignored for FxPlug 4 and newer plug-ins because all FxPlug 4 plug-ins are required to be thread-safe and use ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/coremedia/cmtime-u58",
+                  "type": "text"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-required-and-optional-methods",
+          "level": 3,
+          "text": "Implement required and optional methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plug-ins generally require user interface elements such as parameter sliders, image wells, and color pickers. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to your plug-in. For more information about parameter types, and examples of their usage, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func addParameters()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)addParametersWithError:(NSError**)error;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may choose to have your plug-in handle any changes in parameters made by your users (and relayed through the plug-in’s UI elements) with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Implement this optional method in your plug-in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func parameterChanged(_ paramID: UInt32, at time: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)parameterChanged:(UInt32)paramID",
+                    "                  atTime:(CMTime)time",
+                    "                   error:(NSError * _Nullable *)error;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The remaining methods required for your plug-in specify how your plug-in renders its effects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func renderDestinationImage(_ destinationImage: FxImageTile, sourceImages: [FxImageTile], pluginState: Data?, at renderTime: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)renderDestinationImage:(FxImageTile*)destinationImage",
+                    "                  sourceImages:(NSArray<FxImageTile*>*)sourceImages",
+                    "                   pluginState:(nullable NSData*)pluginState",
+                    "                        atTime:(CMTime)renderTime",
+                    "                         error:(NSError**)outError;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You will also need to implement two methods to set your source and destination rectangles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func sourceTileRect(_ sourceTileRect: UnsafeMutablePointer<FxRect>, sourceImageIndex: UInt, sourceImages: [FxImageTile], destinationTileRect: FxRect, destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime)",
+                    "",
+                    "func destinationImageRect(_ destinationImageRect: UnsafeMutablePointer<FxRect>, sourceImages: [FxImageTile], destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)sourceTileRect:(nonnull FxRect*)sourceTileRect",
+                    "      sourceImageIndex:(NSUInteger)sourceImageIndex",
+                    "          sourceImages:(NSArray<FxImageTile*>*)sourceImages",
+                    "   destinationTileRect:(FxRect)destinationTileRect",
+                    "      destinationImage:(FxImageTile*)destinationImage",
+                    "           pluginState:(nullable NSData*)pluginState",
+                    "                atTime:(CMTime)renderTime",
+                    "                 error:(NSError**)outError;",
+                    "",
+                    "",
+                    "- (BOOL)destinationImageRect:(FxRect*)destinationImageRect",
+                    "                sourceImages:(NSArray<FxImageTile*>*)sourceImages",
+                    "            destinationImage:(FxImageTile*)destinationImage",
+                    "                 pluginState:(nullable NSData*)pluginState",
+                    "                      atTime:(CMTime)renderTime",
+                    "                       error:(NSError**)outError;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, your plug-in must prepare a “plug-in state” object when requested by the host app. To do this, implement the following method in your plug-in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func pluginState(_ pluginState: AutoreleasingUnsafeMutablePointer<NSData>?, at renderTime: CMTime, quality qualityLevel: UInt)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)pluginState:(NSData* _Nonnull * _Nullable)pluginState",
+                    "             atTime:(CMTime)renderTime",
+                    "            quality:(FxQuality)qualityLevel",
+                    "              error:(NSError**)error;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on rendering, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or source and destination rectangles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on plug-in state, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on timing in FxPlug, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins": {
+      "abstract": [
+        {
+          "text": "Create standard and custom user-facing parameters for your plug-in that will appear in the inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/adding-parameters-to-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/adding-parameters-to-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template": {
+      "abstract": [
+        {
+          "text": "Create a plug-in in Xcode with the FxPlug template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in from an Xcode template",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-from-an-xcode-template"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the way hosts recognize and display your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing property lists for FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/editing-property-lists-for-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4": {
+      "abstract": [
+        {
+          "text": "Update existing FxPlug 3 plug-ins to out-of-process FxPlug 4 plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/migrating-fxplug-3-plug-ins-to-fxplug-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating FxPlug 3 plug-ins to FxPlug 4",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/migrating-fxplug-3-plug-ins-to-fxplug-4"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in#Code-sign-embedded-frameworks": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/notarizing-your-fxplug-plug-in#Code-sign-embedded-frameworks",
+      "kind": "section",
+      "title": "Code sign embedded frameworks",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/notarizing-your-fxplug-plug-in#Code-sign-embedded-frameworks"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Use the scheduling APIs in FxPlug to retrieve frames from different times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/scheduling-media-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Scheduling media in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/scheduling-media-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins": {
+      "abstract": [
+        {
+          "text": "Learn about reentrancy for plug-ins and best practices to make them thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread safety in plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/thread-safety-in-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis": {
+      "abstract": [
+        {
+          "text": "Use various FxPlug APIs to communicate with host apps like Motion or Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Using FxPlug APIs",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-fxplug-apis"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images": {
+      "abstract": [
+        {
+          "text": "Render only the necessary tiles of an image in your FxPlug plug-in to improve efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with tiled images",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/working-with-tiled-images"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile": {
+      "abstract": [
+        {
+          "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTile",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()": {
+      "abstract": [
+        {
+          "text": "Tells the host application what parameters your plug-in requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addParameters"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/addParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addParametersWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addParameters()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/addparameters()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)": {
+      "abstract": [
+        {
+          "text": "Executes when the host detects that a parameter has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/parameterChanged(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterChanged:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterChanged(_:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/parameterchanged(_:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_MayRemapTime": {
+      "abstract": [
+        {
+          "text": "A Boolean value, encoded as an ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, indicating whether or not this plug-in may try to sample its input image(s) at any time other than the output time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_MayRemapTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_MayRemapTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_MayRemapTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxPropertyKey_MayRemapTime",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxpropertykey_mayremaptime"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer": {
+      "abstract": [
+        {
+          "text": "A key that determines whether the plug-in needs the entire image to do its processing, and can’t tile its rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_NeedsFullBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_NeedsFullBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxPropertyKey_NeedsFullBuffer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxpropertykey_needsfullbuffer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_VariesWhenParamsAreStatic": {
+      "abstract": [
+        {
+          "text": "A key that determines whether your rendering varies even when the parameters remain the same.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_VariesWhenParamsAreStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_VariesWhenParamsAreStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_VariesWhenParamsAreStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxPropertyKey_VariesWhenParamsAreStatic",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxpropertykey_varieswhenparamsarestatic"
+    },
+    "media-3375356": {
+      "alt": "Screenshot of DynamicRegXPC.pluginkit added to Embed PlugIns with Code Sign On Copy selected.",
+      "identifier": "media-3375356",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02d5fe730b4918dc758c7adaa3851206/media-3375356@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6e780a55bbfd6dcfeec73b7835a01824/media-3375356~dark@2x.png"
+        }
+      ]
+    },
+    "media-3559530": {
+      "alt": "A screenshot showing the Framework Search paths in the Build Setting pane. The screenshot shows the path to where the FxPlug SDK is installed.",
+      "identifier": "media-3559530",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc2e0a6dee12cef79e1d489466309c09/media-3559530@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22df0a8ca6a58cc2cf43bf2c1fa21167/media-3559530~dark@2x.png"
+        }
+      ]
+    },
+    "media-3559531": {
+      "alt": "A screenshot showing the Build Phases in the menu bar selected. The Copy Files phase with FxPlug.framework are selected and added to the project.",
+      "identifier": "media-3559531",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7006334199add1320a298e1bd2ed6dfd/media-3559531@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b7bf6498a1be752d1ed383913b1a6fe/media-3559531~dark@2x.png"
+        }
+      ]
+    },
+    "media-3559532": {
+      "alt": "A screenshot showing the XPC Service target selected in the Targets pane. The Additional SDKs path shows the location of the FxPlug.sdk file.",
+      "identifier": "media-3559532",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bdc6f9a908fd0ef6ef0a2d27d29161f/media-3559532@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2316bdacc19f5da4cf228523c7f5802e/media-3559532~dark@2x.png"
+        }
+      ]
+    },
+    "media-3559534": {
+      "alt": "A screenshot of an FxPlug project in Xcode with the Show/Hide projects and Targets section, General tab, and linked Frameworks and Libraries sections labeled. The FxBrightnessXPC target is selected.",
+      "identifier": "media-3559534",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e933b1455decc3e7142e1ad2e25c8c92/media-3559534@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b88e55d0ea19de54c77d19a32e574481/media-3559534~dark@2x.png"
+        }
+      ]
+    },
+    "media-3559538": {
+      "alt": "A screenshot showing the create options for a new plug-in. The image shows the Product Name, Organization Identifier, Language, and User Interface fields.",
+      "identifier": "media-3559538",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c84c466539a86d05080ff15d0c2896d3/media-3559538@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1da842d67482fecafbc19ec9b33c6630/media-3559538~dark@2x.png"
+        }
+      ]
+    },
+    "media-3665055": {
+      "alt": "A screenshot showing the wrapper app selected in the Targets list. The Build Phase pane shows the Copy Files section with the Plugin destination location listed.",
+      "identifier": "media-3665055",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2dff2d10baaf9515275c217fade9de4f/media-3665055@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1037c6f2e40313a8de9aaf081eaf6530/media-3665055~dark@2x.png"
+        }
+      ]
+    },
+    "media-3665056": {
+      "alt": "A screenshot showing the XPC service selected in the Targets pane. The Build Settings pane on the right side shows the Wrapper Extension with the pluginkit selected.",
+      "identifier": "media-3665056",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f4a1ab3d66738ec65a85bd7fbb77047/media-3665056@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/60fd5c04bd466a62097ce92fa4cda522/media-3665056~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Plug-in-fundamentals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+      ],
+      "title": "Plug-in fundamentals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Plug-in-fundamentals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-from-an-xcode-template",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-fxplug-apis",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/editing-property-lists-for-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/thread-safety-in-plug-ins"
+              ],
+              "title": "Plug-in fundamentals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_VariesWhenParamsAreStatic/title",
+          "value": "kFxPropertyKey_VariesWhenParamsAreStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_VariesWhenParamsAreStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxPropertyKey_VariesWhenParamsAreStatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/title",
+          "value": "parameterChanged:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1parameterChanged(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterChanged:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_MayRemapTime/title",
+          "value": "kFxPropertyKey_MayRemapTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_MayRemapTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxPropertyKey_MayRemapTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_NeedsFullBuffer/title",
+          "value": "kFxPropertyKey_NeedsFullBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_NeedsFullBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxPropertyKey_NeedsFullBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/title",
+          "value": "addParametersWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1addParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addParametersWithError:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

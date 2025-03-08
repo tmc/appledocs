@@ -1,0 +1,335 @@
+{
+  "abstract": [
+    {
+      "text": "Use imported C-defined macros as constants.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/using-imported-c-macros-in-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Imported C Macros in Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift automatically imports simple, constant-like macros, declared with the ",
+              "type": "text"
+            },
+            {
+              "code": "#define",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directive, as global constants. Macros are imported when they use literals for string,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "floating-point, or integer values, or use operators like ",
+              "type": "text"
+            },
+            {
+              "code": "+",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "-",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ">",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between literals or previously defined macros. This example defines some simple macros",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a C header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#define FADE_ANIMATION_DURATION 0.35",
+            "#define VERSION_STRING \"2.2.10.0a\"",
+            "#define MAX_RESOLUTION 1268",
+            "",
+            "#define HALF_RESOLUTION (MAX_RESOLUTION / 2)",
+            "#define IS_HIGH_RES (MAX_RESOLUTION > 1024)"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When imported into Swift, the macros in the above example are equivalent to these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "constant declarations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let FADE_ANIMATION_DURATION = 0.35",
+            "let VERSION_STRING = \"2.2.10.0a\"",
+            "let MAX_RESOLUTION = 1268",
+            "",
+            "let HALF_RESOLUTION = 634",
+            "let IS_HIGH_RES = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-Functions-and-Generics-Instead-of-Complex-Macros",
+          "level": 3,
+          "text": "Use Functions and Generics Instead of Complex Macros",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "C macros that are more complex than simple constant definitions have no counterpart",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Swift. You use complex macros in C and Objective-C to avoid type-checking constraints",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or to avoid retyping large amounts of boilerplate code. However, macros can make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "debugging and refactoring difficult. In Swift, you can use functions and generics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to achieve the same results without any compromises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use native Swift syntax to interoperate with types and functions in C and Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Imported C and Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/imported-c-and-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift": {
+      "abstract": [
+        {
+          "text": "Learn how to call imported functions that are declared in a C header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Imported C Functions in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-imported-c-functions-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-imported-c-structs-and-unions-in-swift": {
+      "abstract": [
+        {
+          "text": "Learn how Swift represents imported C structures and unions, including types with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bitfields and unnamed fields.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-imported-c-structs-and-unions-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Imported C Structs and Unions in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-imported-c-structs-and-unions-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "C-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/using-imported-c-structs-and-unions-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift"
+      ],
+      "title": "C APIs"
+    }
+  ]
+}

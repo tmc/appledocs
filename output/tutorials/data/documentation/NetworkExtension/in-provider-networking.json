@@ -1,0 +1,1188 @@
+{
+  "abstract": [
+    {
+      "text": "Network APIs for use by all types of NetworkExtension providers and by hotspot helpers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/in-provider-networking"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "In-Provider Networking"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "NetworkExtension providers and hotspot helpers run in an unusual network environment that can cause problems for general-purpose networking APIs. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " typically sends requests via the default route, which is inappropriate for a hotspot helper that must always use the Wi-Fi interface. The NetworkExtension framework includes a number of APIs that are useful in such situations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These APIs have the following key characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They aren’t general-purpose APIs; they can only be used in the context of a NetworkExtension provider or hotspot helper.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In many cases, you don’t need to use them. For example, it’s possible for a packet tunnel provider to use a general-purpose networking API, like BSD Sockets, for its tunnel connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recommended general-purpose networking APIs are the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for HTTP and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework for TCP and UDP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a TCP connection being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyTCPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a UDP conversation being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData": {
+      "abstract": [
+        {
+          "text": "Additional information about data flowing through a per-app VPN provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFlowMetaData"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFlowMetaData",
+      "type": "topic",
+      "url": "/documentation/networkextension/neflowmetadata"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint": {
+      "abstract": [
+        {
+          "text": "A network endpoint specified as a Bonjour service name, type, and domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWBonjourServiceEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWBonjourServiceEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWBonjourServiceEndpoint",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwbonjourserviceendpoint"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpoint": {
+      "abstract": [
+        {
+          "text": "An abstract base class, shared by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", that represents the source or destination of a network connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWEndpoint",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwendpoint"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint": {
+      "abstract": [
+        {
+          "text": "A network endpoint specified by DNS name (or IP address) and port.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWHostEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWHostEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWHostEndpoint",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwhostendpoint"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWPath": {
+      "abstract": [
+        {
+          "text": "The path made by a network connection, including information about its viability.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWPath"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWPath",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwpath"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnection": {
+      "abstract": [
+        {
+          "text": "An object to manage a TCP connection, with or without TLS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWTCPConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWTCPConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWTCPConnection",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwtcpconnection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnectionAuthenticationDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol to customize the TLS authentication done by a connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWTCPConnectionAuthenticationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnectionAuthenticationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWTCPConnectionAuthenticationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWTCPConnectionAuthenticationDelegate",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwtcpconnectionauthenticationdelegate"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWTLSParameters": {
+      "abstract": [
+        {
+          "text": "TLS properties for creating a connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWTLSParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWTLSParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWTLSParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWTLSParameters",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwtlsparameters"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWUDPSession": {
+      "abstract": [
+        {
+          "text": "An object to manage a UDP session to a network endpoint.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWUDPSession"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWUDPSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWUDPSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWUDPSession",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwudpsession"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/app-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying": {
+      "abstract": [
+        {
+          "text": "Exchange data streams by using proxy-provider classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Flow Copying",
+      "type": "topic",
+      "url": "/documentation/networkextension/handling-flow-copying"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper": {
+      "abstract": [
+        {
+          "text": "Integrate your app with the iOS hotspot network subsystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hotspot helper",
+      "type": "topic",
+      "url": "/documentation/networkextension/hotspot-helper"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a packet-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Packet tunnel provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/packet-tunnel-provider"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Flow-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+      ],
+      "title": "Flow handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "TCP-connections",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnection",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWTLSParameters",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnectionAuthenticationDelegate"
+      ],
+      "title": "TCP connections"
+    },
+    {
+      "anchor": "UDP-sessions",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWUDPSession"
+      ],
+      "title": "UDP sessions"
+    },
+    {
+      "anchor": "Endpoints",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpoint"
+      ],
+      "title": "Endpoints"
+    },
+    {
+      "anchor": "Network-path-information",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NWPath"
+      ],
+      "title": "Network path information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "TCP-connections",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnection",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWTLSParameters",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWTCPConnectionAuthenticationDelegate"
+              ],
+              "title": "TCP connections"
+            },
+            {
+              "anchor": "UDP-sessions",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWUDPSession"
+              ],
+              "title": "UDP sessions"
+            },
+            {
+              "anchor": "Endpoints",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpoint"
+              ],
+              "title": "Endpoints"
+            },
+            {
+              "anchor": "Network-path-information",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWPath"
+              ],
+              "title": "Network path information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Flow-handling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFlowMetaData",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+              ],
+              "title": "Flow handling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWPath/title",
+          "value": "NWPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWPath/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/title",
+          "value": "NEAppProxyUDPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/title",
+          "value": "NEAppProxyFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTLSParameters/title",
+          "value": "NWTLSParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTLSParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTLSParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTLSParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTLSParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/title",
+          "value": "NEFlowMetaData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFlowMetaData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFlowMetaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWUDPSession/title",
+          "value": "NWUDPSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWUDPSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWUDPSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWUDPSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWUDPSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/title",
+          "value": "NEAppProxyTCPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWBonjourServiceEndpoint/title",
+          "value": "NWBonjourServiceEndpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWBonjourServiceEndpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWBonjourServiceEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWBonjourServiceEndpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWBonjourServiceEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/title",
+          "value": "NWHostEndpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWHostEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWHostEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWEndpoint/title",
+          "value": "NWEndpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWEndpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWEndpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnection/title",
+          "value": "NWTCPConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTCPConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTCPConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnectionAuthenticationDelegate/title",
+          "value": "NWTCPConnectionAuthenticationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnectionAuthenticationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTCPConnectionAuthenticationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWTCPConnectionAuthenticationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWTCPConnectionAuthenticationDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/in-provider-networking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/in-provider-networking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

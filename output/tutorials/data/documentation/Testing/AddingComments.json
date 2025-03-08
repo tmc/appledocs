@@ -1,0 +1,1020 @@
+{
+  "abstract": [
+    {
+      "text": "Add comments to provide useful information about tests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing",
+        "doc://org.swift.testing/documentation/Testing/Traits"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/AddingComments"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding comments to tests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s often useful to add comments to code to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide context or background information about the code’s purpose",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Explain how complex code implemented",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include details which may be helpful when diagnosing issues",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test code is no different and can benefit from explanatory code comments, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "often test issues are shown in places where the source code of the test is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unavailable such as in continuous integration (CI) interfaces or in log files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Seeing comments related to tests in these contexts can help diagnose issues more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "quickly. Comments can be added to test declarations and the testing library will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically capture and show them when issues are recorded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-code-comment-to-a-test",
+          "level": 2,
+          "text": "Add a code comment to a test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include a comment on a test or suite, write an ordinary Swift code comment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immediately before its ",
+              "type": "text"
+            },
+            {
+              "code": "@Test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "@Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Assumes the standard lunch menu includes a taco",
+            "@Test func lunchMenu() {",
+            "  let foodTruck = FoodTruck(",
+            "    menu: .lunch,",
+            "    ingredients: [.tortillas, .cheese]",
+            "  )",
+            "  #expect(foodTruck.menu.contains { $0 is Taco })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The comment, ",
+              "type": "text"
+            },
+            {
+              "code": "// Assumes the standard lunch menu includes a taco",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is added",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following language comment styles are supported:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Syntax",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Style",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "// ...",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Line comment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/// ...",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Documentation line comment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/* ... */",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Block comment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/** ... */",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Documentation block comment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Comment-formatting",
+          "level": 3,
+          "text": "Comment formatting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test comments which are automatically added from source code comments preserve",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their original formatting, including any prefixes like ",
+              "type": "text"
+            },
+            {
+              "code": "//",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "/**",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is because the whitespace and formatting of comments can be meaningful in some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "circumstances or aid in understanding the comment — for example, when a comment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes an example code snippet or diagram.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-test-comments-effectively",
+          "level": 2,
+          "text": "Use test comments effectively",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As in normal code, comments on tests are generally most useful when they:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add information that isn’t obvious from reading the code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide useful information about the operation or motivation of a test",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a test is related to a bug or issue, consider using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Bug",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " trait instead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of comments. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/AddingTags": {
+      "abstract": [
+        {
+          "text": "Use tags to provide semantic information for organization, filtering, and customizing appearances.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AddingTags",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tags to tests",
+      "type": "topic",
+      "url": "/documentation/testing/addingtags"
+    },
+    "doc://org.swift.testing/documentation/Testing/AssociatingBugs": {
+      "abstract": [
+        {
+          "text": "Associate bugs uncovered or verified by tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating bugs with tests",
+      "type": "topic",
+      "url": "/documentation/testing/associatingbugs"
+    },
+    "doc://org.swift.testing/documentation/Testing/Bug": {
+      "abstract": [
+        {
+          "text": "A type representing a bug report tracked by a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bug"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Bug",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bug"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bug",
+      "type": "topic",
+      "url": "/documentation/testing/bug"
+    },
+    "doc://org.swift.testing/documentation/Testing/BugIdentifiers": {
+      "abstract": [
+        {
+          "text": "Examine how the testing library interprets bug identifiers provided by developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting bug identifiers",
+      "type": "topic",
+      "url": "/documentation/testing/bugidentifiers"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag()": {
+      "abstract": [
+        {
+          "text": "Declare a tag that can be applied to a test function or test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Tag()",
+      "type": "topic",
+      "url": "/documentation/testing/tag()"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-10yf5"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sj",
+          "text": "Numeric"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-3vtpl"
+    },
+    "doc://org.swift.testing/documentation/Testing/Traits": {
+      "abstract": [
+        {
+          "text": "Add traits to tests to annotate them or customize their behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Traits",
+      "type": "topic",
+      "url": "/documentation/testing/traits"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotating-tests",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/AddingTags",
+        "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+        "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+        "doc://org.swift.testing/documentation/Testing/Tag()",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl"
+      ],
+      "title": "Annotating tests"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/addingcomments"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

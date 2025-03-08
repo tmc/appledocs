@@ -1,0 +1,4715 @@
+{
+  "abstract": [
+    {
+      "text": "Learn additional information related to the HLS Authoring Specification for Apple",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices-appendixes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "HTTP Live Streaming (HLS) Authoring Specification for Apple devices appendixes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The appendixes in this article expand on information provided in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It is not intended as a standalone document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Testing-your-streams",
+          "level": 3,
+          "text": "Testing your streams",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple provides several command-line tools for HTTP Live Streaming at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/all",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After signing in with your Apple Developer account, search for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "http live streaming",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "tools",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To assist in validating your streams, use the command-line tools ",
+              "type": "text"
+            },
+            {
+              "code": "mediastreamvalidator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "hlsreport",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". While these tools are unable to check everything about your streams,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the checks they do are fairly comprehensive and Apple continues to improve the tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the video quality of your streams by visual inspection. The ",
+              "type": "text"
+            },
+            {
+              "code": "mediastreamvalidator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tool does not check video quality, so check playback of your streams under a variety",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of network conditions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-hlsreport",
+          "level": 3,
+          "text": "Using hlsreport",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the binary ",
+              "type": "text"
+            },
+            {
+              "code": "hlsreport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to generate an HTML summary report from a JSON file that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "mediastreamvalidator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates. The report includes several tables with details about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variants, renditions, and I-frame variants. Each table entry has a unique stream",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ID number. A list of issues is included, divided into Must Fix and Should Fix categories",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "according to this specification. The issues cross-reference individual variants and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renditions using the unique stream IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Earlier versions of the HLS tools used a script called ",
+                  "type": "text"
+                },
+                {
+                  "code": "hlsreport.py",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rather",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "than a binary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest way to call it is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "\t\thlsreport validation_data.json",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where ",
+              "type": "text"
+            },
+            {
+              "code": "validation_data.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the JSON file that ",
+              "type": "text"
+            },
+            {
+              "code": "mediastreamvalidator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " generates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This produces a file called ",
+              "type": "text"
+            },
+            {
+              "code": "validation_data.html",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that is the report. You can change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name of the report file with the ",
+              "type": "text"
+            },
+            {
+              "code": "-o",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "\t\thlsreport -o my_report.html validation_data.json",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For further information, see the ",
+              "type": "text"
+            },
+            {
+              "code": "hlsreport(1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declared-versus-measured-values-of-bandwidths",
+          "level": 3,
+          "text": "Declared versus measured values of bandwidths",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VOD bit rates are measured over the entirety of the content. Live (linear) bit rates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are measured over ~1 hour of content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "VOD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Live/Linear",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Measured average bit rate versus AVERAGE-BANDWIDTH (attribute)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "within 10% of attribute value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 110% of attribute value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Measured peak bit rate versus BANDWIDTH (attribute)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "within 10% of attribute value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 125% of attribute value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Measured peak bit rate versus measured average bit rate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 200% of measured average",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no rule",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Audio-compatibility",
+          "level": 3,
+          "text": "Audio compatibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional information about device and audio format compatibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Multichannel output depends on the capability of the actual output device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AAC (Stereo)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AC-3/E-AC-3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Digital Plus with Dolby Atmos",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS devices - A12 Bionic based and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple TV 4K (1st and 2nd Gen)†",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OS X devices - 2018 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS and tvOS devices - A7-based or later *, but not listed above",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plays as E-AC-3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Older OS X devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plays as E-AC-3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple TV (3rd Gen), iPhone 5, and iPhone 5C",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only AC-3 via pass-through",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All older iOS and tvOS devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All of the devices in the above table support AAC (Stereo).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/specs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for actual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "technical specifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "*Complete support requires iOS 9.3 or tvOS 9.2, or later. Dolby Digital Plus with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Dolby Atmos requires tvOS 12.0 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dolby Digital Plus with Dolby Atmos† requires tvOS 12.0 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "On-bit-rates-for-variants",
+          "level": 3,
+          "text": "On bit rates for variants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A number of factors affect the bit rate needed to encode video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Codec (for example, H.264 or HEVC)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specific encoder implementation and features used",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolution (for example, 1920 x 1080, 1280 x 720, and so on)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frame rate (for example, 24, 25, 30, 50, 60)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bits per pixel (for example, HDR typically uses more bits than SDR)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complexity of the content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Desired subjective quality",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These factors make universal encoding recommendations for content difficult. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes initial bit rate recommendations that you can evaluate against your content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "constraints and encoding workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "I-frame-bit-rates-versus-normal-bit-rates",
+          "level": 3,
+          "text": "I-frame bit rates versus normal bit rates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The formula in item 6.5 (for I-frame bit rates) in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires some explanation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During trick play, the player tries to deliver eight frames per second. If the playback",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rate implies a higher frame rate, frames will be dropped to keep the frame rate at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "eight frames per second. If fewer frames are available, it will play at a lower frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The I-frame bit rate is the bit rate of the rendition if it were played at normal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "speed. The I-frame rendition may be 2 fps, 1 fps, 0.5 fps, 0.2 fps, or something",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "else. Let F be the frame rate of the I-frame rendition. Then, 8/F is the multiplier,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that is, how much the bit rate is increased by playing the rendition at eight frames",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "per second. The bit rate doesn’t increase by more than this factor because the player",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can’t play more than eight frames per second.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The I-frame rendition should have an effective bit rate similar to the normal content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So the normal bit rate divided by the multiplier should be the bit rate for the I-frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Dividing by a fraction is the same as multiplying by its inverse, so the result is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "6.5 — the bit rate of a normal playlist of the same resolution times the fps of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "I-frame playlist divided by eight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "I-frame-image-sequences",
+          "level": 3,
+          "text": "I-frame image sequences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "I-frame image sequences using the ",
+              "type": "text"
+            },
+            {
+              "code": "mjpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " codec have been added to support some third-party devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sequences should be low bandwidth and require minimal processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Players should prefer video I-frame variants over image sequences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recommendations for image sequences are as folows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supply a single ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mjpg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " variant",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unencrypted",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "400 pixels wide with height based on the aspect ratio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One key-frame every 1 to 2 seconds",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bandwidth should be reasonable for the resolution based on the codec implementation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Audio-rendition-groups-and-variants",
+          "level": 3,
+          "text": "Audio rendition groups and variants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In building up a multivariant playlist, the first step is to choose your video resolutions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and codecs. These are your basic variants. Each one will have a video media playlist.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The playlist URI may be repeated in multiple ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags so that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same video can be associated with different audio content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You will have some some set of audio languages and codecs. A particular codec may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be in stereo, in 5.1 sound, or both. Create one audio group for each pair of codec",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and channel count. Each group needs to have every language in it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re making audio groups, there are some things to remember. First, ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have a stereo AAC group. This is good fallback because it’s something all devices",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can play. If you have multichannel in a lossless audio codec, it’s a good practice",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to have a multichannel AAC codec as well. Lossless requires a high bit rate. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want something available that has a lower bit rate. During playback you don’t want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to switch the number of channels. If playback is in multichannel, you want to stay",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in multichannel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally speaking, the player doesn’t switch between audio codecs, but there are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "three notable exceptions. The player switches between the AAC variants: AAC-LC,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "HE-AAC, HE-AACv2, and USAC (also called xHE-AAC).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The player will also switch between lossless codecs and AAC codecs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, when rendering audio to Spatial Audio-capable routes on Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices, the player may switch between available audio codecs and even channel layouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have your audio groups, you replicate the variant entries for each group,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with some exceptions. If the codecs are switchable, like the AAC codecs, then you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can spread the audio groups across the variants using the low audio bit rate group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the low video bit rates and the high audio bit rate group with the high video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But, if the codecs are not switchable, like AC-3 and lossless, then you want each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "codec to be associated with every variant. This doesn’t create new variant playlists;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it just creates new ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags in the multivariant playlist, which associate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a video playlist with an audio group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may encounter a problem where the variants you want to favor aren’t being chosen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The default behavior is to choose the highest bit rate among what’s currently playable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With USAC and with Dolby Digital Plus, this can cause an inversion where the chosen",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variant is not what you would prefer. To remedy this, Apple added the ",
+              "type": "text"
+            },
+            {
+              "code": "SCORE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The value is a floating-point number. You have to put it on all the variants. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to set an order, it has to be complete, otherwise you’ll have situations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where you won’t be able to choose. The usual filtering occurs to get down to a set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of variants, any of which could be played. At that point, the system uses ",
+              "type": "text"
+            },
+            {
+              "code": "SCORE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to decide and the highest ",
+              "type": "text"
+            },
+            {
+              "code": "SCORE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " wins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Values-for-the-CODECS-attribute",
+          "level": 3,
+          "text": "Values for the CODECS attribute",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute of the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag (and ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-I-FRAME-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to specify media sample types. The value is a quoted-string containing a comma-separated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list of formats, where each format specifies a media sample type that is present",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a media segment of the playlist or in a media segment of some rendition that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tag references.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Valid format identifiers are those in the ISO Base Media File Format Name Space defined",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by RFC 6381. A format identifier is a sequence of elements separated by periods.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The first element is the base sample type. HLS currently recognizes the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values for the base sample types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Base sample type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ac-3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AC-3 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alac",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Lossless",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avc1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H.264 (Advanced Video Coding)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avc3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H.264 (Advanced Video Coding)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use not recommended",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dvh1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision (based on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hvc1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dvhe",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision (based on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hev1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use not recommended",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ec-3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhanced AC-3 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fLaC",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Free Lossless Audio Codec",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hev1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HEVC (High-Efficiency Video Coding)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use not recommended",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hvc1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HEVC (High-Efficiency Video Coding)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mjpg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "JPEG image sequence",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Limited use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MPEG-4 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "stpp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subtitles (Timed Text)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wvtt",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WebVTT data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "HLS recognizes ",
+                  "type": "text"
+                },
+                {
+                  "code": "'avc3'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "'dvhe'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "'hev1'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", but Apple doesn’t recommend",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "using them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MP4 registration authority (",
+              "type": "text"
+            },
+            {
+              "identifier": "http://mp4ra.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") lists a value of ",
+              "type": "text"
+            },
+            {
+              "code": "ec+3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for Enhanced AC-3 audio with JOC (Dolby Atmos). That value is not used by HLS. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it uses ",
+              "type": "text"
+            },
+            {
+              "code": "ec-3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and marks the presence of the additional JOC content with ",
+              "type": "text"
+            },
+            {
+              "code": "JOC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "CHANNELS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute of the audio rendition. The ",
+              "type": "text"
+            },
+            {
+              "code": "JOC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be capitalized. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, ",
+              "type": "text"
+            },
+            {
+              "code": "CHANNELS=\"16/JOC\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The numeric value should match the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "complexity_index_type_a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "field in the ",
+              "type": "text"
+            },
+            {
+              "code": "EC3SpecificBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the Dolby Digital Plus audio track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sample type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ac-3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AC-3 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alac",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Lossless audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avc1.42001f",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H.264 Baseline Profile, Level 3.1 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avc1.4d0028",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H.264 Main Profile, Level 4.0 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avc1.640029",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H.264 High Profile, Level 4.1 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dvh1.05.01",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision Profile 5 (10-bit HEVC), Level 1 (720p24) video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dvh1.05.06",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision Profile 5 (10-bit HEVC), Level 6 (2160p24) video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ec-3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhanced AC-3 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fLaC",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Free Lossless Audio Codec audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hvc1.1.4.L126.B0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HEVC Main Profile, Main Tier, Level 4.2 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hvc1.2.4.L123.B0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HEVC Main 10 Profile, Main Tier, Level 4.1 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "hvc1.2.4.L150.B0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HEVC Main 10 Profile, Main Tier, Level 5.0 video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mjpg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "JPEG image sequence",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a.40.2",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AAC-LC audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a.40.5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HE-AAC audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a.40.29",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HE-AACv2 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a.40.34",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MP3 audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mp4a.40.42",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "xHE-AAC audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "stpp.ttml.im1t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IMSC1 text-only subtitles",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wvtt",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WebVTT subtitles",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "ALLOWED-CPC-values-for-FairPlay-Streaming",
+          "level": 3,
+          "text": "ALLOWED-CPC values for FairPlay Streaming",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ALLOWED-CPC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute restricts playback of an encrypted variant stream to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices that guarantee a certain level of content protection robustness. The attribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associates a list of Content Protection Configuration (CPC) Labels with a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The permitted CPC Labels for FairPlay Streaming are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "CPC Label",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Devices that conform to that CPC Label",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AppleBaseline",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any Apple platform that supports FairPlay Streaming.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AppleMain",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any Apple platform that supports FairPlay Streaming and guarantees enhanced content protection robustness (sufficient for studio 4K/HDR playback).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Baseline",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any non-Apple platform that supports FairPlay Streaming. For example, any AirPlay 2-enabled smart TV.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Main",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any non-Apple platform that supports FairPlay Streaming and guarantees enhanced content protection robustness (sufficient for studio 4K/HDR playback).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example of a valid attribute is: ",
+              "type": "text"
+            },
+            {
+              "code": "ALLOWED-CPC=\"com.apple.streamingkeydelivery:AppleMain/Main\"",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-SUPPLEMENTAL-CODECS-attribute",
+          "level": 3,
+          "text": "The SUPPLEMENTAL-CODECS attribute",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some codecs are backward-compatible with other codecs. These codecs work by adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "metadata that are ignored when being interpreted as the compatible codec, but used",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by the newer codec. These codecs include Dolby Vision 8.4 and 10.4 (compatible with HLG) and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Dolby Vision 8.1 and 10.1 (compatible with HDR10).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support these codecs on older implementations, the ",
+              "type": "text"
+            },
+            {
+              "code": "CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is used",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to describe the base layer. The enhanced codec is described in the ",
+              "type": "text"
+            },
+            {
+              "code": "SUPPLEMENTAL-CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribute. This allows implementations that support ",
+              "type": "text"
+            },
+            {
+              "code": "SUPPLEMENTAL-CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to take",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "advantage of the true codec.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element in the ",
+              "type": "text"
+            },
+            {
+              "code": "SUPPLEMENTAL-CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is a slash-separated list of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fields.  The first field must be a valid ",
+              "type": "text"
+            },
+            {
+              "code": "CODECS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format. If more than one field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is present, the remaining fields must be compatibility brands that pertain to that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "codec’s bitstream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can indicate the presence of HDR10+ metadata by adding a brand of ‘cdm4’.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example-codec-values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Codec",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "CODECS attribute",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "SUPPLEMENTAL-CODECS attribute",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "VIDEO-RANGE attribute",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision 8.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "hvc1.2.4.L153.b0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "dvh1.08.07/db4h",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HLG",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision 8.1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "hvc1.2.4.L150",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "dvh1.08.06/db1p",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PQ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dolby Vision 10.4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "av01.0.13M.10.0.112",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "dav1.10.09/db4h",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HLG",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AV1 w/ HDR10+",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "av01.0.05M.10.0.112",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "av01.0.05M.10.0.112/cdm4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PQ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that, for Dolby Vision, the compatibility brand and the ",
+              "type": "text"
+            },
+            {
+              "code": "VIDEO-RANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "act as cross-checks. Leaving out either one is incorrect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dim-Flashing-Lights",
+          "level": 3,
+          "text": "Dim Flashing Lights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dim Flashing Lights is a setting (see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/accessibility/#dim-flashing-lights",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that allows people to indicate that they want to avoid bright, frequent flashes of light in video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As an additional measure, content producers can add markers to their HTTP Live Streaming content that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify the regions likely to cause discomfort.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regions can be signalled using the standard ",
+              "type": "text"
+            },
+            {
+              "code": "#EXT-X-DATERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. The ",
+              "type": "text"
+            },
+            {
+              "code": "CLASS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute should be set to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“com.apple.accessibility.video.strobing.general-flash”. Add an additional ",
+              "type": "text"
+            },
+            {
+              "code": "X-RISK-LEVEL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The risk level should be a decimal floating-point value in the range 0 to 100,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where 0 is minimal risk and 100 is very risky.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid using a large number of regions, restrict risk-level values to a small set of values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use a risk level of zero for regions that have very low risk.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t mark regions with a risk level unless they have been analyzed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Raw risk values can be computed using an algorithm such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/VideoFlashingReduction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItemMetadataCollector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can be used in your application to fetch the ",
+              "type": "text"
+            },
+            {
+              "code": "#EXT-X-DATERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework the metadata is fetched",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for you and the timeline is marked with a reddish color. If you display your own timeline you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should do something similar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Additional-stereo-video-specifications",
+          "level": 3,
+          "text": "Additional stereo video specifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Video Extended Usage atom (",
+              "type": "text"
+            },
+            {
+              "code": "'vexu'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is a sample description extension that conveys extensible information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stereo views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide parallax metadata for subtitles or captions as timed metadata tracks within ISOBMFF (ISO Base Media File Format) or QuickTime files.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "'mebx'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom or box describes the samples in a timed metadata track.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The international standard ISO/IEC 14496-12:2022 (“Information technology — Coding of audio-visual objects — Part 12: ISO base media file format”) refers to this box as a ",
+              "type": "text"
+            },
+            {
+              "code": "BoxedMetadataSampleEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for more information, see section 12.9 ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Multiplexed timed metadata tracks",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of that document).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " refers to the ",
+              "type": "text"
+            },
+            {
+              "code": "'mebx'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "timed metadata sample description",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap3/qtff3.html#//apple_ref/doc/uid/TP40000939-CH205-SW130",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "'mebx'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom and its contents are a generic structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more on the specific use of ",
+              "type": "text"
+            },
+            {
+              "code": "'mebx'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for caption parallax information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+              "isActive": true,
+              "overridingTitle": "ISO Base Media File Format and Apple HEVC Stereo Video",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "ISO Base Media File Format and Apple HEVC Stereo Video",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/Video-Contour-Map-Metadata.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on encoding MV-HEVC video, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can find also find these resources listed at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-playlist",
+          "level": 3,
+          "text": "Example playlist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a playlist with SDR, Dolby Vision, HDR10, and HLG content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at resolutions from 720p to 4K.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The SUPPLEMENTAL-CODECS attribute is used to indicate that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the HDR10 content is compatible with Dolby Vison 8.1",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the HLG content is compatible with Dolby Vision 8.4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-VERSION:7",
+            "#EXT-X-INDEPENDENT-SEGMENTS",
+            "",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=2778321,BANDWIDTH=3971374,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L123.B0\",RESOLUTION=1280x720,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=NONE",
+            "sdr_720/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=6759875,BANDWIDTH=10022043,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L123.B0\",RESOLUTION=1920x1080,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-0",
+            "sdr_1080/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=20985770,BANDWIDTH=28058971,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L150.B0\",RESOLUTION=3840x2160,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-1",
+            "sdr_2160/prog_index.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=3385450,BANDWIDTH=5327059,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.01\",RESOLUTION=1280x720,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=NONE",
+            "dolby_720/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=7999361,BANDWIDTH=12876596,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.03\",RESOLUTION=1920x1080,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-0",
+            "dolby_1080/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=24975091,BANDWIDTH=30041698,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.06\",RESOLUTION=3840x2160,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-1",
+            "dolby_2160/prog_index.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=3320040,BANDWIDTH=5280654,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L123.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.01/db1p\",RESOLUTION=1280x720,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=NONE",
+            "hdr10_dolby_720/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=7964551,BANDWIDTH=12886714,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L123.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.03/db1p\",RESOLUTION=1920x1080,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-0",
+            "hdr10_dolby_1080/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=24833402,BANDWIDTH=29983769,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L150.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.08/db1p\",RESOLUTION=3840x2160,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-1",
+            "hdr10_dolby_2160/prog_index.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=3061873,BANDWIDTH=3109758,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L150.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.01/db4h\",RESOLUTION=1280x720,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=NONE",
+            "hlg_dolby_720_24/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=6759750,BANDWIDTH=6884346,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L153.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.03/db4h\",RESOLUTION=1920x1080,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-0",
+            "hlg_dolby_1080_30/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:AVERAGE-BANDWIDTH=26472863,BANDWIDTH=28111779,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L183.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.08/db4h\",RESOLUTION=3840x2160,FRAME-RATE=23.976,CLOSED-CAPTIONS=NONE,HDCP-LEVEL=TYPE-1",
+            "hlg_dolby_2160_60/prog_index.m3u8",
+            "",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=248586,BANDWIDTH=593626,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L123.B0\",RESOLUTION=1280x720,HDCP-LEVEL=NONE,URI=\"sdr_720/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=399790,BANDWIDTH=956552,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L123.B0\",RESOLUTION=1920x1080,HDCP-LEVEL=TYPE-0,URI=\"sdr_1080/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=826971,BANDWIDTH=1941397,VIDEO-RANGE=SDR,CODECS=\"hvc1.2.4.L150.B0\",RESOLUTION=3840x2160,HDCP-LEVEL=TYPE-1,URI=\"sdr_2160/iframe_index.m3u8\"",
+            "",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=232253,BANDWIDTH=573073,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.01\",RESOLUTION=1280x720,HDCP-LEVEL=NONE,URI=\"dolby_720/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=365337,BANDWIDTH=905037,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.03\",RESOLUTION=1920x1080,HDCP-LEVEL=TYPE-0,URI=\"dolby_1080/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=739114,BANDWIDTH=1893236,VIDEO-RANGE=PQ,CODECS=\"dvh1.05.06\",RESOLUTION=3840x2160,HDCP-LEVEL=TYPE-1,URI=\"dolby_2160/iframe_index.m3u8\"",
+            "",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=232511,BANDWIDTH=572673,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L123.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.01/db1p\",RESOLUTION=1280x720,HDCP-LEVEL=NONE,URI=\"hdr10_dolby_720/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=364552,BANDWIDTH=905053,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L123.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.03/db1p\",RESOLUTION=1920x1080,HDCP-LEVEL=TYPE-0,URI=\"hdr10_dolby_1080/iframe_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=739757,BANDWIDTH=1895477,VIDEO-RANGE=PQ,CODECS=\"hvc1.2.4.L150.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.08/db1p\",RESOLUTION=3840x2160,HDCP-LEVEL=TYPE-1,URI=\"hdr10_dolby_2160/iframe_index.m3u8\"",
+            "",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=214431,BANDWIDTH=337245,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L150.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.01/db4h\",RESOLUTION=1280x720,HDCP-LEVEL=NONE,URI=\"hlg_dolby_720/prog_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=309406,BANDWIDTH=483498,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L153.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.03/db4h\",RESOLUTION=1920x1080,HDCP-LEVEL=TYPE-0,URI=\"hlg_dolby_1080/prog_index.m3u8\"",
+            "#EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=788595,BANDWIDTH=1777136,VIDEO-RANGE=HLG,CODECS=\"hvc1.2.20000000.L183.B0\",SUPPLEMENTAL-CODECS=\"dvh1.08.08/db4h\",RESOLUTION=3840x2160,HDCP-LEVEL=TYPE-1,URI=\"hlg_dolby_2160/prog_index.m3u8\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HEVC codec values are described in ISO/IEC 14496-15. A short description is ",
+              "type": "text"
+            },
+            {
+              "code": "Codec.Profile.Flags.TierLevel.Constraints",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so in ",
+              "type": "text"
+            },
+            {
+              "code": "hvc1.2.4.L123.B0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Main 10 profile",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "L123",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "normal",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "tier, level 4.1",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Information about Dolby Video codec values can be obtained from Dolby.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A short description is ",
+              "type": "text"
+            },
+            {
+              "code": "Codec.Profile.Level",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so in ",
+              "type": "text"
+            },
+            {
+              "code": "dvh1.05.03",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the Profile is 5",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the Level is 3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItemMetadataCollector": {
+      "abstract": [
+        {
+          "text": "An object used to capture the date range metadata defined for an HTTP Live Streaming asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItemMetadataCollector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataCollector",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+    },
+    "doc://com.apple.documentation/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/AVKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://mp4ra.org": {
+      "identifier": "http://mp4ra.org",
+      "title": "mp4ra.org",
+      "titleInlineContent": [
+        {
+          "text": "mp4ra.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://mp4ra.org"
+    },
+    "https://developer.apple.com/accessibility/#dim-flashing-lights": {
+      "identifier": "https://developer.apple.com/accessibility/#dim-flashing-lights",
+      "title": "What’s new in Accessibility",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in Accessibility",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/accessibility/#dim-flashing-lights"
+    },
+    "https://developer.apple.com/av-foundation/": {
+      "identifier": "https://developer.apple.com/av-foundation/",
+      "title": "AVFoundation Overview",
+      "titleInlineContent": [
+        {
+          "text": "AVFoundation Overview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/"
+    },
+    "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+      "title": "Apple HEVC Stereo Video",
+      "titleInlineContent": [
+        {
+          "text": "Apple HEVC Stereo Video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf"
+    },
+    "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+      "title": "ISO Base Media File Format and Apple HEVC Stereo Video",
+      "titleInlineContent": [
+        {
+          "text": "ISO Base Media File Format and Apple HEVC Stereo Video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf"
+    },
+    "https://developer.apple.com/av-foundation/Video-Contour-Map-Metadata.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/Video-Contour-Map-Metadata.pdf",
+      "title": "Video Contour Map Payload Metadata within the QuickTime Movie File Format",
+      "titleInlineContent": [
+        {
+          "text": "Video Contour Map Payload Metadata within the QuickTime Movie File Format",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/Video-Contour-Map-Metadata.pdf"
+    },
+    "https://developer.apple.com/download/all": {
+      "identifier": "https://developer.apple.com/download/all",
+      "title": "https://developer.apple.com/download/all",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.apple.com/download/all",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/all"
+    },
+    "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap3/qtff3.html#//apple_ref/doc/uid/TP40000939-CH205-SW130": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap3/qtff3.html#//apple_ref/doc/uid/TP40000939-CH205-SW130",
+      "title": "Timed Metadata Media",
+      "titleInlineContent": [
+        {
+          "text": "Timed Metadata Media",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFChap3/qtff3.html#//apple_ref/doc/uid/TP40000939-CH205-SW130"
+    },
+    "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html",
+      "title": "QuickTime File Format Specification",
+      "titleInlineContent": [
+        {
+          "text": "QuickTime File Format Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/QuickTime/QTFF/QTFFPreface/qtffPreface.html"
+    },
+    "https://github.com/apple/VideoFlashingReduction": {
+      "identifier": "https://github.com/apple/VideoFlashingReduction",
+      "title": "VideoFlashingReduction",
+      "titleInlineContent": [
+        {
+          "text": "VideoFlashingReduction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/VideoFlashingReduction"
+    },
+    "https://support.apple.com/specs/": {
+      "identifier": "https://support.apple.com/specs/",
+      "title": "https://support.apple.com/specs/",
+      "titleInlineContent": [
+        {
+          "text": "https://support.apple.com/specs/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/specs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVPlayerItemMediaDataCollector",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

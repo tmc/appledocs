@@ -1,0 +1,829 @@
+{
+  "abstract": [
+    {
+      "text": "Manipulate large images using the CPU’s vector processor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vImage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage is a high-performance image processing framework. It includes functions for image manipulation—convolutions, geometric transformations, histogram operations, morphological transformations, and alpha compositing—as well as utility functions for format conversions and other operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage optimizes image processing by using the CPU’s vector processor. If a vector processor is not available, vImage uses the next best available option. This framework allows you to reap the benefits of vector processors without the need to write vectorized code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage is particularly suited for:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Efficiently processing large images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Real-time video processing software",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scientific applications that require high-accuracy numerical calculations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images": {
+      "abstract": [
+        {
+          "text": "Simulate a bokeh effect by applying dilation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding a bokeh effect to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/adding-a-bokeh-effect-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting saturation and applying tone mapping",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-saturation-and-applying-tone-mapping"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image": {
+      "abstract": [
+        {
+          "text": "Use a gamma function to apply a linear or exponential curve.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the brightness and contrast of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-brightness-and-contrast-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image": {
+      "abstract": [
+        {
+          "text": "Convert an image to L*a*b* color space and apply hue adjustment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the hue of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-hue-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying geometric transforms to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-transforms-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images": {
+      "abstract": [
+        {
+          "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying tone curve adjustments to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-tone-curve-adjustments-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Use the vImage convert-any-to-any functionality to perform real-time image processing of video frames streamed from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying vImage operations to video sample buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-video-sample-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image": {
+      "abstract": [
+        {
+          "text": "Filter an image by convolving it with custom and high-speed kernels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Blurring an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/blurring-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of the convert-any-to-any function by converting a CMYK image to an RGB image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a basic image conversion workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-conversion-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/calculating-the-dominant-colors-in-an-image": {
+      "abstract": [
+        {
+          "text": "Find the main colors in an image by implementing k-means clustering using the Accelerate framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/calculating-the-dominant-colors-in-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating the dominant colors in an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/calculating-the-dominant-colors-in-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to grayscale using matrix multiplication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting color images to grayscale",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-color-images-to-grayscale"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image": {
+      "abstract": [
+        {
+          "text": "Create a displayable ARGB image using the luminance and chrominance information from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting luminance and chrominance planes to an ARGB image",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-graphics-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between the Core Graphics framework and the vImage library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-graphics-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Graphics interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-graphics-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Video and vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-video-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants": {
+      "abstract": [
+        {
+          "text": "Look up type aliases, data types, and constants the vImage library uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types and Constants",
+      "type": "topic",
+      "url": "/documentation/accelerate/data-types-and-constants"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images": {
+      "abstract": [
+        {
+          "text": "Share image data between vDSP and vImage to compute the sharpest image from a bracketed photo sequence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Finding the sharpest image in a sequence of captured images",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering": {
+      "abstract": [
+        {
+          "text": "Apply dithering to simulate colors that are unavailable in reduced bit depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving the quality of quantized images with dithering",
+      "type": "topic",
+      "url": "/documentation/accelerate/improving-the-quality-of-quantized-images-with-dithering"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow": {
+      "abstract": [
+        {
+          "text": "Share image data between Core Video pixel buffers and vImage buffers to integrate vImage operations into a Core Image workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating vImage pixel buffers into a Core Image workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters": {
+      "abstract": [
+        {
+          "text": "Implement custom linear interpolation to prevent the ringing effects associated with scaling an image with the default Lanczos algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reducing artifacts with custom resampling filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-artifacts-with-custom-resampling-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library": {
+      "abstract": [
+        {
+          "text": "Use Model I/O and vImage to composite a photograph over a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "computer-generated sky.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Sharing texture data between the Model I/O framework and the vImage library",
+      "type": "topic",
+      "url": "/documentation/accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage": {
+      "abstract": [
+        {
+          "text": "Calculate the histogram of one image, and apply it to a second image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Specifying histograms with vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/specifying-histograms-with-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vImage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Use buffers to pass image data to and from vImage operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Macros",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-macros"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "Swift-Overlay",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage"
+      ],
+      "title": "Swift Overlay"
+    },
+    {
+      "anchor": "vImage-Pixel-Buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/calculating-the-dominant-colors-in-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"
+      ],
+      "title": "vImage Pixel Buffers"
+    },
+    {
+      "anchor": "vImage-Buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-buffers"
+      ],
+      "title": "vImage Buffers"
+    },
+    {
+      "anchor": "Core-Graphics-Interoperability",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/core-graphics-interoperability"
+      ],
+      "title": "Core Graphics Interoperability"
+    },
+    {
+      "anchor": "Core-Video-Interoperability",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering",
+        "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability"
+      ],
+      "title": "Core Video Interoperability"
+    },
+    {
+      "anchor": "vImage-Operations",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+        "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+        "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations"
+      ],
+      "title": "vImage Operations"
+    },
+    {
+      "anchor": "Data-Types-and-Constants",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants"
+      ],
+      "title": "Data Types and Constants"
+    },
+    {
+      "anchor": "Macros",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-macros"
+      ],
+      "title": "Macros"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

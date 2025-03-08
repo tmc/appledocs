@@ -1,0 +1,1961 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your target to include and customize capabilities that provide access",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "to Apple’s app services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding capabilities to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "capability",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " grants your app access to an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "app service",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that Apple provides, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as CloudKit, Game Center, or In-App Purchase. To use some app services, you must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provision your app, adding a capability with Xcode’s project editor that configures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app service correctly for you. Xcode edits the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files, adds related frameworks, and configures your signing assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, some app services — such as Game Center and In-App Purchase — require",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional configuration in App Store Connect and your developer account. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you need to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev4ba662442",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using App Store Connect for an app that uses Maps to provide directions for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The platform, and whether you’re a member of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may limit the capabilities available to your app. For the supported capabilities,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "go to the Reference section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/reference/supported-capabilities-ios",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the capabilities available to iOS apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devaf282080a",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that Xcode can provision your app. For iOS, iPadOS, tvOS, visionOS, and watchOS apps, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev5a825a1ca",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device and create a development provisioning profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the default automatic signing when you create a project from a template.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://help.apple.com/xcode/mac/current/#/dev1bf96f17e",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you need to perform the capability configuration steps yourself.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-capability",
+          "level": 3,
+          "text": "Add a capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add capabilities to your app using the Signing & Capabilities pane of the project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Project navigator of the main window, select the project — the root",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "group with the same name as your app — and in the project editor that appears,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the appropriate target and then click the Signing & Capabilities tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "signing-capabilities",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, select a build configuration (All, Debug, or Release). For example, if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to add the capability to the Debug configuration only, select Debug; otherwise,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select All.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the toolbar, click the Library button (+) to open the Capabilities library. Alternatively,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click + Capability to the left of the build configurations, or choose Editor > Add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Capability. The Capabilities library displays only the capabilities available to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the target platform and your program membership. Select a capability in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list to view its description on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "capabilities-library",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a capability to the app target, double-click the capability in the library",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or drag the capability from the library to the Signing & Capabilities pane. The capability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appears below the Signing section. If there are more configuration steps, the capability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expands to show additional controls (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Perform-additional-configuration-steps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To remove a capability, click the Delete (x) button in the upper-right corner",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the capability in the Signing & Capabilities pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "additional-configuration",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If errors appear in the Signing section, read the message, correct the problem, then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click Try Again. For example, the bundle ID (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that appears in the Bundle Identifier field under Signing needs to be unique. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default value for the bundle ID is the organization identifier concatenated with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app name that you enter when creating a project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-additional-configuration-steps",
+          "level": 3,
+          "text": "Perform additional configuration steps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For some capabilities, you may need to perform additional configuration steps in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode, your developer account, or App Store Connect. For other capabilities, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may need to write some code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more guidance on specific capabilities, see the table below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capability",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additional information",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Groups",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-app-groups",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Sandbox",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-macos-app-sandbox",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Pay",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associated Domains",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background Modes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ClassKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClassKit/enabling-classkit-in-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fonts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Game Controllers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group Activities",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-group-activities",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hardened Runtime",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-hardened-runtime",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HealthKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HomeKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-homekit-access",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iCloud",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In-App Purchase",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keychain Sharing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-keychain-sharing",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Media Device Discovery",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-media-device-discovery",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Network Extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-network-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On-Demand Install Capable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Push Notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in with Apple",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-sign-in-with-apple",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wallet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "additional-configuration": {
+      "alt": "A screenshot of Xcode displaying the additional configuration options for the Associated Domains capability, which appears after you add the capability to the selected target. There’s a button at the upper right of the configuration section that enables you to remove the capability from the target.",
+      "identifier": "additional-configuration",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f7b8e10474727826b8d17e04d34bfda/additional-configuration@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1728b342cc4f7c20cb4533a9cf16499c/additional-configuration~dark@2x.png"
+        }
+      ]
+    },
+    "capabilities-library": {
+      "alt": "A screenshot of Xcode with the Capabilities library open. The screenshot highlights the two buttons you can use to open the library, which shows a list of available capabilities on the left, where you can double-click or drag a capability to add it to the selected target. On the right is a textual description of the selected capability. There’s also a text box at the top of the library that allows you to filter the list of capabilities.",
+      "identifier": "capabilities-library",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0077bd161691f1b7ffa7b1e405aab7d0/capabilities-library@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03d0962fa23f8add2fd933f758a0b69e/capabilities-library~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Perform-additional-configuration-steps": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Perform-additional-configuration-steps",
+      "kind": "section",
+      "title": "Perform additional configuration steps",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Perform-additional-configuration-steps"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain": {
+      "abstract": [
+        {
+          "text": "Create a two-way association between your app and your website to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "universal links, Handoff, App Clips, and shared web credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an associated domain",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-an-associated-domain"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-app-groups": {
+      "abstract": [
+        {
+          "text": "Enable communication and data sharing between multiple installed apps created",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-app-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring app groups",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-app-groups"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support": {
+      "abstract": [
+        {
+          "text": "Process payments in your app using the payment information the user stores on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-apple-pay-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Apple Pay support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-apple-pay-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts": {
+      "abstract": [
+        {
+          "text": "Register your app as a provider or consumer of systemwide custom fonts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring custom fonts",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-custom-fonts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers": {
+      "abstract": [
+        {
+          "text": "Enhance gameplay input by enabling the discovery, configuration, and use of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring game controllers",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-game-controllers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-group-activities": {
+      "abstract": [
+        {
+          "text": "Leverage FaceTime infrastructure to create coordinated experiences users can",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-group-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Group Activities",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-group-activities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access": {
+      "abstract": [
+        {
+          "text": "Read and write health and activity data in the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring HealthKit access",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-healthkit-access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-homekit-access": {
+      "abstract": [
+        {
+          "text": "Discover compatible accessories and communicate with configured accessories and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "services to perform actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-homekit-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring HomeKit access",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-homekit-access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services": {
+      "abstract": [
+        {
+          "text": "Share user or app data among multiple instances of your app running on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring iCloud services",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-icloud-services"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-keychain-sharing": {
+      "abstract": [
+        {
+          "text": "Share keychain items between multiple apps belonging to the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-keychain-sharing",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring keychain sharing",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-keychain-sharing"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support": {
+      "abstract": [
+        {
+          "text": "Register your iOS routing app to provide point-to-point directions to Maps and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Maps support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-maps-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-media-device-discovery": {
+      "abstract": [
+        {
+          "text": "Add a third-party media device or protocol as a streaming option in the same system menu as AirPlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-media-device-discovery",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring media device discovery",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-media-device-discovery"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-network-extensions": {
+      "abstract": [
+        {
+          "text": "Customize the various capabilities of your app’s networking stack, such as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "proxying DNS queries or creating packet tunnels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-network-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring network extensions",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-network-extensions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Allow users to create an account and sign in to your app with their Apple Account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Sign in with Apple support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-sign-in-with-apple"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support": {
+      "abstract": [
+        {
+          "text": "Enable your app and its Intents extension to resolve, confirm, and handle",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-driven Siri requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Siri support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-siri-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Protect the runtime integrity of your macOS app by restricting access to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sensitive resources and preventing common exploits.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the hardened runtime",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-hardened-runtime"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-macos-app-sandbox": {
+      "abstract": [
+        {
+          "text": "Protect system resources and user data from compromised apps by restricting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access to the file system, network connections, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-macos-app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the macOS App Sandbox",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-macos-app-sandbox"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support": {
+      "abstract": [
+        {
+          "text": "Access the user’s Wallet to add, update, and display your app’s passes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-wallet-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Wallet support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-wallet-support"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode": {
+      "abstract": [
+        {
+          "text": "Add an App Clip target to your Xcode project and share code between the App Clip and its corresponding full app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an App Clip with Xcode",
+      "type": "topic",
+      "url": "/documentation/AppClip/creating-an-app-clip-with-xcode"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entitlements",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/ClassKit/enabling-classkit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Prepare your app and your development environment to adopt ClassKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClassKit/enabling-classkit-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling ClassKit in your app",
+      "type": "topic",
+      "url": "/documentation/ClassKit/enabling-classkit-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/account/": {
+      "identifier": "https://developer.apple.com/help/account/",
+      "title": "Developer Account Help",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/"
+    },
+    "https://developer.apple.com/help/account/reference/supported-capabilities-ios": {
+      "identifier": "https://developer.apple.com/help/account/reference/supported-capabilities-ios",
+      "title": "Supported capabilities (iOS)",
+      "titleInlineContent": [
+        {
+          "text": "Supported capabilities (iOS)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/supported-capabilities-ios"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "title": "Configuring in-app purchases",
+      "titleInlineContent": [
+        {
+          "text": "Configuring in-app purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://help.apple.com/app-store-connect/#/dev4ba662442": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev4ba662442",
+      "title": "upload a geographic coverage file",
+      "titleInlineContent": [
+        {
+          "text": "upload a geographic coverage file",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev4ba662442"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev1bf96f17e": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev1bf96f17e",
+      "title": "manually sign your app",
+      "titleInlineContent": [
+        {
+          "text": "manually sign your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev1bf96f17e"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "assign the project to a team",
+      "titleInlineContent": [
+        {
+          "text": "assign the project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev5a825a1ca": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev5a825a1ca",
+      "title": "run your app on a device",
+      "titleInlineContent": [
+        {
+          "text": "run your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app on a device",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev5a825a1ca"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devaf282080a": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devaf282080a",
+      "title": "add your Apple Account",
+      "titleInlineContent": [
+        {
+          "text": "add your Apple Account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devaf282080a"
+    },
+    "signing-capabilities": {
+      "alt": "A screenshot of Xcode’s project editor with the Signing & Capabilities tab open. The screenshot includes callouts that instruct you to choose your project in the Project navigator, then choose a target from the targets list, and finally click the Signing & Capabilities tab to reveal the relevant configuration for the project’s selected target.",
+      "identifier": "signing-capabilities",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4730dda867b70c6919ba22cdc7772c02/signing-capabilities@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3edad8e1afdf46317bc6e9575754b83/signing-capabilities~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

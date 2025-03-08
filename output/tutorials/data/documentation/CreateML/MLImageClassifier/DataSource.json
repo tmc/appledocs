@@ -1,0 +1,912 @@
+{
+  "abstract": [
+    {
+      "text": "A data source for an image classifier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CreateML",
+    "externalID": "s:8CreateML17MLImageClassifierV10DataSourceO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DataSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DataSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MLImageClassifier.DataSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DataSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a data source to provide training or testing data to an image classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To train a model programmatically with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, initialize a data source with the URL",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the directory that contains the data. Use either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledDirectories(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledFiles(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to do this, depending on whether your images are grouped by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directory or by file name. See the respective creation methods for details about how to arrange your image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files in each case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you train a model using ",
+              "type": "text"
+            },
+            {
+              "code": "MLImageClassifierBuilder",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you don’t initialize a data source directly. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you drag the directory containing your data from a Finder window into the live view. The builder automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chooses the correct kind of data source based on how your images are arranged inside that directory, looking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for either labeled directories or labeled files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLImageClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLImageClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLImageClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource": {
+      "abstract": [
+        {
+          "text": "A data source for an image classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLImageClassifier.DataSource",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/filesByLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Dictionary of labels to file URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filesByLabel"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]])"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/filesByLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLImageClassifier.DataSource.filesByLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/filesbylabel(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledDirectories(at:)": {
+      "abstract": [
+        {
+          "text": "An image classifier data source that uses the directory structure to label images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledDirectories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledDirectories(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLImageClassifier.DataSource.labeledDirectories(at:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/labeleddirectories(at:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledFiles(at:)": {
+      "abstract": [
+        {
+          "text": "An image classifier data source that uses file names to label images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledFiles"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledFiles(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLImageClassifier.DataSource.labeledFiles(at:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/labeledfiles(at:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledImages()": {
+      "abstract": [
+        {
+          "text": "Returns the labeled images represented by the data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledImages"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledImages()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labeledImages()",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/labeledimages()"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:generator:)": {
+      "abstract": [
+        {
+          "text": "Generates an array of labeled image dictionaries by splitting the data source into strata using the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "random-number generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stratifiedSplit"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "RNG"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "proportions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RNG"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]]]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:generator:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stratifiedSplit(proportions:generator:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/stratifiedsplit(proportions:generator:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:seed:)": {
+      "abstract": [
+        {
+          "text": "Generates an array of labeled image dictionaries by splitting the data source into strata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stratifiedSplit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "proportions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "seed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]]]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:seed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stratifiedSplit(proportions:seed:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource/stratifiedsplit(proportions:seed:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/ModelParameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "Parameters that affect the process of training an image classifier model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/ModelParameters-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLImageClassifier.ModelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/modelparameters-swift.struct"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/ModelParameters-swift.struct"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-data-source",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledDirectories(at:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledFiles(at:)"
+      ],
+      "title": "Creating a data source"
+    },
+    {
+      "anchor": "Retrieving-the-data",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/labeledImages()",
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/filesByLabel(_:)"
+      ],
+      "title": "Retrieving the data"
+    },
+    {
+      "anchor": "Splitting-the-data",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:seed:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource/stratifiedSplit(proportions:generator:)"
+      ],
+      "title": "Splitting the data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlimageclassifier/datasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

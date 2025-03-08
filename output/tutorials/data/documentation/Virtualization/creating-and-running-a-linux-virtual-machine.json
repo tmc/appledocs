@@ -1,0 +1,1257 @@
+{
+  "abstract": [
+    {
+      "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and Running a Linux Virtual Machine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running a Linux virtual machine (VM) is an additive process that starts with selecting a Linux distribution and obtaining Linux kernel and RAM disk images, and ends with instantiating and running the Linux VM on the user’s computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There many Linux distributions to choose from, select one that both meets your app’s needs in terms of device and application support, and supports ARM64 or 64-bit Intel-based CPUs. You’ll also need to decide how much of the host computer’s CPU resources and memory to dedicate to the VM in order to configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Unless your VM is solving self-contained computing problems, it’s likely your VM needs to interact with the user, access the network, and so on, so you’ll want to add devices to the VM to make this possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, after creating a suitable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you’ll use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to launch your VM and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to control it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-the-Kernel-and-RAM-Disk-Images",
+          "level": 3,
+          "text": "Obtain the Kernel and RAM Disk Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can obtain images for many Linux distributions, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://cloud-images.ubuntu.com/releases/hirsute/release/unpacked/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Most Linux distributions provide downloadable kernel and RAM disk images that can run on Mac computers; however, you’ll need to download images for your specific CPU:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Apple silicon Mac computers, download ARM 64-bit images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Intel-based Mac computers, download AMD64 images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is universal, you’ll need to obtain images for both Apple silicon and Intel-based Mac computers in order to be able to run the appropriate Linux VM on the respective Apple silicon or Intel-based Mac computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the distribution you choose doesn’t provide images for the kernel and RAM disk, you’ll need to assemble and package those images yourself.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Linux distributions store kernel images in a compressed format, sometimes indicated by a ",
+              "type": "text"
+            },
+            {
+              "code": ".gz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension. If the image doesn’t have a file extension, you can determine the file’s compression status using the ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. After determining the file format for the image, add the appropriate filename extension. For example, if the output shows the file format as “gzip compressed data,” add the ",
+              "type": "text"
+            },
+            {
+              "code": ".gz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension to the image, and then use the ",
+              "type": "text"
+            },
+            {
+              "code": "gzip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "gunzip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to unpack the image. Running ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " against the unpacked image reveals details about the kernel image you’re verifying.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include the Linux kernel and RAM disk as resources in your Xcode project for use in your app, or implement a custom solution that allows the user to download and save images over the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-the-Linux-VM-Configuration",
+          "level": 3,
+          "text": "Set Up the Linux VM Configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the number of CPUs and amount of memory you want to use with your VM:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Set up global properties.",
+                    "let virtualMachineConfiguration = VZVirtualMachineConfiguration()",
+                    "virtualMachineConfiguration.cpuCount = 2",
+                    "// 2 GB of memory. This is an arbitrary amount.",
+                    "virtualMachineConfiguration.memorySize = 2 * 1024 * 1024 * 1024 "
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Set up global properties.",
+                    "VZVirtualMachineConfiguration *virtualMachineConfiguration = [VZVirtualMachineConfiguration new];",
+                    "virtualMachineConfiguration.CPUCount = 2;",
+                    "// 2 GB of memory. This is an arbitrary amount.",
+                    "virtualMachineConfiguration.memorySize = 2 * 1024 * 1024 * 1024;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Add-Devices-to-Your-VM",
+          "level": 3,
+          "text": "Add Devices to Your VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you’ll need to decide what devices your Linux VM needs. Because you can’t change or add devices to a running VM, consider what devices you’ll need to support your app’s use cases and add them to the VM’s configuration. For example, if you need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To connect to network services from your VM, add a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioNetworkDeviceConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A source of entropy, add a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioEntropyDeviceConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio devices, add ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and their associated stream sources and device configurations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below adds a serial console, and sound input and output devices to the VM’s configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Add a serial console and audio devices.",
+                    "virtualMachineConfiguration.serialPorts = [createConsoleConfiguration()]",
+                    "",
+                    "let outputStream = VZVirtioSoundDeviceOutputStreamConfiguration()",
+                    "outputStream.sink = VZHostAudioOutputStreamSink()",
+                    "let outputSoundDevice = VZVirtioSoundDeviceConfiguration()",
+                    "outputSoundDevice.streams = [outputStream]",
+                    "",
+                    "let inputStream = VZVirtioSoundDeviceInputStreamConfiguration()",
+                    "inputStream.source = VZHostAudioInputStreamSource()",
+                    "let inputSoundDevice = VZVirtioSoundDeviceConfiguration()",
+                    "inputSoundDevice.streams = [inputStream]",
+                    "",
+                    "virtualMachineConfiguration.audioDevices = [outputSoundDevice, inputSoundDevice]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Add a serial console and audio devices.",
+                    "virtualMachineConfiguration.serialPorts = [VMConfigurationHelper createConsoleConfiguration];",
+                    "",
+                    "VZVirtioSoundDeviceOutputStreamConfiguration *outputStream = [[VZVirtioSoundDeviceOutputStreamConfiguration alloc] init];",
+                    "outputStream.sink = [[VZHostAudioOutputStreamSink alloc] init];",
+                    "VZVirtioSoundDeviceConfiguration *outputSoundDevice = [[VZVirtioSoundDeviceConfiguration alloc] init];",
+                    "soundDevice.streams = @[ outputStream ];",
+                    "",
+                    "VZVirtioSoundDeviceInputStreamConfiguration *inputStream = [[VZVirtioSoundDeviceInputStreamConfiguration alloc] init];",
+                    "inputStream.source = [[VZHostAudioInputStreamSource alloc] init];",
+                    "VZVirtioSoundDeviceConfiguration *inputSoundDevice = [[VZVirtioSoundDeviceConfiguration alloc] init];",
+                    "soundDevice.streams = @[ inputStream ];",
+                    "",
+                    "virtualMachineConfiguration.audioDevices = @[ outputSoundDevice, inputSoundDevice ];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on devices that Linux guests can support, see the Devices section on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Boot-Loader",
+          "level": 3,
+          "text": "Create a Boot Loader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtualMachineConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a Linux kernel and a RAM disk that you load from locations on disk:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Set up the boot loader.",
+                    "let kernelURL = getKernelURL() // URL of the Linux kernel image.",
+                    "let bootLoader = VZLinuxBootLoader(kernelURL: kernelURL)",
+                    "bootLoader.initialRamdiskURL = getRamdiskURL()",
+                    "bootLoader.commandLine = \"console=hvc0\"",
+                    "virtualMachineConfiguration.bootLoader = bootLoader",
+                    "",
+                    "// Validate this configuration against the current hardware;",
+                    "// exit on error.",
+                    "try! virtualMachineConfiguration.validate()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Set up the boot loader.",
+                    "NSURL *kernelURL = [VMConfigurationHelper getKernelURL];",
+                    "VZLinuxBootLoader *bootloader = [[VZLinuxBootLoader alloc] initWithKernelURL: kernelURL];",
+                    "bootLoader.initialRamdiskURL = [VMConfigurationHelper getRamdiskURL];",
+                    "bootLoader.commandLine = @\"console=hvc0\";",
+                    "virtualMachineConfiguration.bootLoader = bootLoader;",
+                    "",
+                    "// Validate this configuration against the current hardware;",
+                    "// exit on error.",
+                    "assert([virtualMachineConfiguration validateWithError:NULL]);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Instantiate-and-Run-the-Linux-VM",
+          "level": 3,
+          "text": "Instantiate and Run the Linux VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtualMachineConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you use to start, stop, and control your Linux guest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Start the VM and check for successful startup when the block returns.",
+                    "let virtualMachine = VZVirtualMachine(configuration: virtualMachineConfiguration)",
+                    "virtualMachine.start(completionHandler: { (result) in",
+                    "    switch result {",
+                    "    case let .failure(error):",
+                    "        fatalError(\"Virtual machine failed to start \\(error)\")",
+                    "    default:",
+                    "        NSLog(\"Virtual machine successfully started.\")",
+                    "    }",
+                    "})"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Start the VM and check for successful startup when the block returns.",
+                    "VZVirtualMachine *virtualMachine =  [[VZVirtualMachine alloc]   initWithConfiguration:virtualMachineConfiguration];",
+                    "[VZVirtualMachine startWithCompletionHandler:^(NSError *error)",
+                    " {",
+                    "    if (error) {",
+                    "        NSLog(@\"Virtual machine failed to start \\(%@)\", error);",
+                    "        abort();",
+                    "    }",
+                    "    NSLog(@\"Virtual machine successfully started.\");",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader": {
+      "abstract": [
+        {
+          "text": "An object that loads and configures a Linux kernel as the guest system of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZLinuxBootLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxBootLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZLinuxBootLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZLinuxBootLoader",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxbootloader"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioEntropyDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "A source of entropy for the guest’s random number generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioEntropyDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioEntropyDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioEntropyDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioEntropyDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioentropydeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioNetworkDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that requests the creation of a network device for the guest system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioNetworkDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioNetworkDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioNetworkDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioNetworkDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtionetworkdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that defines a Virtio sound device output stream configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioSoundDeviceOutputStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Download a macOS restore image and install it in a new VM.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing macOS on a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running GUI Linux in a virtual machine on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running Linux in a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-linux-in-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running macOS in a virtual machine on Apple silicon",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    },
+    "https://cloud-images.ubuntu.com/releases/hirsute/release/unpacked/": {
+      "identifier": "https://cloud-images.ubuntu.com/releases/hirsute/release/unpacked/",
+      "title": "Ubuntu Linux",
+      "titleInlineContent": [
+        {
+          "text": "Ubuntu Linux",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://cloud-images.ubuntu.com/releases/hirsute/release/unpacked/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-machine-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-machine-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/title",
+          "value": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/title",
+          "value": "VZLinuxBootLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxBootLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioEntropyDeviceConfiguration/title",
+          "value": "VZVirtioEntropyDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioEntropyDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioEntropyDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioEntropyDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioEntropyDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioNetworkDeviceConfiguration/title",
+          "value": "VZVirtioNetworkDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioNetworkDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioNetworkDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioNetworkDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioNetworkDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

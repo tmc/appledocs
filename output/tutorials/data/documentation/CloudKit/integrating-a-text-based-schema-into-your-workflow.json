@@ -1,0 +1,1373 @@
+{
+  "abstract": [
+    {
+      "text": "Define and update your schema with the CloudKit Schema Language.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating a Text-Based Schema into Your Workflow"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit’s textual representation enables you to simultaneously manage your schema and the application source code that depends on it. The CloudKit command line tools download, verify, and install a schema to your container’s sandbox environment, while the CloudKit dashboard promotes a schema to the production environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When publishing a schema, CloudKit attempts to apply changes to the existing schema, if one exists, to convert it to the form specifed in the new schema. If the modifications required would result in potential data loss with respect to the current production schema (like removing a record type or field name that exists already), then the schema isn’t valid and CloudKit makes no changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For containers with an existing schema, use the CloudKit command line tools to download the container’s schema. Manually constructing your existing schema by hand isn’t recommended, as any mistakes may result in your existing sandbox data becoming inaccessible. A good practice is to integrate the schema into your source code repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Learn-the-CloudKit-Schema-Language-Grammar",
+          "level": 3,
+          "text": "Learn the CloudKit Schema Language Grammar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The grammar for the CloudKit Schema Language contains all the elements to define your schema. Use the grammar to create roles, declare record types and their permissions, as well as specify data types and options for each field in the record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "create-schema:",
+            "    DEFINE SCHEMA ",
+            "        [ { create-role | record-type } \";\" ] ...",
+            "",
+            "create-role:",
+            "    CREATE ROLE %role-name% ",
+            "    ",
+            "record-type:",
+            "    RECORD TYPE %type-name% ( ",
+            "        {",
+            "            [ %field-name% data-type [ field-options [..] ] ]",
+            "            |",
+            "            [ GRANT { READ | CREATE | WRITE } [, ... ] TO %role-name% ]",
+            "        } [\",\" ... ]",
+            "    )    ",
+            "",
+            "field-options:",
+            "    | QUERYABLE",
+            "    | SORTABLE",
+            "    | SEARCHABLE",
+            "",
+            "data-type:",
+            "   primitive-type | list-type",
+            "",
+            "primitive-type:",
+            "   | ASSET",
+            "   | BYTES",
+            "   | DOUBLE",
+            "   | [ ENCRYPTED ] { BYTES | STRING | DOUBLE | INT64 | LOCATION | TIMESTAMP }",
+            "   | INT64",
+            "   | LOCATION ",
+            "   | NUMBER [ PREFERRED AS { INT64 | DOUBLE } ]",
+            "   | REFERENCE",
+            "   | STRING",
+            "   | TIMESTAMP",
+            "   ",
+            "list-type:",
+            "   | LIST \"<\" primitive-type \">\"",
+            "",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional details and guidelines for creating roles, record types, type names, field names, data types and permissions are listed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Creates a new role and grants create, read, or write permissions on record types.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "create-role",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Creates a new record, composed of fields and their types, and grants permissions to roles.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "record-type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The identifier for the record type. Use double quotes around the name if it’s a reserved word.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "type-name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The identifier for a field within a record type. Use double quotes around the name if it’s a reserved word.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "field-name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The options define additional attributes of the field.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "field-options",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "QUERYABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " - Maintains an index to optimize equality lookups on the field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SORTABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " - Maintains an index optimizing for range searches on the field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SEARCHABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " - Maintains a text search index on the field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The data type for the field in the record.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "data-type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using the ",
+              "type": "text"
+            },
+            {
+              "code": "NUMBER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, which is only for when a field is implicitly added to a schema by a record modification on a sandbox container. If such a field has been implicitly added to a type in your schema, the ",
+              "type": "text"
+            },
+            {
+              "code": "PREFERRED AS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " syntax allows you to explicitly indicate which type the ",
+              "type": "text"
+            },
+            {
+              "code": "NUMBER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should be treated as (",
+              "type": "text"
+            },
+            {
+              "code": "INT64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "DOUBLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Once you assign ",
+              "type": "text"
+            },
+            {
+              "code": "NUMBER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a ",
+              "type": "text"
+            },
+            {
+              "code": "PREFERRED AS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, future definitions must not change that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "GRANT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " clause defines permission on the record type in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PUBLIC",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " database. Unless your schema explicitly grants permissions, a type has no security privileges available in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PUBLIC",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " database, making the type unusable.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "GRANT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The grammar uses these conventions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Brackets indicate optional parts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Braces and vertical bars indicate that you must choose one alternative.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ellipsis indicates that the preceding element can be repeated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Names surrounded by percent signs indicate identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identifiers must follow existing CloudKit naming conventions and restrictions. User-defined identifiers must follow these rules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The first character must be one of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a-z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "A-Z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subsequent characters must be one of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a-z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "A-Z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0-9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (underscore).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use double quotes around identifiers to include keywords and reserved words in the syntax definition. For example, to create a type called ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "grant",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", define it as “grant”. The reserved words in the CloudKit Schema Language are: grant, preferred, queryable, sortable, and searchable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, CloudKit reserves identifiers starting with a leading underscore as system-defined identifiers. For example, all record types have an implicitly defined ",
+              "type": "text"
+            },
+            {
+              "code": "___recordID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. Use double quotes when referring to such system fields as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The language allows comments in these forms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Single-line comment",
+            "-- Single-line comment",
+            "/* ",
+            "Multi-line comment",
+            "*/"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit doesn’t preserve the comments in your schema when you upload them to CloudKit. Additionally, when you retreive the schema, the order of the elements may differ from the order when the schema was created or updated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recognize-Implicit-Fields-and-Roles",
+          "level": 3,
+          "text": "Recognize Implicit Fields and Roles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All record types have the following implicitly defined fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "“___createTime” TIMESTAMP",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "”___createdBy” REFERENCE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "”___etag” STRING",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "”___modTime” TIMESTAMP",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "”___modifiedBy” REFERENCE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "”___recordID” REFERENCE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These field names are always present within the record time so it’s not necessary to explicitly provide them. If you wish to make any of these fields queryable, sortable, or searchable, then your type must explicitly specify the field and the attribute. You can’t change the type of these system fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Though CloudKit won’t remove the system field names, it doesn’t maintain the field options if the field isn’t mentioned in later schema updates. For example, if the following is in your schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RECORD TYPE ApplicationType  (",
+            "        \"___createTime\" TIMESTAMP QUERYABLE,",
+            "        name STRING,",
+            "        ...",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then CloudKit builds an index for efficient searches on the record creation time field. Later, if you modify the schema to no longer mention the creation time field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RECORD TYPE ApplicationType  (",
+            "        name STRING,",
+            "        ...",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the ",
+              "type": "text"
+            },
+            {
+              "code": "__createTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field remains on the record type (since it’s a required system field), but CloudKit drops the index on the field, and the user query performance may degrade or fail as a result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, all record types have these implicitly defined roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user that created a given record (“Creator” in the dashboard).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“_creator”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "All users (“World” in the dashboard).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "”_world”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "All authenticated users (“Authenticated” in the dashboard).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "”_icloud”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For types that you wish to use in a ",
+              "type": "text"
+            },
+            {
+              "code": "PUBLIC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " database, include the following grants:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GRANT WRITE TO \"_creator\"",
+            "GRANT CREATE TO \"_icloud\"",
+            "GRANT READ TO \"_world\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "View-an-Example-Schema",
+          "level": 3,
+          "text": "View an Example Schema",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample schema defines a simple company department and employee information. It demonstrates extending the attributes of system fields and the double quotes necessary for referring to system identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DEFINE SCHEMA",
+            "    CREATE ROLE DeptManager;",
+            "",
+            "    RECORD TYPE Department (",
+            "        \"___createTime\" TIMESTAMP QUERYABLE SORTABLE,",
+            "        \"___recordID\" REFERENCE QUERYABLE,",
+            "        name STRING,",
+            "        address STRING,",
+            "        phone LIST<STRING>,",
+            "        employees LIST<REFERENCE>,",
+            "        GRANT WRITE TO \"_creator\", ",
+            "        GRANT CREATE TO \"_icloud\",",
+            "        GRANT READ TO \"_world\",",
+            "        GRANT WRITE, CREATE, READ TO DeptManager",
+            "    );",
+            "",
+            "    RECORD TYPE Employee (",
+            "        \"___createTime\" TIMESTAMP QUERYABLE SORTABLE,",
+            "        \"___recordID\" REFERENCE QUERYABLE,",
+            "        name STRING,",
+            "        address STRING,",
+            "        hiredate TIMESTAMP,",
+            "        salary INT64,",
+            "        GRANT WRITE TO \"_creator\", ",
+            "        GRANT CREATE TO \"_icloud\",",
+            "        GRANT READ TO \"_world\"",
+            "    );"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset": {
+      "abstract": [
+        {
+          "text": "An external file that belongs to a record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKAsset",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckasset"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord": {
+      "abstract": [
+        {
+          "text": "A collection of key-value pairs that store your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference": {
+      "abstract": [
+        {
+          "text": "A relationship between two records in a record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.Reference",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/reference"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone": {
+      "abstract": [
+        {
+          "text": "A database partition that contains related records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordZone",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzone"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database": {
+      "abstract": [
+        {
+          "text": "Create a schema to store your app’s objects as records in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing and Creating a CloudKit Database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Schemas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset"
+      ],
+      "title": "Schemas"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Schemas",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+                "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset"
+              ],
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/title",
+          "value": "CKReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/title",
+          "value": "CKRecordZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/title",
+          "value": "CKAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/title",
+          "value": "CKRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/integrating-a-text-based-schema-into-your-workflow"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/integrating-a-text-based-schema-into-your-workflow"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

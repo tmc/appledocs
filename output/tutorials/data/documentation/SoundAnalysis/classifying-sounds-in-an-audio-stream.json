@@ -1,0 +1,1261 @@
+{
+  "abstract": [
+    {
+      "text": "Identify individual sounds in an audio data stream, such as from a microphone, with an audio stream analyzer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sound Analysis"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Classifying Sounds in an Audio Stream"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to recognize sounds, such as human speech, music, and singing, by processing an audio stream, such as from a microphone. For example, a sound recording app can use an audio stream analyzer to show a visual label for sounds the app identifies in real time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article builds on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " article, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implementing a type that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Start-an-Audio-Engine",
+          "level": 3,
+          "text": "Start an Audio Engine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/audio-engine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API simplifies audio-related tasks, including capturing audio data with a microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capture audio data from the device’s default microphone:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Save a reference to the microphone’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioFormat",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Begin the audio pipeline’s data flow by calling the engine’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/start()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "func startAudioEngine() {",
+            "    // Create a new audio engine.",
+            "    audioEngine = AVAudioEngine()",
+            "",
+            "    // Get the native audio format of the engine's input bus.",
+            "    inputBus = AVAudioNodeBus(0)",
+            "    inputFormat = audioEngine.inputNode.inputFormat(forBus: inputBus)",
+            "    ",
+            "    do {",
+            "        // Start the stream of audio data.",
+            "        try audioEngine.start()",
+            "    } catch {",
+            "        print(\"Unable to start AVAudioEngine: \\(error.localizedDescription)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an audio engine instance, its default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " accesses audio data from the device’s default microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To access the device’s microphone in iOS or watchOS, add a description for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your project’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Stream-Analyzer",
+          "level": 3,
+          "text": "Create a Stream Analyzer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Analyze the microphone audio by configuring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the input device’s native PCM (pulse code modulation) audio format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new stream analyzer.",
+            "streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio stream analyzers only work with audio data in the PCM format, unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the input device’s audio format changes, you must discard the current ",
+                  "type": "text"
+                },
+                {
+                  "code": "SNAudioStreamAnalyzer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and create a new one that matches the input’s updated audio format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a sound classification request and a results observer (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and add them to the stream analyzer by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer/add(_:withObserver:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add a sound classification request that reports to an observer.",
+            "try streamAnalyzer.add(classifySoundRequest,",
+            "                       withObserver: resultsObserver)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Analyze-the-Sound-Data-with-an-Audio-Tap",
+          "level": 3,
+          "text": "Analyze the Sound Data with an Audio Tap",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access the microphone’s audio data by creating a tap to the audio engine’s input node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func installAudioTap() {",
+            "    audioEngine.inputNode.installTap(onBus: inputBus,",
+            "                                     bufferSize: 8192,",
+            "                                     format: inputFormat,",
+            "                                     block: analyzeAudio(buffer:at:))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep your app responsive and the audio engine operating efficiently by running the stream analyzer on a dedicated dispatch queue. Separating the work frees the audio engine to process incoming audio data while the request analyzes the previous audio buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let analysisQueue = DispatchQueue(label: \"com.example.AnalysisQueue\")",
+            "",
+            "...",
+            "",
+            "func analyzeAudio(buffer: AVAudioBuffer, at time: AVAudioTime) {",
+            "    analysisQueue.async {",
+            "        self.streamAnalyzer.analyze(buffer,",
+            "                                    atAudioFramePosition: time.sampleTime)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The stream analyzer sends the results to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode": {
+      "abstract": [
+        {
+          "text": "The audio engine’s singleton input audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioInputNode",
+          "text": "AVAudioInputNode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputNode",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine/inputNode"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/start()": {
+      "abstract": [
+        {
+          "text": "Starts the audio engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/start()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine/start()"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioFormat": {
+      "abstract": [
+        {
+          "text": "An object that describes the representation of an audio format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioFormat",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioFormat"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/audio-engine": {
+      "abstract": [
+        {
+          "text": "Perform advanced real-time and offline audio processing, implement 3D spatialization, and work with MIDI and samplers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/audio-engine",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Engine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/audio-engine"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis": {
+      "abstract": [
+        {
+          "text": "Classify various sounds by analyzing audio files or streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sound Analysis",
+      "type": "topic",
+      "url": "/documentation/soundanalysis"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer": {
+      "abstract": [
+        {
+          "text": "An analyzer that runs sound classification requests on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioFileAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object you create to analyze a stream of audio data and provide the results to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioStreamAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiostreamanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer/add(_:withObserver:)": {
+      "abstract": [
+        {
+          "text": "Adds a new analysis request to the audio stream analyzer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SNRequest",
+          "text": "SNRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withObserver"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SNResultsObserving",
+          "text": "SNResultsObserving"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer/add(_:withObserver:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRequest:withObserver:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:withObserver:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiostreamanalyzer/add(_:withobserver:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest": {
+      "abstract": [
+        {
+          "text": "A request that classifies sound using a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNClassifySoundRequest",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving": {
+      "abstract": [
+        {
+          "text": "The interface your app implements to receive the results of an analysis request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNResultsObserving"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNResultsObserving"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNResultsObserving",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snresultsobserving"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in a file, such as a recording, with an audio file analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio File",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/classifying-sounds-in-an-audio-file"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-analyzers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer"
+      ],
+      "title": "Audio analyzers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-analyzers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer"
+              ],
+              "title": "Audio analyzers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioFormat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioFormat"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/title",
+          "value": "SNClassifySoundRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/title",
+          "value": "SNResultsObserving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNResultsObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNResultsObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine~1start()/title",
+          "value": "startAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAndReturnError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outError"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine~1inputNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioInputNode",
+              "text": "AVAudioInputNode"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputNode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/title",
+          "value": "SNAudioFileAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/title",
+          "value": "SNAudioStreamAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer~1add(_:withObserver:)/title",
+          "value": "addRequest:withObserver:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer~1add(_:withObserver:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRequest:withObserver:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/soundanalysis/classifying-sounds-in-an-audio-stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/soundanalysis/classifying-sounds-in-an-audio-stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

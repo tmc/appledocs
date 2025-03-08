@@ -1,0 +1,647 @@
+{
+  "abstract": [
+    {
+      "text": "Add branding or ads to a playlist.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Incorporating Ads into a Playlist"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Often you want to deliver a series of movies with some sort of branding (advertisement)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displayed in front of each one to let the user know that they originate from your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "site. One way to do this is to simply merge the ad with each movie. However, if you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have hundreds of movies, you’ll have to redo a lot of encoding, and you’ll be duplicating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ad with each movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You could deliver the ad as a separate movie that plays first, and then play the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intended movie. The problem with that approach, however, is that quality drops during",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the transition from the ad to the movie. For example, the ad starts playing with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a low data rate to ensure that the client can read it, then gradually ramps up to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide the best possible playback experience. When the ad is finished playing, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "movie starts at a low data rate (just as the ad did) and ramps up, resulting in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "break in quality. Also, if you display the ad in the middle of the movie, you’ll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "get ongoing drops in quality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The solution is to let the client know a change is coming, by using the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-DISCONTINUITY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tag. This tag informs the client of a change that’s coming to the streaming media",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the client can prepare for the change ahead of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a stream that uses the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-DISCONTINUITY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to play",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "movies that are preceded by an 18-second ad (segments ",
+              "type": "text"
+            },
+            {
+              "code": "ad0.ts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ad1.ts",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:10",
+            "#EXT-X-VERSION:4",
+            "#EXT-X-MEDIA-SEQUENCE:0",
+            "#EXTINF:10.0,",
+            "ad0.ts",
+            "#EXTINF:8.0,",
+            "ad1.ts",
+            "#EXT-X-DISCONTINUITY",
+            "#EXTINF:10.0,",
+            "movieA.ts",
+            "#EXTINF:10.0,",
+            "movieB.ts"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These are the tags used in the ads playlist example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXTM3U:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates that the playlist is an extended M3U file. This type of file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is distinguished from a basic M3U file by changing the tag on the first line to EXTM3U.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All HLS playlists must start with this tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-TARGETDURATION:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Specifies the maximum media-file duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-VERSION:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates the compatibility version of the playlist file. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "playlist media and its server must comply with all provisions of the most recent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "version of the IETF Internet-Draft of the HTTP Live Streaming specification that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines that protocol version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-MEDIA-SEQUENCE:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates the sequence number of the first URL that appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a playlist file. Each media file URL in a playlist has a unique integer sequence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number. The sequence number of a URL is higher by 1 than the sequence number of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "URL that preceded it. The media sequence numbers have no relation to the names of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXT-X-MEDIA-SEQUENCE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag value must be incremented by 1 for every",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "media URI that’s removed from the playlist file. Media URIs must be removed from",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the playlist file in the order that they appear in the playlist. The updated index",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "file presents a moving window into a continuous stream. This type of session is suitable",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for continuous broadcasts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-DISCONTINUITY:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates an encoding discontinuity between the media file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that follows it and the one that preceded it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-DISCONTINUITY-SEQUENCE:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Provides synchronization between different variant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "streams or different renditions of the same variant stream. You must use this tag",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for live events that have discontinuities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXTINF:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A record marker that describes the media file identified by the URL that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follows it. Each media file URL must be preceded by an ",
+              "type": "text"
+            },
+            {
+              "code": "EXTINF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. This tag contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a duration attribute that’s an integer or floating-point number in decimal positional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notation that specifies the duration of the media segment in seconds. This value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must be less than or equal to the target duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adding-alternate-media-to-a-playlist": {
+      "abstract": [
+        {
+          "text": "Specify Rendition Playlists that can override the main presentation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adding-alternate-media-to-a-playlist",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding alternate media to a playlist",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/adding-alternate-media-to-a-playlist"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Modified-playlists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adding-alternate-media-to-a-playlist"
+      ],
+      "title": "Modified playlists"
+    }
+  ]
+}

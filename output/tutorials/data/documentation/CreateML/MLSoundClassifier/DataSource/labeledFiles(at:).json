@@ -1,0 +1,852 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a data source from a folder that contains audio files, each named after the sound they represent.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledFiles(at:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML17MLSoundClassifierV10DataSourceO12labeledFilesyAE10Foundation3URLV_tcAEmF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "labeledFiles"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "at"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation3URLV",
+        "text": "URL"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "MLSoundClassifier.DataSource.labeledFiles(at:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "labeledFiles"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "at"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "URL: The URL to a folder in the file system that contains audio files. The data source uses the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "first component of each audio file’s name as its classification label.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "at"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a sound classifier data source from a directory of audio files with the ",
+              "type": "text"
+            },
+            {
+              "code": "labeledFiles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " case. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must name each file with a sound classification label, followed by a period and an arbitrary string, ending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the file extension. For example, you can name a sound classifier’s training files as ",
+              "type": "text"
+            },
+            {
+              "code": "Laughter.3.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Applause.1.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Applause.2.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, these audio file names give a sound classifier at least two class labels:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Laughter",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Applause",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier": {
+      "abstract": [
+        {
+          "text": "A machine learning model you train with audio files to recognize and identify sounds on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLSoundClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLSoundClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource": {
+      "abstract": [
+        {
+          "text": "A representation of a sound-classifier dataset located in the file system or in a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/features(table:featureColumn:labelColumn:parameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a data source from a data table of audio features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "features"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "table"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "featureColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "labelColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV27FeatureExtractionParametersV",
+          "text": "FeatureExtractionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/features(table:featureColumn:labelColumn:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource.features(table:featureColumn:labelColumn:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource/features(table:featurecolumn:labelcolumn:parameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/featuresDataFrame(_:featureColumn:labelColumn:parameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a data source from a data frame of audio features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "featuresDataFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "featureColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "labelColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV27FeatureExtractionParametersV",
+          "text": "FeatureExtractionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/featuresDataFrame(_:featureColumn:labelColumn:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource.featuresDataFrame(_:featureColumn:labelColumn:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource/featuresdataframe(_:featurecolumn:labelcolumn:parameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/filesByLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a data source from a dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filesByLabel"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]])"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/filesByLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource.filesByLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource/filesbylabel(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledDirectories(at:)": {
+      "abstract": [
+        {
+          "text": "Creates a data source from a folder with subfolders that each contain audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledDirectories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledDirectories(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource.labeledDirectories(at:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource/labeleddirectories(at:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledFiles(at:)": {
+      "abstract": [
+        {
+          "text": "Creates a data source from a folder that contains audio files, each named after the sound they represent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledFiles"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledFiles(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource.labeledFiles(at:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource/labeledfiles(at:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters": {
+      "abstract": [
+        {
+          "text": "Parameters that affect the process of extracting sound features from audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FeatureExtractionParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FeatureExtractionParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier.FeatureExtractionParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/featureextractionparameters"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation3URLV": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-data-source",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/labeledDirectories(at:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/filesByLabel(_:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/features(table:featureColumn:labelColumn:parameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource/featuresDataFrame(_:featureColumn:labelColumn:parameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters"
+      ],
+      "title": "Creating a data source"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlsoundclassifier/datasource/labeledfiles(at:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

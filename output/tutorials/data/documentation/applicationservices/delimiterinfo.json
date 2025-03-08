@@ -1,0 +1,355 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a delimiter information structure.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1459273,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@DelimiterInfo",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "DelimiterInfo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "DelimiterInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DelimiterInfo"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A delimiter information structure defines the characters used to indicate the beginning and end of a command embedded in text. A delimiter can be one or two characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ordinarily, applications that support embedded speech commands should not change the start or end delimiters. However, if for some reason you must change the delimiters, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function with the ",
+              "type": "text"
+            },
+            {
+              "code": "soCommandDelimiter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector. For example, you might do this if a text buffer naturally includes the delimiter strings. Before passing such a buffer to the Speech Synthesis Manager, you can change the delimiter strings to some two-character sequences not used in the buffer and then change the delimiter strings back once processing of the buffer is complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a single-byte delimiter is desired, it should be followed by a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (0) byte. If the delimiter strings both consist of two ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bytes, embedded command processing is disabled. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1460927-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1460927-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/delimiterinfo/1460927-init"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462284-startdelimiter": {
+      "abstract": [
+        {
+          "text": "The start delimiter for an embedded command. By default, the start delimiter is “",
+          "type": "text"
+        },
+        {
+          "code": "[[",
+          "type": "codeVoice"
+        },
+        {
+          "text": "”.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": (UInt8, UInt8)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462284-startdelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startDelimiter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/delimiterinfo/1462284-startdelimiter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462493-enddelimiter": {
+      "abstract": [
+        {
+          "text": "The end delimiter for an embedded command. By default, the end delimiter is “",
+          "type": "text"
+        },
+        {
+          "code": "]]",
+          "type": "codeVoice"
+        },
+        {
+          "text": "”.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": (UInt8, UInt8)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462493-enddelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endDelimiter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/delimiterinfo/1462493-enddelimiter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1464001-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "startDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": (UInt8, UInt8), "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": (UInt8, UInt8))"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1464001-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(startDelimiter:endDelimiter:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/delimiterinfo/1464001-init"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2974187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1460927-init",
+        "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1464001-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2974188",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462493-enddelimiter",
+        "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo/1462284-startdelimiter"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/delimiterinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/delimiterinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

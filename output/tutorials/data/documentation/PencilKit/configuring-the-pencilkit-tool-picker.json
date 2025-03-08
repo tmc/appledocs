@@ -1,0 +1,1321 @@
+{
+  "abstract": [
+    {
+      "text": "Incorporate a custom PencilKit tool picker with a variety of system and custom tools into a drawing app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pencilkit/documentation/PencilKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pencilkit/documentation/PencilKit/configuring-the-pencilkit-tool-picker"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PencilKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Configuring the PencilKit tool picker"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app shows how to configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app is a simple drawing tool that allows a person to draw on a canvas using tools from the tool picker.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition to showing system tools, the tool picker provides a custom tool that a person can use to place stamps on the canvas.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The tool picker also contains an accessory item for adding a signature to the canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10214: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10214/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this sample app’s basic functionality is available in Simulator, running the project with physical devices is recommended to demonstrate the full capabilities of the hardware.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Run this project with Apple Pencil Pro and a compatible iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-system-tool",
+          "level": 3,
+          "text": "Create a system tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app creates and configures a system tool to show in the tool picker: a pen, which is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct/InkType-swift.enum/pen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ink type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let penWidth = PKInkingTool.InkType.pen.defaultWidth",
+            "let secondPen = PKToolPickerInkingItem(type: .pen,",
+            "                                       color: toolPickerRed,",
+            "                                       width: penWidth,",
+            "                                       identifier: \"com.example.apple-samplecode.second-pen\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses an ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to differentiate between this pen and the default system pen so they can both show up in the picker.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t specify an identifier to differentiate between multiple system tools of the same type, the picker treats those tool items as duplicates and only shows the first item in the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-custom-tool",
+          "level": 3,
+          "text": "Create a custom tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PencilKit tool picker can contain a combination of system tools and custom tools.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To add a custom tool to the picker, this sample app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to define details about the custom tool.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app creates a custom tool to place stamps in the shape of animals on the canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let identifier = \"com.example.apple-samplecode.animal-stamp\"",
+            "let name = NSLocalizedString(\"Animal Stamp\", comment: \"Name of the animal stamp tool\")",
+            "var config = PKToolPickerCustomItem.Configuration(identifier: identifier, name: name)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/imageProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a closure that generates an image for the custom tool.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system automatically calls this closure to fetch a new image for the custom tool when PencilKit attributes like color or width change.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a custom tool has additional custom properties that affect the appearance of the tool, fetch a new image manually by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/reloadImage()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when those properties change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "config.imageProvider = { item in",
+            "    return ImageProvider.shared.drawImage(color: item.color,",
+            "                                          width: item.width,",
+            "                                          attributeImage: attributeVC.attributeModel.selectedAttribute.image)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/viewControllerProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a closure that provides an additional view controller to display above the system controls in the tool attributes popover.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this sample app, this view controller shows additional customization options for the stamp tool,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like being able to choose which animal to use for the custom stamp tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "config.viewControllerProvider = { item in",
+            "    attributeVC.attributeModel.color = item.color",
+            "    attributeVC.reload()",
+            "    return attributeVC",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-the-order-of-the-tools-in-the-picker",
+          "level": 3,
+          "text": "Specify the order of the tools in the picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tools in the tool picker can appear in any order you specify when you create the picker using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app places the custom tool item first, but it can appear in any order in the ",
+              "type": "text"
+            },
+            {
+              "code": "toolItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the custom tool item, this sample app adds the second pen and the default set of ",
+              "type": "text"
+            },
+            {
+              "code": "PKToolPicker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let toolItems = [self.animalStampWrapper.toolItem, secondPen] + PKToolPicker().toolItems",
+            "",
+            "self.toolPicker = PKToolPicker(toolItems: toolItems)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-an-accessory-item",
+          "level": 3,
+          "text": "Add an accessory item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adds an optional button to the tool picker to provide quick access to additional behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app adds an accessory item that allows placing a signature on the canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "toolPicker.accessoryItem = UIBarButtonItem(image: UIImage(systemName: \"signature\"), primaryAction: UIAction(handler: { [self] _ in",
+            "    self.signDrawing(sender: nil)",
+            "}))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Draw-a-hover-preview-for-tools",
+          "level": 3,
+          "text": "Draw a hover preview for tools",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A hover preview can provide useful feedback about where a tool might touch down on the canvas.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app checks the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/uikit/uipencilinteraction/4375593-prefershovertoolpreview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to see the user preference for displaying a hover tool preview, and uses that to determine whether to draw the preview.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, it draws the preview view in response to the state of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " gesture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer/4391655-rollangle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to rotate the preview view in response to the barrel-roll angle of Apple Pencil Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let point = sender.location(in: stampView)",
+            "// Subtract the `rollAngle` instead of adding it, because it's defined to go in the opposite",
+            "// direction from `azimuthAngle`.",
+            "let angleInRadians = sender.azimuthAngle(in: sender.view) - sender.rollAngle",
+            "",
+            "switch sender.state {",
+            "case .changed:",
+            "    hoverPreviewView?.removeFromSuperview()",
+            "    hoverPreviewView = nil",
+            "    if let imageView = animalStampWrapper.stampImageView(for: point, angleInRadians: angleInRadians) {",
+            "        imageView.alpha = 0.5",
+            "        stampView.addSubview(imageView)",
+            "        hoverPreviewView = imageView",
+            "    } else {",
+            "        hoverPreviewView = nil",
+            "    }",
+            "default:",
+            "    hoverPreviewView?.removeFromSuperview()",
+            "    hoverPreviewView = nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dbe2c8c170cd/ConfiguringThePencilKitToolPicker.zip": {
+      "checksum": "dbe2c8c170cd2fdb3376881b44bada6f99a6dd57e980f383167f71a1ca6f9f75544f33e852f62367574b77825426c35f83acc44dc5913a502db4f16ded69311d",
+      "identifier": "dbe2c8c170cd/ConfiguringThePencilKitToolPicker.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dbe2c8c170cd/ConfiguringThePencilKitToolPicker.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit": {
+      "abstract": [
+        {
+          "text": "Capture touch and Apple Pencil input as a drawing, and display that content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A tool for erasing previously drawn content in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKEraserTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKEraserTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKEraserTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkerasertool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInkingTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkingtool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct/InkType-swift.enum/pen": {
+      "abstract": [
+        {
+          "text": "An inking tool that creates the appearance of a pen-based drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pen"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct/InkType-swift.enum/pen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKInkingTool.InkType.pen",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkingtool-swift.struct/inktype-swift.enum/pen"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A tool for selecting stroked lines and shapes in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKLassoTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKLassoTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKLassoTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pklassotool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An interface adopted by drawing and writing tools used by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktool-swift.protocol"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker": {
+      "abstract": [
+        {
+          "text": "A tool palette that displays a selection of drawing tools and colors for tools that a person can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPicker",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem": {
+      "abstract": [
+        {
+          "text": "An optional button that appears at the trailing edge of the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/accessoryitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)": {
+      "abstract": [
+        {
+          "text": "Creates a new tool picker with the tools you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toolItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerItem",
+          "text": "PKToolPickerItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithToolItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(toolItems:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/init(toolitems:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct": {
+      "abstract": [
+        {
+          "text": "A configuration that specifies the appearance and behavior of a custom tool item and its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerCustomItem.Configuration",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/imageProvider": {
+      "abstract": [
+        {
+          "text": "A closure to provide an image that represents the custom tool item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerCustomItem",
+          "text": "PKToolPickerCustomItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/imageProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageProvider",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/viewControllerProvider": {
+      "abstract": [
+        {
+          "text": "A closure to provide a view controller above the system controls in the tool attributes popover.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewControllerProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerCustomItem",
+          "text": "PKToolPickerCustomItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/Configuration-swift.struct/viewControllerProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewControllerProvider",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/viewcontrollerprovider"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/reloadImage()": {
+      "abstract": [
+        {
+          "text": "Requests a new image for the custom tool item from the image provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadImage"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem/reloadImage()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadImage()",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickercustomitem/reloadimage()"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem": {
+      "abstract": [
+        {
+          "text": "An item that represents an inking tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerInkingItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerInkingItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerInkingItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerinkingitem"
+    },
+    "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer",
+      "title": "UIHoverGestureRecognizer",
+      "titleInlineContent": [
+        {
+          "code": "UIHoverGestureRecognizer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer"
+    },
+    "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer/4391655-rollangle": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer/4391655-rollangle",
+      "title": "rollAngle",
+      "titleInlineContent": [
+        {
+          "code": "rollAngle",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uihovergesturerecognizer/4391655-rollangle"
+    },
+    "https://developer.apple.com/documentation/uikit/uipencilinteraction/4375593-prefershovertoolpreview": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uipencilinteraction/4375593-prefershovertoolpreview",
+      "title": "prefersHoverToolPreview",
+      "titleInlineContent": [
+        {
+          "code": "prefersHoverToolPreview",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uipencilinteraction/4375593-prefershovertoolpreview"
+    },
+    "https://developer.apple.com/wwdc24/10214/": {
+      "identifier": "https://developer.apple.com/wwdc24/10214/",
+      "title": "Squeeze the most out of Apple Pencil",
+      "titleInlineContent": [
+        {
+          "text": "Squeeze the most out of Apple Pencil",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10214/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "dbe2c8c170cd/ConfiguringThePencilKitToolPicker.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol"
+      ],
+      "title": "Tools"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init(toolItems:)/title",
+          "value": "initWithToolItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init(toolItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithToolItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/title",
+          "value": "PKToolPickerInkingItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerInkingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerInkingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1accessoryItem/title",
+          "value": "accessoryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1accessoryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/title",
+          "value": "PKToolPicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerCustomItem~1reloadImage()/title",
+          "value": "reloadImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerCustomItem~1reloadImage()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadImage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pencilkit/configuring-the-pencilkit-tool-picker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "Begins the delivery of accessory-related notifications to the current application.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)EAAccessoryManager(im)registerForLocalNotifications",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "registerForLocalNotifications"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Accessory"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "registerForLocalNotifications"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "registerForLocalNotifications()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForLocalNotifications"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method to be notified when an accessory becomes connected or disconnected. The system does not send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications automatically, so calling this method lets the system know that your application wants to receive them. Typically, you would call this method only once early in your application, either before or after configuring your notification observers. When you no longer need to monitor these notifications, you should call the matching ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure your notification observers either before or after calling this method. Because the shared accessory manager is the only object that sends accessory-related notifications, specifying that object or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the notification sender has the same outcome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory": {
+      "abstract": [
+        {
+          "text": "Communicate with accessories that connect to a device with the Apple Lightning connector, or with Bluetooth wireless technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Accessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnectNotification",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydidconnectnotification"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydiddisconnectnotification"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey": {
+      "abstract": [
+        {
+          "text": "A key that indicates the accessory object whose status changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessoryKey",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorykey"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager": {
+      "abstract": [
+        {
+          "text": "The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessoryManager",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorymanager"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()": {
+      "abstract": [
+        {
+          "text": "Begins the delivery of accessory-related notifications to the current application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForLocalNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForLocalNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForLocalNotifications()",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorymanager/registerforlocalnotifications()"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()": {
+      "abstract": [
+        {
+          "text": "Stops the delivery of accessory-related notifications to the current application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterForLocalNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterForLocalNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterForLocalNotifications()",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorymanager/unregisterforlocalnotifications()"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessorySelectedKey": {
+      "abstract": [
+        {
+          "text": "A key that indicates the accessory object that the user selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessorySelectedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessorySelectedKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessorySelectedKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessorySelectedKey",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessoryselectedkey"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Connection-Status-Changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessorySelectedKey"
+      ],
+      "title": "Managing Connection Status Changes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "registerForLocalNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForLocalNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Connection-Status-Changes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessorySelectedKey"
+              ],
+              "title": "Managing Connection Status Changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "registerForLocalNotifications"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager~1unregisterForLocalNotifications()/title",
+          "value": "unregisterForLocalNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager~1unregisterForLocalNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterForLocalNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessorySelectedKey/title",
+          "value": "EAAccessorySelectedKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessorySelectedKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessorySelectedKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager/title",
+          "value": "EAAccessoryManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager~1registerForLocalNotifications()/title",
+          "value": "registerForLocalNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryManager~1registerForLocalNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForLocalNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryKey/title",
+          "value": "EAAccessoryKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalaccessory/eaaccessorymanager/registerforlocalnotifications()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/externalaccessory/eaaccessorymanager/registerforlocalnotifications()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

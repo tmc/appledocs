@@ -1,0 +1,488 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the drawable object attached to a rendering context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglGetDrawable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglGetDrawable",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglGetDrawable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglGetDrawable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.5",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglGetDrawable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLDrawable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLDrawable",
+              "text": "AGLDrawable"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglGetDrawable"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLContext",
+              "text": "AGLContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ctx"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A rendering context that’s attached to a window or a graphics device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ctx"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The drawable object (either a Carbon window or a full-screen graphics port) that is attached to the rendering context, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for any of the following reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No drawable object is attached.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A pixel buffer or offscreen memory area is attached.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The function fails for any reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the function returns ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the rendering context is a pixel buffer context, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLContext": {
+      "abstract": [
+        {
+          "text": "Represents a pointer to an opaque AGL context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLDrawable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/agldrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetDrawable": {
+      "abstract": [
+        {
+          "text": "Returns the drawable object attached to a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetdrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetPBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves a pixel buffer and its parameters for a specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetDrawable": {
+      "abstract": [
+        {
+          "text": "Attaches a  rendering context to a Carbon window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetdrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetFullScreen": {
+      "abstract": [
+        {
+          "text": "Attaches a rendering context to a full screen graphics device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetFullScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetFullScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetFullScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetfullscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetOffScreen": {
+      "abstract": [
+        {
+          "text": "Attaches a rendering context to an offscreen memory area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetOffScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetOffScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetOffScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetoffscreen"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Drawable-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+        "doc://com.apple.agl/documentation/AGL/aglSetFullScreen",
+        "doc://com.apple.agl/documentation/AGL/aglSetOffScreen"
+      ],
+      "title": "Managing Drawable Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/aglgetdrawable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

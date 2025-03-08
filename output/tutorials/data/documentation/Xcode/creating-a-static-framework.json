@@ -1,0 +1,1104 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your project to build a new static framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-a-static-framework"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a static framework"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode 15 or later, you can use a static framework to bundle resources with a static library. A static framework is a framework bundle whose main",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binary is a static archive. When a client links and embeds the framework, Xcode 15 or later omits the main binary from the embedded framework bundle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because it’s already statically linked into the client. To create a static framework in Xcode, create a new framework target, configure the new target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a static framework target, and add all your source files and resources to the new framework target. Build, analyze, and test your static framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each platform that it supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your static framework, configure its target for distribution in Xcode, then create an archive of your framework for each platform that it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports. Package all variants of your framework into an XCFramework bundle that you can sign. For more information about configuring and archiving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your static framework for distribution, and creating an XCFramework bundle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Xcode verifies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if your static framework’s code signature is tampered or becomes invalid. For more information about verifying XCFrameworks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-new-framework-target-to-your-project",
+          "level": 3,
+          "text": "Add a new framework target to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add the new framework target to an existing Xcode project. Create a framework that supports either a single platform or multiple platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a new framework target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the sheet that appears, choose the platform you wish to support. To create a framework that supports a single platform, choose that platform",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the sheet. To create a framework that supports multiple platforms, choose Multiplatform in the sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to the Framework & Library section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Framework template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the name of your framework and configure the language and other options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-static-framework-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new framework target from a template, Xcode adds a target that builds a dynamic framework automatically. It also adds an umbrella",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header to the target. The header’s name is generated from your framework name, followed by a dot and the letter ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "h",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For example, if you name your framework SampleFramework,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode automatically adds a header file with the name ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-the-new-framework-target-from-dynamic-to-static",
+          "level": 3,
+          "text": "Convert the new framework target from dynamic to static",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding the new framework target to your Xcode project, set its Mach-O Type build setting to Static Library to convert it from dynamic to static.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the Mach-O Type build setting, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To edit the Mach-O Type build setting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, select your new framework target, then click Build Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter “Mach-O Type” in the search field to locate the Mach-O Type build setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Static Library from the setting value list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-static-framework-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-source-files-to-your-framework-target",
+          "level": 3,
+          "text": "Add source files to your framework target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have a static framework target, add new or existing source files, such as Swift files, to the target. After adding them, check that these files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appear in the Compile Sources build phase of the static framework target. For more information on adding new or existing files to a target, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-static-framework-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-resources-to-your-framework-target",
+          "level": 3,
+          "text": "Add resources to your framework target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add resources such as asset catalogs, storyboards, image files, and a privacy manifest to a static framework. The resource files appear in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Copy Bundle Resources build phase of the static framework target. The following image shows the Copy Bundle Resources build phase of a static framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that includes a privacy manifest file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-static-framework-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a privacy manifest to your static framework in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-public-and-private-headers-to-your-framework-target",
+          "level": 3,
+          "text": "Add public and private headers to your framework target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your static framework target contains public or private headers that you want to make available to external clients, add a Headers build phase to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your target, then drag these files into Headers. For more information about adding public and private headers to a target, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, add your public headers to your framework umbrella header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-analyze-and-test-your-framework",
+          "level": 3,
+          "text": "Build, analyze, and test your framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build, analyze, and test your static framework for each platform that it supports. The example below shows the bundle structure of ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after building it for iOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "creating-a-static-framework-5",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Image"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SampleFramework.framework/",
+                    "    _CodeSignature/",
+                    "        ...",
+                    "    Headers/",
+                    "        ...",
+                    "    Modules/",
+                    "        ...",
+                    "    Info.plist ",
+                    "    SampleFramework",
+                    "    PrivacyInfo.xcprivacy",
+                    "    ..."
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Bundle structure"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your static framework, create a release build of your framework, then embed it in an app that utilizes it. For more information about creating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a release build of your static framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-a-release-build",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Build and run the test app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Embed-your-framework-in-an-app",
+          "level": 3,
+          "text": "Embed your framework in an app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To embed your static framework in an app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, select the app target, then click General.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the Frameworks, Libraries, and Embedded Content section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+), select Add Other, then choose Add Files to locate your static framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Open.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Embed & Sign option from the Embed value list for the static framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-static-framework-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-1": {
+      "alt": "A sheet displays the available templates for a new target. The multiplatform framework template is selected.",
+      "identifier": "creating-a-static-framework-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/143b7c7bd31699fa966b3c1041d09ebc/creating-a-static-framework-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/480c87ac64124510faa055e29f819fe7/creating-a-static-framework-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-2": {
+      "alt": "A screenshot that shows the Mach-O Type build setting.",
+      "identifier": "creating-a-static-framework-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e09ee14d3776881b016058a989030da8/creating-a-static-framework-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3cfb75f00a5660902441a2a71b0b72d/creating-a-static-framework-2~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-3": {
+      "alt": "A screenshot that shows the Compile Source build phase for a target.",
+      "identifier": "creating-a-static-framework-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd1ae368cdbbddbc987b8c18f68bae59/creating-a-static-framework-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50d871b04c5d3a6d123516c17fe4a547/creating-a-static-framework-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-4": {
+      "alt": "A screenshot that shows the Copy Bundle build phase for a target. The phase contains a privacy manifest file.",
+      "identifier": "creating-a-static-framework-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59f30f7d7ccb38f873be5673399d9ea2/creating-a-static-framework-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0afa0226db6bee5ea9bf66a485503f05/creating-a-static-framework-4~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-5": {
+      "alt": "A screenshot that shows the bundle structure of a static framework.",
+      "identifier": "creating-a-static-framework-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7e347ff002f2a6a7a2c14348b811cd6/creating-a-static-framework-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5305fdd849fa4a9423673f13f29f740/creating-a-static-framework-5~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-static-framework-6": {
+      "alt": "A screenshot that shows the Frameworks, Libraries, and Embedded Content section in the target editor area.",
+      "identifier": "creating-a-static-framework-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0b1f4d431c00517b5691dba0834d2d6/creating-a-static-framework-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61511f33d73d83a50f9e124c93d527a2/creating-a-static-framework-6~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks": {
+      "abstract": [
+        {
+          "text": "Organize code and resources in bundles and frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bundles and frameworks",
+      "type": "topic",
+      "url": "/documentation/xcode/bundles-and-frameworks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle": {
+      "abstract": [
+        {
+          "text": "Combine variants of a binary framework or library into an XCFramework bundle that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "supports multiple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a multiplatform binary framework bundle",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-multi-platform-binary-framework-bundle"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "files to compile, the scripts to run, and the resources to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Add new or existing files to your project, and use groups to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "organize the files and folders in the Project navigator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing files and folders in your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/managing-files-and-folders-in-your-xcode-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-a-release-build": {
+      "abstract": [
+        {
+          "text": "Run your app in simulated user environments to discover and identify deployment errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-a-release-build",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a release build",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-a-release-build"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks": {
+      "abstract": [
+        {
+          "text": "Discover who signed a framework, and take action when that changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying the origin of your XCFrameworks",
+      "type": "topic",
+      "url": "/documentation/xcode/verifying-the-origin-of-your-xcframeworks"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files": {
+      "abstract": [
+        {
+          "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Privacy manifest files",
+      "type": "topic",
+      "url": "/documentation/BundleResources/privacy-manifest-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Frameworks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues"
+      ],
+      "title": "Frameworks"
+    }
+  ]
+}

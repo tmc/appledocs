@@ -1,0 +1,760 @@
+{
+  "abstract": [
+    {
+      "text": "Add a simple model to an app,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "pass input data to the model, and process the model’s predictions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating a Core ML Model into Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses a trained model, ",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricer.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to predict habitat prices on Mars.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Model-to-Your-Xcode-Project",
+          "level": 3,
+          "text": "Add a Model to Your Xcode Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the model to your Xcode project by dragging the model into the project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can see information about the model—including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the model type and its expected inputs and outputs—by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opening the model in Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this sample, the inputs are the number of solar panels and greenhouses, as well",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the lot size of the habitat (in acres).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The output is the predicted price of the habitat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Model-in-Code",
+          "level": 3,
+          "text": "Create the Model in Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode also uses information about the model’s inputs and outputs to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically generate a custom programmatic interface to the model,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which you use to interact with the model in your code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricer.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Xcode generates interfaces to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent the model (",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the model’s inputs (",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricerInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": "),",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the model’s output (",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricerOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the generated ",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class’s initializer to create the model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let marsHabitatPricer = try? MarsHabitatPricer(configuration: .init())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-Input-Values-to-Pass-to-the-Model",
+          "level": 3,
+          "text": "Get Input Values to Pass to the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses a ",
+              "type": "text"
+            },
+            {
+              "code": "UIPickerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get the model’s input values from the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectedRow(for feature: Feature) -> Int {",
+            "    return pickerView.selectedRow(inComponent: feature.rawValue)",
+            "}",
+            "",
+            "let solarPanels = pickerDataSource.value(for: selectedRow(for: .solarPanels), feature: .solarPanels)",
+            "let greenhouses = pickerDataSource.value(for: selectedRow(for: .greenhouses), feature: .greenhouses)",
+            "let size = pickerDataSource.value(for: selectedRow(for: .size), feature: .size)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-the-Model-to-Make-Predictions",
+          "level": 3,
+          "text": "Use the Model to Make Predictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class has a generated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "prediction(solarPanels:greenhouses:size:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that’s used to predict a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "price from the model’s input values—in this case, the number of solar panels,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the number of greenhouses, and the size of the habitat (in acres). The result of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this method is a ",
+              "type": "text"
+            },
+            {
+              "code": "MarsHabitatPricerOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use the model to make a price prediction.",
+            "let output = try marsHabitatPricer.prediction(solarPanels: solarPanels,",
+            "                                              greenhouses: greenhouses,",
+            "                                              size: size)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access the ",
+              "type": "text"
+            },
+            {
+              "code": "price",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "marsHabitatPricerOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get a predicted price",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and display the result in the app’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Format the price for display in the UI.",
+            "let price = output.price",
+            "priceLabel.text = priceFormatter.string(for: price)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The generated ",
+                  "type": "text"
+                },
+                {
+                  "code": "prediction(solarPanels:greenhouses:size:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method can throw an error. The most common type of error you’ll encounter when working with Core ML occurs when the details of the input data don’t match the details the model is expecting—for example, an image in the wrong format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-and-Run-a-Core-ML-App",
+          "level": 3,
+          "text": "Build and Run a Core ML App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode compiles the Core ML model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into a resource that’s been optimized to run on a device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This optimized representation of the model is included in your app bundle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and is what’s used to make predictions while the app is running on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "daeacfd7a9fd/IntegratingACoreMLModelIntoYourApp.zip": {
+      "checksum": "daeacfd7a9fd8eba8814b11c8fce686544750d9ea1d0afd6a734f58cb46d2ae2e408d66909b55387fd677d7246058aa8e1db1b4599ac8d142b0460d698641cff",
+      "identifier": "daeacfd7a9fd/IntegratingACoreMLModelIntoYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/daeacfd7a9fd/IntegratingACoreMLModelIntoYourApp.zip"
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel": {
+      "abstract": [
+        {
+          "text": "An encapsulation of all the details of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModel",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model": {
+      "abstract": [
+        {
+          "text": "Obtain a Core ML model to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting a Core ML Model",
+      "type": "topic",
+      "url": "/documentation/coreml/getting-a-core-ml-model"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-customization": {
+      "abstract": [
+        {
+          "text": "Expand and modify your model with new layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Customization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-customization"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-integration-samples": {
+      "abstract": [
+        {
+          "text": "Integrate tabular, image, and text classifcation models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-personalization": {
+      "abstract": [
+        {
+          "text": "Update your model to adapt to new data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-personalization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Personalization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-personalization"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package": {
+      "abstract": [
+        {
+          "text": "Convert a Core ML model file into a model package in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Model File to a Model Package",
+      "type": "topic",
+      "url": "/documentation/coreml/updating-a-model-file-to-a-model-package"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "daeacfd7a9fd/IntegratingACoreMLModelIntoYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-ML-models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+        "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+        "doc://com.apple.coreml/documentation/CoreML/MLModel",
+        "doc://com.apple.coreml/documentation/CoreML/model-customization",
+        "doc://com.apple.coreml/documentation/CoreML/model-personalization"
+      ],
+      "title": "Core ML models"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Core-ML-models",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+                "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+                "doc://com.apple.coreml/documentation/CoreML/MLModel",
+                "doc://com.apple.coreml/documentation/CoreML/model-customization",
+                "doc://com.apple.coreml/documentation/CoreML/model-personalization"
+              ],
+              "title": "Core ML models"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/title",
+          "value": "MLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/integrating-a-core-ml-model-into-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/integrating-a-core-ml-model-into-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

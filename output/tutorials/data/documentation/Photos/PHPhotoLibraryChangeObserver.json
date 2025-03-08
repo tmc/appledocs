@@ -1,0 +1,1447 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol to adopt to have the system notify your app of changes to the photo library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)PHPhotoLibraryChangeObserver",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHPhotoLibraryChangeObserver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHPhotoLibraryChangeObserver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "PHPhotoLibraryChangeObserver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol notifies you of changes that occur in the photo library, regardless of whether those changes are made by your app, by a user in the Photos app, or by another app that uses the Photos framework. To receive change messages, register your observer with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For any assets or collections that you fetch, Photos sends change messages whenever those assets or collections change. Use this protocol to track changes across multiple parts of your app or respond to changes made in another app or extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handling-Changes-An-Example",
+          "level": 3,
+          "text": "Handling Changes: An Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example code below shows how you might implement this protocol in a view controller that uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interface to display the contents of an album. The view controller keeps a reference to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing the displayed album and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/fetchAssets(in:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method) listing the album’s contents. Then, in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the view controller checks for differences between the objects it fetched and the new state of the photo library, and updates its collection view accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func photoLibraryDidChange(_ changeInstance: PHChange) {",
+                    "    guard let collectionView = self.collectionView else { return }",
+                    "    // Change notifications may be made on a background queue.",
+                    "    // Re-dispatch to the main queue to update the UI.",
+                    "    DispatchQueue.main.sync {",
+                    "        // Check for changes to the displayed album itself",
+                    "        // (its existence and metadata, not its member assets).",
+                    "        if let albumChanges = changeInstance.changeDetails(for: assetCollection) {",
+                    "            // Fetch the new album and update the UI accordingly.",
+                    "            assetCollection = albumChanges.objectAfterChanges! as! PHAssetCollection",
+                    "            navigationController?.navigationItem.title = assetCollection.localizedTitle",
+                    "        }",
+                    "        // Check for changes to the list of assets (insertions, deletions, moves, or updates).",
+                    "        if let changes = changeInstance.changeDetails(for: fetchResult) {",
+                    "            // Keep the new fetch result for future use.",
+                    "            fetchResult = changes.fetchResultAfterChanges",
+                    "            if changes.hasIncrementalChanges {",
+                    "                // If there are incremental diffs, animate them in the collection view.",
+                    "                collectionView.performBatchUpdates({",
+                    "                    // For indexes to make sense, updates must be in this order:",
+                    "                    // delete, insert, reload, move.",
+                    "                    if let removed = changes.removedIndexes where removed.count > 0 {",
+                    "                        collectionView.deleteItems(at: removed.map { IndexPath(item: $0, section:0) })",
+                    "                    }",
+                    "                    if let inserted = changes.insertedIndexes where inserted.count > 0 {",
+                    "                        collectionView.insertItems(at: inserted.map { IndexPath(item: $0, section:0) })",
+                    "                    }",
+                    "                    if let changed = changes.changedIndexes where changed.count > 0 {",
+                    "                        collectionView.reloadItems(at: changed.map { IndexPath(item: $0, section:0) })",
+                    "                    }",
+                    "                    changes.enumerateMoves { fromIndex, toIndex in",
+                    "                        collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),",
+                    "                                                to: IndexPath(item: toIndex, section: 0))",
+                    "                    }",
+                    "                })",
+                    "            } else {",
+                    "                // Reload the collection view if incremental diffs aren't available.",
+                    "                collectionView.reloadData()",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)photoLibraryDidChange:(PHChange *)changeInfo {",
+                    "    // Change notifications may be made on a background queue.",
+                    "    // Re-dispatch to the main queue to update the UI.",
+                    "    dispatch_async(dispatch_get_main_queue(), ^{",
+                    "        // Check for changes to the displayed album itself",
+                    "        // (its existence and metadata, not its member assets).",
+                    "        PHObjectChangeDetails *albumChanges = [changeInfo changeDetailsForObject:self.displayedAlbum];",
+                    "        if (albumChanges) {",
+                    "            // Fetch the new album and update the UI accordingly.",
+                    "            self.displayedAlbum = [albumChanges objectAfterChanges];",
+                    "            self.navigationController.navigationItem.title = self.displayedAlbum.localizedTitle;",
+                    "        }",
+                    " ",
+                    "        // Check for changes to the list of assets (insertions, deletions, moves, or updates).",
+                    "        PHFetchResultChangeDetails *collectionChanges = [changeInfo changeDetailsForFetchResult:self.albumContents];",
+                    "        if (collectionChanges) {",
+                    "            // Keep the new fetch result for future use.",
+                    "            self.albumContents = collectionChanges.fetchResultAfterChanges;",
+                    " ",
+                    "            if (collectionChanges.hasIncrementalChanges)  {",
+                    "                // If there are incremental diffs, animate them in the collection view.",
+                    "                [self.collectionView performBatchUpdates:^{",
+                    "                    NSIndexSet *removed = collectionChanges.removedIndexes;",
+                    "                    if (removed.count) {",
+                    "                        [self.collectionView deleteItemsAtIndexPaths:[self indexPathsFromIndexSet:removed]];",
+                    "                    }",
+                    "                    NSIndexSet *inserted = collectionChanges.insertedIndexes;",
+                    "                    if (inserted.count) {",
+                    "                        [self.collectionView insertItemsAtIndexPaths:[self indexPathsFromIndexSet:inserted]];",
+                    "                    }",
+                    "                    NSIndexSet *changed = collectionChanges.changedIndexes;",
+                    "                    if (changed.count) {",
+                    "                        [self.collectionView reloadItemsAtIndexPaths:[self indexPathsFromIndexSet:changed]];",
+                    "                    }",
+                    "                    if (collectionChanges.hasMoves) {",
+                    "                        [collectionChanges enumerateMovesWithBlock:^(NSUInteger fromIndex, NSUInteger toIndex) {",
+                    "                            NSIndexPath *fromIndexPath = [NSIndexPath indexPathForItem:fromIndex inSection:0];",
+                    "                            NSIndexPath *toIndexPath = [NSIndexPath indexPathForItem:toIndex inSection:0];",
+                    "                            [self.collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:toIndexPath];",
+                    "                        }];",
+                    "                    }",
+                    "                } completion:nil];",
+                    "            } else {",
+                    "                // Reload the collection view if incremental diffs aren't available.",
+                    "                [self.collectionView reloadData];",
+                    "            }",
+                    "        }",
+                    "    });",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UICollectionView": {
+      "abstract": [
+        {
+          "text": "An object that manages an ordered collection of data items and presents them using customizable layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICollectionView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library": {
+      "abstract": [
+        {
+          "text": "Register an observer to be notified of changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Observing Changes in the Photo Library",
+      "type": "topic",
+      "url": "/documentation/photokit/observing-changes-in-the-photo-library"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset/fetchAssets(in:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves assets from the specified asset collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAssets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHAssetCollection",
+          "text": "PHAssetCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHAsset",
+          "text": "PHAsset"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset/fetchAssets(in:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchAssetsInAssetCollection:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchAssets(in:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phasset/fetchassets(in:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCollection": {
+      "abstract": [
+        {
+          "text": "A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCollection",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcollection"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHChange": {
+      "abstract": [
+        {
+          "text": "A description of a change that occurred in the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHChange",
+      "type": "topic",
+      "url": "/documentation/photos/phchange"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchResult": {
+      "abstract": [
+        {
+          "text": "An ordered list of assets or collections returned from a Photos fetch method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchResult",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchresult"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails": {
+      "abstract": [
+        {
+          "text": "A description of changes that occurred in the set of asset or collection objects listed in a fetch result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchResultChangeDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchResultChangeDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchResultChangeDetails",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchresultchangedetails"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails": {
+      "abstract": [
+        {
+          "text": "A description of changes that occurred in an asset or collection object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHObjectChangeDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHObjectChangeDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHObjectChangeDetails",
+      "type": "topic",
+      "url": "/documentation/photos/phobjectchangedetails"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9": {
+      "abstract": [
+        {
+          "text": "Registers an object to receive messages when objects in the photo library change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryChangeObserver",
+          "text": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerChangeObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/register(_:)-6y3b9"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters an object so that it no longer receives change messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryChangeObserver",
+          "text": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterChangeObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterChangeObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/unregisterchangeobserver(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver": {
+      "abstract": [
+        {
+          "text": "A protocol to adopt to have the system notify your app of changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryChangeObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryChangeObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibraryChangeObserver",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrarychangeobserver"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Tells your observer that a set of changes has occurred in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoLibraryDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHChange",
+          "text": "PHChange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "photoLibraryDidChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "photoLibraryDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrarychangeobserver/photolibrarydidchange(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Observing-Library-Changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHChange",
+        "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+        "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails"
+      ],
+      "title": "Observing Library Changes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Observing-Photo-Library-Changes",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)"
+      ],
+      "title": "Observing Photo Library Changes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Observing-Photo-Library-Changes",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)"
+              ],
+              "title": "Observing Photo Library Changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Observing-Library-Changes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHChange",
+                "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+                "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails"
+              ],
+              "title": "Observing Library Changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHPhotoLibraryChangeObserver"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollectionView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScrollView",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-6y3b9/title",
+          "value": "registerChangeObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-6y3b9/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerChangeObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/title",
+          "value": "PHFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1fetchAssets(in:options:)/title",
+          "value": "fetchAssetsInAssetCollection:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset~1fetchAssets(in:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchAssetsInAssetCollection:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/title",
+          "value": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterChangeObserver(_:)/title",
+          "value": "unregisterChangeObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterChangeObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterChangeObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/title",
+          "value": "PHAssetCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/title",
+          "value": "PHObjectChangeDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/title",
+          "value": "PHChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver~1photoLibraryDidChange(_:)/title",
+          "value": "photoLibraryDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver~1photoLibraryDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "photoLibraryDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/title",
+          "value": "PHFetchResultChangeDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResultChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResultChangeDetails"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phphotolibrarychangeobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phphotolibrarychangeobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

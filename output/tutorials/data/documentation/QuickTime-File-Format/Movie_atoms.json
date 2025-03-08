@@ -1,0 +1,571 @@
+{
+  "abstract": [
+    {
+      "text": "Atoms that act as a container for the information that describes a movie’s data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie_atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Movie atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime movie atoms have an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'moov'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These atoms act as a container for the information that describes a movie’s data. This information, or metadata, is stored in a number of different types of atoms. Generally speaking, only metadata is stored in a movie atom. Sample data for the movie, such as audio or video samples, are referenced in the movie atom, but are not contained in it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The movie atom is essentially a container of other atoms. These atoms, taken together, describe the contents of a movie. At the highest level, movie atoms typically contain track atoms, which in turn contain media atoms. At the lowest level are the leaf atoms, which contain non-atom data, usually in the form of a table or a set of data elements. For example, a track atom contains an edit atom, which in turn contains an edit list atom, a leaf atom which contains data in the form of an edit list table. All of these atoms are discussed later in this documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figures provide a conceptual view of the organization of a simple, one-track QuickTime movie. Each nested box in the illustration represents an atom that belongs to its parent atom. The figure does not show the data regions of any of the atoms. These areas are described in the sections that follow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "movie-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The movie atom contains a track atom, which contains other atoms as detailed in the following figure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "track-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The track atom in turn contains a media atom as shown in the following figure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The media atom contains a video media information atom as shown in the following figure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "video-media-information-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The video media information atom contains a sample table atom as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-table-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the figures show the organization of a standard movie atom. It is possible to compress the movie metadata using a lossless compression algorithm. In such cases, the movie atom contains only a single child atom—the compressed movie atom (",
+              "type": "text"
+            },
+            {
+              "code": "'cmov'",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). When this child atom is uncompressed, its contents conform to the structure shown in the following illustration. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is also possible to create a reference movie, a movie that refers to other movies; in this case the movie atom may contain only a reference movie atom (",
+              "type": "text"
+            },
+            {
+              "code": "'rmra'",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Ultimately, the chain must end in either a standard movie atom, such as the one in following figure, or a compressed movie atom, which can be uncompressed to obtain the same structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources": {
+      "abstract": [
+        {
+          "text": "Reduce file size and startup latency by compressing movie resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressed movie resources",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/compressed_movie_resources"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Interleaving_movie_data": {
+      "abstract": [
+        {
+          "text": "Interleave data in your movie for optimal playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Interleaving_movie_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Interleaving movie data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/interleaving_movie_data"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that describe and define a track’s media type and sample data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies": {
+      "abstract": [
+        {
+          "text": "A movie that contains references to alternate movies is called a reference movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reference movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/reference_movies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that describe samples, which are single elements in a sequence of time-ordered data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/User_data_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms you use to define and store data associated with a QuickTime object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/User_data_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User data atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/user_data_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Color_table_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a list of preferred colors for displaying the movie on devices that support only 256 colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Color_table_atom",
+          "text": "Color table atom ('ctab')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Color_table_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color table atom ('ctab')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/color_table_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the information that defines a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_atom",
+          "text": "Movie atom ('moov')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Movie atom ('moov')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the characteristics of an entire QuickTime movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_header_atom",
+          "text": "Movie header atom ('mvhd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Movie header atom ('mvhd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_header_atom"
+    },
+    "media-atom": {
+      "alt": "A diagram that shows the structure of a media atom.",
+      "identifier": "media-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8d01dece682063d8e1561c59943e03b6/media-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a28a3e5e68b87b5270fc4dd612d62df/media-atom~dark@2x.png"
+        }
+      ]
+    },
+    "movie-atom": {
+      "alt": "A diagram that shows the structure of a movie atom.",
+      "identifier": "movie-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a9a7a25f304fa2ed2a801f0f17aed31/movie-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6adc2e3229659a53ec9a7aa470065cc/movie-atom~dark@2x.png"
+        }
+      ]
+    },
+    "sample-table-atom": {
+      "alt": "A diagram that shows the structure of a sample table atom.",
+      "identifier": "sample-table-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb6e2f6e3917061f6c12f70e79dfe293/sample-table-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8020348042280c297604fbaf44cad141/sample-table-atom~dark@2x.png"
+        }
+      ]
+    },
+    "track-atom": {
+      "alt": "A diagram that shows the structure of a track atom.",
+      "identifier": "track-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c477b2af441537e88c18d1a36428bf13/track-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57292c329682c296ef51cdc32dc75b85/track-atom~dark@2x.png"
+        }
+      ]
+    },
+    "video-media-information-atom": {
+      "alt": "A diagram that shows the structure of a video media information atom.",
+      "identifier": "video-media-information-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0e9d190ceed983d788adf9ea05b6b6b/video-media-information-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01196564136d9d7246e658da9b6192ae/video-media-information-atom~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features"
+      ],
+      "title": "Movies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Describing-movies",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Color_table_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/User_data_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Interleaving_movie_data"
+      ],
+      "title": "Describing movies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/movie_atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

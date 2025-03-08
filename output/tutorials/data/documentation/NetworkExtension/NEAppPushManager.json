@@ -1,0 +1,1996 @@
+{
+  "abstract": [
+    {
+      "text": "An object that configures a push provider and manages its life cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEAppPushManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NEAppPushManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NEAppPushManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NEAppPushManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can create as many ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances as you need. Load your managers from the persistent store and set up their delegates immediately after the app launches, so they’re ready to handle incoming calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines how an app push manager instance interacts with the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushDelegate",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushdelegate"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain string for local push errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushErrorDomain",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppusherrordomain"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager": {
+      "abstract": [
+        {
+          "text": "An object that configures a push provider and manages its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives incoming call information from the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NEAppPushDelegate",
+          "text": "NEAppPushDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/delegate"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a configuration is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/isactive"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isEnabled": {
+      "abstract": [
+        {
+          "text": "A property you use to toggle enabling the configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/isenabled"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadAllFromPreferences(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads all saved manager configurations asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadAllFromPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppPushManager",
+          "text": "NEAppPushManager"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadAllFromPreferences(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadAllFromPreferencesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadAllFromPreferences(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/loadallfrompreferences(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadFromPreferences(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the manager’s saved configuration from the persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFromPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadFromPreferences(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadFromPreferencesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadFromPreferences(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/loadfrompreferences(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/localizedDescription": {
+      "abstract": [
+        {
+          "text": "A string that contains the localized description of the app push manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/localizedDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedDescription",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/localizeddescription"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchPrivateLTENetworks": {
+      "abstract": [
+        {
+          "text": "An array of private LTE networks that the system matches for local push activation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPrivateLTENetworks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEPrivateLTENetwork",
+          "text": "NEPrivateLTENetwork"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchPrivateLTENetworks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchPrivateLTENetworks"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchPrivateLTENetworks",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/matchprivateltenetworks"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs": {
+      "abstract": [
+        {
+          "text": "An array of Wi-Fi SSID strings that the system matches for local push activation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchSSIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchSSIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchSSIDs",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/matchssids"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A string that contains the bundle identifier of the push provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "providerBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "providerBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/providerbundleidentifier"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerConfiguration": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providerConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "providerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "providerConfiguration",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/providerconfiguration"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/removeFromPreferences(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes the manager’s configuration from the persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/removeFromPreferences(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromPreferencesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromPreferences(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/removefrompreferences(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/saveToPreferences(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Saves the manager’s configuration in the persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveToPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/saveToPreferences(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveToPreferencesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveToPreferences(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/savetopreferences(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that the push manager encounters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManagerError"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManagerError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManagerError",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanagererror-swift.struct"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes that the local push API declares.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManagerError.Code",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanagererror-swift.struct/code"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPrivateLTENetwork": {
+      "abstract": [
+        {
+          "text": "The parameters of a private LTE network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEPrivateLTENetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPrivateLTENetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEPrivateLTENetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEPrivateLTENetwork",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprivateltenetwork"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection": {
+      "abstract": [
+        {
+          "text": "Implement your Local Push Connectivity app to ensure delivery of notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining a Reliable Network Connection",
+      "type": "topic",
+      "url": "/documentation/networkextension/maintaining-a-reliable-network-connection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network": {
+      "abstract": [
+        {
+          "text": "Provide voice and text communication on a local network isolated from Apple Push Notification service by adopting Local Push Connectivity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Receiving Voice and Text Communications on a Local Network",
+      "type": "topic",
+      "url": "/documentation/networkextension/receiving-voice-and-text-communications-on-a-local-network"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Matching-Wi-Fi-networks",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchPrivateLTENetworks",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEPrivateLTENetwork"
+      ],
+      "title": "Matching Wi-Fi networks"
+    },
+    {
+      "anchor": "Persisting-manager-settings",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadFromPreferences(completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadAllFromPreferences(completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/saveToPreferences(completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/removeFromPreferences(completionHandler:)"
+      ],
+      "title": "Persisting manager settings"
+    },
+    {
+      "anchor": "Working-with-a-delegate",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushDelegate"
+      ],
+      "title": "Working with a delegate"
+    },
+    {
+      "anchor": "Inspecting-manager-properties",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isActive",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isEnabled",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/localizedDescription"
+      ],
+      "title": "Inspecting manager properties"
+    },
+    {
+      "anchor": "Inspecting-provider-properties",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerConfiguration",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier"
+      ],
+      "title": "Inspecting provider properties"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushErrorDomain",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct/Code"
+      ],
+      "title": "Handling errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NEAppPushManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Matching-Wi-Fi-networks",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchSSIDs",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/matchPrivateLTENetworks",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEPrivateLTENetwork"
+              ],
+              "title": "Matching Wi-Fi networks"
+            },
+            {
+              "anchor": "Persisting-manager-settings",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadFromPreferences(completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/loadAllFromPreferences(completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/saveToPreferences(completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/removeFromPreferences(completionHandler:)"
+              ],
+              "title": "Persisting manager settings"
+            },
+            {
+              "anchor": "Working-with-a-delegate",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushDelegate"
+              ],
+              "title": "Working with a delegate"
+            },
+            {
+              "anchor": "Inspecting-manager-properties",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isActive",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/isEnabled",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/localizedDescription"
+              ],
+              "title": "Inspecting manager properties"
+            },
+            {
+              "anchor": "Inspecting-provider-properties",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerConfiguration",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier"
+              ],
+              "title": "Inspecting provider properties"
+            },
+            {
+              "anchor": "Handling-errors",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushErrorDomain",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManagerError-swift.struct/Code"
+              ],
+              "title": "Handling errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NEAppPushManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1localizedDescription/title",
+          "value": "localizedDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1localizedDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushErrorDomain/title",
+          "value": "NEAppPushErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1saveToPreferences(completionHandler:)/title",
+          "value": "saveToPreferencesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1saveToPreferences(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveToPreferencesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchPrivateLTENetworks/title",
+          "value": "matchPrivateLTENetworks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchPrivateLTENetworks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchPrivateLTENetworks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/title",
+          "value": "NEAppPushProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManagerError-swift.struct~1Code/title",
+          "value": "NEAppPushManagerError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManagerError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManagerError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManagerError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManagerError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/title",
+          "value": "NEAppPushManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1loadAllFromPreferences(completionHandler:)/title",
+          "value": "loadAllFromPreferencesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1loadAllFromPreferences(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadAllFromPreferencesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1removeFromPreferences(completionHandler:)/title",
+          "value": "removeFromPreferencesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1removeFromPreferences(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromPreferencesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushDelegate/title",
+          "value": "NEAppPushDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1loadFromPreferences(completionHandler:)/title",
+          "value": "loadFromPreferencesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1loadFromPreferences(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadFromPreferencesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPrivateLTENetwork/title",
+          "value": "NEPrivateLTENetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPrivateLTENetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPrivateLTENetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPrivateLTENetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPrivateLTENetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1providerBundleIdentifier/title",
+          "value": "providerBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1providerBundleIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "providerBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1providerConfiguration/title",
+          "value": "providerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1providerConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "providerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchSSIDs/title",
+          "value": "matchSSIDs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1matchSSIDs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchSSIDs"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/neapppushmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/neapppushmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1152 @@
+{
+  "abstract": [
+    {
+      "text": "Use queries to request sample data from HealthKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reading data from HealthKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three main ways to access data from the HealthKit Store:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Direct method calls.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The HealthKit store provides methods to directly access characteristic data. These methods only access characteristic data. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Queries.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Queries return the current snapshot of the requested data from the HealthKit store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Long-running queries.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " These queries continue to run in the background and update your app whenever the system detects changes to the HealthKit store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Queries",
+          "level": 3,
+          "text": "Queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Queries return the current snapshot of the data in the HealthKit store. All queries run on an anonymous background queue. When the query is complete, it executes the results handler on the background queue. HealthKit provides different types of queries, each designed to return different types of data from the HealthKit store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Sample query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This is a general-purpose query. Use sample queries to access any type of sample data. Sample queries are particularly useful when you want to sort the results or limit the total number of samples returned. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Anchored object query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to search for changes to the HealthKit store. The first time you run an anchor query, it returns all the matching samples currently in the store. On subsequent runs, it returns only those items added or deleted since the last run. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Statistics query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to perform statistical calculations over the set of matching samples. You can use statistics queries to calculate the sum, minimum, maximum, or average value in the set. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Statistics collection query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to perform multiple statistics queries over a series of fixed-length time intervals. You often use these queries when creating graphs. They provide a simple method for calculating things such as the total number of calories consumed each day or the number of steps taken during each five-minute interval. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Correlation query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to perform complex searches of the data contained in a correlation. These queries can contain individual predicates for each of the sample types stored in the correlation. If you just want to match the correlation type, use a sample query instead. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelationQuery",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Source query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to search for sources (apps and devices) that have saved matching samples to the HealthKit store. A source query lists all the sources that are saving a particular sample type. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Activity summary query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to search for activity summary information for the user. Each activity summary object contains a summary of the user’s activity for a given day. You can query for either a single day or a range of days. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Document query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use this query to search for health documents. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentQuery",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Long-running-queries",
+          "level": 3,
+          "text": "Long-running queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Long-running queries continue to run an anonymous background queue, and update your app whenever the system detects changes to the HealthKit store. In addition, observer queries can register for background delivery. This lets HealthKit wake your app in the background whenever an update occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HealthKit provides the following long-running queries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Observer query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This long-running query monitors the HealthKit store and alerts you to any changes to matching samples. Use an observer query when you want the system to notify you about changes to the store. You can register observer queries for background delivery. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Anchored object query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In addition to returning the current snapshot of modified data, an anchored object query can act as a long-running query. If enabled, it continues to run in the background, providing updates when something adds or removes matching samples from the store. Unlike the observer query, these updates include a list of items that have changed; however, you can’t register anchored object queries for background delivery. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Statistics collection query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In addition to calculating the current snapshot of statistical collections, this query can act as a long-running query. If something adds or removes matching samples from the store, this query recalculates the statistics collections and updates your app. You can’t register statistics collection queries for background delivery. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Activity summary query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In addition to calculating the current snapshot of the user’s activity summary, this query can act as a long-running query. If the user’s activity summary data changes, this query recalculates the activity summary and updates your app. You can’t register activity summary queries for background delivery. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads activity summaries using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummaryQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKActivitySummaryQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKActivitySummaryQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkactivitysummaryquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that runs anchored object queries using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAnchoredObjectQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAnchoredObjectQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAnchoredObjectQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkanchoredobjectquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelationQuery": {
+      "abstract": [
+        {
+          "text": "A query that performs complex searches based on the correlation’s contents, and returns a snapshot of all matching samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCorrelationQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelationQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCorrelationQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCorrelationQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcorrelationquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns a snapshot of all matching documents currently saved in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumentquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore": {
+      "abstract": [
+        {
+          "text": "The access point for all data managed by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery": {
+      "abstract": [
+        {
+          "text": "A long-running query that monitors the HealthKit store and updates your app when the HealthKit store saves or deletes a matching sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKObserverQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObserverQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKObserverQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKObserverQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobserverquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads samples using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSampleQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSampleQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSampleQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that uses Swift concurrency to read the apps and devices that produced the matching samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSourceQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSourceQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSourceQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksourcequerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that gathers a collection of statistics calculated over a series of fixed-length time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollectionQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollectionquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that calculates the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app": {
+      "abstract": [
+        {
+          "text": "Create a health app that allows a clinical care team to send and receive mobility data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Mobility Health App",
+      "type": "topic",
+      "url": "/documentation/healthkit/creating-a-mobility-health-app"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/data-types": {
+      "abstract": [
+        {
+          "text": "Specify the kind of data used in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data types",
+      "type": "topic",
+      "url": "/documentation/healthkit/data-types"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/queries": {
+      "abstract": [
+        {
+          "text": "Query health and fitness data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/samples": {
+      "abstract": [
+        {
+          "text": "Create and save health and fitness samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/samples"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit": {
+      "abstract": [
+        {
+          "text": "Create and share HealthKit samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving data to HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/saving-data-to-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos": {
+      "abstract": [
+        {
+          "text": "Incorporate HealthKit State of Mind into your app and visualize the data in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing HealthKit State of Mind in visionOS",
+      "type": "topic",
+      "url": "/documentation/healthkit/visualizing-healthkit-state-of-mind-in-visionos"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Health-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+        "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+        "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+        "doc://com.apple.healthkit/documentation/HealthKit/samples",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos"
+      ],
+      "title": "Health data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/title",
+          "value": "HKHealthStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/title",
+          "value": "HKObserverQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObserverQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObserverQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObserverQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelationQuery/title",
+          "value": "HKCorrelationQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelationQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelationQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelationQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelationQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentQuery/title",
+          "value": "HKDocumentQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentQuery"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1245 @@
+{
+  "abstract": [
+    {
+      "text": "Determines whether the managed object’s current state is valid.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForUpdate()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSManagedObject(im)validateForUpdate:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "validateForUpdate"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "validateForUpdate:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "validateForUpdate()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateForUpdate"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSManagedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s implementation iterates through all of the receiver’s properties validating each in turn. If this results in more than one error, the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in the ",
+              "type": "text"
+            },
+            {
+              "code": "NSError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returned in ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a key ",
+              "type": "text"
+            },
+            {
+              "code": "NSDetailedErrorsKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the corresponding value is an array containing the individual validation errors. If you pass ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the error, validation will abort after the first failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Subclasses should invoke super’s implementation before performing their own validation, and should combine any error returned by super’s implementation with their own (see Managed Object Validation).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/1535452-validation-error-codes": {
+      "abstract": [
+        {
+          "text": "Error codes relating to the validation of managed objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/1535452-validation-error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Validation error codes",
+      "type": "topic",
+      "url": "/documentation/coredata/1535452-validation-error-codes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject": {
+      "abstract": [
+        {
+          "text": "The base class that all Core Data model objects inherit from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObject",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForDelete()": {
+      "abstract": [
+        {
+          "text": "Determines whether the managed object can be deleted in its current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateForDelete"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForDelete()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateForDelete:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateForDelete()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject/validatefordelete()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForInsert()": {
+      "abstract": [
+        {
+          "text": "Determines whether the managed object can be inserted in its current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateForInsert"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForInsert()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateForInsert:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateForInsert()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject/validateforinsert()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForUpdate()": {
+      "abstract": [
+        {
+          "text": "Determines whether the managed object’s current state is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateForUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateForUpdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateForUpdate()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject/validateforupdate()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateValue(_:forKey:)": {
+      "abstract": [
+        {
+          "text": "Validates a property value for a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<AnyObject?>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateValue(_:forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateValue:forKey:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject/validatevalue(_:forkey:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSValidationKeyErrorKey": {
+      "abstract": [
+        {
+          "text": "The error key for the attribute that failed to validate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidationKeyErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSValidationKeyErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidationKeyErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidationKeyErrorKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nsvalidationkeyerrorkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSValidationObjectErrorKey": {
+      "abstract": [
+        {
+          "text": "The error key for the object that failed to validate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidationObjectErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSValidationObjectErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidationObjectErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidationObjectErrorKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nsvalidationobjecterrorkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSValidationPredicateErrorKey": {
+      "abstract": [
+        {
+          "text": "The error key for the predicate that failed to validate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidationPredicateErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSValidationPredicateErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidationPredicateErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidationPredicateErrorKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nsvalidationpredicateerrorkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSValidationValueErrorKey": {
+      "abstract": [
+        {
+          "text": "The error key for the value that failed to validate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidationValueErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSValidationValueErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidationValueErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidationValueErrorKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nsvalidationvalueerrorkey"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Data-Validation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateValue(_:forKey:)",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForDelete()",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForInsert()",
+        "doc://com.apple.coredata/documentation/CoreData/1535452-validation-error-codes",
+        "doc://com.apple.coredata/documentation/CoreData/NSValidationKeyErrorKey",
+        "doc://com.apple.coredata/documentation/CoreData/NSValidationObjectErrorKey",
+        "doc://com.apple.coredata/documentation/CoreData/NSValidationPredicateErrorKey",
+        "doc://com.apple.coredata/documentation/CoreData/NSValidationValueErrorKey"
+      ],
+      "title": "Managing Data Validation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "validateForUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateForUpdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coredata/documentation/CoreData",
+                "doc://com.apple.coredata/documentation/CoreData/NSManagedObject"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Data-Validation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateValue(_:forKey:)",
+                "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForDelete()",
+                "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/validateForInsert()",
+                "doc://com.apple.coredata/documentation/CoreData/1535452-validation-error-codes",
+                "doc://com.apple.coredata/documentation/CoreData/NSValidationKeyErrorKey",
+                "doc://com.apple.coredata/documentation/CoreData/NSValidationObjectErrorKey",
+                "doc://com.apple.coredata/documentation/CoreData/NSValidationPredicateErrorKey",
+                "doc://com.apple.coredata/documentation/CoreData/NSValidationValueErrorKey"
+              ],
+              "title": "Managing Data Validation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "validateForUpdate:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the receiver’s current state is invalid, upon return contains an instance of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSError",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " that describes the problem.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " if the receiver’s current state is valid, otherwise ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForDelete()/title",
+          "value": "validateForDelete:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForDelete()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateForDelete:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/title",
+          "value": "NSManagedObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationObjectErrorKey/title",
+          "value": "NSValidationObjectErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationObjectErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidationObjectErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateValue(_:forKey:)/title",
+          "value": "validateValue:forKey:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateValue(_:forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateValue:forKey:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationPredicateErrorKey/title",
+          "value": "NSValidationPredicateErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationPredicateErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidationPredicateErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationValueErrorKey/title",
+          "value": "NSValidationValueErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationValueErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidationValueErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForInsert()/title",
+          "value": "validateForInsert:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForInsert()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateForInsert:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationKeyErrorKey/title",
+          "value": "NSValidationKeyErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSValidationKeyErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidationKeyErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForUpdate()/title",
+          "value": "validateForUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1validateForUpdate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateForUpdate:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/nsmanagedobject/validateforupdate()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/nsmanagedobject/validateforupdate()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

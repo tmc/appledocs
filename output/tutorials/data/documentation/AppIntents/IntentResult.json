@@ -1,0 +1,5092 @@
+{
+  "abstract": [
+    {
+      "text": "A type that contains the result of performing an action, and includes optional information to deliver back to the initiator.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents12IntentResultP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "IntentResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IntentResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "IntentResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IntentResult"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of implementing this protocol, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ReturnsValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/OpensAppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ProvidesDialog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ShowsSnippetView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type aliases on your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation in combination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func perform() async throws -> some ReturnsValue<Int> & OpensAppIntent {",
+            "    .result(value: 1, opensIntent: MyOpensIntent())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/perform()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult": {
+      "abstract": [
+        {
+          "text": "A type that contains the result of performing an action, and includes optional information to deliver back to the initiator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentResult",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Dialog": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dialog"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Dialog",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Dialog",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/dialog"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/IntentResult-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/IntentResult-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IntentResult Implementations",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/intentresult-implementations"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/OpensAppIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/OpensAppIntent",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "OpensAppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/opensappintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Snippet": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Snippet"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Snippet",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Snippet",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/snippet"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Value-swift.associatedtype": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_IntentValue"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Value-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Value",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/value-swift.associatedtype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result()": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result()",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(actionButtonIntent:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(actionbuttonintent:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(actionButtonIntent:activityIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(actionbuttonintent:activityidentifier:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(actionButtonIntent:activityIdentifier:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(actionbuttonintent:activityidentifier:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(actionButtonIntent:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(actionbuttonintent:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(content:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(content:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:content:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(dialog:content:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:view:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:view:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(dialog:view:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:)-8t8q8": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:)-8t8q8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:)-8t8q8"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-2h5ux": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-2h5ux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:content:)-2h5ux"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-965vk": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-965vk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:content:)-965vk"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:)-64q5v": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:)-64q5v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:dialog:)-64q5v"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-2g81m": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-2g81m",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:dialog:content:)-2g81m"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-9kg66": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-9kg66",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:dialog:content:)-9kg66"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-1w6b6": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-1w6b6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:dialog:view:)-1w6b6"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-8wkpg": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-8wkpg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:dialog:view:)-8wkpg"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-4l1d4": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-4l1d4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:view:)-4l1d4"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-5hm2s": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-5hm2s",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(opensIntent:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(opensintent:view:)-5hm2s"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:actionButtonIntent:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:actionbuttonintent:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:actionButtonIntent:activityIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:actionbuttonintent:activityidentifier:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:actionButtonIntent:activityIdentifier:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:actionbuttonintent:activityidentifier:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:actionButtonIntent:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:actionbuttonintent:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:content:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:content:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:content:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:dialog:content:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:view:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:view:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:dialog:view:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:)-8v5op": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:)-8v5op",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:)-8v5op"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-2f6ht": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-2f6ht",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:content:)-2f6ht"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-95tmb": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-95tmb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:content:)-95tmb"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:)-1eg3x": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:)-1eg3x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:dialog:)-1eg3x"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-4iwem": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-4iwem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:dialog:content:)-4iwem"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-mwwf": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-mwwf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:dialog:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:dialog:content:)-mwwf"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-5sg4p": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-5sg4p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:dialog:view:)-5sg4p"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-88j6a": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-88j6a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:dialog:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:dialog:view:)-88j6a"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-12wbo": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-12wbo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:view:)-12wbo"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-5z5t0": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opensIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OpensAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-5z5t0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:opensIntent:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:opensintent:view:)-5z5t0"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:view:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:view:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(value:view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(value:view:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(view:)": {
+      "abstract": [
+        {
+          "text": "Indicates the ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " finished performing",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(view:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(view:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(view:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/value-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/value-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/value-swift.property"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResultContainer": {
+      "abstract": [
+        {
+          "text": "An object that represents the output of a completed intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResultContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResultContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentResultContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentResultContainer",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresultcontainer"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/OpensIntent": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers an app intent back to the initiator of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpensIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/OpensIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpensIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpensIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/opensintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ProvidesDialog": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers a dialog back to the initiator of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProvidesDialog"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ProvidesDialog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProvidesDialog"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProvidesDialog",
+      "type": "topic",
+      "url": "/documentation/appintents/providesdialog"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ResultsCollection": {
+      "abstract": [
+        {
+          "text": "A protocol representing a collection of returned items with support for sectioning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResultsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ResultsCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResultsCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResultsCollection",
+      "type": "topic",
+      "url": "/documentation/appintents/resultscollection"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ReturnsValue": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers a value back to the initiator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReturnsValue"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ReturnsValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReturnsValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReturnsValue",
+      "type": "topic",
+      "url": "/documentation/appintents/returnsvalue"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ShowsSnippetView": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers a view back to the initiator of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShowsSnippetView"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ShowsSnippetView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShowsSnippetView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShowsSnippetView",
+      "type": "topic",
+      "url": "/documentation/appintents/showssnippetview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpensIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ProvidesDialog",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ReturnsValue",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ShowsSnippetView"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResultContainer"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Results",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResultContainer",
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpensIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ProvidesDialog",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ReturnsValue",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ShowsSnippetView",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ResultsCollection"
+      ],
+      "title": "Results"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-result-value",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/value-swift.property"
+      ],
+      "title": "Getting the result value"
+    },
+    {
+      "anchor": "Communicating-the-result-to-the-user",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Dialog"
+      ],
+      "title": "Communicating the result to the user"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/OpensAppIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Snippet",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/Value-swift.associatedtype"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result()",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:activityIdentifier:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(content:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:content:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(dialog:view:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:)-8t8q8",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-2h5ux",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:content:)-965vk",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:)-64q5v",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-2g81m",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:content:)-9kg66",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-1w6b6",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:dialog:view:)-8wkpg",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-4l1d4",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(opensIntent:view:)-5hm2s",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:activityIdentifier:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:actionButtonIntent:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:content:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:content:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:dialog:view:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:)-8v5op",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-2f6ht",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:content:)-95tmb",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:)-1eg3x",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-4iwem",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:content:)-mwwf",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-5sg4p",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:dialog:view:)-88j6a",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-12wbo",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:opensIntent:view:)-5z5t0",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(value:view:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(view:)"
+      ],
+      "title": "Type Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/IntentResult-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/intentresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

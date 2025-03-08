@@ -1,0 +1,959 @@
+{
+  "abstract": [
+    {
+      "text": "Update your widget with new information you fetch with a network request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making network requests in a widget extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets use a timeline mechanism to update their content. In addition to providing a timeline with new local data, you can initiate a network request that provides updated information for your widget from your server. Network requests are possible while the widget extension is active, such as when it provides a snapshot, or a new timeline. For example, the Emoji Rangers widget of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project loads updated leaderboard data in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, making a network request from a widget extension is similar to making a network request in your app: you can initiate inline or background requests. However, widgets can only access limited resources and a request may not have enough time to complete before the system halts the widget extension. To update a widget with data from your server, use background requests similar to the process described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-data-with-a-background-network-request",
+          "level": 3,
+          "text": "Load data with a background network request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a widget initiates a background network request, the system delivers events related to the request directly to the widget extension instead of the containing app. To process them, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/onBackgroundURLSessionEvents(matching:_:)-fw6x",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maintain a reference to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object of your background network request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep a reference to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "matching",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter to identify the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store a reference to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "onBackgroundURLSessionEvents(matching:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier’s completion handler. You’ll invoke it after the system delivers all events for the network request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system terminates your widget extension before all events complete, use the stored ",
+              "type": "text"
+            },
+            {
+              "code": "matching",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier to check if a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object exists. If no session object exists, create a new session using the identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Consider initializing URLSession objects lazily and caching them in a central location so that your code works regardless of whether your extension remains active, is suspended, or is terminated.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-your-widget-after-background-network-requests-complete",
+          "level": 3,
+          "text": "Update your widget after background network requests complete",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After invoking ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/onBackgroundURLSessionEvents(matching:_:)-fw6x",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you supplied to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the system has delivered all events, it calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To refresh your widget’s timeline after the network request completes, call the needed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods from your implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "SessionDidFinishEvents(forBackgroundURLSession:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Once you finish handling the events, call the completion handler of ",
+              "type": "text"
+            },
+            {
+              "code": "onBackgroundURLSessionEvents(matching:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you previously stored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an array of timeline entries for the current time and,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally, any future times to update a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit8TimelineV",
+          "text": "Timeline"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "getTimeline(in:completion:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/gettimeline(in:completion:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured widgets and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading widget timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that describes a widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/onBackgroundURLSessionEvents(matching:_:)-fw6x": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when events related to a URL session with a matching identifier are waiting to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onBackgroundURLSessionEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchingString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "urlSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19WidgetConfigurationP",
+          "text": "WidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/onBackgroundURLSessionEvents(matching:_:)-fw6x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onBackgroundURLSessionEvents(matching:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration/onBackgroundURLSessionEvents(matching:_:)-fw6x"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle session-level events, like session life cycle changes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that all messages enqueued for a session have been delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSessionDidFinishEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forBackgroundURLSession"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSession)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSessionDidFinishEvents(forBackgroundURLSession:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a download task has finished downloading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTask"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionDownloadTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinishDownloadingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:downloadTask:didFinishDownloadingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiondownloaddelegate~11411575-urlsession/title",
+          "value": "URLSession:downloadTask:didFinishDownloadingToURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiondelegate/title",
+          "value": "NSURLSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiondelegate~11617185-urlsessiondidfinishevents/title",
+          "value": "URLSessionDidFinishEventsForBackgroundURLSession:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/making-network-requests-in-a-widget-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/making-network-requests-in-a-widget-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

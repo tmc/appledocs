@@ -1,0 +1,2263 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the information property list and add icons before you distribute your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app for distribution"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare your Xcode project for distribution before you upload a build to App Store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Connect or export a build to distribute it outside of the App Store. Provide all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the required information about your app—such as a unique bundle ID, build string,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app icon, and launch screen. Choose the settings carefully because most of the information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is not editable after you distribute a build through TestFlight or the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information to enter in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/reference/required-localizable-and-editable-properties/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/reference/app-information",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains more details) in App Store Connect Help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-bundle-ID",
+          "level": 3,
+          "text": "Set the bundle ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create your Xcode project from a template, the bundle ID (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "),",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which uniquely identifies your app throughout the system, defaults to the organization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ID appended to the app name that you enter in reverse-DNS format—for example, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bundle ID becomes ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.mycompany.HelloWorld",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your organization ID is unique across all developers and your app name is unique",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within your organization, your default bundle ID should also be unique. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use your organization’s domain name as the organization ID to ensure that the bundle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ID is unique.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your app through TestFlight and the App Store, you ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in App Store Connect and enter a bundle ID that matches the one in your project. Add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bundle ID to your project in the project editor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preparing-your-app-for-distribution-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand Signing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the bundle ID in the Bundle Identifier text field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you upload your first build to App Store Connect, you can’t change the bundle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ID, so carefully choose the organization ID when you create the project, or edit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bundle ID afterward. You can edit the name of the app until you submit the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to App Review.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-multiple-bundle-IDs-to-offer-independent-platform-versions",
+          "level": 3,
+          "text": "Set multiple bundle IDs to offer independent platform versions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiplatform apps are built to use the same bundle ID for all platforms by default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you can offer the apps together on the App Store as a universal purchase (see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/universal-purchase/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To offer platform-specific versions of your app, create app records for each platform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variant in App Store Connect and add a distinct bundle ID for each version. In the project editor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the Signing & Capabilities pane and expand Signing. Under Signing, expand the region for each platform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a distinct bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure signing settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have In-App Purchases or Subscriptions, re-create them for each app version in App",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Store Connect. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in App Store Connect Help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-the-project-to-a-team",
+          "level": 3,
+          "text": "Assign the project to a team",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you haven’t already done so, assign the project to a team. For example, if you want to distribute your app using TestFlight or through the App",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Store, assign all of the targets in a project to a team that belongs to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you upload",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or export your build, Xcode creates the necessary signing assets in the associated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the project editor, select the Signing & Capabilities pane and choose a team from the Team pop-up menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-supported-destinations",
+          "level": 3,
+          "text": "Set the supported destinations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Indicate which devices and platforms your app supports. In the project editor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preparing-your-app-for-distribution-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the General pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the Supported Destinations section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+), choose a device and platform. To remove a destination, select it and click the Remove button (-).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Set-the-app-category",
+          "level": 3,
+          "text": "Set the app category",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Categories help customers discover your app on the App Store. In App Store Connect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you set the primary and secondary categories that you want your app to appear under",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the App Store. For macOS apps, you also set a category for your app in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a category that matches or closely relates to the primary category you set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the General pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the Identity section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a category from the App Category pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For guidance with choosing the most accurate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and effective categories, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/categories/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-version-number-and-build-string",
+          "level": 3,
+          "text": "Set the version number and build string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version number (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and build string (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uniquely identify the build of your app throughout the system. The version number appears in the App Store. For apps distributed through TestFlight or the App Store, the Xcode Organizer displays crashes and field reports for each build of an app version. For macOS apps, the version number and build string can also appear in the About window, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/AboutPanelOptionKey/credits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The version number and build string are expected to be in the format [Major].[Minor].[Patch] where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Patch",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a maintenance release, as in 10.14.1. Both keys are required by the App Store. For macOS apps, you must increment the build string before you distribute a new build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Increment the version number when you create a new version of your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode can update the build number when you upload a new archive to the App Store. To take advantage of this, use one of the preconfigured distribution methods from Xcode Organizer or enable the “Manage version and build number” setting from the App Store Connect distribution options for your Custom distribution method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use a Custom distribution method and disable the “Manage version and build number” option, you need to manage the build string yourself and ensure that you increment this build string before archiving a build that you want to distribute. In the project editor, select the General pane, expand Identity, and set the version number and build string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Build strings for Mac apps must increment across all versions of your app. Build strings for apps built for other platforms can start back over at 1 for new versions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Edit-deployment-info-settings",
+          "level": 3,
+          "text": "Edit deployment info settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For iOS and iPadOS apps, choose the device orientations your app supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preparing-your-app-for-distribution-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your app to support multiple windows, click the arrow next to Supports multiple windows. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/specifying-the-scenes-your-app-supports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and for sample code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/supporting-multiple-windows-on-ipad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-app-icon-and-App-Store-icon",
+          "level": 3,
+          "text": "Add an app icon and App Store icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an icon to represent your app in various locations on a device and on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A project created from a template already contains the image set for app icons. The App Icons and Launch Images section of the General pane displays the name of the asset. Open the asset in the asset catalog to configure the icon asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preparing-your-app-for-distribution-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on configuring your icons, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For app icon guidance and metrics, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-launch-screen",
+          "level": 3,
+          "text": "Provide a launch screen",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "launch screen",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", is a user interface file that appears immediately when your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launches, then is quickly replaced with your app’s first screen. For apps and platforms that use them, the launch screen",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simply enhances the user experience by providing something for people to view while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app launches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Edit the ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchScreen.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, which is included in your Xcode project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you create it from a template. Otherwise, you can add a launch screen file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to an existing project, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about designing a launch screen, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/patterns/launching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-usage-descriptions-to-access-protected-resources",
+          "level": 3,
+          "text": "Provide usage descriptions to access protected resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app attempts to access a protected resource, the system prompts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for permission. It then generates a dialog that includes the name of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app and a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "usage description",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that you provide. For example, the usage description",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for accessing location data might be “Your location is used to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "turn-by-turn directions to your destination.” If you grant permission, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system remembers and doesn’t prompt again for that resource. If you deny permission,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the access to that resource and any further attempts fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must provide usage descriptions in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for all protected resources your app accesses, such as a person‘s location, calendar,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reminders, and contacts. Also provide usage descriptions for accessories, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the camera and microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-App-Sandbox-and-hardened-runtime-macOS",
+          "level": 3,
+          "text": "Configure App Sandbox and hardened runtime (macOS)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you distribute your macOS app through the App Store, you must ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devbd04af149",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you notarize your macOS app to distribute it outside of the App Store, you must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and, optionally, can also enable App Sandbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about hardened runtime, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information about notarization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-copyright-key-macOS",
+          "level": 3,
+          "text": "Set the copyright key (macOS)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS apps, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev2ec588bbf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHumanReadableCopyright",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the information property list before you upload your app to App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, if you don’t pass a copyright string explicitly to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method that displays the About window, a localized version of the copyright key is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displayed in the About window instead. For example, if you set the copyright key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "@2002-2019 My Company",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it appears at the bottom of the About window. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localize the information property list for each language that you support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-export-compliance-information",
+          "level": 3,
+          "text": "Add export compliance information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you distribute your app outside the United States or Canada, your app is subject",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to U.S. export laws. If your app uses encryption, it is subject to U.S. export compliance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements. You can bypass the questions that App Store Connect asks you every",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time you submit your app for review by providing export compliance information in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/complying-with-encryption-export-regulations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon": {
+      "abstract": [
+        {
+          "text": "Add app icon variations to represent your app in places such as Settings, search",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "results, and the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app icon",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-app-icon"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Add new or existing files to your project, and use groups to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "organize the files and folders in the Project navigator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing files and folders in your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/managing-files-and-folders-in-your-xcode-project"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/AboutPanelOptionKey/credits": {
+      "abstract": [
+        {
+          "text": "The credits string to display in the About panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "credits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAboutPanelOptionKey",
+          "text": "AboutPanelOptionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/AboutPanelOptionKey/credits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "credits",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/AboutPanelOptionKey/credits"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)": {
+      "abstract": [
+        {
+          "text": "Displays a standard About window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderFrontStandardAboutPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orderFrontStandardAboutPanel(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString": {
+      "abstract": [
+        {
+          "text": "The release or version number of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleShortVersionString",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion": {
+      "abstract": [
+        {
+          "text": "The version of the build that identifies an iteration of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHumanReadableCopyright": {
+      "abstract": [
+        {
+          "text": "A human-readable copyright notice for the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHumanReadableCopyright",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHumanReadableCopyright",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHumanReadableCopyright"
+    },
+    "doc://com.apple.documentation/documentation/Security/complying-with-encryption-export-regulations": {
+      "abstract": [
+        {
+          "text": "Declare the use of encryption in your app to streamline the app submission process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/complying-with-encryption-export-regulations",
+      "kind": "article",
+      "role": "article",
+      "title": "Complying with Encryption Export Regulations",
+      "type": "topic",
+      "url": "/documentation/Security/complying-with-encryption-export-regulations"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/specifying-the-scenes-your-app-supports": {
+      "abstract": [
+        {
+          "text": "Tell the system about your app’s scenes, including the objects you use to manage each scene and its initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/specifying-the-scenes-your-app-supports",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying the scenes your app supports",
+      "type": "topic",
+      "url": "/documentation/UIKit/specifying-the-scenes-your-app-supports"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/supporting-multiple-windows-on-ipad": {
+      "abstract": [
+        {
+          "text": "Support side-by-side instances of your app’s interface and create new windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/supporting-multiple-windows-on-ipad",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting multiple windows on iPad",
+      "type": "topic",
+      "url": "/documentation/UIKit/supporting-multiple-windows-on-ipad"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/categories/": {
+      "identifier": "https://developer.apple.com/app-store/categories/",
+      "title": "Choosing a category",
+      "titleInlineContent": [
+        {
+          "text": "Choosing a category",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/categories/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons",
+      "title": "App icons",
+      "titleInlineContent": [
+        {
+          "text": "App icons",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/patterns/launching": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/patterns/launching",
+      "title": "Launching",
+      "titleInlineContent": [
+        {
+          "text": "Launching",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/patterns/launching"
+    },
+    "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app",
+      "title": "Create an app record",
+      "titleInlineContent": [
+        {
+          "text": "Create an app record",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases",
+      "title": "Create consumable or non-consumable in-app purchases",
+      "titleInlineContent": [
+        {
+          "text": "Create consumable or non-consumable in-app purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions",
+      "title": "Offer auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Offer auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/offer-auto-renewable-subscriptions"
+    },
+    "https://developer.apple.com/help/app-store-connect/reference/app-information": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/reference/app-information",
+      "title": "App information",
+      "titleInlineContent": [
+        {
+          "text": "App information",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/app-information"
+    },
+    "https://developer.apple.com/help/app-store-connect/reference/required-localizable-and-editable-properties/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/reference/required-localizable-and-editable-properties/",
+      "title": "Required, localizable, and editable properties",
+      "titleInlineContent": [
+        {
+          "text": "Required, localizable, and editable properties",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/required-localizable-and-editable-properties/"
+    },
+    "https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version",
+      "title": "Create a new app version",
+      "titleInlineContent": [
+        {
+          "text": "Create a new app version",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/support/universal-purchase/": {
+      "identifier": "https://developer.apple.com/support/universal-purchase/",
+      "title": "Offering Universal Purchase",
+      "titleInlineContent": [
+        {
+          "text": "Offering Universal Purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/universal-purchase/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev2ec588bbf": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev2ec588bbf",
+      "title": "set the copyright key",
+      "titleInlineContent": [
+        {
+          "text": "set the copyright key",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev2ec588bbf"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devbd04af149": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devbd04af149",
+      "title": "enable App Sandbox",
+      "titleInlineContent": [
+        {
+          "text": "enable App Sandbox",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devbd04af149"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f",
+      "title": "enable hardened runtime",
+      "titleInlineContent": [
+        {
+          "text": "enable hardened runtime",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devf87a2ac8f"
+    },
+    "preparing-your-app-for-distribution-1": {
+      "alt": "Screenshot showing the Signing section of the Signing & Capabilities pane expanded to reveal the “Automatically manage signing” checkbox above a pop-up menu for selecting your Team and text fields for entering your Bundle Identifier. There are sections below these controls for entering platform-specific settings which are currently collapsed. The image shows where you choose a target.",
+      "identifier": "preparing-your-app-for-distribution-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ca1104158f695dc569a6959caef7ff5/preparing-your-app-for-distribution-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4c997584026cae1cd12ed6d0950a123/preparing-your-app-for-distribution-1~dark@2x.png"
+        }
+      ]
+    },
+    "preparing-your-app-for-distribution-2": {
+      "alt": "Screenshot showing the Supported Destinations and Identity sections of General pane expanded. The Supported Destinations section includes a table with an Add button (+) and Remove button (-). The Identity section includes an App Category pop-up menu above text fields for Display Name, Bundle Identifier, Version and Build. The image shows where you choose a target.",
+      "identifier": "preparing-your-app-for-distribution-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7f4a82d6044e3ddeb33328ce40a10ec/preparing-your-app-for-distribution-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac5efa80fd68b0d4bf608191dc70b96b/preparing-your-app-for-distribution-2~dark@2x.png"
+        }
+      ]
+    },
+    "preparing-your-app-for-distribution-3": {
+      "alt": "Screenshot showing the Deployment Info section of the General pane expanded to reveal checkboxes to configure the orientations you app supports and a link to configure support for multiple windows.",
+      "identifier": "preparing-your-app-for-distribution-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c6c3a8a70d1b91850f72db42a3d4972/preparing-your-app-for-distribution-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d82408080bb42aeccb91e193a33e4522/preparing-your-app-for-distribution-3~dark@2x.png"
+        }
+      ]
+    },
+    "preparing-your-app-for-distribution-4": {
+      "alt": "Screenshot showing the Asset Catalog with an app icon asset selected to reveal image wells for adding images to use for your app’s icon.",
+      "identifier": "preparing-your-app-for-distribution-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7717e14eb0514d6c583e92d1bfd83621/preparing-your-app-for-distribution-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4a366a5e2d6e6c14d5e66db3333eba3/preparing-your-app-for-distribution-4~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1AboutPanelOptionKey~1credits/title",
+          "value": "NSAboutPanelOptionCredits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1AboutPanelOptionKey~1credits/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSAboutPanelOptionKey",
+              "text": "NSAboutPanelOptionKey"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAboutPanelOptionCredits"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1orderFrontStandardAboutPanel(_:)/title",
+          "value": "orderFrontStandardAboutPanel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1orderFrontStandardAboutPanel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "orderFrontStandardAboutPanel:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

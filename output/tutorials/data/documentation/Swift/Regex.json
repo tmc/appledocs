@@ -1,0 +1,2823 @@
+{
+  "abstract": [
+    {
+      "text": "A regular expression.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Regex"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StringProcessing5RegexV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Regex"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Regex"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Regex"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Regex"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Output"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regular expressions are a concise way of describing a pattern, which can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "help you match or extract portions of a string. You can create a ",
+              "type": "text"
+            },
+            {
+              "code": "Regex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance using regular expression syntax, either in a regex literal or a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 'keyAndValue' is created using a regex literal",
+            "let keyAndValue = /(.+?): (.+)/",
+            "// 'simpleDigits' is created from a pattern in a string",
+            "let simpleDigits = try Regex(\"[0-9]+\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a ",
+              "type": "text"
+            },
+            {
+              "code": "Regex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to search for a pattern in a string or substring.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "contains(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to check for the presence of a pattern, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "firstMatch(of:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "matches(of:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to find matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let setting = \"color: 161 103 230\"",
+            "if setting.contains(simpleDigits) {",
+            "    print(\"'\\(setting)' contains some digits.\")",
+            "}",
+            "// Prints \"'color: 161 103 230' contains some digits.\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you find a match, the resulting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/Match",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type includes an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/Match/output",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that contains the matched substring along with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any captures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let match = setting.firstMatch(of: keyAndValue) {",
+            "    print(\"Key: \\(match.1)\")",
+            "    print(\"Value: \\(match.2)\")",
+            "}",
+            "// Key: color",
+            "// Value: 161 103 230"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import the ",
+              "type": "text"
+            },
+            {
+              "code": "RegexBuilder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module, you can also create ",
+              "type": "text"
+            },
+            {
+              "code": "Regex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances using a clear and flexible declarative syntax. Using this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "style, you can combine, capture, and transform regexes, ",
+              "type": "text"
+            },
+            {
+              "code": "RegexBuilder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types, and custom parsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Prior to Swift 6,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you might need to write ",
+                  "type": "text"
+                },
+                {
+                  "code": "#/myregex/#",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "/myregex/",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "when you make a regular expression using a literal.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Regular-Expression-Literals",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in  ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://docs.swift.org/swift-book/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AnyRegexOutput": {
+      "abstract": [
+        {
+          "text": "The type-erased, dynamic output of a regular expression match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyRegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AnyRegexOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyRegexOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyRegexOutput",
+      "type": "topic",
+      "url": "/documentation/swift/anyregexoutput"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomConsumingRegexComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomConsumingRegexComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomConsumingRegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/customconsumingregexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex": {
+      "abstract": [
+        {
+          "text": "A regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Regex"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Regex"
+        }
+      ],
+      "role": "symbol",
+      "title": "Regex",
+      "type": "topic",
+      "url": "/documentation/swift/regex"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/Match": {
+      "abstract": [
+        {
+          "text": "The result of matching a regular expression against a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Match"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/Match",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Match"
+        }
+      ],
+      "role": "symbol",
+      "title": "Regex.Match",
+      "type": "topic",
+      "url": "/documentation/swift/regex/match"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/Match/output": {
+      "abstract": [
+        {
+          "text": "The output produced from the match operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/Match/output",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "output",
+      "type": "topic",
+      "url": "/documentation/swift/regex/match/output"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/RegexOutput": {
+      "abstract": [
+        {
+          "text": "The output type for this regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/RegexOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "Regex.RegexOutput",
+      "type": "topic",
+      "url": "/documentation/swift/regex/regexoutput"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/anchorsMatchLineEndings(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression where the start and end of input",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "anchors (",
+          "type": "text"
+        },
+        {
+          "code": "^",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "$",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") also match against the start and end of a line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorsMatchLineEndings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/anchorsMatchLineEndings(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchorsMatchLineEndings(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/anchorsmatchlineendings(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyCharacterClasses(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that matches only ASCII characters when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "matching character classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asciiOnlyCharacterClasses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyCharacterClasses(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asciiOnlyCharacterClasses(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/asciionlycharacterclasses(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyDigits(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that matches only ASCII characters as digits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asciiOnlyDigits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyDigits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asciiOnlyDigits(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/asciionlydigits(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWhitespace(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that matches only ASCII characters as space",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asciiOnlyWhitespace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWhitespace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asciiOnlyWhitespace(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/asciionlywhitespace(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWordCharacters(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that matches only ASCII characters as word",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asciiOnlyWordCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWordCharacters(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asciiOnlyWordCharacters(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/asciionlywordcharacters(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/contains(captureNamed:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a named capture with the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "name exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "captureNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/contains(captureNamed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(captureNamed:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/contains(capturenamed:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/dotMatchesNewlines(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression where the “any” metacharacter (",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "also matches against the start and end of a line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dotMatchesNewlines"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/dotMatchesNewlines(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dotMatchesNewlines(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/dotmatchesnewlines(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-45hz7": {
+      "abstract": [
+        {
+          "text": "Returns the first match for this regex found in the given substring.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Ss",
+          "text": "Substring"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-45hz7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/firstmatch(in:)-45hz7"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-6s8x0": {
+      "abstract": [
+        {
+          "text": "Returns the first match for this regex found in the given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-6s8x0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/firstmatch(in:)-6s8x0"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/ignoresCase(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that ignores case when matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresCase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/ignoresCase(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ignoresCase(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/ignorescase(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-4ef55": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression using a RegexBuilder closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14RegexComponentP",
+          "text": "RegexComponent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-4ef55",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(_:)-4ef55"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-52kg": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression from the given string, using a dynamic",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "capture list.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Output",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AnyRegexOutput",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-52kg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(_:)-52kg"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-92siq": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression with a dynamic capture list from the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "regular expression.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Output",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AnyRegexOutput",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "OtherOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "OtherOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-92siq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(_:)-92siq"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-2ucu7": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression with a strongly-typed capture list from the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing14AnyRegexOutputV",
+          "text": "AnyRegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-2ucu7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(_:as:)-2ucu7"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-5z5nu": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression from the given string, using the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "capture type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-5z5nu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(_:as:)-5z5nu"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/init(verbatim:)": {
+      "abstract": [
+        {
+          "text": "Creates a regular expression that matches the given string exactly, as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "though every metacharacter in it was escaped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "verbatim"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/init(verbatim:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(verbatim:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/init(verbatim:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/matchingSemantics(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that matches with the specified semantic",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchingSemantics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing18RegexSemanticLevelV",
+          "text": "RegexSemanticLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/matchingSemantics(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchingSemantics(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/matchingsemantics(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-1an24": {
+      "abstract": [
+        {
+          "text": "Returns a match if this regex matches the given substring at its start.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefixMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Ss",
+          "text": "Substring"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-1an24",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefixMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/prefixmatch(in:)-1an24"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-5oh8i": {
+      "abstract": [
+        {
+          "text": "Returns a match if this regex matches the given string at its start.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefixMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-5oh8i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefixMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/prefixmatch(in:)-5oh8i"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/regex": {
+      "abstract": [
+        {
+          "text": "The regular expression represented by this component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "regex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/regex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regex",
+      "type": "topic",
+      "url": "/documentation/swift/regex/regex"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/repetitionBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression where quantifiers use the specified behavior",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repetitionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing23RegexRepetitionBehaviorV",
+          "text": "RegexRepetitionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/repetitionBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repetitionBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/repetitionbehavior(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-8hr88": {
+      "abstract": [
+        {
+          "text": "Returns a match if this regex matches the given substring in its entirety.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wholeMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Ss",
+          "text": "Substring"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-8hr88",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wholeMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/wholematch(in:)-8hr88"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-9do8t": {
+      "abstract": [
+        {
+          "text": "Returns a match if this regex matches the given string in its entirety.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wholeMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV5MatchV",
+          "text": "Match"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-9do8t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wholeMatch(in:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/wholematch(in:)-9do8t"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Regex/wordBoundaryKind(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a regular expression that uses the specified word boundary algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wordBoundaryKind"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing21RegexWordBoundaryKindV",
+          "text": "RegexWordBoundaryKind"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RegexOutput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Regex/wordBoundaryKind(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wordBoundaryKind(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/regex/wordboundarykind(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexComponent": {
+      "abstract": [
+        {
+          "text": "A type that represents a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/regexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexRepetitionBehavior": {
+      "abstract": [
+        {
+          "text": "Specifies how much to attempt to match when using a quantifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexRepetitionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexRepetitionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexRepetitionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexRepetitionBehavior",
+      "type": "topic",
+      "url": "/documentation/swift/regexrepetitionbehavior"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexSemanticLevel": {
+      "abstract": [
+        {
+          "text": "A semantic level to use during regex matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexSemanticLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexSemanticLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexSemanticLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexSemanticLevel",
+      "type": "topic",
+      "url": "/documentation/swift/regexsemanticlevel"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexWordBoundaryKind": {
+      "abstract": [
+        {
+          "text": "A word boundary algorithm to use during regex matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexWordBoundaryKind"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexWordBoundaryKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexWordBoundaryKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexWordBoundaryKind",
+      "type": "topic",
+      "url": "/documentation/swift/regexwordboundarykind"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Regular-Expression-Literals": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Regular-Expression-Literals",
+      "title": "Regular Expression Literals",
+      "titleInlineContent": [
+        {
+          "text": "Regular Expression Literals",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Regular-Expression-Literals"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RegexComponent"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Regular-Expressions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RegexRepetitionBehavior",
+        "doc://com.apple.Swift/documentation/Swift/RegexSemanticLevel",
+        "doc://com.apple.Swift/documentation/Swift/RegexWordBoundaryKind",
+        "doc://com.apple.Swift/documentation/Swift/AnyRegexOutput",
+        "doc://com.apple.Swift/documentation/Swift/RegexComponent",
+        "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent"
+      ],
+      "title": "Regular Expressions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Regex/Match"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-4ef55",
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-52kg",
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(_:)-92siq",
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-2ucu7",
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(_:as:)-5z5nu",
+        "doc://com.apple.Swift/documentation/Swift/Regex/init(verbatim:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Regex/regex"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Regex/anchorsMatchLineEndings(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyCharacterClasses(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyDigits(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWhitespace(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/asciiOnlyWordCharacters(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/contains(captureNamed:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/dotMatchesNewlines(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-45hz7",
+        "doc://com.apple.Swift/documentation/Swift/Regex/firstMatch(in:)-6s8x0",
+        "doc://com.apple.Swift/documentation/Swift/Regex/ignoresCase(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/matchingSemantics(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-1an24",
+        "doc://com.apple.Swift/documentation/Swift/Regex/prefixMatch(in:)-5oh8i",
+        "doc://com.apple.Swift/documentation/Swift/Regex/repetitionBehavior(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-8hr88",
+        "doc://com.apple.Swift/documentation/Swift/Regex/wholeMatch(in:)-9do8t",
+        "doc://com.apple.Swift/documentation/Swift/Regex/wordBoundaryKind(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Regex/RegexOutput"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/regex"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "abstract": [
+    {
+      "text": "Export a 3D model that consists of multiple rooms captured in the same physical vicinity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Merging multiple scans into a single structure"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10192: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10192/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, set the run destination to an iOS 17 device with a LiDAR Scanner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "3e2b731b0ef7/MergingMultipleScansIntoASingleStructure.zip": {
+      "checksum": "3e2b731b0ef7ae3402b3e3a0363bb046640857697c05eb9682042281a9ad9f5f70268a9cf5271d8bcfe4f84d3e538619e981a2d35be7ab02fda0f57ac134b058",
+      "identifier": "3e2b731b0ef7/MergingMultipleScansIntoASingleStructure.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/3e2b731b0ef7/MergingMultipleScansIntoASingleStructure.zip"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom": {
+      "abstract": [
+        {
+          "text": "A structure that provides the key details of a scanned room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData": {
+      "abstract": [
+        {
+          "text": "An opaque object that holds the raw results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoomData",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroomdata"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure": {
+      "abstract": [
+        {
+          "text": "An object that holds the results of the merger of multiple capture sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedStructure",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedstructure"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes": {
+      "abstract": [
+        {
+          "text": "Determine details about the objects and surfaces that the framework identifies in a scan.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Captured Object Attributes",
+      "type": "topic",
+      "url": "/documentation/roomplan/captured-object-attributes"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Create an AR experience that enables people to scan a building that contains multiple rooms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Scanning the rooms of a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/scanning-the-rooms-of-a-single-structure"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc23/10192/": {
+      "identifier": "https://developer.apple.com/wwdc23/10192/",
+      "title": "Explore enhancements to RoomPlan",
+      "titleInlineContent": [
+        {
+          "text": "Explore enhancements to RoomPlan",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10192/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "3e2b731b0ef7/MergingMultipleScansIntoASingleStructure.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Captured-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes"
+      ],
+      "title": "Captured Data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/merging-multiple-scans-into-a-single-structure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

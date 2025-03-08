@@ -1,0 +1,1618 @@
+{
+  "abstract": [
+    {
+      "text": "A logical condition used to test a set of input values for searching or filtering.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/predicate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4162325,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation9PredicateV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "Predicate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Structure",
+    "symbolKind": "struct",
+    "title": "Predicate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Predicate"
+            },
+            {
+              "kind": "text",
+              "text": "<each "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation9PredicateV5Inputxmfp",
+              "text": "Input"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A predicate is a logical condition that evaluates to a Boolean value (true or false).  You use predicates for operations like filtering a collection or searching for matching elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a predicate, use the ",
+              "type": "text"
+            },
+            {
+              "code": "Predicate(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let messagePredicate = #Predicate<Message> { message in",
+            "    message.length < 100 && message.sender == \"Jeremy\"",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4264467",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example above, the closure that contains the predicate’s conditions takes one argument — the value being tested. Even though you write the predicate using a closure, the macro transforms that closure into a predicate when you compile. The code in the closure isn’t run as part of your program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the predicate’s definition, you can use the following operations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Arithmetic (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unary minus (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Range (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "...",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "..<",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Comparison (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "==",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "!=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ternary conditional (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "?:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Conditional expressions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean logic (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "&&",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "||",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "!",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift optionals (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "?",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "??",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "!",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "flatMap(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-",
+                      "type": "text"
+                    },
+                    {
+                      "code": "let",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " expressions)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Types (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "as",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "as?",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "as!",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sequence operations (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "allSatisfy()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "filter()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contains()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contains(where:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "starts(with:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "max()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "min()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscript and member access (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String comparisons (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contains(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "localizedStandardContains(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "caseInsensitiveCompare(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "localizedCompare(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A predicate can’t contain any nested declarations, use any flow control such as ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loops, or modify variables from its enclosing scope. However, it can refer to constants that are in scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To express more complex queries, you can nest expressions in the predicate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let messagePredicate = #Predicate<Message> { message in",
+            "    message.recipients.contains {",
+            "        $0.firstName == message.sender.firstName",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4265215",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can safely encode and decode predicates, pass predicates across concurrency boundaries, and load a predicate from a file. To define a list of types and key paths that are allowed when reading an archived predicate, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can transform a predicate into another representation — for example, to express a predicate in another query language, or to create a modified predicate — using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4162327-expression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DecodableWithConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/decodablewithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EncodableWithConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/encodablewithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate that evaluates logical combinations of other predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompoundPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompoundPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompoundpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate#4264467": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate#4264467",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/predicate#4264467"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate#4265215": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate#4265215",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/predicate#4265215"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4162327-expression": {
+      "abstract": [
+        {
+          "text": "The component expressions of the predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ": any StandardPredicateExpression<Bool>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4162327-expression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4162327-expression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4227209-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4227209-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4227209-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4227210-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": Predicate<repeat each Input>.EncodingConfiguration)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4227210-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:configuration:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4227210-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4227211-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4227211-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4227211-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4280108-evaluate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "(repeat each Input) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4280108-evaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluate(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4280108-evaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4280109-false": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`false`"
+        },
+        {
+          "kind": "text",
+          "text": ": Predicate<repeat each Input>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4280109-false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4280109-false"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4280111-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": Predicate<repeat each Input>.DecodingConfiguration)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4280111-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:configuration:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4280111-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4280112-true": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`true`"
+        },
+        {
+          "kind": "text",
+          "text": ": Predicate<repeat each Input>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4280112-true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4280112-true"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4280113-variable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "variable"
+        },
+        {
+          "kind": "text",
+          "text": ": (repeat PredicateExpressions.Variable<each Input>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4280113-variable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variable",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4280113-variable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4288405-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "((repeat PredicateExpressions.Variable<each Input>) -> any StandardPredicateExpression<Bool>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4288405-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4288405-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4319301-debugdescription": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4319301-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4319301-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/4319302-description": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/4319302-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/4319302-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/decodingconfiguration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate.DecodingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/decodingconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate.DecodingConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/decodingconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate/encodingconfiguration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate.EncodingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate/encodingconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate.EncodingConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate/encodingconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatebindings": {
+      "abstract": [
+        {
+          "text": "A mapping from a predicates‘s input variables to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateBindings",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatebindings"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration": {
+      "abstract": [
+        {
+          "text": "A specification of the expected types and key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding": {
+      "abstract": [
+        {
+          "text": "A type that provides the expected key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableKeyPathProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableKeyPathProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodablekeypathproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateerror": {
+      "abstract": [
+        {
+          "text": "An error thrown while evaluating a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateError",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions": {
+      "abstract": [
+        {
+          "text": "The expressions that make up a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpressions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate, and that's supported by the standard predicate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StandardPredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StandardPredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/standardpredicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicateerror",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+        "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression",
+        "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate"
+      ],
+      "title": "Filltering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4264483",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4227209-encode",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4227210-encode",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4227211-init",
+        "doc://com.apple.documentation/documentation/foundation/predicate/decodingconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/predicate/encodingconfiguration"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "4265247",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4162327-expression"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting and transforming a predicate"
+    },
+    {
+      "anchor": "4281395",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4288405-init",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4280111-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "4281396",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4319301-debugdescription",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4319302-description",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4280113-variable"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "4274437",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4280109-false",
+        "doc://com.apple.documentation/documentation/foundation/predicate/4280112-true"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Properties"
+    },
+    {
+      "anchor": "4281397",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate/4280108-evaluate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/predicate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

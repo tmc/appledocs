@@ -1,0 +1,4071 @@
+{
+  "abstract": [
+    {
+      "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)SCNAnimatable",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNAnimatable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNAnimatable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SCNAnimatable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit uses the same architecture as the Core Animation framework, allowing you to animate property changes implicitly or explicitly. For implicit animation, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to quickly create simple animations with very little code. For more complex animations, explicitly create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, and use the methods in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to attach them to the SceneKit objects you want to animate. You also use the methods in this protocol to control any animations already attached to a SceneKit object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, making a node spin continuously for as long as it appears in the scene graph requires explicitly creating an animation that repeats. The following code creates such an animation and attaches it to a node:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@\"rotation\"];",
+            "// Animate one complete revolution around the node's Y axis.",
+            "rotationAnimation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];",
+            "rotationAnimation.duration = 10.0; // One revolution in ten seconds.",
+            "rotationAnimation.repeatCount = FLT_MAX; // Repeat the animation forever.",
+            "[node addAnimation:rotationAnimation forKey:nil]; // Attach the animation to the node to start it."
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for animations in Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAAnimation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAAnimation",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAAnimation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAccelerationConstraint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAccelerationConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAccelerationConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAccelerationConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAccelerationConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaccelerationconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimation(_:forKey:)": {
+      "abstract": [
+        {
+          "text": "Adds an animation object for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNAnimation",
+          "text": "SCNAnimationProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimation(_:forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAnimation:forKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addAnimation(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/addanimation(_:forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimationPlayer(_:forKey:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAnimationPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNAnimationPlayer",
+          "text": "SCNAnimationPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimationPlayer(_:forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAnimationPlayer:forKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addAnimationPlayer(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/addanimationplayer(_:forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animation(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the animation with the specified key.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAAnimation",
+          "text": "CAAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animation(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "animation(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/animation(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationKeys": {
+      "abstract": [
+        {
+          "text": "An array containing the keys of all animations currently attached to the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationKeys"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "animationKeys",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/animationkeys"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationPlayer(forKey:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNAnimationPlayer",
+          "text": "SCNAnimationPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationPlayer(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationPlayerForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "animationPlayer(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/animationplayer(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/isAnimationPaused(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the animation attached to the object with the specified key is paused.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnimationPaused"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/isAnimationPaused(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isAnimationForKeyPaused:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isAnimationPaused(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/isanimationpaused(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/pauseAnimation(forKey:)": {
+      "abstract": [
+        {
+          "text": "Pauses the animation attached to the object with the specified key.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pauseAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/pauseAnimation(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pauseAnimationForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pauseAnimation(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/pauseanimation(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations()": {
+      "abstract": [
+        {
+          "text": "Removes all the animations currently attached to the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllAnimations"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllAnimations"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAllAnimations()",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/removeallanimations()"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations(withBlendOutDuration:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllAnimations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withBlendOutDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations(withBlendOutDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllAnimationsWithBlendOutDuration:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAllAnimations(withBlendOutDuration:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/removeallanimations(withblendoutduration:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:)": {
+      "abstract": [
+        {
+          "text": "Removes the animation attached to the object with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAnimationForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAnimation(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/removeanimation(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:blendOutDuration:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendOutDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:blendOutDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAnimationForKey:blendOutDuration:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAnimation(forKey:blendOutDuration:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/removeanimation(forkey:blendoutduration:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:fadeOutDuration:)": {
+      "abstract": [
+        {
+          "text": "Removes the animation attached to the object with the specified key, smoothly transitioning out of the animation’s effect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fadeOutDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:fadeOutDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAnimationForKey:fadeOutDuration:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAnimation(forKey:fadeOutDuration:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/removeanimation(forkey:fadeoutduration:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/resumeAnimation(forKey:)": {
+      "abstract": [
+        {
+          "text": "Resumes a previously paused animation attached to the object with the specified key.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/resumeAnimation(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resumeAnimationForKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "resumeAnimation(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/resumeanimation(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/setAnimationSpeed(_:forKey:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAnimationSpeed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/setAnimationSpeed(_:forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSpeed:forAnimationKey:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setAnimationSpeed(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable/setanimationspeed(_:forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimation",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimation-swift.class"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationEvent": {
+      "abstract": [
+        {
+          "text": "A container for a closure, a block in Objective-C, to be executed at a specific time during playback of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimationEvent",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimationevent"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimationPlayer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimationplayer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationProtocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimationProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimationProtocol",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimationprotocol"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAvoidOccluderConstraint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAvoidOccluderConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAvoidOccluderConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAvoidOccluderConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAvoidOccluderConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnavoidoccluderconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNBillboardConstraint": {
+      "abstract": [
+        {
+          "text": "A constraint that orients a node to always point toward the current camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNBillboardConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNBillboardConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNBillboardConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNBillboardConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnbillboardconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNBox": {
+      "abstract": [
+        {
+          "text": "A six-sided polyhedron geometry whose faces are all rectangles, optionally with rounded edges and corners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNBox"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNBox",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnbox"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera": {
+      "abstract": [
+        {
+          "text": "A set of camera attributes that can be attached to a node to provide a point of view for displaying the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCamera",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncamera"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCapsule": {
+      "abstract": [
+        {
+          "text": "A right circular cylinder geometry whose ends are capped with hemispheres.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCapsule"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCapsule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCapsule"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCapsule",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncapsule"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCone": {
+      "abstract": [
+        {
+          "text": "A right circular cone or frustum geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCone"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCone"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCone",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncone"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNConstraint": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that automatically adjust the position, rotation, or scale of a node based on specified rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNCylinder": {
+      "abstract": [
+        {
+          "text": "A right circular cylinder geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNCylinder"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNCylinder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNCylinder"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNCylinder",
+      "type": "topic",
+      "url": "/documentation/scenekit/scncylinder"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNDistanceConstraint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNDistanceConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNDistanceConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNDistanceConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNDistanceConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scndistanceconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNFloor": {
+      "abstract": [
+        {
+          "text": "A plane that can optionally display a reflection of the scene above it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNFloor"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNFloor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNFloor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNFloor",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnfloor"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry": {
+      "abstract": [
+        {
+          "text": "A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNIKConstraint": {
+      "abstract": [
+        {
+          "text": "A constraint that applies inverse kinematics to make a chain of nodes “reach” toward a target point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNIKConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNIKConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNIKConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNIKConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnikconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLight": {
+      "abstract": [
+        {
+          "text": "A light source that can be attached to a node to illuminate the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNLight"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNLight",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlight"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLookAtConstraint": {
+      "abstract": [
+        {
+          "text": "A constraint that orients a node to always point toward a specified other node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNLookAtConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLookAtConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNLookAtConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNLookAtConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlookatconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial": {
+      "abstract": [
+        {
+          "text": "A set of shading attributes that define the appearance of a geometry’s surface when rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterial",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty": {
+      "abstract": [
+        {
+          "text": "A container for the color or texture of one of a material’s visual properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterialProperty",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterialproperty"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher": {
+      "abstract": [
+        {
+          "text": "An object that manages smooth transitions between a node’s base geometry and one or more target geometries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMorpher",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode": {
+      "abstract": [
+        {
+          "text": "A structural element of a scene graph, representing a position and transform in a 3D coordinate space, to which you can attach geometry, lights, cameras, or other displayable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNNode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNParticleSystem": {
+      "abstract": [
+        {
+          "text": "An object that animates and renders a system of small image sprites using a high-level simulation whose general behavior you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNParticleSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNParticleSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNParticleSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNParticleSystem",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnparticlesystem"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPlane": {
+      "abstract": [
+        {
+          "text": "A rectangular, one-sided plane geometry of specified width and height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPlane"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPlane",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnplane"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPyramid": {
+      "abstract": [
+        {
+          "text": "A right rectangular pyramid geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPyramid"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPyramid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPyramid"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPyramid",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnpyramid"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNReferenceNode": {
+      "abstract": [
+        {
+          "text": "A scene graph node that serves as a placeholder for content to be loaded from a separate scene file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNReferenceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNReferenceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNReferenceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNReferenceNode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnreferencenode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNReplicatorConstraint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNReplicatorConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNReplicatorConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNReplicatorConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNReplicatorConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnreplicatorconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShape": {
+      "abstract": [
+        {
+          "text": "A geometry based on a two-dimensional path, optionally extruded to create a three-dimensional object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNShape"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNShape",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshape"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSliderConstraint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSliderConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSliderConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSliderConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSliderConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnsliderconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSphere": {
+      "abstract": [
+        {
+          "text": "A sphere (or ball or globe) geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSphere"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSphere",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSphere"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSphere",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnsphere"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique": {
+      "abstract": [
+        {
+          "text": "A specification for augmenting or postprocessing SceneKit’s rendering of a scene using additional drawing passes with custom Metal or OpenGL shaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTechnique"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTechnique"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTechnique",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNText": {
+      "abstract": [
+        {
+          "text": "A geometry based on a string of text, optionally extruded to create a three-dimensional object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNText"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNText"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNText",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntext"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTimingFunction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTimingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTimingFunction",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntimingfunction"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTorus": {
+      "abstract": [
+        {
+          "text": "A torus, or ring-shaped geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTorus"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTorus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTorus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTorus",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntorus"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction": {
+      "abstract": [
+        {
+          "text": "A mechanism for creating implicit animations and combining scene graph changes into atomic updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTransaction",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntransaction"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTransformConstraint": {
+      "abstract": [
+        {
+          "text": "A constraint that runs a specified closure, block in Objective-C, to compute a new transform (position, rotation, and scale) for each node that the constraint affects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTransformConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTransformConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTransformConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTransformConstraint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntransformconstraint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTube": {
+      "abstract": [
+        {
+          "text": "A tube or pipe geometry—a right circular cylinder with a circular hole along its central axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTube"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTube",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTube"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTube",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntube"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content": {
+      "abstract": [
+        {
+          "text": "Learn about implicit animations, explicit animations, and actions, and when to choose each in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating SceneKit Content",
+      "type": "topic",
+      "url": "/documentation/scenekit/animating-scenekit-content"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAccelerationConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAvoidOccluderConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNBillboardConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNBox",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCapsule",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCone",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNCylinder",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNDistanceConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNFloor",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNIKConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNLookAtConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNParticleSystem",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPlane",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNPyramid",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNReferenceNode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNReplicatorConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShape",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSliderConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSphere",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNText",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTorus",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTransformConstraint",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTube"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Explicit-Animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationEvent",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTimingFunction",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationProtocol",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class"
+      ],
+      "title": "Explicit Animation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Animations",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimation(_:forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animation(forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationKeys",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations()",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:fadeOutDuration:)"
+      ],
+      "title": "Managing Animations"
+    },
+    {
+      "anchor": "Pausing-and-Resuming-Animations",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/pauseAnimation(forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/resumeAnimation(forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/isAnimationPaused(forKey:)"
+      ],
+      "title": "Pausing and Resuming Animations"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimationPlayer(_:forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationPlayer(forKey:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations(withBlendOutDuration:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:blendOutDuration:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/setAnimationSpeed(_:forKey:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Animations",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimation(_:forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animation(forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationKeys",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations()",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:fadeOutDuration:)"
+              ],
+              "title": "Managing Animations"
+            },
+            {
+              "anchor": "Pausing-and-Resuming-Animations",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/pauseAnimation(forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/resumeAnimation(forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/isAnimationPaused(forKey:)"
+              ],
+              "title": "Pausing and Resuming Animations"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/addAnimationPlayer(_:forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/animationPlayer(forKey:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAllAnimations(withBlendOutDuration:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/removeAnimation(forKey:blendOutDuration:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable/setAnimationSpeed(_:forKey:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNCamera",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNConstraint",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNLight",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNParticleSystem",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Explicit-Animation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationEvent",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationPlayer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTimingFunction",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimationProtocol",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimation-swift.class"
+              ],
+              "title": "Explicit Animation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNAnimatable"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFloor/title",
+          "value": "SCNFloor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFloor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNFloor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animationPlayer(forKey:)/title",
+          "value": "animationPlayerForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animationPlayer(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "animationPlayerForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/title",
+          "value": "SCNTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCone/title",
+          "value": "SCNCone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBillboardConstraint/title",
+          "value": "SCNBillboardConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBillboardConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBillboardConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBillboardConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBillboardConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1addAnimation(_:forKey:)/title",
+          "value": "addAnimation:forKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1addAnimation(_:forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAnimation:forKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/title",
+          "value": "SCNMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLookAtConstraint/title",
+          "value": "SCNLookAtConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLookAtConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLookAtConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLookAtConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLookAtConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/title",
+          "value": "SCNMorpher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNParticleSystem/title",
+          "value": "SCNParticleSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNParticleSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNParticleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNParticleSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNParticleSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBox/title",
+          "value": "SCNBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSliderConstraint/title",
+          "value": "SCNSliderConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSliderConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSliderConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSliderConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSliderConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCapsule/title",
+          "value": "SCNCapsule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCapsule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCapsule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCapsule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCapsule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationEvent/title",
+          "value": "SCNAnimationEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimationEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimationEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1addAnimationPlayer(_:forKey:)/title",
+          "value": "addAnimationPlayer:forKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1addAnimationPlayer(_:forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAnimationPlayer:forKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/title",
+          "value": "SCNLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPyramid/title",
+          "value": "SCNPyramid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPyramid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPyramid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPyramid/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPyramid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTube/title",
+          "value": "SCNTube"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTube/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTube"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTube/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTube"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReplicatorConstraint/title",
+          "value": "SCNReplicatorConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReplicatorConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNReplicatorConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReplicatorConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNReplicatorConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSphere/title",
+          "value": "SCNSphere"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSphere/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSphere"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSphere/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSphere"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationPlayer/title",
+          "value": "SCNAnimationPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimationPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimationPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/title",
+          "value": "SCNMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShape/title",
+          "value": "SCNShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShape/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTorus/title",
+          "value": "SCNTorus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTorus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTorus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTorus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTorus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/title",
+          "value": "SCNTechnique"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1resumeAnimation(forKey:)/title",
+          "value": "resumeAnimationForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1resumeAnimation(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resumeAnimationForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/title",
+          "value": "SCNCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/title",
+          "value": "SCNGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNConstraint/title",
+          "value": "SCNConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animationKeys/title",
+          "value": "animationKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animationKeys/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "animationKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:)/title",
+          "value": "removeAnimationForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAnimationForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAvoidOccluderConstraint/title",
+          "value": "SCNAvoidOccluderConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAvoidOccluderConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAvoidOccluderConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAvoidOccluderConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAvoidOccluderConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReferenceNode/title",
+          "value": "SCNReferenceNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReferenceNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNReferenceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNReferenceNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNReferenceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPlane/title",
+          "value": "SCNPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPlane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPlane/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1pauseAnimation(forKey:)/title",
+          "value": "pauseAnimationForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1pauseAnimation(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pauseAnimationForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransformConstraint/title",
+          "value": "SCNTransformConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransformConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransformConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTransformConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTransformConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTimingFunction/title",
+          "value": "SCNTimingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTimingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTimingFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAllAnimations(withBlendOutDuration:)/title",
+          "value": "removeAllAnimationsWithBlendOutDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAllAnimations(withBlendOutDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllAnimationsWithBlendOutDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationProtocol/title",
+          "value": "SCNAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimationProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/title",
+          "value": "SCNNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNDistanceConstraint/title",
+          "value": "SCNDistanceConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNDistanceConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNDistanceConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNDistanceConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNDistanceConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAccelerationConstraint/title",
+          "value": "SCNAccelerationConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAccelerationConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAccelerationConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAccelerationConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAccelerationConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAAnimation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimation-swift.class/title",
+          "value": "SCNAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimation-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimation-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:blendOutDuration:)/title",
+          "value": "removeAnimationForKey:blendOutDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:blendOutDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAnimationForKey:blendOutDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1setAnimationSpeed(_:forKey:)/title",
+          "value": "setSpeed:forAnimationKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1setAnimationSpeed(_:forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSpeed:forAnimationKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAllAnimations()/title",
+          "value": "removeAllAnimations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAllAnimations()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllAnimations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCylinder/title",
+          "value": "SCNCylinder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCylinder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCylinder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNCylinder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNCylinder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animation(forKey:)/title",
+          "value": "animationForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1animation(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "animationForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNText/title",
+          "value": "SCNText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:fadeOutDuration:)/title",
+          "value": "removeAnimationForKey:fadeOutDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1removeAnimation(forKey:fadeOutDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAnimationForKey:fadeOutDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNIKConstraint/title",
+          "value": "SCNIKConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNIKConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNIKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNIKConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNIKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1isAnimationPaused(forKey:)/title",
+          "value": "isAnimationForKeyPaused:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable~1isAnimationPaused(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isAnimationForKeyPaused:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnanimatable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnanimatable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

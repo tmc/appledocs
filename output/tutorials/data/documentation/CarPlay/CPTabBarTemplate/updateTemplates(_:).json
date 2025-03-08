@@ -1,0 +1,1109 @@
+{
+  "abstract": [
+    {
+      "text": "Adds, removes, reorders, or updates the tab bar’s templates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/updateTemplates(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CPTabBarTemplate(im)updateTemplates:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "updateTemplates"
+      },
+      {
+        "kind": "text",
+        "text": "(["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CPTemplate",
+        "text": "CPTemplate"
+      },
+      {
+        "kind": "text",
+        "text": "])"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "updateTemplates:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "updateTemplates(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateTemplates"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "newTemplates"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPTemplate",
+              "text": "CPTemplate"
+            },
+            {
+              "kind": "text",
+              "text": "])"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of templates to display.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "newTemplates"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is multipurpose. Use it to add new templates to the tab bar, to remove and reorder existing templates, and to update a template’s tab bar appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/maximumTabCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the maximum number of tabs the template can display. CarPlay throws an exception if the number of items in ",
+              "type": "text"
+            },
+            {
+              "code": "newTemplates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exceeds this value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a transactional approach when making changes to the tab bar. Retrieve the current set of templates using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/templates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Add, remove, reorder, or make appearance changes to one or more of array’s templates. For example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/tabTitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to update a template’s tab title, or set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/showsTabBadge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add an indicator to a template’s tab, then call this method with the updated array. CarPlay commits those changes and updates the tab bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CarPlay treats the array’s templates as root templates, each with its own navigation hierarchy. When a tab bar template is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/rootTemplate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of your app’s interface controller, and you use the controller to add and remove templates, CarPlay applies those changes to the selected tab’s navigation hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CarPlay restricts the type of template you can use as a tab’s root template according to your app’s entitlements. Audio apps can use List and Grid templates only. All other categories of apps can use List, Grid, and Information templates as a tab’s root template. In addition, EV-charging, parking, and food ordering apps can use the Point of Interest template as a root template. These restrictions apply only to a tab’s root template. You can add other template types, like the Contact and Now Playing templates, on top of a tab’s root template using the methods that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController": {
+      "abstract": [
+        {
+          "text": "A controller that manages the templates for constructing a scene’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPInterfaceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPInterfaceController",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinterfacecontroller"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/rootTemplate": {
+      "abstract": [
+        {
+          "text": "The root template in the navigation hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplate",
+          "text": "CPTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/rootTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rootTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "rootTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinterfacecontroller/roottemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate": {
+      "abstract": [
+        {
+          "text": "A container template that displays and manages other templates, presenting them as tabs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTabBarTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTabBarTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTabBarTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptabbartemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/maximumTabCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of tabs that the template can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumTabCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/maximumTabCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumTabCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumTabCount",
+      "type": "topic",
+      "url": "/documentation/carplay/cptabbartemplate/maximumtabcount"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/templates": {
+      "abstract": [
+        {
+          "text": "The tab bar’s templates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "templates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplate",
+          "text": "CPTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/templates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "templates"
+        }
+      ],
+      "role": "symbol",
+      "title": "templates",
+      "type": "topic",
+      "url": "/documentation/carplay/cptabbartemplate/templates"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/updateTemplates(_:)": {
+      "abstract": [
+        {
+          "text": "Adds, removes, reorders, or updates the tab bar’s templates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateTemplates"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplate",
+          "text": "CPTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/updateTemplates(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateTemplates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateTemplates(_:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cptabbartemplate/updatetemplates(_:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplate": {
+      "abstract": [
+        {
+          "text": "An abstract base class for interface templates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/showsTabBadge": {
+      "abstract": [
+        {
+          "text": "An indicator you use to call attention to the tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsTabBadge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/showsTabBadge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsTabBadge"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsTabBadge",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplate/showstabbadge"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/tabTitle": {
+      "abstract": [
+        {
+          "text": "A short title that describes the content of the tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplate/tabTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabTitle",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplate/tabtitle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/templates",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/maximumTabCount"
+      ],
+      "title": "Managing the Templates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "updateTemplates:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateTemplates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.carplay/documentation/CarPlay",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-Templates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/templates",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTabBarTemplate/maximumTabCount"
+              ],
+              "title": "Managing the Templates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "updateTemplates:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<__kindof CPTemplate *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "newTemplates"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of templates to display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "newTemplates"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/title",
+          "value": "CPInterfaceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate~1showsTabBadge/title",
+          "value": "showsTabBadge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate~1showsTabBadge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsTabBadge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/title",
+          "value": "CPTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate~1tabTitle/title",
+          "value": "tabTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplate~1tabTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tabTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1updateTemplates(_:)/title",
+          "value": "updateTemplates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1updateTemplates(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateTemplates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/title",
+          "value": "CPTabBarTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTabBarTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTabBarTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1rootTemplate/title",
+          "value": "rootTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1rootTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rootTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1maximumTabCount/title",
+          "value": "maximumTabCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1maximumTabCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumTabCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1templates/title",
+          "value": "templates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTabBarTemplate~1templates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "templates"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/cptabbartemplate/updatetemplates(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/cptabbartemplate/updatetemplates(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

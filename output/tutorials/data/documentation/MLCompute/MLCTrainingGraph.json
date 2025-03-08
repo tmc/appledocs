@@ -1,0 +1,4279 @@
+{
+  "abstract": [
+    {
+      "text": "A training graph that you create from one or more graph objects plus additional layers you add directly to the training graph.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mlcompute/documentation/MLCompute"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MLCTrainingGraph",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLCTrainingGraph"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ML Compute"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLCTrainingGraph"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.3",
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MLCTrainingGraph"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLCTrainingGraph"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework provides a family of graph-execution methods to execute a full training iteration, and methods to execute the forward pass, the gradient pass, and optimizer update, individually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use one of the ",
+              "type": "text"
+            },
+            {
+              "code": "execute",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods to execute a full training iteration to accelerate an ML model represented as a single training graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use one of the ",
+              "type": "text"
+            },
+            {
+              "code": "executeForward",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "executeGradient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "executeOptimizerUpdatemethods",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to accelerate an ML library that separates the forward pass, gradient pass, and optimizer update as separate phases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute": {
+      "abstract": [
+        {
+          "text": "Accelerate training and validation of neural networks across the CPU and one or more GPUs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ML Compute",
+      "type": "topic",
+      "url": "/documentation/mlcompute"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions": {
+      "abstract": [
+        {
+          "text": "A bitmask that specifies the options you use when executing a graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCExecutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCExecutionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCExecutionOptions",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcexecutionoptions"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph": {
+      "abstract": [
+        {
+          "text": "A graph of layers you use to build a training or inference graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCGraph",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcgraph"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompilationOptions": {
+      "abstract": [
+        {
+          "text": "A bitmask that specifies the options you use when compiling a graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompilationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompilationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompilationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCGraphCompilationOptions",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcgraphcompilationoptions"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A callback completion handler you execute when a graph finishes execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCGraphCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcgraphcompletionhandler"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph": {
+      "abstract": [
+        {
+          "text": "An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCInferenceGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCInferenceGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCInferenceGraph",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorParameter": {
+      "abstract": [
+        {
+          "text": "A tensor parameter object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCTensorParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCTensorParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCTensorParameter",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctensorparameter"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph": {
+      "abstract": [
+        {
+          "text": "A training graph that you create from one or more graph objects plus additional layers you add directly to the training graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCTrainingGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCTrainingGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCTrainingGraph",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:)": {
+      "abstract": [
+        {
+          "text": "Adds the inputs and loss label inputs that you specify to the training graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addInputs"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabels"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addInputs:lossLabels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addInputs(_:lossLabels:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/addinputs(_:losslabels:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:lossLabelWeights:)": {
+      "abstract": [
+        {
+          "text": "Adds the inputs, loss labels, and loss label weights that you specify to the training graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addInputs"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabels"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:lossLabelWeights:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addInputs:lossLabels:lossLabelWeights:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addInputs(_:lossLabels:lossLabelWeights:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/addinputs(_:losslabels:losslabelweights:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addOutputs(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the outputs to the training graph you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addOutputs"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addOutputs(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addOutputs:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addOutputs(_:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/addoutputs(_:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/allocateUserGradient(for:)": {
+      "abstract": [
+        {
+          "text": "Allocates an entry for a gradient for the result tensor you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateUserGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/allocateUserGradient(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allocateUserGradientForTensor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "allocateUserGradient(for:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/allocateusergradient(for:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/bindOptimizerData(_:deviceData:with:)": {
+      "abstract": [
+        {
+          "text": "Associates the optimizer and device data you specify along with the tensor.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindOptimizerData"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorOptimizerDeviceData",
+          "text": "MLCTensorOptimizerDeviceData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/bindOptimizerData(_:deviceData:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bindOptimizerData:deviceData:withTensor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bindOptimizerData(_:deviceData:with:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/bindoptimizerdata(_:devicedata:with:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:)": {
+      "abstract": [
+        {
+          "text": "Compiles the training graph for the options and device you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCGraphCompilationOptions",
+          "text": "MLCGraphCompilationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCDevice",
+          "text": "MLCDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compileWithOptions:device:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compile(options:device:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/compile(options:device:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:inputTensors:inputTensorsData:)": {
+      "abstract": [
+        {
+          "text": "Compiles the training graph for the options, device, and input tensors you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCGraphCompilationOptions",
+          "text": "MLCGraphCompilationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCDevice",
+          "text": "MLCDevice"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputTensors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputTensorsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:inputTensors:inputTensorsData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compileWithOptions:device:inputTensors:inputTensorsData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compile(options:device:inputTensors:inputTensorsData:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/compile(options:device:inputtensors:inputtensorsdata:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compileOptimizer(_:)": {
+      "abstract": [
+        {
+          "text": "Compiles the optimizer to use with a training graph you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compileOptimizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCOptimizer",
+          "text": "MLCOptimizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compileOptimizer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compileOptimizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compileOptimizer(_:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/compileoptimizer(_:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/deviceMemorySize": {
+      "abstract": [
+        {
+          "text": "The device memory size in bytes for all intermediate tensors for forward, gradient passes, and optimizer updates for all layers in the training graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMemorySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/deviceMemorySize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceMemorySize"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceMemorySize",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/devicememorysize"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the training graph with the input data, batch size, execution options, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeightsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the training graph with the input data, output data, batch size, execution options, and completion handler that you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeightsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:outputsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the forward pass of the training graph with the batch size, execution options, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeForward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeForwardWithBatchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeForward(batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executeforward(batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:)": {
+      "abstract": [
+        {
+          "text": "Executes the forward pass of the training graph with the batch size, execution options, and output data you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeForward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "?, executionTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeForward(batchSize:options:outputsData:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executeforward(batchsize:options:outputsdata:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the forward pass of the training graph with the batch size, execution options, output data, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeForward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeForwardWithBatchSize:options:outputsData:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeForward(batchSize:options:outputsData:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executeforward(batchsize:options:outputsdata:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the gradient pass of the training graph with the batch size, execution options, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeGradientWithBatchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeGradient(batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executegradient(batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:)": {
+      "abstract": [
+        {
+          "text": "Executes the gradient pass of the training graph with the batch size, execution options, and output data you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeGradient(batchSize:options:outputsData:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executegradient(batchsize:options:outputsdata:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the gradient pass of the training graph with the batch size, execution options, output data, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeGradientWithBatchSize:options:outputsData:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeGradient(batchSize:options:outputsData:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executegradient(batchsize:options:outputsdata:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:)": {
+      "abstract": [
+        {
+          "text": "Executes the optimizer update pass of the training graph with the execution options you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeOptimizerUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeOptimizerUpdate(options:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executeoptimizerupdate(options:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the optimizer update pass of the training graph with the execution options and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeOptimizerUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeOptimizerUpdateWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeOptimizerUpdate(options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/executeoptimizerupdate(options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientData(forParameter:layer:)": {
+      "abstract": [
+        {
+          "text": "Gets the gradient data for the trainable parameter and associated layer you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gradientData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "layer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLayer",
+          "text": "MLCLayer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientData(forParameter:layer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gradientDataForParameter:layer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "gradientData(forParameter:layer:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/gradientdata(forparameter:layer:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientTensor(forInput:)": {
+      "abstract": [
+        {
+          "text": "Gets the gradient tensor for the input tensor you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gradientTensor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientTensor(forInput:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gradientTensorForInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "gradientTensor(forInput:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/gradienttensor(forinput:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)": {
+      "abstract": [
+        {
+          "text": "Creates a training graph with the layers from the graph objects, loss layer, and optimizer you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "graphObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCGraph",
+          "text": "MLCGraph"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLayer",
+          "text": "MLCLayer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "optimizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCOptimizer",
+          "text": "MLCOptimizer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "graphWithGraphObjects:lossLayer:optimizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(graphObjects:lossLayer:optimizer:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/init(graphobjects:losslayer:optimizer:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/link(with:)": {
+      "abstract": [
+        {
+          "text": "Links the training graphs you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "link"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTrainingGraph",
+          "text": "MLCTrainingGraph"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/link(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "linkWithGraphs:"
+        }
+      ],
+      "role": "symbol",
+      "title": "link(with:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/link(with:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/optimizer": {
+      "abstract": [
+        {
+          "text": "The optimizer to use with the training graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCOptimizer",
+          "text": "MLCOptimizer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/optimizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "optimizer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/optimizer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/resultGradientTensors(for:)": {
+      "abstract": [
+        {
+          "text": "Gets the result gradient tensors for the layer in the training graph you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultGradientTensors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLayer",
+          "text": "MLCLayer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/resultGradientTensors(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resultGradientTensorsForLayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resultGradientTensors(for:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/resultgradienttensors(for:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the input tensor parameters, which the optimizer then updates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTrainingTensorParameters"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorParameter",
+          "text": "MLCTensorParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTrainingTensorParameters:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTrainingTensorParameters(_:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/settrainingtensorparameters(_:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/sourceGradientTensors(for:)": {
+      "abstract": [
+        {
+          "text": "Gets the source gradient tensors for the layer in the training graph you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceGradientTensors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLayer",
+          "text": "MLCLayer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/sourceGradientTensors(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceGradientTensorsForLayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceGradientTensors(for:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/sourcegradienttensors(for:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/stopGradient(for:)": {
+      "abstract": [
+        {
+          "text": "Adds the tensors that you specify, to indicate which contributions the graph excludes when computing gradients during gradient pass.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/stopGradient(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopGradientForTensors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopGradient(for:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/stopgradient(for:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()": {
+      "abstract": [
+        {
+          "text": "Synchronizes updates from device memory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronizeUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "synchronizeUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "synchronizeUpdates()",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctraininggraph/synchronizeupdates()"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/optimizers": {
+      "abstract": [
+        {
+          "text": "Create an optimizer to use with the training graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/optimizers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Optimizers",
+      "type": "topic",
+      "url": "/documentation/mlcompute/optimizers"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Graphs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph"
+      ],
+      "title": "Graphs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Training-Graphs",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/optimizers",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorParameter"
+      ],
+      "title": "Creating Training Graphs"
+    },
+    {
+      "anchor": "Preparing-Training-Graphs",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:lossLabelWeights:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addOutputs(_:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/stopGradient(for:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compileOptimizer(_:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:inputTensors:inputTensorsData:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/link(with:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/allocateUserGradient(for:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompilationOptions"
+      ],
+      "title": "Preparing Training Graphs"
+    },
+    {
+      "anchor": "Executing-Training-Iterations",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler"
+      ],
+      "title": "Executing Training Iterations"
+    },
+    {
+      "anchor": "Executing-Forward-Gradient-and-Optimizer-Updates",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler"
+      ],
+      "title": "Executing Forward, Gradient, and Optimizer Updates"
+    },
+    {
+      "anchor": "Inspecting-Training-Graphs",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/bindOptimizerData(_:deviceData:with:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/optimizer",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/deviceMemorySize",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientTensor(forInput:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/sourceGradientTensors(for:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/resultGradientTensors(for:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientData(forParameter:layer:)"
+      ],
+      "title": "Inspecting Training Graphs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.3",
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MLCTrainingGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTrainingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTrainingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mlcompute/documentation/MLCompute"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Training-Graphs",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/optimizers",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorParameter"
+              ],
+              "title": "Creating Training Graphs"
+            },
+            {
+              "anchor": "Preparing-Training-Graphs",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addInputs(_:lossLabels:lossLabelWeights:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/addOutputs(_:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/stopGradient(for:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compileOptimizer(_:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/compile(options:device:inputTensors:inputTensorsData:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/link(with:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/allocateUserGradient(for:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompilationOptions"
+              ],
+              "title": "Preparing Training Graphs"
+            },
+            {
+              "anchor": "Executing-Training-Iterations",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler"
+              ],
+              "title": "Executing Training Iterations"
+            },
+            {
+              "anchor": "Executing-Forward-Gradient-and-Optimizer-Updates",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:completionHandler:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/synchronizeUpdates()",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler"
+              ],
+              "title": "Executing Forward, Gradient, and Optimizer Updates"
+            },
+            {
+              "anchor": "Inspecting-Training-Graphs",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/bindOptimizerData(_:deviceData:with:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/optimizer",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/deviceMemorySize",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientTensor(forInput:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/sourceGradientTensors(for:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/resultGradientTensors(for:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCTrainingGraph/gradientData(forParameter:layer:)"
+              ],
+              "title": "Inspecting Training Graphs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Graphs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph"
+              ],
+              "title": "Graphs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MLCTrainingGraph"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraph",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MLCGraph",
+                    "text": "MLCGraph"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1synchronizeUpdates()/title",
+          "value": "synchronizeUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1synchronizeUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "synchronizeUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1deviceMemorySize/title",
+          "value": "deviceMemorySize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1deviceMemorySize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceMemorySize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1init(graphObjects:lossLayer:optimizer:)/title",
+          "value": "graphWithGraphObjects:lossLayer:optimizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1init(graphObjects:lossLayer:optimizer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "graphWithGraphObjects:lossLayer:optimizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/title",
+          "value": "MLCExecutionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCExecutionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCExecutionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1link(with:)/title",
+          "value": "linkWithGraphs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1link(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "linkWithGraphs:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1optimizer/title",
+          "value": "optimizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1optimizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "optimizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeGradient(batchSize:options:completionHandler:)/title",
+          "value": "executeGradientWithBatchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeGradient(batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeGradientWithBatchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addInputs(_:lossLabels:)/title",
+          "value": "addInputs:lossLabels:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addInputs(_:lossLabels:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInputs:lossLabels:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeForward(batchSize:options:completionHandler:)/title",
+          "value": "executeForwardWithBatchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeForward(batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeForwardWithBatchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1stopGradient(for:)/title",
+          "value": "stopGradientForTensors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1stopGradient(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopGradientForTensors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1resultGradientTensors(for:)/title",
+          "value": "resultGradientTensorsForLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1resultGradientTensors(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resultGradientTensorsForLayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1bindOptimizerData(_:deviceData:with:)/title",
+          "value": "bindOptimizerData:deviceData:withTensor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1bindOptimizerData(_:deviceData:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bindOptimizerData:deviceData:withTensor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addInputs(_:lossLabels:lossLabelWeights:)/title",
+          "value": "addInputs:lossLabels:lossLabelWeights:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addInputs(_:lossLabels:lossLabelWeights:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInputs:lossLabels:lossLabelWeights:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1sourceGradientTensors(for:)/title",
+          "value": "sourceGradientTensorsForLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1sourceGradientTensors(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sourceGradientTensorsForLayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph/title",
+          "value": "MLCTrainingGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTrainingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTrainingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/title",
+          "value": "MLCGraphCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorParameter/title",
+          "value": "MLCTensorParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensorParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensorParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeGradient(batchSize:options:outputsData:completionHandler:)/title",
+          "value": "executeGradientWithBatchSize:options:outputsData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeGradient(batchSize:options:outputsData:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeGradientWithBatchSize:options:outputsData:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compile(options:device:inputTensors:inputTensorsData:)/title",
+          "value": "compileWithOptions:device:inputTensors:inputTensorsData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compile(options:device:inputTensors:inputTensorsData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "compileWithOptions:device:inputTensors:inputTensorsData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addOutputs(_:)/title",
+          "value": "addOutputs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1addOutputs(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addOutputs:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1setTrainingTensorParameters(_:)/title",
+          "value": "setTrainingTensorParameters:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1setTrainingTensorParameters(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTrainingTensorParameters:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compile(options:device:)/title",
+          "value": "compileWithOptions:device:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compile(options:device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "compileWithOptions:device:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeOptimizerUpdate(options:completionHandler:)/title",
+          "value": "executeOptimizerUpdateWithOptions:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeOptimizerUpdate(options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeOptimizerUpdateWithOptions:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1allocateUserGradient(for:)/title",
+          "value": "allocateUserGradientForTensor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1allocateUserGradient(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allocateUserGradientForTensor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompilationOptions/title",
+          "value": "MLCGraphCompilationOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompilationOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompilationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompilationOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompilationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/title",
+          "value": "MLCInferenceGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCInferenceGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCInferenceGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeForward(batchSize:options:outputsData:completionHandler:)/title",
+          "value": "executeForwardWithBatchSize:options:outputsData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1executeForward(batchSize:options:outputsData:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeForwardWithBatchSize:options:outputsData:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1gradientData(forParameter:layer:)/title",
+          "value": "gradientDataForParameter:layer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1gradientData(forParameter:layer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "gradientDataForParameter:layer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraph/title",
+          "value": "MLCGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compileOptimizer(_:)/title",
+          "value": "compileOptimizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1compileOptimizer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "compileOptimizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1gradientTensor(forInput:)/title",
+          "value": "gradientTensorForInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTrainingGraph~1gradientTensor(forInput:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "gradientTensorForInput:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mlcompute/mlctraininggraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mlcompute/mlctraininggraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

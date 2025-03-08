@@ -1,0 +1,426 @@
+{
+  "abstract": [
+    {
+      "text": "Set the attributes of the work item to match the attributes of the current execution context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ASSIGN_CURRENT"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@EA@dispatch_block_flags_t@DISPATCH_BLOCK_ASSIGN_CURRENT",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "DISPATCH_BLOCK_ASSIGN_CURRENT"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DISPATCH_BLOCK_ASSIGN_CURRENT"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "case",
+    "title": "DISPATCH_BLOCK_ASSIGN_CURRENT"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "identifier",
+              "text": "DISPATCH_BLOCK_ASSIGN_CURRENT"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Indicates that a dispatch block should be assigned the execution context attributes that are current at the time the block object is created. This applies to attributes such as QoS class, os_activity_t, and properties of the current IPC request, if any. If invoked directly, the block will apply these attributes to the calling thread for the duration of the block body. If the block is submitted to a queue, this flag replaces the default behavior of associating the submitted block instance with the execution context attributes that are current at the time of submission. If a specific QoS class is assigned with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_NO_QOS_CLASS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, that QoS class takes precedence over the QoS class assignment indicated by this flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch block on the heap using an existing block and the given flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_create"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_create"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_create_with_qos_class"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_create_with_qos_class",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_create_with_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t": {
+      "abstract": [
+        {
+          "text": "Flags to pass to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_create_with_qos_class",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_flags_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ASSIGN_CURRENT": {
+      "abstract": [
+        {
+          "text": "Set the attributes of the work item to match the attributes of the current execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_ASSIGN_CURRENT"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ASSIGN_CURRENT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_ASSIGN_CURRENT",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_assign_current"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_BARRIER": {
+      "abstract": [
+        {
+          "text": "Cause the work item to act as a barrier block when submitted to a concurrent queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_BARRIER"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_BARRIER",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_BARRIER",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_barrier"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_DETACHED": {
+      "abstract": [
+        {
+          "text": "Disassociate the work item’s attributes from the current execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_DETACHED"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_DETACHED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_DETACHED",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_detached"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ENFORCE_QOS_CLASS": {
+      "abstract": [
+        {
+          "text": "Prefer the quality-of-service class associated with the block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_ENFORCE_QOS_CLASS"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ENFORCE_QOS_CLASS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_ENFORCE_QOS_CLASS",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_INHERIT_QOS_CLASS": {
+      "abstract": [
+        {
+          "text": "Prefer the quality-of-service class associated with the current execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_INHERIT_QOS_CLASS"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_INHERIT_QOS_CLASS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_INHERIT_QOS_CLASS",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_inherit_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_NO_QOS_CLASS": {
+      "abstract": [
+        {
+          "text": "Execute the work item without assigning a quality-of-service class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_BLOCK_NO_QOS_CLASS"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_NO_QOS_CLASS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_BLOCK_NO_QOS_CLASS",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Flags",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_BARRIER",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_DETACHED",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_ENFORCE_QOS_CLASS",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_INHERIT_QOS_CLASS",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_flags_t/DISPATCH_BLOCK_NO_QOS_CLASS"
+      ],
+      "title": "Flags"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_block_flags_t/dispatch_block_assign_current"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

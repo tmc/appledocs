@@ -1,0 +1,557 @@
+{
+  "abstract": [
+    {
+      "text": "Adds to a path an ellipse that fits inside a rectangle.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpath"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1411222-cgpathaddellipseinrect"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411222,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGPathAddEllipseInRect",
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGPathAddEllipseInRect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGPathAddEllipseInRect"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgmutablepathref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGMutablePathRef",
+              "text": "CGMutablePathRef"
+            },
+            {
+              "kind": "text",
+              "text": " path, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGAffineTransform",
+              "text": "CGAffineTransform"
+            },
+            {
+              "kind": "text",
+              "text": " *m, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " rect);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The path to modify.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "path"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An affine transform to apply to the ellipse, or ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you don’t want to transform the ellipse.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "m"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A rectangle to enclose the ellipse.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rect"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ellipse is approximated by a sequence of Bézier curves. Its center is the midpoint of the rectangle defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. If the rectangle is square, then the ellipse is circular with a radius equal to one-half the width (or height) of the rectangle. If the ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter specifies a rectangular shape, then the major and minor axes of the ellipse are defined by the width and height of the rectangle. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ellipse forms a complete subpath of the path—that is, the ellipse drawing starts with a move-to operation and ends with a close-subpath operation, with all moves oriented in the clockwise direction. If you supply an affine transform, then the constructed Bézier curves that define the ellipse are transformed before they are added to the path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411124-cgpathaddroundedrect": {
+      "abstract": [
+        {
+          "text": "Appends a rounded rectangle to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411124-cgpathaddroundedrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddRoundedRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411124-cgpathaddroundedrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411136-cgpathaddrelativearc": {
+      "abstract": [
+        {
+          "text": "Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411136-cgpathaddrelativearc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddRelativeArc",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411136-cgpathaddrelativearc"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411138-cgpathaddlinetopoint": {
+      "abstract": [
+        {
+          "text": "Appends a line segment to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411138-cgpathaddlinetopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddLineToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411138-cgpathaddlinetopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411144-cgpathaddrect": {
+      "abstract": [
+        {
+          "text": "Appends a rectangle to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411144-cgpathaddrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411144-cgpathaddrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411146-cgpathmovetopoint": {
+      "abstract": [
+        {
+          "text": "Starts a new subpath at a specified location in a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411146-cgpathmovetopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathMoveToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411146-cgpathmovetopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411147-cgpathaddarc": {
+      "abstract": [
+        {
+          "text": "Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411147-cgpathaddarc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddArc",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411147-cgpathaddarc"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411153-cgpathaddrects": {
+      "abstract": [
+        {
+          "text": "Appends an array of rectangles to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411153-cgpathaddrects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddRects",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411153-cgpathaddrects"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411157-cgpathaddquadcurvetopoint": {
+      "abstract": [
+        {
+          "text": "Appends a quadratic Bézier curve to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411157-cgpathaddquadcurvetopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddQuadCurveToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411157-cgpathaddquadcurvetopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411171-cgpathaddlines": {
+      "abstract": [
+        {
+          "text": "Appends an array of new line segments to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411171-cgpathaddlines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddLines",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411171-cgpathaddlines"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411173-cgpathaddarctopoint": {
+      "abstract": [
+        {
+          "text": "Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411173-cgpathaddarctopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddArcToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411173-cgpathaddarctopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411188-cgpathclosesubpath": {
+      "abstract": [
+        {
+          "text": "Closes and completes a subpath in a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411188-cgpathclosesubpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathCloseSubpath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411188-cgpathclosesubpath"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411201-cgpathaddpath": {
+      "abstract": [
+        {
+          "text": "Appends a path to onto a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411201-cgpathaddpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddPath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411201-cgpathaddpath"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411203-cgpathapply": {
+      "abstract": [
+        {
+          "text": "For each element in a graphics path, calls a custom applier function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411203-cgpathapply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathApply",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411203-cgpathapply"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411212-cgpathaddcurvetopoint": {
+      "abstract": [
+        {
+          "text": "Appends a cubic Bézier curve to a mutable graphics path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411212-cgpathaddcurvetopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddCurveToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411212-cgpathaddcurvetopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1411222-cgpathaddellipseinrect": {
+      "abstract": [
+        {
+          "text": "Adds to a path an ellipse that fits inside a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1411222-cgpathaddellipseinrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPathAddEllipseInRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1411222-cgpathaddellipseinrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgmutablepathref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgmutablepathref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGMutablePathRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgmutablepathref"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpath": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpath",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpath"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1411147-cgpathaddarc",
+        "doc://com.apple.documentation/documentation/coregraphics/1411136-cgpathaddrelativearc",
+        "doc://com.apple.documentation/documentation/coregraphics/1411173-cgpathaddarctopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1411212-cgpathaddcurvetopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1411171-cgpathaddlines",
+        "doc://com.apple.documentation/documentation/coregraphics/1411138-cgpathaddlinetopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1411201-cgpathaddpath",
+        "doc://com.apple.documentation/documentation/coregraphics/1411157-cgpathaddquadcurvetopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1411144-cgpathaddrect",
+        "doc://com.apple.documentation/documentation/coregraphics/1411153-cgpathaddrects",
+        "doc://com.apple.documentation/documentation/coregraphics/1411124-cgpathaddroundedrect",
+        "doc://com.apple.documentation/documentation/coregraphics/1411203-cgpathapply",
+        "doc://com.apple.documentation/documentation/coregraphics/1411146-cgpathmovetopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1411188-cgpathclosesubpath"
+      ],
+      "title": "Modifying Core Graphics Paths"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1411222-cgpathaddellipseinrect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

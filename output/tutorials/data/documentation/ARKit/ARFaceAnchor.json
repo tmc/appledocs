@@ -1,0 +1,1818 @@
+{
+  "abstract": [
+    {
+      "text": "An anchor for a unique face that is visible in the front-facing camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARFaceAnchor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARFaceAnchor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARFaceAnchor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARFaceAnchor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session automatically adds to its list of anchors an ARFaceAnchor object when it detects a unique face in the front camera feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you track faces using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ARKit can track multiple faces simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can enable face tracking with a world tracking configuration by setting .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Tracking-Face-Position-and-Orientation",
+          "level": 3,
+          "text": "Tracking Face Position and Orientation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property describes the face’s current position and orientation in world coordinates; that is, in a coordinate space relative to that specified by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the session configuration. Use this transform matrix to position virtual content you want to “attach” to the face in your AR scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This transform matrix creates a face coordinates system for positioning other elements relative to the face. Units of face coordinate space are in meters, with the origin centered behind the face as indicated in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3001545",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coordinate system is right-handed—the positive x direction points to the viewer’s right (that is, the face’s own left), the positive y direction points up (relative to the face itself, not to the world), and the positive z direction points outward from the face (toward the viewer).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-Face-Topology",
+          "level": 3,
+          "text": "Using Face Topology",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/geometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing detailed topology for the face, which conforms a generic face model to match the dimensions, shape, and current expression of the detected face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this model as the basis for overlaying content that follows the shape of the user’s face—for example, to apply virtual makeup or tattoos. You can also use this model to create ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "occlusion geometry",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—a 3D model that doesn’t render any visible content (allowing the camera image to show through), but that obstructs the camera’s view of other virtual content in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Tracking-Facial-Expressions",
+          "level": 3,
+          "text": "Tracking Facial Expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides a high-level model of the current facial expression, described via a series of many named coefficients that represent the movement of specific facial features relative to their neutral configurations. You can use blend shape coefficients to animate 2D or 3D content, such as a character or avatar, in ways that follow the user’s facial expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying": {
+      "abstract": [
+        {
+          "text": "Support for custom anchor subclasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchorCopying",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchorcopying"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property": {
+      "abstract": [
+        {
+          "text": "A value specifying how the session maps real-world device motion into a 3D scene coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARWorldAlignment",
+          "text": "WorldAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldAlignment",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/worldalignment-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a unique face that is visible in the front-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/BlendShapeLocation": {
+      "abstract": [
+        {
+          "text": "Identifiers for specific facial features, for use with coefficients describing the relative movements of those features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/BlendShapeLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceAnchor.BlendShapeLocation",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/blendshapelocation"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes": {
+      "abstract": [
+        {
+          "text": "A dictionary of named coefficients representing the detected facial expression in terms of the movement of specific facial features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendShapes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFaceAnchor",
+          "text": "ARFaceAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ARBlendShapeLocation",
+          "text": "BlendShapeLocation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendShapes"
+        }
+      ],
+      "role": "symbol",
+      "title": "blendShapes",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/blendshapes"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/geometry": {
+      "abstract": [
+        {
+          "text": "A coarse triangle mesh representing the topology of the detected face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFaceGeometry",
+          "text": "ARFaceGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/geometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/geometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/leftEyeTransform": {
+      "abstract": [
+        {
+          "text": "A transform matrix indicating the position and orientation of the face’s left eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftEyeTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/leftEyeTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftEyeTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftEyeTransform",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/lefteyetransform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/lookAtPoint": {
+      "abstract": [
+        {
+          "text": "A position in face coordinate space estimating the direction of the face’s gaze.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lookAtPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/lookAtPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lookAtPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "lookAtPoint",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/lookatpoint"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/rightEyeTransform": {
+      "abstract": [
+        {
+          "text": "A transform matrix indicating the position and orientation of the face’s right eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightEyeTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/rightEyeTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightEyeTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightEyeTransform",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/righteyetransform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceGeometry": {
+      "abstract": [
+        {
+          "text": "A 3D mesh describing face topology for use in face-tracking AR sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacegeometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks facial movement and expressions using the front camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackable": {
+      "abstract": [
+        {
+          "text": "An interface for objects that track the location of real-world objects or locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackable",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackable"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking": {
+      "abstract": [
+        {
+          "text": "Track the user’s face in an app that displays an AR experience with the rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining user face-tracking and world tracking",
+      "type": "topic",
+      "url": "/documentation/arkit/combining-user-face-tracking-and-world-tracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces": {
+      "abstract": [
+        {
+          "text": "Detect faces in a front-camera AR experience, overlay virtual content, and animate facial expressions in real-time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing faces",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-and-visualizing-faces"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking": {
+      "abstract": [
+        {
+          "text": "Discover features and best practices for building rear-camera AR experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding World Tracking",
+      "type": "topic",
+      "url": "/documentation/arkit/understanding-world-tracking"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3001545": {
+      "alt": "Figure indicating the x/y/z coordinate system origin for face anchors, centered behind the face.",
+      "identifier": "media-3001545",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8537ff371fa2f3bc8bf24465a98938c4/media-3001545@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8537ff371fa2f3bc8bf24465a98938c4/media-3001545~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Face-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces",
+        "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking"
+      ],
+      "title": "Face Tracking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Using-Face-Geometry",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/geometry"
+      ],
+      "title": "Using Face Geometry"
+    },
+    {
+      "anchor": "Using-Blend-Shapes",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/BlendShapeLocation"
+      ],
+      "title": "Using Blend Shapes"
+    },
+    {
+      "anchor": "Tracking-Eye-Movement",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/leftEyeTransform",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/rightEyeTransform",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/lookAtPoint"
+      ],
+      "title": "Tracking Eye Movement"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARFaceAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Using-Face-Geometry",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/geometry"
+              ],
+              "title": "Using Face Geometry"
+            },
+            {
+              "anchor": "Using-Blend-Shapes",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/BlendShapeLocation"
+              ],
+              "title": "Using Blend Shapes"
+            },
+            {
+              "anchor": "Tracking-Eye-Movement",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/leftEyeTransform",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/rightEyeTransform",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/lookAtPoint"
+              ],
+              "title": "Tracking Eye Movement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARTrackable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Face-Tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces"
+              ],
+              "title": "Face Tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARFaceAnchor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARAnchor",
+                    "text": "ARAnchor"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/title",
+          "value": "ARAnchorCopying"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1geometry/title",
+          "value": "geometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1geometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1worldAlignment-swift.property/title",
+          "value": "worldAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1worldAlignment-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/title",
+          "value": "ARFaceAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1BlendShapeLocation/title",
+          "value": "ARBlendShapeLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1BlendShapeLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBlendShapeLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1BlendShapeLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBlendShapeLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1leftEyeTransform/title",
+          "value": "leftEyeTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1leftEyeTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftEyeTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceGeometry/title",
+          "value": "ARFaceGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1lookAtPoint/title",
+          "value": "lookAtPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1lookAtPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lookAtPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/title",
+          "value": "ARTrackable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1blendShapes/title",
+          "value": "blendShapes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1blendShapes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blendShapes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1rightEyeTransform/title",
+          "value": "rightEyeTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1rightEyeTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rightEyeTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/title",
+          "value": "ARFaceTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arfaceanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arfaceanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

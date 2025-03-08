@@ -1,0 +1,1276 @@
+{
+  "abstract": [
+    {
+      "text": "Keep your app alive in the background by managing its memory footprint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing the memory usage of your Metal app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instruments provides the Game Memory template to help you understand the memory growth in your Metal app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Keeping a small memory footprint allows the system to keep the app alive in the background longer, especially on devices with more constrained memory capacity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10106/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-the-Game-Memory-template",
+          "level": 3,
+          "text": "Open the Game Memory template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the memory analysis from your Xcode project by choosing Product > Profile, or by pressing Command-I.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can launch Instruments and then select the process from the drop-down list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Template Selection window, select Game Memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-choose-template.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-to-know-the-instruments",
+          "level": 3,
+          "text": "Get to know the instruments",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Analyzes the memory life cycle of a process’s allocated blocks, and can record reference-counting events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allocations",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records Metal GPU resource allocations, such as textures and buffers.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal Resource Events",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Tracks the virtual memory space of a process over time, identifying regions by tag and reporting usage statistics.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "VM Tracker",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Tracks virtual memory activity per thread.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Virtual Memory Trace",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records Metal app events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal Application",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records GPU events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "GPU",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Record-an-Instruments-capture",
+          "level": 3,
+          "text": "Record an Instruments capture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin collecting the data by clicking the Record button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-record.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within your app, perform the actions that reproduce the memory problem, and then click the Record button to stop recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-your-apps-memory-allocations",
+          "level": 3,
+          "text": "Analyze your app’s memory allocations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Game Memory template shows both memory allocations and memory footprint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Memory allocations occupy space in the virtual memory address space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your app allocates memory, these new allocations may not immediately take up space on physical memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It’s not until your app uses these allocations that they consume physical memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Allocations track provides a detailed view of memory allocations, their sizes, and object reference counts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Allocations track doesn’t include Metal resources with private storage mode — only managed and shared storage modes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-allocations.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Statistics view in the bottom detail area displays the categories of memory allocations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At the top of the Category column, there are three umbrella categories that summarize all allocations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes everything.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "All Heap & Anonymous VM",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes dynamically allocated buffers that may contain resources.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "All Heap Allocations",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes interesting VM regions that may be dirty. You can also find some Metal-related memory here.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "All Anonymous VM",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below them, you can find more detailed categories.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal resource allocations are in the ",
+              "type": "text"
+            },
+            {
+              "code": "VM: IOAccelerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category, and drawables are in ",
+              "type": "text"
+            },
+            {
+              "code": "VM: IOSurface",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To inspect the individual allocations in a category, click the arrow button next to the category name in the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-allocations-category-button.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After selecting a category, you can sort the table by the Size column to find the largest memory allocation during the selected time range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-allocations-all-heap-allocations.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also select an allocation in the list to view its description and stack trace in the inspector on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-Metal-resource-allocations",
+          "level": 3,
+          "text": "Analyze Metal resource allocations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal Resource Events track displays a history of all Metal-specific resource allocations and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deallocations, along with their labels (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-metal-resource-events.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Resource Events view in the bottom detail area lists the resource allocation and deallocation events.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It includes events from created or destroyed resources in the selected time range.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Not all resources in the list persisted until the end of the time range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-your-apps-total-virtual-memory-footprint",
+          "level": 3,
+          "text": "Analyze your app’s total virtual memory footprint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Allocations track and the Metal Resource Events track both highlight memory allocations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, allocations don’t always translate to memory footprint.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The VM Tracker track shows the noncompressed and compressed/swapped dirty memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that together make up your app’s memory footprint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Memory operates on the granularity of pages, and those pages can be either clean or dirty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes memory-mapped files and read-only frameworks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Clean memory",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes heap-allocated memory and written symbols in frameworks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Dirty memory",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To conserve the amount of physical memory that your app uses, the system may compress or swap",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "out some dirty pages that your app hasn’t accessed recently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system charges your app for any compressed/swapped memory based on its orginal size before compression.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-vm-tracker.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The center timeline area graphs the following metrics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of noncompressed dirty memory.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Dirty Size",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of compressed/swapped dirty memory in its original size before compression.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Swapped Size",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of resident memory.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Resident Size",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The corresponding columns are also available in the Summary view of the bottom detail area.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There, you can expand the VM region types.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the mapped file type in the screenshot below, you can see the memory-mapped file of the bistro scene that the Modern Renderer app loaded:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-memory-vm-tracker-mapped-file.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-the-performance-of-your-metal-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands": {
+      "abstract": [
+        {
+          "text": "Enhance the debugging of your Metal app using labels and grouping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands",
+      "kind": "article",
+      "role": "article",
+      "title": "Naming resources and commands",
+      "type": "topic",
+      "url": "/documentation/xcode/naming-resources-and-commands"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-instruments-game-memory-allocations-all-heap-allocations.png": {
+      "alt": "A screenshot of the details pane displaying the All Heap Allocations statistics from the Allocations track.",
+      "identifier": "gputools-instruments-game-memory-allocations-all-heap-allocations.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef67748dda612c1b73ae3e26f3c9b691/gputools-instruments-game-memory-allocations-all-heap-allocations.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25af05983a96078c9c5c5762fe92b069/gputools-instruments-game-memory-allocations-all-heap-allocations@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a29fa3986ffc479e187e81704034883/gputools-instruments-game-memory-allocations-all-heap-allocations~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/317983f70e3c47854dad0183b04e2279/gputools-instruments-game-memory-allocations-all-heap-allocations~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-allocations-category-button.png": {
+      "alt": "A screenshot of the details pane displaying the statistics from the Allocations track.",
+      "identifier": "gputools-instruments-game-memory-allocations-category-button.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e32f7f7ba2efb3a179301dd5129e79d/gputools-instruments-game-memory-allocations-category-button.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/125f1d944a338303f144905308943203/gputools-instruments-game-memory-allocations-category-button@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9d884d7a75c9fa397e2e9990c7ae2be/gputools-instruments-game-memory-allocations-category-button~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5fdb7ed633289b35934be805435aa3c3/gputools-instruments-game-memory-allocations-category-button~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-allocations.png": {
+      "alt": "A screenshot of Instruments with the Allocations track selected. The bottom details pane displays the statistics from the Allocations track.",
+      "identifier": "gputools-instruments-game-memory-allocations.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d25079650cd0af72ead1de6b4db53b3/gputools-instruments-game-memory-allocations.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7ef7ee3f0561d17f3d618a01e1d21b1/gputools-instruments-game-memory-allocations@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3ff43e2ace58876aa2db9523dbc4d69/gputools-instruments-game-memory-allocations~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91f2c5aa9d231cc1328ec2f2c0cc3839/gputools-instruments-game-memory-allocations~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-choose-template.png": {
+      "alt": "A screenshot of the Template Selection window with the Game Memory template selected.",
+      "identifier": "gputools-instruments-game-memory-choose-template.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e097c6098efded76c72213e4d782820/gputools-instruments-game-memory-choose-template.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6ead2ec149cb0e1393b371a0d09a78e4/gputools-instruments-game-memory-choose-template@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a9ef07b962ad8ae90db9f621a31eb03/gputools-instruments-game-memory-choose-template~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/198b5e4e55461677790d1b6f1a90a16d/gputools-instruments-game-memory-choose-template~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-metal-resource-events.png": {
+      "alt": "A screenshot of Instruments with the Metal Resource Events track selected. The bottom details pane displays the list of resource events.",
+      "identifier": "gputools-instruments-game-memory-metal-resource-events.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/711bb912029b0618cf0cacfe3bb9ab28/gputools-instruments-game-memory-metal-resource-events.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94673e4047864c5e2d256642b4d96451/gputools-instruments-game-memory-metal-resource-events@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a5913d4a5bd511137cb184c1f7e6ff7/gputools-instruments-game-memory-metal-resource-events~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65e27198d1559ce2b4dd07d0c9923953/gputools-instruments-game-memory-metal-resource-events~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-record.png": {
+      "alt": "A screenshot of the Instruments window highlighting the Record button.",
+      "identifier": "gputools-instruments-game-memory-record.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86e61294e1866ffe01949c4e38f70346/gputools-instruments-game-memory-record.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28faaed2513959dd83f9299a96e50b69/gputools-instruments-game-memory-record@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49202418b27912a245029f97318b62e6/gputools-instruments-game-memory-record~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7593520d7bf5fed6d05d0dfeb2a949b5/gputools-instruments-game-memory-record~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-vm-tracker-mapped-file.png": {
+      "alt": "A screenshot of the details pane displaying a summary of the VM regions highlighting the largest memory-mapped file.",
+      "identifier": "gputools-instruments-game-memory-vm-tracker-mapped-file.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97eee99509bc89466ca530d676917dc6/gputools-instruments-game-memory-vm-tracker-mapped-file.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59da789811e66b333ea3537a55157f5b/gputools-instruments-game-memory-vm-tracker-mapped-file@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4e05f9537197c4ba61a3320bafc34b9/gputools-instruments-game-memory-vm-tracker-mapped-file~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38f581cda71df96cc9f1d446c8161ebd/gputools-instruments-game-memory-vm-tracker-mapped-file~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-memory-vm-tracker.png": {
+      "alt": "A screenshot of Instruments with the VM Tracker track selected. The bottom details pane displays a summary of the VM regions.",
+      "identifier": "gputools-instruments-game-memory-vm-tracker.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8289fb2fa643196d5787443a5fa5349/gputools-instruments-game-memory-vm-tracker.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b246e2860af1db08f3942abbdf92ad3/gputools-instruments-game-memory-vm-tracker@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6f0548ba5ecbc52432a51abee238d53/gputools-instruments-game-memory-vm-tracker~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/066c3aefe0ad550e4d55272c2024b2f9/gputools-instruments-game-memory-vm-tracker~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10106/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10106/",
+      "title": "Profile and optimize your game’s memory",
+      "titleInlineContent": [
+        {
+          "text": "Profile and optimize your game’s memory",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10106/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Graphics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+      ],
+      "title": "Graphics"
+    }
+  ]
+}

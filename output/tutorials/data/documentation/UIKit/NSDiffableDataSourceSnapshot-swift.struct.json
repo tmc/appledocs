@@ -1,0 +1,2760 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of the state of the data in a view at a specific point in time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:5UIKit28NSDiffableDataSourceSnapshotV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDiffableDataSourceSnapshot"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSDiffableDataSourceSnapshot"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "NSDiffableDataSourceSnapshot"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "SectionIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "ItemIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "SectionIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SH",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SH",
+              "text": "Hashable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "SectionIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ItemIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SH",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SH",
+              "text": "Hashable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ItemIdentifierType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Diffable data sources use ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "snapshots",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to provide data for collection views and table views. You use a snapshot to set up the initial state of the data that a view displays, and you use snapshots to reflect changes to the data that the view displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data in a snapshot is made up of the sections and items you want to display, in the order you that you determine. You configure what to display by adding, deleting, or moving the sections and items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each of your sections and items must have unique identifiers that conform to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol. Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "struct",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "enum",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " Swift value types for your identifiers, including built-in types such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "Int",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "String",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "UUID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you use a Swift ",
+                  "type": "text"
+                },
+                {
+                  "code": "class",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for your identifiers, your ",
+                  "type": "text"
+                },
+                {
+                  "code": "class",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be a subclass of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSObject",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display data in a view using a snapshot:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a snapshot and populate it with the state of the data you want to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply the snapshot to reflect the changes in the UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create and configure a snapshot in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an empty snapshot, then append sections and items to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the current snapshot by calling the diffable data source’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/snapshot()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, then modify that snapshot to reflect the new state of the data that you want to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code creates an empty snapshot and populates it with a single section with three items. Then, the code applies the snapshot, animating the UI updates between the previous state and the new state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a snapshot.",
+            "var snapshot = NSDiffableDataSourceSnapshot<Int, UUID>()        ",
+            "",
+            "// Populate the snapshot.",
+            "snapshot.appendSections([0])",
+            "snapshot.appendItems([UUID(), UUID(), UUID()])",
+            "",
+            "// Apply the snapshot.",
+            "dataSource.apply(snapshot, animatingDifferences: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the diffable data source types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSCollectionViewDiffableDataSource-axww",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Bridging",
+          "level": 3,
+          "text": "Bridging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can bridge from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to this type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let snapshot = snapshotReference as NSDiffableDataSourceSnapshot<Int, UUID>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSCollectionViewDiffableDataSource-axww": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide items for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSource"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSCollectionViewDiffableDataSource-axww",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCollectionViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSCollectionViewDiffableDataSource-axww"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a layout section at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectionsnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendItems(_:toSection:)": {
+      "abstract": [
+        {
+          "text": "Adds the items with the specified identifiers to the specified section of the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendItems(_:toSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendItems(_:toSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/appenditems(_:tosection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendSections(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the sections with the specified identifiers to the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendSections(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendSections(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/appendsections(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteAllItems()": {
+      "abstract": [
+        {
+          "text": "Deletes all of the items from the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAllItems"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteAllItems()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteAllItems()",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/deleteallitems()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteItems(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes the items with the specified identifiers from the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteItems(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteItems(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/deleteitems(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteSections(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes the sections with the specified identifiers from the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteSections(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteSections(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/deletesections(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfItem(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the item in the snapshot with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfItem(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/indexofitem(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfSection(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the section of the snapshot with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfSection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfSection(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfSection(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/indexofsection(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/init()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:afterItem:)": {
+      "abstract": [
+        {
+          "text": "Inserts the provided items immediately after the item with the specified identifier in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:afterItem:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertItems(_:afterItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/insertitems(_:afteritem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:beforeItem:)": {
+      "abstract": [
+        {
+          "text": "Inserts the provided items immediately before the item with the specified identifier in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beforeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:beforeItem:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertItems(_:beforeItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/insertitems(_:beforeitem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:afterSection:)": {
+      "abstract": [
+        {
+          "text": "Inserts the provided sections immediately after the section with the specified identifier in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:afterSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertSections(_:afterSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/insertsections(_:aftersection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:beforeSection:)": {
+      "abstract": [
+        {
+          "text": "Inserts the provided sections immediately before the section with the specified identifier in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beforeSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:beforeSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertSections(_:beforeSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/insertsections(_:beforesection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers": {
+      "abstract": [
+        {
+          "text": "The identifiers of all of the items in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/itemidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers(inSection:)": {
+      "abstract": [
+        {
+          "text": "Returns the identifiers of all of the items in the specified section of the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers(inSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemIdentifiers(inSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/itemidentifiers(insection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:afterItem:)": {
+      "abstract": [
+        {
+          "text": "Moves the item from its current position in the snapshot to the position immediately after the specified item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:afterItem:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveItem(_:afterItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/moveitem(_:afteritem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:beforeItem:)": {
+      "abstract": [
+        {
+          "text": "Moves the item from its current position in the snapshot to the position immediately before the specified item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beforeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:beforeItem:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveItem(_:beforeItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/moveitem(_:beforeitem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:afterSection:)": {
+      "abstract": [
+        {
+          "text": "Moves the section from its current position in the snapshot to the position immediately after the specified section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveSection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:afterSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveSection(_:afterSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/movesection(_:aftersection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:beforeSection:)": {
+      "abstract": [
+        {
+          "text": "Moves the section from its current position in the snapshot to the position immediately before the specified section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveSection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "beforeSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:beforeSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveSection(_:beforeSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/movesection(_:beforesection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems": {
+      "abstract": [
+        {
+          "text": "The number of items in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfItems",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/numberofitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems(inSection:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of items in the specified section of the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inSection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems(inSection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfItems(inSection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/numberofitems(insection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfSections": {
+      "abstract": [
+        {
+          "text": "The number of sections in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfSections"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfSections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfSections",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/numberofsections"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the data for the items you specify in the snapshot, preserving the existing cells for the items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconfigureItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconfigureItems(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reconfigureitems(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfiguredItemIdentifiers": {
+      "abstract": [
+        {
+          "text": "Identifies the items reconfigured by the changes to the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconfiguredItemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfiguredItemIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconfiguredItemIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reconfigureditemidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)": {
+      "abstract": [
+        {
+          "text": "Reloads the data within the specified items in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadItems(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reloaditems(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadSections(_:)": {
+      "abstract": [
+        {
+          "text": "Reloads the data within the specified sections of the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadSections"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadSections(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadSections(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reloadsections(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedItemIdentifiers": {
+      "abstract": [
+        {
+          "text": "Identifies the items reloaded by the changes to the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadedItemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedItemIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadedItemIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reloadeditemidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedSectionIdentifiers": {
+      "abstract": [
+        {
+          "text": "Identifies the sections reloaded by the changes to the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadedSectionIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedSectionIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadedSectionIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reloadedsectionidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifier(containingItem:)": {
+      "abstract": [
+        {
+          "text": "Returns the identifier of the section containing the specified item in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "containingItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifier(containingItem:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sectionIdentifier(containingItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/sectionidentifier(containingitem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifiers": {
+      "abstract": [
+        {
+          "text": "The identifiers of all of the sections in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sectionIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/sectionidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching": {
+      "abstract": [
+        {
+          "text": "A protocol that provides advance warning of the data requirements for a collection view, allowing the triggering of asynchronous data load operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/snapshot()": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the current state of the data in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit28NSDiffableDataSourceSnapshotV",
+          "text": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/snapshot()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "snapshot()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/snapshot()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdiffabledatasource-2euir"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views": {
+      "abstract": [
+        {
+          "text": "Improve the performance of lists and collections in your app with prefetching and image preparation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building high-performance lists and collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/building-high-performance-lists-and-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views": {
+      "abstract": [
+        {
+          "text": "Bring compositional layouts to your app and simplify updating your user interface with diffable data sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing modern collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-modern-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources": {
+      "abstract": [
+        {
+          "text": "Streamline the display and update of data in a collection view using a diffable data source that contains identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating collection views using diffable data sources",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-collection-views-using-diffable-data-sources"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources",
+        "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+      ],
+      "title": "Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-snapshot",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/init()",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendSections(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/appendItems(_:toSection:)"
+      ],
+      "title": "Creating a snapshot"
+    },
+    {
+      "anchor": "Getting-item-and-section-metrics",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfSections",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/numberOfItems(inSection:)"
+      ],
+      "title": "Getting item and section metrics"
+    },
+    {
+      "anchor": "Identifying-items-and-sections",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfItem(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/indexOfSection(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/itemIdentifiers(inSection:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/sectionIdentifier(containingItem:)"
+      ],
+      "title": "Identifying items and sections"
+    },
+    {
+      "anchor": "Inserting-items-and-sections",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:afterItem:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertItems(_:beforeItem:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:afterSection:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/insertSections(_:beforeSection:)"
+      ],
+      "title": "Inserting items and sections"
+    },
+    {
+      "anchor": "Removing-items-and-sections",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteAllItems()",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteItems(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/deleteSections(_:)"
+      ],
+      "title": "Removing items and sections"
+    },
+    {
+      "anchor": "Reordering-items-and-sections",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:afterItem:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveItem(_:beforeItem:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:afterSection:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/moveSection(_:beforeSection:)"
+      ],
+      "title": "Reordering items and sections"
+    },
+    {
+      "anchor": "Reloading-data",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfiguredItemIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedItemIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadSections(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadedSectionIdentifiers"
+      ],
+      "title": "Reloading data"
+    },
+    {
+      "anchor": "Supporting-bridging",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference"
+      ],
+      "title": "Supporting bridging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/title",
+          "value": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/title",
+          "value": "UICollectionViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/title",
+          "value": "UICollectionViewDataSourcePrefetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

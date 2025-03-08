@@ -1,0 +1,411 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value indicating whether the operation can be performed now. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsoperation/1412992-ready"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412992,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOperation(py)ready",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSOperation"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "ready"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(readonly, getter=isReady) "
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ready"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The readiness of operations is determined by their dependencies on other operations and potentially by custom conditions that you define. The ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class manages dependencies on other operations and reports the readiness of the receiver based on those dependencies.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to use custom conditions to define the readiness of your operation object, reimplement this property and return a value that accurately reflects the readiness of the receiver. If you do so, your custom implementation must get the default property value from ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and incorporate that readiness value into the new value of the property. In your custom implementation, you must generate KVO notifications for the ",
+              "type": "text"
+            },
+            {
+              "code": "isReady",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key path whenever the ready state of your operation object changes. For more information about generating KVO notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696481",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696481": {
+      "identifier": "devLink-1696481",
+      "title": "Key-Value Observing Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents the code and data associated with a single task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOperation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1408275-asynchronous": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation executes its task asynchronously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1408275-asynchronous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asynchronous",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1408275-asynchronous"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1408418-cancelled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation has been cancelled",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1408418-cancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelled",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1408418-cancelled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1411089-concurrent": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation executes its task asynchronously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1411089-concurrent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "concurrent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1411089-concurrent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1412992-ready": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation can be performed now. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1412992-ready",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ready",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1412992-ready"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1413540-finished": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation has finished executing its task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1413540-finished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finished",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1413540-finished"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1415621-executing": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the operation is currently executing. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1415621-executing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executing",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1415621-executing"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1416089-name": {
+      "abstract": [
+        {
+          "text": "The name of the operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1416089-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1416089-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperation/1416668-dependencies": {
+      "abstract": [
+        {
+          "text": "An array of the operation objects that must finish executing before the current object can begin executing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperation/1416668-dependencies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dependencies",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperation/1416668-dependencies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1408418-cancelled",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1415621-executing",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1413540-finished",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1411089-concurrent",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1408275-asynchronous",
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1416089-name"
+      ],
+      "title": "Getting the Operation Status"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsoperation/1416668-dependencies"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsoperation/1412992-ready"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/operation/1412992-isready"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

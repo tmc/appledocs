@@ -1,0 +1,1118 @@
+{
+  "abstract": [
+    {
+      "text": "Use basic macOS command-line tools to send push notifications to Apple Push Notification service (APNs).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending push notifications using command-line tools"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testing your APNs connection and configuration by writing a test app can take time. The command-line tools described below provide a quick way to test your setup with APNs in a nonproduction-quality test suite or app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin, verify that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your target device is unlocked and connected to the internet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is open and in the foreground.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Send-a-push-notification-using-a-certificate",
+          "level": 3,
+          "text": "Send a push notification using a certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a push notification using a certificate, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A DER-encoded certificate from WWDR to connect to the APNs sandbox. For details on how to set up certificate-based trust with APNs, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The PEM-encoded private key, without a password, used to generate the above certificate. The Keychain app generates the private key when you create a certificate signing request (CSR). To learn more, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your App ID. To learn more about App IDs, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by launching the Terminal app in the most recent macOS version. Then set these shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CERTIFICATE_FILE_NAME=path to the certificate file",
+            "CERTIFICATE_KEY_FILE_NAME=path to the private key file",
+            "TOPIC=App ID"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether you’re testing a device or a broadcast push notification determines the next set of variables to include.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-device-push-notification-using-a-certificate",
+          "level": 3,
+          "text": "Send a device push notification using a certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a device push notification using a certificate, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device token from your app, as a hexadecimal-encoded ASCII string. To learn more about device tokens, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Terminal app in the most recent macOS version, set these additional shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DEVICE_TOKEN=device token for your app",
+            "APNS_HOST_NAME=api.sandbox.push.apple.com"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test that you can use your certificate to connect to APNs using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl s_client ",
+            "-connect \"${APNS_HOST_NAME}\":443 ",
+            "-cert \"${CERTIFICATE_FILE_NAME}\" ",
+            "-certform DER -key \"${CERTIFICATE_KEY_FILE_NAME}\" ",
+            "-keyform PEM"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then send a push notification using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v ",
+            "  --header \"apns-topic: ${TOPIC}\" ",
+            "  --header \"apns-push-type: alert\" ",
+            "  --cert \"${CERTIFICATE_FILE_NAME}\" ",
+            "  --cert-type DER --key \"${CERTIFICATE_KEY_FILE_NAME}\" ",
+            "  --key-type PEM --data '{\"aps\":{\"alert\":\"test\"}}' ",
+            "  --http2  https://${APNS_HOST_NAME}/3/device/${DEVICE_TOKEN}"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is an HTTP status of 200 (request succeeded). A notification with the text “test” appears on your destination device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-broadcast-push-notification-using-a-certificate",
+          "level": 3,
+          "text": "Send a broadcast push notification using a certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a broadcast push notification using a certificate, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The channel ID you’re using for the broadcast, as a base64-encoded string. For more information about creating a channel, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the Live Activity is active on the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Terminal app in the most recent macOS version, set these additional shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CHANNEL_ID=channel ID for your application",
+            "APNS_HOST_NAME=api.sandbox.push.apple.com "
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test that you can use your certificate to connect to APNs using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl s_client ",
+            "   -connect \"${APNS_HOST_NAME}\":443 ",
+            "   -cert \"${CERTIFICATE_FILE_NAME}\" ",
+            "   -certform DER ",
+            "   -key \"${CERTIFICATE_KEY_FILE_NAME}\" ",
+            "   -keyform PEM"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then send a push notification using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v ",
+            "  --header \"apns-channel-id: ${CHANNEL_ID}\" ",
+            "  --header \"apns-push-type: Liveactivity\"",
+            "  --header \"apns-priority: 10\" ",
+            "  --cert \"${CERTIFICATE_FILE_NAME}\" ",
+            "  --cert-type DER ",
+            "  --key \"${CERTIFICATE_KEY_FILE_NAME}\" ",
+            "  --key-type PEM --data '{\"aps\":{\"alert\":\"test\"}}' ",
+            "  --http2  https://${APNS_HOST_NAME}/4/broadcasts/apps/${TOPIC}"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is an HTTP status of 200 (request succeeded). Update the data in the curl command based on your Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-push-notification-using-a-JSON-web-token-JWT",
+          "level": 3,
+          "text": "Send a push notification using a JSON web token (JWT)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a push notification using a JWT, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Team ID. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-your-team/locate-your-team-id",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your key identifier for APNs. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The PEM-encoded private key, without a password, associated with the above key identifier. To learn more about downloading keys, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-keys/revoke-edit-and-download-keys",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your App ID. To learn more about App IDs, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+                      "isActive": true,
+                      "overridingTitle": "Register an App ID",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Register an App ID",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by launching the Terminal app in the most recent macOS version. Then set these shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TEAM_ID=Team ID",
+            "TOKEN_KEY_FILE_NAME=path to the private key file",
+            "AUTH_KEY_ID=your key identifier",
+            "TOPIC=App ID"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether you’re testing a device or a broadcast push notification determines the next set of variables to include.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-device-push-notification-using-a-JWT",
+          "level": 3,
+          "text": "Send a device push notification using a JWT",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a device push notification using a JWT, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device token from your app, as a hexadecimal-encoded ASCII string. To learn more about device tokens, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Terminal app, set these additional shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DEVICE_TOKEN=device token for your app",
+            "APNS_HOST_NAME=api.sandbox.push.apple.com"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test that you can connect to APNs using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl s_client -connect \"${APNS_HOST_NAME}\":443"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set these additional shell variables just before sending a push notification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "JWT_ISSUE_TIME=$(date +%s)",
+            "JWT_HEADER=$(printf '{ \"alg\": \"ES256\", \"kid\": \"%s\" }' \"${AUTH_KEY_ID}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "JWT_CLAIMS=$(printf '{ \"iss\": \"%s\", \"iat\": %d }' \"${TEAM_ID}\" \"${JWT_ISSUE_TIME}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "JWT_HEADER_CLAIMS=\"${JWT_HEADER}.${JWT_CLAIMS}\"",
+            "JWT_SIGNED_HEADER_CLAIMS=$(printf \"${JWT_HEADER_CLAIMS}\" | openssl dgst -binary -sha256 -sign \"${TOKEN_KEY_FILE_NAME}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "AUTHENTICATION_TOKEN=\"${JWT_HEADER}.${JWT_CLAIMS}.${JWT_SIGNED_HEADER_CLAIMS}\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send the push notification using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v ",
+            "   --header \"apns-topic: $TOPIC\" ",
+            "   --header \"apns-push-type: alert\" ",
+            "   --header \"authorization: bearer $AUTHENTICATION_TOKEN\" ",
+            "   --data '{\"aps\":{\"alert\":\"test\"}}' ",
+            "   --http2 https://${APNS_HOST_NAME}/3/device/${DEVICE_TOKEN}"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is an HTTP status of 200 (request succeeded). A notification with the text “test” appears on your destination device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-broadcast-push-notification-using-a-JWT",
+          "level": 3,
+          "text": "Send a broadcast push notification using a JWT",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a broadcast push notification using a JWT, you’ll need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The channel ID you’re using for the broadcast, as a base64-encoded string. For more information about creating a channel, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the Live Activity is active on the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Terminal app in the most recent macOS version, set these additional shell variables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CHANNEL_ID=channel ID for your application",
+            "APNS_HOST_NAME=api.sandbox.push.apple.com"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test that you can use your certificate to connect to APNs using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl s_client -connect \"${APNS_HOST_NAME}\":443 "
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set these additional shell variables just before sending a push notification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "JWT_ISSUE_TIME=$(date +%s)",
+            "JWT_HEADER=$(printf '{ \"alg\": \"ES256\", \"kid\": \"%s\" }' \"${AUTH_KEY_ID}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "JWT_CLAIMS=$(printf '{ \"iss\": \"%s\", \"iat\": %d }' \"${TEAM_ID}\" \"${JWT_ISSUE_TIME}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "JWT_HEADER_CLAIMS=\"${JWT_HEADER}.${JWT_CLAIMS}\"",
+            "JWT_SIGNED_HEADER_CLAIMS=$(printf \"${JWT_HEADER_CLAIMS}\" | openssl dgst -binary -sha256 -sign \"${TOKEN_KEY_FILE_NAME}\" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)",
+            "AUTHENTICATION_TOKEN=\"${JWT_HEADER}.${JWT_CLAIMS}.${JWT_SIGNED_HEADER_CLAIMS}\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then send a push notification using this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v ",
+            "   --header \"authorization: bearer $AUTHENTICATION_TOKEN\" ",
+            "   --header \"apns-channel-id: ${CHANNEL_ID}\" ",
+            "   --header \"apns-push-type: Liveactivity\"",
+            "   --header \"apns-priority: 10\" ",
+            "   --data '{\"aps\":{\"alert\":\"test\"}}' ",
+            "   --http2  https://${APNS_HOST_NAME}/4/broadcasts/apps/${TOPIC}"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is an HTTP status of 200 (request succeeded). Update the data in the curl command based on your Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by installing a certificate on your provider server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a certificate-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Manage channels that your application uses for broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending channel management requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/usernotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request": {
+      "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request",
+      "title": "Create a certificate signing request",
+      "titleInlineContent": [
+        {
+          "text": "Create a certificate signing request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request"
+    },
+    "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id": {
+      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+      "title": "Register an App ID",
+      "titleInlineContent": [
+        {
+          "text": "Register an App ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id"
+    },
+    "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier": {
+      "identifier": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier",
+      "title": "Get a key identifier",
+      "titleInlineContent": [
+        {
+          "text": "Get a key identifier",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier"
+    },
+    "https://developer.apple.com/help/account/manage-keys/revoke-edit-and-download-keys": {
+      "identifier": "https://developer.apple.com/help/account/manage-keys/revoke-edit-and-download-keys",
+      "title": "Revoke, edit, and download keys",
+      "titleInlineContent": [
+        {
+          "text": "Revoke, edit, and download keys",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-keys/revoke-edit-and-download-keys"
+    },
+    "https://developer.apple.com/help/account/manage-your-team/locate-your-team-id": {
+      "identifier": "https://developer.apple.com/help/account/manage-your-team/locate-your-team-id",
+      "title": "Locate your Team ID",
+      "titleInlineContent": [
+        {
+          "text": "Locate your Team ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-your-team/locate-your-team-id"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Remote-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+      ],
+      "title": "Remote notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Remote-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+              ],
+              "title": "Remote notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-push-notifications-using-command-line-tools"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-push-notifications-using-command-line-tools"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

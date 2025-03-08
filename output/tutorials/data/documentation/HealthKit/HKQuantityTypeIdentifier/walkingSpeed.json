@@ -1,0 +1,1622 @@
+{
+  "abstract": [
+    {
+      "text": "A quantity sample type that measures the user’s average speed when walking steadily over flat ground.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingSpeed"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "HealthKit",
+    "externalID": "c:@HKQuantityTypeIdentifierWalkingSpeed",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "walkingSpeed"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+        "text": "HKQuantityTypeIdentifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKQuantityTypeIdentifierWalkingSpeed"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "walkingSpeed"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "walkingSpeed"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+              "text": "HKQuantityTypeIdentifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Walking speed represents how quickly the user walks on flat ground. The system automatically records walking speed samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. To ensure accuracy, the user’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/height",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value must be up to date. The system records 10 to 30 walking speed samples on a typical day. iPhone doesn’t record walking speed samples if the user’s wheelchair status is on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These samples use distance per time units (described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and measure discrete values (described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityAggregationStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").  For example, the following code shows two ways to create a meters per second unit. The first uses explicit constructors, while the second initializes the unit from a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let mps = HKUnit.meter().unitDivided(by: HKUnit.second())",
+            "let mpsFromString = HKUnit(from: \"m/s\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/quantity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property represents the average walking speed between the sample’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier/appleWalkingSteadinessEvent": {
+      "abstract": [
+        {
+          "text": "A category sample type that records an incident where the user showed a reduced score for their gait’s steadiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleWalkingSteadinessEvent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKCategoryTypeIdentifier",
+          "text": "HKCategoryTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier/appleWalkingSteadinessEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCategoryTypeIdentifierAppleWalkingSteadinessEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "appleWalkingSteadinessEvent",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcategorytypeidentifier/applewalkingsteadinessevent"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDevicePlacementSide": {
+      "abstract": [
+        {
+          "text": "Values that indicate the placement of the device that measured a sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDevicePlacementSide"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDevicePlacementSide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDevicePlacementSide"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDevicePlacementSide",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdeviceplacementside"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityAggregationStyle": {
+      "abstract": [
+        {
+          "text": "Constant values that describe how quantities can be aggregated over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantityAggregationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityAggregationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityAggregationStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantityAggregationStyle",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityaggregationstyle"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/quantity": {
+      "abstract": [
+        {
+          "text": "The quantity for this sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/quantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "quantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample/quantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifiers that create quantity type objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantityTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/appleWalkingSteadiness": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the steadiness of the user’s gait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleWalkingSteadiness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/appleWalkingSteadiness",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierAppleWalkingSteadiness"
+        }
+      ],
+      "role": "symbol",
+      "title": "appleWalkingSteadiness",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/applewalkingsteadiness"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/height": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/height",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierHeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/height"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/sixMinuteWalkTestDistance": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that stores the distance a user can walk during a six-minute walk test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sixMinuteWalkTestDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/sixMinuteWalkTestDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierSixMinuteWalkTestDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "sixMinuteWalkTestDistance",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairAscentSpeed": {
+      "abstract": [
+        {
+          "text": "A quantity sample type measuring the user’s speed while climbing a flight of stairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stairAscentSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairAscentSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierStairAscentSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "stairAscentSpeed",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/stairascentspeed"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairDescentSpeed": {
+      "abstract": [
+        {
+          "text": "A quantity sample type measuring the user’s speed while descending a flight of stairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stairDescentSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairDescentSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierStairDescentSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "stairDescentSpeed",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/stairdescentspeed"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingAsymmetryPercentage": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the percentage of steps in which one foot moves at a different speed than the other when walking on flat ground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "walkingAsymmetryPercentage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingAsymmetryPercentage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierWalkingAsymmetryPercentage"
+        }
+      ],
+      "role": "symbol",
+      "title": "walkingAsymmetryPercentage",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/walkingasymmetrypercentage"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingDoubleSupportPercentage": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the percentage of time when both of the user’s feet touch the ground while walking steadily over flat ground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "walkingDoubleSupportPercentage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingDoubleSupportPercentage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierWalkingDoubleSupportPercentage"
+        }
+      ],
+      "role": "symbol",
+      "title": "walkingDoubleSupportPercentage",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/walkingdoublesupportpercentage"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingSpeed": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s average speed when walking steadily over flat ground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "walkingSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierWalkingSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "walkingSpeed",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/walkingspeed"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingStepLength": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the average length of the user’s step when walking steadily over flat ground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "walkingStepLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+          "text": "HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingStepLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityTypeIdentifierWalkingStepLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "walkingStepLength",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/walkingsteplength"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate": {
+      "abstract": [
+        {
+          "text": "The sample’s end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/enddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate": {
+      "abstract": [
+        {
+          "text": "The sample’s start date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/startdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKUnit": {
+      "abstract": [
+        {
+          "text": "A class for managing the units of measure within HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKUnit",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkunit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDevicePlacementSide"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Mobility",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/appleWalkingSteadiness",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier/appleWalkingSteadinessEvent",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/sixMinuteWalkTestDistance",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingStepLength",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingAsymmetryPercentage",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingDoubleSupportPercentage",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairAscentSpeed",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairDescentSpeed"
+      ],
+      "title": "Mobility"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKQuantityTypeIdentifierWalkingSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierWalkingSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDevicePlacementSide"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Mobility",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/appleWalkingSteadiness",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier/appleWalkingSteadinessEvent",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/sixMinuteWalkTestDistance",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingStepLength",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingAsymmetryPercentage",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/walkingDoubleSupportPercentage",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairAscentSpeed",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier/stairDescentSpeed"
+              ],
+              "title": "Mobility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityTypeIdentifier",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+                    "text": "HKQuantityTypeIdentifier"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKQuantityTypeIdentifierWalkingSpeed"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier/title",
+          "value": "HKQuantityTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1appleWalkingSteadiness/title",
+          "value": "HKQuantityTypeIdentifierAppleWalkingSteadiness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1appleWalkingSteadiness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierAppleWalkingSteadiness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1stairDescentSpeed/title",
+          "value": "HKQuantityTypeIdentifierStairDescentSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1stairDescentSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierStairDescentSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1stairAscentSpeed/title",
+          "value": "HKQuantityTypeIdentifierStairAscentSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1stairAscentSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierStairAscentSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1sixMinuteWalkTestDistance/title",
+          "value": "HKQuantityTypeIdentifierSixMinuteWalkTestDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1sixMinuteWalkTestDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierSixMinuteWalkTestDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingDoubleSupportPercentage/title",
+          "value": "HKQuantityTypeIdentifierWalkingDoubleSupportPercentage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingDoubleSupportPercentage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierWalkingDoubleSupportPercentage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/title",
+          "value": "HKUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingStepLength/title",
+          "value": "HKQuantityTypeIdentifierWalkingStepLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingStepLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierWalkingStepLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDevicePlacementSide/title",
+          "value": "HKDevicePlacementSide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDevicePlacementSide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDevicePlacementSide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDevicePlacementSide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDevicePlacementSide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingAsymmetryPercentage/title",
+          "value": "HKQuantityTypeIdentifierWalkingAsymmetryPercentage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingAsymmetryPercentage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierWalkingAsymmetryPercentage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1quantity/title",
+          "value": "quantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1quantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingSpeed/title",
+          "value": "HKQuantityTypeIdentifierWalkingSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1walkingSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierWalkingSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier~1appleWalkingSteadinessEvent/title",
+          "value": "HKCategoryTypeIdentifierAppleWalkingSteadinessEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier~1appleWalkingSteadinessEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategoryTypeIdentifierAppleWalkingSteadinessEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityAggregationStyle/title",
+          "value": "HKQuantityAggregationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityAggregationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityAggregationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityAggregationStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityAggregationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1height/title",
+          "value": "HKQuantityTypeIdentifierHeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityTypeIdentifier~1height/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityTypeIdentifierHeight"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkquantitytypeidentifier/walkingspeed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkquantitytypeidentifier/walkingspeed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

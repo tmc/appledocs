@@ -1,0 +1,1877 @@
+{
+  "abstract": [
+    {
+      "text": "A format specification for an audio stream.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AudioStreamBasicDescription",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AudioStreamBasicDescription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Audio Types"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AudioStreamBasicDescription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AudioStreamBasicDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure an audio stream basic description (ASBD) to specify a linear PCM format or a constant bit rate (CBR) format that has channels of equal size. For variable bit rate (VBR) audio, and for CBR audio where the channels have unequal sizes, also use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure to additionally describe each packet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A field value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the value is either unknown or not applicable to the format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always initialize the fields of a new audio stream basic description structure to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AudioStreamBasicDescription myAudioDataFormat = {0};"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the duration that one packet represents, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mSampleRate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFramesPerPacket",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "duration = (1 / mSampleRate) * mFramesPerPacket"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Core Audio, the following definitions apply:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "audio stream",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a continuous series of data that represents a sound, such as a song.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "channel",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a discrete track of monophonic audio. A monophonic stream has one channel; a stereo stream has two channels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "sample",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is single numerical value for a single audio channel in an audio stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "frame",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a collection of time-coincident samples. For instance, a linear PCM stereo sound file has two samples per frame, one for the left channel and one for the right channel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "packet",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a collection of one or more contiguous frames. A packet defines the smallest meaningful set of frames for a given audio data format, and is the smallest data unit for which time can be measured. In linear PCM audio, a packet holds a single frame. In compressed formats, it typically holds more frames. In some formats, the number of frames per packet varies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "sample rate",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " for a stream is the number of frames per second of uncompressed audio, or, for compressed formats, the equivalent in decompressed audio.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes": {
+      "abstract": [
+        {
+          "text": "Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio Types",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatFlags": {
+      "abstract": [
+        {
+          "text": "A type definition for audio format flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFormatFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFormatFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFormatFlags",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audioformatflags"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatID": {
+      "abstract": [
+        {
+          "text": "A type definition for audio format identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFormatID"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFormatID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFormatID",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audioformatid"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription": {
+      "abstract": [
+        {
+          "text": "A format specification for an audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioStreamBasicDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioStreamBasicDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioStreamBasicDescription",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/init()"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init(mSampleRate:mFormatID:mFormatFlags:mBytesPerPacket:mFramesPerPacket:mBytesPerFrame:mChannelsPerFrame:mBitsPerChannel:mReserved:)": {
+      "abstract": [
+        {
+          "text": "Creates a description with the specified values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mSampleRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mFormatID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatID",
+          "text": "AudioFormatID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mFormatFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatFlags",
+          "text": "AudioFormatFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mBytesPerPacket"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mFramesPerPacket"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mBytesPerFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mChannelsPerFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mBitsPerChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mReserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init(mSampleRate:mFormatID:mFormatFlags:mBytesPerPacket:mFramesPerPacket:mBytesPerFrame:mChannelsPerFrame:mBitsPerChannel:mReserved:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mSampleRate:mFormatID:mFormatFlags:mBytesPerPacket:mFramesPerPacket:mBytesPerFrame:mChannelsPerFrame:mBitsPerChannel:mReserved:)",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/init(msamplerate:mformatid:mformatflags:mbytesperpacket:mframesperpacket:mbytesperframe:mchannelsperframe:mbitsperchannel:mreserved:)"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBitsPerChannel": {
+      "abstract": [
+        {
+          "text": "The number of bits for one audio sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mBitsPerChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBitsPerChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mBitsPerChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "mBitsPerChannel",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mbitsperchannel"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerFrame": {
+      "abstract": [
+        {
+          "text": "The number of bytes from the start of one frame to the start of the next frame in an audio buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mBytesPerFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mBytesPerFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "mBytesPerFrame",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mbytesperframe"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerPacket": {
+      "abstract": [
+        {
+          "text": "The number of bytes in a packet of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mBytesPerPacket"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mBytesPerPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "mBytesPerPacket",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mbytesperpacket"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mChannelsPerFrame": {
+      "abstract": [
+        {
+          "text": "The number of channels in each frame of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mChannelsPerFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mChannelsPerFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mChannelsPerFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "mChannelsPerFrame",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mchannelsperframe"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatFlags": {
+      "abstract": [
+        {
+          "text": "Format-specific flags to specify details of the format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mFormatFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatFlags",
+          "text": "AudioFormatFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mFormatFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "mFormatFlags",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mformatflags"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatID": {
+      "abstract": [
+        {
+          "text": "An identifier specifying the general audio data format in the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mFormatID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatID",
+          "text": "AudioFormatID"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mFormatID"
+        }
+      ],
+      "role": "symbol",
+      "title": "mFormatID",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mformatid"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFramesPerPacket": {
+      "abstract": [
+        {
+          "text": "The number of frames in a packet of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mFramesPerPacket"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFramesPerPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mFramesPerPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "mFramesPerPacket",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mframesperpacket"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mReserved": {
+      "abstract": [
+        {
+          "text": "The amount to pad the structure to force an even 8-byte alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mReserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mReserved",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mReserved"
+        }
+      ],
+      "role": "symbol",
+      "title": "mReserved",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/mreserved"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mSampleRate": {
+      "abstract": [
+        {
+          "text": "The number of frames per second of the data in the stream, when playing the stream at normal speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mSampleRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mSampleRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mSampleRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "mSampleRate",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription/msamplerate"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription": {
+      "abstract": [
+        {
+          "text": "A value that describes a packet in a buffer of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioStreamPacketDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioStreamPacketDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioStreamPacketDescription",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreampacketdescription"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/MPEG4ObjectID": {
+      "abstract": [
+        {
+          "text": "Constants that define the type of MPEG-4 audio data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPEG4ObjectID"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/MPEG4ObjectID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPEG4ObjectID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPEG4ObjectID",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/mpeg4objectid"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-flags": {
+      "abstract": [
+        {
+          "text": "Commonly used combinations of data format flags for an audio stream description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Flags",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audio-format-flags"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-identifiers": {
+      "abstract": [
+        {
+          "text": "Identifiers for supported audio formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Identifiers",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audio-format-identifiers"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/kAudioStreamAnyRate": {
+      "abstract": [
+        {
+          "text": "A value that indicates that an audio stream can use any sample rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioStreamAnyRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/kAudioStreamAnyRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioStreamAnyRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioStreamAnyRate",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/kaudiostreamanyrate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Streams",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatFlags",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-flags",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatID",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/audio-format-identifiers",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/kAudioStreamAnyRate",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/MPEG4ObjectID"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Inspecting-a-description",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatID",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatFlags",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mSampleRate",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBitsPerChannel",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerFrame",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mChannelsPerFrame",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerPacket",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFramesPerPacket",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mReserved"
+      ],
+      "title": "Inspecting a description"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init()",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/init(mSampleRate:mFormatID:mFormatFlags:mBytesPerPacket:mFramesPerPacket:mBytesPerFrame:mChannelsPerFrame:mBitsPerChannel:mReserved:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AudioStreamBasicDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-a-description",
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatID",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFormatFlags",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mSampleRate",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBitsPerChannel",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerFrame",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mChannelsPerFrame",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mBytesPerPacket",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mFramesPerPacket",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription/mReserved"
+              ],
+              "title": "Inspecting a description"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Streams",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatFlags",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioFormatID",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/kAudioStreamAnyRate",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/MPEG4ObjectID"
+              ],
+              "title": "Streams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AudioStreamBasicDescription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamPacketDescription/title",
+          "value": "AudioStreamPacketDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamPacketDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamPacketDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamPacketDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamPacketDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mChannelsPerFrame/title",
+          "value": "mChannelsPerFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mChannelsPerFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mChannelsPerFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatID/title",
+          "value": "AudioFormatID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFormatID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFormatID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBytesPerFrame/title",
+          "value": "mBytesPerFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBytesPerFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mBytesPerFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatFlags/title",
+          "value": "AudioFormatFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFormatFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioFormatFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFormatFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1MPEG4ObjectID/title",
+          "value": "MPEG4ObjectID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1MPEG4ObjectID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPEG4ObjectID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1MPEG4ObjectID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPEG4ObjectID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFramesPerPacket/title",
+          "value": "mFramesPerPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFramesPerPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mFramesPerPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFormatID/title",
+          "value": "mFormatID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFormatID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mFormatID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mReserved/title",
+          "value": "mReserved"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mReserved/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mReserved"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mSampleRate/title",
+          "value": "mSampleRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mSampleRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mSampleRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/title",
+          "value": "AudioStreamBasicDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBytesPerPacket/title",
+          "value": "mBytesPerPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBytesPerPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mBytesPerPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBitsPerChannel/title",
+          "value": "mBitsPerChannel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mBitsPerChannel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mBitsPerChannel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFormatFlags/title",
+          "value": "mFormatFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription~1mFormatFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mFormatFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1kAudioStreamAnyRate/title",
+          "value": "kAudioStreamAnyRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1kAudioStreamAnyRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioStreamAnyRate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/audiostreambasicdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/audiostreambasicdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

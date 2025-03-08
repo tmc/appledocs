@@ -1,0 +1,2147 @@
+{
+  "abstract": [
+    {
+      "text": "An object that contains information about the latest in-app subscription transaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Latest_receipt_info-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_s2s:unified_receipt.Latest_receipt_info",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "unified_receipt.Latest_receipt_info"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "unified_receipt.Latest_receipt_info"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "unified_receipt.Latest_receipt_info"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server Notifications"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "unified_receipt.Latest_receipt_info"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/appAccountToken",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " associated with this transaction. This field is only present if your app supplied an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/appAccountToken(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or provided a UUID for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKMutablePayment/applicationUsername",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property when the user made the purchase.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "app_account_token",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time the App Store refunded a transaction or revoked it from family sharing, in a date-time format similar to the ISO 8601. This field is present only for refunded or revoked transactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cancellation_date",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time the App Store refunded a transaction or revoked it from family sharing, in UNIX epoch time format, in milliseconds. This field is present only for refunded or revoked transactions. Use this time format for processing dates. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cancellation_date_ms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time the App Store refunded a transaction or revoked it from family sharing, in Pacific Standard Time. This field is present only for refunded or revoked transactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cancellation_date_pst",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "1",
+                "0"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reason for a refunded or revoked transaction. A value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates that the customer canceled their transaction due to an actual or perceived issue within your app. A value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates that the transaction was canceled for another reason, for example, if the customer made the purchase accidentally.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cancellation_reason",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time a subscription expires or when it will renew, in a date-time format similar to the ISO 8601.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expires_date",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time when a subscription expires or when it will renew, in UNIX epoch time format, in milliseconds. Use this time format for processing dates. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expires_date_ms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time when a subscription expires or when it will renew, in Pacific Standard Time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expires_date_pst",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "FAMILY_SHARED",
+                "PURCHASED"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A value that indicates whether the user is the purchaser of the product or is a family member with access to the product through Family Sharing. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/in_app_ownership_type",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "in_app_ownership_type",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "true",
+                "false"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An indicator of whether an auto-renewable subscription is in the introductory price period. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "is_in_intro_offer_period",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "true",
+                "false"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An indicator of whether a subscription is in the free trial period. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "is_trial_period",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "true"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An indicator that the system canceled a subscription because the user upgraded. This field is only present for subscription upgrade transactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "is_upgraded",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reference name of a subscription offer you configured in App Store Connect. This field is present when a customer redeemed a subscription offer code. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/offer_code_ref_name",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offer_code_ref_name",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time of the original app purchase, in a date-time format similar to the ISO 8601 standard.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "original_purchase_date",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time of the original app purchase, in UNIX epoch time format, in milliseconds. Use this time format for processing dates. This value indicates the date of the subscription’s initial purchase. The original purchase date applies to all product types and remains the same in all transactions for the same product ID. This value corresponds to the original transaction’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionDate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property in StoreKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "original_purchase_date_ms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time of the original app purchase, in Pacific Standard Time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "original_purchase_date_pst",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The transaction identifier of the original purchase. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "original_transaction_id",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier of the subscription offer redeemed by the user. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "promotional_offer_id",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier of the product purchased. You provide this value when creating the product in App Store Connect, and it corresponds to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment/productIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object stored in the transaction’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/payment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "product_id",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time when the App Store charged the user’s account for a subscription purchase or renewal after a lapse, in a date-time format similar to the ISO 8601 standard.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "purchase_date",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time when the App Store charged the user’s account for a subscription purchase or renewal after a lapse, in the UNIX epoch time format, in milliseconds. Use this time format for processing dates.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "purchase_date_ms",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time when the App Store charged the user’s account for a subscription purchase or renewal after a lapse, in Pacific Standard Time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "purchase_date_pst",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of consumable products purchased. This value corresponds to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment/quantity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object stored in the transaction’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/payment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property. The value is usually ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " unless modified with a mutable payment. The maximum value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "10",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "quantity",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier of the subscription group to which the subscription belongs. The value for this field is identical to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKProduct",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "subscription_group_identifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique identifier for a transaction such as a purchase, restore, or renewal. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "transaction_id",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique identifier for purchase events across devices, including subscription-renewal events. This value is the primary key to identify subscription purchases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "web_order_line_item_id",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the most recent in-app purchase transactions for the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "unified_receipt"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unified_receipt"
+        }
+      ],
+      "role": "symbol",
+      "title": "unified_receipt",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/unified_receipt"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Latest_receipt_info-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the latest in-app subscription transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "unified_receipt.Latest_receipt_info"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Latest_receipt_info-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unified_receipt.Latest_receipt_info"
+        }
+      ],
+      "role": "symbol",
+      "title": "unified_receipt.Latest_receipt_info",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/unified_receipt/latest_receipt_info-data.dictionary"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Pending_renewal_info-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An array of elements that refers to open auto-renewable subscription renewals or ones that failed in the past.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "unified_receipt.Pending_renewal_info"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Pending_renewal_info-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unified_receipt.Pending_renewal_info"
+        }
+      ],
+      "role": "symbol",
+      "title": "unified_receipt.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/unified_receipt/pending_renewal_info-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/appAccountToken(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a UUID to associate the purchase with an account in your system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appAccountToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/appAccountToken(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appAccountToken(_:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/appAccountToken(_:)"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKMutablePayment/applicationUsername": {
+      "abstract": [
+        {
+          "text": "A string that associates the transaction with a user account on your service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKMutablePayment/applicationUsername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationUsername",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKMutablePayment/applicationUsername"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPayment": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKPayment",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPayment"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPayment/productIdentifier": {
+      "abstract": [
+        {
+          "text": "A string used to identify a product that can be purchased from within your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment/productIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productIdentifier",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPayment/productIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPayment/quantity": {
+      "abstract": [
+        {
+          "text": "The number of items the user wants to purchase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPayment/quantity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quantity",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPayment/quantity"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/payment": {
+      "abstract": [
+        {
+          "text": "The payment for the transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "payment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPayment",
+          "text": "SKPayment"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/payment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "payment",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentTransaction/payment"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionDate": {
+      "abstract": [
+        {
+          "text": "The date the transaction was added to the App Store’s payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactionDate",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentTransaction/transactionDate"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKProduct": {
+      "abstract": [
+        {
+          "text": "Information about a registered product in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKProduct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKProduct",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKProduct"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the subscription group to which the subscription belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionGroupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionGroupIdentifier",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/appAccountToken": {
+      "abstract": [
+        {
+          "text": "A UUID that associates the transaction with a user on your own service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appAccountToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/appAccountToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appAccountToken",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/appAccountToken"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms": {
+      "abstract": [
+        {
+          "text": "The time and date that the App Store refunds a transaction or revokes it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancellation_date_ms"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancellation_date_ms",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/cancellation_date_ms"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms": {
+      "abstract": [
+        {
+          "text": "The time, in milliseconds, a subscription expires or renews.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expires_date_ms"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expires_date_ms",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expires_date_ms"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/in_app_ownership_type": {
+      "abstract": [
+        {
+          "text": "The relationship of the user with the family-shared purchase to which they have access.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "in_app_ownership_type"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/in_app_ownership_type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "in_app_ownership_type",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/in_app_ownership_type"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period": {
+      "abstract": [
+        {
+          "text": "An indicator of whether an auto-renewable subscription is in the introductory price period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "is_in_intro_offer_period"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "is_in_intro_offer_period",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/is_in_intro_offer_period"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period": {
+      "abstract": [
+        {
+          "text": "An indicator of whether an auto-renewable subscription is in the free trial period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "is_trial_period"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "is_trial_period",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/is_trial_period"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/offer_code_ref_name": {
+      "abstract": [
+        {
+          "text": "The offer-reference name of the subscription offer code that the customer redeems.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "offer_code_ref_name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/offer_code_ref_name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offer_code_ref_name",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/offer_code_ref_name"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id": {
+      "abstract": [
+        {
+          "text": "The transaction identifier of the original purchase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "original_transaction_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "original_transaction_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/original_transaction_id"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id": {
+      "abstract": [
+        {
+          "text": "The identifier of the promotional offer for an auto-renewable subscription that the user redeems.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "promotional_offer_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "promotional_offer_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/promotional_offer_id"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a transaction, such as a purchase, restore, or renewal.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "transaction_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/transaction_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transaction_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/transaction_id"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/unified_receipt/Pending_renewal_info-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPayment~1productIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "productIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPayment~1quantity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "quantity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKMutablePayment~1applicationUsername/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationUsername"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction~1transactionDate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDate",
+              "text": "NSDate"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "transactionDate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPayment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKProduct/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKProduct~1subscriptionGroupIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "subscriptionGroupIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction~1payment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKPayment",
+              "text": "SKPayment"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "payment"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/unified_receipt/latest_receipt_info-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

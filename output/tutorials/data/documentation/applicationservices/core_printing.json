@@ -1,0 +1,5101 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1665346,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Core Printing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Printing is a C API that Mac apps and command line tools can use to perform printing tasks that don’t display a user interface. Core Printing defines a set of opaque types and a rich set of operations on instances of these types. The Core Printing opaque types include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PMPrintSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for general information about a print job",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PMPrintSettings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for print job parameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PMPageFormat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the page format of a printed document",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PMPaper",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for information about a type of paper",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PMPrinter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for information about a printer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Carbon applications, Core Printing is used together with Carbon Printing to implement printing features. For more information about Carbon Printing, see Carbon Printing Reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Cocoa applications, Core Printing can be used to extend the functionality in the Cocoa printing classes. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides direct access to some Core Printing objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Core Printing is available to 64-bit applications, except for functions, data types, and constants that have been deprecated.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrintInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458796-pmgetscale": {
+      "abstract": [
+        {
+          "text": "Obtains the scaling factor currently applied to the page and paper rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetScale"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<Double>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458796-pmgetscale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetScale(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458796-pmgetscale"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings": {
+      "abstract": [
+        {
+          "text": "Submits a PDF file for workflow processing using the specified print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMWorkflowSubmitPDFWithSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, PMPrintSettings, CFURL) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMWorkflowSubmitPDFWithSettings(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex": {
+      "abstract": [
+        {
+          "text": "Obtains the selected duplex mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetDuplex"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<PMDuplexMode>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetDuplex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458921-pmgetduplex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings": {
+      "abstract": [
+        {
+          "text": "Validates a print settings object within the context of the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionValidatePrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, UnsafeMutablePointer<DarwinBoolean>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionValidatePrintSettings(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458994-pmsessionvalidateprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter": {
+      "abstract": [
+        {
+          "text": "Obtains the current printer associated with a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetCurrentPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, UnsafeMutablePointer<PMPrinter?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCurrentPrinter(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458998-pmsessiongetcurrentprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459016-pmsetorientation": {
+      "abstract": [
+        {
+          "text": "Sets the page orientation for printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, PMOrientation, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459016-pmsetorientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetOrientation(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459016-pmsetorientation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459018-pmprintergetname": {
+      "abstract": [
+        {
+          "text": "Returns the human-readable name of a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Unmanaged<CFString>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459018-pmprintergetname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetName(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459018-pmprintergetname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459030-pmprinterisdefault": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a printer is the default printer for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterIsDefault"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459030-pmprinterisdefault",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterIsDefault(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459030-pmprinterisdefault"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459042-pmpresetgetattributes": {
+      "abstract": [
+        {
+          "text": "Obtains the attributes of a preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPresetGetAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPreset, UnsafeMutablePointer<Unmanaged<CFDictionary>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459042-pmpresetgetattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPresetGetAttributes(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459042-pmpresetgetattributes"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459069-pmprintsettingstooptions": {
+      "abstract": [
+        {
+          "text": "Converts print settings into a CUPS options string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsToOptions"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459069-pmprintsettingstooptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsToOptions(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459069-pmprintsettingstooptions"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459076-pmprintergetoutputresolution": {
+      "abstract": [
+        {
+          "text": "Obtains the printer hardware output resolution for the specified print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetOutputResolution"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings, UnsafeMutablePointer<PMResolution>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459076-pmprintergetoutputresolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetOutputResolution(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459076-pmprintergetoutputresolution"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary that contains the settings in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCopyAsDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFDictionary>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCopyAsDictionary(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat": {
+      "abstract": [
+        {
+          "text": "Updates the values in a page format object and validates them against the current formatting printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionValidatePageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPageFormat, UnsafeMutablePointer<DarwinBoolean>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionValidatePageFormat(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459090-pmsessionvalidatepageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459107-pmprintergetdrivercreator": {
+      "abstract": [
+        {
+          "text": "Obtains the creator of the driver associated with the specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetDriverCreator"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<OSType>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459107-pmprintergetdrivercreator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetDriverCreator(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459107-pmprintergetdrivercreator"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459117-pmprintercopypresets": {
+      "abstract": [
+        {
+          "text": "Obtains a list of print settings presets for a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterCopyPresets"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459117-pmprintercopypresets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterCopyPresets(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459117-pmprintercopypresets"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459144-pmgetorientation": {
+      "abstract": [
+        {
+          "text": "Obtains the current setting for page orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMOrientation>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459144-pmgetorientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetOrientation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459144-pmgetorientation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459167-pmgetadjustedpaperrect": {
+      "abstract": [
+        {
+          "text": "Obtains the rectangle defining the paper size, taking into account orientation, application drawing resolution, and scaling settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetAdjustedPaperRect"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMRect>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459167-pmgetadjustedpaperrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetAdjustedPaperRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459167-pmgetadjustedpaperrect"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459187-pmprintercopydescriptionurl": {
+      "abstract": [
+        {
+          "text": "Obtains the URL of the description file for a given printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterCopyDescriptionURL"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, CFString, UnsafeMutablePointer<Unmanaged<CFURL>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459187-pmprintercopydescriptionurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterCopyDescriptionURL(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459187-pmprintercopydescriptionurl"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459209-pmpapergetwidth": {
+      "abstract": [
+        {
+          "text": "Obtains the width of the sheet of paper represented by a paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetWidth"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<Double>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459209-pmpapergetwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetWidth(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459209-pmpapergetwidth"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname": {
+      "abstract": [
+        {
+          "text": "Obtains the name of a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsGetJobName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsGetJobName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459233-pmprintsettingsgetjobname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper": {
+      "abstract": [
+        {
+          "text": "Creates a page format object with a specified paper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCreatePageFormatWithPMPaper"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<PMPageFormat?>, PMPaper) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreatePageFormatWithPMPaper(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459322-pmpapercreatecustom": {
+      "abstract": [
+        {
+          "text": "Creates a custom paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperCreateCustom"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter?, CFString?, CFString?, Double, Double, UnsafePointer<PMPaperMargins>, UnsafeMutablePointer<PMPaper?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459322-pmpapercreatecustom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperCreateCustom(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459322-pmpapercreatecustom"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange": {
+      "abstract": [
+        {
+          "text": "Obtains the valid range of pages that can be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetPageRange"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetPageRange(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459324-pmgetpagerange"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin": {
+      "abstract": [
+        {
+          "text": "Converts print settings and page format data into a CUPS options string for a specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsToOptionsWithPrinterAndPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, PMPrinter, PMPageFormat?, UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsToOptionsWithPrinterAndPageFormat(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat": {
+      "abstract": [
+        {
+          "text": "Creates a new page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCreatePageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<PMPageFormat?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreatePageFormat(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459485-pmcreatepageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459526-pmpaperiscustom": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a specified paper is a custom paper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperIsCustom"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459526-pmpaperiscustom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperIsCustom(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459526-pmpaperiscustom"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459606-pmprintergetid": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetID"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Unmanaged<CFString>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459606-pmprintergetid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetID(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459606-pmprintergetid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459690-pmcopylocalizedppd": {
+      "abstract": [
+        {
+          "text": "Obtains a localized PostScript printer description (PPD) file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCopyLocalizedPPD"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, UnsafeMutablePointer<Unmanaged<CFURL>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459690-pmcopylocalizedppd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCopyLocalizedPPD(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459690-pmcopylocalizedppd"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459729-pmprinterwritepostscripttourl": {
+      "abstract": [
+        {
+          "text": "Converts an input file of the specified MIME type to printer-ready PostScript for a destination printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterWritePostScriptToURL"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings, PMPageFormat?, CFString?, CFURL, CFURL) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459729-pmprinterwritepostscripttourl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterWritePostScriptToURL(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459729-pmprinterwritepostscripttourl"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459855-pmsessionsetdestination": {
+      "abstract": [
+        {
+          "text": "Sets the destination location, format, and type for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetDestination"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, PMDestinationType, CFString?, CFURL?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459855-pmsessionsetdestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetDestination(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459855-pmsessionsetdestination"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459914-pmworkflowcopyitems": {
+      "abstract": [
+        {
+          "text": "Obtains an array of the available PDF workflow items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMWorkflowCopyItems"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459914-pmworkflowcopyitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMWorkflowCopyItems(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459914-pmworkflowcopyitems"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459931-pmprintersetoutputresolution": {
+      "abstract": [
+        {
+          "text": "Sets the print settings to reflect the specified printer hardware output resolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterSetOutputResolution"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings, UnsafePointer<PMResolution>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459931-pmprintersetoutputresolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterSetOutputResolution(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459931-pmprintersetoutputresolution"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459953-pmservercreateprinterlist": {
+      "abstract": [
+        {
+          "text": "Creates a list of printers available to a print server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMServerCreatePrinterList"
+        },
+        {
+          "kind": "text",
+          "text": "(PMServer?, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459953-pmservercreateprinterlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMServerCreatePrinterList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459953-pmservercreateprinterlist"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror": {
+      "abstract": [
+        {
+          "text": "Obtains the result code for any error returned by the printing session. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionError"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionError(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460003-pmsessionerror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460088-pmprintergetpaperlist": {
+      "abstract": [
+        {
+          "text": "Obtains the list of papers available for a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetPaperList"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460088-pmprintergetpaperlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetPaperList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460088-pmprintergetpaperlist"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog": {
+      "abstract": [
+        {
+          "text": "Begins a print job that draws into a Quartz graphics context and suppresses the printing status dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionBeginCGDocumentNoDialog"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, PMPageFormat) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionBeginCGDocumentNoDialog(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460119-pmsessioncreateprinterlist": {
+      "abstract": [
+        {
+          "text": "Creates a list of printers available in the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionCreatePrinterList"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, UnsafeMutablePointer<Unmanaged<CFArray>?>, UnsafeMutablePointer<CFIndex>?, UnsafeMutablePointer<PMPrinter?>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460119-pmsessioncreateprinterlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionCreatePrinterList(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460119-pmsessioncreateprinterlist"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460125-pmprintergetmimetypes": {
+      "abstract": [
+        {
+          "text": "Obtains a list of MIME content types supported by a printer using the specified print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetMimeTypes"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings?, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460125-pmprintergetmimetypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetMimeTypes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460125-pmprintergetmimetypes"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460138-pmsessiondefaultprintsettings": {
+      "abstract": [
+        {
+          "text": "Assigns default parameter values to a print settings object for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionDefaultPrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460138-pmsessiondefaultprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionDefaultPrintSettings(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460138-pmsessiondefaultprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname": {
+      "abstract": [
+        {
+          "text": "Specifies the name of a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsSetJobName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsSetJobName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460149-pmprintsettingssetjobname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser": {
+      "abstract": [
+        {
+          "text": "Launches the printer browser to browse the printers available for a print server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMServerLaunchPrinterBrowser"
+        },
+        {
+          "kind": "text",
+          "text": "(PMServer?, CFDictionary?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMServerLaunchPrinterBrowser(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain": {
+      "abstract": [
+        {
+          "text": "Retains a printing object by incrementing its reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMRetain"
+        },
+        {
+          "kind": "text",
+          "text": "(PMObject?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMRetain(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460190-pmretain"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror": {
+      "abstract": [
+        {
+          "text": "Sets the value of the current result code for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetError"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, OSStatus) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetError(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460216-pmsessionseterror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage": {
+      "abstract": [
+        {
+          "text": "Obtains the number of the first page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetFirstPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetFirstPage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460271-pmgetfirstpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460343-pmpresetcopyname": {
+      "abstract": [
+        {
+          "text": "Obtains the localized name for a preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPresetCopyName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPreset, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460343-pmpresetcopyname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPresetCopyName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460343-pmpresetcopyname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460345-pmcopyppddata": {
+      "abstract": [
+        {
+          "text": "Obtains the uncompressed PPD data for a PostScript printer description (PPD) file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCopyPPDData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, UnsafeMutablePointer<Unmanaged<CFData>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460345-pmcopyppddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCopyPPDData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460345-pmcopyppddata"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460389-pmpapergetheight": {
+      "abstract": [
+        {
+          "text": "Obtains the height of the sheet of paper represented by a paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetHeight"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<Double>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460389-pmpapergetheight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetHeight(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460389-pmpapergetheight"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460543-pmprintercopydeviceuri": {
+      "abstract": [
+        {
+          "text": "Obtains the device URI of a given printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterCopyDeviceURI"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<Unmanaged<CFURL>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460543-pmprintercopydeviceuri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterCopyDeviceURI(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460543-pmprintercopydeviceuri"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue": {
+      "abstract": [
+        {
+          "text": "Obtains the value of a setting in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsGetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString, UnsafeMutablePointer<Unmanaged<CFTypeRef>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsGetValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460602-pmprintsettingsgetvalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460981-pmpapercreatelocalizedname": {
+      "abstract": [
+        {
+          "text": "Obtains the localized name for a given paper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperCreateLocalizedName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, PMPrinter, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460981-pmpapercreatelocalizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperCreateLocalizedName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460981-pmpapercreatelocalizedname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461039-pmpapergetppdpapername": {
+      "abstract": [
+        {
+          "text": "Obtains the PPD paper name for a given paper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetPPDPaperName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461039-pmpapergetppdpapername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetPPDPaperName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461039-pmpapergetppdpapername"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461069-pmprintergetcomminfo": {
+      "abstract": [
+        {
+          "text": "Obtains information about the communication channel for a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetCommInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<DarwinBoolean>?, UnsafeMutablePointer<DarwinBoolean>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461069-pmprintergetcomminfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetCommInfo(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461069-pmprintergetcomminfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461071-pmsessiongetdestinationtype": {
+      "abstract": [
+        {
+          "text": "Obtains the output destination for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetDestinationType"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, UnsafeMutablePointer<PMDestinationType>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461071-pmsessiongetdestinationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetDestinationType(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461071-pmsessiongetdestinationtype"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter": {
+      "abstract": [
+        {
+          "text": "Changes the current printer for a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetCurrentPMPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrinter) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetCurrentPMPrinter(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461110-pmprinterprintwithprovider": {
+      "abstract": [
+        {
+          "text": "Submits a print job to a specified printer using a Quartz data provider to obtain the print data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterPrintWithProvider"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings, PMPageFormat?, CFString, CGDataProvider) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461110-pmprinterprintwithprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterPrintWithProvider(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461110-pmprinterprintwithprovider"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461118-pmprintersetdefault": {
+      "abstract": [
+        {
+          "text": "Sets the default printer for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterSetDefault"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461118-pmprintersetdefault",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterSetDefault(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461118-pmprintersetdefault"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461319-pmgetpageformatpaper": {
+      "abstract": [
+        {
+          "text": "Obtains the paper associated with a page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetPageFormatPaper"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMPaper?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461319-pmgetpageformatpaper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetPageFormatPaper(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461319-pmgetpageformatpaper"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist": {
+      "abstract": [
+        {
+          "text": "Obtains an array of destination formats supported by the current print destination. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionCopyOutputFormatList"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMDestinationType, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionCopyOutputFormatList(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461363-pmprintercreatefromprinterid": {
+      "abstract": [
+        {
+          "text": "Creates a printer object from a print queue identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterCreateFromPrinterID"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString) -> PMPrinter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461363-pmprintercreatefromprinterid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterCreateFromPrinterID(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461363-pmprintercreatefromprinterid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461377-pmprinterisremote": {
+      "abstract": [
+        {
+          "text": "Indicates whether a printer is hosted by a remote print server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterIsRemote"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<DarwinBoolean>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461377-pmprinterisremote",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterIsRemote(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461377-pmprinterisremote"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease": {
+      "abstract": [
+        {
+          "text": "Releases a printing object by decrementing its reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMRelease"
+        },
+        {
+          "kind": "text",
+          "text": "(PMObject?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMRelease(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461402-pmrelease"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461467-pmprintergetlocation": {
+      "abstract": [
+        {
+          "text": "Returns the location of a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetLocation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Unmanaged<CFString>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461467-pmprintergetlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetLocation(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461467-pmprintergetlocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage": {
+      "abstract": [
+        {
+          "text": "Sets the default page number of the first page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetFirstPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetFirstPage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461519-pmsetfirstpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461543-pmgetadjustedpagerect": {
+      "abstract": [
+        {
+          "text": "Obtains the imageable area or page rectangle, taking into account orientation, application drawing resolution, and scaling settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetAdjustedPageRect"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMRect>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461543-pmgetadjustedpagerect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetAdjustedPageRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461543-pmgetadjustedpagerect"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue": {
+      "abstract": [
+        {
+          "text": "Stores the value of a setting in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsSetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString, CFTypeRef?, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsSetValue(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461697-pmprintsettingssetvalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461737-pmpapergetprinterid": {
+      "abstract": [
+        {
+          "text": "Obtains the printer ID of the printer to which a given paper corresponds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetPrinterID"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461737-pmpapergetprinterid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetPrinterID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461737-pmpapergetprinterid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession": {
+      "abstract": [
+        {
+          "text": "Stores your application-specific data in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetDataInSession"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, CFString, CFTypeRef) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetDataInSession(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461902-pmsessionsetdatainsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext": {
+      "abstract": [
+        {
+          "text": "Obtains the Quartz graphics context for the current page in a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetCGGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, UnsafeMutablePointer<Unmanaged<CGContext>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCGGraphicsContext(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461960-pmcreategenericprinter": {
+      "abstract": [
+        {
+          "text": "Creates a generic printer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCreateGenericPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<PMPrinter?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461960-pmcreategenericprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateGenericPrinter(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461960-pmcreategenericprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461994-pmpapergetmargins": {
+      "abstract": [
+        {
+          "text": "Obtains the margins describing the unprintable area of the sheet represented by a paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetMargins"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<PMPaperMargins>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461994-pmpapergetmargins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetMargins(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461994-pmpapergetmargins"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex": {
+      "abstract": [
+        {
+          "text": "Sets the duplex mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetDuplex"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, PMDuplexMode) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetDuplex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462000-pmsetduplex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou": {
+      "abstract": [
+        {
+          "text": "Obtains the number of resolution settings supported by the specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetPrinterResolutionCount"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetPrinterResolutionCount(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog": {
+      "abstract": [
+        {
+          "text": "Indicates the end of drawing the current page for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionEndPageNoDialog"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionEndPageNoDialog(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462014-pmsessionendpagenodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462074-pmprinterisfavorite": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a printer is in the user’s list of favorite printers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterIsFavorite"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462074-pmprinterisfavorite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterIsFavorite(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462074-pmprinterisfavorite"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462076-pmprintercopyhostname": {
+      "abstract": [
+        {
+          "text": "Obtains the name of the server hosting the print queue for a given printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterCopyHostName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462076-pmprintercopyhostname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterCopyHostName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462076-pmprintercopyhostname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep": {
+      "abstract": [
+        {
+          "text": "Creates a print settings object from a data representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCreateWithDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFData, UnsafeMutablePointer<PMPrintSettings?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCreateWithDataRepresentation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462217-pmsessiondefaultpageformat": {
+      "abstract": [
+        {
+          "text": "Assigns default parameter values to a page format object used in the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionDefaultPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPageFormat) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462217-pmsessiondefaultpageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionDefaultPageFormat(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462217-pmsessiondefaultpageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462257-pmprinterispostscriptprinter": {
+      "abstract": [
+        {
+          "text": "Determines whether a printer is a PostScript printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterIsPostScriptPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<DarwinBoolean>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462257-pmprinterispostscriptprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterIsPostScriptPrinter(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462257-pmprinterispostscriptprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange": {
+      "abstract": [
+        {
+          "text": "Sets the valid range of pages that can be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetPageRange"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, UInt32) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetPageRange(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462294-pmsetpagerange"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid": {
+      "abstract": [
+        {
+          "text": "Creates an image that references both the PostScript contents of EPS data and a preview (proxy) image for the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCGImageCreateWithEPSDataProvider"
+        },
+        {
+          "kind": "text",
+          "text": "(CGDataProvider?, CGImage) -> Unmanaged<CGImage>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCGImageCreateWithEPSDataProvider(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462491-pmcopyprintsettings": {
+      "abstract": [
+        {
+          "text": "Copies the settings from one print settings object into another. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCopyPrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, PMPrintSettings) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462491-pmcopyprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCopyPrintSettings(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462491-pmcopyprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys": {
+      "abstract": [
+        {
+          "text": "Obtains the keys for items in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCopyKeys"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCopyKeys(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462730-pmprintsettingscopykeys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage": {
+      "abstract": [
+        {
+          "text": "Obtains the number of the last page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetLastPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetLastPage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462747-pmgetlastpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres": {
+      "abstract": [
+        {
+          "text": "Creates a page format object from a data representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPageFormatCreateWithDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFData, UnsafeMutablePointer<PMPageFormat?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPageFormatCreateWithDataRepresentation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462910-pmpapergetid": {
+      "abstract": [
+        {
+          "text": "Obtains the identifier of a paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperGetID"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPaper, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462910-pmpapergetid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperGetID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462910-pmpapergetid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462939-pmgetunadjustedpaperrect": {
+      "abstract": [
+        {
+          "text": "Obtains the paper rectangle, unaffected by rotation, resolution, or scaling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetUnadjustedPaperRect"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMRect>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462939-pmgetunadjustedpaperrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetUnadjustedPaperRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462939-pmgetunadjustedpaperrect"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462944-pmgetunadjustedpagerect": {
+      "abstract": [
+        {
+          "text": "Obtains the imageable area or page rectangle, unaffected by orientation, resolution, or scaling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetUnadjustedPageRect"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<PMRect>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462944-pmgetunadjustedpagerect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetUnadjustedPageRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462944-pmgetunadjustedpagerect"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462954-pmprintergetstate": {
+      "abstract": [
+        {
+          "text": "Obtains the current state of the print queue for a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetState"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<PMPrinterState>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462954-pmprintergetstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetState(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462954-pmprintergetstate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462961-pmpageformatgetprinterid": {
+      "abstract": [
+        {
+          "text": "Obtains the identifier of the formatting printer for a page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPageFormatGetPrinterID"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462961-pmpageformatgetprinterid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPageFormatGetPrinterID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462961-pmpageformatgetprinterid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession": {
+      "abstract": [
+        {
+          "text": "Obtains application-specific data previously stored in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetDataFromSession"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, CFString, UnsafeMutablePointer<Unmanaged<CFTypeRef>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetDataFromSession(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462964-pmsessiongetdatafromsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462967-pmsessioncopydestinationlocation": {
+      "abstract": [
+        {
+          "text": "Obtains a destination location for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionCopyDestinationLocation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFURL>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462967-pmsessioncopydestinationlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionCopyDestinationLocation(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462967-pmsessioncopydestinationlocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate": {
+      "abstract": [
+        {
+          "text": "Specifies whether the job collate option is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetCollate"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetCollate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463223-pmsetcollate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings": {
+      "abstract": [
+        {
+          "text": "Creates a new print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCreatePrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<PMPrintSettings?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreatePrintSettings(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463239-pmcreateprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a printing session object and creates a context for printing operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCreateSession"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<PMPrintSession?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateSession(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463247-pmcreatesession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463343-pmsetscale": {
+      "abstract": [
+        {
+          "text": "Sets the scaling factor for the page and paper rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetScale"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, Double) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463343-pmsetscale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetScale(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463343-pmsetscale"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463347-pmprintergetmakeandmodelname": {
+      "abstract": [
+        {
+          "text": "Obtains the manufacturer and model name of the specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetMakeAndModelName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463347-pmprintergetmakeandmodelname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetMakeAndModelName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463347-pmprintergetmakeandmodelname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463414-pmpresetcreateprintsettings": {
+      "abstract": [
+        {
+          "text": "Creates a print settings object with settings that correspond to a preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPresetCreatePrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPreset, PMPrintSession, UnsafeMutablePointer<PMPrintSettings?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463414-pmpresetcreateprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPresetCreatePrintSettings(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463414-pmpresetcreateprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog": {
+      "abstract": [
+        {
+          "text": "Starts a new page for printing in the specified printing session and suppresses the printing status dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionBeginPageNoDialog"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPageFormat?, UnsafePointer<PMRect>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionBeginPageNoDialog(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463416-pmsessionbeginpagenodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463464-pmsetpageformatextendeddata": {
+      "abstract": [
+        {
+          "text": "Stores your application-specific data in a page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetPageFormatExtendedData"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, OSType, UInt32, UnsafeMutableRawPointer) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463464-pmsetpageformatextendeddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetPageFormatExtendedData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463464-pmsetpageformatextendeddata"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage": {
+      "abstract": [
+        {
+          "text": "Sets the page number of the last page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetLastPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetLastPage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463595-pmsetlastpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions": {
+      "abstract": [
+        {
+          "text": "Submits a PDF file for workflow processing using the specified CUPS options string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMWorkflowSubmitPDFWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, CFString?, UnsafePointer<CChar>?, CFURL) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMWorkflowSubmitPDFWithOptions(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies": {
+      "abstract": [
+        {
+          "text": "Sets the initial value for the number of copies to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetCopies"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetCopies(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463804-pmsetcopies"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463985-pmsessioncreatepageformatlist": {
+      "abstract": [
+        {
+          "text": "Obtains a list of page format objects, each of which describes a paper size available on the specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionCreatePageFormatList"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrinter?, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463985-pmsessioncreatepageformatlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionCreatePageFormatList(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463985-pmsessioncreatepageformatlist"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464168-pmprinterispostscriptcapable": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a printer is PostScript capable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterIsPostScriptCapable"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464168-pmprinterispostscriptcapable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterIsPostScriptCapable(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464168-pmprinterispostscriptcapable"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464170-pmcopyavailableppds": {
+      "abstract": [
+        {
+          "text": "Obtains the list of PostScript printer description (PPD) files in a PPD domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCopyAvailablePPDs"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPPDDomain, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464170-pmcopyavailableppds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCopyAvailablePPDs(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464170-pmcopyavailableppds"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta": {
+      "abstract": [
+        {
+          "text": "Creates a data representation of a page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPageFormatCreateDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, UnsafeMutablePointer<Unmanaged<CFData>?>, PMDataFormat) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPageFormatCreateDataRepresentation(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464266-pmsessioncopydestinationformat": {
+      "abstract": [
+        {
+          "text": "Obtains the destination format for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionCopyDestinationFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464266-pmsessioncopydestinationformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionCopyDestinationFormat(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464266-pmsessioncopydestinationformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464455-pmgetpageformatextendeddata": {
+      "abstract": [
+        {
+          "text": "Obtains extended page format data previously stored by your application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetPageFormatExtendedData"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, OSType, UnsafeMutablePointer<UInt32>?, UnsafeMutableRawPointer?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464455-pmgetpageformatextendeddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetPageFormatExtendedData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464455-pmgetpageformatextendeddata"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies": {
+      "abstract": [
+        {
+          "text": "Obtains the number of copies that the user requests to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetCopies"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetCopies(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464480-pmgetcopies"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu": {
+      "abstract": [
+        {
+          "text": "Obtains a resolution setting based on an index into the range of settings supported by the specified printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterGetIndexedPrinterResolution"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, UInt32, UnsafeMutablePointer<PMResolution>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterGetIndexedPrinterResolution(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate": {
+      "abstract": [
+        {
+          "text": "Obtains a Boolean value that indicates whether the job collate option is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetCollate"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<DarwinBoolean>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetCollate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464492-pmgetcollate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog": {
+      "abstract": [
+        {
+          "text": "Ends a print job started by calling the function ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionEndDocumentNoDialog"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionEndDocumentNoDialog(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464527-pmsessionenddocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese": {
+      "abstract": [
+        {
+          "text": "Creates a data representation of a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCreateDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFData>?>, PMDataFormat) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCreateDataRepresentation(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464600-pmprinterprintwithfile": {
+      "abstract": [
+        {
+          "text": "Submits a print job to a specified printer using a file that contains print data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterPrintWithFile"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrinter, PMPrintSettings, PMPageFormat?, CFString?, CFURL) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464600-pmprinterprintwithfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterPrintWithFile(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464600-pmprinterprintwithfile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464669-pmcopypageformat": {
+      "abstract": [
+        {
+          "text": "Copies the settings from one page format object into another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMCopyPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPageFormat, PMPageFormat) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464669-pmcopypageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCopyPageFormat(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464669-pmcopypageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506768-print_all_pages_constant": {
+      "abstract": [
+        {
+          "text": "A constant that specifies that all pages of a document should be printed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506768-print_all_pages_constant",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Print All Pages Constant",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1506768-print_all_pages_constant"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506795-user_cancellation_constant": {
+      "abstract": [
+        {
+          "text": "A constant that specifies an error value that indicates the user canceled a printing operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506795-user_cancellation_constant",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User Cancellation Constant",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1506795-user_cancellation_constant"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionBeginDocumentNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/pdf_workflow_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "Constants that specify the keys in a PDF workflow dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/pdf_workflow_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PDF Workflow Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/pdf_workflow_dictionary_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/printer_description_types": {
+      "abstract": [
+        {
+          "text": "Constants that specify printer description types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/printer_description_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Printer Description Types",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/printer_description_types"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmgeneralerror": {
+      "abstract": [
+        {
+          "text": "An unspecified error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMGeneralError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmgeneralerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMGeneralError",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmgeneralerror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidallocator": {
+      "abstract": [
+        {
+          "text": "The specified memory allocator is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidAllocator",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidallocator"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidcalibrationtarget": {
+      "abstract": [
+        {
+          "text": "The dictionary specifying a printer calibration target is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidCalibrationTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidcalibrationtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidCalibrationTarget",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidcalibrationtarget"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidconnection": {
+      "abstract": [
+        {
+          "text": "The printer connection type is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidConnection"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidConnection",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidconnection"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidfiletype": {
+      "abstract": [
+        {
+          "text": "The file type is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidFileType"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidfiletype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidFileType",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidfiletype"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidindex": {
+      "abstract": [
+        {
+          "text": "An array index is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidIndex",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidindex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvaliditem": {
+      "abstract": [
+        {
+          "text": "The item being added to a ticket is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidItem"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvaliditem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidItem",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvaliditem"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidjobtemplate": {
+      "abstract": [
+        {
+          "text": "An internal error occurred while creating a job template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidJobTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidjobtemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidJobTemplate",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidjobtemplate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidkey": {
+      "abstract": [
+        {
+          "text": "The key in a ticket, job template, or dictionary is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidKey"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidKey",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidkey"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidobject": {
+      "abstract": [
+        {
+          "text": "The object is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidObject",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidobject"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpageformat": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPageFormat",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidpageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpaper": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPaper"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpaper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPaper",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidpaper"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpreset": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid preset object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPreset",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidpreset"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinter": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid printer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPrinter"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinterinfo": {
+      "abstract": [
+        {
+          "text": "The printer information is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPrinterInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinterinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPrinterInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidprinterinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsession": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid printing session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPrintSession"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPrintSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidprintsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsettings": {
+      "abstract": [
+        {
+          "text": "Your application passed an invalid print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidPrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidPrintSettings",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidreply": {
+      "abstract": [
+        {
+          "text": "A remote server or client sent an invalid reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidReply"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidreply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidReply",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidreply"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidticket": {
+      "abstract": [
+        {
+          "text": "The job ticket is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidTicket"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidticket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidTicket",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidticket"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidtype": {
+      "abstract": [
+        {
+          "text": "The data type in a ticket, job template, or dictionary is not the expected type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidType"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidType",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidtype"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpminvalidvalue": {
+      "abstract": [
+        {
+          "text": "The value in a ticket, job template, or dictionary is missing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMInvalidValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpminvalidvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMInvalidValue",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpminvalidvalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmnodefaultprinter": {
+      "abstract": [
+        {
+          "text": "The user has not specified a default printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMNoDefaultPrinter"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmnodefaultprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMNoDefaultPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmnodefaultprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmnosuchentry": {
+      "abstract": [
+        {
+          "text": "There is no entry to match your application’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMNoSuchEntry"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmnosuchentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMNoSuchEntry",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmnosuchentry"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmnotimplemented": {
+      "abstract": [
+        {
+          "text": "The function is not implemented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMNotImplemented"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmnotimplemented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMNotImplemented",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmnotimplemented"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmobjectinuse": {
+      "abstract": [
+        {
+          "text": "The specified object is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMObjectInUse"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmobjectinuse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMObjectInUse",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmobjectinuse"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmoutofscope": {
+      "abstract": [
+        {
+          "text": "Your application called this function out of sequence with other printing functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMOutOfScope"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmoutofscope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMOutOfScope",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmoutofscope"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmstringconversionfailure": {
+      "abstract": [
+        {
+          "text": "An internal error occurred while converting a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMStringConversionFailure"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmstringconversionfailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMStringConversionFailure",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmstringconversionfailure"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmvalueoutofrange": {
+      "abstract": [
+        {
+          "text": "Your application passed an out-of-range value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMValueOutOfRange"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmvalueoutofrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMValueOutOfRange",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmvalueoutofrange"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmxmlparseerror": {
+      "abstract": [
+        {
+          "text": "An error occurred while parsing XML data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMXMLParseError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmxmlparseerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMXMLParseError",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmxmlparseerror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmdataformat": {
+      "abstract": [
+        {
+          "text": "Constants that specify the format of the data representation created with the functions ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMDataFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmdataformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMDataFormat",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmdataformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmdestinationtype": {
+      "abstract": [
+        {
+          "text": "Constants that specify a destination for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMDestinationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmdestinationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMDestinationType",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmdestinationtype"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmduplexmode": {
+      "abstract": [
+        {
+          "text": "Constants that specify duplex mode settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMDuplexMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmduplexmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMDuplexMode",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmduplexmode"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmobject": {
+      "abstract": [
+        {
+          "text": "The base type for all the opaque types used in Core Printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMObject",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmobject"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmorientation": {
+      "abstract": [
+        {
+          "text": "Constants that specify page orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmorientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMOrientation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmorientation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmpageformat": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores the settings in the Page Setup dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPageFormat",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmpageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmpaper": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores information about the paper used in a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaper"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpaper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaper",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmpaper"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmpapermargins": {
+      "abstract": [
+        {
+          "text": "A data structure that specifies the unprintable area of a paper object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPaperMargins"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpapermargins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPaperMargins",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmpapermargins"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmppddomain": {
+      "abstract": [
+        {
+          "text": "Constants that specify the domains for PostScript printer description (PPD) files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPPDDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmppddomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPPDDomain",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmppddomain"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmpreset": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores information about a named preset available for a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPreset",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmpreset"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprinter": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprinterstate": {
+      "abstract": [
+        {
+          "text": "Constants that specify the current state of a print queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrinterState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprinterstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrinterState",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprinterstate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsession": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores information about a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores the settings in the Print dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettings",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmqualitymode": {
+      "abstract": [
+        {
+          "text": "Constants that specify standard options for print quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMQualityMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmqualitymode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMQualityMode",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmqualitymode"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmserver": {
+      "abstract": [
+        {
+          "text": "An opaque type that identifies a local or remote print server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMServer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMServer",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmserver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1665374",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease",
+        "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain"
+      ],
+      "kind": "taskGroup",
+      "title": "Releasing and Retaining Printing Objects"
+    },
+    {
+      "anchor": "1665408",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper",
+        "doc://com.apple.documentation/documentation/applicationservices/1464669-pmcopypageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/1462217-pmsessiondefaultpageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/1463985-pmsessioncreatepageformatlist",
+        "doc://com.apple.documentation/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta",
+        "doc://com.apple.documentation/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Using Page Format Objects"
+    },
+    {
+      "anchor": "1665625",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1464455-pmgetpageformatextendeddata",
+        "doc://com.apple.documentation/documentation/applicationservices/1463464-pmsetpageformatextendeddata",
+        "doc://com.apple.documentation/documentation/applicationservices/1461319-pmgetpageformatpaper",
+        "doc://com.apple.documentation/documentation/applicationservices/1462961-pmpageformatgetprinterid",
+        "doc://com.apple.documentation/documentation/applicationservices/1459144-pmgetorientation",
+        "doc://com.apple.documentation/documentation/applicationservices/1459016-pmsetorientation",
+        "doc://com.apple.documentation/documentation/applicationservices/1458796-pmgetscale",
+        "doc://com.apple.documentation/documentation/applicationservices/1463343-pmsetscale",
+        "doc://com.apple.documentation/documentation/applicationservices/1461543-pmgetadjustedpagerect",
+        "doc://com.apple.documentation/documentation/applicationservices/1459167-pmgetadjustedpaperrect",
+        "doc://com.apple.documentation/documentation/applicationservices/1462944-pmgetunadjustedpagerect",
+        "doc://com.apple.documentation/documentation/applicationservices/1462939-pmgetunadjustedpaperrect"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Data in Page Format Objects"
+    },
+    {
+      "anchor": "1665901",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/1460138-pmsessiondefaultprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese",
+        "doc://com.apple.documentation/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep",
+        "doc://com.apple.documentation/documentation/applicationservices/1462491-pmcopyprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/1459069-pmprintsettingstooptions",
+        "doc://com.apple.documentation/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Using Print Settings Objects"
+    },
+    {
+      "anchor": "1666076",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange",
+        "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange",
+        "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname",
+        "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname",
+        "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies",
+        "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies",
+        "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate",
+        "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate",
+        "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex",
+        "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex",
+        "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary",
+        "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Data in Print Settings Objects"
+    },
+    {
+      "anchor": "1666361",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Printing Session Objects"
+    },
+    {
+      "anchor": "1666393",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+        "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror",
+        "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Data in Printing Session Objects"
+    },
+    {
+      "anchor": "1666565",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460343-pmpresetcopyname",
+        "doc://com.apple.documentation/documentation/applicationservices/1463414-pmpresetcreateprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/1459042-pmpresetgetattributes"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Printer Presets"
+    },
+    {
+      "anchor": "1666606",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459322-pmpapercreatecustom",
+        "doc://com.apple.documentation/documentation/applicationservices/1459526-pmpaperiscustom"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Using Paper Objects"
+    },
+    {
+      "anchor": "1666656",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462910-pmpapergetid",
+        "doc://com.apple.documentation/documentation/applicationservices/1459209-pmpapergetwidth",
+        "doc://com.apple.documentation/documentation/applicationservices/1460389-pmpapergetheight",
+        "doc://com.apple.documentation/documentation/applicationservices/1461994-pmpapergetmargins",
+        "doc://com.apple.documentation/documentation/applicationservices/1460981-pmpapercreatelocalizedname",
+        "doc://com.apple.documentation/documentation/applicationservices/1461737-pmpapergetprinterid",
+        "doc://com.apple.documentation/documentation/applicationservices/1461039-pmpapergetppdpapername"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Data in Paper Objects"
+    },
+    {
+      "anchor": "1666761",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog"
+      ],
+      "kind": "taskGroup",
+      "title": "Print Loop Functions"
+    },
+    {
+      "anchor": "1666858",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459855-pmsessionsetdestination",
+        "doc://com.apple.documentation/documentation/applicationservices/1461071-pmsessiongetdestinationtype",
+        "doc://com.apple.documentation/documentation/applicationservices/1464266-pmsessioncopydestinationformat",
+        "doc://com.apple.documentation/documentation/applicationservices/1462967-pmsessioncopydestinationlocation",
+        "doc://com.apple.documentation/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Print Job Destination"
+    },
+    {
+      "anchor": "1666923",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser",
+        "doc://com.apple.documentation/documentation/applicationservices/1459953-pmservercreateprinterlist",
+        "doc://com.apple.documentation/documentation/applicationservices/1460119-pmsessioncreateprinterlist",
+        "doc://com.apple.documentation/documentation/applicationservices/1461363-pmprintercreatefromprinterid",
+        "doc://com.apple.documentation/documentation/applicationservices/1461960-pmcreategenericprinter"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Printer Objects"
+    },
+    {
+      "anchor": "1666979",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459187-pmprintercopydescriptionurl",
+        "doc://com.apple.documentation/documentation/applicationservices/1460543-pmprintercopydeviceuri",
+        "doc://com.apple.documentation/documentation/applicationservices/1462076-pmprintercopyhostname",
+        "doc://com.apple.documentation/documentation/applicationservices/1459117-pmprintercopypresets",
+        "doc://com.apple.documentation/documentation/applicationservices/1461069-pmprintergetcomminfo",
+        "doc://com.apple.documentation/documentation/applicationservices/1459107-pmprintergetdrivercreator",
+        "doc://com.apple.documentation/documentation/applicationservices/1459606-pmprintergetid",
+        "doc://com.apple.documentation/documentation/applicationservices/1461467-pmprintergetlocation",
+        "doc://com.apple.documentation/documentation/applicationservices/1463347-pmprintergetmakeandmodelname",
+        "doc://com.apple.documentation/documentation/applicationservices/1460125-pmprintergetmimetypes",
+        "doc://com.apple.documentation/documentation/applicationservices/1459018-pmprintergetname",
+        "doc://com.apple.documentation/documentation/applicationservices/1459076-pmprintergetoutputresolution",
+        "doc://com.apple.documentation/documentation/applicationservices/1459931-pmprintersetoutputresolution",
+        "doc://com.apple.documentation/documentation/applicationservices/1460088-pmprintergetpaperlist",
+        "doc://com.apple.documentation/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou",
+        "doc://com.apple.documentation/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu",
+        "doc://com.apple.documentation/documentation/applicationservices/1462954-pmprintergetstate",
+        "doc://com.apple.documentation/documentation/applicationservices/1461118-pmprintersetdefault",
+        "doc://com.apple.documentation/documentation/applicationservices/1459030-pmprinterisdefault",
+        "doc://com.apple.documentation/documentation/applicationservices/1462074-pmprinterisfavorite",
+        "doc://com.apple.documentation/documentation/applicationservices/1464168-pmprinterispostscriptcapable",
+        "doc://com.apple.documentation/documentation/applicationservices/1462257-pmprinterispostscriptprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461377-pmprinterisremote"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Information About a Printer"
+    },
+    {
+      "anchor": "1667237",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1464600-pmprinterprintwithfile",
+        "doc://com.apple.documentation/documentation/applicationservices/1461110-pmprinterprintwithprovider"
+      ],
+      "kind": "taskGroup",
+      "title": "Submitting a Print Job to a Printer"
+    },
+    {
+      "anchor": "1667269",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1464170-pmcopyavailableppds",
+        "doc://com.apple.documentation/documentation/applicationservices/1459690-pmcopylocalizedppd",
+        "doc://com.apple.documentation/documentation/applicationservices/1460345-pmcopyppddata"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing PostScript Printer Description Files"
+    },
+    {
+      "anchor": "1667319",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid",
+        "doc://com.apple.documentation/documentation/applicationservices/1459729-pmprinterwritepostscripttourl"
+      ],
+      "kind": "taskGroup",
+      "title": "Printing with PostScript Data"
+    },
+    {
+      "anchor": "1667440",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459914-pmworkflowcopyitems",
+        "doc://com.apple.documentation/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions",
+        "doc://com.apple.documentation/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings"
+      ],
+      "kind": "taskGroup",
+      "title": "Using PDF Workflow Items"
+    },
+    {
+      "anchor": "1668494",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/pmobject",
+        "doc://com.apple.documentation/documentation/applicationservices/pmpageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/pmpaper",
+        "doc://com.apple.documentation/documentation/applicationservices/pmpapermargins",
+        "doc://com.apple.documentation/documentation/applicationservices/pmpreset",
+        "doc://com.apple.documentation/documentation/applicationservices/pmprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+        "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/pmserver"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1668697",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/pmdataformat",
+        "doc://com.apple.documentation/documentation/applicationservices/pmdestinationtype",
+        "doc://com.apple.documentation/documentation/applicationservices/pmduplexmode",
+        "doc://com.apple.documentation/documentation/applicationservices/pmorientation",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/pdf_workflow_dictionary_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/pmppddomain",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506768-print_all_pages_constant",
+        "doc://com.apple.documentation/documentation/applicationservices/pmqualitymode",
+        "doc://com.apple.documentation/documentation/applicationservices/pmprinterstate",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/printer_description_types",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506795-user_cancellation_constant"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1670007",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "This table lists the result codes defined for Core Printing.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/kpmgeneralerror",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmoutofscope",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmnodefaultprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmnotimplemented",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmnosuchentry",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsettings",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpageformat",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmvalueoutofrange",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprintsession",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmobjectinuse",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidindex",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmstringconversionfailure",
+        "doc://com.apple.documentation/documentation/applicationservices/kpmxmlparseerror",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidjobtemplate",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidprinterinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidconnection",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidkey",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidvalue",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidallocator",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidticket",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvaliditem",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidtype",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidreply",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidfiletype",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidobject",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpaper",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidcalibrationtarget",
+        "doc://com.apple.documentation/documentation/applicationservices/kpminvalidpreset"
+      ],
+      "kind": "taskGroup",
+      "title": "Result Codes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

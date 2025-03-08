@@ -1,0 +1,792 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch an activity by using its identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-activities-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a Catalog Activity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Catalog Activity"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/activities/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the activity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ActivitiesResponse",
+              "text": "ActivitiesResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains a single ",
+              "type": "text"
+            },
+            {
+              "code": "Activity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/activities/976439514"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"fff3ab\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"541621\",",
+                    "                    \"textColor2\": \"3d2d09\",",
+                    "                    \"textColor3\": \"76423c\",",
+                    "                    \"textColor4\": \"645529\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features22/v4/83/fb/ed/83fbede3-1d5b-1173-cf10-952b629365f2/source/{w}x{h}bb.jpeg\",",
+                    "                    \"width\": 1080",
+                    "                },",
+                    "                \"name\": \"Partying\",",
+                    "                \"url\": \"https://itunes.apple.com/us/activity/partying/id976439514\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/activities/976439514\",",
+                    "            \"id\": \"976439514\",",
+                    "            \"relationships\": {",
+                    "                \"playlists\": {",
+                    "                    \"data\": [",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.d4b72ba561fa4e26987b2fdac6493583\",",
+                    "                            \"id\": \"pl.d4b72ba561fa4e26987b2fdac6493583\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.f33b77ef120e4cfdac94327b7a8dbec1\",",
+                    "                            \"id\": \"pl.f33b77ef120e4cfdac94327b7a8dbec1\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.756f800e808a498ead67e6f1da818099\",",
+                    "                            \"id\": \"pl.756f800e808a498ead67e6f1da818099\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.345858950de7481da73960314556679a\",",
+                    "                            \"id\": \"pl.345858950de7481da73960314556679a\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.b5743c7fd4794020b0900d1f9be541f9\",",
+                    "                            \"id\": \"pl.b5743c7fd4794020b0900d1f9be541f9\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.ae2769bd404b4116a8519581f8b311ec\",",
+                    "                            \"id\": \"pl.ae2769bd404b4116a8519581f8b311ec\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.a04c08c92f40482bba229f630a9a01d8\",",
+                    "                            \"id\": \"pl.a04c08c92f40482bba229f630a9a01d8\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.157cd02723c24f9aa01ca753a3127509\",",
+                    "                            \"id\": \"pl.157cd02723c24f9aa01ca753a3127509\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.ff54c80a3733484cad0a0ea1104cfd5d\",",
+                    "                            \"id\": \"pl.ff54c80a3733484cad0a0ea1104cfd5d\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        },",
+                    "                        {",
+                    "                            \"href\": \"/v1/catalog/us/playlists/pl.7445287d235749269e6f5a3a97a8efbc\",",
+                    "                            \"id\": \"pl.7445287d235749269e6f5a3a97a8efbc\",",
+                    "                            \"type\": \"playlists\"",
+                    "                        }",
+                    "                    ],",
+                    "                    \"href\": \"/v1/catalog/us/activities/976439514/playlists\",",
+                    "                    \"next\": \"/v1/catalog/us/activities/976439514/playlists?offset=10\"",
+                    "                }",
+                    "            },",
+                    "            \"type\": \"activities\"",
+                    "        }",
+                    "    ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities": {
+      "abstract": [
+        {
+          "text": "A resource object that represents an activity curator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activities"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activities"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activities",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/activities"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivitiesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivitiesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivitiesResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/activitiesresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct": {
+      "abstract": [
+        {
+          "text": "Fetch an activity’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Activity's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-1eqct"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities": {
+      "abstract": [
+        {
+          "text": "Fetch one or more activities by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Catalog Activities"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Catalog Activities",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-catalog-activities"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity": {
+      "abstract": [
+        {
+          "text": "Fetch an activity by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Catalog Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Activity",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-catalog-activity"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Catalog-Activites",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities"
+      ],
+      "title": "Requesting Catalog Activites"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-a-catalog-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

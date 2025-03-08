@@ -1,0 +1,987 @@
+{
+  "abstract": [
+    {
+      "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/appearance-customization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Appearance customization"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the basic appearance of system bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of bar button items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemStateAppearance": {
+      "abstract": [
+        {
+          "text": "A data object containing the specific customizations for a bar button item in a particular state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemStateAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemStateAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemStateAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemStateAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemstateappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of a navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBarAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBarAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBarAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbarappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItemAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of tab bar items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItemAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItemAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItemAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItemAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritemappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItemStateAppearance": {
+      "abstract": [
+        {
+          "text": "A data object containing the specific customizations for tab bar items in a particular state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItemStateAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItemStateAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItemStateAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItemStateAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritemstateappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIToolbarAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIToolbarAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIToolbarAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIToolbarAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIToolbarAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitoolbarappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-ios-dark-mode": {
+      "abstract": [
+        {
+          "text": "Adopt Dark Mode in your iOS app by using dynamic colors and visual effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-ios-dark-mode",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting iOS Dark Mode",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-ios-dark-mode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics": {
+      "abstract": [
+        {
+          "text": "Provide feedback to users using view-based animations and haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation and haptics",
+      "type": "topic",
+      "url": "/documentation/uikit/animation-and-haptics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking": {
+      "abstract": [
+        {
+          "text": "Reduce the need to manually register for trait changes when you use traits within a method or closure that supports automatic trait tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Automatic trait tracking",
+      "type": "topic",
+      "url": "/documentation/uikit/automatic-trait-tracking"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/configurations": {
+      "abstract": [
+        {
+          "text": "Specify the appearance and content of your views and cells using configurations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/configurations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configurations",
+      "type": "topic",
+      "url": "/documentation/uikit/configurations"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface": {
+      "abstract": [
+        {
+          "text": "Update colors, images, and behaviors so that your app adapts automatically when Dark Mode is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Dark Mode in Your Interface",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-dark-mode-in-your-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Dark-Mode",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-ios-dark-mode"
+      ],
+      "title": "Dark Mode"
+    },
+    {
+      "anchor": "Appearance-and-content",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/configurations",
+        "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking"
+      ],
+      "title": "Appearance and content"
+    },
+    {
+      "anchor": "Navigation-bar-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance"
+      ],
+      "title": "Navigation bar appearance"
+    },
+    {
+      "anchor": "Toolbar-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIToolbarAppearance"
+      ],
+      "title": "Toolbar appearance"
+    },
+    {
+      "anchor": "Tab-bar-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItemAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItemStateAppearance"
+      ],
+      "title": "Tab bar appearance"
+    },
+    {
+      "anchor": "Shared-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemStateAppearance"
+      ],
+      "title": "Shared appearance"
+    },
+    {
+      "anchor": "Appearance-proxies",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer"
+      ],
+      "title": "Appearance proxies"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Dark-Mode",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-ios-dark-mode"
+              ],
+              "title": "Dark Mode"
+            },
+            {
+              "anchor": "Appearance-and-content",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/configurations",
+                "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking"
+              ],
+              "title": "Appearance and content"
+            },
+            {
+              "anchor": "Navigation-bar-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance"
+              ],
+              "title": "Navigation bar appearance"
+            },
+            {
+              "anchor": "Toolbar-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIToolbarAppearance"
+              ],
+              "title": "Toolbar appearance"
+            },
+            {
+              "anchor": "Tab-bar-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItemAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItemStateAppearance"
+              ],
+              "title": "Tab bar appearance"
+            },
+            {
+              "anchor": "Shared-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemStateAppearance"
+              ],
+              "title": "Shared appearance"
+            },
+            {
+              "anchor": "Appearance-proxies",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer"
+              ],
+              "title": "Appearance proxies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+                "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+                "doc://com.apple.uikit/documentation/UIKit/view-layout",
+                "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+                "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemStateAppearance/title",
+          "value": "UITabBarItemStateAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemStateAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItemStateAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemStateAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItemStateAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarAppearance/title",
+          "value": "UITabBarAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemStateAppearance/title",
+          "value": "UIBarButtonItemStateAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemStateAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemStateAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemStateAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemStateAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbarAppearance/title",
+          "value": "UIToolbarAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbarAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbarAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemAppearance/title",
+          "value": "UITabBarItemAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItemAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/title",
+          "value": "UIBarButtonItemAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/title",
+          "value": "UINavigationBarAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarAppearance/title",
+          "value": "UIBarAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/appearance-customization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/appearance-customization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

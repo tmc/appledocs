@@ -1,0 +1,2051 @@
+{
+  "abstract": [
+    {
+      "text": "Deliver content to the customer after validating the purchase.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Unlocking purchased content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a purchase is complete, it’s your responsibility to make sure that you programmatically make the content available to the customer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-purchased-content",
+          "level": 3,
+          "text": "Identify the purchased content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an in-app purchase product that enables app functionality, such as a premium subscription, set a Boolean value to enable the code path and update your user interface as needed. Consult your app’s persistent transaction record to determine the functionality to unlock. Your app needs to update this Boolean value whenever the user completes a purchase and at app launch. For information on making a persistent record, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, using the app receipt, your code might look like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let receiptURL = Bundle.main.appStoreReceiptURL else { customError() }",
+                    "do {",
+                    "    let receiptData = try Data(contentsOf: receiptURL)",
+                    "    // Custom method to work with receipts.",
+                    "    let rocketCarEnabled = receipt(receiptData, includesProductID: \"com.example.rocketCar\")",
+                    "    } catch {",
+                    "        print(error)",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];",
+                    "NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];",
+                    "",
+                    "// Custom method to work with receipts.",
+                    "BOOL rocketCarEnabled = [self receipt:receiptData",
+                    "        includesProductID:@\"com.example.rocketCar\"];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, using the user defaults system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let defaults = UserDefaults.standard",
+                    "let rocketCarEnabled = defaults.bool(forKey: \"enable_rocket_car\")"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];",
+                    "BOOL rocketCarEnabled = [defaults boolForKey:@\"enable_rocket_car\"];",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you define the Boolean variable that represents the in-app purchase content, use the purchase information to enable the appropriate code paths in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (rocketCarEnabled) {",
+            "    // Use the rocket car.",
+            "} else {",
+            "    // Use the regular car.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Deliver-associated-content",
+          "level": 3,
+          "text": "Deliver associated content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app needs to deliver any content associated with the purchased product to the user. For example, purchasing instruments in a music app requires delivering the sound files needed to let the user play those instruments. You can embed that content in your app bundle or download it as necessary. Each approach has its advantages and disadvantages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Embed smaller files (up to a few megabytes) in your app, especially if you expect most users to buy that product. You can make the content in your app bundle available immediately after the user purchases it. However, to add or update content in your app bundle, you need to submit an updated version of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download larger files only when needed. Separating content from your app bundle keeps your app’s initial download small. For example, a game can include the first level in its app bundle and let users download additional levels as they purchase them. Assuming your app fetches its list of product identifiers from your server and the information isn’t hard-coded in the app bundle, you don’t need to resubmit your app to add or update content that your app downloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t patch your app binary or download executable code. Your app needs to contain all executable code necessary to support all of its functionality when you submit it. If a new product requires code changes, submit an updated version of your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Load-local-content",
+          "level": 3,
+          "text": "Load local content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Load local content using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSBundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class as you load other resources from your app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let url = Bundle.main.url(forResource: \"rocketCar\", withExtension: \"plist\") else { fatalError() }",
+                    "loadVehicle(at: url)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSURL *url = [[NSBundle mainBundle] URLForResource:@\"rocketCar\"",
+                    "                                     withExtension:@\"plist\"];",
+                    "[self loadVehicleAtURL:url];",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Download-content-from-your-own-server",
+          "level": 3,
+          "text": "Download content from your own server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with all interactions between your app and your server, the details and process of downloading content from your own server are your responsibility. The communication consists of, at a minimum, the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app sends the receipt to your server and requests the content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server validates the receipt to establish that the user purchased the content, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assuming the receipt is valid, your server responds to your app with the content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure that your app handles errors gracefully. For example, if the device runs out of disk space during a download, give the user the option to discard the partial download or to resume the download later when space becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the security implications of how you host your content and how your app communicates with your server. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-content-using-on-demand-resources",
+          "level": 3,
+          "text": "Download content using on-demand resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (ODR) for flexibility in downloading data in your app. ODR is an Apple-hosted service you use to store in-app purchase data that your app downloads after you verify the user’s purchase using the app receipt. ODR doesn’t require a call to restore transactions and authenticate the user to download content hosted on Apple’s server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-hosted-content-from-Apples-server",
+          "level": 3,
+          "text": "Download hosted content from Apple’s server",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its related functionality are deprecated. The following information is for apps that already host content on Apple’s servers and use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can use Apple-hosted content for downloaded files. You create an Apple-hosted content bundle using the In-App Purchase Content target in Xcode and submit it to App Store Connect. Apple’s servers store your app’s content using the same infrastructure that supports other large-scale operations, such as the App Store. Apple-hosted content automatically downloads in the background even if your app isn’t running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to support older versions of iOS or share your server infrastructure across multiple platforms, you may choose to host your own content using your own server infrastructure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user purchases a product that has associated Apple-hosted content, the transaction that passes to your transaction queue observer also includes an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that lets you download the associated content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To download the content, add the download objects from the transaction’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction/downloads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the transaction queue by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/start(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "downloads",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", there’s no Apple-hosted content for that transaction. Unlike downloading apps, downloading content doesn’t automatically require a Wi-Fi connection for content larger than a certain size. Avoid using cellular networks to download large files without an explicit action from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:updatedDownloads:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the transaction queue observer to respond to changes in a download’s state, such as by updating progress in your UI. If a download fails, use the information in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to present the error to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure that your app handles errors gracefully. For example, if the device runs out of disk space during a download, give the user the option to discard the partial download or to resume the download later when space becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the content is downloading, update your user interface using the values of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/timeRemaining",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/pause(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/resume(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/cancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "code": "SKPaymentQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from your UI to let the user control in-progress downloads. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/downloadState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine whether the download completes. Don’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/timeRemaining",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the download object to check its status; these properties are for updating your UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Download all Apple-hosted content before finishing the transaction. After a transaction is complete, its download objects become unusable.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, your app can manage the downloaded files. The StoreKit framework saves these files for you in the ",
+              "type": "text"
+            },
+            {
+              "code": "Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory with the backup flag unset. After the download completes, your app is responsible for moving these files to the appropriate location. For content that can be deleted if the device runs out of disk space (and downloaded again later by your app), keep the files in the ",
+              "type": "text"
+            },
+            {
+              "code": "Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Otherwise, move the files to the ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder and set the flag to exclude them from user backups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// This is the URL for downloaded content.",
+                    "guard var url = download.contentURL else { fatalError() }",
+                    "",
+                    "var resourceValues = URLResourceValues()",
+                    "resourceValues.isExcludedFromBackup = true",
+                    "",
+                    "do {",
+                    "    try url.setResourceValues(resourceValues)",
+                    "} catch {",
+                    "    print(error)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSError *error;",
+                    "BOOL success = [URL setResourceValue:[NSNumber numberWithBool:YES]",
+                    "                              forKey:NSURLIsExcludedFromBackupKey",
+                    "                               error:&error];",
+                    "if (!success) { /* Handle error... */ }"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the system manages the downloaded files; your app can’t move or delete them directly. To locate the content after downloading it, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the download object. To locate the file on subsequent launches, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL(forProductID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method of ",
+              "type": "text"
+            },
+            {
+              "code": "SKDownload",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To delete a file, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/deleteContent(forProductID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method. For information about reading the app receipt, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload": {
+      "abstract": [
+        {
+          "text": "Downloadable content associated with a product.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKDownload",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL": {
+      "abstract": [
+        {
+          "text": "The local location of the downloaded file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentURL",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/contenturl"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL(forProductID:)": {
+      "abstract": [
+        {
+          "text": "Returns the local location for the previously downloaded flie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProductID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/contentURL(forProductID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentURLForProductID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentURL(forProductID:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/contenturl(forproductid:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/deleteContent(forProductID:)": {
+      "abstract": [
+        {
+          "text": "Deletes the previously downloaded file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProductID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/deleteContent(forProductID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteContentForProductID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteContent(forProductID:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/deletecontent(forproductid:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/downloadState": {
+      "abstract": [
+        {
+          "text": "The current state of the download object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKDownloadState",
+          "text": "SKDownloadState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/downloadState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "downloadState"
+        }
+      ],
+      "role": "symbol",
+      "title": "downloadState",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/downloadstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/error": {
+      "abstract": [
+        {
+          "text": "The error that prevented the content from being downloaded.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "role": "symbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/error"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/progress": {
+      "abstract": [
+        {
+          "text": "A value that indicates how much of the file has been downloaded.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/progress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "progress"
+        }
+      ],
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/progress"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload/timeRemaining": {
+      "abstract": [
+        {
+          "text": "An estimated time, in seconds, to finish downloading the content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRemaining"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload/timeRemaining",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeRemaining"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeRemaining",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload/timeremaining"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue": {
+      "abstract": [
+        {
+          "text": "A queue of payment transactions for the App Store to process.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueue",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/cancel(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a set of downloads from the download list.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/cancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/cancel(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/pause(_:)": {
+      "abstract": [
+        {
+          "text": "Pauses a set of downloads.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/pause(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pauseDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pause(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/pause(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/resume(_:)": {
+      "abstract": [
+        {
+          "text": "Resumes a set of downloads.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/resume(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resumeDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resume(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/resume(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/start(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a set of downloads to the download list.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/start(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/start(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction/downloads": {
+      "abstract": [
+        {
+          "text": "An array of download objects representing the downloadable content associated with the transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloads"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction/downloads",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "downloads"
+        }
+      ],
+      "role": "symbol",
+      "title": "downloads",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransaction/downloads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:updatedDownloads:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that the payment queue has updated one or more download objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updatedDownloads"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKDownload",
+          "text": "SKDownload"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:updatedDownloads:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueue:updatedDownloads:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueue(_:updatedDownloads:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver/paymentqueue(_:updateddownloads:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction": {
+      "abstract": [
+        {
+          "text": "Finish the transaction to complete the purchase process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Finishing a transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/finishing-a-transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase": {
+      "abstract": [
+        {
+          "text": "Keep a persistent record of a purchase to continue making the product available as needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Persisting a purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/persisting-a-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store": {
+      "abstract": [
+        {
+          "text": "Verify transactions with the App Store on a secure server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts with the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/validating-receipts-with-the-app-store"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html",
+      "title": "On-Demand Resources",
+      "titleInlineContent": [
+        {
+          "text": "On-Demand Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976",
+      "title": "Security Overview",
+      "titleInlineContent": [
+        {
+          "text": "Security Overview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-delivery",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+      ],
+      "title": "Content delivery"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-delivery",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+                "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+              ],
+              "title": "Content delivery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1contentURL/title",
+          "value": "contentURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1contentURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1progress/title",
+          "value": "progress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1progress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "progress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1error/title",
+          "value": "error"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1timeRemaining/title",
+          "value": "timeRemaining"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1timeRemaining/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeRemaining"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1downloadState/title",
+          "value": "downloadState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1downloadState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "downloadState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1deleteContent(forProductID:)/title",
+          "value": "deleteContentForProductID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1deleteContent(forProductID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteContentForProductID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1start(_:)/title",
+          "value": "startDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1start(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startDownloads:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/title",
+          "value": "SKPaymentQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1pause(_:)/title",
+          "value": "pauseDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1pause(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pauseDownloads:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction~1downloads/title",
+          "value": "downloads"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction~1downloads/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "downloads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:updatedDownloads:)/title",
+          "value": "paymentQueue:updatedDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:updatedDownloads:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueue:updatedDownloads:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1resume(_:)/title",
+          "value": "resumeDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1resume(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resumeDownloads:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1contentURL(forProductID:)/title",
+          "value": "contentURLForProductID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload~1contentURL(forProductID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentURLForProductID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/title",
+          "value": "SKDownload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1cancel(_:)/title",
+          "value": "cancelDownloads:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1cancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelDownloads:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/unlocking-purchased-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/unlocking-purchased-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

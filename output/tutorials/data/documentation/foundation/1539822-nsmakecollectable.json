@@ -1,0 +1,415 @@
+{
+  "abstract": [
+    {
+      "text": "Makes a newly allocated Core Foundation object eligible for collection.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Garbage collection is deprecated in OS X v10.8; instead,you should use AutomaticReference Counting—see ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1746459",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1539822,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@NSMakeCollectable",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "NSMakeCollectable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMakeCollectable"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftyperef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " cf);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is a wrapper for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521163-cfmakecollectable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but its return type is ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—avoiding the need for casting when using Cocoa objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function may be useful when returning Core Foundation objects in code that must support both garbage-collected and non-garbage-collected environments, as illustrated in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CFDateRef)foo {",
+            "    CFDateRef aCFDate;",
+            "    // ...",
+            "    return [NSMakeCollectable(aCFDate) autorelease];",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555946",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFTypeRef style objects are garbage collected, yet only sometime after the last ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is performed. Particularly for fully-bridged CFTypeRef objects such as CFStrings and collections (such as CFDictionary), you must call either ",
+              "type": "text"
+            },
+            {
+              "code": "CFMakeCollectable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or the more type safe ",
+              "type": "text"
+            },
+            {
+              "code": "NSMakeCollectable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", preferably right upon allocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1746459": {
+      "identifier": "devLink-1746459",
+      "title": "Transitioning to ARC Release Notes",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521163-cfmakecollectable": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521163-cfmakecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMakeCollectable",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521163-cfmakecollectable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftyperef": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftyperef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTypeRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftyperef"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable": {
+      "abstract": [
+        {
+          "text": "Reallocates collectable memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSReallocateCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539802-nsreallocatecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable": {
+      "abstract": [
+        {
+          "text": "Allocates collectable memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAllocateCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539807-nsallocatecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable": {
+      "abstract": [
+        {
+          "text": "Makes a newly allocated Core Foundation object eligible for collection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMakeCollectable",
+      "type": "topic",
+      "url": "/documentation/foundation/1539822-nsmakecollectable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable#2555946": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539822-nsmakecollectable#2555946",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/1539822-nsmakecollectable#2555946"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options": {
+      "abstract": [
+        {
+          "text": "Constants used to control behavior when allocating or reallocating collectible memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Memory Allocation Options",
+      "type": "topic",
+      "url": "/documentation/foundation/1539826-memory_allocation_options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the garbage collection system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGarbageCollector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgarbagecollector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Garbage Collection",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/objective-c_garbage_collection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector",
+        "doc://com.apple.documentation/documentation/foundation/1539807-nsallocatecollectable",
+        "doc://com.apple.documentation/documentation/foundation/1539802-nsreallocatecollectable",
+        "doc://com.apple.documentation/documentation/foundation/1539826-memory_allocation_options"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/1539822-nsmakecollectable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

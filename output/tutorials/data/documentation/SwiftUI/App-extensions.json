@@ -1,0 +1,1434 @@
+{
+  "abstract": [
+    {
+      "text": "Extend your app’s basic functionality to other parts of the system, like",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by adding a Widget.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "App extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use SwiftUI along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to add widgets to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-extensions-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets provide quick access to relevant content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your app. Define a structure that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and declare a view hierarchy for the widget. Configure the views inside the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget as you do other SwiftUI views, using view modifiers, including a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "few widget-specific modifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "app-extensions-hero": {
+      "alt": null,
+      "identifier": "app-extensions-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4da7f7032a035f40f8426797d9c227c/app-extensions-hero@2x.png"
+        }
+      ]
+    },
+    "components-widgets-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-widgets-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3f0e52c7044f248973b3648a0a6503d/components-widgets-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc6d9669f4d18e5ac3cdd46a26ba2ac4/components-widgets-thumbnail@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidget": {
+      "abstract": [
+        {
+          "text": "The configuration and content of a control widget to display in system spaces",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as Control Center, the Lock Screen, and the Action Button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidget"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidget"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidget",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlwidget"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that describes a control widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlwidgetconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfigurationBuilder": {
+      "abstract": [
+        {
+          "text": "A custom attribute that constructs a control widget’s body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetConfigurationBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfigurationBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetConfigurationBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetConfigurationBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlwidgetconfigurationbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplate": {
+      "abstract": [
+        {
+          "text": "A type that describes a control widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetTemplate",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlwidgettemplate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplateBuilder": {
+      "abstract": [
+        {
+          "text": "A custom attribute that constructs a control widget template’s body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplateBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplateBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplateBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetTemplateBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlwidgettemplatebuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetConfiguration": {
+      "abstract": [
+        {
+          "text": "An empty control widget configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyControlWidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyControlWidgetConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyControlWidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptycontrolwidgetconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetTemplate": {
+      "abstract": [
+        {
+          "text": "An empty control widget template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyControlWidgetTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyControlWidgetTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyControlWidgetTemplate",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptycontrolwidgettemplate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyWidgetConfiguration": {
+      "abstract": [
+        {
+          "text": "An empty widget configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyWidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyWidgetConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyWidgetConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyWidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptywidgetconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LimitedAvailabilityConfiguration": {
+      "abstract": [
+        {
+          "text": "A type-erased widget configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LimitedAvailabilityConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LimitedAvailabilityConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LimitedAvailabilityConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LimitedAvailabilityConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/limitedavailabilityconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes": {
+      "abstract": [
+        {
+          "text": "Declare the user interface groupings that make up the parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessoryWidgetGroupStyle(_:)": {
+      "abstract": [
+        {
+          "text": "The view modifier that can be applied to ",
+          "type": "text"
+        },
+        {
+          "code": "AccessoryWidgetGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to specify the shape the three",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content views will be masked with. The value of ",
+          "type": "text"
+        },
+        {
+          "code": "style",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is set to ",
+          "type": "text"
+        },
+        {
+          "code": ".automatic",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", which is ",
+          "type": "text"
+        },
+        {
+          "code": ".circular",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryWidgetGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit09AccessoryA10GroupStyleV",
+          "text": "AccessoryWidgetGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessoryWidgetGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryWidgetGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessorywidgetgroupstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetActionHint(_:)": {
+      "abstract": [
+        {
+          "text": "The action hint of the control described by the modified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlWidgetActionHint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetActionHint(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlWidgetActionHint(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/controlwidgetactionhint(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetStatus(_:)": {
+      "abstract": [
+        {
+          "text": "The status of the control described by the modified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlWidgetStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetStatus(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlWidgetStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/controlwidgetstatus(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dynamicIsland(verticalPlacement:)": {
+      "abstract": [
+        {
+          "text": "Specifies the vertical placement for a view of an expanded Live Activity that appears in the Dynamic",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Island.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamicIsland"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit44DynamicIslandExpandedRegionVerticalPlacementV",
+          "text": "DynamicIslandExpandedRegionVerticalPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dynamicIsland(verticalPlacement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dynamicIsland(verticalPlacement:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/dynamicisland(verticalplacement:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetAccentable(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the view and all of its subviews to the accented group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetAccentable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetAccentable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetAccentable(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/widgetaccentable(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a localized text label that displays additional content outside",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the accessory family widget’s main SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/widgetlabel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(label:)": {
+      "abstract": [
+        {
+          "text": "Creates a label for displaying additional content outside an accessory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "family widget’s main SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetLabel"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetLabel(label:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/widgetlabel(label:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Widget": {
+      "abstract": [
+        {
+          "text": "The configuration and content of a widget to display on the Home screen or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Widget"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Widget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Widget"
+        }
+      ],
+      "role": "symbol",
+      "title": "Widget",
+      "type": "topic",
+      "url": "/documentation/swiftui/widget"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetBundle": {
+      "abstract": [
+        {
+          "text": "A container used to expose multiple widgets from a single widget extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetBundle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetBundle",
+      "type": "topic",
+      "url": "/documentation/swiftui/widgetbundle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that describes a widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/widgetconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/widgets": {
+      "abstract": [
+        {
+          "text": "A widget elevates and displays a small amount of timely, relevant information from your app or game so people can see it at a glance in additional contexts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/widgets",
+      "images": [
+        {
+          "identifier": "components-widgets-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Widgets",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/widgets"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Creating-a-Widget-Extension"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Making-a-Configurable-Widget"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui": {
+      "abstract": [
+        {
+          "text": "Create widgets to show your app’s content on the Home screen, with custom intents for user-customizable settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building Widgets Using WidgetKit and SwiftUI",
+      "type": "topic",
+      "url": "/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-widgets",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+        "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+        "doc://com.apple.documentation/documentation/WidgetKit/Making-a-Configurable-Widget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Widget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetBundle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LimitedAvailabilityConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WidgetConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyWidgetConfiguration"
+      ],
+      "title": "Creating widgets"
+    },
+    {
+      "anchor": "Composing-control-widgets",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetConfigurationBuilder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplate",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyControlWidgetTemplate",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlWidgetTemplateBuilder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetActionHint(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlWidgetStatus(_:)"
+      ],
+      "title": "Composing control widgets"
+    },
+    {
+      "anchor": "Labeling-a-widget",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetLabel(label:)"
+      ],
+      "title": "Labeling a widget"
+    },
+    {
+      "anchor": "Stying-a-widget-group",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessoryWidgetGroupStyle(_:)"
+      ],
+      "title": "Stying a widget group"
+    },
+    {
+      "anchor": "Controlling-the-accented-group",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/widgetAccentable(_:)"
+      ],
+      "title": "Controlling the accented group"
+    },
+    {
+      "anchor": "Managing-placement-in-the-Dynamic-Island",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/dynamicIsland(verticalPlacement:)"
+      ],
+      "title": "Managing placement in the Dynamic Island"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/app-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

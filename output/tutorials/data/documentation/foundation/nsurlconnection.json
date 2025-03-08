@@ -1,0 +1,1157 @@
+{
+  "abstract": [
+    {
+      "text": "An object that enables you to start and stop URL requests.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlconnection"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407335,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLConnection",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSURLConnection"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLConnection"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLConnection"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This API is considered legacy. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object lets you load the contents of a URL by providing a URL request object. The interface for ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is sparse, providing only the controls to start and cancel asynchronous loads of a URL request. You perform most of your configuration on the URL request object itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although instances of this class are commonly called “connections”, there is not a 1:1 correlation between these objects and the underlying network connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides convenience class methods to load URL requests both asynchronously using a callback block and synchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For greater control, you can create a URL connection object with a delegate object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols. The connection calls methods on that delegate to provide you with progress and status as the URL request is loaded asynchronously. The connection also calls delegate methods to let you override the connection’s default behavior (for example, specifying how a particular redirect should be handled). These delegate methods are called on the thread that initiated the asynchronous load operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "During a request, the connection maintains a strong reference to its delegate. It releases that strong reference when the connection finishes loading, fails, or is canceled.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about errors, see the ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLError.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/foundation_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and URL Loading System Error Codes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1725884",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1665494",
+          "level": 3,
+          "text": "NSURLConnection Protocols",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class works in tandem with three formal protocols: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondownloaddelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use these protocols, you write a class that conforms to them and implement any methods that are appropriate, then provide an instance of that class as the delegate when you create a connection object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol is primarily used for credential handling, but also handles connection completion. Because it handles connection failure during data transfers, all connection delegates must typically implement this protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, unless you’re using Newsstand Kit, your delegate must also conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, because this protocol provides methods that the ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class calls with progress information during an upload, with fragments of the response data during a download, and to provide a new upload body stream if the server’s response necessitates a second connection attempt—for example, if ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must retry the request with different credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, if you’re using Newsstand Kit, your delegate can conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondownloaddelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. This protocol provides support for continuing interrupted file downloads and receiving a notification whenever a download finishes. This protocol is solely for use with ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects created using Newsstand Kit’s ",
+              "type": "text"
+            },
+            {
+              "code": "download(with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some methods in these protocols were previously part of other formal protocols or were previously part of an informal protocol on ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSObject",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1725884": {
+      "identifier": "devLink-1725884",
+      "title": "Error Handling Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/foundation_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/foundation_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Foundation Constants",
+      "type": "topic",
+      "url": "/documentation/foundation/foundation_constants"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "abstract": [
+        {
+          "text": "An object that enables you to start and stop URL requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1407797-cancel": {
+      "abstract": [
+        {
+          "text": "Cancels an asynchronous load of a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1407797-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1407797-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409060-currentrequest": {
+      "abstract": [
+        {
+          "text": "The current connection request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409060-currentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1409060-currentrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule": {
+      "abstract": [
+        {
+          "text": "Causes the connection to stop calling delegate methods in the specified run loop and mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unschedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unschedule(from:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1409722-unschedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411340-originalrequest": {
+      "abstract": [
+        {
+          "text": "A deep copy of the original connection request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411340-originalrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1411340-originalrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411393-sendsynchronousrequest": {
+      "abstract": [
+        {
+          "text": "Performs a synchronous load of the specified URL request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendSynchronousRequest"
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "returning"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<URLResponse?>?) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411393-sendsynchronousrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendSynchronousRequest(_:returning:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1411393-sendsynchronousrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue": {
+      "abstract": [
+        {
+          "text": "Determines the operation queue that is used to call methods on the connection’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegateQueue"
+        },
+        {
+          "kind": "text",
+          "text": "(OperationQueue?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDelegateQueue(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1411849-setdelegatequeue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1413072-canhandle": {
+      "abstract": [
+        {
+          "text": "Returns whether a request can be handled based on a preflight evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canHandle"
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1413072-canhandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canHandle(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1413072-canhandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1414520-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized URL connection and begins to load the data for the URL request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1414520-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(request:delegate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1414520-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start": {
+      "abstract": [
+        {
+          "text": "Causes the connection to begin loading data, if it has not already.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417345-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule": {
+      "abstract": [
+        {
+          "text": "Determines the run loop and mode that the connection uses to call methods on its delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(in:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1417485-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418125-sendasynchronousrequest": {
+      "abstract": [
+        {
+          "text": "Loads the data for a URL request and executes a handler block on an operation queue when the request completes or fails.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendAsynchronousRequest"
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": OperationQueue, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (URLResponse?, Data?, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418125-sendasynchronousrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendAsynchronousRequest(_:queue:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1418125-sendasynchronousrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized URL connection and begins to load the data for the URL request, if specified.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "startImmediately"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(request:delegate:startImmediately:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection/1418425-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that most delegates of a URL connection implement to receive data associated with the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnectionDataDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnectionDataDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnectiondatadelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that delegates of a URL connection implement to receive status about and provide feedback to the connection object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnectionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnectionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnectiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondownloaddelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that delegates of a URL connection created with Newsstand Kit implement to receive data associated with a download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnectionDownloadDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnectionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnectiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondatadelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondownloaddelegate"
+      ],
+      "title": "URL Connection"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1665523",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1413072-canhandle"
+      ],
+      "kind": "taskGroup",
+      "title": "Preflighting a Connection Request"
+    },
+    {
+      "anchor": "1665592",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411340-originalrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409060-currentrequest"
+      ],
+      "kind": "taskGroup",
+      "title": "Connection URL Information"
+    },
+    {
+      "anchor": "1665648",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411393-sendsynchronousrequest"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading Data Synchronously"
+    },
+    {
+      "anchor": "1665694",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1414520-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418425-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1418125-sendasynchronousrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417345-start"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading Data Asynchronously"
+    },
+    {
+      "anchor": "1665822",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1407797-cancel"
+      ],
+      "kind": "taskGroup",
+      "title": "Stopping a Connection"
+    },
+    {
+      "anchor": "1665871",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1417485-schedule",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1411849-setdelegatequeue",
+        "doc://com.apple.documentation/documentation/foundation/nsurlconnection/1409722-unschedule"
+      ],
+      "kind": "taskGroup",
+      "title": "Scheduling Delegate Method Calls"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurlconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

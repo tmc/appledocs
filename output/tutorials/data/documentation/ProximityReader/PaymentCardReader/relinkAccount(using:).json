@@ -1,0 +1,770 @@
+{
+  "abstract": [
+    {
+      "text": "Presents a sheet for the merchant to re-accept Tap to Pay on iPhone’s Terms and Conditions on a device using a different Apple Account.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/relinkAccount(using:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ProximityReader011PaymentCardB0C13relinkAccount5usingyAC5TokenV_tYaKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "relinkAccount"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "using"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+        "text": "PaymentCardReader"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+        "text": "Token"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "relinkAccount(using:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "relinkAccount"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "using"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "token"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+              "text": "PaymentCardReader"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/Token",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+              "text": "Token"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The token from your payment service provider. This token contains the merchant identifier and must include permission for relinking.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "token"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Tap to Pay on iPhone, your participating payment service provider must provide the merchant using your app with a secure token.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This token contains a unique identifier for each merchant and also specifies if relinking using a different Apple Account is allowed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this method, a merchant must have already accepted the Terms and Conditions using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a merchant accepts the Terms and Conditions for their specific merchant identifier on one device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they don’t need to accept it again on additional devices that use the same identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingFailed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingCancelled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or other relevant errors in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Throws",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader": {
+      "abstract": [
+        {
+          "text": "An object you use to configure Tap to Pay on iPhone on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/Token": {
+      "abstract": [
+        {
+          "text": "A secure token that you receive from your participating payment service provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Token"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/Token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Token"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReader.Token",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/token"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isAccountLinked(using:)": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the account is already linked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccountLinked"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isAccountLinked(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccountLinked(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/isaccountlinked(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet for the merchant to accept Tap to Pay on iPhone’s Terms and Conditions on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkAccount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkAccount(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/linkaccount(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/relinkAccount(using:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet for the merchant to re-accept Tap to Pay on iPhone’s Terms and Conditions on a device using a different Apple Account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinkAccount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/relinkAccount(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relinkAccount(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/relinkaccount(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with the configuration of the reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingCancelled": {
+      "abstract": [
+        {
+          "text": "An error that indicates the user cancelled the linking or relinking operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountLinkingCancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingCancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCardReaderError.accountLinkingCancelled",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror/accountlinkingcancelled"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingFailed": {
+      "abstract": [
+        {
+          "text": "An error that indicates the system couldn’t link or relink the merchant using the provided Apple Account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountLinkingFailed"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/accountLinkingFailed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCardReaderError.accountLinkingFailed",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror/accountlinkingfailed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Displaying-the-Tap-to-Pay-on-iPhones-terms-and-conditions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isAccountLinked(using:)",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/Token"
+      ],
+      "title": "Displaying the Tap to Pay on iPhone’s terms and conditions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/paymentcardreader/relinkaccount(using:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

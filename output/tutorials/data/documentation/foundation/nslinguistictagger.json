@@ -1,0 +1,1794 @@
+{
+  "abstract": [
+    {
+      "text": "Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " framework instead. ",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416172,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSLinguisticTagger",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSLinguisticTagger"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "11.0",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "14.0",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "deprecated": true,
+        "deprecatedAt": "7.0",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSLinguisticTagger"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLinguisticTagger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " provides a uniform interface to a variety of natural language processing functionality with support for many different languages and scripts. You can use this class to segment natural language text into paragraphs, sentences, or words, and tag information about those segments, such as part of speech, lexical class, lemma, script, and language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a linguistic tagger, you specify what kind of information you're interested in by passing one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to get the information requested for a given scheme and unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1661264",
+          "level": 3,
+          "text": "Thread Safety",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " should not be used simultaneously from multiple threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag": {
+      "abstract": [
+        {
+          "text": "A token, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTag",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792",
+      "kind": "article",
+      "role": "task",
+      "title": "Enumerating Linguistic Tags",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagger#2891792"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string": {
+      "abstract": [
+        {
+          "text": "The string being analyzed by the linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1407750-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408537-possibletags": {
+      "abstract": [
+        {
+          "text": "Returns an array of possible tags for the given scheme at the specified range, supplying matching scores.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "possibleTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sentenceRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scores"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408537-possibletags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "possibleTags(at:scheme:tokenRange:sentenceRange:scores:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1408537-possibletags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes": {
+      "abstract": [
+        {
+          "text": "Returns the tag schemes available for a particular language on the current device. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableTagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [NSLinguisticTagScheme]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableTagSchemes(forLanguage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1408694-availabletagschemes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409018-tagschemes": {
+      "abstract": [
+        {
+          "text": "Returns the tag schemes configured for this linguistic tagger. For possible values, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSLinguisticTagScheme]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409018-tagschemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tagSchemes",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1409018-tagschemes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409101-setorthography": {
+      "abstract": [
+        {
+          "text": "Sets the orthography for the specified range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrthography"
+        },
+        {
+          "kind": "text",
+          "text": "(NSOrthography?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409101-setorthography",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrthography(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1409101-setorthography"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1410036-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1411834-tag": {
+      "abstract": [
+        {
+          "text": "Returns a tag for a single scheme at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sentenceRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?) -> NSLinguisticTag?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1411834-tag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tag(at:scheme:tokenRange:sentenceRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1411834-tag"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init": {
+      "abstract": [
+        {
+          "text": "Creates a linguistic tagger instance using the specified tag schemes and options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "tagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSLinguisticTagScheme], "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tagSchemes:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1414576-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415532-sentencerange": {
+      "abstract": [
+        {
+          "text": "Returns the range of a sentence containing the specified range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sentenceRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415532-sentencerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sentenceRange(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1415532-sentencerange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415566-orthography": {
+      "abstract": [
+        {
+          "text": "Returns the orthography at the index and also returns the effective range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "orthography"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?) -> NSOrthography?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415566-orthography",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orthography(at:effectiveRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1415566-orthography"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417623-stringedited": {
+      "abstract": [
+        {
+          "text": "Notifies the linguistic tagger that the string (if mutable) has changed as specified by the parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringEdited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeInLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417623-stringedited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringEdited(in:changeInLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1417623-stringedited"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417826-tags": {
+      "abstract": [
+        {
+          "text": "Returns an array of linguistic tags and token ranges for a given string range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417826-tags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(in:scheme:options:tokenRanges:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1417826-tags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes": {
+      "abstract": [
+        {
+          "text": "Returns the tag schemes available for a particular unit and language on the current device. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableTagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [NSLinguisticTagScheme]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableTagSchemes(for:language:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875111-availabletagschemes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875112-dominantlanguage": {
+      "abstract": [
+        {
+          "text": "Returns the dominant language of the string set for the linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875112-dominantlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dominantLanguage",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875112-dominantlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875115-tag": {
+      "abstract": [
+        {
+          "text": "Returns a tag for a single scheme, for a given linguistic unit, at the specified character position in a string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orthography"
+        },
+        {
+          "kind": "text",
+          "text": ": NSOrthography?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?) -> NSLinguisticTag?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875115-tag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tag(for:at:unit:scheme:orthography:tokenRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875115-tag"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875117-dominantlanguage": {
+      "abstract": [
+        {
+          "text": "Returns the dominant language for the specified string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875117-dominantlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dominantLanguage(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875117-dominantlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875118-tags": {
+      "abstract": [
+        {
+          "text": "Returns an array of linguistic tags and token ranges for a given string and linguistic unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orthography"
+        },
+        {
+          "kind": "text",
+          "text": ": NSOrthography?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875118-tags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(for:range:unit:scheme:options:orthography:tokenRanges:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875118-tags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875120-tags": {
+      "abstract": [
+        {
+          "text": "Returns an array of linguistic tags and token ranges for a given string range and linguistic unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875120-tags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(in:unit:scheme:options:tokenRanges:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875120-tags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given string and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orthography"
+        },
+        {
+          "kind": "text",
+          "text": ": NSOrthography?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(for:range:unit:scheme:options:orthography:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875121-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875122-tokenrange": {
+      "abstract": [
+        {
+          "text": "Returns the range of the linguistic unit containing the specified character index. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit) -> NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875122-tokenrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenRange(at:unit:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875122-tokenrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875123-tag": {
+      "abstract": [
+        {
+          "text": "Returns a tag for a single scheme, for a given linguistic unit, at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?) -> NSLinguisticTag?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875123-tag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tag(at:unit:scheme:tokenRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875123-tag"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string for a particular unit and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:unit:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875124-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech": {
+      "abstract": [
+        {
+          "text": "Classify nouns, verbs, adjectives, and other parts of speech in a string. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying Parts of Speech",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_parts_of_speech"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations": {
+      "abstract": [
+        {
+          "text": "Use a linguistic tagger to perform named entity recognition on a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying People, Places, and Organizations",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options": {
+      "abstract": [
+        {
+          "text": "Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTagger.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text": {
+      "abstract": [
+        {
+          "text": "Enumerate the words in a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text",
+      "kind": "article",
+      "role": "article",
+      "title": "Tokenizing Natural Language Text",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit": {
+      "abstract": [
+        {
+          "text": "Constants representing linguistic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTaggerUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme": {
+      "abstract": [
+        {
+          "text": "Constants for the tag schemes specified when initializing a linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagScheme",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text/1497268-deprecated_string_encodings": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text/1497268-deprecated_string_encodings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated String Encodings",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text/1497268-deprecated_string_encodings"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "article",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text/1497268-deprecated_string_encodings"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661279",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string"
+      ],
+      "kind": "taskGroup",
+      "title": "First Steps"
+    },
+    {
+      "anchor": "1661307",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409018-tagschemes"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Tag Schemes"
+    },
+    {
+      "anchor": "1661385",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875117-dominantlanguage",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875112-dominantlanguage",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415566-orthography",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1409101-setorthography"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Dominant Language and Orthography"
+    },
+    {
+      "anchor": "2891792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerating Linguistic Tags"
+    },
+    {
+      "anchor": "1661408",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875123-tag",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1411834-tag",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875115-tag",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875120-tags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417826-tags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875118-tags"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Linguistic Tags"
+    },
+    {
+      "anchor": "1661465",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875122-tokenrange",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1415532-sentencerange"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Range of a Unit Token"
+    },
+    {
+      "anchor": "2891793",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408537-possibletags"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Possible Tags"
+    },
+    {
+      "anchor": "1661343",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1417623-stringedited"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifying for Changes to the Analyzed String"
+    },
+    {
+      "anchor": "2903810",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictag"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

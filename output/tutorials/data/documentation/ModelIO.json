@@ -1,0 +1,5520 @@
+{
+  "abstract": [
+    {
+      "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ModelIO",
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Model I/O"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Model I/O framework provides a system-level understanding of 3D model assets and related resources. You can use this framework to import and export assets from and to a variety of industry standard file formats supported by popular authoring tools and game engines. You can also use Model I/O to generate or process model and texture data—for example, to create subdivision surfaces, to bake ambient occlusion textures, or to generate light probes. Model I/O can share data buffers with the MetalKit, GLKit, and SceneKit frameworks to help you load, process, and render 3D assets efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Model-IO-Features",
+          "level": 3,
+          "text": "Model I/O Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Importing and exporting 3D assets. A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object represents a collection of objects that describe elements of a 3D scene—",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLCamera",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class to load these objects from a file or to create a collection of 3D objects for export to a file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Working with 3D model data. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class to inspect or rearrange a mesh’s vertex and index data format. Use classes that adopt the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocols to minimize the number of times a mesh’s vertex and index data is copied and translated between loading, processing, and rendering on a GPU. The MetalKit and GLKit frameworks provide such classes—see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/GLKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Processing and generating asset data. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods (for example, the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh/addNormals(withAttributeNamed:creaseThreshold:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method) to process a model, generating additional data—such as surface normals, tangent basis vectors, ambient occlusion, or light maps—for use in rendering. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class and its subclasses to generate procedural textures such as noise, normal maps, and realistic sky boxes. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class to generate light sources whose illumination is based on the contents of a scene. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class to work with a volumetric description of a model.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Describing realistic rendering parameters. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class—one of many ways to describe the surface appearance for a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object associated with a mesh—defines the intended rendering of a surface using the same physically based shading systems seen in popular feature films and high-end game engines. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " classes describe realistic lighting properties for use in rendering, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLCamera",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class also supports physically based rendering parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/GLKit"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit": {
+      "abstract": [
+        {
+          "text": "Build Metal apps quicker and easier using a common set of utility classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetalKit",
+      "type": "topic",
+      "url": "/documentation/MetalKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedMatrix4x4": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedMatrix4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedMatrix4x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedMatrix4x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedMatrix4x4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedmatrix4x4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedQuaternion"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedQuaternion"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedQuaternion",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedquaternion"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternionArray": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedQuaternionArray"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternionArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedQuaternionArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedQuaternionArray",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedquaternionarray"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalar": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedScalar"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedScalar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedScalar",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedscalar"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalarArray": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedScalarArray"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalarArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedScalarArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedScalarArray",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedscalararray"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedValue"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedValue",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedvalue"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector2": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedVector2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedvector2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedVector3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedvector3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3Array": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector3Array"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3Array",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector3Array"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedVector3Array",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedvector3array"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector4": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimatedVector4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimatedVector4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimatedvector4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimationBindComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimationBindComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimationBindComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimationbindcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight": {
+      "abstract": [
+        {
+          "text": "A light source that illuminates a 3D scene from an area with a specific shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAreaLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAreaLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAreaLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlarealight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAsset": {
+      "abstract": [
+        {
+          "text": "An indexed container for 3D objects and associated information, such as transform hierarchies, meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAsset",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlasset"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAssetResolver": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAssetResolver"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAssetResolver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAssetResolver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAssetResolver",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlassetresolver"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLBundleAssetResolver": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLBundleAssetResolver"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLBundleAssetResolver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLBundleAssetResolver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLBundleAssetResolver",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlbundleassetresolver"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLCamera": {
+      "abstract": [
+        {
+          "text": "A point of view for rendering a 3D scene, along with a set of parameters describing an intended appearance for rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLCamera",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcamera"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLCheckerboardTexture": {
+      "abstract": [
+        {
+          "text": "A generator of texel data that creates a checkerboard pattern with two specified colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLCheckerboardTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLCheckerboardTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLCheckerboardTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLCheckerboardTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcheckerboardtexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLColorSwatchTexture": {
+      "abstract": [
+        {
+          "text": "A generator of texel data that creates a gradient between two specified colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLColorSwatchTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLColorSwatchTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLColorSwatchTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLColorSwatchTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcolorswatchtexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLComponent": {
+      "abstract": [
+        {
+          "text": "The base protocol for extensible file format support in Model I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLJointAnimation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLJointAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLJointAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLJointAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLJointAnimation",
+      "type": "topic",
+      "url": "/documentation/modelio/mdljointanimation"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLight": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that describe light sources in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe": {
+      "abstract": [
+        {
+          "text": "A light source described in terms of the variations in color and intensity of its illumination in all directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbe"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbe"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLightProbe",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource": {
+      "abstract": [
+        {
+          "text": "Adopt this protocol to provide information for use in automatic placement of light probes around a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbeIrradianceDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbeIrradianceDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLightProbeIrradianceDataSource",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobeirradiancedatasource"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial": {
+      "abstract": [
+        {
+          "text": "A collection of material properties that together describe the intended surface appearance for rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterial",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterial"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty": {
+      "abstract": [
+        {
+          "text": "A definition for one specific aspect of the rendering parameters for a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialProperty",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialproperty"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyConnection",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertyconnection"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyGraph",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertygraph"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyNode"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMaterialPropertyNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMaterialPropertyNode",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmaterialpropertynode"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMatrix4x4Array": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMatrix4x4Array"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMatrix4x4Array",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMatrix4x4Array"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMatrix4x4Array",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmatrix4x4array"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex buffer data to be used in rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMesh",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmesh"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMesh/addNormals(withAttributeNamed:creaseThreshold:)": {
+      "abstract": [
+        {
+          "text": "Generates surface normal data for the mesh based on its vertex position data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addNormals"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAttributeNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "creaseThreshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh/addNormals(withAttributeNamed:creaseThreshold:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addNormalsWithAttributeNamed:creaseThreshold:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addNormals(withAttributeNamed:creaseThreshold:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmesh/addnormals(withattributenamed:creasethreshold:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer": {
+      "abstract": [
+        {
+          "text": "The general interface for managing storage of vertex and index data used in loading, processing, and rendering meshes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBuffer",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbuffer"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator": {
+      "abstract": [
+        {
+          "text": "The general interface for managing allocation of data buffers to be used in loading, processing, and rendering meshes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferallocator"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData": {
+      "abstract": [
+        {
+          "text": "A memory buffer that stores vertex or index data for a Model I/O mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferData"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferData",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferdata"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator": {
+      "abstract": [
+        {
+          "text": "A basic allocator implementation that allocates from main memory using data objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferDataAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferDataAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferDataAllocator",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferdataallocator"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap": {
+      "abstract": [
+        {
+          "text": "An object that manages access to a memory buffer used for the data storage of a Model I/O mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferMap"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferMap",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbuffermap"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone": {
+      "abstract": [
+        {
+          "text": "The general interface for logical pools of memory used in allocation of related mesh data buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferZone",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferzone"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault": {
+      "abstract": [
+        {
+          "text": "A standard implementation of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZoneDefault"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMeshBufferZoneDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMeshBufferZoneDefault",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmeshbufferzonedefault"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNamed": {
+      "abstract": [
+        {
+          "text": "The common interface for Model I/O objects that expose a human-readable name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNamed",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnamed"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNoiseTexture": {
+      "abstract": [
+        {
+          "text": "A generator of texel data that creates a field of random noise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNoiseTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNoiseTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNoiseTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNoiseTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnoisetexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNormalMapTexture": {
+      "abstract": [
+        {
+          "text": "A generator of texel data that computes a normal map from a supplied texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNormalMapTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNormalMapTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNormalMapTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNormalMapTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnormalmaptexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject": {
+      "abstract": [
+        {
+          "text": "The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObject",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer": {
+      "abstract": [
+        {
+          "text": "A default implementation for handling object hierarchy relationships in a 3D asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainer",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainer"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that can act as containers in an object hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainerComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainercomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPackedJointAnimation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPackedJointAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPackedJointAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPackedJointAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPackedJointAnimation",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlpackedjointanimation"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPathAssetResolver": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPathAssetResolver"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPathAssetResolver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPathAssetResolver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPathAssetResolver",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlpathassetresolver"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight": {
+      "abstract": [
+        {
+          "text": "A light source whose shape, direction, and intensity of illumination are determined by a photometric profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhotometricLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhotometricLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhotometricLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphotometriclight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight": {
+      "abstract": [
+        {
+          "text": "A light source for use in shading models based on real-world physics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhysicallyPlausibleLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphysicallyplausiblelight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction": {
+      "abstract": [
+        {
+          "text": "A set of material properties that describes a physically realistic shading model for materials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleScatteringFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleScatteringFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhysicallyPlausibleScatteringFunction",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphysicallyplausiblescatteringfunction"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLRelativeAssetResolver": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLRelativeAssetResolver"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLRelativeAssetResolver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLRelativeAssetResolver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLRelativeAssetResolver",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlrelativeassetresolver"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction": {
+      "abstract": [
+        {
+          "text": "A set of material properties that describes a basic shading model for materials, and the superclass for more complex shading models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLScatteringFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLScatteringFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLScatteringFunction",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlscatteringfunction"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLSkeleton": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLSkeleton"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLSkeleton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLSkeleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLSkeleton",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlskeleton"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLSkyCubeTexture": {
+      "abstract": [
+        {
+          "text": "A generator of texel data that creates cube textures using a physically realistic simulation of the sunlit sky.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLSkyCubeTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLSkyCubeTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLSkyCubeTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLSkyCubeTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlskycubetexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLStereoscopicCamera": {
+      "abstract": [
+        {
+          "text": "A point of view for rendering a stereoscopic display of a 3D scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLStereoscopicCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLStereoscopicCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLStereoscopicCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLStereoscopicCamera",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlstereoscopiccamera"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLSubmesh": {
+      "abstract": [
+        {
+          "text": "A container for index buffer data and material information to be used in rendering all or part of a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLSubmesh"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLSubmesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLSubmesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLSubmesh",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlsubmesh"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLSubmeshTopology": {
+      "abstract": [
+        {
+          "text": "A description of how a submesh’s index buffer data is arranged and how that arrangement should be used to produce the submesh’s intended 3D shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLSubmeshTopology"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLSubmeshTopology",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLSubmeshTopology"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLSubmeshTopology",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlsubmeshtopology"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTexture": {
+      "abstract": [
+        {
+          "text": "A source of texel data to be used in rendering material surface appearances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTextureFilter": {
+      "abstract": [
+        {
+          "text": "A description of filtering modes for a renderer to use when sampling from a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTextureFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTextureFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTextureFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTextureFilter",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltexturefilter"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTextureSampler": {
+      "abstract": [
+        {
+          "text": "An object that pairs a source of texture data with sampling parameters to be used in rendering the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTextureSampler"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTextureSampler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTextureSampler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTextureSampler",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltexturesampler"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransform": {
+      "abstract": [
+        {
+          "text": "A description of the local coordinate space transformations for a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransform",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransform"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that manage local coordinate space transforms for 3D objects",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformMatrixOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformMatrixOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformMatrixOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformMatrixOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformMatrixOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformmatrixop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOrientOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformOrientOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOrientOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformOrientOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformOrientOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformorientop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformRotateOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformrotateop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateXOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateXOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateXOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateXOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformRotateXOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformrotatexop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateYOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateYOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateYOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateYOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformRotateYOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformrotateyop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateZOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateZOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateZOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformRotateZOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformRotateZOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformrotatezop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformScaleOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformScaleOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformScaleOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformScaleOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformScaleOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformscaleop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformStack",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformstack"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformTranslateOp": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformTranslateOp"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformTranslateOp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformTranslateOp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformTranslateOp",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformtranslateop"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLURLTexture": {
+      "abstract": [
+        {
+          "text": "A lightweight reference to a URL from which to load texture data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLURLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLURLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLURLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLURLTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlurltexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLUtility": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLUtility"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLUtility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLUtility"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLUtility",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlutility"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute": {
+      "abstract": [
+        {
+          "text": "A description of the format of per-vertex data for a single vertex attribute in a mesh object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexAttribute",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattribute"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData": {
+      "abstract": [
+        {
+          "text": "An object that provides convenience access to vertex data for a specific vertex attribute of a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttributeData"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexAttributeData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexAttributeData",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattributedata"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object describes layout information for a vertex buffer in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object. A collection of vertex layer objects, vertex attribute objects, and additional information forms a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object, which completely describes the layout of vertex buffers for a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexBufferLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexBufferLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexBufferLayout",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexbufferlayout"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the structure, format, and layout for vertex data buffers associated with a mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexDescriptor",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexdescriptor"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray": {
+      "abstract": [
+        {
+          "text": "A model of a 3D object’s solid volume as a collection of ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "voxels",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", or cubic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelArray"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVoxelArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVoxelArray",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvoxelarray"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDL_CLASS_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MDL_CLASS_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDL_CLASS_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDL_CLASS_EXPORT",
+      "type": "topic",
+      "url": "/documentation/modelio/mdl_class_export"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDL_CONST_INLINE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MDL_CONST_INLINE"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDL_CONST_INLINE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDL_CONST_INLINE",
+      "type": "topic",
+      "url": "/documentation/modelio/mdl_const_inline"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDL_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MDL_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDL_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDL_EXPORT",
+      "type": "topic",
+      "url": "/documentation/modelio/mdl_export"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDL_INLINE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MDL_INLINE"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDL_INLINE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDL_INLINE",
+      "type": "topic",
+      "url": "/documentation/modelio/mdl_inline"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/model-i-o-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/model-i-o-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model I/O Constants",
+      "type": "topic",
+      "url": "/documentation/modelio/model-i-o-constants"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/model-i-o-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/model-i-o-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model I/O Data Types",
+      "type": "topic",
+      "url": "/documentation/modelio/model-i-o-data-types"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/model-i-o-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/model-i-o-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model I/O Enumerations",
+      "type": "topic",
+      "url": "/documentation/modelio/model-i-o-enumerations"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/model-i-o-structures": {
+      "abstract": [],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/model-i-o-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model I/O Structures",
+      "type": "topic",
+      "url": "/documentation/modelio/model-i-o-structures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Assets are collections of objects representing the elements of a 3D scene, typically loaded from one of several industry standard file formats. Use these classes to load assets and examine or manipulate the 3D objects, or meshes, within.",
+          "type": "text"
+        }
+      ],
+      "anchor": "3D-Asset-Basics",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLSubmesh",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLSubmeshTopology",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNamed"
+      ],
+      "title": "3D Asset Basics"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Mesh data—vertex and index buffers—is the main content of a 3D object. These types provide a rich vocabulary for inspecting or rearranging the content and format of asset data, as well as utilities that minimize the number of times a mesh’s vertex and index data is copied and translated between loading, processing, and rendering on a GPU with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/GLKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Managing-Mesh-Data",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor"
+      ],
+      "title": "Managing Mesh Data"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These classes provide several different ways to describe the intended surface appearance for rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Materials",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction"
+      ],
+      "title": "Materials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use these classes to access the textures associated with an asset or to procedurally generate texture content.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Textures",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLCheckerboardTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLColorSwatchTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNoiseTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNormalMapTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLSkyCubeTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLURLTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTextureFilter",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTextureSampler"
+      ],
+      "title": "Textures"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These classes provide several different ways to describe light sources for use in rendering 3D scenes.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Lights",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight"
+      ],
+      "title": "Lights"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use these classes to describe, or to access in imported assets, information about viewpoints for 3D scene rendering.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Cameras",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLCamera",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLStereoscopicCamera"
+      ],
+      "title": "Cameras"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These classes and protocols enable both Model I/O support of widely differing standard asset file formats and the creation of new asset formats that include both standard and custom elements.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Extensible-Asset-Format-Support",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+      ],
+      "title": "Extensible Asset Format Support"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Voxels provide an alternate way of working with 3D objects, which can be useful for applications like modeling special effects, preparing designs for physical manufacturing, and performing constructive solid geometry operations.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Volumetric-Representations",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray"
+      ],
+      "title": "Volumetric Representations"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/model-i-o-data-types",
+        "doc://com.apple.modelio/documentation/ModelIO/model-i-o-structures",
+        "doc://com.apple.modelio/documentation/ModelIO/model-i-o-enumerations",
+        "doc://com.apple.modelio/documentation/ModelIO/model-i-o-constants"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedMatrix4x4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternion",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternionArray",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalar",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalarArray",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedValue",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3Array",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLBundleAssetResolver",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLMatrix4x4Array",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPackedJointAnimation",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPathAssetResolver",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLRelativeAssetResolver",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLSkeleton",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformMatrixOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOrientOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateXOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateYOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateZOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformScaleOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformTranslateOp",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLUtility"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAssetResolver",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLJointAnimation",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOp"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Assets are collections of objects representing the elements of a 3D scene, typically loaded from one of several industry standard file formats. Use these classes to load assets and examine or manipulate the 3D objects, or meshes, within.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "3D-Asset-Basics",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLSubmesh",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLSubmeshTopology",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLNamed"
+              ],
+              "title": "3D Asset Basics"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Mesh data—vertex and index buffers—is the main content of a 3D object. These types provide a rich vocabulary for inspecting or rearranging the content and format of asset data, as well as utilities that minimize the number of times a mesh’s vertex and index data is copied and translated between loading, processing, and rendering on a GPU with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/MetalKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/GLKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Managing-Mesh-Data",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBuffer",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferAllocator",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferData",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferDataAllocator",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferMap",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZone",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMeshBufferZoneDefault",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttributeData",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexBufferLayout",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexDescriptor"
+              ],
+              "title": "Managing Mesh Data"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These classes provide several different ways to describe the intended surface appearance for rendering a 3D object.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Materials",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterial",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialProperty",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyConnection",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyGraph",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMaterialPropertyNode",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLScatteringFunction",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleScatteringFunction"
+              ],
+              "title": "Materials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use these classes to access the textures associated with an asset or to procedurally generate texture content.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Textures",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLCheckerboardTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLColorSwatchTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLNoiseTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLNormalMapTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLSkyCubeTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLURLTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTextureFilter",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTextureSampler"
+              ],
+              "title": "Textures"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These classes provide several different ways to describe light sources for use in rendering 3D scenes.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Lights",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight"
+              ],
+              "title": "Lights"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use these classes to describe, or to access in imported assets, information about viewpoints for 3D scene rendering.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Cameras",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLCamera",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLStereoscopicCamera"
+              ],
+              "title": "Cameras"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These classes and protocols enable both Model I/O support of widely differing standard asset file formats and the creation of new asset formats that include both standard and custom elements.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Extensible-Asset-Format-Support",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+              ],
+              "title": "Extensible Asset Format Support"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Voxels provide an alternate way of working with 3D objects, which can be useful for applications like modeling special effects, preparing designs for physical manufacturing, and performing constructive solid geometry operations.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Volumetric-Representations",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVoxelArray"
+              ],
+              "title": "Volumetric Representations"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/model-i-o-data-types",
+                "doc://com.apple.modelio/documentation/ModelIO/model-i-o-structures",
+                "doc://com.apple.modelio/documentation/ModelIO/model-i-o-enumerations",
+                "doc://com.apple.modelio/documentation/ModelIO/model-i-o-constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedMatrix4x4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternion",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedQuaternionArray",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalar",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedScalarArray",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedValue",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector3Array",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimatedVector4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLBundleAssetResolver",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLMatrix4x4Array",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPackedJointAnimation",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPathAssetResolver",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLRelativeAssetResolver",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLSkeleton",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformMatrixOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOrientOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateXOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateYOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformRotateZOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformScaleOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformTranslateOp",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLUtility"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAssetResolver",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLJointAnimation",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformOp"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDL_CLASS_EXPORT",
+                "doc://com.apple.modelio/documentation/ModelIO/MDL_CONST_INLINE",
+                "doc://com.apple.modelio/documentation/ModelIO/MDL_EXPORT",
+                "doc://com.apple.modelio/documentation/ModelIO/MDL_INLINE"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAssetResolver/title",
+          "value": "MDLAssetResolver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAssetResolver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAssetResolver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/title",
+          "value": "MDLMeshBufferZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/title",
+          "value": "MDLMeshBufferDataAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferDataAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferDataAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferDataAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/title",
+          "value": "MDLLightProbeIrradianceDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbeIrradianceDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbeIrradianceDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalar/title",
+          "value": "MDLAnimatedScalar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedScalar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedScalar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/title",
+          "value": "MDLVertexDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/title",
+          "value": "MDLObjectContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureFilter/title",
+          "value": "MDLTextureFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTextureFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTextureFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/title",
+          "value": "MDLComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureSampler/title",
+          "value": "MDLTextureSampler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureSampler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTextureSampler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTextureSampler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTextureSampler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector4/title",
+          "value": "MDLAnimatedVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCheckerboardTexture/title",
+          "value": "MDLCheckerboardTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCheckerboardTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLCheckerboardTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCheckerboardTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLCheckerboardTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh~1addNormals(withAttributeNamed:creaseThreshold:)/title",
+          "value": "addNormalsWithAttributeNamed:creaseThreshold:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh~1addNormals(withAttributeNamed:creaseThreshold:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addNormalsWithAttributeNamed:creaseThreshold:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/title",
+          "value": "MDLTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/title",
+          "value": "MDLMesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformScaleOp/title",
+          "value": "MDLTransformScaleOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformScaleOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformScaleOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformScaleOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformScaleOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/title",
+          "value": "MDLLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3Array/title",
+          "value": "MDLAnimatedVector3Array"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3Array/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector3Array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3Array/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector3Array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/title",
+          "value": "MDLPhotometricLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhotometricLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhotometricLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/title",
+          "value": "MDLNamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPathAssetResolver/title",
+          "value": "MDLPathAssetResolver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPathAssetResolver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPathAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPathAssetResolver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPathAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateZOp/title",
+          "value": "MDLTransformRotateZOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateZOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateZOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateZOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateZOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateOp/title",
+          "value": "MDLTransformRotateOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCamera/title",
+          "value": "MDLCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/title",
+          "value": "MDLVertexAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/title",
+          "value": "MDLScatteringFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLScatteringFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3/title",
+          "value": "MDLAnimatedVector3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLStereoscopicCamera/title",
+          "value": "MDLStereoscopicCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLStereoscopicCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLStereoscopicCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLStereoscopicCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLStereoscopicCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNoiseTexture/title",
+          "value": "MDLNoiseTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNoiseTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNoiseTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNoiseTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNoiseTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateYOp/title",
+          "value": "MDLTransformRotateYOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateYOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateYOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateYOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateYOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOp/title",
+          "value": "MDLTransformOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/title",
+          "value": "MDLVoxelArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVoxelArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVoxelArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/title",
+          "value": "MDLObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/title",
+          "value": "MDLVertexBufferLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexBufferLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexBufferLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexBufferLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/title",
+          "value": "MDLObjectContainerComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformTranslateOp/title",
+          "value": "MDLTransformTranslateOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformTranslateOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformTranslateOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformTranslateOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformTranslateOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector2/title",
+          "value": "MDLAnimatedVector2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedVector2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedVector2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNormalMapTexture/title",
+          "value": "MDLNormalMapTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNormalMapTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNormalMapTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNormalMapTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNormalMapTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/title",
+          "value": "MDLMaterialPropertyNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLJointAnimation/title",
+          "value": "MDLJointAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLJointAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLJointAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLJointAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLJointAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/title",
+          "value": "MDLMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternion/title",
+          "value": "MDLAnimatedQuaternion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedQuaternion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedQuaternion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkeleton/title",
+          "value": "MDLSkeleton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkeleton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSkeleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkeleton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSkeleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/title",
+          "value": "MDLMaterialPropertyGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLURLTexture/title",
+          "value": "MDLURLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLURLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLURLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLURLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLURLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLRelativeAssetResolver/title",
+          "value": "MDLRelativeAssetResolver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLRelativeAssetResolver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLRelativeAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLRelativeAssetResolver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLRelativeAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedValue/title",
+          "value": "MDLAnimatedValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/title",
+          "value": "MDLPhysicallyPlausibleScatteringFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleScatteringFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleScatteringFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPackedJointAnimation/title",
+          "value": "MDLPackedJointAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPackedJointAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPackedJointAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPackedJointAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPackedJointAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateXOp/title",
+          "value": "MDLTransformRotateXOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateXOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateXOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformRotateXOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformRotateXOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/title",
+          "value": "MDLMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/title",
+          "value": "MDLVertexAttributeData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttributeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttributeData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexAttributeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMatrix4x4Array/title",
+          "value": "MDLMatrix4x4Array"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMatrix4x4Array/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMatrix4x4Array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMatrix4x4Array/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMatrix4x4Array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmeshTopology/title",
+          "value": "MDLSubmeshTopology"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmeshTopology/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSubmeshTopology"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmeshTopology/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSubmeshTopology"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/title",
+          "value": "MDLLightProbe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformMatrixOp/title",
+          "value": "MDLTransformMatrixOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformMatrixOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformMatrixOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformMatrixOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformMatrixOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkyCubeTexture/title",
+          "value": "MDLSkyCubeTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkyCubeTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSkyCubeTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSkyCubeTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSkyCubeTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/title",
+          "value": "MDLMeshBufferZoneDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZoneDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferZoneDefault/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferZoneDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/title",
+          "value": "MDLAnimationBindComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimationBindComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimationBindComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLColorSwatchTexture/title",
+          "value": "MDLColorSwatchTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLColorSwatchTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLColorSwatchTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLColorSwatchTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLColorSwatchTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/title",
+          "value": "MDLTransformStack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/title",
+          "value": "MDLTransformComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/title",
+          "value": "MDLMeshBufferAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/title",
+          "value": "MDLPhysicallyPlausibleLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/title",
+          "value": "MDLMeshBufferMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/title",
+          "value": "MDLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLBundleAssetResolver/title",
+          "value": "MDLBundleAssetResolver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLBundleAssetResolver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLBundleAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLBundleAssetResolver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLBundleAssetResolver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/title",
+          "value": "MDLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmesh/title",
+          "value": "MDLSubmesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSubmesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLSubmesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLSubmesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalarArray/title",
+          "value": "MDLAnimatedScalarArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalarArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedScalarArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedScalarArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedScalarArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/title",
+          "value": "MDLMeshBufferData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBufferData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBufferData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/title",
+          "value": "MDLAreaLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAreaLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAreaLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/title",
+          "value": "MDLMeshBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMeshBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedMatrix4x4/title",
+          "value": "MDLAnimatedMatrix4x4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedMatrix4x4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedMatrix4x4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedMatrix4x4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedMatrix4x4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOrientOp/title",
+          "value": "MDLTransformOrientOp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOrientOp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformOrientOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformOrientOp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformOrientOp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/title",
+          "value": "MDLMaterialPropertyConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMaterialPropertyConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMaterialPropertyConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternionArray/title",
+          "value": "MDLAnimatedQuaternionArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternionArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedQuaternionArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimatedQuaternionArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimatedQuaternionArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLUtility/title",
+          "value": "MDLUtility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLUtility/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLUtility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLUtility/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLUtility"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

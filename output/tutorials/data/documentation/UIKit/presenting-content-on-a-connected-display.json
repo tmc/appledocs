@@ -1,0 +1,1680 @@
+{
+  "abstract": [
+    {
+      "text": "Fill connected displays with additional content from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/presenting-content-on-a-connected-display"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Presenting content on a connected display"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user can connect additional displays to an iOS device at any time using AirPlay or a physical cable. Each additional display represents new space on which to present your app’s content. To present content on a connected display, you attach windows to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that the system provides and respond to life-cycle events using scene delegates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit defines different ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types to indicate how the user interacts with the content for a scene. The following types relate to content displayed on a connected screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scenes with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " role present interactive windows. The windows render on the built-in display or a connected display for some iPad models. Windows for more than one scene may present concurrently and may not take up the full screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scenes with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowExternalDisplayNonInteractive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " role present noninteractive windows on connected displays. When an app presents content for this scene, it spans the full screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-your-project-for-scenes",
+          "level": 3,
+          "text": "Configure your project for scenes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide the system with scene configurations to specify the information it uses to create scenes for your app and indicate the types of scenes your app supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Xcode preconfigures new projects to use scenes with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " role. iPad models with the M1 chip can present interactive content on the connected screen through this type of scene, when using Stage Manager, an external keyboard, and a pointing device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the connected display to present noninteractive content that supplements the interactive content your app presents on the built-in screen, provide a new configuration for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowExternalDisplayNonInteractive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " role. When an external display connects, the system provides an additional scene for your app to add the noninteractive content to. For example, a game might show its content on a connected display and show game controls on the built-in screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4030189",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attach-a-window-to-a-scene",
+          "level": 3,
+          "text": "Attach a window to a scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a display connects to an iOS device, the system provides a scene for your app. Your app receives the scene through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on your scene delegate. You can use the method and the session object it provides to configure and attach a window to the scene. The system displays the window you provide on the window scene’s current screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example configures a window to render on a scene’s display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {",
+            "    guard let windowScene = (scene as? UIWindowScene) else { return }",
+            "",
+            "    if session.role == .windowApplication {",
+            "        let window = UIWindow(windowScene: windowScene)",
+            "        window.rootViewController = ViewController()",
+            "        self.window = window",
+            "        window.makeKeyAndVisible()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a storyboard, the system initializes and attaches a window to the scene for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to calling this method, UIKit also posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/willConnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-disconnection",
+          "level": 3,
+          "text": "Handle disconnection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system disconnects a scene from your app, which may occur if a user disconnects the display, your app receives a call through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneDidDisconnect(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the scene’s delegate. Use this method to perform any final cleanup and update the content other scenes present, when necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit also posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/didDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification in addition to calling this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-transitions-to-and-from-connected-displays",
+          "level": 3,
+          "text": "Handle transitions to and from connected displays",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Scenes may appear on different displays during their lifetime. If you use information from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, obtain it contextually using a windows scene’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene/screen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the scene delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:didUpdate:interfaceOrientation:traitCollection:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method if your app needs to know when a scene is changing screens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This examples uses a display link and updates the link when the scene changes screens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ExternalDisplaySceneDelegate: UIResponder, UIWindowSceneDelegate {",
+            "    var window: UIWindow?",
+            "    var screen: UIScreen?",
+            "",
+            "    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {",
+            "        guard let windowScene = (scene as? UIWindowScene) else { return }",
+            "",
+            "        if session.role == .windowExternalDisplayNonInteractive {",
+            "            let window = UIWindow(windowScene: windowScene)",
+            "            window.rootViewController = ExternalDisplayViewController()",
+            "            self.window = window",
+            "            window.makeKeyAndVisible()",
+            "            ...",
+            "            setupDisplayLinkIfNecessary()",
+            "        }",
+            "    }",
+            "",
+            "    func windowScene(_ windowScene: UIWindowScene, didUpdate previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection) {",
+            "        setupDisplayLinkIfNecessary()",
+            "    }",
+            "",
+            "    weak var linkedScreen: UIScreen?",
+            "",
+            "    func setupDisplayLinkIfNecessary() {",
+            "        let currentScreen = self.screen",
+            "        if currentScreen != linkedScreen {",
+            "            // Set up display link",
+            "            ...",
+            "            self.linkedScreen = currentScreen",
+            "        }",
+            "    }",
+            "",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-the-screen-mode-of-an-external-display",
+          "level": 3,
+          "text": "Change the screen mode of an external display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many displays support multiple resolutions, some of which use different pixel aspect ratios. Screen objects use the most common screen mode by default, but they support changing that mode when they display content for a scene with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowExternalDisplayNonInteractive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " role. For example, if you’re implementing a game using textures for a 640 x 480 pixel screen, you might change the screen mode for screens with higher default resolutions. Don’t attempt to change the mode of a screen for a scene with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " role.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you plan to use a screen mode other than the default one, apply that mode to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object before associating the screen with a window. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines the attributes of a single screen mode. You can get a list of the modes supported by a screen from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/availableModes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and then iterate through the list for one that matches your needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about screen modes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScene/didDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that indicates that UIKit removed a scene from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didDisconnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/didDisconnectNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneDidDisconnectNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscene/diddisconnectnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScene/willConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that indicates that UIKit added a scene to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willConnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScene/willConnectNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneWillConnectNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willConnectNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscene/willconnectnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a scene to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willConnectTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene:willConnectToSession:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene(_:willConnectTo:options:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate/scene(_:willconnectto:options:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneDidDisconnect(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that UIKit removed a scene from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneDidDisconnect(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneDidDisconnect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDidDisconnect(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate/scenediddisconnect(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the possible roles for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Role"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Role"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneSession.Role",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenesession/role-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowApplication": {
+      "abstract": [
+        {
+          "text": "A scene that displays interactive windows on the device’s built-in display or an externally connected display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowApplication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UISceneSessionRole",
+          "text": "Role"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneSessionRoleApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenesession/role-swift.struct/windowapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowExternalDisplayNonInteractive": {
+      "abstract": [
+        {
+          "text": "A scene that displays noninteractive windows on an externally connected display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowExternalDisplayNonInteractive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UISceneSessionRole",
+          "text": "Role"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession/Role-swift.struct/windowExternalDisplayNonInteractive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneSessionRoleExternalDisplayNonInteractive"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowExternalDisplayNonInteractive",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenesession/role-swift.struct/windowexternaldisplaynoninteractive"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen": {
+      "abstract": [
+        {
+          "text": "An object that defines the properties associated with a hardware-based display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreen",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen/availableModes": {
+      "abstract": [
+        {
+          "text": "The display modes that can be associated with the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableModes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScreenMode",
+          "text": "UIScreenMode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/availableModes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableModes"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableModes",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen/availablemodes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenMode": {
+      "abstract": [
+        {
+          "text": "A possible set of attributes that can apply to a screen object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreenMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreenMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowScene": {
+      "abstract": [
+        {
+          "text": "A scene that manages one or more windows for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowScene",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscene"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowScene/screen": {
+      "abstract": [
+        {
+          "text": "The screen that displays the contents of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScreen",
+          "text": "UIScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene/screen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "screen"
+        }
+      ],
+      "role": "symbol",
+      "title": "screen",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscene/screen"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:didUpdate:interfaceOrientation:traitCollection:)": {
+      "abstract": [
+        {
+          "text": "Notifies you when the size, orientation, or traits of a scene change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UICoordinateSpace",
+          "text": "UICoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIInterfaceOrientation",
+          "text": "UIInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traitCollection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:didUpdate:interfaceOrientation:traitCollection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowScene(_:didUpdate:interfaceOrientation:traitCollection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscenedelegate/windowscene(_:didupdate:interfaceorientation:traitcollection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app": {
+      "abstract": [
+        {
+          "text": "Optimize your iPad app’s user experience by adopting desktop-class enhancements for multitasking with Stage Manager, document interactions, text editing, search, and more in iPadOS 16.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a desktop-class iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-desktop-class-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports": {
+      "abstract": [
+        {
+          "text": "Tell the system about your app’s scenes, including the objects you use to manage each scene and its initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying the scenes your app supports",
+      "type": "topic",
+      "url": "/documentation/uikit/specifying-the-scenes-your-app-supports"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "media-4030189": {
+      "alt": "An iPhone displays game controls while the game graphics are displayed on a connected television.",
+      "identifier": "media-4030189",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a228f29381d8cfc1afe87d40970ba29d/media-4030189@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c68fc3cf03cf231609f782d54f6a0106/media-4030189~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+        "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Screens",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+        "doc://com.apple.uikit/documentation/UIKit/UIScreenMode"
+      ],
+      "title": "Screens"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+                "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Screens",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+                "doc://com.apple.uikit/documentation/UIKit/UIScreenMode"
+              ],
+              "title": "Screens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene~1screen/title",
+          "value": "screen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene~1screen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "screen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/title",
+          "value": "UIWindowScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1willConnectNotification/title",
+          "value": "UISceneWillConnectNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1willConnectNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneWillConnectNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen/title",
+          "value": "UIScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1sceneDidDisconnect(_:)/title",
+          "value": "sceneDidDisconnect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1sceneDidDisconnect(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneDidDisconnect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct~1windowExternalDisplayNonInteractive/title",
+          "value": "UIWindowSceneSessionRoleExternalDisplayNonInteractive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct~1windowExternalDisplayNonInteractive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneSessionRoleExternalDisplayNonInteractive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct~1windowApplication/title",
+          "value": "UIWindowSceneSessionRoleApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct~1windowApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneSessionRoleApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenMode/title",
+          "value": "UIScreenMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1availableModes/title",
+          "value": "availableModes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1availableModes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableModes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct/title",
+          "value": "UISceneSessionRole"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSessionRole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession~1Role-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSessionRole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/title",
+          "value": "scene:willConnectToSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:willConnectToSession:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:didUpdate:interfaceOrientation:traitCollection:)/title",
+          "value": "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:didUpdate:interfaceOrientation:traitCollection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1didDisconnectNotification/title",
+          "value": "UISceneDidDisconnectNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScene~1didDisconnectNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDidDisconnectNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/presenting-content-on-a-connected-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/presenting-content-on-a-connected-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1477 @@
+{
+  "abstract": [
+    {
+      "text": "Tell the Xcode build system about your project’s target-related dependencies, and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "reduce the compiler workload during each build cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving the speed of incremental builds"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode build system manages the compilation and linking of the code in targets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Common types of targets include apps, app extensions, frameworks, libraries, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test suites. A simple project might contain only one target, such as the app you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to build. A more complex project might contain multiple targets with interdependencies,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as a private framework and an app that depends on that framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always ensure that your project’s inter-target dependencies and configuration details",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are accurate. When you build a target, Xcode does as much work as possible in parallel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Fewer dependencies leads to greater parallelization, but an accurate dependency map",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is necessary to prevent build and runtime errors. Similarly, providing detailed configuration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data helps Xcode schedule build-time tasks correctly and efficiently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Following coding best practices can also improve Xcode’s efficiency during",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "compilation. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Measure-the-time-it-takes-for-each-build-task",
+          "level": 3,
+          "text": "Measure the time it takes for each build task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you perform any build optimizations, always gather timing information to see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where optimizations might be most effective. Open your project in Xcode and choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Product > Perform Action > Build With Timing Summary to build your target with detailed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timing information. To view the timing information for a specific build, select that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build in the Report navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To generate timing information using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodebuild",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "pass the ",
+                  "type": "text"
+                },
+                {
+                  "code": "-showBuildTimingSummary",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option to the tool.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you build your project, Xcode builds everything, but subsequent builds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are incremental. For each incremental build, pay particular attention to the preparation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section and the specific tasks that Xcode performs for each target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If Xcode didn’t build your targets in parallel, open the Scheme Editor for your target",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and make sure the Build Order option is set to Dependency Order.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look for extraneous tasks, such as custom scripts, and assess whether Xcode needs",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to run those scripts during each incremental build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If compilation of a particular file takes significantly longer than other files,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "examine the file to see if header importation issues are causing the delay.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Declare-inputs-and-outputs-for-custom-scripts-and-build-rules",
+          "level": 3,
+          "text": "Declare inputs and outputs for custom scripts and build rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use custom build scripts in your Xcode projects, make sure Xcode runs those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scripts only when needed. You might use scripts to run custom tools, set build-environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables programmatically, or perform other target-specific tasks. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might use them to generate assets or other resource files from a proprietary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data source. By default, Xcode runs custom scripts during every build cycle, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incremental builds. It also executes those scripts serially with respect to other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t need Xcode to run your scripts every time you build a target, provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at least one input file and one output file for the script. Xcode uses a script’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "input and output files to determine when to run it. Specifically, Xcode runs your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "script when any of the following conditions are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your script doesn’t have any input files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your script doesn’t have any output files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your script’s input files changed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your script’s output files are missing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify input and output files, along with the script itself, in the Run Script build-phase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editor. You may specify input and output files individually or in an Xcode file list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— a file with an ",
+              "type": "text"
+            },
+            {
+              "code": ".xcfilelist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension that lists the name of each file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a separate line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must still specify an input and output file to prevent Xcode from running the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "script every time, even if your script doesn’t actually require those files. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a script that requires no input, provide a file that never changes as the input file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a script with no outputs, create a static output file from your script so Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has something to check.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-module-maps-for-custom-frameworks-and-libraries",
+          "level": 3,
+          "text": "Create module maps for custom frameworks and libraries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Module maps improve source compilation times by shortening the time it takes to import",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header files. A module map provides the compiler with a list of headers that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework contains. When a framework includes a module map, the compiler doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "preprocess header files separately for each source file. Instead, it builds a cache",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the framework’s symbol information and reuses that cache during subsequent compilations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which saves significant time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system frameworks already include module maps, but you must provide module maps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for any custom frameworks in your project. To add a module map, enable the ",
+              "type": "text"
+            },
+            {
+              "code": "DEFINES_MODULE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build setting for your framework or library. Xcode enables this build setting automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for new frameworks, but you might need to set it for older projects. When enabled,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the compiler produces a module map with the contents of your target’s public header",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To obtain the benefit from module maps, always include the framework",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "name in any import statements. If you don’t include the framework name, the compiler",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "can’t determine whether a module map is present. For more information on how to import",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "header files from a module, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices#Include-framework-names-in-import-statements",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you create a module map, make sure your framework meets the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your framework’s header files must not rely on any external contextual information.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode compiles your module map separately from the rest of your project’s source",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "files. Don’t rely on source-specific information to change the meaning or values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of symbols in your headers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The module must be self contained. Because Xcode compiles module maps separately,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your framework’s header files must include everything they need to compile correctly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the maximum reuse benefit from module maps, compile your app’s source files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with identical build options. Xcode builds your framework’s module map using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same options as the source file that imports that framework. If your app’s source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files use different options, Xcode must recompile the module map for each new set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of options. Using identical options allows Xcode to reuse the cache in each subsequent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-targets-dependencies-are-accurate",
+          "level": 3,
+          "text": "Make sure your target’s dependencies are accurate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verifying that your targets have accurate dependencies ensures they build correctly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and in a timely manner. Out-of-date dependencies might force Xcode to build targets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "serially when it might have built them in parallel. Missing dependencies might cause",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "correctness issues or even build errors. For example, if your app doesn’t have an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "explicit dependency to a separate code module, like an app extension, Xcode might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build the app with an older version of the module that doesn’t work properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you know a dependency exists between two targets in your Xcode project, create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an explicit dependency between them. Xcode creates some dependencies automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "based on how you configure your project. For example, when you embed a new framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside an existing app, Xcode automatically adds the framework to the app’s list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of dependencies. At other times, you specify the dependencies yourself using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Dependencies build phase editor, as shown below. Use the + and - buttons to add or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remove dependencies for your target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a target depends on code in a different Xcode project, create a reference to that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project by dragging it into the navigator pane of your current project. The presence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the other project in the navigator pane gives Xcode the information it needs to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "track dependencies on items in the other project. Without this reference, Xcode doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "know to build your target when the remote project changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refactor-your-targets-to-improve-parallelism",
+          "level": 3,
+          "text": "Refactor your targets to improve parallelism",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inter-target dependencies require Xcode to build those targets in a specific order.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a target has many dependencies, or when it depends on large, monolithic modules,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode must serialize more tasks. To improve build performance, simplify your target’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency list, and break up monolithic targets so that Xcode can do more work in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parallel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following illustration, which shows an XML engine that depends on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "monolithic utilities framework. Although the XML engine relies on only a small portion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the framework, Xcode must rebuild the engine when any part of the framework changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Breaking up the framework into smaller modules and creating more fine-grained dependencies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might eliminate some unnecessary rebuilds. In the refactored version, changes to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the utilities framework no longer trigger an automatic rebuild of the XML engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When one target depends on many child targets, Xcode cannot start to build the target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until it finishes all of the children. Consider a single Tests target that executes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automated tests on an app, app extension, and private framework. Splitting up the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests by target allows Xcode to run each suite independently as soon as the corresponding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target is ready, which increases parallelization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-the-speed-of-incremental-builds-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to decide whether modifications to your project’s targets offer any benefit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Increasing the number of targets can improve parallelization, but it also adds complexity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your project. Always validate any target or dependency changes to ensure your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code still builds correctly. In addition, always measure the speed of the resulting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "builds to verify that the changes lead to tangible improvements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies": {
+      "abstract": [
+        {
+          "text": "Reduce compile times by eliminating unnecessary module variants using the Xcode build system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with explicit module dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-explicit-module-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries": {
+      "abstract": [
+        {
+          "text": "Use mergeable dynamic libraries to get app launch times similar to static linking in release builds, without losing dynamically linked build times in debug builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your project to use mergeable libraries",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-project-to-use-mergeable-libraries"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices": {
+      "abstract": [
+        {
+          "text": "Shorten compile times by reducing the number of symbols your code exports and by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "giving the compiler the explicit information it needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving build efficiency with good coding practices",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-build-efficiency-with-good-coding-practices"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices#Include-framework-names-in-import-statements": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices#Include-framework-names-in-import-statements",
+      "kind": "section",
+      "title": "Include framework names in import statements",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-build-efficiency-with-good-coding-practices#Include-framework-names-in-import-statements"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "improving-the-speed-of-incremental-builds-1": {
+      "alt": "A screenshot of Xcode build results that include detailed timing information.",
+      "identifier": "improving-the-speed-of-incremental-builds-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfbcc8f34dce5c30e636d91c50997cef/improving-the-speed-of-incremental-builds-1@2x.png"
+        }
+      ]
+    },
+    "improving-the-speed-of-incremental-builds-2": {
+      "alt": "A screenshot of the Run Script build-phase editor in Xcode.",
+      "identifier": "improving-the-speed-of-incremental-builds-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c4d87fe04d1d987ccd9f8e1fe61543b/improving-the-speed-of-incremental-builds-2@2x.png"
+        }
+      ]
+    },
+    "improving-the-speed-of-incremental-builds-3": {
+      "alt": "A screenshot of the DEFINES_MODULE build setting in Xcode.",
+      "identifier": "improving-the-speed-of-incremental-builds-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3afac2c05ccaed02b9eae7b5d36503b/improving-the-speed-of-incremental-builds-3@2x.png"
+        }
+      ]
+    },
+    "improving-the-speed-of-incremental-builds-4": {
+      "alt": "A screenshot of the Dependencies build phase in Xcode.",
+      "identifier": "improving-the-speed-of-incremental-builds-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1702d5e45d4e6a62ea8e324909ef87df/improving-the-speed-of-incremental-builds-4@2x.png"
+        }
+      ]
+    },
+    "improving-the-speed-of-incremental-builds-5": {
+      "alt": "An illustration that compares monolithic and refactored modules by showing that XML parsing is now outside the utilities framework in the refactored module.",
+      "identifier": "improving-the-speed-of-incremental-builds-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80621ea35b76167cecccabf9e92ffadd/improving-the-speed-of-incremental-builds-5@2x.png"
+        }
+      ]
+    },
+    "improving-the-speed-of-incremental-builds-6": {
+      "alt": "An illustration that changes a single test target dependent on three other targets, into three test targets with each dependent on only one other target. ",
+      "identifier": "improving-the-speed-of-incremental-builds-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b4d5805094686fd2ec3a8057fd641ed/improving-the-speed-of-incremental-builds-6@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+        "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

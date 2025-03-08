@@ -1,0 +1,1134 @@
+{
+  "abstract": [
+    {
+      "text": "Define a custom representation for your data using a combination of built-in types.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Transferable"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a transfer representation for a model type"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable types in your app to participate in system interactions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like sharing or drag and drop, you get to decide how — and if —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you expose your app’s model data to other apps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also control how different parts of your own app respond",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to receiving your models in different contexts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Transferable defines a set of transfer representations and modifiers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can combine together in different ways to get the behavior that’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "right for the different data transfer and sharing scenarios your app supports.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For each of your app’s model types that participate in sharing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and data transfer, pick the built-in transfer representations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to represent your model’s data, or define your own.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, determine whether your app allows people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to share or receive the model’s data, or both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compose-transfer-representations",
+          "level": 3,
+          "text": "Compose transfer representations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Transferable defines three main transfer representations:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for model types where the entire model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is stored in memory, and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for types stored on disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as convenient way",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a transfer representation if your model is already ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or you can easily make it ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information on making a type ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "CodableRepresentation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you’re often defining a new data type as well.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "As a result, include corresponding entries",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in the app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to let another type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " take on the responsibility of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "representing your type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Common types like strings, data, and images are already ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you can use them as proxy representations in some common contexts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can combine multiple transfer representations together to support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different clients or scenarios.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can combine a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to let your app transfer its ",
+              "type": "text"
+            },
+            {
+              "code": "Note",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different parts of the app, but still maintain compatibility with other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text editors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Note: Transferable {",
+            "    var title: String",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        CodableRepresentation(contentType: .note)",
+            "        ProxyRepresentation(\\.title)",
+            "    }",
+            "}",
+            "",
+            "extension UTType {",
+            "     static var note: UTType { UTType(exportedAs: \"com.example.note\") }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order of the transfer representations in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable/transferRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "builder matters: the most preferable representation comes first,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "followed by the less preferable — but more compatible — representations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-model-type-for-import-or-export",
+          "level": 3,
+          "text": "Configure your model type for import or export",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can limit a transfer representation to support only importing,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only exporting, or the representation can support both.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Imports occur when your app is the recipient of an item from sharing,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drop",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of a drag-and-drop interaction,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "paste",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from a copy-and-paste interaction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Conversely, exports occur when people share, copy, or drag an item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "out of your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, your vector image editing app might support exporting,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but choose not to import PNG images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transfer representation initializers control whether representations support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sharing interactions for import and export. The following shows a data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "representation of tax information that can only import tax forms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and can only output tax returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TaxInfo {",
+            "    var forms: [TaxForm]",
+            "    var year: Int",
+            "",
+            "    init(_ formsData: Data) { <# ... #> }",
+            "    func generateReturnsData() -> Data { <# ... #> }",
+            "}",
+            "",
+            "extension TaxInfo: Transferable {",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        DataRepresentation(importedContentType: .taxForm) { formsData in",
+            "            TaxInfo(formsData)",
+            "        }",
+            "        DataRepresentation(exportedContentType: .taxReturn) { taxInfo in",
+            "            taxInfo.generateReturnsData()",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "extension UTType {",
+            "    static var taxForm = UTType(exportedAs: \"com.example.taxForm\")",
+            "    static var taxReturn = UTType(exportedAs: \"com.example.taxReturn\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable": {
+      "abstract": [
+        {
+          "text": "Declare a transfer representation for your model types",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to participate in system sharing and data transfer operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Transferable",
+      "type": "topic",
+      "url": "/documentation/coretransferable"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that participate in Swift’s protocols for encoding and decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CodableRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/codablerepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that provide their own binary data conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/datarepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that transfer as a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/filerepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation that uses another type’s transfer representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProxyRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/proxyrepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation": {
+      "abstract": [
+        {
+          "text": "A declarative description of the process of importing and exporting a transferable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferable"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable/transferRepresentation": {
+      "abstract": [
+        {
+          "text": "The representation used to import and export the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P14RepresentationQa",
+          "text": "Representation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable/transferRepresentation",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "transferRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferable/transferrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app": {
+      "abstract": [
+        {
+          "text": "Declare uniform type identifiers to support your app’s proprietary data formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining file and data types for your app",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types": {
+      "abstract": [
+        {
+          "text": "Make your data types encodable and decodable for compatibility with external representations such as JSON.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding and Decoding Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coretransferable/choosing-a-transfer-representation-for-a-model-type"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coretransferable/choosing-a-transfer-representation-for-a-model-type"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

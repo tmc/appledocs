@@ -1,0 +1,3270 @@
+{
+  "abstract": [
+    {
+      "text": "Share image data between vDSP and vImage to compute the sharpest image from a bracketed photo sequence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-sharpest-image-in-a-sequence-of-captured-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Finding the sharpest image in a sequence of captured images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project captures a sequence of photographs and uses a combination of routines from vImage and vDSP to order the images by their relative sharpness. This technique is useful in applications such as an image scanner, where your user requires the least blurry captured image. After applying the routines, the app displays the images in a list, with the sharpest image at the top.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "blur-detection.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "overridingTitle": "SwiftUI",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SwiftUI",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to build the user interface,  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "overridingTitle": "AVFoundation",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVFoundation",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to capture a sequence of images, and a method known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "the variance of the Laplacian",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to determine the sharpness of each image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, try building and running the app, and taking photographs of subjects such as documents and signs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-capture-session",
+          "level": 3,
+          "text": "Configure the capture session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 3 x 3 Laplacian kernel that this sample uses reports a lot of noise if applied to a full-resolution image. To reduce this noise, the sample uses a downscaled image and defines the capture session’s preset to a size that’s smaller than the camera’s native resolution:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "captureSession.sessionPreset = .hd1280x720"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about configuring a capture session, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "overridingTitle": "Setting Up a Capture Session",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Setting Up a Capture Session",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-photo-settings",
+          "level": 3,
+          "text": "Define the photo settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+              "isActive": true,
+              "overridingTitle": "AVCapturePhotoBracketSettings",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCapturePhotoBracketSettings",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object, which specifies the capture features and settings, in the ",
+              "type": "text"
+            },
+            {
+              "code": "BlurDetector.takePhoto()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sharpness detection algorithm in this sample works on a grayscale image. The camera’s YpCbCr pixel formats, either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+              "isActive": true,
+              "overridingTitle": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+              "isActive": true,
+              "overridingTitle": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", represent the luminance of the image using one plane and represent color information on separate planes. The code converts the luminance plane to a grayscale image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code checks that the current device supports one or both of these formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pixelFormat: FourCharCode = {",
+            "    if photoOutput.availablePhotoPixelFormatTypes",
+            "        .contains(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {",
+            "        return kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+            "    } else if photoOutput.availablePhotoPixelFormatTypes",
+            "        .contains(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {",
+            "        return kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+            "    } else {",
+            "        fatalError(\"No available YpCbCr formats.\")",
+            "    }",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "exposureSettings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings",
+              "isActive": true,
+              "overridingTitle": "AVCaptureAutoExposureBracketedStillImageSettings",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureAutoExposureBracketedStillImageSettings",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances and defines the exposure target bias of each as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/currentExposureTargetBias",
+              "isActive": true,
+              "overridingTitle": "currentExposureTargetBias",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "currentExposureTargetBias",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput/maxBracketedCapturePhotoCount",
+              "isActive": true,
+              "overridingTitle": "maxBracketedCapturePhotoCount",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "maxBracketedCapturePhotoCount",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "overridingTitle": "AVCapturePhotoOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCapturePhotoOutput",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object defines the maximum number of items in the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let exposureSettings = (0 ..< photoOutput.maxBracketedCapturePhotoCount).map { _ in",
+            "    AVCaptureAutoExposureBracketedStillImageSettings.autoExposureSettings(",
+            "        exposureTargetBias: AVCaptureDevice.currentExposureTargetBias)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses the array of exposure settings and the first available YpCbCr format type to define the bracketed settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let photoSettings = AVCapturePhotoBracketSettings(",
+            "    rawPixelFormatType: 0,",
+            "    processedFormat: [kCVPixelBufferPixelFormatTypeKey as String: pixelFormat],",
+            "    bracketedSettings: exposureSettings)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "BlurDetector.takePhoto()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function passes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+              "isActive": true,
+              "overridingTitle": "AVCapturePhotoBracketSettings",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCapturePhotoBracketSettings",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance to capture the sequence of images:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "photoOutput.capturePhoto(with: photoSettings,",
+            "                         delegate: self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Acquire-the-captured-image",
+          "level": 3,
+          "text": "Acquire the captured image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each captured image, AVFoundation calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "overridingTitle": "photoOutput(_:didFinishProcessingPhoto:error:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "photoOutput(_:didFinishProcessingPhoto:error:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer",
+              "isActive": true,
+              "overridingTitle": "pixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "pixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "overridingTitle": "AVCapturePhoto",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCapturePhoto",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance that AVFoundation supplies to acquire the uncompressed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that contains the captured photograph. While the code is accessing the pixel data of the pixel buffer, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)",
+              "isActive": true,
+              "overridingTitle": "CVPixelBufferLockBaseAddress",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBufferLockBaseAddress",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to lock the base address:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let pixelBuffer = photo.pixelBuffer else {",
+            "    fatalError(\"Error acquiring pixel buffer.\")",
+            "}",
+            "",
+            "CVPixelBufferLockBaseAddress(pixelBuffer,",
+            "                             CVPixelBufferLockFlags.readOnly)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pixel buffer that AVFoundation vends contains two planes; the plane at index zero contains the luminance data. Because the sample app runs the sharpness detection code in a background thread, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)",
+              "isActive": true,
+              "overridingTitle": "copyMemory",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "copyMemory",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to create a copy of the luminance data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0)",
+            "let height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0)",
+            "let count = width * height",
+            "",
+            "let lumaBaseAddress = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0)",
+            "let lumaRowBytes = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0)",
+            "",
+            "let lumaCopy = UnsafeMutableRawPointer.allocate(",
+            "    byteCount: count,",
+            "    alignment: MemoryLayout<Pixel_8>.alignment)",
+            "lumaCopy.copyMemory(from: lumaBaseAddress!,",
+            "                    byteCount: count)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the code has copied the luminance data, it unlocks the pixel buffer’s base address and passes the copied luminance data to the processing function in a background thread:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CVPixelBufferUnlockBaseAddress(pixelBuffer,",
+            "                               CVPixelBufferLockFlags.readOnly)",
+            "",
+            "Task(priority: .utility) {",
+            "    self.processImage(data: lumaCopy,",
+            "                      rowBytes: lumaRowBytes,",
+            "                      width: width,",
+            "                      height: height,",
+            "                      sequenceCount: photo.sequenceCount,",
+            "                      expectedCount: photo.resolvedSettings.expectedPhotoCount,",
+            "                      orientation: photo.metadata[ String(kCGImagePropertyOrientation) ] as? UInt32)",
+            "    ",
+            "    lumaCopy.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-grayscale-source-pixel-buffer",
+          "level": 3,
+          "text": "Initialize grayscale source pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a pixel buffer from data passed to the ",
+              "type": "text"
+            },
+            {
+              "code": "BlurDetector.processImage(data:rowBytes:width:height:sequenceCount:expectedCount:orientation:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageBuffer = vImage.PixelBuffer(data: data,",
+            "                                     width: width,",
+            "                                     height: height,",
+            "                                     byteCountPerRow: rowBytes,",
+            "                                     pixelFormat: vImage.Planar8.self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "sourceBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a grayscale representation of the captured image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-floating-point-pixels-to-use-with-vDSP",
+          "level": 3,
+          "text": "Create floating point pixels to use with vDSP",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage buffers store their image data in row-major format. However, when you pass data between vImage and vDSP, be aware that, in some cases, vImage will add extra bytes at the end of each row. For example, the following code declares two 8-bit-per-pixel buffers that are 10 pixels wide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buffer0 = try? vImage_Buffer(width: 10,",
+            "                                 height: 5,",
+            "                                 bitsPerPixel: 8)",
+            "",
+            "let buffer1 = vImage.PixelBuffer(width: 10,",
+            "                                 height: 5,",
+            "                                 pixelFormat: vImage.Planar8.self)                               "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the code defines buffers with 10 bytes per row, to maximize performance, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(width:height:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " both initialize a buffer with 16 bytes per row.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "vImage_rowBytes.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, this disparity between the row bytes used to hold image data and the buffer’s actual row bytes may not affect an app’s results. However, the sample app declares a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with external memory that has no additional padding. This ensures that the uninitialized data in the row padding doesn’t affect the blur detection algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var laplacianStorage = UnsafeMutableBufferPointer<Float>.allocate(capacity: width * height)",
+            "let laplacianBuffer = vImage.PixelBuffer(data: laplacianStorage.baseAddress!,",
+            "                                         width: width,",
+            "                                         height: height,",
+            "                                         byteCountPerRow: width * MemoryLayout<Float>.stride,",
+            "                                         pixelFormat: vImage.PlanarF.self)",
+            "defer {",
+            "    laplacianStorage.deallocate()",
+            "}",
+            "",
+            "imageBuffer.convert(to: laplacianBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "laplacianStorage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "laplacianBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " share the same memory that contains a 32-bit version of the image data in the ",
+              "type": "text"
+            },
+            {
+              "code": "imageBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-the-convolution",
+          "level": 3,
+          "text": "Perform the convolution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Laplacian kernel finds edges in the single-precision pixel values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let laplacian: [Float] = [-1, -1, -1,",
+            "                          -1,  8, -1,",
+            "                          -1, -1, -1]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP convolve function performs the convolution in place on the ",
+              "type": "text"
+            },
+            {
+              "code": "laplacianStorage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " memory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vDSP.convolve(laplacianStorage,",
+            "              rowCount: height,",
+            "              columnCount: width,",
+            "              with3x3Kernel: laplacian,",
+            "              result: &laplacianStorage)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the convolution, edges in the image have high values. The following image shows the result after convolution using the Laplacian kernel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "laplacianCrop.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-the-variance",
+          "level": 3,
+          "text": "Calculate the variance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_normalize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function calculates the standard deviation of the pixel values after the edge detection. The following computed property returns the variance of a single-precision ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateMutableBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension AccelerateMutableBuffer where Element == Float {",
+            "    var variance: Float {",
+            "        ",
+            "        var mean = Float.nan",
+            "        var standardDeviation = Float.nan",
+            "        ",
+            "        self.withUnsafeBufferPointer {",
+            "            vDSP_normalize($0.baseAddress!, 1,",
+            "                           nil, 1,",
+            "                           &mean, &standardDeviation,",
+            "                           vDSP_Length(self.count))",
+            "        }",
+            "        ",
+            "        return standardDeviation * standardDeviation",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses this value as a measure of relative sharpness. Images with more variance have more detail than those with less variance, and that difference is used to derive the relative sharpness.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-display-image-with-the-correct-orientation",
+          "level": 3,
+          "text": "Create a display image with the correct orientation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses the vImage 90º rotation functions in conjunction with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "overridingTitle": "CGImage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object’s orientation to create Core Graphics images that are suitable for displaying in the app. The ",
+              "type": "text"
+            },
+            {
+              "code": "static BlurDetector.makeImage(fromPlanarBuffer:orientation:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function accepts a planar buffer (either the grayscale representation of the captured image or the result of the convolution) and the orientation, and returns a ",
+              "type": "text"
+            },
+            {
+              "code": "CGImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For landscape images, meaning images with an orientation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/left",
+              "isActive": true,
+              "overridingTitle": ".left",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".left",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/right",
+              "isActive": true,
+              "overridingTitle": ".right",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".right",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the function creates a destination buffer with a width equal to the height, and a height equal to the width of the supplied buffer. For portrait images, meaning images with an orientation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/up",
+              "isActive": true,
+              "overridingTitle": ".up",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".up",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/down",
+              "isActive": true,
+              "overridingTitle": ".down",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".down",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the function creates a destination buffer with the same dimensions as the supplied buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var outputBuffer: vImage.PixelBuffer<Format>",
+            "var outputRotation: Int",
+            "",
+            "if orientation == .right || orientation == .left {",
+            "    outputBuffer = vImage.PixelBuffer<Format>(width: sourceBuffer.height,",
+            "                                              height: sourceBuffer.width)",
+            "    ",
+            "    outputRotation = orientation == .right ?",
+            "            kRotate90DegreesClockwise : kRotate90DegreesCounterClockwise",
+            "} else if orientation == .up || orientation == .down {",
+            "    outputBuffer = vImage.PixelBuffer<Format>(width: sourceBuffer.width,",
+            "                                              height: sourceBuffer.height)",
+            "    outputRotation = orientation == .down ?",
+            "            kRotate180DegreesClockwise : kRotate0DegreesClockwise",
+            "} else {",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code populates the destination buffer using either  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_Planar8(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_PlanarF(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageFormat: vImage_CGImageFormat",
+            "",
+            "let rotateFunction: (UnsafePointer<vImage_Buffer>,",
+            "                     UnsafePointer<vImage_Buffer>,",
+            "                     UInt8) -> vImage_Error",
+            "",
+            "if Format.self == vImage.Planar8.self {",
+            "    imageFormat = vImage_CGImageFormat(",
+            "        bitsPerComponent: 8,",
+            "        bitsPerPixel: 8,",
+            "        colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "        bitmapInfo: .init(rawValue: CGImageAlphaInfo.none.rawValue))!",
+            "    ",
+            "    func rotate (src: UnsafePointer<vImage_Buffer>,",
+            "                 dst: UnsafePointer<vImage_Buffer>,",
+            "                 rotation: UInt8) -> vImage_Error {",
+            "        vImageRotate90_Planar8(src, dst, rotation, 0, 0)",
+            "    }",
+            "    rotateFunction = rotate",
+            "} else if Format.self == vImage.PlanarF.self {",
+            "    imageFormat = vImage_CGImageFormat(",
+            "        bitsPerComponent: 32,",
+            "        bitsPerPixel: 32,",
+            "        colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "        bitmapInfo: CGBitmapInfo(rawValue:",
+            "                                    kCGBitmapByteOrder32Host.rawValue |",
+            "                                    CGBitmapInfo.floatComponents.rawValue |",
+            "                                    CGImageAlphaInfo.none.rawValue))!",
+            "    ",
+            "    func rotate (src: UnsafePointer<vImage_Buffer>,",
+            "                 dst: UnsafePointer<vImage_Buffer>,",
+            "                 rotation: UInt8) -> vImage_Error {",
+            "        vImageRotate90_PlanarF(src, dst, rotation, 0, 0)",
+            "    }",
+            "    rotateFunction = rotate",
+            "} else {",
+            "    fatalError(\"This function only supports Planar8 and PlanarF formats.\")",
+            "}",
+            "",
+            "sourceBuffer.withUnsafePointerToVImageBuffer { src in",
+            "    outputBuffer.withUnsafePointerToVImageBuffer { dst in",
+            "        _ = rotateFunction(src, dst, UInt8(outputRotation))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the function returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "overridingTitle": "CGImage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from the destination buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "return outputBuffer.makeCGImage(cgImageFormat: imageFormat)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "3d4f9e97ea48/FindingTheSharpestImageInASequenceOfCapturedImages.zip": {
+      "checksum": "3d4f9e97ea4831fc27df61c63956b970a7103cf6ca7a9921a057031dbde2ed78dbd89017bb54c0d43bb0775829b58c9c7544cfae52fc7afe1652002cf6486e08",
+      "identifier": "3d4f9e97ea48/FindingTheSharpestImageInASequenceOfCapturedImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/3d4f9e97ea48/FindingTheSharpestImageInASequenceOfCapturedImages.zip"
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "blur-detection.png": {
+      "alt": "A screenshot of the sample app showing four rows. Each row contains, on the left, the original image, and, on the right, the convolved image. The images are ordered by decreasing sharpness.",
+      "identifier": "blur-detection.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/434512a4241cd720e94f50f8fce20d55/blur-detection.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/AccelerateMutableBuffer": {
+      "abstract": [
+        {
+          "text": "A type that represents a mutable buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccelerateMutableBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateMutableBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccelerateMutableBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccelerateMutableBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/acceleratemutablebuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions": {
+      "abstract": [
+        {
+          "text": "Compute the mean and standard deviation of a vector and calculate new elements to have a zero mean and a unit standard deviation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Normalization functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/normalization-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_normalize": {
+      "abstract": [
+        {
+          "text": "Computes single-precision mean and standard deviation, and then calculates new elements to have a zero mean and a unit standard deviation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_normalize"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_normalize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_normalize",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_normalize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(width:height:pixelFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a new pixel buffer with a width and height that you specify.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(width:height:pixelFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(width:height:pixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/init(width:height:pixelformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a vImage buffer with a specified width, height, and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_Init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_Init"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageBuffer_Init(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagebuffer_init(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_Planar8(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Rotates an 8-bit planar image by a multiple of 90°.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageRotate90_Planar8"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_8",
+          "text": "Pixel_8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_Planar8(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageRotate90_Planar8"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageRotate90_Planar8(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagerotate90_planar8(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_PlanarF(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Rotates a 32-bit planar image by a multiple of 90°.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageRotate90_PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_F",
+          "text": "Pixel_F"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageRotate90_PlanarF(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageRotate90_PlanarF"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageRotate90_PlanarF(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagerotate90_planarf(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram": {
+      "abstract": [
+        {
+          "text": "Share image data between vDSP and vImage to visualize audio that a device microphone captures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing sound as an audio spectrogram",
+      "type": "topic",
+      "url": "/documentation/accelerate/visualizing-sound-as-an-audio-spectrogram"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings": {
+      "abstract": [
+        {
+          "text": "A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureAutoExposureBracketedStillImageSettings",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureAutoExposureBracketedStillImageSettings"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/currentExposureTargetBias": {
+      "abstract": [
+        {
+          "text": "A special constant that represents the current exposure bias value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentExposureTargetBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/currentExposureTargetBias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentExposureTargetBias",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/currentExposureTargetBias"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhoto"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer": {
+      "abstract": [
+        {
+          "text": "The uncompressed or RAW image sample buffer for the photo, if requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhoto/pixelBuffer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoBracketSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a photo capture request that captures multiple images with varied settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoBracketSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoBracketSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCapturePhotoBracketSettings",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhotoBracketSettings"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with the captured image and associated metadata resulting from a photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishProcessingPhoto"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "photo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+          "text": "AVCapturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishProcessingPhoto:error:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhotoOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput/maxBracketedCapturePhotoCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of images that the photo capture output can support in a single bracketed capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxBracketedCapturePhotoCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCapturePhotoOutput/maxBracketedCapturePhotoCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maxBracketedCapturePhotoCount",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCapturePhotoOutput/maxBracketedCapturePhotoCount"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)": {
+      "abstract": [
+        {
+          "text": "Locks the base address of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBufferLockBaseAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "lockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+          "text": "CVPixelBufferLockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBufferLockBaseAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange": {
+      "abstract": [
+        {
+          "text": "Bi-Planar Component Y’CbCr 8-bit 4:2:0, full-range (luma=[0,255] chroma=[1,255]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange": {
+      "abstract": [
+        {
+          "text": "Bi-Planar Component Y’CbCr 8-bit 4:2:0, video-range (luma=[16,235] chroma=[16,240]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/down": {
+      "abstract": [
+        {
+          "text": "The encoded image data is rotated 180° from the image’s intended display orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "down"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/down",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation.down",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImagePropertyOrientation/down"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/left": {
+      "abstract": [
+        {
+          "text": "The encoded image data is rotated 90° clockwise from the image’s intended display orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "left"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/left",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation.left",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImagePropertyOrientation/left"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/right": {
+      "abstract": [
+        {
+          "text": "The encoded image data is rotated 90° clockwise from the image’s intended display orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "right"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/right",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation.right",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImagePropertyOrientation/right"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/up": {
+      "abstract": [
+        {
+          "text": "The encoded image data matches the image’s intended display orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "up"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImagePropertyOrientation/up",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation.up",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImagePropertyOrientation/up"
+    },
+    "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)": {
+      "abstract": [
+        {
+          "text": "Copies the specified number of bytes from the given raw pointer’s memory into this pointer’s memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyMemory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyMemory(from:byteCount:)",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "laplacianCrop.png": {
+      "alt": "Photograph after Laplacian convolution. Edges appear as bright areas against a dark background.",
+      "identifier": "laplacianCrop.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af4310997840e3f89341d423bfd2546e/laplacianCrop.png"
+        }
+      ]
+    },
+    "vImage_rowBytes.png": {
+      "alt": "Diagram showing the visible pixels and the padding of a vImage buffer.",
+      "identifier": "vImage_rowBytes.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5989602d27fbd86835fdbf52cd608aef/vImage_rowBytes.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "3d4f9e97ea48/FindingTheSharpestImageInASequenceOfCapturedImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "vImage--vDSP-Interoperability",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram"
+      ],
+      "title": "vImage / vDSP Interoperability"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_420YpCbCr8BiPlanarFullRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageRotate90_Planar8(_:_:_:_:_:)/title",
+          "value": "vImageRotate90_Planar8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageRotate90_Planar8(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageRotate90_Planar8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1maxBracketedCapturePhotoCount/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maxBracketedCapturePhotoCount"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1up/title",
+          "value": "kCGImagePropertyOrientationUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1up/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyOrientationUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhoto~1pixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureAutoExposureBracketedStillImageSettings/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureAutoExposureBracketedStillImageSettings"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureBracketedStillImageSettings",
+              "text": "AVCaptureBracketedStillImageSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/title",
+          "value": "captureOutput:didFinishProcessingPhoto:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+              "text": "AVCapturePhotoOutput"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "output"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishProcessingPhoto:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+              "text": "AVCapturePhoto"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "photo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferLockBaseAddress(_:_:)/title",
+          "value": "CVPixelBufferLockBaseAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferLockBaseAddress(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVReturn",
+              "text": "CVReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferLockBaseAddress"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+              "text": "CVPixelBufferLockFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "lockFlags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1currentExposureTargetBias/title",
+          "value": "AVCaptureExposureTargetBiasCurrent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1currentExposureTargetBias/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureExposureTargetBiasCurrent"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1left/title",
+          "value": "kCGImagePropertyOrientationLeft"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1left/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyOrientationLeft"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1right/title",
+          "value": "kCGImagePropertyOrientationRight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1right/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyOrientationRight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1down/title",
+          "value": "kCGImagePropertyOrientationDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImagePropertyOrientation~1down/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCGImagePropertyOrientationDown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageRotate90_PlanarF(_:_:_:_:_:)/title",
+          "value": "vImageRotate90_PlanarF"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageRotate90_PlanarF(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageRotate90_PlanarF"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCapturePhotoBracketSettings/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoBracketSettings"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCapturePhotoSettings",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_Init(_:_:_:_:_:)/title",
+          "value": "vImageBuffer_Init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_Init(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageBuffer_Init"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

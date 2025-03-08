@@ -1,0 +1,1076 @@
+{
+  "abstract": [
+    {
+      "text": "Detect dice position and values shown in a camera frame, and determine the end of a roll by leveraging a dice detection model.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/vision",
+        "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreml",
+        "doc://com.apple.documentation/documentation/coreml/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+  },
+  "kind": "article",
+  "legacy_identifier": 3240294,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Understanding a Dice Roll with Vision and Object Detection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses an object detection model trained with ",
+              "type": "text"
+            },
+            {
+              "text": " to recognize the tops of dice and their values when the dice roll onto a flat surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you run the object detection model on camera frames through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the model interprets the result to identify when a roll has ended and what values the dice show.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3314593",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3640221",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, note the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must run this sample code project on a physical device that uses iOS 13 or later. The project doesn’t work with Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The model works best on white dice with black pips. It may perform differently on dice that use other colors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3640222",
+          "level": 3,
+          "text": "Add Inputs to the Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Vision, beginning in iOS 13, you can provide inputs other than images to a model by attaching an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to your model. This is useful in the case of object detection when you want to specify different thresholds than the defaults.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown below, a feature provider can provide values for the ",
+              "type": "text"
+            },
+            {
+              "code": "iouThreshold",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "confidenceThreshold",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inputs to your object detection model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ThresholdProvider: MLFeatureProvider {",
+            "    /// The actual values to provide as input",
+            "    ///",
+            "    /// Create ML Defaults are 0.45 for IOU and 0.25 for confidence.",
+            "    /// Here the IOU threshold is relaxed a little bit because there are",
+            "    /// sometimes multiple overlapping boxes per die.",
+            "    /// Technically, relaxing the IOU threshold means",
+            "    /// non-maximum-suppression (NMS) becomes stricter (fewer boxes are shown).",
+            "    /// The confidence threshold can also be relaxed slightly because",
+            "    /// objects look very consistent and are easily detected on a homogeneous",
+            "    /// background.",
+            "    open var values = [",
+            "        \"iouThreshold\": MLFeatureValue(double: 0.3),",
+            "        \"confidenceThreshold\": MLFeatureValue(double: 0.2)",
+            "    ]",
+            "",
+            "    /// The feature names the provider has, per the MLFeatureProvider protocol",
+            "    var featureNames: Set<String> {",
+            "        return Set(values.keys)",
+            "    }",
+            "",
+            "    /// The actual values for the features the provider can provide",
+            "    func featureValue(for featureName: String) -> MLFeatureValue? {",
+            "        return values[featureName]",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3640208",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this threshold provider with your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel/featureProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as seen in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3640223",
+          "level": 3,
+          "text": "Set Up a Vision Request to Handle Camera Frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For simplicity, you can use camera frames coming from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run your detector on these frames, first set up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request with your model, as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let mlModel = try? DiceDetector(configuration: .init()).model,",
+            "      let detector = try? VNCoreMLModel(for: mlModel) else {",
+            "    print(\"Failed to load detector!\")",
+            "    return",
+            "}",
+            "",
+            "// Use a threshold provider to specify custom thresholds for the object detector.",
+            "detector.featureProvider = ThresholdProvider()",
+            "",
+            "diceDetectionRequest = VNCoreMLRequest(model: detector) { [weak self] request, error in",
+            "    self?.detectionRequestHandler(request: request, error: error)",
+            "}",
+            "// .scaleFill results in a slight skew but the model was trained accordingly",
+            "// see https://developer.apple.com/documentation/vision/vnimagecropandscaleoption for more information",
+            "diceDetectionRequest.imageCropAndScaleOption = .scaleFill"
+          ],
+          "metadata": {
+            "anchor": "3640210",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3640224",
+          "level": 3,
+          "text": "Pass Camera Frames to the Object Detector to Predict Dice Locations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the frames from the camera to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so it can make predictions using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object handles image resizing and preprocessing as well as post-processing of your model’s outputs for every prediction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pass camera frames to your model, you first need to find the image orientation that corresponds to your device’s physical orientation. If the device’s orientation changes, the aspect ratio of the images can also change. Because you need to scale the bounding boxes for the detected objects back to your original image, you need to keep track of its size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The frame is always oriented based on the camera sensor,",
+            "// so in most cases Vision needs to rotate it for the model to work as expected.",
+            "let orientation = UIDevice.current.orientation",
+            "",
+            "// The image captured by the camera",
+            "let image = frame.capturedImage",
+            "",
+            "let imageOrientation: CGImagePropertyOrientation",
+            "switch orientation {",
+            "case .portrait:",
+            "    imageOrientation = .right",
+            "case .portraitUpsideDown:",
+            "    imageOrientation = .left",
+            "case .landscapeLeft:",
+            "    imageOrientation = .up",
+            "case .landscapeRight:",
+            "    imageOrientation = .down",
+            "case .unknown:",
+            "    print(\"The device orientation is unknown, the predictions may be affected\")",
+            "    fallthrough",
+            "default:",
+            "    // By default keep the last orientation",
+            "    // This applies for faceUp and faceDown",
+            "    imageOrientation = self.lastOrientation",
+            "}",
+            "",
+            "// For object detection, keeping track of the image buffer size",
+            "// to know how to draw bounding boxes based on relative values.",
+            "if self.bufferSize == nil || self.lastOrientation != imageOrientation {",
+            "    self.lastOrientation = imageOrientation",
+            "    let pixelBufferWidth = CVPixelBufferGetWidth(image)",
+            "    let pixelBufferHeight = CVPixelBufferGetHeight(image)",
+            "    if [.up, .down].contains(imageOrientation) {",
+            "        self.bufferSize = CGSize(width: pixelBufferWidth,",
+            "                                 height: pixelBufferHeight)",
+            "    } else {",
+            "        self.bufferSize = CGSize(width: pixelBufferHeight,",
+            "                                 height: pixelBufferWidth)",
+            "    }",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "anchor": "3640212",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the image from the camera and information about the current orientation to make a prediction using your object detector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "// Invoke a VNRequestHandler with that image",
+            "let handler = VNImageRequestHandler(cvPixelBuffer: image, orientation: imageOrientation, options: [:])",
+            "",
+            "do {",
+            "    try handler.perform([self.diceDetectionRequest])",
+            "} catch {",
+            "    print(\"CoreML request failed with error: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3640213",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that the app handles providing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "input",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " data to your model, it’s time to interpret your model’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "output",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3640225",
+          "level": 3,
+          "text": "Draw Bounding Boxes to Understand Your Model’s Behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can get a better understanding of how well your detector performs by drawing bounding boxes around each object and its text label. The dice detection model detects the tops of dice and labels them according to the number of pips shown on each die’s top side.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw bounding boxes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/recognizing-objects-in-live-capture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3640226",
+          "level": 3,
+          "text": "Determine When a Roll Has Ended",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When playing a dice game, users want to know the result of a roll. The app determines that the roll has ended by waiting for the dice’s positions and values to stabilize.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define the requirements of an ended roll as a comparison between two consecutive camera frames with the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of detected dice must be the same.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each detected die:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The bounding box must have not moved.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The identified class must match.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on these constraints, you can make a function that tells the app whether a roll has ended based on the current and the previous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Determines if a roll has ended with the current dice values O(n^2)",
+            "///",
+            "/// - parameter observations: The object detection observations from the model",
+            "/// - returns: True if the roll has ended",
+            "func hasRollEnded(observations: [VNRecognizedObjectObservation]) -> Bool {",
+            "    // First check if same number of dice were detected",
+            "    if lastObservations.count != observations.count {",
+            "        lastObservations = observations",
+            "        return false",
+            "    }",
+            "    var matches = 0",
+            "    for newObservation in observations {",
+            "        for oldObservation in lastObservations {",
+            "            // If the labels don't match, skip it",
+            "            // Or if the IOU is less than 85%, consider this box different",
+            "            // Either it's a different die or the same die has moved",
+            "            if newObservation.labels.first?.identifier == oldObservation.labels.first?.identifier &&",
+            "                intersectionOverUnion(oldObservation.boundingBox, newObservation.boundingBox) > 0.85 {",
+            "                matches += 1",
+            "            }",
+            "        }",
+            "    }",
+            "    lastObservations = observations",
+            "    return matches == observations.count",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3640216",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now for every prediction (meaning every new camera frame) you can check whether the roll has ended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3640227",
+          "level": 3,
+          "text": "Display the Dice Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the roll has ended, you can display the information on the screen or trigger some other behavior in the setting of a game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app shows the list of recognized values on screen, sorted from left-most to right-most ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It sorts the values based on where the dice are on the surface according to each observation’s bounding box coordinates. The app does this by sorting the observations by their bounding box’s ",
+              "type": "text"
+            },
+            {
+              "code": "centerX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in ascending order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var sortableDiceValues = [(value: Int, xPosition: CGFloat)]()",
+            "",
+            "for observation in observations {",
+            "    // Select only the label with the highest confidence.",
+            "    guard let topLabelObservation = observation.labels.first else {",
+            "        print(\"Object observation has no labels\")",
+            "        continue",
+            "    }",
+            "",
+            "    if let intValue = Int(topLabelObservation.identifier) {",
+            "        sortableDiceValues.append((value: intValue, xPosition: observation.boundingBox.midX))",
+            "    }",
+            "}",
+            "",
+            "let diceValues = sortableDiceValues.sorted { $0.xPosition < $1.xPosition }.map { $0.value }"
+          ],
+          "metadata": {
+            "anchor": "3640218",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mlfeatureprovider"
+    },
+    "doc://com.apple.documentation/documentation/coreml": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model-integration-samples": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection": {
+      "abstract": [
+        {
+          "text": "Detect dice position and values shown in a camera frame, and determine the end of a roll by leveraging a dice detection model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Understanding a Dice Roll with Vision and Object Detection",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640208": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640208",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640208"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640210": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640210",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640210"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640212": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640212",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640212"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640213": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640213",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640213"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640216": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640216",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640216"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640218": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640218",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection#3640218"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/vision": {
+      "identifier": "doc://com.apple.documentation/documentation/vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api": {
+      "identifier": "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.documentation/documentation/vision/vnrecognizedobjectobservation": {
+      "abstract": [
+        {
+          "text": "A detected object observation with an array of classification labels that classify the recognized object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedObjectObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/vision/vnrecognizedobjectobservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNRecognizedObjectObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedobjectobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "article",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLModel": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLModel",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlmodel"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLModel/featureProvider": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel/featureProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureProvider",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlmodel/featureprovider"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedObjectObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNRecognizedObjectObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedobjectobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/recognizing-objects-in-live-capture": {
+      "abstract": [
+        {
+          "text": "Apply Vision algorithms to identify objects in real-time video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/recognizing-objects-in-live-capture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Recognizing Objects in Live Capture",
+      "type": "topic",
+      "url": "/documentation/vision/recognizing-objects-in-live-capture"
+    },
+    "https://docs-assets.developer.apple.com/published/59a62fcf49/UnderstandingADiceRollWithVisionAndObjectDetection.zip": {
+      "checksum": "a39b6c40cdf99b08d414fd1f8085f04276c7b90bfa33a55b60904dd9528261973250e980b382e895db587df9e5f692bb152059c19882d6f63b53a96d7c8c16d6",
+      "identifier": "https://docs-assets.developer.apple.com/published/59a62fcf49/UnderstandingADiceRollWithVisionAndObjectDetection.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/59a62fcf49/UnderstandingADiceRollWithVisionAndObjectDetection.zip"
+    },
+    "link-3314593": {
+      "identifier": "link-3314593",
+      "kind": "article",
+      "role": "link",
+      "title": "228: Creating Great Apps Using Core ML and ARKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc19/228/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/59a62fcf49/UnderstandingADiceRollWithVisionAndObjectDetection.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/recognizing-objects-in-live-capture",
+        "doc://com.apple.documentation/documentation/vision/vnrecognizedobjectobservation"
+      ],
+      "title": "Object recognition"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+        "documentation/vision/original_objective-c_and_swift_api/understanding_a_dice_roll_with_vision_and_object_detection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+        "documentation/vision/original_objective-c_and_swift_api/understanding_a_dice_roll_with_vision_and_object_detection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

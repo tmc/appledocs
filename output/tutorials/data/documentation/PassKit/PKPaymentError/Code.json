@@ -1,0 +1,2173 @@
+{
+  "abstract": [
+    {
+      "text": "An error code that you provide to indicate problems with address or contact information on an Apple Pay sheet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@PKPaymentErrorCode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Code"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Code"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "PKPaymentError.Code"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Code"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user must resolve any errors that you report on the Apple Pay sheet before they’re able to authorize the transaction.  You return any errors in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can build your own payment error (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or use one of the following convenience methods from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to build it for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an error with contact information: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentContactInvalidError(withContactField:localizedDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a shipping address that is unserviceable: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressUnserviceableError(withLocalizedDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an error with the billing address: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentBillingAddressInvalidError(withKey:localizedDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an error with the shipping address: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressInvalidError(withKey:localizedDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How to create a payment error directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How to create a payment error using a convenience method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating payment errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Creating a general shipping address error with NSError",
+            "NSError *addressError = [[NSError alloc] initWithDomain:PKPaymentErrorDomain",
+            "                        code:PKPaymentShippingContactInvalidError",
+            "                        userInfo:@{NSLocalizedDescriptionKey: @\"Address is invalid\",",
+            "                        PKPaymentErrorContactFieldUserInfoKey: PKContactFieldPostalAddress}];",
+            "",
+            "// Creating a shipping address error specific to the zip code:",
+            "NSError *zipCodeError = [[NSError alloc] initWithDomain:PKPaymentErrorDomain",
+            "                        code:PKPaymentShippingContactInvalidError",
+            "                        userInfo:@{NSLocalizedDescriptionKey: @\"Zip code is invalid\", ",
+            "                        PKPaymentErrorContactFieldUserInfoKey: PKContactFieldPostalAddress,                      ",
+            "                        PKPaymentErrorPostalAddressUserInfoKey:CNPostalAddressPostalCodeKey}];",
+            "",
+            "// Creating a billing address error specific to the street with a convenience method",
+            "NSError *billingAddressInvalidStreet = [PKPaymentRequest",
+            "                             paymentBillingAddressInvalidErrorWithKey:CNPostalAddressStreetKey ",
+            "                             localizedDescription:@\"Invalid Street\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError": {
+      "abstract": [
+        {
+          "text": "A structure that describes errors that can occur while processing the disbursement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code": {
+      "abstract": [
+        {
+          "text": "Values that describe errors that can occur while processing the disbursement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain to use for errors with in-app disbursements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey": {
+      "abstract": [
+        {
+          "text": "Values that describe errors that can occur when processing disbursements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementErrorKey",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerrorkey"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult": {
+      "abstract": [
+        {
+          "text": "An object that reports the status code and errors for a payment authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError": {
+      "abstract": [
+        {
+          "text": "An error type that you create to indicate problems with address or contact information on an Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code": {
+      "abstract": [
+        {
+          "text": "An error code that you provide to indicate problems with address or contact information on an Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/billingContactInvalidError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an invalid billing address or billing name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "billingContactInvalidError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/billingContactInvalidError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentBillingContactInvalidError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.billingContactInvalidError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/billingcontactinvaliderror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeExpiredError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an expired coupon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "couponCodeExpiredError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeExpiredError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentCouponCodeExpiredError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.couponCodeExpiredError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/couponcodeexpirederror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeInvalidError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an invalid coupon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "couponCodeInvalidError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeInvalidError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentCouponCodeInvalidError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.couponCodeInvalidError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/couponcodeinvaliderror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/init(rawvalue:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingAddressUnserviceableError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an unserviceable shipping address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingAddressUnserviceableError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingAddressUnserviceableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentShippingAddressUnserviceableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.shippingAddressUnserviceableError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/shippingaddressunserviceableerror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingContactInvalidError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an invalid shipping address, email, phone, or name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingContactInvalidError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingContactInvalidError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentShippingContactInvalidError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.shippingContactInvalidError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/shippingcontactinvaliderror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/unknownError": {
+      "abstract": [
+        {
+          "text": "The error code that indicates an unknown error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknownError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/unknownError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentUnknownError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code.unknownError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code/unknownerror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for specific errors associated with Apple Pay in-app or web payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey": {
+      "abstract": [
+        {
+          "text": "Additional details about an error on the Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentErrorKey",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterrorkey"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentBillingAddressInvalidError(withKey:localizedDescription:)": {
+      "abstract": [
+        {
+          "text": "Creates a billing address error with the supplied key and user-facing error message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentBillingAddressInvalidError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentBillingAddressInvalidError(withKey:localizedDescription:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentBillingAddressInvalidErrorWithKey:localizedDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentBillingAddressInvalidError(withKey:localizedDescription:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentbillingaddressinvaliderror(withkey:localizeddescription:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentContactInvalidError(withContactField:localizedDescription:)": {
+      "abstract": [
+        {
+          "text": "Creates a contact error with the supplied field and user-facing error message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentContactInvalidError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContactField"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKContactField",
+          "text": "PKContactField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentContactInvalidError(withContactField:localizedDescription:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentContactInvalidErrorWithContactField:localizedDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentContactInvalidError(withContactField:localizedDescription:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentcontactinvaliderror(withcontactfield:localizeddescription:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressInvalidError(withKey:localizedDescription:)": {
+      "abstract": [
+        {
+          "text": "Creates a shipping address error with the supplied key and user-facing error message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentShippingAddressInvalidError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressInvalidError(withKey:localizedDescription:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentShippingAddressInvalidErrorWithKey:localizedDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentShippingAddressInvalidError(withKey:localizedDescription:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentshippingaddressinvaliderror(withkey:localizeddescription:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressUnserviceableError(withLocalizedDescription:)": {
+      "abstract": [
+        {
+          "text": "Creates an error for an unserviceable address, with the supplied user-facing error message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentShippingAddressUnserviceableError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withLocalizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentShippingAddressUnserviceableError(withLocalizedDescription:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentShippingAddressUnserviceableError(withLocalizedDescription:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentshippingaddressunserviceableerror(withlocalizeddescription:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates the payment request after the shipping contact information changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingContactUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingContactUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestShippingContactUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestshippingcontactupdate"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Error-codes",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeExpiredError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeInvalidError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/billingContactInvalidError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingContactInvalidError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingAddressUnserviceableError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/unknownError"
+      ],
+      "title": "Error codes"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKPaymentErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Error-codes",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeExpiredError",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/couponCodeInvalidError",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/billingContactInvalidError",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingContactInvalidError",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/shippingAddressUnserviceableError",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code/unknownError"
+              ],
+              "title": "Error codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Errors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKPaymentErrorCode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/title",
+          "value": "PKPaymentErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1billingContactInvalidError/title",
+          "value": "PKPaymentBillingContactInvalidError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1billingContactInvalidError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentBillingContactInvalidError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentBillingAddressInvalidError(withKey:localizedDescription:)/title",
+          "value": "paymentBillingAddressInvalidErrorWithKey:localizedDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentBillingAddressInvalidError(withKey:localizedDescription:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentBillingAddressInvalidErrorWithKey:localizedDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/title",
+          "value": "PKPaymentErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorDomain/title",
+          "value": "PKPaymentErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1unknownError/title",
+          "value": "PKPaymentUnknownError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1unknownError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentUnknownError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1shippingContactInvalidError/title",
+          "value": "PKPaymentShippingContactInvalidError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1shippingContactInvalidError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentShippingContactInvalidError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/title",
+          "value": "PKPaymentAuthorizationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1shippingAddressUnserviceableError/title",
+          "value": "PKPaymentShippingAddressUnserviceableError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1shippingAddressUnserviceableError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentShippingAddressUnserviceableError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/title",
+          "value": "PKDisbursementErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorDomain/title",
+          "value": "PKDisbursementErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1couponCodeInvalidError/title",
+          "value": "PKPaymentCouponCodeInvalidError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1couponCodeInvalidError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentCouponCodeInvalidError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1couponCodeExpiredError/title",
+          "value": "PKPaymentCouponCodeExpiredError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code~1couponCodeExpiredError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentCouponCodeExpiredError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentShippingAddressUnserviceableError(withLocalizedDescription:)/title",
+          "value": "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentShippingAddressUnserviceableError(withLocalizedDescription:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentShippingAddressInvalidError(withKey:localizedDescription:)/title",
+          "value": "paymentShippingAddressInvalidErrorWithKey:localizedDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentShippingAddressInvalidError(withKey:localizedDescription:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentShippingAddressInvalidErrorWithKey:localizedDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentContactInvalidError(withContactField:localizedDescription:)/title",
+          "value": "paymentContactInvalidErrorWithContactField:localizedDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentContactInvalidError(withContactField:localizedDescription:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentContactInvalidErrorWithContactField:localizedDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/title",
+          "value": "PKPaymentRequestShippingContactUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingContactUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingContactUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/title",
+          "value": "PKDisbursementErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymenterror/code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymenterror/code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

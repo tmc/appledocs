@@ -1,0 +1,1466 @@
+{
+  "abstract": [
+    {
+      "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying vImage operations to regions of interest"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply vImage operations, such as blurs and color transforms, to specified rectangular areas in an image, commonly referred to as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "regions of interest",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (ROI). Limiting the effect of an operation is useful when, for example, you want to overlay user interface elements on top of a blurred part of an image to make them stand out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image is an example of the effects possible when you use the techniques in this article. The image shows a single photograph with a portrait-format ROI that the code has desaturated and a landscape-format ROI that the code has blurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3377260",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Applying-operations-to-an-ROI-of-a-pixel-buffer",
+          "level": 3,
+          "text": "Applying operations to an ROI of a pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re developing apps with Xcode 14.0 or later, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, which simplifies applying operations to ROIs. The following code creates the image above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// `source` is a `vImage.PixelBuffer<vImage.Interleaved8x4>` that contains an ARGB8888 image.",
+            "// `destination` is an initialized `vImage.PixelBuffer<vImage.Interleaved8x4>` that's the same ",
+            "// size as `source`.",
+            "",
+            "let landscapeROI = CGRect( ... )",
+            "",
+            "source.withUnsafeRegionOfInterest(landscapeROI) { src in",
+            "    src.multiply(by: desaturationMatrix,",
+            "                 divisor: divisor,",
+            "                 preBias: (0, 0, 0, 0),",
+            "                 postBias: (0, 0, 0, 0),",
+            "                 destination: src)",
+            "}",
+            "",
+            "source.copy(to: destination)",
+            "",
+            "let portraitROI = CGRect( ... )",
+            "",
+            "source.withUnsafeRegionOfInterest(portraitROI) { src in",
+            "    destination.withUnsafeRegionOfInterest(portraitROI) { dst in",
+            "        src.tentConvolve(kernelSize: .init(width: 100, height: 100),",
+            "                         edgeMode: .truncateKernel,",
+            "                         destination: dst)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the destination ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains the final image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article implements the remaining code in this article as extensions to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. The two function calls below created the image above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// `source` is a `vImage_Buffer` that contains an ARGB8888 image.",
+            "",
+            "source.desaturate_ARGB8888(regionOfInterest: CGRect( ... ))",
+            "",
+            "let destination = source.blurred_ARGB8888(regionOfInterest: CGRect( ... ),",
+            "                                          blurRadius: 100)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-an-in-place-operation-to-an-ROI",
+          "level": 3,
+          "text": "Apply an in-place operation to an ROI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For vImage routines that can operate in-place (that is, the operation mutates the source buffer’s contents), create a mutating function that applies that routine to an ROI. The following code is the function header for a desaturation function based around ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension vImage_Buffer {",
+            "",
+            "    mutating func desaturate_ARGB8888(regionOfInterest roi: CGRect) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function checks that the supplied ROI is within the bounds of the buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        guard Int(roi.maxX) <= width && Int(roi.maxY) <= height &&",
+            "            Int(roi.minX) >= 0 && Int(roi.minY) >= 0 else {",
+            "                print(\"ROI is out of bounds.\")",
+            "                return",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code calculates the first pixel in the source buffer for the ROI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        let bytesPerPixel = 4",
+            "        ",
+            "        let start = Int(roi.origin.y) * rowBytes +",
+            "                    Int(roi.origin.x) * bytesPerPixel"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value defines the offset to the data pointer for a second ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that references the source buffer’s data with a size that equals the ROI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        var desaturationBuffer = vImage_Buffer(data: data.advanced(by: start),",
+            "                                               height: vImagePixelCount(roi.height),",
+            "                                               width: vImagePixelCount(roi.width),",
+            "                                               rowBytes: rowBytes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "desaturationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a reference to the data in the source buffer that the supplied ROI defines. Calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "desaturationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as both the source and the destination performs the matrix multiplication on the pixels in the ROI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        let divisor: Int32 = 0x1000",
+            "        ",
+            "        let desaturationMatrix = [",
+            "            0.0722, 0.0722, 0.0722, 0,",
+            "            0.7152, 0.7152, 0.7152, 0,",
+            "            0.2126, 0.2126, 0.2126, 0,",
+            "            0,      0,      0,      1",
+            "            ].map {",
+            "                return Int16($0 * Float(divisor))",
+            "        }",
+            "        ",
+            "        let error = vImageMatrixMultiply_ARGB8888(&desaturationBuffer,",
+            "                                                  &desaturationBuffer,",
+            "                                                  desaturationMatrix,",
+            "                                                  divisor,",
+            "                                                  nil, nil,",
+            "                                                  vImage_Flags(kvImageNoFlags))",
+            "        ",
+            "        if error != kvImageNoError {",
+            "            print(\"Error: \\(error)\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about using matrix multiplication to convert color images to grayscale, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/converting-color-images-to-grayscale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows the result of desaturating an ROI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3377262",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-an-out-of-place-operation-to-an-ROI",
+          "level": 3,
+          "text": "Apply an out-of-place operation to an ROI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For vImage routines that don’t operate in-place, create a non-mutating function that applies that routine to an ROI and returns a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that contains the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code is the function header for a blurring function that applies ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension vImage_Buffer {",
+            "    ",
+            "    func blurred_ARGB8888(regionOfInterest roi: CGRect,",
+            "                          blurRadius: Int) -> vImage_Buffer? {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function performs the same check as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest#Apply-an-in-place-operation-to-an-ROI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ROI size:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        guard Int(roi.maxX) <= width && Int(roi.maxY) <= height &&",
+            "            Int(roi.minX) >= 0 && Int(roi.minY) >= 0 else {",
+            "                print(\"ROI is out of bounds.\")",
+            "                return nil",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "vImage_Buffer.blurred_ARGB8888(regionOfInterest:blurRadius:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns a buffer that’s the same size as the source. The function copies all source pixels that are outside of the ROI to the destination. The following code creates the buffer that the function returns, and copies the source pixels into the new buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        guard var destination = try? vImage_Buffer(width: Int(width),",
+            "                                                   height: Int(height),",
+            "                                                   bitsPerPixel: 32) else {",
+            "                                                    return nil",
+            "        }",
+            "        ",
+            "        let bytesPerPixel = 4",
+            "        ",
+            "        withUnsafePointer(to: self) { src in",
+            "            vImageCopyBuffer(src,",
+            "                             &destination,",
+            "                             bytesPerPixel,",
+            "                             vImage_Flags(kvImageNoFlags))",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The out-of-place function uses the same approach as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest#Apply-an-in-place-operation-to-an-ROI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", calculate the start of the ROI. The destination buffer for the blur operation references the copied pixels in ",
+              "type": "text"
+            },
+            {
+              "code": "destination",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        let start = Int(roi.origin.y) * destination.rowBytes +",
+            "            Int(roi.origin.x) * bytesPerPixel",
+            "        ",
+            "        var blurDestination = vImage_Buffer(data: destination.data.advanced(by: start),",
+            "                                            height: vImagePixelCount(roi.height),",
+            "                                            width: vImagePixelCount(roi.width),",
+            "                                            rowBytes: destination.rowBytes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function applies the blur to the source and writes the result to ",
+              "type": "text"
+            },
+            {
+              "code": "blurDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        var error = kvImageNoError",
+            "        ",
+            "        withUnsafePointer(to: self) { src in",
+            "            let blurDiameter = UInt32(blurRadius * 2 + 1)",
+            "            error = vImageTentConvolve_ARGB8888(src,",
+            "                                                &blurDestination,",
+            "                                                nil,",
+            "                                                vImagePixelCount(roi.origin.x),",
+            "                                                vImagePixelCount(roi.origin.y),",
+            "                                                blurDiameter, blurDiameter,",
+            "                                                [0],",
+            "                                                vImage_Flags(kvImageTruncateKernel))",
+            "        }",
+            "        ",
+            "        if error != kvImageNoError {",
+            "            destination.free()",
+            "            print(\"Error: \\(error)\")",
+            "            return nil",
+            "        }",
+            "        ",
+            "        return destination",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows the result of blurring an ROI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3377259",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying geometric transforms to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-transforms-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pixel buffer that references the image data within the specified region of interest.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeRegionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeRegionOfInterest(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/withunsaferegionofinterest(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Multiplies each pixel in an interleaved four-channel, 8-bit source image by a matrix to produce an interleaved four-channel, 8-bit destination image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMatrixMultiply_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMatrixMultiply_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagematrixmultiply_argb8888(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a tent filter to an 8-bit-per-channel, 4-channel interleaved source image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageTentConvolve_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageTentConvolve_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagetentconvolve_argb8888(_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest#Apply-an-in-place-operation-to-an-ROI": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest#Apply-an-in-place-operation-to-an-ROI",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/converting-color-images-to-grayscale": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to grayscale using matrix multiplication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/converting-color-images-to-grayscale",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting color images to grayscale",
+      "type": "topic",
+      "url": "/documentation/Accelerate/converting-color-images-to-grayscale"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3377259": {
+      "alt": "Photograph with a blurred horizontal strip.",
+      "identifier": "media-3377259",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31db03cd6214ceb253ce5eee08f151ed/media-3377259@2x.png"
+        }
+      ]
+    },
+    "media-3377260": {
+      "alt": "A photograph of fruit with a blurred horizontal strip, and a grayscale vertical strip.",
+      "identifier": "media-3377260",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5361063cd4584dfafb50aff9eabfe383/media-3377260@2x.png"
+        }
+      ]
+    },
+    "media-3377262": {
+      "alt": "A photograph of fruit with a grayscale vertical strip.",
+      "identifier": "media-3377262",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9dd2069d2be404051fb148a5560bd97/media-3377262@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)/title",
+          "value": "vImageTentConvolve_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageTentConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageTentConvolve_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)/title",
+          "value": "vImageMatrixMultiply_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMatrixMultiply_ARGB8888(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMatrixMultiply_ARGB8888"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

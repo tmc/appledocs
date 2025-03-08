@@ -1,0 +1,2011 @@
+{
+  "abstract": [
+    {
+      "text": "An intent that contains information about media playable from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INPlayMediaIntent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INPlayMediaIntent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INPlayMediaIntent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INPlayMediaIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+        "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to donate songs, movies, and other media the user plays in your app, or to recommend upcoming media, such as new TV shows or podcast episodes. The system uses these donations to offer the user relevant search results and suggestions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports playing audio in the background. See ",
+              "type": "text"
+            },
+            {
+              "code": "Enabling Background Audio",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for more information about supporting background audio in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Additional-Intent-Attributes",
+          "level": 3,
+          "text": "Additional Intent Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists additional attributes of this intent object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported by",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri Intents (audio only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always requires unlocked device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentSetImageKeyPath",
+      "type": "topic",
+      "url": "/documentation/intents/inintentsetimagekeypath"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent": {
+      "abstract": [
+        {
+          "text": "An intent that contains information about media playable from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlayMediaIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/init(mediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:)": {
+      "abstract": [
+        {
+          "text": "Creates an intent that describes media content such as a song, podcast episode, or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mediaItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaItem",
+          "text": "INMediaItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mediaContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaItem",
+          "text": "INMediaItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "playShuffled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "playbackRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPlaybackRepeatMode",
+          "text": "INPlaybackRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resumePlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "playbackQueueLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPlaybackQueueLocation",
+          "text": "INPlaybackQueueLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "playbackSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mediaSearch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaSearch",
+          "text": "INMediaSearch"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/init(mediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:)",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/init(mediaitems:mediacontainer:playshuffled:playbackrepeatmode:resumeplayback:playbackqueuelocation:playbackspeed:mediasearch:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:": {
+      "abstract": [
+        {
+          "text": "Initializes an intent that describes media content such as a song, podcast episode, or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/initwithmediaitems:mediacontainer:playshuffled:playbackrepeatmode:resumeplayback:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:": {
+      "abstract": [
+        {
+          "text": "Initialize an intent that describes media content such as a song, podcast episode, or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/initwithmediaitems:mediacontainer:playshuffled:playbackrepeatmode:resumeplayback:playbackqueuelocation:playbackspeed:mediasearch:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaContainer": {
+      "abstract": [
+        {
+          "text": "The media item container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaItem",
+          "text": "INMediaItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaContainer",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/mediacontainer"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaItems": {
+      "abstract": [
+        {
+          "text": "The media content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaItem",
+          "text": "INMediaItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaItems",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/mediaitems"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaSearch": {
+      "abstract": [
+        {
+          "text": "An object that contains the search parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaSearch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INMediaSearch",
+          "text": "INMediaSearch"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaSearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaSearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaSearch",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/mediasearch"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-2btex": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the media plays in a shuffled order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playShuffled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-2btex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playShuffled",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playshuffled-2btex"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-93hn1": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the media plays in a shuffled order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "playShuffled"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-93hn1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playShuffled",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playshuffled-93hn1"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackQueueLocation": {
+      "abstract": [
+        {
+          "text": "The queue location for a media item during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackQueueLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPlaybackQueueLocation",
+          "text": "INPlaybackQueueLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackQueueLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackQueueLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackQueueLocation",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playbackqueuelocation"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackRepeatMode": {
+      "abstract": [
+        {
+          "text": "The repeat mode setting at the time the user plays the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPlaybackRepeatMode",
+          "text": "INPlaybackRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackRepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackRepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackRepeatMode",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playbackrepeatmode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-17r2t": {
+      "abstract": [
+        {
+          "text": "The playback speed for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-17r2t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playbackSpeed",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playbackspeed-17r2t"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq": {
+      "abstract": [
+        {
+          "text": "The playback speed for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "playbackSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playbackSpeed",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/playbackspeed-6ngbq"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-1xw6r": {
+      "abstract": [
+        {
+          "text": "The resume playback setting at the time the user plays the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumePlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-1xw6r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumePlayback",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/resumeplayback-1xw6r"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp": {
+      "abstract": [
+        {
+          "text": "The resume playback setting at the time the user plays the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "resumePlayback"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumePlayback",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintent/resumeplayback-9zfyp"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentHandling": {
+      "abstract": [
+        {
+          "text": "The interface an object implements to confirm and handle play media intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlayMediaIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentResponse": {
+      "abstract": [
+        {
+          "text": "An intents handler’s response to a play media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlayMediaIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlayMediaIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inplaymediaintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocation": {
+      "abstract": [
+        {
+          "text": "Constants that describe the playback queue location for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlaybackQueueLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlaybackQueueLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlaybackQueueLocation",
+      "type": "topic",
+      "url": "/documentation/intents/inplaybackqueuelocation"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatMode": {
+      "abstract": [
+        {
+          "text": "The possible repeat modes at the time the user plays the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlaybackRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlaybackRepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlaybackRepeatMode",
+      "type": "topic",
+      "url": "/documentation/intents/inplaybackrepeatmode"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/sirikit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection": {
+      "abstract": [
+        {
+          "text": "Fine-tune voice controls and improve Siri Suggestions by sharing app capabilities, customized names, and listening habits with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Siri Media Interactions and App Selection",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-siri-media-interactions-and-app-selection"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntent"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playable-Media-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentResponse"
+      ],
+      "title": "Playable Media Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Play-Media-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/init(mediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:)"
+      ],
+      "title": "Creating a Play Media Intent"
+    },
+    {
+      "anchor": "Accessing-Media-Items",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaContainer",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaItems"
+      ],
+      "title": "Accessing Media Items"
+    },
+    {
+      "anchor": "Accessing-Playback-Settings",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-2btex",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-1xw6r",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackRepeatMode",
+        "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatMode",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-17r2t",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackQueueLocation",
+        "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocation",
+        "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaSearch"
+      ],
+      "title": "Accessing Playback Settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INPlayMediaIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Play-Media-Intent",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:"
+              ],
+              "title": "Creating a Play Media Intent"
+            },
+            {
+              "anchor": "Accessing-Media-Items",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaContainer",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaItems"
+              ],
+              "title": "Accessing Media Items"
+            },
+            {
+              "anchor": "Accessing-Playback-Settings",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playShuffled-93hn1",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackRepeatMode",
+                "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatMode",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/playbackQueueLocation",
+                "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocation",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntent/mediaSearch"
+              ],
+              "title": "Accessing Playback Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INIntent"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Playable-Media-Intents",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentHandling",
+                "doc://com.apple.sirikit/documentation/Intents/INPlayMediaIntentResponse"
+              ],
+              "title": "Playable Media Intents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INPlayMediaIntent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)INIntent",
+                    "text": "INIntent"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaContainer/title",
+          "value": "mediaContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaSearch/title",
+          "value": "mediaSearch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaSearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaSearch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title",
+          "value": "INIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentHandling/title",
+          "value": "INPlayMediaIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1playbackRepeatMode/title",
+          "value": "playbackRepeatMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1playbackRepeatMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackRepeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent/title",
+          "value": "INPlayMediaIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocation/title",
+          "value": "INPlaybackQueueLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackQueueLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackQueueLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatMode/title",
+          "value": "INPlaybackRepeatMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackRepeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackRepeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentResponse/title",
+          "value": "INPlayMediaIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlayMediaIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaItems/title",
+          "value": "mediaItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1mediaItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1playbackQueueLocation/title",
+          "value": "playbackQueueLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlayMediaIntent~1playbackQueueLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackQueueLocation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/inplaymediaintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/inplaymediaintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

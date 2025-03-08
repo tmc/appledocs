@@ -1,0 +1,2100 @@
+{
+  "abstract": [
+    {
+      "text": "An instance you use to capture Metal command data in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLCaptureManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLCaptureManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLCaptureManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MTLCaptureManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capture manager works with Metal’s frame capture feature to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture data about Metal commands programmatically. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filter captured commands to a specific ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", command queue, or capture scope.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign a capture scope to use as the default when you click the camera button to invoke a frame capture from Xcode’s debug bar. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureScope",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger requires you to enable GPU Frame Capture in your project settings; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The capture manager records commands within ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects that you create and commit while the capture session is active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Metal frame capture, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/Xcode/Capturing-a-Metal-workload-programmatically"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "article",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-debugger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration for a Metal capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination": {
+      "abstract": [
+        {
+          "text": "The kinds of destinations for captured command data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureDestination",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturedestination"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager": {
+      "abstract": [
+        {
+          "text": "An instance you use to capture Metal command data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureManager",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/defaultCaptureScope": {
+      "abstract": [
+        {
+          "text": "The capture scope to use when a capture is initiated in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/defaultCaptureScope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultCaptureScope"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultCaptureScope",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/defaultcapturescope"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/init": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/init",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/init"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/isCapturing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Metal commands are being captured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCapturing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/isCapturing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isCapturing"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCapturing",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/iscapturing"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture scope for commands submitted to a specific command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newCaptureScopeWithCommandQueue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeCaptureScope(commandQueue:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/makecapturescope(commandqueue:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture scope for commands submitted to a specific device object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newCaptureScopeWithDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeCaptureScope(device:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/makecapturescope(device:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/shared()": {
+      "abstract": [
+        {
+          "text": "Provides the shared capture manager for your Metal app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLCaptureManager",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedCaptureManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/shared()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(commandQueue:)": {
+      "abstract": [
+        {
+          "text": "Starts capturing any of your app’s Metal commands that are executed by the command queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(commandQueue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startCaptureWithCommandQueue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startCapture(commandQueue:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/startcapture(commandqueue:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(device:)": {
+      "abstract": [
+        {
+          "text": "Starts capturing any of your app’s Metal commands that are executed by the device object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(device:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startCaptureWithDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startCapture(device:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/startcapture(device:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(scope:)": {
+      "abstract": [
+        {
+          "text": "Starts capturing any of your app’s Metal commands that are in the specified capture scope.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(scope:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startCaptureWithScope:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startCapture(scope:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/startcapture(scope:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(with:)": {
+      "abstract": [
+        {
+          "text": "Starts capturing any of your app’s Metal commands, with the capture session defined by a descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLCaptureDescriptor",
+          "text": "MTLCaptureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startCaptureWithDescriptor:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startCapture(with:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/startcapture(with:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/stopCapture()": {
+      "abstract": [
+        {
+          "text": "Stops capturing Metal commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopCapture"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/stopCapture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopCapture()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/stopcapture()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/supportsDestination(_:)": {
+      "abstract": [
+        {
+          "text": "Checks to see whether a particular capture destination is supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCaptureDestination",
+          "text": "MTLCaptureDestination"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/supportsDestination(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsDestination:"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsDestination(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager/supportsdestination(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureScope": {
+      "abstract": [
+        {
+          "text": "A protocol that defines custom boundaries for a GPU frame capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureScope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureScope",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturescope"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Frame-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureScope"
+      ],
+      "title": "Frame Capture"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Obtaining-the-Shared-Capture-Manager",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/shared()"
+      ],
+      "title": "Obtaining the Shared Capture Manager"
+    },
+    {
+      "anchor": "Querying-Support-for-a-Capture-Destination",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/supportsDestination(_:)"
+      ],
+      "title": "Querying Support for a Capture Destination"
+    },
+    {
+      "anchor": "Creating-a-Capture-Scope",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/defaultCaptureScope"
+      ],
+      "title": "Creating a Capture Scope"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Start capturing Metal commands for presentation in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Starting-Capture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(with:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(device:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(commandQueue:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(scope:)"
+      ],
+      "title": "Starting Capture"
+    },
+    {
+      "anchor": "Stopping-Capture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/stopCapture()"
+      ],
+      "title": "Stopping Capture"
+    },
+    {
+      "anchor": "Monitoring-Capture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/isCapturing"
+      ],
+      "title": "Monitoring Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLCaptureManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Obtaining-the-Shared-Capture-Manager",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/shared()"
+              ],
+              "title": "Obtaining the Shared Capture Manager"
+            },
+            {
+              "anchor": "Querying-Support-for-a-Capture-Destination",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/supportsDestination(_:)"
+              ],
+              "title": "Querying Support for a Capture Destination"
+            },
+            {
+              "anchor": "Creating-a-Capture-Scope",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/defaultCaptureScope"
+              ],
+              "title": "Creating a Capture Scope"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Start capturing Metal commands for presentation in the Metal debugger.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Starting-Capture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(with:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(device:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(commandQueue:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/startCapture(scope:)"
+              ],
+              "title": "Starting Capture"
+            },
+            {
+              "anchor": "Stopping-Capture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/stopCapture()"
+              ],
+              "title": "Stopping Capture"
+            },
+            {
+              "anchor": "Monitoring-Capture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/isCapturing"
+              ],
+              "title": "Monitoring Capture"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager/init"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Frame-Capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureScope"
+              ],
+              "title": "Frame Capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLCaptureManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1isCapturing/title",
+          "value": "isCapturing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1isCapturing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isCapturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1stopCapture()/title",
+          "value": "stopCapture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1stopCapture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopCapture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1defaultCaptureScope/title",
+          "value": "defaultCaptureScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1defaultCaptureScope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultCaptureScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/title",
+          "value": "MTLCaptureManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(with:)/title",
+          "value": "startCaptureWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCaptureWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(commandQueue:)/title",
+          "value": "startCaptureWithCommandQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(commandQueue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCaptureWithCommandQueue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(device:)/title",
+          "value": "startCaptureWithDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCaptureWithDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/title",
+          "value": "MTLCaptureDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1shared()/title",
+          "value": "sharedCaptureManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(device:)/title",
+          "value": "newCaptureScopeWithDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCaptureScopeWithDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/title",
+          "value": "MTLCaptureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(commandQueue:)/title",
+          "value": "newCaptureScopeWithCommandQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(commandQueue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCaptureScopeWithCommandQueue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(scope:)/title",
+          "value": "startCaptureWithScope:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1startCapture(scope:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCaptureWithScope:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/title",
+          "value": "MTLCaptureScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1supportsDestination(_:)/title",
+          "value": "supportsDestination:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager~1supportsDestination(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsDestination:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlcapturemanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlcapturemanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

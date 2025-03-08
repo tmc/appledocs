@@ -1,0 +1,1121 @@
+{
+  "abstract": [
+    {
+      "text": "The block to execute when the query delivers a new batch of suggested items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CSUserQuery(py)foundSuggestionsHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "foundSuggestionsHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": ((["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CSSuggestion",
+        "text": "CSSuggestion"
+      },
+      {
+        "kind": "text",
+        "text": "]) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "foundSuggestionsHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "foundSuggestionsHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "foundSuggestionsHandler"
+            },
+            {
+              "kind": "text",
+              "text": ": ((["
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSuggestion",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CSSuggestion",
+              "text": "CSSuggestion"
+            },
+            {
+              "kind": "text",
+              "text": "]) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify a value for this property only if you start your query with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. While the query runs, the query object executes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provided closure one or more times to deliver suggested completions for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current search term. Use your handler to retrieve the suggested completions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and update your app’s search interface. The query object stops delivering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suggested items when it runs out of suggestions or reaches the maximum",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number found in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the query configuration parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you start the query by accessing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property, the query object doesn’t execute the block in this property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSuggestion": {
+      "abstract": [
+        {
+          "text": "The kind of suggestion to use in a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSuggestion"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSuggestion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSuggestion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSuggestion",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssuggestion"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery": {
+      "abstract": [
+        {
+          "text": "A type you use to initiate searches from your interface and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "offer suggested text completions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSUserQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSUserQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels the current query operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/cancel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/cancel()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount": {
+      "abstract": [
+        {
+          "text": "The number of suggested items the query found so far.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foundSuggestionCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "foundSuggestionCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "foundSuggestionCount",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/foundsuggestioncount"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler": {
+      "abstract": [
+        {
+          "text": "The block to execute when the query delivers a new batch of suggested items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foundSuggestionsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSuggestion",
+          "text": "CSSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "foundSuggestionsHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "foundSuggestionsHandler",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/foundsuggestionshandler"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property": {
+      "abstract": [
+        {
+          "text": "The matching results and suggestions for the current query string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "responses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSUserQuery",
+          "text": "CSUserQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV",
+          "text": "Responses"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responses",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/responses-swift.property"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/start()": {
+      "abstract": [
+        {
+          "text": "Starts searching the index for items that match the current query",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string and parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/start()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of suggested text completions for the query to return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxSuggestionCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxSuggestionCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxSuggestionCount",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquerycontext/maxsuggestioncount"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app": {
+      "abstract": [
+        {
+          "text": "Add a search interface to your app to execute Spotlight queries",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and offer suggested text completions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a search interface for your app",
+      "type": "topic",
+      "url": "/documentation/corespotlight/building-a-search-interface-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Executing-the-query-with-handler-blocks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/start()",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/cancel()",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount"
+      ],
+      "title": "Executing the query with handler blocks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "foundSuggestionsHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "foundSuggestionsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Executing-the-query-with-handler-blocks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/start()",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/cancel()",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount"
+              ],
+              "title": "Executing the query with handler blocks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^"
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "foundSuggestionsHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<CSSuggestion *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "suggestions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSuggestion/title",
+          "value": "CSSuggestion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSuggestion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSuggestion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1foundSuggestionsHandler/title",
+          "value": "foundSuggestionsHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1foundSuggestionsHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "foundSuggestionsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/title",
+          "value": "CSUserQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSUserQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSUserQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1start()/title",
+          "value": "start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "start"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1cancel()/title",
+          "value": "cancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1cancel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1foundSuggestionCount/title",
+          "value": "foundSuggestionCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery~1foundSuggestionCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "foundSuggestionCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQueryContext~1maxSuggestionCount/title",
+          "value": "maxSuggestionCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQueryContext~1maxSuggestionCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxSuggestionCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/csuserquery/foundsuggestionshandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/csuserquery/foundsuggestionshandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

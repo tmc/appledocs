@@ -1,0 +1,365 @@
+{
+  "abstract": [
+    {
+      "text": "Set up your app for direct installation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring apps for web distribution"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can distribute approved apps in eligible regions from your company website. Use this API to setup your app for web distribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Establish-an-alternative-distribution-key",
+          "level": 3,
+          "text": "Establish an alternative distribution key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin making your app eligible for download from your website by selecting your existing app record, or making a new one in App Store Connect. Next, create a public and private key pair to associate with your app for web distribution. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-alternative-distribution-domain",
+          "level": 3,
+          "text": "Add an alternative distribution domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to represent your app’s base web domain, from which all traffic must flow. This domain is where people can download and install your web distribution app. This domain is enabled for all apps on your account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-and-distribute-your-alternative-distribution-package",
+          "level": 3,
+          "text": "Obtain and distribute your alternative distribution package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you need to obtain the alternative distribution package ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your web distribution app is already approved, you need to generate an alternative distribution package by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your web distribution app is not in one of the following states (all of which are after approval by App Review): ",
+              "type": "text"
+            },
+            {
+              "code": "Pending Developer Release, Pending Apple Release,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "Ready for Distribution,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the alternative distribution package is automatically created after approval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the alternative distribution package is created, you can ingest and process the provided files. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you set up your web server to allow users to get your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains": {
+      "abstract": [
+        {
+          "text": "Add an alternative distribution domain to your account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add an alternative distribution domain",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributiondomains"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages": {
+      "abstract": [
+        {
+          "text": "Create an alternative distribution package for an app store version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionPackages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributionpackages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys, packages, and search for alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Marketplaces and Web Distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-marketplaces-and-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps": {
+      "abstract": [
+        {
+          "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring alternative marketplaces and alternative marketplace apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/configuring-alternative-marketplaces-and-alternative-marketplace-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens (JWTs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and configuring keys for web distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-and-configuring-keys-for-web-distribution"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appdistribution/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/configuring-apps-for-web-distribution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

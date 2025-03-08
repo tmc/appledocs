@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a direction that orients the participant to look along",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the specified axis in the direction of the app’s content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection/alignedWith(appAxis:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities31SpatialTemplateElementDirectionV11alignedWith7appAxisAcA0cdeJ0V_tFZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "alignedWith"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "appAxis"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:15GroupActivities26SpatialTemplateElementAxisV",
+        "text": "SpatialTemplateElementAxis"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:15GroupActivities31SpatialTemplateElementDirectionV",
+        "text": "SpatialTemplateElementDirection"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "alignedWith(appAxis:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "alignedWith"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "appAxis"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementAxis",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15GroupActivities26SpatialTemplateElementAxisV",
+              "text": "SpatialTemplateElementAxis"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15GroupActivities31SpatialTemplateElementDirectionV",
+              "text": "SpatialTemplateElementDirection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The axis for the participant to look along.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "appAxis"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A direction type that faces the specified seat position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to create a seat that faces perpendicular to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. For example, you might use it to mimic a long bench or stadium-style",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "seating. The following code shows how to create such a line of seats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Line: SpatialTemplate {",
+            "    var elements: [any SpatialTemplateElement] {",
+            "        (-2...2).map { seatIndex in",
+            "            .seat(",
+            "                position: .app.offsetBy(x: Double(seatIndex) * 2, z: 3),",
+            "                direction: .alignedWith(appAxis: .z)",
+            "            )",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementAxis": {
+      "abstract": [
+        {
+          "text": "An axis to use when aligning elements in a spatial template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementAxis"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementAxis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementAxis"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementAxis",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementaxis"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection": {
+      "abstract": [
+        {
+          "text": "The initial direction a participant faces when an activity starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementDirection",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementdirection"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection/alignedWith(appAxis:)": {
+      "abstract": [
+        {
+          "text": "Creates a direction that orients the participant to look along",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified axis in the direction of the app’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignedWith"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "appAxis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities26SpatialTemplateElementAxisV",
+          "text": "SpatialTemplateElementAxis"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities31SpatialTemplateElementDirectionV",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection/alignedWith(appAxis:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignedWith(appAxis:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementdirection/alignedwith(appaxis:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Looking-along-an-axis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementAxis"
+      ],
+      "title": "Looking along an axis"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/spatialtemplateelementdirection/alignedwith(appaxis:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

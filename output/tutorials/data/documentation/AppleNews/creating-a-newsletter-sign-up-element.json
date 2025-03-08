@@ -1,0 +1,1136 @@
+{
+  "abstract": [
+    {
+      "text": "Add a newsletter sign-up element in your article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Newsletter Sign-Up Element"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide your readers the option to sign up for your publication’s newsletter from an article. By using styles and layouts thoughtfully, you can visually separate your newsletter sign-up element from your article content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the newsletter sign-up element to your article.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use components, component styles, component text styles, and layout objects to customize the display of the newsletter sign-up element.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4285520",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Component-Layout-Objects-for-Newsletter-Sign-Up",
+          "level": 3,
+          "text": "Create Component Layout Objects for Newsletter Sign-Up",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make adjustments to the positioning of the newsletter sign-up element, you must first create new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Layout-Copy-This-Code",
+          "level": 4,
+          "text": "Layout: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "     \"newsletterLayout\": {",
+            "       \"padding\": 30",
+            "     },",
+            "     \"newsletterHeadingLayout\": {",
+            "       \"margin\": {",
+            "         \"bottom\": 24",
+            "       }",
+            "     },",
+            "     \"newsletterBodyLayout\": {",
+            "       \"margin\": {",
+            "         \"bottom\": 26",
+            "       }",
+            "     },",
+            "     \"newsletterButtonLayout\": {",
+            "       \"padding\": {",
+            "         \"left\": 24,",
+            "         \"right\": 24,",
+            "         \"top\": 12,",
+            "         \"bottom\": 12",
+            "       }",
+            "     }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Layout-Result",
+          "level": 4,
+          "text": "Layout: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (…) indicate lines of code are omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"newsletterLayout\": {",
+            "      \"padding\": 30",
+            "    },",
+            "    \"newsletterHeadingLayout\": {",
+            "      \"margin\": {",
+            "         \"bottom\": 24",
+            "      }",
+            "    },",
+            "    \"newsletterBodyLayout\": {",
+            "      \"margin\": {",
+            "         \"bottom\": 26",
+            "      }",
+            "    },",
+            "    \"newsletterButtonLayout\": {",
+            "      \"padding\": {",
+            "         \"left\": 24,",
+            "         \"right\": 24,",
+            "         \"top\": 12,",
+            "         \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-Component-Styles-for-the-Newsletter-Sign-Up-Element",
+          "level": 3,
+          "text": "Define Component Styles for the Newsletter Sign-Up Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object so that you can apply styles to the newsletter sign-up element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between after the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "backgroundColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sidebarBackgroundStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Component-Styles-Copy-This-Code",
+          "level": 4,
+          "text": "Component Styles: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            " \"newsletterStyle\": {",
+            "      \"mask\": {",
+            "        \"type\": \"corners\",",
+            "        \"radius\": 6",
+            "      },",
+            "      \"backgroundColor\": \"#F8F8FA\",",
+            "      \"conditional\": [",
+            "        {",
+            "          \"backgroundColor\": \"#1C1C1E\",",
+            "          \"conditions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    \"newsletterButtonStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"color\": \"#000000\",",
+            "          \"width\": 1",
+            "        }",
+            "      },",
+            "      \"mask\": {",
+            "        \"type\": \"corners\",",
+            "        \"radius\": 6",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Component-Styles-Result",
+          "level": 4,
+          "text": "Component Styles: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (…) indicate lines of code that are omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"newsletterStyle\": {",
+            "      \"mask\": {",
+            "        \"type\": \"corners\",",
+            "        \"radius\": 6",
+            "      },",
+            "      \"backgroundColor\": \"#F8F8FA\",",
+            "      \"conditional\": [",
+            "        {",
+            "          \"backgroundColor\": \"#1C1C1E\",",
+            "          \"conditions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    \"newsletterButtonStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"color\": \"#000000\",",
+            "          \"width\": 1",
+            "        }",
+            "      },",
+            "      \"mask\": {",
+            "        \"type\": \"corners\",",
+            "        \"radius\": 6",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "},"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-Component-Text-Styles-for-the-Newsletter-Sign-Up-Element",
+          "level": 3,
+          "text": "Define Component Text Styles for the Newsletter Sign-Up Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentTextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects so that you can apply text styles to the heading, body, and button for the newsletter sign-up element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code after the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace (}) for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Component-Text-Styles-Copy-This-Code",
+          "level": 4,
+          "text": "Component Text Styles: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            " \"newsletterHeadingTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 20,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "    },",
+            "    \"newsletterBodyTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 15,",
+            "      \"lineHeight\": 18,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "    },",
+            "    \"newsletterButtonTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 15,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "   }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Component-Text-Styles-Result",
+          "level": 4,
+          "text": "Component Text Styles: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (…) indicate lines of code that are omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"newsletterHeadingTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 20,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "    },",
+            "    \"newsletterBodyTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 15,",
+            "      \"lineHeight\": 18,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "    },",
+            "    \"newsletterButtonTextStyle\": {",
+            "      \"fontName\": \"HelveticaNeue\",",
+            "      \"fontSize\": 15,",
+            "      \"textColor\": \"#000000\",",
+            "      \"textAlignment\": \"center\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-Newsletter-Sign-Up-Element-in-your-Article",
+          "level": 3,
+          "text": "Add a Newsletter Sign-Up Element in your Article",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, add the newsletter sign-up element to your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code after the Twitter URL and before the closing square bracket (]) at the end of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Newsletter-Copy-This-Code",
+          "level": 4,
+          "text": "Newsletter: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            " ,",
+            "  {",
+            "          \"role\": \"heading2\",",
+            "          \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "          \"text\": \"NEWSLETTER SIGN-UP\"",
+            "        },",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"noMarginLayout\",",
+            "          \"text\": \"Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.\"",
+            "        },",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"newsletterLayout\",",
+            "          \"style\": \"newsletterStyle\",",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"heading3\",",
+            "              \"text\": \"Lorem ipsum dolor sit amet\",",
+            "              \"textStyle\": \"newsletterHeadingTextStyle\",",
+            "              \"layout\": \"newsletterHeadingLayout\"",
+            "            },",
+            "            {",
+            "              \"role\": \"body\",",
+            "              \"text\": \"Sign up for our daily newsletter, delivered straight to your inbox.\",",
+            "              \"textStyle\": \"newsletterBodyTextStyle\",",
+            "              \"layout\": \"newsletterBodyLayout\"",
+            "            },",
+            "            {",
+            "              \"role\": \"link_button\",",
+            "              \"format\": \"html\",",
+            "              \"URL\": \"https://apple.com\",",
+            "              \"text\": \"Sign Up &#x2197;&#xFE0E;\",",
+            "              \"textStyle\": \"newsletterButtonTextStyle\",",
+            "              \"layout\": \"newsletterButtonLayout\",",
+            "              \"style\": \"newsletterButtonStyle\"",
+            "            }",
+            "          ]",
+            "        }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Newsletter-Result",
+          "level": 4,
+          "text": "Newsletter: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (…) indicate lines of code that are omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "        {",
+            "          \"role\": \"heading2\",",
+            "          \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "          \"text\": \"NEWSLETTER SIGN-UP\"",
+            "        },",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"noMarginLayout\",",
+            "          \"text\": \"Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.\"",
+            "        },",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"newsletterLayout\",",
+            "          \"style\": \"newsletterStyle\",",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"heading3\",",
+            "              \"text\": \"Lorem ipsum dolor sit amet\",",
+            "              \"textStyle\": \"newsletterHeadingTextStyle\",",
+            "              \"layout\": \"newsletterHeadingLayout\"",
+            "            },",
+            "            {",
+            "              \"role\": \"body\",",
+            "              \"text\": \"Sign up for our daily newsletter, delivered straight to your inbox.\",",
+            "              \"textStyle\": \"newsletterBodyTextStyle\",",
+            "              \"layout\": \"newsletterBodyLayout\"",
+            "            },",
+            "            {",
+            "              \"role\": \"link_button\",",
+            "              \"format\": \"html\",",
+            "              \"URL\": \"https://apple.com\",",
+            "              \"text\": \"Sign Up &#x2197;&#xFE0E;\",",
+            "              \"textStyle\": \"newsletterButtonTextStyle\",",
+            "              \"layout\": \"newsletterButtonLayout\",",
+            "              \"style\": \"newsletterButtonStyle\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill": {
+      "abstract": [
+        {
+          "text": "Add an image that remains stationary when the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Fixed Image Fill",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video": {
+      "abstract": [
+        {
+          "text": "Add a video component inside the header component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Video",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Copy-This-Code",
+      "kind": "section",
+      "title": "Component Styles: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Component-Styles-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Styles-Result",
+      "kind": "section",
+      "title": "Component Styles: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Component-Styles-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Copy-This-Code",
+      "kind": "section",
+      "title": "Component Text Styles: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Result",
+      "kind": "section",
+      "title": "Component Text Styles: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Component-Text-Styles-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Copy-This-Code",
+      "kind": "section",
+      "title": "Layout: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Layout-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Layout-Result",
+      "kind": "section",
+      "title": "Layout: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Layout-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Copy-This-Code",
+      "kind": "section",
+      "title": "Newsletter: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Newsletter-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element#Newsletter-Result",
+      "kind": "section",
+      "title": "Newsletter: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element#Newsletter-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar": {
+      "abstract": [
+        {
+          "text": "Create a box with an HTML bulleted list in the margin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Sidebar",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme": {
+      "abstract": [
+        {
+          "text": "Apply a new color scheme to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+      "kind": "article",
+      "role": "article",
+      "title": "Giving the Article a Dark Color Scheme",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 3",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4285520": {
+      "alt": "A screenshot of an Apple News article with a newsletter sign-up element.",
+      "identifier": "media-4285520",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38d8b271e8a97289d233ba3ca6f834fd/media-4285520@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/072a19bafdb26a2126dfabb46617bddf/media-4285520~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Advanced-Design-Tutorial-3-More-Ideas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+      ],
+      "title": "Advanced Design Tutorial 3: More Ideas"
+    }
+  ]
+}

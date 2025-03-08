@@ -1,0 +1,1968 @@
+{
+  "abstract": [
+    {
+      "text": "An image-analysis request that uses a Core ML model to process images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/CoreMLRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Vision13CoreMLRequestV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CoreMLRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CoreMLRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CoreMLRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CoreMLRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The results array of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "-based image-analysis request contain a different observation type, depending on the kind of ",
+              "type": "text"
+            },
+            {
+              "code": "MLModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object you use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the model predicts a single feature and the model’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object has a non-",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription/predictedFeatureName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", then Vision treats the model as a classifier. The results are ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/ClassificationObservation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the model’s outputs include at least one output with a feature type of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureType/image",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", Vision treats that model as an image-to-image model. The results are ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/PixelBufferObservation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, Vision treats the model as a general predictor model. The results are ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Vision forwards all confidence values from Core ML models as-is and doesn’t normalize them to [0, 1].",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLFeatureType/image": {
+      "abstract": [
+        {
+          "text": "The type for image features and feature values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureType/image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLFeatureType.image",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLFeatureType/image"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModelDescription": {
+      "abstract": [
+        {
+          "text": "Information about a model, primarily the input and output format for each feature the model expects, and optional metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelDescription",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModelDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModelDescription/predictedFeatureName": {
+      "abstract": [
+        {
+          "text": "The name of the primary prediction feature output description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedFeatureName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription/predictedFeatureName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictedFeatureName",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModelDescription/predictedFeatureName"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/ClassificationObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents classification information that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassificationObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ClassificationObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClassificationObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/vision/classificationobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/ComputeStage": {
+      "abstract": [
+        {
+          "text": "Types that represent the compute stage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComputeStage"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ComputeStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComputeStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComputeStage",
+      "type": "topic",
+      "url": "/documentation/vision/computestage"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of key-value information that a Core ML image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreMLFeatureValueObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoreMLFeatureValueObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLFeatureValueObservation",
+      "type": "topic",
+      "url": "/documentation/vision/coremlfeaturevalueobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLModelContainer": {
+      "abstract": [
+        {
+          "text": "A model container to use with an image-analysis request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreMLModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoreMLModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLModelContainer",
+      "type": "topic",
+      "url": "/documentation/vision/coremlmodelcontainer"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that uses a Core ML model to process images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreMLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoreMLRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/Revision-swift.enum": {
+      "abstract": [
+        {
+          "text": "A type that describes the algorithm or implementation that the request performs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Revision"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/Revision-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revision"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLRequest.Revision",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/revision-swift.enum"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/cropAndScaleAction": {
+      "abstract": [
+        {
+          "text": "An optional setting that tells the Vision algorithm how to scale an input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cropAndScaleAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision23ImageCropAndScaleActionO",
+          "text": "ImageCropAndScaleAction"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/cropAndScaleAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cropAndScaleAction",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/cropandscaleaction"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/init(model:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a Core ML request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision20CoreMLModelContainerV",
+          "text": "CoreMLModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV",
+          "text": "CoreMLRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV8RevisionO",
+          "text": "Revision"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/init(model:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(model:_:)",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/init(model:_:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/modelContainer": {
+      "abstract": [
+        {
+          "text": "The model to base the image analysis request on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision20CoreMLModelContainerV",
+          "text": "CoreMLModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/modelContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/modelcontainer"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/revision-swift.property": {
+      "abstract": [
+        {
+          "text": "The algorithm or implementation the request uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV",
+          "text": "CoreMLRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV8RevisionO",
+          "text": "Revision"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/revision-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revision",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/revision-swift.property"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedIdentifiers": {
+      "abstract": [
+        {
+          "text": "The classification identifiers supported by the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedIdentifiers",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/supportedidentifiers"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedRevisions": {
+      "abstract": [
+        {
+          "text": "The collection of revisions the request supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedRevisions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV",
+          "text": "CoreMLRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision13CoreMLRequestV8RevisionO",
+          "text": "Revision"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedRevisions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedRevisions",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest/supportedrevisions"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageCropAndScaleAction": {
+      "abstract": [
+        {
+          "text": "A scale to apply to an input image before performing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageCropAndScaleAction"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageCropAndScaleAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageCropAndScaleAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCropAndScaleAction",
+      "type": "topic",
+      "url": "/documentation/vision/imagecropandscaleaction"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests that focus on a specific part of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageProcessingRequest",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3f3f1": {
+      "abstract": [
+        {
+          "text": "Performs the request on image data and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3f3f1",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-3f3f1"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3hddl": {
+      "abstract": [
+        {
+          "text": "Performs the request on a Core Media buffer and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3hddl",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-3hddl"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-80bya": {
+      "abstract": [
+        {
+          "text": "Performs the request on an image URL and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-80bya",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-80bya"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-85ex1": {
+      "abstract": [
+        {
+          "text": "Performs the request on a Core Image image and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIImage",
+          "text": "CIImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-85ex1",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-85ex1"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-qxxx": {
+      "abstract": [
+        {
+          "text": "Performs the request on a Core Graphics image and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-qxxx",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-qxxx"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-xspx": {
+      "abstract": [
+        {
+          "text": "Performs the request on a pixel buffer and produces observations.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision0A7RequestP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-xspx",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform(on:orientation:)",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest/perform(on:orientation:)-xspx"
+    },
+    "doc://com.apple.vision/documentation/Vision/PixelBufferObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents an image that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBufferObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/PixelBufferObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBufferObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PixelBufferObservation",
+      "type": "topic",
+      "url": "/documentation/vision/pixelbufferobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionRequest",
+      "type": "topic",
+      "url": "/documentation/vision/visionrequest"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.vision/documentation/Vision/VisionRequest"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Machine-learning-image-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation",
+        "doc://com.apple.vision/documentation/Vision/ClassificationObservation",
+        "doc://com.apple.vision/documentation/Vision/PixelBufferObservation"
+      ],
+      "title": "Machine learning image analysis"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-request",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/init(model:_:)"
+      ],
+      "title": "Creating a request"
+    },
+    {
+      "anchor": "Getting-the-revision",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/revision-swift.property",
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedRevisions",
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/Revision-swift.enum"
+      ],
+      "title": "Getting the revision"
+    },
+    {
+      "anchor": "Inspecting-a-request",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/supportedIdentifiers",
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/modelContainer",
+        "doc://com.apple.vision/documentation/Vision/CoreMLModelContainer",
+        "doc://com.apple.vision/documentation/Vision/ComputeStage",
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest/cropAndScaleAction",
+        "doc://com.apple.vision/documentation/Vision/ImageCropAndScaleAction"
+      ],
+      "title": "Inspecting a request"
+    },
+    {
+      "anchor": "Performing-a-request",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-80bya",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3f3f1",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-qxxx",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-xspx",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-3hddl",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest/perform(on:orientation:)-85ex1"
+      ],
+      "title": "Performing a request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModelDescription~1predictedFeatureName/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictedFeatureName"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModelDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLModelDescription"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureType~1image/title",
+          "value": "MLFeatureTypeImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureType~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureTypeImage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/coremlrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "abstract": [
+    {
+      "text": "Define the four possible values for the rendering intent bits of the ",
+      "type": "text"
+    },
+    {
+      "code": "renderingIntent",
+      "type": "codeVoice"
+    },
+    {
+      "text": " field of the ",
+      "type": "text"
+    },
+    {
+      "code": "CM2Header",
+      "type": "codeVoice"
+    },
+    {
+      "text": " structure. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560278-rendering_intent_values_for_vers"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560278,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Rendering Intent Values for Version 2.x Profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ColorSync Manager defines the structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to represent the profile header for the version 2.x profile format defined by the ICC. The ",
+              "type": "text"
+            },
+            {
+              "code": "renderingIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "code": "CM2Header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure is an unsigned long value whose bits specify information about a profile. The ICC reserves the use of bits 0 to 15 and has assigned values to bits 0 and 1. Bits 16 to 31 are reserved for use by color management system (CMS) vendors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering intent controls the approach a CMM uses to translate the colors of an image to the color gamut of a destination device. Your application can set a profile’s rendering intent, for example, based on a user’s choice of the preferred approach for rendering an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because rendering intent is specified by the low two bits, and because no other bits are currently defined for this field, you can use the constants defined here to test or set the value of the entire field, without concern for possible information stored in other bits. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cm2header": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CM2Header",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cm2header"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmabsolutecolorimetric": {
+      "abstract": [
+        {
+          "text": "This approach is based on a device-independent color space in which the result is an idealized print viewed on an ideal type of paper having a large dynamic range and color gamut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmAbsoluteColorimetric"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmabsolutecolorimetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmAbsoluteColorimetric",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmabsolutecolorimetric"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmperceptual": {
+      "abstract": [
+        {
+          "text": "All the colors of a given gamut can be scaled to fit within another gamut. This intent is best suited to realistic images, such as photographic images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmPerceptual"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmperceptual",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmPerceptual",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmperceptual"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmrelativecolorimetric": {
+      "abstract": [
+        {
+          "text": "The colors that fall within the gamuts of both devices are left unchanged. This intent is best suited to logo images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmRelativeColorimetric"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmrelativecolorimetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmRelativeColorimetric",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmrelativecolorimetric"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmsaturation": {
+      "abstract": [
+        {
+          "text": "The relative saturation of colors is maintained from gamut to gamut. This intent is best suited to bar graphs and pie charts in which the actual color displayed is less important than its vividness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmSaturation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmsaturation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmSaturation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmsaturation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1612061",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmperceptual",
+        "doc://com.apple.documentation/documentation/applicationservices/cmrelativecolorimetric",
+        "doc://com.apple.documentation/documentation/applicationservices/cmsaturation",
+        "doc://com.apple.documentation/documentation/applicationservices/cmabsolutecolorimetric"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1560278-x_profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1560278-rendering_intent_values_for_vers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

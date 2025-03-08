@@ -1,0 +1,909 @@
+{
+  "abstract": [
+    {
+      "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Investigating visual artifacts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you notice any visual artifacts while running your app, you can use the Metal debugger to find and investigate problematic pixels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, configure your build to include shader source code (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, take a frame capture of your app when you notice the visual artifact that you want to debug (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have a frame capture, use the Debug navigator to find the draw command that contains the visual artifact, and use the Attachments viewer to find the pixel with the issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Debug the pixel to launch the shader debugger, then step through your shader source code and inspect variable values until you discover the problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, edit the shader source and reload the shader to verify your fix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Skim-through-render-attachments-in-the-Debug-navigator",
+          "level": 3,
+          "text": "Skim through render attachments in the Debug navigator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Metal debugger, navigate to a draw command that has the issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As you move your pointer over rows in the Debug navigator on the left, the Metal debugger shows a preview of the first attachment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use this to quickly find any draw commands that warrant further inspection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-navigator-hover.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also can filter the navigator to show only markers and commands so it’s easier to compare draw commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-navigator-filter.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you find the problematic draw command, click it to select it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Metal debugger automatically shows your attachments in the assistant editor on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-select.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-attachments-for-a-draw-command",
+          "level": 3,
+          "text": "Inspect attachments for a draw command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Attachments viewer to find any problematic pixels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can scroll to zoom in, and drag to pan.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on the Attachments viewer, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-zoom-pixel.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the problematic pixel to select it, and then click the Debug button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the problematic pixel isn’t inside a debuggable region, it has a nongreen selection indicator (as with the blue indicator in the screenshot below). This means that the draw command didn’t write to that pixel and, therefore, you can’t debug it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the Attachments viewer remembers your zoom and position, you can quickly step through different draw commands in the Debug navigator to find the right one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-no-debug.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-your-fragment-shader",
+          "level": 3,
+          "text": "Debug your fragment shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader debugger displays the shader source in the Shader editor (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The call tree on the left shows each executed line in your shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The values of the variables appear to the right of each shader line in the shader source code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, in the screenshot below, you can see that the ",
+              "type": "text"
+            },
+            {
+              "code": "in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable has a value containing ",
+              "type": "text"
+            },
+            {
+              "code": "721.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "815.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so forth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-debug.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step through your shader source code and inspect variable values until you discover the problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Make changes to the shader source code, and then click the Reload Shaders button in the debug bar to refresh the variable values, along with the attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-reload.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you still see visual artifacts, continue editing the shader and reloading it as needed until you solve the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Changes to your shader source code exist only within the Metal debugger.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your original shader source code doesn’t change.",
+                  "type": "text"
+                },
+                {
+                  "text": "\n",
+                  "type": "text"
+                },
+                {
+                  "text": "If your shader results look correct after reloading the shader, make sure that you copy your changes to your original shader source code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources": {
+      "abstract": [
+        {
+          "text": "Prepare to debug your project’s shaders by including source code in the build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with embedded shader sources",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-embedded-shader-sources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-programmatically"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/xcode/optimizing-gpu-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file": {
+      "abstract": [
+        {
+          "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Replaying a GPU trace file",
+      "type": "topic",
+      "url": "/documentation/xcode/replaying-a-gpu-trace-file"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-sdp-debug.png": {
+      "alt": "A screenshot of the Metal debugger showing the Shader editor and the Attachments viewer side by side. The Debug navigator displays the region of interest and the call tree.",
+      "identifier": "gputools-metal-debugger-sdp-debug.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43bfdc92b0f1de61fe3c2564b9cbeeac/gputools-metal-debugger-sdp-debug.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39a534a281d2c1a6fba72fbb3703942b/gputools-metal-debugger-sdp-debug@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd2e6e508eddd1c420318be5ef3aaadd/gputools-metal-debugger-sdp-debug~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b3b6b2cccdb2c5ef08f064bde08d14d/gputools-metal-debugger-sdp-debug~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-navigator-filter.png": {
+      "alt": "A screenshot of Xcode’s Debug navigator highlighting the button to show only markers and commands.",
+      "identifier": "gputools-metal-debugger-sdp-navigator-filter.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/386ca3b7fb13a78a9c2445778fa0d11c/gputools-metal-debugger-sdp-navigator-filter.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17e510aedfabd9d52d9de607f21bf95e/gputools-metal-debugger-sdp-navigator-filter@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/470e84c7507e5a4079a6d73549a0ae9f/gputools-metal-debugger-sdp-navigator-filter~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46b00ddd9fdd80fe936fd79fb60db30e/gputools-metal-debugger-sdp-navigator-filter~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-navigator-hover.png": {
+      "alt": "A screenshot of Xcode’s Debug navigator showing the popover that appears when the pointer hovers over any command in the list.",
+      "identifier": "gputools-metal-debugger-sdp-navigator-hover.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac508c0e976a7a15500621ab8c7fa151/gputools-metal-debugger-sdp-navigator-hover.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f67eaf84f86c4a56d11934e66b88301a/gputools-metal-debugger-sdp-navigator-hover@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/776b656a3cdce010dcdd03124819aa4b/gputools-metal-debugger-sdp-navigator-hover~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/151f6e69981f91518a2094c38fa3032c/gputools-metal-debugger-sdp-navigator-hover~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-no-debug.png": {
+      "alt": "A screenshot of the Metal debugger’s Attachments viewer where the selected pixel falls outside the debuggable region for a draw command.",
+      "identifier": "gputools-metal-debugger-sdp-no-debug.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a0ce89d5b3d67ebe2182a2d6730769f/gputools-metal-debugger-sdp-no-debug.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/030fcd2e4f75f5166819eef6092403c9/gputools-metal-debugger-sdp-no-debug@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21341584a25b560fbf5080f1e888a778/gputools-metal-debugger-sdp-no-debug~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/19c60bbddb979593f5d00ad8e8c50aae/gputools-metal-debugger-sdp-no-debug~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-select.png": {
+      "alt": "A screenshot of the Metal debugger showing the Bound Resources viewer and the Attachments viewer side by side for a draw command.",
+      "identifier": "gputools-metal-debugger-sdp-select.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efbd6b21531ab4f000549cae7252c273/gputools-metal-debugger-sdp-select.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a641476d9c43fa2dbe12b43fe8da0a96/gputools-metal-debugger-sdp-select@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4539f79c3f1943275ae259e46206d5be/gputools-metal-debugger-sdp-select~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed199008bf4c661581d61f3c1729a99f/gputools-metal-debugger-sdp-select~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-zoom-pixel.png": {
+      "alt": "A screenshot of the Metal debugger showing the Attachments viewer with the value inspector when the pointer is hovering over pixel 721, 815. The Debug button is highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-zoom-pixel.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56e4684721f1e72ee9195f57f642b7bb/gputools-metal-debugger-sdp-zoom-pixel.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6550c1fa4b7508ab1e3178123985143/gputools-metal-debugger-sdp-zoom-pixel@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fcf96a7299696ff263eb58c5ad83c1f7/gputools-metal-debugger-sdp-zoom-pixel~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d37a2f575abf1c8542f52e9b27a222f0/gputools-metal-debugger-sdp-zoom-pixel~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-reload.png": {
+      "alt": "A screenshot of the Reload Shaders button in the debug bar.",
+      "identifier": "gputools-metal-debugger-se-reload.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50af276811335fc3cc1ffe15b561edc3/gputools-metal-debugger-se-reload.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3772f6e2fc52fa9d8f2252a384c418df/gputools-metal-debugger-se-reload@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bb25bae36e5e645e1445f378330973e/gputools-metal-debugger-se-reload~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe4b2bdb9a88deac665c9169874d9959/gputools-metal-debugger-se-reload~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+        "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+        "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

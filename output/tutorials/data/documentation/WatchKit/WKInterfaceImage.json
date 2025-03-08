@@ -1,0 +1,2411 @@
+{
+  "abstract": [
+    {
+      "text": "An image that can be displayed in the interface of your watchOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKInterfaceImage",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceImage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceImage"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKInterfaceImage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images you display in your watchOS app can be static or animated. You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to specify the image data you want to display and to start and stop animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to an image object in your interface, define a property with the following syntax in your interface controller class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBOutlet weak var myImage: WKInterfaceImage!"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@property (weak, nonatomic) IBOutlet WKInterfaceImage* myImage;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the initialization of your interface controller, WatchKit creates any needed image objects and assigns them to their associated outlets. At that point, you can use those objects to make changes to the onscreen images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images you use in your interface can be embedded in your Watch app bundle, created dynamically, or downloaded from the Internet. Images in your Watch app bundle represent the images that are part of your app’s user interface. Images that you download or create dynamically exist either in memory or as files in your WatchKit extension’s container directory. The ",
+              "type": "text"
+            },
+            {
+              "code": "WKInterfaceImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides setter methods for getting your images onscreen regardless of their location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Image-Management",
+          "level": 3,
+          "text": "Image Management",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images you use in your interface can come from many different locations, and you load and manage those images in different ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store images that are part of your standard interface in your Watch app bundle. Use asset catalogs to store your images and to customize those images for different device sizes as needed. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of this class to display an image located in an asset catalog or in your Watch app bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can store animated image sequences in your Watch app bundle, but your image files must use specific naming conventions. For information about these conventions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage#Animating-a-Series-of-Images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store downloaded image files in your WatchKit extension’s container directory. Image files must be stored locally in your extension’s container directory and loaded into memory at runtime. When loading an image file that you want to display without modification, load the raw image data into an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object and use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageData(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to display it in your interface. Raw image data is typically compressed and can be sent more quickly than a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set dynamically created images directly. For content that you draw programmatically, create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the final results and display it using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. You also use this technique for animated images sequences you create dynamically using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImage(with:duration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating your images, always create them at a size that is appropriate for the underlying device. Whenever possible, try to use the same size image regardless of the underlying device. In cases where you need different images for different device sizes, use asset catalogs to store the different versions of the image using the same image name. If the image you specify is too large or too small, WatchKit uses the mode attribute you set in Interface Builder to determine how to render the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supported-Image-Formats",
+          "level": 3,
+          "text": "Supported Image Formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify images using any image formats supported by iOS, but it is recommended that you use JPEG and PNG images whenever possible. Specifying images in formats other than JPEG and PNG can introduce a performance penalty when rendering those images. All images should be designed for Retina displays, and image filenames you provide yourself should include the ",
+              "type": "text"
+            },
+            {
+              "code": "@2x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier in the filename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the supported image formats, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Animating-a-Series-of-Images",
+          "level": 3,
+          "text": "Animating a Series of Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Animated images are an easy and fast way to make your interface more dynamic and engaging for users. You create animated images from existing images in your asset catalog or by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the images you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For animations based on images in your asset catalogs, name your image resources using the convention ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<name><number>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<name>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " string is the same for all images and the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<number>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " value indicates the position of the image in the animation sequence. The number of the first image in the sequence must be ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, an animation with three images could have the file names ",
+              "type": "text"
+            },
+            {
+              "code": "image1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "image2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "image3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you store image resource files in your Watch app bundle without using asset catalogs, the naming convention for your image files is the same except your files should also have the appropriate filename extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever possible, place image resources in an asset catalog in your Watch app bundle (not in your WatchKit extension’s bundle). Placing them in the Watch app bundle lets you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to load the animated image at runtime, which simplifies the loading process. For animations you generate dynamically, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImage(with:duration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to assemble your animation in your WatchKit extension, and then set that animation using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You cannot use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to create an animated image based on images in your Watch app’s bundle. That method looks for images in the bundle of the active process, which is your WatchKit extension’s bundle. To load an animated image sequence from images in your Watch app bundle, you must name your image resources appropriately and use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of this class.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to create animated images, see the discussions of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImage(with:duration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interface-Builder-Configuration-Options",
+          "level": 3,
+          "text": "Interface Builder Configuration Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode lets you configure information about your image interface object in your storyboard file. The following table lists the attributes you can configure and their meaning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the image to be displayed. This image must be in the Watch app’s bundle. If you do not set the image in your storyboard, set it programmatically using the methods of this class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The content mode for the image. The mode defines how the image fills the available space. Some modes let you scale the image with or without maintaining the current aspect ratio. Other modes position the image relative to a fixed point in the image interface object’s bounds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tint",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The color applied to a template image. You can change the tint color programmatically by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setTintColor(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. The color you specify has no affect on animated images or non template images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Animate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean value indicating whether the image is animatable. Set the value to Yes to configure the animation parameters, including its duration (in seconds) and whether it starts immediately when the parent interface controller appears onscreen. Animations started at load time run continuously in a loop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImage(with:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an animated image from an existing set of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "images"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImage(with:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedImage(with:duration:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage/animatedImage(with:duration:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an animated image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedImageNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedImageNamed(_:duration:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage/animatedImageNamed(_:duration:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKImage": {
+      "abstract": [
+        {
+          "text": "A wrapper for images you use with a picker interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKImage"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKImage",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkimage"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable": {
+      "abstract": [
+        {
+          "text": "A collection of methods you can use to control the playback of animated images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKImageAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKImageAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKImageAnimatable",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkimageanimatable"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera": {
+      "abstract": [
+        {
+          "text": "An interface element that displays either a video stream or a single snapshot from an IP camera connected to HomeKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceHMCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceHMCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceHMCamera",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacehmcamera"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage": {
+      "abstract": [
+        {
+          "text": "An image that can be displayed in the interface of your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceImage",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage#Animating-a-Series-of-Images": {
+      "abstract": [],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage#Animating-a-Series-of-Images",
+      "kind": "section",
+      "title": "Animating a Series of Images",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage#Animating-a-Series-of-Images"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the displayed image using the specified image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImage(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage/setimage(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageData(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the displayed image using a formatted data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImageData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImageData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImageData(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage/setimagedata(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the displayed image using a named image resource file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImageNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImageNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImageNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage/setimagenamed(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setTintColor(_:)": {
+      "abstract": [
+        {
+          "text": "Changes the color applied to a template image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTintColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setTintColor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTintColor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTintColor(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage/settintcolor(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie": {
+      "abstract": [
+        {
+          "text": "An interface element that displays a video’s poster image and supports inline playing of the video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceInlineMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceInlineMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceInlineMovie",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceinlinemovie"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie": {
+      "abstract": [
+        {
+          "text": "An interface element that lets you play video and audio content in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceMovie",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacemovie"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKVideoGravity": {
+      "abstract": [
+        {
+          "text": "Constants indicating the appearance of video content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKVideoGravity"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKVideoGravity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKVideoGravity"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKVideoGravity",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkvideogravity"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Images-and-movies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKImage",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKVideoGravity"
+      ],
+      "title": "Images and movies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Image",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageData(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setTintColor(_:)"
+      ],
+      "title": "Configuring the Image"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKInterfaceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Image",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImage(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageData(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setImageNamed(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage/setTintColor(_:)"
+              ],
+              "title": "Configuring the Image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Images-and-movies",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKImage",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKImageAnimatable",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKVideoGravity"
+              ],
+              "title": "Images and movies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKInterfaceImage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+                    "text": "WKInterfaceObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1animatedImageNamed(_:duration:)/title",
+          "value": "animatedImageNamed:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1animatedImageNamed(_:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImage",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "animatedImageNamed:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "duration:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "duration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setTintColor(_:)/title",
+          "value": "setTintColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setTintColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTintColor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImage/title",
+          "value": "WKImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1animatedImage(with:duration:)/title",
+          "value": "animatedImageWithImages:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1animatedImage(with:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImage",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "animatedImageWithImages:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<UIImage *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "images"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "duration:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "duration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/title",
+          "value": "WKInterfaceMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/title",
+          "value": "WKInterfaceHMCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceHMCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceHMCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/title",
+          "value": "WKInterfaceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImageData(_:)/title",
+          "value": "setImageData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImageData(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImageData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImageNamed(_:)/title",
+          "value": "setImageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImageNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImageNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/title",
+          "value": "WKInterfaceInlineMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceInlineMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceInlineMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKVideoGravity/title",
+          "value": "WKVideoGravity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKVideoGravity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKVideoGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKVideoGravity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKVideoGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImageAnimatable/title",
+          "value": "WKImageAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImageAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKImageAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKImageAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKImageAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImage(_:)/title",
+          "value": "setImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage~1setImage(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfaceimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfaceimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

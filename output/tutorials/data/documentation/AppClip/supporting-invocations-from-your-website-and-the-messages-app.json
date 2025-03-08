@@ -1,0 +1,1233 @@
+{
+  "abstract": [
+    {
+      "text": "Display a Smart App Banner and the App Clip card on your website that people tap to launch your App Clip, and add support for invocations from the Messages app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting invocations from your website and the Messages app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create your App Clip, register a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "default App Clip experience",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". By creating a default App Clip experience, you lay the foundation for supporting ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invocations",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from a Smart App Banner on your website. This has an added benefit: If a person shares a link to your website in the Messages app and the website displays a Smart App Banner, the recipient can tap the link to instantly launch your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you can display the App Clip card on your website if a person’s device runs iOS 15 or later. This makes your App Clip even more discoverable and reduces the number of taps required to launch your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3886822",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the Smart App Banner only appears on your website if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You associated your App Clip with the website where you want to display the banner.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You added the banner to your website’s source code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You configured the default App Clip experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You published a version of your app that offers an App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person opens the website in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or in Safari without Private Browsing enabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the App Clip card on your website, people don’t need to tap the Smart App Banner for the card to appear. Alternatively, they can choose to view the website with the Smart App Banner instead of launching the App Clip. Both Safari and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " remember the person’s decision and won’t display the App Clip card when they visit the site again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Displaying an App Clip card in Safari on devices that run iOS 15 or later increases the discoverability of your App Clip and reduces the number of taps required to launch the App Clip. However, obscuring your website’s content with the App Clip card may not be ideal. In this case, creating a dedicated page that displays the App Clip card in Safari and linking to it may be a good option to guide people to launch your App Clip.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-code-to-display-the-Smart-App-Banner-and-the-App-Clip-Card-on-your-website",
+          "level": 3,
+          "text": "Add code to display the Smart App Banner and the App Clip Card on your website",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, the best time to add the Smart App Banner and the App Clip card to your website is while you associate your App Clip with your website. Add both by including the following HTML ",
+              "type": "text"
+            },
+            {
+              "code": "meta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag and replacing all placeholders with the appropriate values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<meta name=\"apple-itunes-app\" content=\"app-id=myAppStoreID, app-clip-bundle-id=appClipBundleID, app-clip-display=card\">"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note how the ",
+              "type": "text"
+            },
+            {
+              "code": "meta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag’s ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute includes the ",
+              "type": "text"
+            },
+            {
+              "code": "app-clip-bundle-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "app-clip-display",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters. By including the ",
+              "type": "text"
+            },
+            {
+              "code": "app-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you enable the Smart App Banner to open the full app on devices that run iOS 13 or earlier and on devices where Screen Time or a mobile device management (MDM) profile don’t allow App Clips. By including the ",
+              "type": "text"
+            },
+            {
+              "code": "app-clip-display",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you display the App Clip card in Safari or an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on devices running iOS 15 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you already display a Smart App Banner on your site, add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "app-clip-bundle-id=appClipBundleID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute to the existing ",
+                  "type": "text"
+                },
+                {
+                  "code": "meta",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag for the Smart App Banner, and use the bundle identifier of your App Clip for its value. To display the App Clip card on devices running iOS 15 or later, also add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "app-clip-display",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the value of a Smart App Banner’s ",
+              "type": "text"
+            },
+            {
+              "code": "app-argument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute isn’t available to App Clips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-invocations-from-links-people-share-in-Messages",
+          "level": 3,
+          "text": "Support invocations from links people share in Messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add the ",
+              "type": "text"
+            },
+            {
+              "code": "meta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to your webpage to support invocations from Safari or an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you automatically add support for invocations from links people share with others in the Messages app. When a person shares a link to the website that displays the banner or App Clip card, the recipient can tap the link to instantly launch your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sharing your App Clip in Messages requires that the recipient’s device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Runs iOS 14 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains the sender as a contact in the Contacts app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person shares the link with someone else as an SMS, the recipient must opt to load the rich link before they can tap the preview to launch the App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When a person taps a link to a website that displays the Smart App Banner in the Messages app, the invocation URL of your App Clip opens in the default browser.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the above requirements, you must provide the preview image that appears in the Messages app. To provide the preview image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your website doesn’t already contain the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "property=”og:image”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " HTML ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "meta",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag, add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<meta property=”og:image” content=”https://example.com/example.png”>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to each page that displays the Smart App Banner and the App Clip card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute with the URL of the preview image. Typically, this is the same image you use on the App Clip card. For additional information on displaying link previews in Messages, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/technotes/tn2444/_index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable your App Clip or fulll app to respond to the invocation from a website that displays the Smart App Banner or the App Clip card in Safari, retrieve the website’s URL upon invocation. Then, use the URL to update the interface of your App Clip to best match the content on the website. For more information on accessing the invocation URL, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737844",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Smart-App-Banner-and-App-Clip-card-to-multiple-websites",
+          "level": 3,
+          "text": "Add the Smart App Banner and App Clip card to multiple websites",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you may want to add the App Clip card and the Smart App Banner to several websites where each site uses its own domain — for example, if your App Clip serves several individual businesses. However, the default App Clip experience offers only one set of metadata. If you want to display the Smart App Banner on multiple websites where tapping each website’s banner displays a different App Clip card for your App Clip:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "meta",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tags for the Smart App Banner and App Clip card and for the link previews in the Messages app to each website, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example2.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example3.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associate each website with your App Clip as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the default App Clip experience for one website, likely for a more generic landing page. When people launch the App Clip from the landing page, the App Clip could then allow them to choose a business.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create separate advanced App Clip experiences for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example2.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example3.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and so on, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use different metadata for each advanced experience you configure; for example, choose custom imagery for the App Clip card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code to handle the invocation of your App Clip and to update the interface of your App Clip using the invocation URL — the URL of the website that displays the Smart App Banner or App Clip card. For more information on accessing the invocation URL, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Remember to associate each domain where you display the App Clip card and the Smart App Banner with your App Clip as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid associating your App Clip with multiple domains, consider using one domain and use URLs like ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/business1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/business2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". By using one domain, you’ll only have to associate your app and App Clip with ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and configure an advanced App Clip experience for each URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/APActivationPayload": {
+      "abstract": [
+        {
+          "text": "Information that’s passed to an App Clip on launch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "APActivationPayload",
+      "type": "topic",
+      "url": "/documentation/appclip/apactivationpayload"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website": {
+      "abstract": [
+        {
+          "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating your App Clip with your website",
+      "type": "topic",
+      "url": "/documentation/appclip/associating-your-app-clip-with-your-website"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location": {
+      "abstract": [
+        {
+          "text": "Add code to quickly confirm a person’s physical location while respecting their privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming a person’s physical location",
+      "type": "topic",
+      "url": "/documentation/appclip/confirming-a-person-s-physical-location"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app": {
+      "abstract": [
+        {
+          "text": "Enable people to launch another app’s App Clip from your app with App Clip links and offer a rich preview of it with the Link Presentation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Launching another app’s App Clip from your app",
+      "type": "topic",
+      "url": "/documentation/appclip/launching-another-app-s-app-clip-from-your-app"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations": {
+      "abstract": [
+        {
+          "text": "Add code to respond to invocations and offer a focused launch experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip": {
+      "abstract": [
+        {
+          "text": "A collection of keys that an App Clip uses to get additional capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppClip",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppClip"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/technotes/tn2444/_index.html": {
+      "identifier": "https://developer.apple.com/library/archive/technotes/tn2444/_index.html",
+      "title": "Best Practices for Link Previews in Messages",
+      "titleInlineContent": [
+        {
+          "text": "Best Practices for Link Previews in Messages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2444/_index.html"
+    },
+    "media-3737844": {
+      "alt": "A screenshot of a conversation in the Messages app on iPhone that includes a preview of a shared App Clip.",
+      "identifier": "media-3737844",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f455903036d0b3eae53cdfd46a6609f3/media-3737844@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eeba7f783d22a41088c877bda2f60428/media-3737844~dark@2x.png"
+        }
+      ]
+    },
+    "media-3886822": {
+      "alt": "Two screenshots of a website in Safari on iPhone. One screenshot shows the Smart App Banner on the website. The other screenshot shows the App Clip card in Safari.",
+      "identifier": "media-3886822",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4984d42c98963fb04ce57a2fa0b2529c/media-3886822@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4e91f7f6d342fb55be7882590b48686/media-3886822~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Launch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+        "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+        "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+        "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+        "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+        "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+      ],
+      "title": "Launch"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Launch",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+                "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+                "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+              ],
+              "title": "Launch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/title",
+          "value": "APActivationPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

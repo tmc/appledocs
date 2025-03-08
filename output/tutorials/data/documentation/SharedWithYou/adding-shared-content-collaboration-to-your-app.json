@@ -1,0 +1,2974 @@
+{
+  "abstract": [
+    {
+      "text": "Manage shared content collaboration in your app using CloudKit and iCloud Drive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-shared-content-collaboration-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Shared With You"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding shared content collaboration to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can create collaborations and share content in a Messages conversation by leveraging ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and iCloud Drive to create and store content on the server. Collaborators add a document to conversations by sharing content using Messages. The system displays collaboration activity in Messages conversations and in active FaceTime calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This collaboration process builds on existing technologies, like drag and drop and the system share sheet. If your app doesn’t use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for shared content, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework provides an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object wrapped in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement a custom collaboration infrastructure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-collaboration-object",
+          "level": 3,
+          "text": "Create a collaboration object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is sharing a file URL using iCloud Drive, that URL is your collaboration object. To manage a CloudKit collaboration, your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " container and create a collaboration object. The system transports your app’s data to other processes using the ",
+              "type": "text"
+            },
+            {
+              "code": "CKShare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app gives an existing ",
+              "type": "text"
+            },
+            {
+              "code": "CKShare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the collaboration object or provides a preparation handler to create a ",
+              "type": "text"
+            },
+            {
+              "code": "CKShare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when collaboration starts. In the example below, your app starts a new collaboration and creates the ",
+              "type": "text"
+            },
+            {
+              "code": "CKShare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new collaboration object.",
+            "",
+            "let itemProvider = NSItemProvider()",
+            "itemProvider.registerCKShare(container: container, allowedSharingOptions: CKAllowedSharingOptions.standard, preparationHandler: {",
+            "    // Create your share and save to the server or throw an error.",
+            "    return savedShare",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an existing collaboration, your app retrieves the existing collaboration object from the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve an existing collaboration object.",
+            "",
+            "let itemProvider = NSItemProvider()",
+            "itemProvider.registerCKShare(share, container: container, allowedSharingOptions: CKAllowedSharingOptions.standard)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-collaboration-controls",
+          "level": 3,
+          "text": "Present collaboration controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A collaborator can modify the share options from the share sheet. To add the collaboration controls to the header of a share sheet, your app provides the collaboration object that it created or retrieved from the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085564",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Present a share sheet in iOS.",
+            "",
+            "let activityViewController = UIActivityViewController(activityItems: [collaborationObject], applicationActivities: nil)",
+            "",
+            "presentingViewController.present(activityViewController, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, a share popover offers similar options to the iOS share sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085595",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Present a share popover in macOS.",
+            "",
+            "let sharingServicePicker = NSSharingServicePicker(items: [collaborationObject])",
+            "",
+            "sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-a-title-and-image-for-the-collaboration-header",
+          "level": 3,
+          "text": "Provide a title and image for the collaboration header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app provides a file as shared data, the system automatically populates a title and image for the collaboration header in the share sheet. Otherwise, if your app uses CloudKit data as shared content, or if you’d like to override the default title and image, you can provide a title and image for the collaboration header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a title and image that your app passes to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Provide CloudKit metadata in iOS.",
+            "",
+            "let configuration = UIActivityItemsConfiguration(itemProviders: [collaborationItemProvider])",
+            "configuration.perItemMetadataProvider = { (_, key) in",
+            "    switch key {",
+            "    case .linkPresentationMetadata:",
+            "        // Create LPLinkMetadata with the title and imageProvider.",
+            "        return metadata",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}",
+            "",
+            "let activityViewController = UIActivityViewController(activityItemsConfiguration: configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPreviewRepresentingActivityItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a title, image, and icon that your app passes to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The image represents the shared content, and the icon represents the source of the shared content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Provide CloudKit metadata in macOS.",
+            "",
+            "let title = “Shared Item”",
+            "let image = NSImage(contentsOfFile: “Shared_Item_Preview_Image.png”)",
+            "let icon = NSImage(contentsOfFile: “App_Icon.png”)",
+            "",
+            "let previewRepresentingItem = NSPreviewRepresentingActivityItem(item: collaborationItemProvider, title: title, image: image, icon: icon)",
+            "",
+            "let picker = NSSharingServicePicker(items: [previewRepresentingItem])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-SwiftUI-transferable-object-for-collaboration-through-ShareLink",
+          "level": 3,
+          "text": "Create a SwiftUI transferable object for collaboration through ShareLink",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In SwiftUI, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShareLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to support collaboration mode in the share sheet. The object your app shares must adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a protocol for sharing and data transfer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example below, a structure provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShareTransferRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by either returning an existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or creating a new one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a SwiftUI Transferable object.",
+            "",
+            "struct Note: Transferable {",
+            "    var share: CKShare?",
+            "    func saveCKShareToServer() async throws -> CKShare { … }",
+            "",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        CKShareTransferRepresentation { note in",
+            "            if let share = note.share {",
+            "                return .existing(share, container: container, options: options)",
+            "            } else {",
+            "                return .prepareShare(container: container, options: options) {",
+            "                    return try await note.saveCKShareToServer()",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is sharing a file URL using iCloud Drive, that URL is the ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object shared through ",
+              "type": "text"
+            },
+            {
+              "code": "ShareLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your app creates a ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, pass it to ",
+              "type": "text"
+            },
+            {
+              "code": "ShareLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When your app shares a URL or string, the system automatically creates a preview. Optionally, your app can include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SharePreview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which the system uses to display the title and image for the preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Adopt a SwiftUI ShareLink.",
+            "",
+            "struct ContentView: View {",
+            "    // SharedPhoto() returns an object that conforms to the Transferable protocol.",
+            "    @State let photo = SharedPhoto()",
+            "",
+            "    var body: some View {",
+            "        ShareLink(item: photo, preview: SharePreview(photo.title, image: photo.image))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-the-collaboration-view",
+          "level": 3,
+          "text": "Initialize the collaboration view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A collaborator accesses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using an icon in the navigation bar. This icon shows the app that manages the shared content and the number of collaborators associated with the collaboration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085597",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system handles the layout and formatting of the collaboration view. Your app is responsible for providing the ",
+              "type": "text"
+            },
+            {
+              "code": "itemProvider(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/activeParticipantCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for CloudKit-based apps, the file URL for iCloud Drive-based apps, or the ",
+              "type": "text"
+            },
+            {
+              "code": "/SharedWithYouCore/SWCollaborationMetadata/Representation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for custom collaboration infrastructures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize the collaboration view.",
+            "",
+            "let collaborationView = SWCollaborationView(itemProvider: itemProvider)",
+            "",
+            "collaborationView.activeParticipantCount = myModel.activePeople.count"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a completely customized view on the collaboration view, your app creates a view and assigns it to the ",
+              "type": "text"
+            },
+            {
+              "code": "contentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "collaborationView.contentView = MyView(model: myModel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For CloudKit and iCloud Drive adopters, the collaboration view includes a manage button. The button brings up the manage user interface, where collaborators can add and remove participants or change the share settings. Your app can also assign a custom title to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/manageButtonTitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The title defaults to “Manage Share” if your app doesn’t customize it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "collaborationView.manageButtonTitle = \"Custom Manage Button\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses a custom collaboration infrastructure, you must provide your own manage button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Observe-when-a-server-saves-a-share",
+          "level": 3,
+          "text": "Observe when a server saves a share",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since your app needs to manage active content sharing, it’s critical to know when a share starts or stops. If your app uses CloudKit or iCloud Drive, Shared with You provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKSystemSharingUIObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol that your app uses to observe and handle updates to collaborations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, your app passes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "CKSystemSharingUIObserver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create an observer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let observer = CKSystemSharingUIObserver(container: container)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027493-systemsharinguididsaveshareblock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in that observer to capture and react to the result of the server-side save of the share.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "observer.systemSharingUIDidSaveShareBlock = { _, result in",
+            "    switch result {",
+            "    case .success(let share):",
+            "        // Handle the successful save of a share.",
+            "    case .failure(let error):",
+            "        // Handle the error for an unsuccessful save.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027494-systemsharinguididstopsharingblo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in that same observer to handle when a share stops.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "observer.systemSharingUIDidStopSharingBlock = { _, result in",
+            "    switch result {",
+            "    case .success(let share):",
+            "        // Handle the successful share deletion.",
+            "    case .failure(let error):",
+            "        // Handle the error when a deletion fails.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-notices-for-shared-content-collaboration",
+          "level": 3,
+          "text": "Post notices for shared content collaboration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can post notices to summarize updates to a collaboration. These notices appear at the top of the related Messages thread. These updates include changes to the shared content, new mentions, server-side changes, and updates to the collaborators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To post a notice, retrieve the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use it to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that matches the type of update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to post a notice about content updates or comments. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve a collaboration highlight with the URL of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " your app used to initiate the collaboration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve the collaboration highlight from the highlight center.",
+            "",
+            "let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "",
+            "let highlight = try highlightCenter.collaborationHighlight(forURL: ckShareURL, error: &error)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create an ",
+              "type": "text"
+            },
+            {
+              "code": "SWHighlightChangeEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. The initializer takes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. In this case, the app sets the trigger type to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger/edit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Lastly, post the notice for that event to the highlight center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a change event notice.",
+            "",
+            "let editEvent = SWHighlightChangeEvent(highlight: highlight, trigger: .edit)",
+            "",
+            "highlightCenter.postNotice(for: editEvent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-persistence-event-notice",
+          "level": 3,
+          "text": "Post a persistence event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to post a notice when your app moves, renames, or deletes content on the server. In the example below, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " trigger type signifies the document name has changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a persistence event notice that shows your app renamed a document.",
+            "",
+            "let renamedEvent = SWHighlightPersistenceEvent(highlight: highlight, trigger: .renamed)",
+            "",
+            "highlightCenter.postNotice(for: renamedEvent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-membership-event-notice",
+          "level": 3,
+          "text": "Post a membership event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app alters the membership for a collaboration and triggers a membership event, the system posts an update to the collaborators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app retrieves the highlight, create the membership event by passing in the retrieved highlight. Use either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the trigger for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a membership event notice that shows your app added a collaborator.",
+            "",
+            "let membershipEvent = SWHighlightMembershipEvent(highlight: highlight, trigger: .addedCollaborator)",
+            "",
+            "highlightCenter.postNotice(for: membershipEvent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the membership of a Messages group changes, Shared with You keeps collaborators on your shared documents in sync. For CloudKit and iCloud Drive, your app doesn’t have to do anything.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085670",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person adds someone new to a Messages conversation for a collaboration, the system prompts the document owner in Messages to add them to the share. When a person removes someone from a Messages conversation, the system prompts the document owner in Messages to remove them from the share.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSPreviewRepresentingActivityItem": {
+      "abstract": [
+        {
+          "text": "A type that adds metadata to an item you share using the macOS share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreviewRepresentingActivityItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPreviewRepresentingActivityItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreviewRepresentingActivityItem",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSPreviewRepresentingActivityItem"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker": {
+      "abstract": [
+        {
+          "text": "A list of sharing services that the user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSharingServicePicker",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSharingServicePicker"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKContainer": {
+      "abstract": [
+        {
+          "text": "A conduit to your app’s databases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKContainer",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKContainer"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKShare": {
+      "abstract": [
+        {
+          "text": "A specialized record type that manages a collection of shared records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShare",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKShare"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKShareTransferRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation the system uses to share an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShareTransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShareTransferRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShareTransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKShareTransferRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKSystemSharingUIObserver": {
+      "abstract": [
+        {
+          "text": "An object the system uses to monitor changes in sharing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSystemSharingUIObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKSystemSharingUIObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSystemSharingUIObserver",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKSystemSharingUIObserver"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShareLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a sharing presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShareLink"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PreviewImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PreviewIcon"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PreviewImage"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PreviewIcon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShareLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShareLink",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShareLink"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/SharePreview": {
+      "abstract": [
+        {
+          "text": "A representation of a type to display in a share preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SharePreview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SharePreview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SharePreview",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/SharePreview"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that allows a responder to export data through a variety of interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfiguration",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027493-systemsharinguididsaveshareblock": {
+      "abstract": [
+        {
+          "text": "A callback block the system invokes after the success or failure of a system sharing UI save.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027493-systemsharinguididsaveshareblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemSharingUIDidSaveShareBlock",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksystemsharinguiobserver/4027493-systemsharinguididsaveshareblock"
+    },
+    "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027494-systemsharinguididstopsharingblo": {
+      "abstract": [
+        {
+          "text": "A callback block the system invokes after the success or failure of a system sharing UI delete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cloudkit/cksystemsharinguiobserver/4027494-systemsharinguididstopsharingblo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemSharingUIDidStopSharingBlock",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksystemsharinguiobserver/4027494-systemsharinguididstopsharingblo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "abstract": [
+        {
+          "text": "Manage files and key-value data that automatically synchronize among a user's iCloud devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "article",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou": {
+      "abstract": [
+        {
+          "text": "Surface shared content and collaborate in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Shared With You",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight": {
+      "abstract": [
+        {
+          "text": "A highlight object that represents an active collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationHighlight"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationHighlight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationHighlight",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swcollaborationhighlight"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView": {
+      "abstract": [
+        {
+          "text": "A view that contains the collaboration content and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationView"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationView",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swcollaborationview"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/activeParticipantCount": {
+      "abstract": [
+        {
+          "text": "The number of participants in a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeParticipantCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/activeParticipantCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeParticipantCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeParticipantCount",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swcollaborationview/activeparticipantcount"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/manageButtonTitle": {
+      "abstract": [
+        {
+          "text": "The manage button title that the system displays in the header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manageButtonTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationView/manageButtonTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manageButtonTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "manageButtonTitle",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swcollaborationview/managebuttontitle"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlight": {
+      "abstract": [
+        {
+          "text": "An object that represents a universal link to share by any number of contacts in one or more conversations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlight"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlight",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlight"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a priority-ordered list of universal links to share with the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightCenter",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightcenter"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents change activity for a highlight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightChangeEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightChangeEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightChangeEvent",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightchangeevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger": {
+      "abstract": [
+        {
+          "text": "The type of change event for the highlight",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightChangeEventTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightChangeEventTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightChangeEventTrigger",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightchangeeventtrigger"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger/edit": {
+      "abstract": [
+        {
+          "text": "Signifies a highlight edit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edit"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightChangeEventTrigger/edit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightChangeEventTriggerEdit"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightChangeEventTrigger.edit",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightchangeeventtrigger/edit"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightEvent": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an activity that the system posts in response to a user action for a highlight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightEvent",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents membership activity for a highlight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMembershipEvent",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmembershipevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator": {
+      "abstract": [
+        {
+          "text": "Signifies the system added a collaborator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addedCollaborator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEventTriggerAddedCollaborator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMembershipEventTrigger.addedCollaborator",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmembershipeventtrigger/addedcollaborator"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator": {
+      "abstract": [
+        {
+          "text": "Signifies the system removed a collaborator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removedCollaborator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMembershipEventTrigger.removedCollaborator",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmembershipeventtrigger/removedcollaborator"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents persistence activity for a highlight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightPersistenceEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightPersistenceEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightPersistenceEvent",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightpersistenceevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed": {
+      "abstract": [
+        {
+          "text": "Signifies a rename event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renamed"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightPersistenceEventTriggerRenamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightPersistenceEventTrigger.renamed",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/renamed"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-custom-collaboration-to-your-app": {
+      "abstract": [
+        {
+          "text": "Integrate your custom collaboration app with Messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-custom-collaboration-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding custom collaboration to your app",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/adding-custom-collaboration-to-your-app"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views": {
+      "abstract": [
+        {
+          "text": "Create and customize a collaboration view to manage the shared content actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collaboration views",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/collaboration-views"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata": {
+      "abstract": [
+        {
+          "text": "A model object for conveying data during a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationMetadata",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata"
+    },
+    "media-4085564": {
+      "alt": "iPhone with most of the screen dimmed. The center section is an undimmed collaboration panel with a Pages icon. To the right is a Photo Shoot title, and below that is a Collaborate pop-up button. Below that is a disclosure text button with the text, Everyone can make changes.",
+      "identifier": "media-4085564",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3bec1b6b2db1b7fe1414ab81d379365b/media-4085564@2x.png"
+        }
+      ]
+    },
+    "media-4085595": {
+      "alt": "A popover with a Pages icon. To the right is a Photo Shoot title, and below that is subtitle text, Pages Document - 729 KB. Below that is a horizontal row of four round Messages profile icons labeled Lauren Kerr, Camera Crew, Virgil Scott, and Kim Kilgo. Below that is a vertical list of four share icons for AirDrop, Mail, Messages, and Invite with Link. Below that is an Edit Actions menu item.",
+      "identifier": "media-4085595",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/526c4b429a4ed3c62c4ea19608bc3620/media-4085595@2x.png"
+        }
+      ]
+    },
+    "media-4085597": {
+      "alt": "An icon with the number 2 is above a popover that points to it. The top of the popover has an icon with three faces. To the right is a Photo Shoot title, below that is a subtitle With Greg, Kim & Virgil as the text. Below that are three round buttons for message, audio, and video. Below that are Current Participants Greg Crane and Virgil Scott. Below that is a Participant Cursors checkbox. Below that is a Manage Shared File menu item.",
+      "identifier": "media-4085597",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37a1de41a21e6a4dd18b77c1355d36b7/media-4085597@2x.png"
+        }
+      ]
+    },
+    "media-4085670": {
+      "alt": "Two iPhones side by side both showing Messages conversations. The left iPhone has a notification with a profile icon and two lines of text to the right that say, Add Lauren to your 3 shared documents. To the right of the text is an oval Add button and a cancel x button. The right iPhone has a notification with a profile icon and two lines of text to the right that say Remove Chris from your 3 shared documents. To the right of the text is an oval “Remove” button and a cancel x button.",
+      "identifier": "media-4085670",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28ce0875b2762facf49404b2e0e34500/media-4085670@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collaboration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-custom-collaboration-to-your-app",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views"
+      ],
+      "title": "Collaboration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1addedCollaborator/title",
+          "value": "SWHighlightMembershipEventTriggerAddedCollaborator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1addedCollaborator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEventTriggerAddedCollaborator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSPreviewRepresentingActivityItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPreviewRepresentingActivityItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEventTrigger~1renamed/title",
+          "value": "SWHighlightPersistenceEventTriggerRenamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEventTrigger~1renamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightPersistenceEventTriggerRenamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEventTrigger/title",
+          "value": "SWHighlightChangeEventTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEventTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightChangeEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEventTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightChangeEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightEvent/title",
+          "value": "SWHighlightEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1removedCollaborator/title",
+          "value": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1removedCollaborator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEventTrigger~1edit/title",
+          "value": "SWHighlightChangeEventTriggerEdit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEventTrigger~1edit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightChangeEventTriggerEdit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKSystemSharingUIObserver/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKSystemSharingUIObserver"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/title",
+          "value": "SWCollaborationHighlight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/title",
+          "value": "SWCollaborationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSSharingServicePicker/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePicker"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityItemsConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEvent/title",
+          "value": "SWHighlightMembershipEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/title",
+          "value": "SWHighlightCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlight/title",
+          "value": "SWHighlight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView~1activeParticipantCount/title",
+          "value": "activeParticipantCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView~1activeParticipantCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeParticipantCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKShare/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKShare"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CKRecord",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView/title",
+          "value": "SWCollaborationView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEvent/title",
+          "value": "SWHighlightPersistenceEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightPersistenceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightPersistenceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEvent/title",
+          "value": "SWHighlightChangeEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightChangeEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightChangeEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightChangeEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView~1manageButtonTitle/title",
+          "value": "manageButtonTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationView~1manageButtonTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "manageButtonTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

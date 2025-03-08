@@ -1,0 +1,619 @@
+{
+  "abstract": [
+    {
+      "text": "A unique identifier for a bundle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.CFBundleIdentifier",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CFBundleIdentifier"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "CFBundleIdentifier"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "ideTitle": "Bundle identifier",
+        "name": "CFBundleIdentifier",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "string"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bundle ID",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " uniquely identifies a single app throughout the system. The bundle ID string must contain only alphanumeric characters (A–Z, a–z, and 0–9), hyphens (-), and periods (.). Typically, you use a reverse-DNS format for bundle ID strings. Bundle IDs are case-insensitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system uses the bundle ID to identify the app when applying specified preferences. Similarly, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/launch_services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses the bundle ID to locate an app capable of opening a particular file. The bundle ID also validates an app’s signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The bundle ID in the information property list must match the bundle ID you enter in App Store Connect. After you upload a build to App Store Connect, you can’t change the bundle ID or delete the associated explicit App ID in your developer account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "watchOS-Apps-with-Companion-iOS-App-Considerations",
+          "level": 3,
+          "text": "watchOS Apps with Companion iOS App Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For watchOS apps that have a companion iOS app in the same project, the embedded WatchKit app and WatchKit extension targets must have the same bundle ID prefix as the iOS app. The WatchKit app must have the format ",
+              "type": "text"
+            },
+            {
+              "code": "[Bundle ID].watchkitapp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the WatchKit extension must have the format ",
+              "type": "text"
+            },
+            {
+              "code": "[Bundle ID].watchkitextension",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the iOS app’s bundle ID, also change the WatchKit app’s  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key and the WatchKit extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Bundle identifier",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "name": "CFBundleIdentifier",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "The bundle ID of the watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+      "kind": "symbol",
+      "name": "WKAppBundleIdentifier",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAppBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAppBundleIdentifier",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/wkappbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "The bundle ID of the watchOS app’s companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier",
+      "kind": "symbol",
+      "name": "WKCompanionAppBundleIdentifier",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKCompanionAppBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKCompanionAppBundleIdentifier",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/wkcompanionappbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/bundleresources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/launch_services": {
+      "abstract": [
+        {
+          "text": "Launch and open documents in other apps from your current app process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/launch_services",
+      "kind": "article",
+      "role": "article",
+      "title": "Launch Services",
+      "type": "topic",
+      "url": "/documentation/coreservices/launch_services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Identification",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier"
+      ],
+      "title": "Identification"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CFBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Identification",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKAppBundleIdentifier",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/WKCompanionAppBundleIdentifier"
+              ],
+              "title": "Identification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1WKAppBundleIdentifier/title",
+          "value": "WKAppBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1WKAppBundleIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAppBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/title",
+          "value": "CFBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1WKCompanionAppBundleIdentifier/title",
+          "value": "WKCompanionAppBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1WKCompanionAppBundleIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCompanionAppBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

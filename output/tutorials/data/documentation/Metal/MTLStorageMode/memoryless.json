@@ -1,0 +1,861 @@
+{
+  "abstract": [
+    {
+      "text": "The resource’s contents are only available to the GPU, and only exist temporarily during a render pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLStorageMode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/memoryless"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MTLStorageMode@MTLStorageModeMemoryless",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "memoryless"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLStorageModeMemoryless"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "MTLStorageMode.memoryless"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "memoryless"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+        "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+        "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memoryless storage mode uses tile memory, and is only available on Apple family GPUs. Memoryless resources are temporary targets used in a pass and you can’t access their contents with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use memoryless resources for temporary elements used only within a single pass. For example, most render passes don’t store depth attachments and multisample attachments to memory. You can significantly reduce your memory usage by creating these attachments as memoryless resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Metal devices that support tile rendering, you can use imageblocks to manage transient rendering data more flexibly. For more information about imageblock memory and using it with your shader functions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sections 2.11, 4.5, and 5.6.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more guidance on how to choose storage modes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load": {
+      "abstract": [
+        {
+          "text": "The GPU preserves the existing contents of the attachment at the start of the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction/load",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadActionLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction.load",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction/load"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode": {
+      "abstract": [
+        {
+          "text": "Options for the memory location and access permissions for a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.managed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/managed"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/memoryless": {
+      "abstract": [
+        {
+          "text": "The resource’s contents are only available to the GPU, and only exist temporarily during a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryless"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/memoryless",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeMemoryless"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.memoryless",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/memoryless"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "abstract": [
+        {
+          "text": "The resource is only available to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModePrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.shared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/shared"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store": {
+      "abstract": [
+        {
+          "text": "The GPU stores the rendered contents to the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "store"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStoreActionStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStoreAction.store",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoreaction/store"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Apple GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-apple-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps": {
+      "abstract": [
+        {
+          "text": "Learn best practices for using memory efficiently in iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the Memory Footprint of Metal Apps",
+      "type": "topic",
+      "url": "/documentation/metal/reducing-the-memory-footprint-of-metal-apps"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes": {
+      "abstract": [
+        {
+          "text": "Set a storage mode that defines the memory location and access permissions of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Resource Storage Modes",
+      "type": "topic",
+      "url": "/documentation/metal/setting-resource-storage-modes"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storage-Mode-Options",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+        "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+        "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private"
+      ],
+      "title": "Storage Mode Options"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLStorageModeMemoryless"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeMemoryless"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLStorageMode"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Storage-Mode-Options",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+                "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+                "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private"
+              ],
+              "title": "Storage Mode Options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "MTLStorageModeMemoryless"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction~1store/title",
+          "value": "MTLStoreActionStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction~1store/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/title",
+          "value": "MTLStorageModePrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModePrivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/title",
+          "value": "MTLStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1load/title",
+          "value": "MTLLoadActionLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction~1load/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1memoryless/title",
+          "value": "MTLStorageModeMemoryless"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1memoryless/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeMemoryless"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/title",
+          "value": "MTLStorageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/title",
+          "value": "MTLStorageModeManaged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeManaged"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlstoragemode/memoryless"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlstoragemode/memoryless"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

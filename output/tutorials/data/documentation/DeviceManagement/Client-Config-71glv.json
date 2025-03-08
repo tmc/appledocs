@@ -1,0 +1,360 @@
+{
+  "abstract": [
+    {
+      "text": "Read client-specific information from the server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-71glv"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:get:v2-client-config",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Client Config"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Client Config"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/client/config"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ClientConfigResponse",
+              "text": "ClientConfigResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Response",
+          "level": 3,
+          "text": "Example Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    ""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"countryISO2ACode\": \"US\",",
+                    "    \"defaultPlatform\": \"volumestore\",",
+                    "    \"locationName\": \"PS01\",",
+                    "    \"mdmInfo\": {",
+                    "        \"id\": \"522d5c43-44ca-4f7e-ba7a-53570cf60765\", ",
+                    "        \"name\": \"Apple Configurator 2\", ",
+                    "        \"metadata\": \"2.13.3\"",
+                    "    },",
+                    "    \"notificationAuthToken\": \"SUp3rS3Cr3t\",",
+                    "    \"notificationUrl\": \"https://www.next.com/notification\",",
+                    "    \"subscribedNotificationTypes\": [",
+                    "        \"ASSET_COUNT\",",
+                    "        \"ASSET_MANAGEMENT\",",
+                    "        \"USER_MANAGEMENT\",",
+                    "        \"USER_ASSOCIATED\"",
+                    "    ],",
+                    "    \"tokenExpirationDate\": \"2030-11-08T22:33:22+0000\",",
+                    "    \"uId\": \"2049025000431439\",",
+                    "    \"websiteURL\": \"https://school.apple.com\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-71glv": {
+      "abstract": [
+        {
+          "text": "Read client-specific information from the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Config-71glv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Config"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Config",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-config-71glv"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the client configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientConfigResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClientConfigResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClientConfigResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clientconfigresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains the error that occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/errorresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ClientConfigResponse",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ErrorResponse"
+      ],
+      "title": "Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/client-config-71glv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

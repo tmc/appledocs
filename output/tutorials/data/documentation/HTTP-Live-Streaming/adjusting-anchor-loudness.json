@@ -1,0 +1,670 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust anchor loudness when measurements of speech-gated loudness for a full mix",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "may be inaccurate, such as when speech activity is low.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjusting anchor loudness"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apply the adjustment method below to improve the consistency of your anchor loudness,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or standard, value for low speech activity. The method’s basis is a statistical model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of anchor loudness for a large variety of long-form content that takes advantage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the correlation with other loudness-based measurements. The method uses the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "measurements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Speech-gated loudness",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Speech activity that derives from a speech detector",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Program loudness (ITU-R BS.1770-4)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Top value of LRA (loudness range) (EBU Tech 3342)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For low speech activity, the model ignores the speech-gated loudness value and computes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "anchor loudness from the other three measurements. A gradual transition from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model to the measured, speech-gated loudness occurs as the speech activity increases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples and source code show how to calculate anchor loudness using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "program loudness and speech-gated loudness.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-anchor-loudness-using-different-program-loudness-values",
+          "level": 3,
+          "text": "Determine anchor loudness using different program loudness values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a visual representation of anchor loudness for an example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a speech-gated loudness of -27 LKFS (loudness, K-weighted, relative to full",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scale) and different program loudness values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adjusting-anchor-loudness-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lines on the left correspond to the calculated anchor loudness as a result of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the adjustment method. The labels for each line indicate the program loudness values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For low speech activity, anchor loudness increases with program loudness. For increasing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "speech activity, there’s a transition to the speech-gated loudness measurement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next figure displays anchor loudness for an example with speech-gated loudness",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of -27 LKFS and program loudness of -24 LKFS. The difference between top value of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "LRA and program loudness characterizes how dynamic the content is. The lines on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "left correspond to the calculated anchor loudness as a result of the adjustment method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The labels for each line indicate the value of the loudness difference in loudness",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "units (LU). The loudness difference correlates with anchor loudness, and the modeling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results in lower anchor loudness for more dynamic content at low speech activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As the speech activity increases, anchor loudness transitions to the measured speech-gated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loudness.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adjusting-anchor-loudness-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following source code includes a function to compute the adjusted anchor loudness",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value from the parameters in the preceding examples, which is applicable to long-form",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum AnchorLoudnessAdjustmentError: Error {",
+            "    case speechActivityOutOfBounds",
+            "}",
+            "",
+            "/// Computes adjusted anchor loudness",
+            "/// - Parameters:",
+            "///   - programLoudness: The loudness (LKFS) produced by ITU-R BS.1770-4.",
+            "///   - speechLoudness: The loudness (LKFS) produced by ITU-R BS.1770-4 applied to the speech-gated content.",
+            "///   - activity: The ratio of speech-gated content duration and content duration.",
+            "///   - isLraTopPresent: If `true`, the top value of LRA measurement is available.",
+            "///   - lraTop: The loudness (LKFS) produced by taking the top value of loudness range according to EBU Tech 3342.",
+            "/// - Returns: Adjusted anchor loudness (LKFS)",
+            "func adjustedAnchorLoudnessFor(programLoudness: Double,",
+            "                               speechLoudness: Double,",
+            "                               activity: Double,",
+            "                               isLraTopPresent: Bool,",
+            "                               lraTop: Double) throws -> Double {",
+            "    guard (0...1).contains(activity) else {",
+            "        throw AnchorLoudnessAdjustmentError.speechActivityOutOfBounds",
+            "    }",
+            "",
+            "    // Constants",
+            "    /// Ignore `speechLoudness` below this speech activity ratio.",
+            "    let activityLow = 0.17",
+            "    /// Keep `speechloudness` above this speech activity ratio.",
+            "    let activityHigh = 0.25",
+            "    /// The boundary for the difference of `anchorLoudness` and `programLoudness`.`",
+            "    let loudnessOffsetDefault = 3.0",
+            "    /// The upper limit for the difference of `programLoudness` and `anchorLoudness`.",
+            "    let loudnessOffsetMax = 8.0",
+            "    /// The lower limit for the difference of `programLoudness` and `anchorLoudness`.",
+            "    let loudnessOffsetMin = 0.0",
+            "    /// The upper limit for the difference of `programLoudness` and `speechLoudness`.",
+            "    let loudnessDiffMax = 8.0",
+            "",
+            "    // Parameters for linear regression models.",
+            "    let model1ParamA = 6.452208",
+            "    let model1ParamB1 = 0.301736",
+            "    let model1ParamB2 = 0.881433",
+            "    let model2ParamA = 11.549024",
+            "    let model2ParamB = 0.362253",
+            "",
+            "    var loudnessOffset = loudnessOffsetDefault",
+            "    var speechLoudnessBounded = speechLoudness",
+            "    var anchorLoudness = speechLoudness",
+            "",
+            "    // Limit speech loudness to a reasonable range below program loudness.",
+            "    let diffLoudness = programLoudness - speechLoudnessBounded",
+            "    if diffLoudness > loudnessDiffMax {",
+            "        speechLoudnessBounded = programLoudness - loudnessDiffMax",
+            "    }",
+            "    if speechLoudnessBounded > programLoudness {",
+            "        speechLoudnessBounded = programLoudness",
+            "    }",
+            "",
+            "    // Compute loudness offset from linear regression model.",
+            "    if isLraTopPresent {",
+            "        let plLraTop = max(0, lraTop - programLoudness)",
+            "        loudnessOffset = model1ParamA +",
+            "            model1ParamB1 * programLoudness +",
+            "            model1ParamB2 * plLraTop",
+            "    } else {",
+            "        loudnessOffset = model2ParamA + model2ParamB * programLoudness",
+            "    }",
+            "",
+            "    // Clamp `loudnessOffset`.",
+            "    loudnessOffset = max(loudnessOffsetMin, min(loudnessOffset, loudnessOffsetMax))",
+            "",
+            "    // Update anchor loudness according to activity level.",
+            "    if activity > activityHigh {",
+            "        anchorLoudness = speechLoudnessBounded",
+            "    } else {",
+            "        if activity > activityLow {",
+            "            let weight = (activity - activityLow) / (activityHigh - activityLow)",
+            "            anchorLoudness = weight * speechLoudnessBounded +",
+            "                (1 - weight) * (programLoudness - loudnessOffset)",
+            "        } else {",
+            "            anchorLoudness = programLoudness - loudnessOffset",
+            "        }",
+            "    }",
+            "",
+            "    return anchorLoudness",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adjusting-anchor-loudness-1": {
+      "alt": "Graph depicting calculated anchor loudness values for an example with a speech-gated loudness of -27 LKFS and various program loudness values. The y axis represents anchor loudness in LKFS, from -30 at the bottom to -20 at the top. The x axis represents the speech activity level, from 0 on the left to 1 on the right. Five lines correspond to various program loudness values in LKFS. The top value of LRA is 3 loudness units higher than the program loudness value.",
+      "identifier": "adjusting-anchor-loudness-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb2233e5249afbd0c413ca2f2f807f99/adjusting-anchor-loudness-1@2x.png"
+        }
+      ]
+    },
+    "adjusting-anchor-loudness-2": {
+      "alt": "Graph depicting calculated anchor loudness values for an example with a speech-gated loudness of -27 LKFS and a program loudness of -24 LKFS. The y axis represents anchor loudness in LKFS, from -30 at the bottom to -20 at the top. The x axis represents the speech activity level, from 0 on the left to 1 on the right. Five lines correspond to various values between top value of LRA and program loudness.",
+      "identifier": "adjusting-anchor-loudness-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/daaae13428d19cc598f5e41dcc2d26f2/adjusting-anchor-loudness-2@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Learn the Common Media Application Format as it applies to HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "About the Common Media Application Format with HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Add Low-Latency HLS to your content streams to maintain scalability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Low-Latency HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos": {
+      "abstract": [
+        {
+          "text": "Review additional specifications and documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+      "kind": "article",
+      "role": "article",
+      "title": "Links to additional specifications and videos",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/links-to-additional-specifications-and-videos"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters": {
+      "abstract": [
+        {
+          "text": "Prepare JSON chapters for HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing JavaScript Object Notation (JSON) chapters",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-javascript-object-notation-json-chapters"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks": {
+      "abstract": [
+        {
+          "text": "Ensure volume normalization by including metadata for loudness and dynamic range",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing metadata for xHE-AAC video soundtracks",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-metadata-for-xhe-aac-video-soundtracks"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls": {
+      "abstract": [
+        {
+          "text": "Adding encryption keys to media playlists",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Using content protection systems with HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls": {
+      "abstract": [
+        {
+          "text": "Review informational videos about HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Videos about HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/videos-about-hls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifications-and-other-documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters"
+      ],
+      "title": "Specifications and other documents"
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "Avoid texture-rendering artifacts and reduce the GPU’s workload by creating smaller versions of a texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving Texture Sampling Quality and Performance with Mipmaps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Mipmaps",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are progressively smaller versions of the same texture image, each of which provides a different level of detail (LOD) for the texture. A texture’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mipmap chain",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is its complete set of mipmaps. Textures with mipmaps can help your app eliminate common visual problems, such as aliasing and moire patterns, while reducing the GPU’s memory bandwidth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "__The largest version of a texture is mipmap ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and it’s at the top of the mipmap chain. The next largest version is mipmap ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is one level lower in the chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4144107",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each nonzero mipmap level is 25% of the area of the previous mipmap level in the chain. A texture’s smallest mipmap is at least 1 pixel in each dimension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A mipmapped texture gives the GPU the option to sample from a mipmap size that’s closest to the size of the primitive it’s rendering to. A GPU’s texture-sampling hardware works best when a texture’s dimensions are similar to the output primitive’s dimensions. Without mipmaps, the GPU can sample only the full-size texture, including when an output primitive is much smaller than the texture. In that scenario, the hardware typically fetches a significant portion of the texture to properly filter for color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to filter a 256 x 256 texture to an 8 x 8 rendering, the GPU needs to blend 25% of the texture for each output pixel. Additionally, you can’t precisely control which pixels the GPU fetches from the texture and then blends to render to a relatively small primitive. That imprecision can produce an obviously incorrect image, especially when it spans multiple frames, such as during animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3374145",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mipmapped textures can also help improve your app’s performance because a GPU uses less memory bandwidth and memory cache by sampling from the smaller mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a mipmapped texture and initialize its mipmap chain by following the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers": {
+      "abstract": [
+        {
+          "text": "Specify how the GPU samples mipmaps in your textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Mipmap Filtering to Samplers",
+      "type": "topic",
+      "url": "/documentation/metal/adding-mipmap-filtering-to-samplers"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture": {
+      "abstract": [
+        {
+          "text": "Decide whether a texture that you’re creating needs mipmaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mipmapped Texture",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-mipmapped-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail": {
+      "abstract": [
+        {
+          "text": "Defer generating or loading larger mipmaps until that level of detail is needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamically Adjusting Texture Level of Detail",
+      "type": "topic",
+      "url": "/documentation/metal/dynamically-adjusting-texture-level-of-detail"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-mipmap-data": {
+      "abstract": [
+        {
+          "text": "Create your mipmaps either when you author content or at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Mipmap Data",
+      "type": "topic",
+      "url": "/documentation/metal/generating-mipmap-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries": {
+      "abstract": [
+        {
+          "text": "Determine in advance which mipmap levels the GPU requires to sample a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Predicting Which Mips the GPU Samples with Level-of-Detail Queries",
+      "type": "topic",
+      "url": "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps": {
+      "abstract": [
+        {
+          "text": "Set the range of mipmap levels that a sampler can access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting Access to Specific Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/restricting-access-to-specific-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    },
+    "media-3374145": {
+      "alt": "A diagram showing a texture image that’s 256 by 256 pixels divided into four quadrants by two perpendicular dashed lines that intersect at the center of the texture. In the upper right quadrant, the diagram highlights a square sample of the texture that’s 32 by 32 pixels. An arrow points from that square sample to the right to a smaller square. The smaller square is an output rendering of the larger texture, and is 8 by 8 pixels.",
+      "identifier": "media-3374145",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c560b024fb30fca20aff692777c05f62/media-3374145@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/907cfe16e0084873ab558788bb277579/media-3374145~dark@2x.png"
+        }
+      ]
+    },
+    "media-4144107": {
+      "alt": "A diagram showing a texture’s mipmap chain that starts with the largest resolution image, labeled  Mipmap 0, on the left. The six images on the right, labeled 1 through 6, are progressively smaller versions of the original texture where each mipmap level is 25% the size of the previous one.",
+      "identifier": "media-4144107",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb5952e55c7f2ef1e8fe970223dfe550/media-4144107@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec137a8913b4e146ac19e2cb10a7dc4b/media-4144107~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Mipmapping",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+        "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+        "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+        "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+      ],
+      "title": "Texture Mipmapping"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Mipmapping",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+                "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+                "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+                "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+                "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+              ],
+              "title": "Texture Mipmapping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1906 @@
+{
+  "abstract": [
+    {
+      "text": "Find results that you can use to autocomplete searches.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.1",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:maps_web_api:get:v1-searchAutocomplete",
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "/v1/searchAutocomplete"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Search for places that meet specific criteria to autocomplete a place search"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://maps-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/searchAutocomplete"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The query to autocomplete. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "q=eiffel",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "q",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of strings that describes the points of interest to exclude from the search results. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "excludePoiCategories=Restaurant,Cafe",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a complete list of possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "excludePoiCategories",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:PoiCategory",
+              "text": "PoiCategory"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of strings that describes the points of interest to include in the search results. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "includePoiCategories=Restaurant,Cafe",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a complete list of possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "includePoiCategories",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:PoiCategory",
+              "text": "PoiCategory"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "en-US"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The language the server uses when returning the response, specified using a BCP 47 language code. For example, for English, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "lang=en-US",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lang",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/Lang",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:Lang",
+              "text": "Lang"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of two-letter ISO 3166-1 codes of the countries to limit the results to. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "limitToCountries=US,CA",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " limits the search to the United States and Canada.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify two or more countries, the results reflect the best available results for some or all of the countries rather than everything related to the query for those countries.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limitToCountries",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of strings that describes the kind of result types to include in the response. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "resultTypeFilter=Poi",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "resultTypeFilter",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:SearchACResultType",
+              "text": "SearchACResultType"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A location the app defines as a hint. Specify the location as a comma-separated string containing the latitude and longitude. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchLocation=37.78,-122.42",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t provide a ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the server uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "userLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchRegion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as fallback hints.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "searchLocation",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchLocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:SearchLocation",
+              "text": "SearchLocation"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A region the app defines as a hint for the search. Specify the region as a comma-separated string that describes the region in the form of a north-latitude, east-longitude, south-latitude, west-longitude string. If you don’t provide ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the server uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "userLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchRegion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as fallback hints. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchRegion=38,-122.1,37.5,-122.5",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "searchRegion",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchRegion",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:SearchRegion",
+              "text": "SearchRegion"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The location of the user, specified as a comma-separated string that contains the latitude and longitude. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "userLocation=37.78,-122.42",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Certain APIs, such as Search, may opt to use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "userLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", if specified, as a fallback for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "searchLocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userLocation",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/UserLocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:UserLocation",
+              "text": "UserLocation"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "default",
+                "required"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A value that indicates the importance of the configured region.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "searchRegionPriority",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of strings that describes the addresses to include in the search results. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "includeAddressCategories=SubLocality,PostalCode",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you use this parameter, you must include ",
+                  "type": "text"
+                },
+                {
+                  "code": "address",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "resultTypeFilter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a complete list of possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "includeAddressCategories",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:AddressCategory",
+              "text": "AddressCategory"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated list of strings that describes the addresses to exclude in the search results. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "excludeAddressCategories=Country,AdministrativeArea",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you use this parameter, you must include ",
+                  "type": "text"
+                },
+                {
+                  "code": "address",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "resultTypeFilter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a complete list of possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "excludeAddressCategories",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:AddressCategory",
+              "text": "AddressCategory"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Returns a list of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchAutocompleteResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchAutocompleteResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:SearchAutocompleteResponse",
+              "text": "SearchAutocompleteResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message and an array of strings that contain additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains an error message that indicates the Maps access token is missing or invalid, and an array of strings that contains additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that indicates the call exceeds the daily service call quota for the authorization token. The app can try again later. If your app requires a larger daily quota, submit a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains a server error message and an array of strings that describe additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl -si -H \"Authorization: Bearer <maps_access_token>\" \\",
+                    "\"https://maps-api.apple.com/v1/searchAutocomplete?q=museum&searchLocation=37.7753881,-122.3931773\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"results\": [",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museums%20For%20Art\",",
+                    "      \"displayLines\": [",
+                    "        \"Museums For Art\",",
+                    "        \"Search Nearby\"",
+                    "      ]",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum\",",
+                    "        \"Search Nearby\"",
+                    "      ]",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20of%20Modern%20Art%20151%203rd%20St%2C%20San%20Francisco%2C%20CA%20%2094103%2C%20United%20States&metadata=ChwKFE11c2V1bSBvZiBNb2Rlcm4gQXJ0EgQIABAGEjUKMzE1MSAzcmQgU3QsIFNhbiBGcmFuY2lzY28sIENBICA5NDEwMywgVW5pdGVkIFN0YXRlcxgBKiIKEgkAAABAk%2BRCQBEAAACAq5lewBCElsC359Tk1PMBGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAAAgEYb1PxEAAABgZmDCQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum of Modern Art\",",
+                    "        \"151 3rd St, San Francisco, CA  94103, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.785743713378906,",
+                    "        \"lng\": -122.40109252929688",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94103\",",
+                    "        \"subLocality\": \"Financial District South\",",
+                    "        \"thoroughfare\": \"3rd St\",",
+                    "        \"subThoroughfare\": \"151\",",
+                    "        \"fullThoroughfare\": \"151 3rd St\",",
+                    "        \"areasOfInterest\": [",
+                    "          \"San Francisco Museum of Modern Art\"",
+                    "        ],",
+                    "        \"dependentLocalities\": [",
+                    "          \"Financial District South\",",
+                    "          \"Yerba Buena\",",
+                    "          \"FiDiSo\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=de%20Young%20museum%2050%20Hagiwara%20Tea%20Garden%20Dr%2C%20San%20Francisco%2C%20CA%2094118%2C%20United%20States&metadata=ChcKD2RlIFlvdW5nIG11c2V1bRIECAkQBhJDCkE1MCBIYWdpd2FyYSBUZWEgR2FyZGVuIERyLCBTYW4gRnJhbmNpc2NvLCBDQSA5NDExOCwgVW5pdGVkIFN0YXRlcxgBKiIKEgkAAACgv%2BJCQBEAAABA%2F51ewBCn%2FY68hI664YIBGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAADAN5waQBEAAACACwPBQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"de Young museum\",",
+                    "        \"50 Hagiwara Tea Garden Dr, San Francisco, CA 94118, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.7714729309082,",
+                    "        \"lng\": -122.46870422363281",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94118\",",
+                    "        \"thoroughfare\": \"Hagiwara Tea Garden Dr\",",
+                    "        \"subThoroughfare\": \"50\",",
+                    "        \"fullThoroughfare\": \"50 Hagiwara Tea Garden Dr\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"San Francisco\",",
+                    "          \"Bay Area\",",
+                    "          \"Golden Gate\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Asian%20Art%20Museum%20200%20Larkin%20St%2C%20San%20Francisco%2C%20CA%2094102%2C%20United%20States&metadata=ChgKEEFzaWFuIEFydCBNdXNldW0SBAgKEAYSNwo1MjAwIExhcmtpbiBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgOTQxMDIsIFVuaXRlZCBTdGF0ZXMYASoiChIJAAAA4N%2FjQkARAAAAoKKaXsAQkNqC2ruqrLGyARiuTWIICgZtdXNldW2C8QQGbXVzZXVtiPEEANrxBBYJAAAAACS%2BAEARAAAAQApCn0AyAmVu6vEEAA%3D%3D\",",
+                    "      \"displayLines\": [",
+                    "        \"Asian Art Museum\",",
+                    "        \"200 Larkin St, San Francisco, CA 94102, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.780269622802734,",
+                    "        \"lng\": -122.41617584228516",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94102\",",
+                    "        \"subLocality\": \"Tenderloin\",",
+                    "        \"thoroughfare\": \"Larkin St\",",
+                    "        \"subThoroughfare\": \"200\",",
+                    "        \"fullThoroughfare\": \"200 Larkin St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"NoMa\",",
+                    "          \"Civic Center\",",
+                    "          \"Tenderloin\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20of%20the%20Eye%20645%20Beach%20St%2C%20San%20Francisco%2C%20CA%2094109%2C%20United%20States&metadata=ChkKEU11c2V1bSBvZiB0aGUgRXllEgQIABAGEjYKNDY0NSBCZWFjaCBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgOTQxMDksIFVuaXRlZCBTdGF0ZXMYASohChIJAAAAwDrnQkARAAAAwOCaXsAQwuvrgpbHydkJGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAACgB7sQQBEAAADgo4BXQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum of the Eye\",",
+                    "        \"645 Beach St, San Francisco, CA 94109, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.806480407714844,",
+                    "        \"lng\": -122.41996765136719",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94109\",",
+                    "        \"subLocality\": \"Fisherman’s Wharf\",",
+                    "        \"thoroughfare\": \"Beach St\",",
+                    "        \"subThoroughfare\": \"645\",",
+                    "        \"fullThoroughfare\": \"645 Beach St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Fisherman’s Wharf\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20of%20Craft%20and%20Design%202569%203rd%20St%2C%20San%20Francisco%2C%20CA%20%2094107%2C%20United%20States&metadata=CiIKGk11c2V1bSBvZiBDcmFmdCBhbmQgRGVzaWduEgQIABAGEjYKNDI1NjkgM3JkIFN0LCBTYW4gRnJhbmNpc2NvLCBDQSAgOTQxMDcsIFVuaXRlZCBTdGF0ZXMYASohChIJAAAAwODgQkARAAAAwNOYXsAQ36Pw1oXM%2F44%2BGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAABgdOQAQBEAAACA67FfQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum of Craft and Design\",",
+                    "        \"2569 3rd St, San Francisco, CA  94107, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.756858825683594,",
+                    "        \"lng\": -122.38792419433594",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94107\",",
+                    "        \"subLocality\": \"Central Waterfront\",",
+                    "        \"thoroughfare\": \"3rd St\",",
+                    "        \"subThoroughfare\": \"2569\",",
+                    "        \"fullThoroughfare\": \"2569 3rd St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Central Waterfront\",",
+                    "          \"Dogpatch\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Children%E2%80%99s%20Creativity%20Museum%20221%204th%20St%2C%20San%20Francisco%2C%20CA%20%2094103%2C%20United%20States&metadata=CiYKHkNoaWxkcmVu4oCZcyBDcmVhdGl2aXR5IE11c2V1bRIECBYQBhI1CjMyMjEgNHRoIFN0LCBTYW4gRnJhbmNpc2NvLCBDQSAgOTQxMDMsIFVuaXRlZCBTdGF0ZXMYASohChIJAAAAAETkQkARAAAAoLyZXsAQq5L%2Fh6zB24sgGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAADgtezyPxEAAAAAAPCEQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Children’s Creativity Museum\",",
+                    "        \"221 4th St, San Francisco, CA  94103, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.7833251953125,",
+                    "        \"lng\": -122.40213775634766",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94103\",",
+                    "        \"subLocality\": \"Yerba Buena\",",
+                    "        \"thoroughfare\": \"4th St\",",
+                    "        \"subThoroughfare\": \"221\",",
+                    "        \"fullThoroughfare\": \"221 4th St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Yerba Buena\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20of%20the%20African%20Diaspora%20685%20Mission%20St%2C%20San%20Francisco%2C%20CA%20%2094105%2C%20United%20States&metadata=CiYKHk11c2V1bSBvZiB0aGUgQWZyaWNhbiBEaWFzcG9yYRIECAAQBhI5Cjc2ODUgTWlzc2lvbiBTdCwgU2FuIEZyYW5jaXNjbywgQ0EgIDk0MTA1LCBVbml0ZWQgU3RhdGVzGAEqIQoSCQAAAICo5EJAEQAAAMCxmV7AEM%2BAktDw7KnLeRiuTWIICgZtdXNldW2C8QQGbXVzZXVtiPEEANrxBBYJAAAAgBfK9j8RAAAA4KOUcUAyAmVu6vEEAA%3D%3D\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum of the African Diaspora\",",
+                    "        \"685 Mission St, San Francisco, CA  94105, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.78639221191406,",
+                    "        \"lng\": -122.40147399902344",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94105\",",
+                    "        \"subLocality\": \"Yerba Buena\",",
+                    "        \"thoroughfare\": \"Mission St\",",
+                    "        \"subThoroughfare\": \"685\",",
+                    "        \"fullThoroughfare\": \"685 Mission St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"SOMA\",",
+                    "          \"South Beach\",",
+                    "          \"Financial District South\",",
+                    "          \"FiDiSo\",",
+                    "          \"Yerba Buena\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Belvedere%20Museum%20Prinz-Eugen-Stra%C3%9Fe%2027%2C%201030%20Vienna%2C%20Austria&metadata=ChgKEEJlbHZlZGVyZSBNdXNldW0SBAgKEAYSLgosUHJpbnotRXVnZW4tU3RyYcOfZSAyNywgMTAzMCBWaWVubmEsIEF1c3RyaWEYASohChIJAAAAgIMYSEARAAAAIIZhMEAQ%2BLufo5P3vKxwGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAABAocvCQBEAAACgEDrBQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Belvedere Museum\",",
+                    "        \"Prinz-Eugen-Straße 27, 1030 Vienna, Austria\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 48.19151306152344,",
+                    "        \"lng\": 16.380952835083008",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"Vienna\",",
+                    "        \"subAdministrativeArea\": \"Vienna\",",
+                    "        \"locality\": \"Vienna\",",
+                    "        \"postCode\": \"1030\",",
+                    "        \"subLocality\": \"3. Bezirk Landstraße\",",
+                    "        \"thoroughfare\": \"Prinz-Eugen-Straße\",",
+                    "        \"subThoroughfare\": \"27\",",
+                    "        \"fullThoroughfare\": \"Prinz-Eugen-Straße 27\",",
+                    "        \"areasOfInterest\": [",
+                    "          \"Botanischer Garten Der Universität\",",
+                    "          \"Maria-theresien-platz and Memorial\",",
+                    "          \"Belvedere Palace\"",
+                    "        ],",
+                    "        \"dependentLocalities\": [",
+                    "          \"Landstrasse\",",
+                    "          \"3. Bezirk Landstraße\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Crocker%20Art%20Museum%20216%20O%20St%2C%20Sacramento%2C%20CA%2095814%2C%20United%20States&metadata=ChoKEkNyb2NrZXIgQXJ0IE11c2V1bRIECAwQBhIvCi0yMTYgTyBTdCwgU2FjcmFtZW50bywgQ0EgOTU4MTQsIFVuaXRlZCBTdGF0ZXMYASohChIJAAAAQOBJQ0ARAAAAoGNgXsAQpd6j5oXVy%2BUvGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAABg9oldQBEAAABgOEmlQDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Crocker Art Museum\",",
+                    "        \"216 O St, Sacramento, CA 95814, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 38.57715606689453,",
+                    "        \"lng\": -121.5060806274414",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"Sacramento\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"Sacramento\",",
+                    "        \"postCode\": \"95814\",",
+                    "        \"subLocality\": \"Downtown\",",
+                    "        \"thoroughfare\": \"O St\",",
+                    "        \"subThoroughfare\": \"216\",",
+                    "        \"fullThoroughfare\": \"216 O St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Downtown\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20Parc%20300%203rd%20St%2C%20San%20Francisco%2C%20CA%20%2094107%2C%20United%20States&metadata=ChMKC011c2V1bSBQYXJjEgQIABAGEjUKMzMwMCAzcmQgU3QsIFNhbiBGcmFuY2lzY28sIENBICA5NDEwNywgVW5pdGVkIFN0YXRlcxgBKiEKEgkAAADgSeRCQBEAAACAh5lewBDpy%2BTLvYT3xCIYrk1iCAoGbXVzZXVtgvEEBm11c2V1bYjxBADa8QQWCQAAAMDuhvA%2FEQAAAAApbFpAMgJlburxBAA%3D\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum Parc\",",
+                    "        \"300 3rd St, San Francisco, CA  94107, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.783504486083984,",
+                    "        \"lng\": -122.39889526367188",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94107\",",
+                    "        \"subLocality\": \"Yerba Buena\",",
+                    "        \"thoroughfare\": \"3rd St\",",
+                    "        \"subThoroughfare\": \"300\",",
+                    "        \"fullThoroughfare\": \"300 3rd St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"SOMA\",",
+                    "          \"Yerba Buena\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=Museum%20Parc%20Cleaners%20707%20Folsom%20St%2C%20San%20Francisco%2C%20CA%20%2094107%2C%20United%20States&metadata=ChwKFE11c2V1bSBQYXJjIENsZWFuZXJzEgQIABAGEjgKNjcwNyBGb2xzb20gU3QsIFNhbiBGcmFuY2lzY28sIENBICA5NDEwNywgVW5pdGVkIFN0YXRlcxgBKiIKEgkAAADgQuRCQBEAAACAi5lewBC24%2Bmk%2B5XkkfcBGK5NYggKBm11c2V1bYLxBAZtdXNldW2I8QQA2vEEFgkAAADgWV7wPxEAAADA9Sg7QDICZW7q8QQA\",",
+                    "      \"displayLines\": [",
+                    "        \"Museum Parc Cleaners\",",
+                    "        \"707 Folsom St, San Francisco, CA  94107, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.78329086303711,",
+                    "        \"lng\": -122.39913940429688",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94107\",",
+                    "        \"subLocality\": \"Yerba Buena\",",
+                    "        \"thoroughfare\": \"Folsom St\",",
+                    "        \"subThoroughfare\": \"707\",",
+                    "        \"fullThoroughfare\": \"707 Folsom St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Yerba Buena\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=San%20Jose%20Museum%20of%20Art%20110%20S%20Market%20St%2C%20San%20Jose%2C%20CA%20%2095113%2C%20United%20States&metadata=Ch4KFlNhbiBKb3NlIE11c2V1bSBvZiBBcnQSBAgJEAYSNQozMTEwIFMgTWFya2V0IFN0LCBTYW4gSm9zZSwgQ0EgIDk1MTEzLCBVbml0ZWQgU3RhdGVzGAEqIgoSCQAAAIC1qkJAEQAAAGD2eF7AEPjE0t6mkKvojQEYrk1iCAoGbXVzZXVtgvEEBm11c2V1bYjxBADa8QQWCQAAAGB6i1BAEQAAAOCj1ZVAMgJlburxBAA%3D\",",
+                    "      \"displayLines\": [",
+                    "        \"San Jose Museum of Art\",",
+                    "        \"110 S Market St, San Jose, CA  95113, United States\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.33366394042969,",
+                    "        \"lng\": -121.8900375366211",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"Santa Clara County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Jose\",",
+                    "        \"postCode\": \"95113\",",
+                    "        \"subLocality\": \"Downtown San Jose\",",
+                    "        \"thoroughfare\": \"S Market St\",",
+                    "        \"subThoroughfare\": \"110\",",
+                    "        \"fullThoroughfare\": \"110 S Market St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Downtown San Jose\",",
+                    "          \"Downtown\",",
+                    "          \"Central San Jose\"",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"completionUrl\": \"/v1/search?q=American%20Bookbinders%20Museum%20&metadata=CiMKG0FtZXJpY2FuIEJvb2tiaW5kZXJzIE11c2V1bRIECBUQBhgBKiEKEgkAAADgAORCQBEAAADgxZlewBCWhKLlqq6d1BQYrk1iCAoGbXVzZXVtgvEEBm11c2V1bYjxBADa8QQWCQAAAGADAfE%2FEQAAAEDhWlJAMgJlburxBAA%3D\",",
+                    "      \"displayLines\": [",
+                    "        \"American Bookbinders Museum\"",
+                    "      ],",
+                    "      \"location\": {",
+                    "        \"lat\": 37.78127670288086,",
+                    "        \"lng\": -122.40270233154297",
+                    "      },",
+                    "      \"structuredAddress\": {",
+                    "        \"administrativeArea\": \"California\",",
+                    "        \"subAdministrativeArea\": \"San Francisco County\",",
+                    "        \"administrativeAreaCode\": \"CA\",",
+                    "        \"locality\": \"San Francisco\",",
+                    "        \"postCode\": \"94103\",",
+                    "        \"subLocality\": \"Yerba Buena\",",
+                    "        \"thoroughfare\": \"Clementina St\",",
+                    "        \"subThoroughfare\": \"355\",",
+                    "        \"fullThoroughfare\": \"355 Clementina St\",",
+                    "        \"dependentLocalities\": [",
+                    "          \"Yerba Buena\"",
+                    "        ]",
+                    "      }",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place": {
+      "abstract": [
+        {
+          "text": "Obtain a set of Place objects for a given set of Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places using mulitple identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id": {
+      "abstract": [
+        {
+          "text": "Obtain a Place object for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/:id"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for a place using an identifier",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-:id"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds": {
+      "abstract": [
+        {
+          "text": "Get a list of alternate Place IDs given one or more Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/alternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "Obtain a list of alternate place identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search": {
+      "abstract": [
+        {
+          "text": "Find places by name or by specific search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/search"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that match specific criteria",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-search"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete": {
+      "abstract": [
+        {
+          "text": "Find results that you can use to autocomplete searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/searchAutocomplete"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that meet specific criteria to autocomplete a place search",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-searchautocomplete"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory": {
+      "abstract": [
+        {
+          "text": "Search categories related to political geographical boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddressCategory",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/addresscategory"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse": {
+      "abstract": [
+        {
+          "text": "A list of alternate Place IDs and associated errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds": {
+      "abstract": [
+        {
+          "text": "Contains a list of alternate Place IDs for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse.AlternateIds",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse/alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "Information about an error that occurs while processing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/errorresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/Lang": {
+      "abstract": [
+        {
+          "text": "A string that represents a standard tag for identifying languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Lang"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/Lang",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Lang"
+        }
+      ],
+      "role": "symbol",
+      "title": "Lang",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/lang"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse": {
+      "abstract": [
+        {
+          "text": "A list of Place IDs and errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError": {
+      "abstract": [
+        {
+          "text": "An error associated with a lookup call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse.PlaceLookupError",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse/placelookuperror"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory": {
+      "abstract": [
+        {
+          "text": "A string that describes a specific point of interest (POI) category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PoiCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PoiCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PoiCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "PoiCategory",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/poicategory"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchACResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchacresulttype"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchAutocompleteResponse": {
+      "abstract": [
+        {
+          "text": "An array of autocomplete results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchAutocompleteResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchAutocompleteResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchAutocompleteResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchAutocompleteResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchautocompleteresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchLocation": {
+      "abstract": [
+        {
+          "text": "A string that describes a geographic location in the form of longitude and latitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchLocation",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchlocation"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchRegion": {
+      "abstract": [
+        {
+          "text": "A string that describes a region to search in terms of its upper-right and lower-left corners as a pair of geographic points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchRegion",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchregion"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search autocomplete request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchresulttype"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/UserLocation": {
+      "abstract": [
+        {
+          "text": "A string that describes the user’s location in terms of longitude and latitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/UserLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserLocation",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/userlocation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/mapkitjs/": {
+      "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+      "title": "quota increase request form",
+      "titleInlineContent": [
+        {
+          "text": "quota increase request form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/mapkitjs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Searching",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds"
+      ],
+      "title": "Searching"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/-v1-searchautocomplete"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

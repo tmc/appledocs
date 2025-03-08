@@ -1,0 +1,1380 @@
+{
+  "abstract": [
+    {
+      "text": "An object that receives a file promise from the pasteboard.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFilePromiseReceiver",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFilePromiseReceiver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSFilePromiseReceiver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSFilePromiseReceiver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, you receive all file promises on the drag pasteboard as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let filePromises = draggingPasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSArray<NSFilePromiseReceiver*> filePromises = [draggingPasteboard readObjectsForClasses:@[[NSFilePromiseReceiver class]] options:nil];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Likewise, you can enumerate dragged items by calling the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "draggingInfo.enumerateDraggingItems(options: [], for: view, classes: [NSFilePromiseReceiver.self], searchOptions: [:], using: {(draggingItem, idx, stop) in",
+                    "    let filePromiseReceiver = draggingItem.item",
+                    "    // Use filePromiseReceiver here for your task.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[draggingInfo enumerateDraggingItemsWithOptions:0 forView:view classes:@[[NSFilePromiseReceiver class]] searchOptions:@{} usingBlock:^(NSDraggingItem* draggingItem, NSInteger idx, BOOL* stop) {",
+                    "    NSFilePromiseReceiver* filePromiseReceiver = draggingItem.item",
+                    "    // Use filePromiseReceiver here for your task.",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A non-item-based drag source may promise multiple files on the same pasteboard item. To be compatible with these drag sources, many ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods return an array of values. Multiple-file item-based promises result in one ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " per promised file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides a promise for the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides the name of the promised file and writes the file to the destination directory when the file promise is fulfilled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProviderDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseproviderdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver": {
+      "abstract": [
+        {
+          "text": "An object that receives a file promise from the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseReceiver",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileNames": {
+      "abstract": [
+        {
+          "text": "An array containing names of the promised files being written to the destination location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileNames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileNames",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver/filenames"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileTypes": {
+      "abstract": [
+        {
+          "text": "An array containing types of the promised files being written to the destination location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver/filetypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes": {
+      "abstract": [
+        {
+          "text": "An array containing dragged file types that are readable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readableDraggedTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readableDraggedTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "readableDraggedTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver/readabledraggedtypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)": {
+      "abstract": [
+        {
+          "text": "Fulfills the promises at the specified destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receivePromisedFiles"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reader"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "receivePromisedFilesAtDestination:options:operationQueue:reader:"
+        }
+      ],
+      "role": "symbol",
+      "title": "receivePromisedFiles(atDestination:options:operationQueue:reader:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver/receivepromisedfiles(atdestination:options:operationqueue:reader:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for initializing an object from a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardReading",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardreading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Collection View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-collection-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Receive and provide file promises to support dragged app files and pasteboard operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Table View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-Promises",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate"
+      ],
+      "title": "File Promises"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileNames",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileTypes"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSFilePromiseReceiver"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileNames",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/fileTypes"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)"
+              ],
+              "title": "Instance Methods"
+            },
+            {
+              "anchor": "Type-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes"
+              ],
+              "title": "Type Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "File-Promises",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate"
+              ],
+              "title": "File Promises"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSFilePromiseReceiver"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1fileNames/title",
+          "value": "fileNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1fileNames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fileNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1receivePromisedFiles(atDestination:options:operationQueue:reader:)/title",
+          "value": "receivePromisedFilesAtDestination:options:operationQueue:reader:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1receivePromisedFiles(atDestination:options:operationQueue:reader:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "receivePromisedFilesAtDestination:options:operationQueue:reader:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/title",
+          "value": "NSFilePromiseReceiver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/title",
+          "value": "NSPasteboardReading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1fileTypes/title",
+          "value": "fileTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1fileTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fileTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/title",
+          "value": "NSFilePromiseProviderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1readableDraggedTypes/title",
+          "value": "readableDraggedTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver~1readableDraggedTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readableDraggedTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/title",
+          "value": "NSFilePromiseProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsfilepromisereceiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsfilepromisereceiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

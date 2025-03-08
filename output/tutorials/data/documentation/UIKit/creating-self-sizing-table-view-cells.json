@@ -1,0 +1,1897 @@
+{
+  "abstract": [
+    {
+      "text": "Create table view cells that support Dynamic Type and use system spacing constraints to adjust the spacing surrounding text labels.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/table-views"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating self-sizing table view cells"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to create self-sizing table view cells that support Dynamic Type. Because Dynamic Type lets the user control the size of the text displayed in the cell, it’s important that the cell resizes itself based on the text size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project also shows how to use Auto Layout constraints to automatically adjust the spacing surrounding text labels based on the text size. To demonstrate automatic spacing, the cell displays two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects: a headline label and a body label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Dynamic-Type-support",
+          "level": 3,
+          "text": "Add Dynamic Type support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add support for Dynamic Type, the cell assigns a scaled font to each label. For the headline label, the preferred font with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " text style is used. The preferred font is the system font, which can scale to different sizes. Its initial text size is determined by the font metric for the ",
+              "type": "text"
+            },
+            {
+              "code": "headline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " text style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "headlineLabel.font = UIFont.preferredFont(forTextStyle: .headline)",
+            "headlineLabel.adjustsFontForContentSizeCategory = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the body label, a custom font is used. However, in order to support Dynamic Type with a custom font, a version of the font must be created that adopts the font metric for a particular text style. In the case of the body label, the Palatino custom font is used with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " text style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let palatino = UIFont(name: \"Palatino\", size: 18) else {",
+            "    fatalError(\"\"\"",
+            "        Failed to load the \"Palatino\" font.",
+            "        Since this font is included with all versions of iOS that support Dynamic Type, verify that the spelling and casing is correct.",
+            "        \"\"\"",
+            "    )",
+            "}",
+            "bodyLabel.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: palatino)",
+            "bodyLabel.adjustsFontForContentSizeCategory = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the effects of Dynamic Type can be seen, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property must be set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on each label. This property tells the label to automatically adjust the text size for its font when the user changes their preferred text size. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-auto-layout-constraints-to-adjust-cell-size-and-spacing",
+          "level": 3,
+          "text": "Use auto layout constraints to adjust cell size and spacing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the two labels are able to adjust the size of their text automatically. However, the cell isn’t able to adjust its size. Auto Layout constraints are needed to adjust the size and spacing of the cell’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the labels it contains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-horizontal-position-for-each-label",
+          "level": 3,
+          "text": "Set the horizontal position for each label",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The width of both labels should extend to fill the width of the cell’s content view, and the headline label should appear above the body label. To accomplish this, Auto Layout constraints are added to each label starting with constraints that define the label width. For the headline label, constraints are added that tell the label to fill the space between the content view’s leading and trailing margins. For the body label, constraints are added that set its leading and trailing anchors equal to the headline label’s leading and trailing anchors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "headlineLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true",
+            "headlineLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true",
+            "",
+            "bodyLabel.leadingAnchor.constraint(equalTo: headlineLabel.leadingAnchor).isActive = true",
+            "bodyLabel.trailingAnchor.constraint(equalTo: headlineLabel.trailingAnchor).isActive = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the body label’s leading and trailing anchors equal to the leading and trailing anchors for the headline label ensures that the left and right edges of each label are always in the same position. This approach has an added benefit; adjusting either the left or right edge on the headline label automatically applies the changes to the body label. While this might seem trivial when there are only two labels, setting a label’s leading and trailing anchors equal to the same anchors of another label can save you time when there are many more labels that must align their edges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-vertical-position-for-each-label",
+          "level": 3,
+          "text": "Set the vertical position for each label",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the horizontal positioning in place, it’s time to set the vertical position for each label. Auto Layout constraints are once again used to position the vertical alignment, placing the headline text above the body text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One way vertical positioning can be set is to add a constraint that defines the distance between the two labels based on some constant value. However, the problem with relying on a constant value is that you must adjust the value each time the text size changes; otherwise, the text may look scattered or cramped, making it difficult to read. With iOS 11 and later, you can avoid relying on and setting the constant value by using system spacing constraints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A system spacing constraint sets the distance between two UI elements to a value based on information provided by the anchors used when creating the constraint. For example, a system spacing constraint can position a label’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (the baseline for the topmost text in the label) below another label’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/lastBaselineAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (the baseline for the bottommost text in that label) at a distance defined by the system. The constraint ensures that adequate spacing is always applied between the two labels regardless of the text size, without adjusting the constraint’s constant value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the sample code project, the cell uses system spacing constraints to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the spacing between the top of the cell’s content view and the headline label.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the spacing between the body label and the bottom of the cell’s content view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the spacing between the headline and body labels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "headlineLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: contentView.layoutMarginsGuide.topAnchor, multiplier: 1).isActive = true",
+            "",
+            "contentView.layoutMarginsGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: bodyLabel.lastBaselineAnchor, multiplier: 1).isActive = true",
+            "",
+            "bodyLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: headlineLabel.lastBaselineAnchor, multiplier: 1).isActive = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the system spacing constraints in place, the system automatically adjusts the spacing surrounding the two labels based on the text size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "compare-sizes",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-with-Accessibility-Inspector",
+          "level": 3,
+          "text": "Test with Accessibility Inspector",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to test how the sample app reacts to different text sizes, run the app in Simulator and use Accessibility Inspector to change the text size. The inspector lets you test an app’s interface with different text sizes without switching between the app and the Settings app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Accessibility Inspector, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Xcode, then run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Xcode menu bar, select ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Xcode > Open Developer Tool > Accessibility Inspector",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " to launch the inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the upper left corner of the Accessibility Inspector, select ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Simulator",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " as the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Settings",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " icon (shaped like a gear).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Font size",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " slider to change the size of text displayed in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "097e9c9dad75/CreatingSelfSizingTableViewCells.zip": {
+      "checksum": "097e9c9dad754e96944d994b274425fa88aa0d7cd0417dc740e11a3df76f4e53f97cc4155e973099bfd028e3b2e530a09fe0810856eee3ee31215e9c8536d054",
+      "identifier": "097e9c9dad75/CreatingSelfSizingTableViewCells.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/097e9c9dad75/CreatingSelfSizingTableViewCells.zip"
+    },
+    "compare-sizes": {
+      "alt": "On the left, a screenshot of the sample app showing the smallest text size. In the center, a screenshot showing the default text size. On the right, a screenshot showing the largest text size.",
+      "identifier": "compare-sizes",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3041a7145e07686996d9f89aae8311f7/compare-sizes.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating horizontal layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutXAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutxaxisanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating vertical layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutYAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutyaxisanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the object automatically updates its font when the device’s content size category changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustsFontForContentSizeCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustsFontForContentSizeCategory"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "adjustsFontForContentSizeCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentsizecategoryadjusting/adjustsfontforcontentsizecategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont": {
+      "abstract": [
+        {
+          "text": "An object that provides access to the font’s characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle": {
+      "abstract": [
+        {
+          "text": "Constants that describe the preferred styles for fonts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont.TextStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body": {
+      "abstract": [
+        {
+          "text": "The font for body text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontTextStyleBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle/body"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline": {
+      "abstract": [
+        {
+          "text": "The font for headings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontTextStyleHeadline"
+        }
+      ],
+      "role": "symbol",
+      "title": "headline",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle/headline"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/init(descriptor:size:)": {
+      "abstract": [
+        {
+          "text": "Returns a font that matches the specified font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFontDescriptor",
+          "text": "UIFontDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/init(descriptor:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontWithDescriptor:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(descriptor:size:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/init(descriptor:size:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/init(name:size:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a font object for the specified font name and size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/init(name:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontWithName:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:size:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/init(name:size:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of the system font for the specified text style with scaling for the user’s selected content size category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFontForTextStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFont(forTextStyle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/preferredfont(fortextstyle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of the system font for the appropriate text style and traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFontForTextStyle:compatibleWithTraitCollection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFont(forTextStyle:compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/preferredfont(fortextstyle:compatiblewith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/withSize(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a font object that is the same as the font, but has the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/withSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontWithSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSize(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/withsize(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView": {
+      "abstract": [
+        {
+          "text": "The content view of the cell object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/contentview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the baseline for the topmost line of text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstBaselineAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutYAxisAnchor",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/firstBaselineAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstBaselineAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstBaselineAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/firstbaselineanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/lastBaselineAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the baseline for the bottommost line of text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastBaselineAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutYAxisAnchor",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/lastBaselineAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastBaselineAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastBaselineAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/lastbaselineanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically": {
+      "abstract": [
+        {
+          "text": "Scale text in your interface automatically using Dynamic Type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling Fonts Automatically",
+      "type": "topic",
+      "url": "/documentation/uikit/scaling-fonts-automatically"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts": {
+      "abstract": [
+        {
+          "text": "Display text, manage fonts, and check spelling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text display and fonts",
+      "type": "topic",
+      "url": "/documentation/uikit/text-display-and-fonts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "097e9c9dad75/CreatingSelfSizingTableViewCells.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Fonts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:compatibleWith:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/init(name:size:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/init(descriptor:size:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont/withSize(_:)"
+      ],
+      "title": "Creating Fonts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Fonts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:compatibleWith:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/init(name:size:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/init(descriptor:size:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont/withSize(_:)"
+              ],
+              "title": "Creating Fonts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting~1adjustsFontForContentSizeCategory/title",
+          "value": "adjustsFontForContentSizeCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting~1adjustsFontForContentSizeCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "adjustsFontForContentSizeCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1body/title",
+          "value": "UIFontTextStyleBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1body/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyleBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/title",
+          "value": "UIFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/title",
+          "value": "UILabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:compatibleWith:)/title",
+          "value": "preferredFontForTextStyle:compatibleWithTraitCollection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFontForTextStyle:compatibleWithTraitCollection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:)/title",
+          "value": "preferredFontForTextStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFontForTextStyle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1lastBaselineAnchor/title",
+          "value": "lastBaselineAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1lastBaselineAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastBaselineAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1init(descriptor:size:)/title",
+          "value": "fontWithDescriptor:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1init(descriptor:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontWithDescriptor:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/title",
+          "value": "NSLayoutXAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1withSize(_:)/title",
+          "value": "fontWithSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1withSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontWithSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1contentView/title",
+          "value": "contentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1contentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/title",
+          "value": "UIFontTextStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1firstBaselineAnchor/title",
+          "value": "firstBaselineAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1firstBaselineAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstBaselineAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/title",
+          "value": "NSLayoutYAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1init(name:size:)/title",
+          "value": "fontWithName:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1init(name:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontWithName:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1headline/title",
+          "value": "UIFontTextStyleHeadline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1headline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyleHeadline"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/creating-self-sizing-table-view-cells"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/creating-self-sizing-table-view-cells"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/build-system"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Build system"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode build system manages the tools that transform your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and resource files into a finished app. When you tell Xcode to build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project, the build system analyzes your files and uses your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project settings to assemble the set of tasks to perform. Use your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project settings to modify the build process and add tasks that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to complete your builds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-hero-window.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "build-hero-window.png": {
+      "alt": "A screenshot of the Xcode window that shows the build and run button, and controls for configuring build options.",
+      "identifier": "build-hero-window.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ee8c38e646e64907b13bfe1676119663/build-hero-window@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c78867b72637128da112da32fb68b9c8/build-hero-window~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project": {
+      "abstract": [
+        {
+          "text": "Specify your project’s build settings in plain-text files, and supply",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different settings for debug and release builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a build configuration file to your project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-a-build-configuration-file-to-your-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies": {
+      "abstract": [
+        {
+          "text": "Reduce compile times by eliminating unnecessary module variants using the Xcode build system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with explicit module dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-explicit-module-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-a-multiplatform-app-target": {
+      "abstract": [
+        {
+          "text": "Share project settings and code across platforms in a single app target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-a-multiplatform-app-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a multiplatform app",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-a-multiplatform-app-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-a-new-target-in-your-project": {
+      "abstract": [
+        {
+          "text": "Configure your project to build a new product, and add the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "code and resources the product requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-a-new-target-in-your-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a new target in your project",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-a-new-target-in-your-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the options you use to compile, link, and produce a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "product from a target, and identify settings inherited from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your project or the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the build settings of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-build-settings-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries": {
+      "abstract": [
+        {
+          "text": "Use mergeable dynamic libraries to get app launch times similar to static linking in release builds, without losing dynamically linked build times in debug builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your project to use mergeable libraries",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-project-to-use-mergeable-libraries"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types": {
+      "abstract": [
+        {
+          "text": "Tell Xcode how to build your project’s custom file types, and provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dependency information to optimize the build process for each file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating build rules for custom file types",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-build-rules-for-custom-file-types"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "files to compile, the scripts to run, and the resources to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices": {
+      "abstract": [
+        {
+          "text": "Shorten compile times by reducing the number of symbols your code exports and by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "giving the compiler the explicit information it needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving build efficiency with good coding practices",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-build-efficiency-with-good-coding-practices"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds": {
+      "abstract": [
+        {
+          "text": "Tell the Xcode build system about your project’s target-related dependencies, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reduce the compiler workload during each build cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the speed of incremental builds",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-the-speed-of-incremental-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces": {
+      "abstract": [
+        {
+          "text": "Manage the code and resources you use to build apps, libraries, and other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "software for Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Projects and workspaces",
+      "type": "topic",
+      "url": "/documentation/xcode/projects-and-workspaces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version": {
+      "abstract": [
+        {
+          "text": "Add conditional compilation markers around code that requires a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "particular family of devices or minimum operating system version to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version",
+      "kind": "article",
+      "role": "article",
+      "title": "Running code on a specific platform or OS version",
+      "type": "topic",
+      "url": "/documentation/xcode/running-code-on-a-specific-version"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build": {
+      "abstract": [
+        {
+          "text": "Execute custom shell scripts during the build process, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run tools or other commands that your project requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+      "kind": "article",
+      "role": "article",
+      "title": "Running custom scripts during a build",
+      "type": "topic",
+      "url": "/documentation/xcode/running-custom-scripts-during-a-build"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding build product layout changes in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-build-product-layout-changes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks": {
+      "abstract": [
+        {
+          "text": "Discover who signed a framework, and take action when that changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying the origin of your XCFrameworks",
+      "type": "topic",
+      "url": "/documentation/xcode/verifying-the-origin-of-your-xcframeworks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-IDE",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+        "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ],
+      "title": "Xcode IDE"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-a-new-target-in-your-project",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-a-multiplatform-app-target"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Build-settings",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+        "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes"
+      ],
+      "title": "Build settings"
+    },
+    {
+      "anchor": "Build-customization",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+        "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+        "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version"
+      ],
+      "title": "Build customization"
+    },
+    {
+      "anchor": "Performance",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+        "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies"
+      ],
+      "title": "Performance"
+    },
+    {
+      "anchor": "Security-and-privacy",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks"
+      ],
+      "title": "Security and privacy"
+    }
+  ]
+}

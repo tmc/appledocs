@@ -1,0 +1,811 @@
+{
+  "abstract": [
+    {
+      "text": "Add, build, and enable a Safari app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building a Safari app extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You deliver a Safari app extension inside a macOS app. When a user runs your app for the first time, the app extension immediately becomes available in Safari. This article explains the following steps to build your own Safari app extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding a Safari app extension target to your app in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding script and style sheet files to inject into your app and modify webpage content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adjusting property list values in your app that relate to the Safari app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Building and running your app, which builds your Safari app extension for use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabling your Safari app extension in Safari so you can use it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-Safari-app-extension-target-in-Xcode",
+          "level": 3,
+          "text": "Add a Safari app extension target in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Safari app extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Xcode and either open an existing project containing a macOS app or create a new one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the list of templates in the Application Extension section, select Safari Extension, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a product name for your extension, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "My Extension",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Type menu, choose Safari App Extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure that your app project is selected in the Project menu, and that your macOS app target is selected in the Embed in Application menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If Xcode asks you if you want to activate a new scheme for your new extension, click Cancel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds a new group into your project, which contains several new files, including an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, a variety of supporting source files, an Interface Builder file, a JavaScript file, and a toolbar image PDF.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-scripts-and-style-sheets",
+          "level": 3,
+          "text": "Add scripts and style sheets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add scripts and style sheets to your Safari app extension, you can read and modify webpage content, and read and send data from your app. For more information about injecting scripts and style sheets into your webpage content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-keys-to-the-information-property-list-template",
+          "level": 3,
+          "text": "Add keys to the information property list template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file identifies your new Safari app extension and specifies its capabilities and access limits under the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. For more information about setting these capabilities and limits, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In your information property list file, you can also specify custom UI options, like contextual menu items and toolbar items. For more information about these settings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-and-run-the-app",
+          "level": 3,
+          "text": "Build and run the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before Safari can find your new extension, you must run the containing app at least once:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure that your macOS app is selected in the Scheme menu in Xcode’s main toolbar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Run button, or choose Product > Run to build and run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your app, Xcode builds your Safari app extension first, then embeds it inside the finished app bundle. As soon as your app runs, your extension is ready for use in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-your-app-extension-in-Safari",
+          "level": 3,
+          "text": "Enable your app extension in Safari",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not part of the Apple Development Program, or if you don’t have a developer identity for your existing Xcode project, Xcode can’t sign your Safari app extension with a development certificate. For security purposes, Safari, by default,  ignores unsigned extensions, so your extension doesn’t appear in Safari Extensions settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To develop without a certificate, each time you launch Safari, you need to tell it to load unsigned extensions using the Develop menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Safari and choose Safari > Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Advanced tab, then select the “Show Develop menu in menu bar” checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Develop > Allow Unsigned Extensions, enter your password, and click OK. If you’re using Safari 17 or later, click the Developer tab in Safari Settings, and select the “Allow unsigned extensions” option. The Allow Unsigned Extensions setting resets when a user quits Safari, so you need to set it again the next time you launch Safari.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Safari > Settings and click the Extensions tab. This tab shows the localized description, display name, and version number for the selected Safari app extension. It also provides a more nuanced message about the permissions for the extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find your new extension in the list on the left, and enable it by selecting its checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Close Safari Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 17 and later, the user can also toggle permission for the extension overall, in Private Browsing, or for each profile. If the user has profiles set up, they can choose Safari > Settings, click the Profiles tab, select a profile, and then click the Extensions tab to manage whether each extension is enabled for a profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build the default template extension without modifying it, a new toolbar item (a button) appears in the Safari toolbar. When you click this button, the Safari app extension logs a message that you can view in the system console — this message comes from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have trouble getting your extension to work, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler": {
+      "abstract": [
+        {
+          "text": "A base class that you subclass to handle events in your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandler"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Convert a legacy Safari extension to a Safari app extension, automatically with keys or manually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a legacy Safari extension to a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Debug your Safari app extension with these techniques.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys": {
+      "abstract": [
+        {
+          "text": "Learn about adding contextual menu items and toolbar items to a Safari app extension with information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Using contextual menu and toolbar item keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-contextual-menu-and-toolbar-item-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts": {
+      "abstract": [
+        {
+          "text": "Learn how you can affect the appearance or behavior of a webpage by using injected style sheets and scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Using injected style sheets and scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-injected-style-sheets-and-scripts"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/title",
+          "value": "SFSafariExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/building-a-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/building-a-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

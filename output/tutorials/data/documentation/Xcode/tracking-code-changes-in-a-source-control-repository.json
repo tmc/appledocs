@@ -1,0 +1,1108 @@
+{
+  "abstract": [
+    {
+      "text": "Create a history of incremental code changes to your Xcode project’s source control",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "repository with Git commits.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/source-control-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/tracking-code-changes-in-a-source-control-repository"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Tracking code changes in a source control repository"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a source control repository to manage your Xcode project, you save changes to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your repository in incremental states called commits.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "commit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " consists of a snapshot of your project’s state at a particular point in time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a message that describes the set of changes from the previous commit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and additional metadata like a unique hash that identifies the commit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, you can save your project’s current state in a commit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigate the history of your project’s previous commits,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compare changes between specific commits,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and quickly restore to a previous commit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-your-projects-current-state",
+          "level": 3,
+          "text": "Save your project’s current state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you make changes to your source code in a source control repository, Xcode tracks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those changes and highlights them in the Project navigator and in the source editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "While you’re working on a change, look at the Project navigator to see your changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the current branch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Project navigator annotates files with changes since the last commit, using an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for new files or an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "M",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for modified files. To compare changes in one source file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "open the file and click the Enable Code Review button in the upper-right",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corner of the Xcode window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The comparison view highlights changes between the current source code and the most",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recent commit. You can choose whether to view changes inline or side by side by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clicking the Adjust Editor Options button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The comparison view allows you to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate between the numbered changes using the arrows at the bottom",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the center column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click a number in the center column to select and discard a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose other commits to compare your current changes against.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re done making changes, commit them to save them permanently in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your source control repository. Choose Source Control > Commit, and review your changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Project navigator, select a file in the list to view the code changes for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that file. Click the numbered selector between the left and right sides of the comparison",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view, and then choose Don’t Commit to exclude an individual change from your commit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or choose Discard Change to remove a change. Select checkmarks to indicate which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files to include in your commit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you add a new file or delete an unused file, you must commit both",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the file and the Xcode project file (called ",
+                  "type": "text"
+                },
+                {
+                  "code": "project.pbxproj",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") together for your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "project to remain in a consistent state.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Document your changes with a commit message that describes what your commit accomplishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the “Commit [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "number",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "] files” button to commit your changes, or click Cancel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to continue working without committing to the repository. Xcode shows the commit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "message you provide when you look at the source control history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t want to commit any of your changes, and want to remove them, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Source Control > Discard All Changes, and click Discard. Xcode removes all the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes and restores your source files to the most recent commit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-a-history-of-project-states",
+          "level": 3,
+          "text": "View a history of project states",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode has a commit history view that lets you view historical changes for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source control repository when you’re investigating a bug or adding code for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Source Control navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Repositories navigator, expand your repository and the Branches folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a branch to display a list of commits.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click a specific commit to display the comparison view, and see additional",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "information about the commit in the Source Control inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compare-code-between-specific-project-states",
+          "level": 3,
+          "text": "Compare code between specific project states",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To compare code between specific commits, select the branches and commits to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compare from the bottom bar in the comparison view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-code-changes-in-a-source-control-repository-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restore-your-project-to-a-previous-state",
+          "level": 3,
+          "text": "Restore your project to a previous state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can quickly restore your code to a previous state in your source control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repository by checking out a specific commit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode restores your project files to the state that the commit you choose specifies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you restore a previous commit of the code, make sure you don’t have any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uncommitted changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you do, you can either discard the changes (Source Control > Discard All Changes)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or save them to apply later by stashing them (Source Control > Stash Changes).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Source Control navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Repositories navigator, expand your repository and the Branches folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the branch that contains the commit you want to restore.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the detail view, Control-click the desired commit and choose Switch to “[",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "commit-hash",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "]”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the confirmation dialog, click Switch. Xcode restores your project’s state to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the earlier commit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about restoring stashed changes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-changes-with-source-control",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-xcode-project-to-use-source-control": {
+      "abstract": [
+        {
+          "text": "Sync code changes between team members and development computers by setting up",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your Xcode project to use Git source control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-xcode-project-to-use-source-control",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your Xcode project to use source control",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-xcode-project-to-use-source-control"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-changes-with-source-control": {
+      "abstract": [
+        {
+          "text": "Streamline your collaboration workflow by managing your Xcode project’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "features and releases with Git branches and tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-changes-with-source-control",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing your code changes with source control",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-your-code-changes-with-source-control"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "tracking-code-changes-in-a-source-control-repository-1": {
+      "alt": "Conceptual diagram that shows one row of four commits. The rightmost commit contains a label that describes some information about the commit, including a commit hash, commit message, and author name.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e531630d352ad4ce907bcbff40ded594/tracking-code-changes-in-a-source-control-repository-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5745498605d198fa0a3260eb5f718bff/tracking-code-changes-in-a-source-control-repository-1~dark@2x.png"
+        }
+      ]
+    },
+    "tracking-code-changes-in-a-source-control-repository-2": {
+      "alt": "The Xcode Project navigator showing a modified file and a new file. The source code editor shows a change indicator that displays the old code and new code.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e2c11212723f1a6b809356cc2348918/tracking-code-changes-in-a-source-control-repository-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5605cf2ae5386209afdbf16be15d6dcf/tracking-code-changes-in-a-source-control-repository-2~dark@2x.png"
+        }
+      ]
+    },
+    "tracking-code-changes-in-a-source-control-repository-3": {
+      "alt": "The Xcode comparison view showing changes between the current local version on the left and the most recent source-control commit on the right. The view shows a highlighted change, a numbered change, where to select branches and commits on each side of the view, and where to click buttons to navigate between commits.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ddb1d8f119ec7aa18a6077868633902/tracking-code-changes-in-a-source-control-repository-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d224e8afbd60b2761c1079a519531d77/tracking-code-changes-in-a-source-control-repository-3~dark@2x.png"
+        }
+      ]
+    },
+    "tracking-code-changes-in-a-source-control-repository-4": {
+      "alt": "The Xcode commit view showing a list of files with changes. The comparison view shows a highlighted change in an updated source file. The commit message area has an example commit message.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/911912557e732f90ac022f91bf536607/tracking-code-changes-in-a-source-control-repository-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3532deb6c6898e01169970ba7caa6b4/tracking-code-changes-in-a-source-control-repository-4~dark@2x.png"
+        }
+      ]
+    },
+    "tracking-code-changes-in-a-source-control-repository-5": {
+      "alt": "The Xcode commit history view showing a list of commits. The bottom commit is in a selected state.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/332208568f78d1ddb6921184a17fc90b/tracking-code-changes-in-a-source-control-repository-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d33e6c46162b6929da113bf71380c8b/tracking-code-changes-in-a-source-control-repository-5~dark@2x.png"
+        }
+      ]
+    },
+    "tracking-code-changes-in-a-source-control-repository-6": {
+      "alt": "The Xcode comparison view showing highlighted changes in a comparison between two specific commits.",
+      "identifier": "tracking-code-changes-in-a-source-control-repository-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d181f9aab04e2a4f03cfcdf7125dd378/tracking-code-changes-in-a-source-control-repository-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a1f3868aea782da9045516f071f5d4b/tracking-code-changes-in-a-source-control-repository-6~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-your-xcode-project-to-use-source-control"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

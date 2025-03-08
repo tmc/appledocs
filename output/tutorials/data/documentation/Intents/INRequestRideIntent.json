@@ -1,0 +1,1763 @@
+{
+  "abstract": [
+    {
+      "text": "A request to book the specified ride from your service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INRequestRideIntent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INRequestRideIntent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INRequestRideIntent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INRequestRideIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object when the user asks to book a ride using your app. A ride request intent contains user-supplied information about the ride, such as its starting point and the number of people. Use this intent object to identify possible ride options for the user to choose from and to book the ride after the user confirms it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle this intent, the handler object in your Intents extension must adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Your handler should confirm the request and create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with information about whether your app successfully booked the ride.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing ride-booking support, provide a GeoJSON file with the regions for which you are able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you do not provide a coverage file and your app is not installed on the user’s device, Maps does not suggest your app. For information about how to create and upload a Routing App Coverage File, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/itunes-connect/developer/#/dev4ba662442",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When implementing ride-booking support, provide a GeoJSON file with the regions for which you’re able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you don’t provide a coverage file and your app isn’t installed on the user’s device, Maps doesn’t suggest your app. For information about how to create and upload a Routing App Coverage File, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://help.apple.com/itunes-connect/developer/#/dev4ba662442",
+                  "isActive": true,
+                  "overridingTitle": "iTunes Connect Developer Help",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "iTunes Connect Developer Help",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Additional-Intent-Attributes",
+          "level": 3,
+          "text": "Additional Intent Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists additional attributes of this intent object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported by",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri Intents, Maps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always requires unlocked device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentSetImageKeyPath",
+      "type": "topic",
+      "url": "/documentation/intents/inintentsetimagekeypath"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent": {
+      "abstract": [
+        {
+          "text": "A request to book the specified ride from your service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/dropOffLocation": {
+      "abstract": [
+        {
+          "text": "The user’s destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dropOffLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLPlacemark",
+          "text": "CLPlacemark"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/dropOffLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dropOffLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "dropOffLocation",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/dropofflocation"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/init(pickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:)": {
+      "abstract": [
+        {
+          "text": "Initializes an intent object with the specified ride information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pickupLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLPlacemark",
+          "text": "CLPlacemark"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dropOffLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLPlacemark",
+          "text": "CLPlacemark"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rideOptionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableString",
+          "text": "INSpeakableString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "partySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "paymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INPaymentMethod",
+          "text": "INPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduledPickupTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INDateComponentsRange",
+          "text": "INDateComponentsRange"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/init(pickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:)",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/init(pickuplocation:dropofflocation:rideoptionname:partysize:paymentmethod:scheduledpickuptime:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:": {
+      "abstract": [
+        {
+          "text": "Initializes an intent object with the specified ride information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/initwithpickuplocation:dropofflocation:rideoptionname:partysize:paymentmethod:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:": {
+      "abstract": [
+        {
+          "text": "Initializes an intent object with the specified ride information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/initwithpickuplocation:dropofflocation:rideoptionname:partysize:paymentmethod:scheduledpickuptime:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-39k7z": {
+      "abstract": [
+        {
+          "text": "The number of passengers that the ride must accommodate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "partySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-39k7z",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partySize",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/partysize-39k7z"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-64kfc": {
+      "abstract": [
+        {
+          "text": "The number of passengers that the ride must accommodate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "partySize"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-64kfc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partySize",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/partysize-64kfc"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/paymentMethod": {
+      "abstract": [
+        {
+          "text": "The user’s requested payment method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INPaymentMethod",
+          "text": "INPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/paymentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentMethod",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/paymentmethod"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/pickupLocation": {
+      "abstract": [
+        {
+          "text": "The user’s starting location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pickupLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLPlacemark",
+          "text": "CLPlacemark"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/pickupLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pickupLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "pickupLocation",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/pickuplocation"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/rideOptionName": {
+      "abstract": [
+        {
+          "text": "The name of the ride option selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rideOptionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableString",
+          "text": "INSpeakableString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/rideOptionName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rideOptionName"
+        }
+      ],
+      "role": "symbol",
+      "title": "rideOptionName",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/rideoptionname"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/scheduledPickupTime": {
+      "abstract": [
+        {
+          "text": "The time at which to pick up the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledPickupTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INDateComponentsRange",
+          "text": "INDateComponentsRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/scheduledPickupTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduledPickupTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduledPickupTime",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintent/scheduledpickuptime"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for booking a ride for the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request ride intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRequestRideIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRequestRideIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inrequestrideintentresponse"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://help.apple.com/itunes-connect/developer/#/dev4ba662442": {
+      "identifier": "https://help.apple.com/itunes-connect/developer/#/dev4ba662442",
+      "title": "iTunes Connect Developer Help",
+      "titleInlineContent": [
+        {
+          "text": "iTunes Connect Developer Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/itunes-connect/developer/#/dev4ba662442"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntent"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Request-a-Ride",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse"
+      ],
+      "title": "Request a Ride"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-Intent-Object",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/init(pickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:)"
+      ],
+      "title": "Initializing the Intent Object"
+    },
+    {
+      "anchor": "Getting-the-Ride-Details",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/rideOptionName",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-39k7z",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/pickupLocation",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/scheduledPickupTime",
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/dropOffLocation"
+      ],
+      "title": "Getting the Ride Details"
+    },
+    {
+      "anchor": "Getting-the-Payment-Information",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/paymentMethod"
+      ],
+      "title": "Getting the Payment Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INRequestRideIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-the-Intent-Object",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:scheduledPickupTime:",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:"
+              ],
+              "title": "Initializing the Intent Object"
+            },
+            {
+              "anchor": "Getting-the-Ride-Details",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/rideOptionName",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/partySize-64kfc",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/pickupLocation",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/scheduledPickupTime",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/dropOffLocation"
+              ],
+              "title": "Getting the Ride Details"
+            },
+            {
+              "anchor": "Getting-the-Payment-Information",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntent/paymentMethod"
+              ],
+              "title": "Getting the Payment Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INIntent"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Request-a-Ride",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentHandling",
+                "doc://com.apple.sirikit/documentation/Intents/INRequestRideIntentResponse"
+              ],
+              "title": "Request a Ride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INRequestRideIntent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)INIntent",
+                    "text": "INIntent"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1pickupLocation/title",
+          "value": "pickupLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1pickupLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pickupLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/title",
+          "value": "INRequestRideIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1dropOffLocation/title",
+          "value": "dropOffLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1dropOffLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dropOffLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1rideOptionName/title",
+          "value": "rideOptionName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1rideOptionName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rideOptionName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1paymentMethod/title",
+          "value": "paymentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1paymentMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/title",
+          "value": "INRequestRideIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/title",
+          "value": "INIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/title",
+          "value": "INRequestRideIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRequestRideIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1scheduledPickupTime/title",
+          "value": "scheduledPickupTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRequestRideIntent~1scheduledPickupTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scheduledPickupTime"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/inrequestrideintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/inrequestrideintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

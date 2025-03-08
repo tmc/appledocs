@@ -1,0 +1,988 @@
+{
+  "abstract": [
+    {
+      "text": "Catch runtime issues in your Metal app using API Validation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating your app’s Metal API usage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API Validation layer checks for code that calls the Metal API incorrectly, including errors in creating resources, encoding Metal commands, and performing other common tasks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can enable API Validation using the runtime diagnostics options in Xcode, or by using environment variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API Validation layer has a small, but measureable, impact on CPU performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-API-Validation-in-Xcode",
+          "level": 3,
+          "text": "Enable API Validation in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to enable API Validation using the runtime diagnostics options in the scheme settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode toolbar, choose Edit Scheme from the Scheme menu.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Alternatively, choose Product > Scheme > Edit Scheme.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-runtime-edit-scheme.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the scheme action panel, select Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the action setting tab, click Diagnostics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select API Validation to enable it, and click Close.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "gputools-runtime-api-validation.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now, the API Validation runtime is enabled each time you run your scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-API-Validation-with-environment-variables",
+          "level": 3,
+          "text": "Enable API Validation with environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also enable API Validation by setting the following environment variables on your Metal app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enables all API Validation tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the behavior for when a debug layer error occurs. Possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "assert",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (default), ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ignore",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nslog",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "assert",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to log and then assert on error. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ignore",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to ignore errors, which may cause undefined behavior. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nslog",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to log errors using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/1395275-nslog",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", which may also cause undefined behavior.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER_ERROR_MODE",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Converts any ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/clear",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " using a fuchsia color, which you can use to locate and debug incorrect load action modes or assumptions on ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " behavior.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER_VALIDATE_LOAD_ACTIONS=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Writes an alternating red-and-white checkerboard into each render target with a store action of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/dontCare",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", which you can use to debug incorrect store action modes or assumptions on ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/dontCare",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " behavior.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER_VALIDATE_STORE_ACTIONS=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This option takes a bitfield of modes to enable. The default is 0x1. The bitfield values are:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "items": [
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Enabling this flag causes the command buffer to tag any objects bound to it, which the system doesn’t retain internally. If the system deallocates a tagged object before the command buffer completes, an error occurs.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "0x1",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Enabling this flag causes the command buffer to tag objects that it internally retains. This flag is generally unnecessary because the system can’t deallocate an object while the command buffer itself isn’t complete.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "0x2",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Enabling this flag causes the system to treat deallocated tagged objects as errors even before committing the command buffer. This leads to a more immediate error (for example, in the call stack of the deallocation), which is more debuggable than at commit.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "text": "0x4",
+                              "type": "text"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "type": "termList"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER_VALIDATE_UNRETAINED_RESOURCES",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the behavior for when a debug layer warning occurs. Possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "assert",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ignore",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (default), and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nslog",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "assert",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to log and then assert on warning. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ignore",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to ignore warnings. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nslog",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the debug layer to log warnings using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/1395275-nslog",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_DEBUG_LAYER_WARNING_MODE",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of settings, run ",
+              "type": "text"
+            },
+            {
+              "code": "man MetalValidation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime": {
+      "abstract": [
+        {
+          "text": "Validate your resources by viewing the contents of your textures and buffers while debugging your Metal app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting live resources at runtime",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-live-resources-at-runtime"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance": {
+      "abstract": [
+        {
+          "text": "Catch performance issues using the Metal Performance HUD while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring your Metal app’s graphics performance",
+      "type": "topic",
+      "url": "/documentation/xcode/monitoring-your-metal-apps-graphics-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage": {
+      "abstract": [
+        {
+          "text": "Catch common shader runtime issues using Shader Validation while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating your app’s Metal shader usage",
+      "type": "topic",
+      "url": "/documentation/xcode/validating-your-apps-metal-shader-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/clear": {
+      "abstract": [
+        {
+          "text": "The GPU writes a value to every pixel in the attachment at the start of the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/clear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLLoadAction.clear",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLLoadAction/clear"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare": {
+      "abstract": [
+        {
+          "text": "The GPU has permission to discard the existing contents of the attachment at the start of the render pass, replacing them with arbitrary data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dontCare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLLoadAction.dontCare",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLLoadAction/dontCare"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/dontCare": {
+      "abstract": [
+        {
+          "text": "The GPU has permission to discard the rendered contents of the attachment at the end of the render pass, replacing them with arbitrary data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dontCare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/dontCare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLStoreAction.dontCare",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLStoreAction/dontCare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1395275-nslog": {
+      "abstract": [
+        {
+          "text": "Logs an error message to the Apple System Log facility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1395275-nslog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLog",
+      "type": "topic",
+      "url": "/documentation/foundation/1395275-nslog"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-runtime-api-validation.png": {
+      "alt": "A screenshot of the Xcode scheme editor with the API Validation option enabled and highlighted.",
+      "identifier": "gputools-runtime-api-validation.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72fc63a7bd9476cf0ca363f16dd5478c/gputools-runtime-api-validation.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63896827dbb9bf90c727cf87385054eb/gputools-runtime-api-validation@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97b728542cecf7ee617624f335882ce9/gputools-runtime-api-validation~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e25ef5b9e2b63633e716e66364847cf/gputools-runtime-api-validation~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-runtime-edit-scheme.png": {
+      "alt": "An Xcode screenshot that shows the Scheme menu with the Edit Scheme menu item highlighted.",
+      "identifier": "gputools-runtime-edit-scheme.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/853efe5821c1caf37e3e95fdcd304b6f/gputools-runtime-edit-scheme.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6276e85b8ecf3632dbf5391a2175b1f6/gputools-runtime-edit-scheme@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c8d5e6a45f072f7766a8f17dcdeef578/gputools-runtime-edit-scheme~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4cf338b80691345c7c2f06bea814129d/gputools-runtime-edit-scheme~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-diagnostics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime",
+        "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance"
+      ],
+      "title": "Runtime diagnostics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1clear/title",
+          "value": "MTLLoadActionClear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1clear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionClear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1dontCare/title",
+          "value": "MTLLoadActionDontCare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1dontCare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionDontCare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1dontCare/title",
+          "value": "MTLStoreActionDontCare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1dontCare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionDontCare"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

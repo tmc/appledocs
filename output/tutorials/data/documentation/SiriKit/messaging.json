@@ -1,0 +1,3002 @@
+{
+  "abstract": [
+    {
+      "text": "Send messages and search the user’s received messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/messaging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Messaging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With messaging intents, users can ask Siri to compose new messages, read existing messages, and indicate to other users whether they’re available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow users to compose and send text or audio messages with your service, support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Donate interactions when the user sends and receives messages in your app to give the system cues about which contacts to suggest in Share Sheets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow Siri to announce incoming messages on AirPods, and mark announced messages as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/read",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/played",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Adopting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also enables users to see incoming messages on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarAudioSource/sourceCarPlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "-enabled display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3743234",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, you can use an Intents UI app extension to display a custom message composition interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarAudioSource/sourceCarPlay": {
+      "abstract": [
+        {
+          "text": "A CarPlay source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceCarPlay"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarAudioSource/sourceCarPlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarAudioSourceCarPlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarAudioSource.sourceCarPlay",
+      "type": "topic",
+      "url": "/documentation/intents/incaraudiosource/sourcecarplay"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a range of dates in a parameter of an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsRangeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsRangeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDateComponentsRangeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indatecomponentsrangeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEditMessageIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ineditmessageintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEditMessageIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/ineditmessageintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEditMessageIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ineditmessageintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponseCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEditMessageIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEditMessageIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/ineditmessageintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatus": {
+      "abstract": [
+        {
+          "text": "The user’s preference for receiving notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatus",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "A constant that indicates whether your app has authorization to access the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatusAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatusauthorizationstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter": {
+      "abstract": [
+        {
+          "text": "An object that maintains the user’s current focus status and your app’s ability to access it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatusCenter",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatuscenter"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessage": {
+      "abstract": [
+        {
+          "text": "An object that describes a sent or received message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessage",
+      "type": "topic",
+      "url": "/documentation/intents/inmessage"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute": {
+      "abstract": [
+        {
+          "text": "Constants that indicate an attribute of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttribute",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattribute"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/played": {
+      "abstract": [
+        {
+          "text": "The message has been played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "played"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/played",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributePlayed"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttribute.played",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattribute/played"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/read": {
+      "abstract": [
+        {
+          "text": "The message is marked as read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute/read",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeRead"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttribute.read",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattribute/read"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptions": {
+      "abstract": [
+        {
+          "text": "Constants that indicate a message search filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttributeOptions",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattributeoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a search parameter that filters by message status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttributeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattributeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for assorted attributes of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttributeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattributeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageLinkMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageLinkMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageLinkMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageLinkMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageLinkMetadata",
+      "type": "topic",
+      "url": "/documentation/intents/inmessagelinkmetadata"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageReaction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageReaction"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageReaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageReaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageReaction",
+      "type": "topic",
+      "url": "/documentation/intents/inmessagereaction"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageReactionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageReactionType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageReactionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageReactionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageReactionType",
+      "type": "topic",
+      "url": "/documentation/intents/inmessagereactiontype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType": {
+      "abstract": [
+        {
+          "text": "The format of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INOutgoingMessageType",
+      "type": "topic",
+      "url": "/documentation/intents/inoutgoingmessagetype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the message’s format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INOutgoingMessageTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inoutgoingmessagetyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPerson": {
+      "abstract": [
+        {
+          "text": "Information about a person participating in a SiriKit interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPerson",
+      "type": "topic",
+      "url": "/documentation/intents/inperson"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a user as a parameter of an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPersonResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPersonResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPersonResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpersonresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntent": {
+      "abstract": [
+        {
+          "text": "A request to list the messages that match the specified criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForMessagesIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insearchformessagesintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles requests to search the current user’s messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForMessagesIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insearchformessagesintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a search for messages intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForMessagesIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insearchformessagesintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment": {
+      "abstract": [
+        {
+          "text": "A file to include in a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageAttachment",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageattachment"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent": {
+      "abstract": [
+        {
+          "text": "A request to send a message to the designated recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentDonationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentDonationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentDonationMetadata",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintentdonationmetadata"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface to handle sending messages to one or more designated users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a send message intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageRecipientResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the recipient of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageRecipientResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageRecipientResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageRecipientResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageRecipientResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessagerecipientresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntent": {
+      "abstract": [
+        {
+          "text": "A request to modify the attributes of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetMessageAttributeIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insetmessageattributeintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles modifying message attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetMessageAttributeIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insetmessageattributeintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a set message attribute intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetMessageAttributeIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetMessageAttributeIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insetmessageattributeintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent": {
+      "abstract": [
+        {
+          "text": "An object that indicates the user’s focus status is changing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling": {
+      "abstract": [
+        {
+          "text": "A set of methods an object implements to process intents that share the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to an intent that shares the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "A constant that indicates your app’s ability to handle an intent to share the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSticker": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSticker"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSticker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSticker"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSticker",
+      "type": "topic",
+      "url": "/documentation/intents/insticker"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUnsendMessagesIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inunsendmessagesintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUnsendMessagesIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inunsendmessagesintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUnsendMessagesIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inunsendmessagesintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponseCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUnsendMessagesIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUnsendMessagesIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/inunsendmessagesintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app": {
+      "abstract": [
+        {
+          "text": "Donate app-specific content, use Siri’s contact suggestions, and adopt the latest platform features to create a more consistent messaging experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving interactions between Siri and your messaging app",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-interactions-between-siri-and-your-messaging-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes": {
+      "abstract": [
+        {
+          "text": "Create and manage notes and to-do list items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists and Notes",
+      "type": "topic",
+      "url": "/documentation/sirikit/lists-and-notes"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/ride-booking": {
+      "abstract": [
+        {
+          "text": "Book rides and report their status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ride Booking",
+      "type": "topic",
+      "url": "/documentation/sirikit/ride-booking"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/voip-calling": {
+      "abstract": [
+        {
+          "text": "Initiate calls and search the user’s call history.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoIP Calling",
+      "type": "topic",
+      "url": "/documentation/sirikit/voip-calling"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    },
+    "media-3743234": {
+      "alt": "A flow diagram going from left to right. On the left is an image of a user asking Siri to send a text. In the middle is an icon of Siri sending the user’s request to an app. On the right is the text the user asked Siri to send.",
+      "identifier": "media-3743234",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52c92d682878d439763597a903240923/media-3743234@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+        "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Sending-a-Message",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata"
+      ],
+      "title": "Sending a Message"
+    },
+    {
+      "anchor": "Editing-a-Message",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INEditMessageIntentResponseCode"
+      ],
+      "title": "Editing a Message"
+    },
+    {
+      "anchor": "Unsending-a-Message",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INUnsendMessagesIntentResponseCode"
+      ],
+      "title": "Unsending a Message"
+    },
+    {
+      "anchor": "Reacting-to-a-Message",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INMessageReactionType",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageLinkMetadata",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageReaction",
+        "doc://com.apple.sirikit/documentation/Intents/INSticker"
+      ],
+      "title": "Reacting to a Message"
+    },
+    {
+      "anchor": "Searching-for-Messages",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForMessagesIntentResponse"
+      ],
+      "title": "Searching for Messages"
+    },
+    {
+      "anchor": "Setting-Message-Attributes",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSetMessageAttributeIntentResponse"
+      ],
+      "title": "Setting Message Attributes"
+    },
+    {
+      "anchor": "Sharing-the-Users-Focus-Status",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus"
+      ],
+      "title": "Sharing the User’s Focus Status"
+    },
+    {
+      "anchor": "Managing-Message-Information",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INMessage",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttribute",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptions",
+        "doc://com.apple.sirikit/documentation/Intents/INPerson"
+      ],
+      "title": "Managing Message Information"
+    },
+    {
+      "anchor": "Providing-Resolution-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageRecipientResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult"
+      ],
+      "title": "Providing Resolution Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntent/title",
+          "value": "INEditMessageIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/title",
+          "value": "INDateComponentsRangeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsRangeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsRangeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/title",
+          "value": "INSendMessageAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentHandling/title",
+          "value": "INSearchForMessagesIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/title",
+          "value": "INShareFocusStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute/title",
+          "value": "INMessageAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentHandling/title",
+          "value": "INEditMessageIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentHandling/title",
+          "value": "INUnsendMessagesIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/title",
+          "value": "INMessageAttributeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/title",
+          "value": "INFocusStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponse/title",
+          "value": "INEditMessageIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptions/title",
+          "value": "INMessageAttributeOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponseCode/title",
+          "value": "INEditMessageIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEditMessageIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEditMessageIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReaction/title",
+          "value": "INMessageReaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageReaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageReaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/title",
+          "value": "INShareFocusStatusIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/title",
+          "value": "INShareFocusStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReactionType/title",
+          "value": "INMessageReactionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReactionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageReactionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageReactionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageReactionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessage/title",
+          "value": "INMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/title",
+          "value": "INSendMessageIntentDonationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntent/title",
+          "value": "INSearchForMessagesIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/title",
+          "value": "INFocusStatusCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/title",
+          "value": "INPersonResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntent/title",
+          "value": "INSetMessageAttributeIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/title",
+          "value": "INSendMessageIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageRecipientResolutionResult/title",
+          "value": "INSendMessageRecipientResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageRecipientResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageRecipientResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageRecipientResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageRecipientResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/title",
+          "value": "INMessageAttributeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/title",
+          "value": "INSendMessageIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentHandling/title",
+          "value": "INSetMessageAttributeIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/title",
+          "value": "INOutgoingMessageTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute~1read/title",
+          "value": "INMessageAttributeRead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute~1read/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeRead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute~1played/title",
+          "value": "INMessageAttributePlayed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttribute~1played/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributePlayed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageLinkMetadata/title",
+          "value": "INMessageLinkMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageLinkMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageLinkMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageLinkMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageLinkMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponse/title",
+          "value": "INUnsendMessagesIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/title",
+          "value": "INOutgoingMessageType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentResponse/title",
+          "value": "INSetMessageAttributeIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetMessageAttributeIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetMessageAttributeIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/title",
+          "value": "INPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/title",
+          "value": "INSendMessageIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/title",
+          "value": "INFocusStatusAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAudioSource~1sourceCarPlay/title",
+          "value": "INCarAudioSourceCarPlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAudioSource~1sourceCarPlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarAudioSourceCarPlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntent/title",
+          "value": "INUnsendMessagesIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponseCode/title",
+          "value": "INUnsendMessagesIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INUnsendMessagesIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUnsendMessagesIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/title",
+          "value": "INShareFocusStatusIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSticker/title",
+          "value": "INSticker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSticker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSticker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSticker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSticker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentResponse/title",
+          "value": "INSearchForMessagesIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForMessagesIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntentResponse"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

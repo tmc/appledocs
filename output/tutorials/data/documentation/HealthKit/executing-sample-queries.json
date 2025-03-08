@@ -1,0 +1,951 @@
+{
+  "abstract": [
+    {
+      "text": "Create, run, and sort sample queries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/executing-sample-queries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Executing Sample Queries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use sample queries to read samples from the HealthKit store. Each query returns a single type of sample, such as step count or heart rate. You can filter results further with a predicate, or sort the results using sort descriptors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-Run-the-Query",
+          "level": 3,
+          "text": "Create and Run the Query",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a sample query by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. Start by creating the sample type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryEnergyConsumed) else {",
+            "    fatalError(\"*** This method should never fail ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create the query itself. This query returns all dietary energy consumed samples. Its results handler checks for any errors before processing the samples, then dispatches updates to the user interface to the main queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let query = HKSampleQuery(sampleType: sampleType, predicate: nil, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {",
+            "    query, results, error in",
+            "    ",
+            "    guard let samples = results as? [HKQuantitySample] else {",
+            "        // Handle any errors here.",
+            "        return",
+            "    }",
+            "    ",
+            "    for sample in samples {",
+            "        // Process each sample here.",
+            "    }",
+            "    ",
+            "    // The results come back on an anonymous background queue.",
+            "    // Dispatch to the main queue before modifying the UI.",
+            "    ",
+            "    DispatchQueue.main.async {",
+            "        // Update the UI here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the query is instantiated, you run it by calling the HealthKit store’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "store.execute(query)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method runs the query on an anonymous background queue. When the query is complete, it executes the results handler on the same background queue (but not necessarily the same thread).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Filter-and-Sort-Results",
+          "level": 3,
+          "text": "Filter and Sort Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a query returns all samples of the specified type. Often you want the HealthKit store to filter the results, and only return a specific subset of samples. You may also want the store to sort the results before returning them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter the results, create a predicate for your samples. The following code limits the search results to samples with a start date between midnight last night and midnight tonight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let calendar = NSCalendar.current",
+            "let now = Date()",
+            "let components = calendar.dateComponents([.year, .month, .day], from: now)",
+            "    ",
+            "guard let startDate = calendar.date(from: components) else {",
+            "    fatalError(\"*** Unable to create the start date ***\")",
+            "}",
+            " ",
+            "guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {",
+            "    fatalError(\"*** Unable to create the end date ***\")",
+            "}",
+            "",
+            "let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sort the results, create one or more sort descriptors. The following code sorts the results by their start dates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sortByDate = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create a query using both the predicate and an array of sort descriptors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let filteredAndSortedQuery = HKSampleQuery(sampleType: sampleType,",
+            "                                           predicate: today,",
+            "                                           limit: Int(HKObjectQueryNoLimit),",
+            "                                           sortDescriptors: [sortByDate]) {",
+            "    query, results, error in",
+            "    // Process the results here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)": {
+      "abstract": [
+        {
+          "text": "Starts executing the provided query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuery",
+          "text": "HKQuery"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeQuery:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/execute(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKObjectQueryNoLimit": {
+      "abstract": [
+        {
+          "text": "A value indicating that the query returns all the matching samples in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKObjectQueryNoLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObjectQueryNoLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKObjectQueryNoLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKObjectQueryNoLimit",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobjectquerynolimit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery": {
+      "abstract": [
+        {
+          "text": "A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSampleQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSampleQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSampleQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:resultsHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a query for samples that match any of the descriptors you provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queryDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQueryDescriptor",
+          "text": "HKQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleQuery",
+          "text": "HKSampleQuery"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSample",
+          "text": "HKSample"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:resultsHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithQueryDescriptors:limit:resultsHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(queryDescriptors:limit:resultsHandler:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequery/init(querydescriptors:limit:resultshandler:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queryDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQueryDescriptor",
+          "text": "HKQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleQuery",
+          "text": "HKSampleQuery"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSample",
+          "text": "HKSample"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(queryDescriptors:limit:sortDescriptors:resultsHandler:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequery/init(querydescriptors:limit:sortdescriptors:resultshandler:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)": {
+      "abstract": [
+        {
+          "text": "Instantiates and returns a sample query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleType",
+          "text": "HKSampleType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleQuery",
+          "text": "HKSampleQuery"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSample",
+          "text": "HKSample"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequery/init(sampletype:predicate:limit:sortdescriptors:resultshandler:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/healthkit-sort-descriptors": {
+      "abstract": [
+        {
+          "text": "Identifiers for sorting results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/healthkit-sort-descriptors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HealthKit sort descriptors",
+      "type": "topic",
+      "url": "/documentation/healthkit/healthkit-sort-descriptors"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/queries": {
+      "abstract": [
+        {
+          "text": "Query health and fitness data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/queries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Sample-Queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:resultsHandler:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKObjectQueryNoLimit",
+        "doc://com.apple.healthkit/documentation/HealthKit/healthkit-sort-descriptors"
+      ],
+      "title": "Creating Sample Queries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObjectQueryNoLimit/title",
+          "value": "HKObjectQueryNoLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObjectQueryNoLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKObjectQueryNoLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(queryDescriptors:limit:resultsHandler:)/title",
+          "value": "initWithQueryDescriptors:limit:resultsHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(queryDescriptors:limit:resultsHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithQueryDescriptors:limit:resultsHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(queryDescriptors:limit:sortDescriptors:resultsHandler:)/title",
+          "value": "initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(queryDescriptors:limit:sortDescriptors:resultsHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1execute(_:)/title",
+          "value": "executeQuery:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1execute(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeQuery:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)/title",
+          "value": "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery~1init(sampleType:predicate:limit:sortDescriptors:resultsHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/title",
+          "value": "HKSampleQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleQuery"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

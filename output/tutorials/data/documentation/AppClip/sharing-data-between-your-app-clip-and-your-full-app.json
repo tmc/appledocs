@@ -1,0 +1,1524 @@
+{
+  "abstract": [
+    {
+      "text": "Use CloudKit, Sign in with Apple, shared user defaults or containers, and the keychain to offer a smooth transition from your App Clip to your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/sharing-data-between-your-app-clip-and-your-full-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sharing data between your App Clip and your full app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users of your App Clip install your full app, the full app replaces the App Clip and receives all invocations in its place. It’s important you provide a good user experience to users who have become familiar with the App Clip and are now starting to use the full app; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show information in the app that the user entered when they used the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make downloaded data available to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t require users to log in to their account again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Making App Clip data accessible to your full app is key to offering a smooth transition from App Clip to full app. Choose from the following technologies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access your public iCloud database in your App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store App Clip data and assets in a shared container and access them in your full app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store sensitive App Clip data in the keychain and access it in your full app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Sign in with Apple to offer a seamless login experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Access-your-public-iCloud-database",
+          "level": 3,
+          "text": "Access your public iCloud database",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Making sure your App Clip has access to the same data as your full app and keeping its data up to date are important things to consider when you create your App Clip. For example, an App Clip for restaurants needs to always show the latest weekly lunch menu that’s also available to users of your full app. Starting with iOS 16, your App Clip can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to read data you store in a public iCloud database with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — including a Core Data store you mirror with a public ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " database. This enables your App Clip to access information that’s available to all users of your app — like the previously mentioned lunch menu for a restaurant app and App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read your app’s public iCloud database, add the iCloud capability to your App Clip as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The process is the same as for your full app. However, your App Clip can only set the ",
+              "type": "text"
+            },
+            {
+              "code": "CloudKit-Anonymous",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.icloud-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Xcode chooses this value for you when you add the iCloud capability to your App Clip target. After you’ve added the iCloud capability to your App Clip target, specify the container your App Clip should access, and access your data just like you do in your regular app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your App Clip can’t write data to the public database. It can’t use iCloud Documents, iCloud key-value storage, or private and shared containers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on iCloud and public databases, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/icloud/cloudkit/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/icloud/cloudkit/designing/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-local-App-Clip-data-available-to-the-full-app",
+          "level": 3,
+          "text": "Make local App Clip data available to the full app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your App Clip can make its local data accessible to your corresponding full app by storing data in a shared container. The full app can then access this local data when it replaces the App Clip, providing a positive user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To store local data in a shared container:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the App Groups capability to the targets of both the App Clip and the full app. For more information about configuring App Groups, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For both targets, add the same app group to the capability; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.exampleApp.appClipMigration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code to your App Clip target that obtains the URL of the shared container using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and store data using this URL; for example, by using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1417341-write",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your full app’s code, use the same function to obtain the URL of the shared container and access its content; for example, by using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to a shared container, the App Clip can also store information in a shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that’s accessible to the full app. The following code uses the configured app group to create the shared ",
+              "type": "text"
+            },
+            {
+              "code": "UserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance and store a string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sharedUserDefaults = UserDefaults(suiteName: \"group.exampleApp.appClipMigration\") else {",
+            "    // Error handling",
+            "}",
+            "sharedUserDefaults.set(\"A sample string\", forKey: \"sharedText\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users install the full app, it can access the shared user defaults. For example, access the string stored in the previous code using the following code snippet:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sharedUserDefaults = UserDefaults(suiteName: \"group.exampleApp.appClipDataMigration\") else {",
+            "    // Error handling",
+            "}",
+            "guard let migratedData = sharedUserDefaults.string(forKey: \"sharedText\") else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preserve user privacy across apps and App Clips, an App Clip can only share its data with its corresponding app. Don’t store sensitive user information, such as passwords, in a shared app container or in user defaults. However, if your App Clip requires people to log in to an account to offer its functionality, you likely want to offer a seamless upgrade experience to the full app. In this case, you might store an API key, hashed user ID, or similarly anonymized identifier in the shared app container or in user defaults. Then, you can use the identifier when the user launches the full app to offer a more seamless upgrade experience that doesn’t require them to again log in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-keychain-usage",
+          "level": 3,
+          "text": "Review keychain usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keychain offers a secure way to store sensitive information. Storing and reading App Clip data in the keychain generally works the same as for your full app. However, be aware of the following behavior when using the keychain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your App Clip can’t access data your full app stores in the keychain. For example, say your app stores login information in the keychain. A user later uninstalls the app only to later launch your App Clip from an invocation. In the App Clip, they’ll need to log in again because your App Clip can’t access the stored login information that may have remained in the keychain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On devices that run iOS 15.3 or earlier, you can’t make information the App Clip stores in the keychain accessible to its corresponding full app. If your App Clip requires people to log in to an account to offer its functionality, don’t make the user sign in a second time in the full app. Instead, store an API key or hashed user ID in the shared app container as described above, or offer Sign in with Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starting with iOS 15.4, information that the App Clip stores in the keychain is accessible to its corresponding full app. To make sure only the corresponding full app receives access to keychain items stored by the App Clip, the system uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlements. When you create an App Clip with Xcode, it adds the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It automatically adds the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement when you archive the app that contains the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user may frequently install and uninstall your app and use the App Clip before reinstalling your app. If your full app and your App Clip write the same data to the keychain, make sure your code handles the following cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The keychain may contain multiple copies of the same data and they’re accessible to the full app, especially if you use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/kSecClassKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " because the entries have different public key hash values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A keychain item by the App Clip might overwrite an item that a previous installation of the full app created.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These cases are especially common when a person frequently installs and uninstalls the full app and launches the App Clip in between — for example, when you develop your app and your App Clip at the same time. To avoid errors caused by duplicated or overwritten keychain data, add code that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Checks if more than one copy of an item exists in the keychain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uses different values for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrLabel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to distinguish between items stored by your app and your App Clip",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decides which information to use if there’s a duplicate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deletes any unneeded items stored in the keychain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how your App Clip can store a sensitive string in the keychain. Note how the code sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute to the ",
+              "type": "text"
+            },
+            {
+              "code": "fruta-appclip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to distinguish it from a keychain entry that the app creates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Write sensitive information you use in your App Clip to the keychain — for example, an authentication token.",
+            "let addSecretsQuery: [String: Any] = [",
+            "    kSecClass as String: kSecClassGenericPassword,",
+            "    kSecValueData as String: \"smoothie-secret\".data(using: .utf8),",
+            "    kSecAttrLabel as String: \"fruta-appclip\"",
+            "]",
+            "SecItemAdd(addSecretsQuery as CFDictionary, nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user installs the full app, read the sensitive information that the App Clip stored as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Read the sensitive information from the keychain that your App Clip stored.",
+            "var readSecretsQuery: [String: Any] = [",
+            "    kSecClass as String: kSecClassGenericPassword,",
+            "    kSecReturnAttributes as String: true,",
+            "    kSecAttrLabel as String: \"fruta-appclip\",",
+            "    kSecReturnData as String: true",
+            "]",
+            "var secretsCopy: AnyObject?",
+            "SecItemCopyMatching(readSecretsQuery as CFDictionary, &secretsCopy)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using the keychain to store sensitive information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/keychain-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Offer-Sign-in-with-Apple",
+          "level": 3,
+          "text": "Offer Sign in with Apple",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Clips may use any technology to allow users to sign in to their account or create one. However, if your App Clip requires users to log in to an account, consider offering ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SigninwithApple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In addition to helping provide a simple, secure, and privacy-preserving account creation and sign-in experience, it offers a positive experience when a user starts using the full app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you offer Sign in with Apple and create a shared data container, create a user experience that doesn’t require users to log in again when they start using the full app. The following code stores the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let groupUserDefaults = UserDefaults(suiteName: \"group.com.example.appClipDataMigration\")",
+            "guard let credential = authorization.credential as ASAuthorizationAppleIDCredential else { return }",
+            "groupUserDefaults?.set(credential.user, forKey: \"SavedUserID\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the app’s code, retrieve the stored Apple ID authorization credential and use it to sign in the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let provider = ASAuthorizationAppleIDProvider()",
+            "let groupUserDefaults = UserDefaults(suiteName: \"group.com.example.appClipDataMigration\")",
+            "let user = groupUserDefaults?.get(\"SavedUserID\")",
+            "provider.getCredentialState(forUserID: user) { state, error in",
+            "    if state == .authorized {",
+            "        readFavoriteSmoothies(user)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/recommending-your-app-to-app-clip-users": {
+      "abstract": [
+        {
+          "text": "Display an overlay in your App Clip to recommend your app to users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/recommending-your-app-to-app-clip-users",
+      "kind": "article",
+      "role": "article",
+      "title": "Recommending your app to App Clip users",
+      "type": "topic",
+      "url": "/documentation/appclip/recommending-your-app-to-app-clip-users"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential": {
+      "abstract": [
+        {
+          "text": "A credential that results from a successful Apple ID authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDCredential",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of App Clip identifiers for an app with exactly one entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.associated-appclip-app-identifiers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.icloud-services": {
+      "abstract": [
+        {
+          "text": "The iCloud services used by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.icloud-services",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iCloud Services Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.icloud-services"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of parent application identifiers for an App Clip with exactly one entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Parent Application Identifiers Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecAttrLabel": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating the item’s label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecAttrLabel",
+      "type": "topic",
+      "url": "/documentation/Security/kSecAttrLabel"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecClassKey": {
+      "abstract": [
+        {
+          "text": "The value that indicates a cryptographic key item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClassKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecClassKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecClassKey",
+      "type": "topic",
+      "url": "/documentation/Security/kSecClassKey"
+    },
+    "doc://com.apple.documentation/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/Security/keychain-services"
+    },
+    "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets": {
+      "abstract": [
+        {
+          "text": "Relieve the user of remembering small secrets by storing them in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the keychain to manage user secrets",
+      "type": "topic",
+      "url": "/documentation/Security/using-the-keychain-to-manage-user-secrets"
+    },
+    "doc://com.apple.documentation/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/SigninwithApple"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups": {
+      "abstract": [
+        {
+          "text": "Enable communication and data sharing between multiple installed apps created by the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring app groups",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-app-groups"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services": {
+      "abstract": [
+        {
+          "text": "Share user or app data among multiple instances of your app running on different devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring iCloud services",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-icloud-services"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl": {
+      "abstract": [
+        {
+          "text": "Returns the container directory associated with the specified security application group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSecurityApplicationGroupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerURL(forSecurityApplicationGroupIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412643-containerurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-init": {
+      "abstract": [
+        {
+          "text": "Returns an `NSString` object initialized by reading data from a given URL interpreted using a given encoding. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "encoding"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:encoding:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1414463-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1417341-write": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the receiver to the URL specified by `url` using the specified encoding. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "encoding"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1417341-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:atomically:encoding:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1417341-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/icloud/cloudkit/": {
+      "identifier": "https://developer.apple.com/icloud/cloudkit/",
+      "title": "Build Apps Using CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Build Apps Using CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/icloud/cloudkit/"
+    },
+    "https://developer.apple.com/icloud/cloudkit/designing/": {
+      "identifier": "https://developer.apple.com/icloud/cloudkit/designing/",
+      "title": "Designing apps using CloudKit",
+      "titleInlineContent": [
+        {
+          "text": "Designing apps using CloudKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/icloud/cloudkit/designing/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Clip-to-full-app-transition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/recommending-your-app-to-app-clip-users"
+      ],
+      "title": "App Clip to full app transition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Clip-to-full-app-transition",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/recommending-your-app-to-app-clip-users"
+              ],
+              "title": "App Clip to full app transition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring~11417341-write/title",
+          "value": "writeToURL:atomically:encoding:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11412643-containerurl/title",
+          "value": "containerURLForSecurityApplicationGroupIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecAttrLabel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecAttrLabel"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring~11414463-init/title",
+          "value": "initWithContentsOfURL:encoding:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecClassKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecClassKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/sharing-data-between-your-app-clip-and-your-full-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/sharing-data-between-your-app-clip-and-your-full-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

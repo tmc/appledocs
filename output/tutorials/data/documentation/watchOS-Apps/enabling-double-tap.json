@@ -1,0 +1,990 @@
+{
+  "abstract": [
+    {
+      "text": "Customize your app’s response to the double-tap gesture on Apple Watch.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling the double-tap gesture on Apple Watch"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch Series 9 and Apple Watch Ultra 2, people can trigger a scene’s primary action by tapping their index finger and thumb together twice. In watchOS 11 and later, you can assign a buttonlike control, such as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the scene’s primary action, customizing how your app responds to double tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Take-advantage-of-system-behaviors",
+          "level": 3,
+          "text": "Take advantage of system behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app receives the default double-tap behaviors automatically. With double tap, people can scroll through lists and scroll views. They can also page through a vertical tab bar. In general, if your scene contains lists, vertical tab views, or scroll views, the system can handle the gesture for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-a-primary-action",
+          "level": 3,
+          "text": "Declare a primary action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your scene has an obvious main action, you can designate it as the primary action using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier and passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HandGestureShortcut/primaryAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button (\"Start Activity\") {",
+            "    startActivity = true",
+            "}",
+            "// Set this button as the primary action for double tap.",
+            ".handGestureShortcut(.primaryAction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When double tap triggers your primary action, the system automatically highlights the affected control. It calculates the shape of the highlighted area based on the control’s content. If you need to customize the highlight, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/clipShape(_:style:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to modify the control’s shape.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add the primary action modifier to any buttonlike control, such as buttons, toggles, navigation links, or text fields. You can even add it to widgets and live activities that appear in the Smart Stack, including remote live activities from iOS. However, you can only assign one primary action per scene. If the scene has multiple items that can interact with double tap, such as a primary action inside a scroll view, the system determines the effect based on the following priorities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Primary action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll view",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vertical tab pagination",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Double tap only triggers your primary action if the control is on screen. Otherwise, the system scrolls towards the control one page at a time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/gestures#watchOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has additional design guidance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures#watchOS": {
+      "abstract": [
+        {
+          "text": "A gesture is a physical motion that a person uses to directly affect an object in an app or game on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures#watchOS",
+      "images": [
+        {
+          "identifier": "gestures.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "inputs-gestures-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/gestures"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/HandGestureShortcut/primaryAction": {
+      "abstract": [
+        {
+          "text": "The hand gesture shortcut for the primary action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HandGestureShortcutV",
+          "text": "HandGestureShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HandGestureShortcut/primaryAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primaryAction",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/HandGestureShortcut/primaryAction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage": {
+      "abstract": [
+        {
+          "text": "A `TabViewStyle` that displays a vertical page `TabView` interaction and appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalPage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24VerticalPageTabViewStyleV",
+          "text": "VerticalPageTabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalPage",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TabViewStyle/verticalPage"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toggle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/clipShape(_:style:)": {
+      "abstract": [
+        {
+          "text": "Sets a clipping shape for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipShape"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9FillStyleV",
+          "text": "FillStyle"
+        },
+        {
+          "kind": "text",
+          "text": " = FillStyle()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ShapeP",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/clipShape(_:style:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipShape(_:style:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/clipShape(_:style:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Assigns a hand gesture shortcut to the modified control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handGestureShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "shortcut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HandGestureShortcutV",
+          "text": "HandGestureShortcut"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handGestureShortcut(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create an account sign-up and sign-in strategy for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/authenticating-users-on-apple-watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps": {
+      "abstract": [
+        {
+          "text": "Set up a watchOS app that installs and runs without a companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating independent watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/creating-independent-watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date": {
+      "abstract": [
+        {
+          "text": "Ensure that your app’s content is relevant and up to date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your watchOS content up to date",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/keeping-your-watchos-app-s-content-up-to-date"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-watchos-apps-with-timelines"
+    },
+    "enabling-double-tap-on-watch-PageImage-card.png": {
+      "alt": null,
+      "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d5e805205ce0e598c55fdb76989025/enabling-double-tap-on-watch-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/235637bc0a7bc531746ce17b9ed199b3/enabling-double-tap-on-watch-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "gestures.svg": {
+      "alt": null,
+      "identifier": "gestures.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "touchscreen-gestures",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d4b4978965ca14deb6aba96c11ac2dd/gestures.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/gestures#watchOS": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/gestures#watchOS",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/gestures#watchOS"
+    },
+    "inputs-gestures-thumbnail.png": {
+      "alt": null,
+      "identifier": "inputs-gestures-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53d3d273df86384a9010c035e462b355/inputs-gestures-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca100cc13bcc2fbb7168bebc1da95af8/inputs-gestures-thumbnail@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures#watchOS",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/HandGestureShortcut/primaryAction",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/clipShape(_:style:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "App-experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+        "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle"
+      ],
+      "title": "App experience"
+    }
+  ]
+}

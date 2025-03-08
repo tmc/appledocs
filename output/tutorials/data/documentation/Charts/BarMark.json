@@ -1,0 +1,2266 @@
+{
+  "abstract": [
+    {
+      "text": "Chart content that represents data using bars.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/BarMark"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts7BarMarkV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BarMark"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BarMark"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "BarMark"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BarMark"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create different kinds of bar charts using the ",
+              "type": "text"
+            },
+            {
+              "code": "BarMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " chart content. To create a simple vertical bar chart that plots categories with x positions and numbers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with y positions, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:y:width:height:stacking:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, you can display profit by department:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Profit {",
+            "    let department: String",
+            "    let profit: Double",
+            "}",
+            "",
+            "let data: [Profit] = [",
+            "    Profit(department: \"Production\", profit: 15000),",
+            "    Profit(department: \"Marketing\", profit: 8000),",
+            "    Profit(department: \"Finance\", profit: 10000)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        BarMark(",
+            "            x: .value(\"Department\", $0.department),",
+            "            y: .value(\"Profit\", $0.profit)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BarMarkSwift.BarMarkBarChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Charts provides several other initializers for ",
+              "type": "text"
+            },
+            {
+              "code": "BarMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Below are a few more examples using them. For a full list of initializers see the topic section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Stacked-Bar-Chart",
+          "level": 3,
+          "text": "Stacked Bar Chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "BarkMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically stacks content when more than one bar maps to the same location. You can see this if you split the profit data up by category:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ProfitByCategory {",
+            "    let department: String",
+            "    let profit: Double",
+            "    let productCategory: String",
+            "}",
+            "",
+            "let data: [ProfitByCategory] = [",
+            "    ProfitByCategory(department: \"Production\", profit: 4000, productCategory: \"Gizmos\"),",
+            "    ProfitByCategory(department: \"Production\", profit: 5000, productCategory: \"Gadgets\"),",
+            "    ProfitByCategory(department: \"Production\", profit: 6000, productCategory: \"Widgets\"),",
+            "    ProfitByCategory(department: \"Marketing\", profit: 2000, productCategory: \"Gizmos\"),",
+            "    ProfitByCategory(department: \"Marketing\", profit: 1000, productCategory: \"Gadgets\"),",
+            "    ProfitByCategory(department: \"Marketing\", profit: 5000, productCategory: \"Widgets\"),",
+            "    ProfitByCategory(department: \"Finance\", profit: 2000, productCategory: \"Gizmos\"),",
+            "    ProfitByCategory(department: \"Finance\", profit: 3000, productCategory: \"Gadgets\"),",
+            "    ProfitByCategory(department: \"Finance\", profit: 5000, productCategory: \"Widgets\")",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        BarMark(",
+            "            x: .value(\"Category\", $0.department),",
+            "            y: .value(\"Profit\", $0.profit)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BarMarkSwift.BarMarkStackedBarChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This results in a chart that looks identical to the chart seen in the Overview section because the bars with the same department category are stacked on top of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each other. To differentiate the product categories, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifer that specifies a visual encoding for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "productCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data) {",
+            "    BarMark(",
+            "        x: .value(\"Category\", $0.department),",
+            "        y: .value(\"Profit\", $0.profit)",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Product Category\", $0.productCategory))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BarMarkSwift.BarMarkStackedBarChartWithForegroundColor.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the optional ",
+              "type": "text"
+            },
+            {
+              "code": "stacking:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the ",
+              "type": "text"
+            },
+            {
+              "code": "BarMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer to modify the stacking mechanism. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the stacking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1D-Bar-Chart",
+          "level": 3,
+          "text": "1D Bar Chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a one dimensional chart, use one of the initializers that only requires a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for one dimension, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:stacking:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for plotting with x. The example below reuses the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the previous example to get the production department values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data) { // Get the Production values.",
+            "    BarMark(",
+            "        x: .value(\"Profit\", $0.profit)",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Product Category\", $0.productCategory))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BarMarkSwift.BarMarkHorizontalStacked1DBarChartWithForegroundColor.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interval-Bar-Chart",
+          "level": 3,
+          "text": "Interval Bar Chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "BarMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent intervals by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:stacking:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:stacking:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The example below displays a Gantt chart by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plotting the ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "end",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties to x positions and the ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to y positions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Job {",
+            "    let job: String",
+            "    let start: Double",
+            "    let end: Double",
+            "}",
+            "",
+            "let data: [Job] = [",
+            "    Job(job: \"Job 1\", start: 0, end: 15),",
+            "    Job(job: \"Job 2\", start: 5, end: 25),",
+            "    Job(job: \"Job 1\", start: 20, end: 35),",
+            "    Job(job: \"Job 1\", start: 40, end: 55),",
+            "    Job(job: \"Job 2\", start: 30, end: 60),",
+            "    Job(job: \"Job 2\", start: 30, end: 60)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        BarMark(",
+            "            xStart: .value(\"Start Time\", $0.start),",
+            "            xEnd: .value(\"End Time\", $0.end),",
+            "            y: .value(\"Job\", $0.job)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "BarMarkSwift.BarMarkHorizontalIntervalBarChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "BarMarkSwift.BarMarkBarChart.png": {
+      "alt": "Vertical bar chart with x-axis showing department categories Production, Marketing, Finance and with y-axis ranging from 0 to 15000. There are 3 bars: Production 15000, Marketing 8000, Finance 10000.",
+      "identifier": "BarMarkSwift.BarMarkBarChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a69f46e0c2563656f66919f67861d18e/BarMarkSwift.BarMarkBarChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02c5bc3881285969d1e06928d5f9389b/BarMarkSwift.BarMarkBarChart~dark@2x.png"
+        }
+      ]
+    },
+    "BarMarkSwift.BarMarkHorizontalIntervalBarChart.png": {
+      "alt": "Horizontal bar chart with x-axis showing start and end time and y-axis showing task name. It has 5 bars, Task 1 range 0 to 15, range 20 to 35, and range 40 to 55, and Task 2 range 5 to 25 and range 30 to 60 task.",
+      "identifier": "BarMarkSwift.BarMarkHorizontalIntervalBarChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd3042845d4db04fed8b1cf4bff7e0c8/BarMarkSwift.BarMarkHorizontalIntervalBarChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/573f099d05b39be5eeb297a84a56778e/BarMarkSwift.BarMarkHorizontalIntervalBarChart~dark@2x.png"
+        }
+      ]
+    },
+    "BarMarkSwift.BarMarkHorizontalStacked1DBarChartWithForegroundColor.png": {
+      "alt": "Horizontal bar chart with one bar on the x-axis showing profit ranging from 0 to 15000 with stacked categoreis Gizmos, Gadgets and Widgets. Legend showing the color mapped to a product category.",
+      "identifier": "BarMarkSwift.BarMarkHorizontalStacked1DBarChartWithForegroundColor.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866989cb862990508465e796c804535b/BarMarkSwift.BarMarkHorizontalStacked1DBarChartWithForegroundColor@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96e91c4e4cf6cdb0b0754969c7accee6/BarMarkSwift.BarMarkHorizontalStacked1DBarChartWithForegroundColor~dark@2x.png"
+        }
+      ]
+    },
+    "BarMarkSwift.BarMarkStackedBarChart.png": {
+      "alt": "Vertical bar chart with x-axis showing department categories Production, Marketing, Finance with stacked product categories Gizmos, Gadgets, Widgets, and with y-axis ranging from 0 to 20,000. There are 3 bars: Production 15000, Marketing 8000, and Finance 10000.",
+      "identifier": "BarMarkSwift.BarMarkStackedBarChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a69f46e0c2563656f66919f67861d18e/BarMarkSwift.BarMarkStackedBarChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02c5bc3881285969d1e06928d5f9389b/BarMarkSwift.BarMarkStackedBarChart~dark@2x.png"
+        }
+      ]
+    },
+    "BarMarkSwift.BarMarkStackedBarChartWithForegroundColor.png": {
+      "alt": "Vertical bar chart with x-axis showing department categories Production, Marketing, Finance with stacked product categories Gizmos, Gadgets, Widgets, and with y-axis ranging from 0 to 15000. There are 3 bars: Production 15,000: Gizmos 4000, Gadgets 5000, and Widgets 6000, Marketing 8000: Gizmos 2000, Gadgets 1000, and Widgets 5000, Finance 10000: Gizmos 2000, Gadgets 3000, and Widgets 500. Legend showing the color mapped to a product category.",
+      "identifier": "BarMarkSwift.BarMarkStackedBarChartWithForegroundColor.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9963976e24f81fcb62eb62501d49795/BarMarkSwift.BarMarkStackedBarChartWithForegroundColor@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc30459294f7df472e52e16f5422ae59/BarMarkSwift.BarMarkStackedBarChartWithForegroundColor~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaMark",
+      "type": "topic",
+      "url": "/documentation/charts/areamark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:y:width:height:stacking:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots values with x and y.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stacking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:y:width:height:stacking:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:width:height:stacking:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(x:y:width:height:stacking:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots values with x and its y interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:width:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(x:ystart:yend:width:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:stacking:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots a value on x with fixed y interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stacking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:stacking:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:width:stacking:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(x:ystart:yend:width:stacking:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots values with its x interval and y.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:height:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(xstart:xend:y:height:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:stacking:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots values on y with fixed x interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stacking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts18MarkStackingMethodV",
+          "text": "MarkStackingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:stacking:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:height:stacking:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(xstart:xend:y:height:stacking:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-7541n": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark with fixed x interval that plots values with its y interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-7541n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(xstart:xend:ystart:yend:)-7541n"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-98wo9": {
+      "abstract": [
+        {
+          "text": "Creates a bar mark that plots values with its x interval and fixed y position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-98wo9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/barmark/init(xstart:xend:ystart:yend:)-98wo9"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using a foreground style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/foregroundstyle(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts": {
+      "abstract": [
+        {
+          "text": "Make a chart by combining chart building blocks in SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a chart using Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts/creating-a-chart-using-swift-charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod": {
+      "abstract": [
+        {
+          "text": "The ways in which you can stack marks in a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarkStackingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/MarkStackingMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MarkStackingMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "MarkStackingMethod",
+      "type": "topic",
+      "url": "/documentation/charts/markstackingmethod"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PlottableValue": {
+      "abstract": [
+        {
+          "text": "Labeled data that you plot in a chart using marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlottableValue",
+      "type": "topic",
+      "url": "/documentation/charts/plottablevalue"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointMark",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectangleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorMark": {
+      "abstract": [
+        {
+          "text": "A sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorMark",
+      "type": "topic",
+      "url": "/documentation/charts/sectormark"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Marks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark",
+        "doc://com.apple.Charts/documentation/Charts/LineMark",
+        "doc://com.apple.Charts/documentation/Charts/PointMark",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+        "doc://com.apple.Charts/documentation/Charts/RuleMark",
+        "doc://com.apple.Charts/documentation/Charts/SectorMark"
+      ],
+      "title": "Marks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-bar-mark",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:)",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:)",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:y:width:height:stacking:)",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:y:width:height:stacking:)",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(x:yStart:yEnd:width:stacking:)",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:y:height:stacking:)"
+      ],
+      "title": "Creating a bar mark"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-7541n",
+        "doc://com.apple.Charts/documentation/Charts/BarMark/init(xStart:xEnd:yStart:yEnd:)-98wo9"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/barmark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

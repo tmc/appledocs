@@ -1,0 +1,2368 @@
+{
+  "abstract": [
+    {
+      "text": "Use RealityKit to create an interactive ride in visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/swift-splash"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Swift-Splash-intro.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Swift Splash"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Vision Pro’s ability to combine virtual content seamlessly with the real world allows for many kinds of interactive virtual experiences. Swift Splash leverages RealityKit and Reality Composer Pro to create a virtual water slide by combining modular slide pieces. When the builder finishes their ride, they can release an adventurous goldfish to try it out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "Swift-Splash-overview.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Splash uses multiple Reality Composer Scenes to create prepackaged entity hierarchies that represent each of the slide pieces the player connects to construct their ride. It demonstrates how to hide and reveal sections of the entity hierarchy based on the current state of the app. For example, each slide piece contains an animated fish entity that’s hidden until the ride runs and the fish arrives at that particular piece. While Swift Splash is a fun, game-like experience, the core idea of assembling virtual objects out of predefined parts can also be used as the basis for a productivity or creation app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Splash scenes include Shader Graph materials built in Reality Composer Pro to change the appearance of the ride at runtime. Each piece can be configured to display in one of three materials: metal, wood, or plastic. Other Shader Graph materials create special effects, such as the movement of the water and the flashing lights on the start and end pieces. Even particle effects are included in some of these prepackaged entities, such as the fireworks that play when the goldfish crosses the finish line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "SS-change-material.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "SS-fireworks.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Build-slide-pieces-in-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Build slide pieces in Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Slide pieces are the building blocks of Swift Splash. The Reality Composer project contains a separate scene for each one. In addition to the 3D models that make up the slide piece, each scene contains a number of other entities the app uses to animate and place the slide piece.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SS-slide-piece.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the hierarchy viewer on the left side of the screenshot above, there are two transform entities called ",
+              "type": "text"
+            },
+            {
+              "code": "connect_in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "connect_out",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These transforms mark the points where the slide piece connects to the next or previous piece. Swift Splash uses these transforms to place new pieces at the end of the existing slide, as well as to snap pieces to other slide pieces when you manually move them near each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Slide pieces demonstrate the two primary mechanisms Swift Splash uses to find entities at runtime. For some entities, such as ",
+              "type": "text"
+            },
+            {
+              "code": "connect_in",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Swift Splash uses a naming convention and retrieves the entities by name or suffix when it needs to use them. In other cases, such as when names aren’t unique or the retrieving code needs configuration values, Swift Splash uses a custom component to mark and retrieve entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, animated entities that appear when the ride runs contain a component called ",
+              "type": "text"
+            },
+            {
+              "code": "RideAnimationComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app uses this component to determine if the entity is an animation that plays while the ride is running. The component also stores additional state the app needs to implement the ride animation, such as a property called ",
+              "type": "text"
+            },
+            {
+              "code": "duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that specifies when to start the animations on the next connected slide piece.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RideAnimationComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also includes a property called ",
+              "type": "text"
+            },
+            {
+              "code": "isPersistent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Persistent ride animations stay visible at all times but only animate when the ride is running, such as the animated door on the start piece. Nonpersistent ride animations, such as the fish swimming through a slide piece, display only while the ride is running and the fish swims through that particular piece.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-duplicate-materials-with-material-references",
+          "level": 3,
+          "text": "Avoid duplicate materials with material references",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many of Swift Splash’s slide pieces use the same materials. For example, the shader graph material that changes pieces from metal to wood to plastic is shared by all but one of the slide pieces. To avoid having duplicate copies of each material, Swift Splash leverages USD ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "material references",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to share materials between multiple entities in multiple scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Reality Composer Pro project contains a separate scene for each shared material, containing only that one material. Other track pieces create references to that material. If you change the original material, it affects all of the entities that reference it. For example, a scene called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "M_RainbowLights.usda",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the material ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "M_RainbowLights",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and both ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StartPiece.usda",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EndPiece.usda",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " reference that material.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "SS-material-reference.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Parallelize-the-asset-load",
+          "level": 3,
+          "text": "Parallelize the asset load",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maximize load speed and make the most efficient use of available compute resources, Swift Splash parallelizes loading scenes from the Reality Composer project using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The app creates a separate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each of the scenes it needs to load.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "await withTaskGroup(of: LoadResult.self) { taskGroup in   ",
+            "    // Load the regular slide pieces and ride animations.",
+            "    logger.info(\"Loading slide pieces.\")",
+            "    for piece in pieces {",
+            "        taskGroup.addTask {",
+            "            do {",
+            "                guard let pieceEntity = try await self.loadFromRCPro(named: piece.key.rawValue, ",
+            "                                                       fromSceneNamed: piece.sceneName) else {",
+            "                    fatalError(\"Attempted to load piece entity \\(piece.name) but failed.\")",
+            "                }",
+            "                return LoadResult(entity: pieceEntity, key: piece.key.rawValue)",
+            "            } catch {",
+            "                fatalError(\"Attempted to load \\(piece.name) but failed: \\(error.localizedDescription)\")",
+            "            }",
+            "        }",
+            "    }",
+            "    // Continue adding asset load jobs.",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then uses an async iterator to wait for and receive the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await result in taskGroup {",
+            "    if let pieceKey = pieces.filter({ piece in",
+            "        piece.key.rawValue == result.key",
+            "    }).first {",
+            "        self.add(template: result.entity, for: pieceKey.key)",
+            "        setupConnectible(entity: result.entity)",
+            "        result.entity.generateCollisionShapes(recursive: true)",
+            "        result.entity.setUpAnimationVisibility()",
+            "    }",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on task groups, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of these loaded pieces acts as a template. When the player adds a new piece of that type, the app clones the piece loaded from Reality Composer Pro and adds the clone to the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-sort-ordering-for-transparent-entities",
+          "level": 3,
+          "text": "Specify sort ordering for transparent entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When multiple entities have more than one overlapping, nonopaque material, RealityKit’s default depth-sorting can cause it to draw those entities in the wrong order. As a result, some entities may not be visible from certain angles or in certain positions relative to other transparent entities. The default depth sorting is based on the center of the entity’s bounding box, which may result in the incorrect drawing order when there are multiple overlapping materials with any amount of transparency. You can see an example of this by looking at the start piece in Reality Composer Pro, or by watching the video below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "SS-transparency-issue.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video demonstrates the problem. If the three boxes are the bounding boxes for three different transparent entities, and the small spheres are the box centers, the sphere that’s closest to the camera changes as the camera moves around the boxes, which changes the order that RealityKit’s default depth sorting algorithm draws them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "SS-transparency-sorting-from-left.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "SS-transparency-sorting-from-right.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Splash assigns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroupComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to each of the transparent entities to manually specify the relative depth sorting. To fix the transparency issues in the start piece in the video above, Swift Splash instructs RealityKit to draw the opaque parts of the fish first, its transparent goggles second, the water third, the glass globe fourth, and the selection glow shell last. Swift Splash does this by assigning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroupComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to each of the overlapping entities using the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but with a different order specified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileprivate func setEntityDrawOrder(_ entity: Entity, _ sortOrder: Int32, _ sortGroup: ModelSortGroup) {",
+            "    entity.forEachDescendant(withComponent: ModelComponent.self) { modelEntity, model in",
+            "        logger.info(\"Setting sort order of \\(sortOrder) of \\(entity.name), child entity: \\(modelEntity.name)\")",
+            "        let component = ModelSortGroupComponent(group: sortGroup, order: sortOrder)",
+            "        modelEntity.components.set(component)",
+            "    }",
+            "}",
+            "",
+            "/// Manually specify sort ordering for the transparent start piece meshes.",
+            "func handleStartPieceTransparency(_ startPiece: Entity) {",
+            "    let group = ModelSortGroup()",
+            "    ",
+            "    // Opaque fish parts.",
+            "    if let entity = startPiece.findEntity(named: fishIdleAnimModelName) {",
+            "        setEntityDrawOrder(entity, 1, group)",
+            "    }",
+            "    if let entity = startPiece.findEntity(named: fishRideAnimModelName) {",
+            "        setEntityDrawOrder(entity, 2, group)",
+            "    }",
+            "    ",
+            "    // Transparent fish parts.",
+            "    if let entity = startPiece.findEntity(named: fishGlassIdleAnimModelName) {",
+            "        setEntityDrawOrder(entity, 3, group)",
+            "    }",
+            "    if let entity = startPiece.findEntity(named: fishGlassRideAnimModelName) {",
+            "        setEntityDrawOrder(entity, 4, group)",
+            "    }",
+            "    ",
+            "    // Water.",
+            "    if let entity = startPiece.findEntity(named: sortOrderWaterName) {",
+            "        setEntityDrawOrder(entity, 5, group)",
+            "    }",
+            "    ",
+            "    // Glass globe.",
+            "    if let entity = startPiece.findEntity(named: sortOrderGlassGlobeName) {",
+            "        setEntityDrawOrder(entity, 6, group)",
+            "    }",
+            "    ",
+            "    // Selection glow.",
+            "    if let entity = startPiece.findEntity(named: startGlowName) {",
+            "        setEntityDrawOrder(entity, 7, group)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Traverse-connected-track-pieces",
+          "level": 3,
+          "text": "Traverse connected track pieces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The root entity for all of the individual slide pieces has a ",
+              "type": "text"
+            },
+            {
+              "code": "ConnectableComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This custom component marks the entity as one that can be connected or snapped to other connectable entities. At runtime, the app adds a ",
+              "type": "text"
+            },
+            {
+              "code": "ConnectableStateComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to each slide piece it adds. The component stores state information for the track piece that doesn’t need to be edited in Reality Composer Pro. Among the state information that this component stores is a reference to the next and previous piece.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "SS-attach.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To iterate through the entire ride, ignoring any disconnected pieces, the app gets a reference to the start piece and then iterates until ",
+              "type": "text"
+            },
+            {
+              "code": "nextPiece",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This iteration, similar to iterating a linked list, repeats many times throughout the app. One example is the function that calculates the duration of the built ride by iterating through the individual pieces and adding up the duration of their animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Calculates the duration of the built ride by summing up the individual durations.",
+            "public func calculateRideDuration() {",
+            "    guard let startPiece = startPiece else { fatalError(\"No start piece found.\") }",
+            "    var nextPiece: Entity? = startPiece",
+            "    var duration: TimeInterval = 0",
+            "    while nextPiece != nil {",
+            "        // Some pieces have more than one ride animation. Use the longest one to calculate duration.",
+            "        var longestAnimation: TimeInterval = 0",
+            "        nextPiece?.forEachDescendant(withComponent: RideAnimationComponent.self) { entity, component in",
+            "            longestAnimation = max(component.duration, longestAnimation)",
+            "        }",
+            "        duration += longestAnimation",
+            "        nextPiece = nextPiece?.connectableStateComponent?.nextPiece",
+            "    }",
+            "    // Remove the part of the animation after the goal post.",
+            "    rideDuration = duration  / animationSpeedMultiplier + 1.0",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Interact-with-the-ride",
+          "level": 3,
+          "text": "Interact with the ride",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build and edit the ride, players interact with Swift Splash in two different ways. They interact with SwiftUI windows to perform certain tasks, such as adding a new piece or deleting an existing piece of the ride. They also manipulate slide pieces using standard visionOS gestures, including taps, double taps, drags, and rotates. The player taps on a piece to select or deselect it. When a player double taps a piece, they select that piece without deselecting any other selected pieces. When someone drags a piece, it moves around the immsersive space, snapping together with other pieces if placed near one. A two-finger rotate gesture spins the selected track piece or pieces on the Z-axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "SS-add-piece.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Add a ride piece",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "SS-delete-single.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Delete a ride piece",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "SS-rotate-single.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Rotate a ride piece",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "SS-drag.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "Drag a ride piece",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Splash handles all of these interactions using standard SwiftUI gestures targeted to an entity. To support any of these gestures at any time, the app declares them using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SimultaneousGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The code for all of the gestures are contained in ",
+              "type": "text"
+            },
+            {
+              "code": "TrackBuildingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which controls the app’s immersive space. Here’s how the app defines the rotation gesture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".simultaneousGesture(",
+            "    RotateGesture()",
+            "        .targetedToAnyEntity()",
+            "        .onChanged({ value in",
+            "            guard appState.phase == .buildingTrack || appState.phase == .placingStartPiece || appState.phase == .draggingStartPiece else { return }",
+            "            handleRotationChanged(value)",
+            "        })",
+            "        .onEnded({ value in",
+            "            guard appState.phase == .buildingTrack || appState.phase == .placingStartPiece || appState.phase == .draggingStartPiece else { return }",
+            "            handleRotationChanged(value, isEnded: true)",
+            "        })",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because multiple tap gestures on the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " execute with a different number of taps, multiple gestures may be called at once. If a player double taps an entity, for example, both the single tap and the double tap gesture code get called, and the app has to determine which one to execute. Swift Splash makes this determination by using a Boolean state variable. If a player single taps, it sets that variable — called ",
+              "type": "text"
+            },
+            {
+              "code": "shouldSingleTap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then it waits for a period of time before executing the rest of its code. If ",
+              "type": "text"
+            },
+            {
+              "code": "shouldSingleTap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gets set to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " while it’s waiting, the code doesn’t execute. When SwiftSplash detects a double tap gesture, it sets ",
+              "type": "text"
+            },
+            {
+              "code": "shouldSingleTap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", preventing the single-tap code from firing when it executes the double-tap code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".simultaneousGesture(",
+            "    TapGesture()",
+            "        .targetedToAnyEntity()",
+            "        .onEnded({ value in",
+            "            guard appState.phase == .buildingTrack else { return }",
+            "            Task {",
+            "                shouldSingleTap = true",
+            "                try? await Task.sleep(for: .seconds(doubleTapTolerance))",
+            "                if shouldSingleTap {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/World",
+            "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+            "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+            "doc://com.apple.visionOS/documentation/visionOS/diorama"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+            "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+            "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+            "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+            "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2023/10083",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10202",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10273",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10080",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10081",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10096"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "03989E04-AE81-449A-B33A-4C335A300EA7": {
+      "alt": null,
+      "identifier": "03989E04-AE81-449A-B33A-4C335A300EA7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/03989E04-AE81-449A-B33A-4C335A300EA7/8264_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/03989E04-AE81-449A-B33A-4C335A300EA7/8264_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/03989E04-AE81-449A-B33A-4C335A300EA7/8264_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "355924e52098/SwiftSplash.zip": {
+      "checksum": "355924e52098a784b35a57b03a22abc8be0f3288bee9be8128f5b36ce74ab6bae605e7bea44f7b27030ba0473ae59a7e57aee47e65f3b91fa0e9a2a168ded3e1",
+      "identifier": "355924e52098/SwiftSplash.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/355924e52098/SwiftSplash.zip"
+    },
+    "6E0DDBF9-93E1-49DB-8290-D95CC83AE165": {
+      "alt": null,
+      "identifier": "6E0DDBF9-93E1-49DB-8290-D95CC83AE165",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/6E0DDBF9-93E1-49DB-8290-D95CC83AE165/8137_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/6E0DDBF9-93E1-49DB-8290-D95CC83AE165/8137_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/6E0DDBF9-93E1-49DB-8290-D95CC83AE165/8137_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "7863167C-3ADF-48FF-A01A-8C5D4247E1C9": {
+      "alt": null,
+      "identifier": "7863167C-3ADF-48FF-A01A-8C5D4247E1C9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/7863167C-3ADF-48FF-A01A-8C5D4247E1C9/8135_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/7863167C-3ADF-48FF-A01A-8C5D4247E1C9/8135_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/7863167C-3ADF-48FF-A01A-8C5D4247E1C9/8135_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "946E2995-A717-457B-83C5-BC4CC9654781": {
+      "alt": null,
+      "identifier": "946E2995-A717-457B-83C5-BC4CC9654781",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/946E2995-A717-457B-83C5-BC4CC9654781/8342_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/946E2995-A717-457B-83C5-BC4CC9654781/8342_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/946E2995-A717-457B-83C5-BC4CC9654781/8342_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "DCA568AC-19D3-44FD-A13D-7A5281DC42D8": {
+      "alt": null,
+      "identifier": "DCA568AC-19D3-44FD-A13D-7A5281DC42D8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": "An image showing Destination Video on visionOS.",
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "E06EA002-41B2-4EB8-97C0-C165108379E3": {
+      "alt": null,
+      "identifier": "E06EA002-41B2-4EB8-97C0-C165108379E3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/E06EA002-41B2-4EB8-97C0-C165108379E3/8134_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/E06EA002-41B2-4EB8-97C0-C165108379E3/8134_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/E06EA002-41B2-4EB8-97C0-C165108379E3/8134_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": "",
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "SS-add-piece-poster.png": {
+      "alt": null,
+      "identifier": "SS-add-piece-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1bd7cfa0a0170e3c4b35c1b0c90d239/SS-add-piece-poster@2x.png"
+        }
+      ]
+    },
+    "SS-add-piece.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-add-piece.mp4",
+      "poster": "SS-add-piece-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d227ea2e245015ecd44926e4ae73af2b/SS-add-piece.mp4"
+        }
+      ]
+    },
+    "SS-attach-poster.png": {
+      "alt": null,
+      "identifier": "SS-attach-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1efd42e39d294559d52b725514d520c/SS-attach-poster@2x.png"
+        }
+      ]
+    },
+    "SS-attach.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-attach.mp4",
+      "poster": "SS-attach-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e315a90792a0ccf12c5154a11f890020/SS-attach.mp4"
+        }
+      ]
+    },
+    "SS-change-material-poster.png": {
+      "alt": null,
+      "identifier": "SS-change-material-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ada58aa45a8d8be11a86309ed92db4e/SS-change-material-poster@2x.png"
+        }
+      ]
+    },
+    "SS-change-material.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-change-material.mp4",
+      "poster": "SS-change-material-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc7397c5b310b4e2bc18a40734558735/SS-change-material.mp4"
+        }
+      ]
+    },
+    "SS-delete-single-poster.png": {
+      "alt": null,
+      "identifier": "SS-delete-single-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b256ef4593612b8a12a8366be629574/SS-delete-single-poster@2x.png"
+        }
+      ]
+    },
+    "SS-delete-single.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-delete-single.mp4",
+      "poster": "SS-delete-single-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e1a1770ab82e584cef407bd656d08e1/SS-delete-single.mp4"
+        }
+      ]
+    },
+    "SS-drag-poster.png": {
+      "alt": null,
+      "identifier": "SS-drag-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4edc159769f79a5827c68a67d78bffde/SS-drag-poster@2x.png"
+        }
+      ]
+    },
+    "SS-drag.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-drag.mp4",
+      "poster": "SS-drag-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/937c6d8611b3ea87d90a3cdbc0183e67/SS-drag.mp4"
+        }
+      ]
+    },
+    "SS-fireworks-poster.png": {
+      "alt": null,
+      "identifier": "SS-fireworks-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a70461c78310ff06f4711792e9c4020f/SS-fireworks-poster@2x.png"
+        }
+      ]
+    },
+    "SS-fireworks.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-fireworks.mp4",
+      "poster": "SS-fireworks-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f66b8713ce19ea534c48ec6ddd663779/SS-fireworks.mp4"
+        }
+      ]
+    },
+    "SS-material-reference.png": {
+      "alt": "A screenshot showing part of Reality Composer Pro's inspector that contains a box labeled References with one entry pointing to a material in a different scene.",
+      "identifier": "SS-material-reference.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/142b7f884c9a88d6eb345b400e964505/SS-material-reference@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/228502d45c815b444944d6a544d2434c/SS-material-reference~dark@2x.png"
+        }
+      ]
+    },
+    "SS-rotate-single-poster.png": {
+      "alt": null,
+      "identifier": "SS-rotate-single-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e941c2b94d9b67599f6107e5be3adbd/SS-rotate-single-poster@2x.png"
+        }
+      ]
+    },
+    "SS-rotate-single.mp4": {
+      "alt": "TBD",
+      "identifier": "SS-rotate-single.mp4",
+      "poster": "SS-rotate-single-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f5fe14f9080234b49cee2b7b0d3395e/SS-rotate-single.mp4"
+        }
+      ]
+    },
+    "SS-slide-piece.png": {
+      "alt": "A screenshot of Reality Composer Pro showing one of Swift Splash's track pieces called 'Slide02`. On the left side of the window, there's a hierarchical outline showing the entities in the scene. The right side shows the 3D models that make up the slide, including the bottom, top, water, and fish.",
+      "identifier": "SS-slide-piece.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88c564a92a9904ce68b8fa6041bfe2ff/SS-slide-piece@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96798153d94dc0c8ac107f735187abf5/SS-slide-piece~dark@2x.png"
+        }
+      ]
+    },
+    "SS-transparency-issue-poster.png": {
+      "alt": null,
+      "identifier": "SS-transparency-issue-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4abf38d4d871a18c294329bce78223ba/SS-transparency-issue-poster@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/480e3ff99495b8fa7144cd2d9a0b414c/SS-transparency-issue-poster~dark@2x.png"
+        }
+      ]
+    },
+    "SS-transparency-issue.mp4": {
+      "alt": "A video demonstrating showing the Swift Splash start piece being pivoted up and down causing the water to disappear and reappear.",
+      "identifier": "SS-transparency-issue.mp4",
+      "poster": "SS-transparency-issue-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e40bd1020f495331174a600d5fc6a333/SS-transparency-issue.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cfa2f2e05478e69fac3578de460f121/SS-transparency-issue~dark.mp4"
+        }
+      ]
+    },
+    "SS-transparency-sorting-from-left-poster.png": {
+      "alt": null,
+      "identifier": "SS-transparency-sorting-from-left-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3e8cf52775255bf07860e15b765d51d/SS-transparency-sorting-from-left-poster@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f3c719f33a7b156ff1a0c296484e045/SS-transparency-sorting-from-left-poster~dark@2x.png"
+        }
+      ]
+    },
+    "SS-transparency-sorting-from-left.mp4": {
+      "alt": "A video showing three overlapping boxes with a dot marking their center. As they move around, which dot is closest to the viewer changes",
+      "identifier": "SS-transparency-sorting-from-left.mp4",
+      "poster": "SS-transparency-sorting-from-left-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38642d83602f9b85aec12394c98a3a69/SS-transparency-sorting-from-left.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d3522165ae0e98edd870a916fc8f8f7/SS-transparency-sorting-from-left~dark.mp4"
+        }
+      ]
+    },
+    "SS-transparency-sorting-from-right-poster.png": {
+      "alt": null,
+      "identifier": "SS-transparency-sorting-from-right-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a9df7d8b49a7813174688df06ec907c/SS-transparency-sorting-from-right-poster@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1aa47c69a9f08bc5eedd39ea4db07c5/SS-transparency-sorting-from-right-poster~dark@2x.png"
+        }
+      ]
+    },
+    "SS-transparency-sorting-from-right.mp4": {
+      "alt": "A video showing three overlapping boxes with a dot marking their center. As they move around, which dot is closest to the viewer changes",
+      "identifier": "SS-transparency-sorting-from-right.mp4",
+      "poster": "SS-transparency-sorting-from-right-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49c1493c30441a55d45119a43d2c50de/SS-transparency-sorting-from-right.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12d7749cf3d6cb18cbc77408bff5902c/SS-transparency-sorting-from-right~dark.mp4"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": null,
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-overview-poster.png": {
+      "alt": null,
+      "identifier": "Swift-Splash-overview-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cb45b1f0b8b594df5f59247b2d6b421/Swift-Splash-overview-poster@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-overview.mp4": {
+      "alt": "TBD",
+      "identifier": "Swift-Splash-overview.mp4",
+      "poster": "Swift-Splash-overview-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e44e0e17b57dacc35293878554ef6e54/Swift-Splash-overview.mp4"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroup": {
+      "abstract": [
+        {
+          "text": "A group that you assign to multiple entities to tell the renderer what order and how to render the entities in the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelSortGroup",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelSortGroup"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroupComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the rendering order for an entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelSortGroupComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelSortGroupComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelSortGroupComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/RealityKit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit scene with the Entity Component System (ECS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing systems for entities in a scene",
+      "type": "topic",
+      "url": "/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/Swift/TaskGroup": {
+      "abstract": [
+        {
+          "text": "A group that contains dynamically created child tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TaskGroup",
+      "type": "topic",
+      "url": "/documentation/Swift/TaskGroup"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/SimultaneousGesture": {
+      "abstract": [
+        {
+          "text": "A gesture containing two gestures that can happen at the same time with neither of them preceding the other.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimultaneousGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "First"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Second"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "First"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Second"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SimultaneousGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SimultaneousGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/SimultaneousGesture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10080": {
+      "abstract": [
+        {
+          "text": "Discover how RealityKit can bring your apps into a new dimension. Get started with RealityKit entities, components, and systems, and learn how you can add 3D models and effects to your app on visionOS. We’ll also take you through the RealityView API and demonstrate how to add 3D objects to windows, volumes, and spaces to make your apps more immersive. And we’ll explore combining RealityKit with spatial input, animation, and spatial audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10080",
+      "images": [
+        {
+          "identifier": "E06EA002-41B2-4EB8-97C0-C165108379E3",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Build spatial experiences with RealityKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10080"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10081": {
+      "abstract": [
+        {
+          "text": "Go beyond the window and learn how you can bring engaging and immersive 3D content to your apps with RealityKit. Discover how SwiftUI scenes work in tandem with RealityView and how you can embed your content into an entity hierarchy. We’ll also explore how you can blend virtual content and the real world using anchors, bring particle effects into your apps, add video content, and create more immersive experiences with portals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10081",
+      "images": [
+        {
+          "identifier": "7863167C-3ADF-48FF-A01A-8C5D4247E1C9",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enhance your spatial computing app with RealityKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10081"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10083": {
+      "abstract": [
+        {
+          "text": "Discover how to easily compose, edit, and preview 3D content with Reality Composer Pro. Follow along as we explore this developer tool by setting up a new project, composing scenes, adding particle emitters and audio, and even previewing content on device.\n\nOnce you’re familiar with the basics of Reality Composer Pro, check out \"Explore Materials in Reality Composer Pro\" and \"Work with Reality Composer Pro content in Xcode\" to learn more advanced techniques and tips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10083",
+      "images": [
+        {
+          "identifier": "6E0DDBF9-93E1-49DB-8290-D95CC83AE165",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Meet Reality Composer Pro",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10083"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10096": {
+      "abstract": [
+        {
+          "text": "Find out how you can develop great gaming experiences for visionOS. We’ll share some of the key building blocks that help you create games for this platform, explore how your experiences can fluidly move between levels of immersion, and provide a roadmap for exploring ARKit, RealityKit, Reality Composer Pro, Unity, Metal, and Compositor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10096",
+      "images": [
+        {
+          "identifier": "DCA568AC-19D3-44FD-A13D-7A5281DC42D8",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Build great games for spatial computing",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10096"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10202": {
+      "abstract": [
+        {
+          "text": "Learn how Reality Composer Pro can help you alter the appearance of your 3D objects using RealityKit materials. We’ll introduce you to MaterialX and physically-based (PBR) shaders, show you how to design dynamic materials using the shader graph editor, and explore adding custom inputs to a material so that you can control it in your visionOS app.\n\nTo get the most out of this session, we recommend first watching “Meet Reality Composer Pro.” Once you’re ready to learn how you can incorporate your models and materials into an Xcode project, check out \"Work with Reality Composer Pro content in Xcode.\"",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10202",
+      "images": [
+        {
+          "identifier": "03989E04-AE81-449A-B33A-4C335A300EA7",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Explore materials in Reality Composer Pro",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10202"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10273": {
+      "abstract": [
+        {
+          "text": "Learn how to bring content from Reality Composer Pro to life in Xcode. We’ll show you how to load 3D scenes into Xcode, integrate your content with your code, and add interactivity to your app. We’ll also share best practices and tips for using these tools together in your development workflow.\n\nTo get the most out of this session, we recommend first watching “Meet Reality Composer Pro” and “Explore materials in Reality Composer Pro\" to learn more about creating 3D scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10273",
+      "images": [
+        {
+          "identifier": "946E2995-A717-457B-83C5-BC4CC9654781",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Work with Reality Composer Pro content in Xcode",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10273"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionos/world"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add depth and dimension to your visionOS app and discover how",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to incorporate your app’s content into a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding 3D content to your app",
+      "type": "topic",
+      "url": "/documentation/visionos/adding-3d-content-to-your-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionos/destination-video"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html": {
+      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+      "title": "Concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html"
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "355924e52098/SwiftSplash.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

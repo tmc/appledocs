@@ -1,0 +1,1153 @@
+{
+  "abstract": [
+    {
+      "text": "A gesture that succeeds when the user performs a long press.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI16LongPressGestureV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LongPressGesture"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LongPressGesture"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LongPressGesture"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LongPressGesture"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To recognize a long-press gesture on a view, create and configure the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gesture, then add it to the view using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a long-press gesture to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to animate its color from blue to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "red, and then change it to green when the gesture ends:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LongPressGestureView: View {",
+            "    @GestureState private var isDetectingLongPress = false",
+            "    @State private var completedLongPress = false",
+            "",
+            "    var longPress: some Gesture {",
+            "        LongPressGesture(minimumDuration: 3)",
+            "            .updating($isDetectingLongPress) { currentState, gestureState,",
+            "                    transaction in",
+            "                gestureState = currentState",
+            "                transaction.animation = Animation.easeIn(duration: 2.0)",
+            "            }",
+            "            .onEnded { finished in",
+            "                self.completedLongPress = finished",
+            "            }",
+            "    }",
+            "",
+            "    var body: some View {",
+            "        Circle()",
+            "            .fill(self.isDetectingLongPress ?",
+            "                Color.red :",
+            "                (self.completedLongPress ? Color.green : Color.blue))",
+            "            .frame(width: 100, height: 100, alignment: .center)",
+            "            .gesture(longPress)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture modifiers to add interactivity to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity with gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-interactivity-with-gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle": {
+      "abstract": [
+        {
+          "text": "A circle centered on the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Circle",
+      "type": "topic",
+      "url": "/documentation/swiftui/circle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures": {
+      "abstract": [
+        {
+          "text": "Combine gestures to create complex interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Composing SwiftUI gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/composing-swiftui-gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture": {
+      "abstract": [
+        {
+          "text": "An instance that matches a sequence of events to a gesture, and returns a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "stream of values for each of its states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that succeeds when the user performs a long press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LongPressGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LongPressGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "LongPressGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a long-press gesture with a minimum duration",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(minimumDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture/init(minimumduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:maximumDistance:)": {
+      "abstract": [
+        {
+          "text": "Creates a long-press gesture with a minimum duration and a maximum",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "distance that the interaction can move before the gesture fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:maximumDistance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(minimumDuration:maximumDistance:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture/init(minimumduration:maximumdistance:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/maximumDistance": {
+      "abstract": [
+        {
+          "text": "The maximum distance that the long press can move before the gesture",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/maximumDistance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumDistance",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture/maximumdistance"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/minimumDuration": {
+      "abstract": [
+        {
+          "text": "The minimum duration of the long press that must elapse before the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture succeeds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/minimumDuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumDuration",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture/minimumduration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a lower precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "including"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11GestureMaskV",
+          "text": "GestureMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:including:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:including:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a long press",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongPressGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onPressingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongpressgesture(minimumduration:maximumdistance:perform:onpressingchanged:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a long press",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongPressGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onPressingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongpressgesture(minimumduration:perform:onpressingchanged:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "remote long touch gesture. A long touch gesture is when the finger is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the remote touch surface without actually pressing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongTouchGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onTouchingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongtouchgesture(minimumduration:perform:ontouchingchanged:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recognizing-long-press-gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)"
+      ],
+      "title": "Recognizing long press gestures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-long-press-gesture",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/init(minimumDuration:maximumDistance:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/minimumDuration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture/maximumDistance"
+      ],
+      "title": "Creating a long press gesture"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/longpressgesture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

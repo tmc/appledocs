@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "Check color reproduction for a video in your app by using test patterns, video test equipment, and light-measurement instruments.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Evaluating an App’s Video Color"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AVFoundation automatically applies color management to video during playback. ColorSync creates a color transform that provides a color match between the video’s color space (as specified by the color tag in the media) and the specific chromaticity and gamma characteristics of your display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ColorSync uses the display’s ICC profile to obtain its chromaticity and gamma characteristics. It then performs the color match using perceptual rendering intent to scale the video colors so they fit into the destination gamut specified by the display. AVFoundation applies this color transformation to each pixel of each frame in real time during video playback, ensuring the color fidelity of the original video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Viewers typically watch broadcast standards-based video in a dimly lit viewing environment such as a living room. The color management applied during playback lessens the contrast to preserve the correct tonality when viewing video in brighter viewing conditions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manage-Color-Reproduction",
+          "level": 3,
+          "text": "Manage Color Reproduction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During playback, the color-management process changes the pixel values encoded in the video file to make them appear true to the original on the display. As a result of this color management, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/digital-color-meter/welcome/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reports values from the display buffer that are different from the actual pixels encoded in the video file. Further, the Digital Color Meter app may report unequal pixel values between seemingly identical displays if their display profiles differ.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a variety of techniques to verify that the system properly manages color in your video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use test pattern files to evaluate the color characteristics of your app or workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Output the test pattern files to a vectorscope or waveform analyzer to review video signals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the test pattern files with a spectroradiometer or colorimeter to measure front-of-screen (FoS) luminance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Appropriate color management of your video during playback requires tagging your content, using frameworks that offer implicit color management of video, and evaluating your results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about color tags, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-Video-Using-Test-Pattern-Files",
+          "level": 3,
+          "text": "Evaluate Video Using Test Pattern Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use test pattern files to evaluate the color characteristics of your AVFoundation-based app or workflow. These files produce expected results when displayed on Apple devices and operating systems. Open these files in the QuickTime Player App or with other apps or workflows that properly support the QuickTime File Format Specification. Read the display buffer pixel values using the Digital Color Meter app. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-video-using-quicktime-test-pattern-files",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-Video-Using-a-Vectorscope-or-Waveform-Analyzer",
+          "level": 3,
+          "text": "Evaluate Video Using a Vectorscope or Waveform Analyzer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Output test patterns to a vectorscope or waveform analyzer to analyze the video signals. View the test pattern on a vectorscope and verify the correct colorspace conversion matrices. Verify the gamma, quantization errors, and range expansion and compression on a waveform monitor. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-video-test-equipment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-Video-Using-a-Spectroradiometer-or-Colorimeter",
+          "level": 3,
+          "text": "Evaluate Video Using a Spectroradiometer or Colorimeter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Output the test pattern files to a spectroradiometer or colorimeter to measure front-of-screen (FoS) luminance. Measure and compare your results against the expected FoS values. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-Accurate-Color-Application-of-Your-Apps-Video",
+          "level": 3,
+          "text": "Ensure Accurate Color Application of Your App’s Video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure application of the appropriate color management to your video during playback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use high-level frameworks integrated with ColorSync, such as AVFoundation, for implicit color management.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tag all video content with color information to avoid inconsistent color across different devices. In most cases, the system treats untagged media as if the author created it in the SD color space. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluate all results using the techniques described here.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup": {
+      "abstract": [
+        {
+          "text": "A group of inputs with tracks that are mutually exclusive to each other for playback or processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputgroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends timed metadata groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends video samples to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputPixelBufferAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputpixelbufferadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends tagged buffer groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputtaggedpixelbuffergroupadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant": {
+      "abstract": [
+        {
+          "text": "An object that builds audio and video output settings dictionaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVOutputSettingsAssistant",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video": {
+      "abstract": [
+        {
+          "text": "Create video content for visionOS by converting an existing 3D HEVC file to a multiview HEVC format, optionally adding spatial metadata to create a spatial video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting side-by-side 3D video to multiview HEVC and spatial video",
+      "type": "topic",
+      "url": "/documentation/avfoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments": {
+      "abstract": [
+        {
+          "text": "Measure front-of-screen luminance by using test pattern files with a spectroradiometer or colorimeter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating an App’s Video Color Using Light-Measurement Instruments",
+      "type": "topic",
+      "url": "/documentation/avfoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-video-test-equipment": {
+      "abstract": [
+        {
+          "text": "Output test pattern files to a vectorscope or waveform analyzer to review the video signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-video-test-equipment",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating an App’s Video Color Using Video Test Equipment",
+      "type": "topic",
+      "url": "/documentation/avfoundation/evaluating-an-app-s-video-color-using-video-test-equipment"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-video-using-quicktime-test-pattern-files": {
+      "abstract": [
+        {
+          "text": "Check color reproduction of your app or workflow by using test pattern files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-video-using-quicktime-test-pattern-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating Video Using QuickTime Test Pattern Files",
+      "type": "topic",
+      "url": "/documentation/avfoundation/evaluating-video-using-quicktime-test-pattern-files"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing": {
+      "abstract": [
+        {
+          "text": "Read images from video, export to alternative formats, and perform sample-level reading and writing of media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media reading and writing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-reading-and-writing"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information": {
+      "abstract": [
+        {
+          "text": "Inspect and set video color space information when writing and transcoding media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Tagging Media with Video Color Information",
+      "type": "topic",
+      "url": "/documentation/avfoundation/tagging-media-with-video-color-information"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "Create an HTTP Live Streaming presentation by turning a movie file into a sequence of fragmented MPEG-4 files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Writing Fragmented MPEG-4 Files for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/avfoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata": {
+      "abstract": [
+        {
+          "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating spatial photos and videos with spatial metadata",
+      "type": "topic",
+      "url": "/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/digital-color-meter/welcome/mac": {
+      "identifier": "https://support.apple.com/guide/digital-color-meter/welcome/mac",
+      "title": "Digital Color Meter app",
+      "titleInlineContent": [
+        {
+          "text": "Digital Color Meter app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/digital-color-meter/welcome/mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-writing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+        "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+      ],
+      "title": "Media writing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Video-Evaluation",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-video-using-quicktime-test-pattern-files",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-video-test-equipment",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments"
+      ],
+      "title": "Video Evaluation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Video-Evaluation",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-video-using-quicktime-test-pattern-files",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-video-test-equipment",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color-using-light-measurement-instruments"
+              ],
+              "title": "Video Evaluation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-writing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+                "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+              ],
+              "title": "Media writing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/title",
+          "value": "AVOutputSettingsAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/title",
+          "value": "AVAssetWriter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/title",
+          "value": "AVAssetWriterInputPixelBufferAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/title",
+          "value": "AVAssetWriterInputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/title",
+          "value": "AVAssetWriterInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/title",
+          "value": "AVAssetWriterInputGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/title",
+          "value": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/evaluating-an-app-s-video-color"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/evaluating-an-app-s-video-color"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

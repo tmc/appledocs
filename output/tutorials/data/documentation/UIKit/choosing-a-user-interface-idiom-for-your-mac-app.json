@@ -1,0 +1,1983 @@
+{
+  "abstract": [
+    {
+      "text": "Select the iPad or the Mac user interface idiom in your Mac app built with Mac Catalyst.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/choosing-a-user-interface-idiom-for-your-mac-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a user interface idiom for your Mac app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac app built with Mac Catalyst can run in either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " user interface idioms. To choose the idiom in which your app runs, select from the following options after you turn on Mac Catalyst in your Xcode project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Run your app in the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " idiom. Select this option to quickly bring your iPad app to the Mac.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Scale Interface to Match iPad",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Run your app in the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " idiom. Select this option to show controls that look and behave like those available in AppKit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Optimize Interface for Mac",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To learn more about turning on Mac Catalyst in your Xcode project, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-with-the-iPad-idiom",
+          "level": 3,
+          "text": "Start with the iPad idiom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Xcode selects Scale Interface to Match iPad after you turn on Mac Catalyst. This option provides a simplified approach for bringing your iPad app to the Mac. Your Mac app runs in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " idiom, which tells macOS to scale the app’s user interface to match the Mac display environment while preserving iPad-like appearance and view metrics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When testing your app you may find that adopting controls that look and behave like those in AppKit or providing crisper-looking text can enhance the user experience of your app. If this is the case, change to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by selecting Optimize Interface for Mac. However, selecting this option may require you to make additional changes to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-app-to-use-the-Mac-idiom",
+          "level": 3,
+          "text": "Update your app to use the Mac idiom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choosing Optimize Interface for Mac means your Mac app runs in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " user interface idiom, which changes the interface of your app. Some controls change their size and appearance, and interacting with them feels identical to interacting with AppKit controls. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " appears identical to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the system sets control sizes appropriately when the user interface idiom is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system no longer needs to scale your app’s interface to match Mac sizing. Screen points are identical in size to those in AppKit-based apps. However, if your app has hard-coded sizes or uses images sized for iPad, you may need to update your app to accommodate the size differences. You may also need to adjust auto layout constraints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some controls provide additional settings that help you achieve a more Mac-like appearance. For instance, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can appear as a checkbox when idiom is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the text of the checkbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let showFavoritesAtTop = UISwitch()",
+            "showFavoritesAtTop.preferredStyle = .checkbox",
+            "if traitCollection.userInterfaceIdiom == .mac {",
+            "    showFavoritesAtTop.title = \"Always show favorite recipes at the top\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " aren’t available to apps running in the Mac idiom. If you attempt to display these controls in a view, your app throws an exception. Replace these controls with similar functionality when the user interface idiom is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, replace ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a Refresh menu item by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the title “Refresh” and the keyboard shortcut Command-R. Then add the command to your app’s menu system. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-current-user-interface-idiom",
+          "level": 3,
+          "text": "Determine the current user interface idiom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine if your app is running in the Mac idiom, compare the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/userInterfaceIdiom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the comparison is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can tailor the behavior of your app for the Mac; for example, to display a different child view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let childViewController: UIViewController",
+            "if traitCollection.userInterfaceIdiom == .mac {",
+            "    childViewController = MacOptimizedChildViewController()",
+            "} else {",
+            "    childViewController = ChildViewController()",
+            "}",
+            "addChild(childViewController)",
+            "childViewController.view.frame = view.bounds",
+            "view.addSubview(childViewController.view)",
+            "childViewController.didMove(toParent: self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-preferred-behavioral-style",
+          "level": 3,
+          "text": "Set the preferred behavioral style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adopting the Mac idiom, some controls such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " appear identical to their AppKit counterparts. However, there may be situations where you want to take advantage of the Mac idiom in your app but keep a control’s iPad appearance and behavior. For instance, consider an iPad app that displays a slider with a custom thumb image. By default, the Mac version of the app, built with Mac Catalyst, displays a standard macOS slider when the user interface idiom is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a slider with an appearance that’s consistent in both iPad and Mac versions of the app, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider/preferredBehavioralStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the slider to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This behavioral style tells the slider to behave as if the user interface idiom is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " even though the app is using the Mac idiom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember, macOS doesn’t scale the interface of apps that use the Mac idiom so you may need to update your app to accommodate size differences even when the preferred behavioral style is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, a slider with a custom thumb image may need an image of a different size for the Mac app than the one used in the iPad app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let slider = UISlider()",
+            "slider.minimumValue = 0",
+            "slider.maximumValue = 1",
+            "slider.value = 0.5",
+            "slider.preferredBehavioralStyle = .pad",
+            "",
+            "if slider.traitCollection.userInterfaceIdiom == .mac {",
+            "    slider.setThumbImage(#imageLiteral(resourceName: \"customSliderThumbMac\"), for: .normal)",
+            "} else {",
+            "    slider.setThumbImage(#imageLiteral(resourceName: \"customSliderThumb\"), for: .normal)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are some properties and methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " not supported in the Mac idiom when the behavioral style is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and calling these throws an exception; for example, setting a button’s title or image for any control state other than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/State-swift.struct/normal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and setting a slider’s thumb image, minimum or maximum track image, tint color, or value image. However, these properties and methods are available for use in the Mac idiom when the control’s behavioral style is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-different-code-path",
+          "level": 3,
+          "text": "Provide a different code path",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even when your Mac app runs in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " idiom, you may need to change the appearance or behavior of your Mac app. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "targetEnvironment()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compilation conditional to choose a different code path depending on the target environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if your iPad app displays a delete item confirmation in a popover next to a delete button but you want to display the confirmation as an alert in your Mac app, add a ",
+              "type": "text"
+            },
+            {
+              "code": "targetEnvironment()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conditional to determine the preferred style of the alert controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let deleteAction = UIAlertAction(title: \"Delete\", style: .destructive) { (action) in",
+            "    if dataStore.delete(recipe) {",
+            "        self.recipe = nil",
+            "    }",
+            "}",
+            "",
+            "let cancelAction = UIAlertAction(title: \"Cancel\", style: .cancel, handler: nil)",
+            "",
+            "#if targetEnvironment(macCatalyst)",
+            "let preferredStyle = UIAlertController.Style.alert",
+            "#else",
+            "let preferredStyle = UIAlertController.Style.actionSheet",
+            "#endif",
+            "",
+            "let alert = UIAlertController(title: \"Are you sure you want to delete \\(recipe.title)?\", message: nil, preferredStyle: preferredStyle)",
+            "alert.addAction(deleteAction)",
+            "alert.addAction(cancelAction)",
+            "",
+            "if let popoverPresentationController = alert.popoverPresentationController {",
+            "    popoverPresentationController.barButtonItem = sender as? UIBarButtonItem",
+            "}",
+            "",
+            "present(alert, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSButton": {
+      "abstract": [
+        {
+          "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSButton",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSButton"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSMinimumSystemVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether an app built with Mac Catalyst supports automatic tabbing mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSupportsTabbedSceneCollection",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/Mac-Catalyst": {
+      "abstract": [
+        {
+          "text": "Build a native Mac app from the same codebase as your iPad app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/Mac-Catalyst",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Bring an iPad App to the Mac with Mac Catalyst",
+      "type": "topic",
+      "url": "/tutorials/Mac-Catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/mac": {
+      "abstract": [
+        {
+          "text": "A style that indicates that a control appears and behaves as it does in macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mac"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/mac",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBehavioralStyleMac"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBehavioralStyle.mac",
+      "type": "topic",
+      "url": "/documentation/uikit/uibehavioralstyle/mac"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/pad": {
+      "abstract": [
+        {
+          "text": "A style that indicates that a control appears and behaves as it does in iPadOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pad"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBehavioralStyle/pad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBehavioralStylePad"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBehavioralStyle.pad",
+      "type": "topic",
+      "url": "/documentation/uikit/uibehavioralstyle/pad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl/State-swift.struct/normal": {
+      "abstract": [
+        {
+          "text": "The normal, or default, state of a control where the control is enabled but neither selected nor highlighted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIControlState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/State-swift.struct/normal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIControlStateNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "normal",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol/state-swift.struct/normal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand": {
+      "abstract": [
+        {
+          "text": "An object that specifies a key press perform on a hardware keyboard and the resulting action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyCommand",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeycommand"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageControl": {
+      "abstract": [
+        {
+          "text": "A control that displays a horizontal series of dots, each of which corresponds to a page in the app’s document or other data-model entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uipagecontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a single value from a continuous range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISlider",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider/preferredBehavioralStyle": {
+      "abstract": [
+        {
+          "text": "The preferred behavioral style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredBehavioralStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIBehavioralStyle",
+          "text": "UIBehavioralStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider/preferredBehavioralStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredBehavioralStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredBehavioralStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider/preferredbehavioralstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStepper": {
+      "abstract": [
+        {
+          "text": "A control for incrementing or decrementing a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStepper",
+      "type": "topic",
+      "url": "/documentation/uikit/uistepper"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice, such as on/off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox": {
+      "abstract": [
+        {
+          "text": "A style indicating that the switch appears as a Mac-style checkbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkbox"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/Style-swift.enum/checkbox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitchStyleCheckbox"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch.Style.checkbox",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/style-swift.enum/checkbox"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle": {
+      "abstract": [
+        {
+          "text": "The preferred display style for the switch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISwitch",
+          "text": "UISwitch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UISwitchStyle",
+          "text": "Style"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/preferredStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/preferredstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch/title": {
+      "abstract": [
+        {
+          "text": "The title displayed next to a checkbox-style switch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch/title"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/userInterfaceIdiom": {
+      "abstract": [
+        {
+          "text": "The user interface idiom of the trait collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceIdiom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceIdiom",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/userInterfaceIdiom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInterfaceIdiom"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInterfaceIdiom",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection/userinterfaceidiom"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac": {
+      "abstract": [
+        {
+          "text": "An interface designed for the Mac.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mac"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/mac",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceIdiomMac"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserInterfaceIdiom.mac",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuserinterfaceidiom/mac"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad": {
+      "abstract": [
+        {
+          "text": "An interface designed for iPad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pad"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom/pad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceIdiomPad"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserInterfaceIdiom.pad",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuserinterfaceidiom/pad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface": {
+      "abstract": [
+        {
+          "text": "Provide quick access to useful actions by adding menus and keyboard shortcuts to your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding menus and shortcuts to the menu bar and user interface",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-mac-version-of-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Bring your iPad app to macOS with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mac version of your iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-mac-version-of-your-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/optimizing-your-ipad-app-for-mac": {
+      "abstract": [
+        {
+          "text": "Make your iPad app more like a Mac app by taking advantage of system features in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/optimizing-your-ipad-app-for-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing your iPad app for Mac",
+      "type": "topic",
+      "url": "/documentation/uikit/optimizing-your-ipad-app-for-mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/tutorials/Mac-Catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/optimizing-your-ipad-app-for-mac",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+      ],
+      "title": "App support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/optimizing-your-ipad-app-for-mac",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsTabbedSceneCollection"
+              ],
+              "title": "App support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBehavioralStyle~1pad/title",
+          "value": "UIBehavioralStylePad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBehavioralStyle~1pad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBehavioralStylePad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1checkbox/title",
+          "value": "UISwitchStyleCheckbox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1Style-swift.enum~1checkbox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitchStyleCheckbox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBehavioralStyle~1mac/title",
+          "value": "UIBehavioralStyleMac"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBehavioralStyle~1mac/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBehavioralStyleMac"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/title",
+          "value": "UIPageControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1State-swift.struct~1normal/title",
+          "value": "UIControlStateNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1State-swift.struct~1normal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControlStateNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1mac/title",
+          "value": "UIUserInterfaceIdiomMac"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1mac/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceIdiomMac"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1pad/title",
+          "value": "UIUserInterfaceIdiomPad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom~1pad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceIdiomPad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider~1preferredBehavioralStyle/title",
+          "value": "preferredBehavioralStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider~1preferredBehavioralStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredBehavioralStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/title",
+          "value": "UISwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1preferredStyle/title",
+          "value": "preferredStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch~1preferredStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/title",
+          "value": "UISlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/title",
+          "value": "UIStepper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/title",
+          "value": "UIKeyCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection~1userInterfaceIdiom/title",
+          "value": "userInterfaceIdiom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection~1userInterfaceIdiom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInterfaceIdiom"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

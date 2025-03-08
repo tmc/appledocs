@@ -1,0 +1,607 @@
+{
+  "abstract": [
+    {
+      "text": "A message that tells the user why the app needs access to the user’s Documents folder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSDocumentsFolderUsageDescription",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSDocumentsFolderUsageDescription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "NSDocumentsFolderUsageDescription"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "ideTitle": "Privacy - Documents Folder Usage Description",
+        "name": "NSDocumentsFolderUsageDescription",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "string"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user implicitly grants your app access to a file in the Documents folder when selecting the file in an Open or Save panel, dragging it onto your app, or opening it in Finder. Your app can access that file right away and any time in the future. In addition, if your app creates a new file in the Documents folder, the app can access that file without user consent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app tries to access a file in the user’s Documents folder without implied user consent, the system prompts the user for permission to access the folder’s contents. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " file to provide a message that explains why your app needs access. The usage description is optional, but highly recommended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Sandbox enforces stricter limits on Documents folder access, so that policy may supersede this one if your app enables sandboxing. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user chooses whether to grant access, the system remembers the user’s choice. To reset permissions, use the ",
+              "type": "text"
+            },
+            {
+              "code": "tccutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command line utility with your app’s bundle ID:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ tccutil reset SystemPolicyDocumentsFolder <bundleID>"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Desktop folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Desktop Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDesktopFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDesktopFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDesktopFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdesktopfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Documents folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Documents Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDocumentsFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentsFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentsFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdocumentsfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Downloads folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Downloads Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDownloadsFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDownloadsFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDownloadsFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdownloadsfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files managed by a file provider.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Access to a File Provider Domain Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription",
+      "kind": "symbol",
+      "name": "NSFileProviderDomainUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderDomainUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderDomainUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsfileproviderdomainusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files on a network volume.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Network Volumes Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+      "kind": "symbol",
+      "name": "NSNetworkVolumesUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNetworkVolumesUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNetworkVolumesUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsnetworkvolumesusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files on a removable volume.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Removable Volumes Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+      "kind": "symbol",
+      "name": "NSRemovableVolumesUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRemovableVolumesUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRemovableVolumesUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsremovablevolumesusagedescription"
+    },
+    "doc://com.apple.documentation/documentation/Security/app-sandbox": {
+      "abstract": [
+        {
+          "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sandbox",
+      "type": "topic",
+      "url": "/documentation/Security/app-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Files-and-folders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription"
+      ],
+      "title": "Files and folders"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSDocumentsFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentsFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Files-and-folders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription"
+              ],
+              "title": "Files and folders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDesktopFolderUsageDescription/title",
+          "value": "NSDesktopFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDesktopFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDesktopFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemovableVolumesUsageDescription/title",
+          "value": "NSRemovableVolumesUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemovableVolumesUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRemovableVolumesUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDocumentsFolderUsageDescription/title",
+          "value": "NSDocumentsFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDocumentsFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentsFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNetworkVolumesUsageDescription/title",
+          "value": "NSNetworkVolumesUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNetworkVolumesUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNetworkVolumesUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFileProviderDomainUsageDescription/title",
+          "value": "NSFileProviderDomainUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFileProviderDomainUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderDomainUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDownloadsFolderUsageDescription/title",
+          "value": "NSDownloadsFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDownloadsFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDownloadsFolderUsageDescription"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsdocumentsfolderusagedescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsdocumentsfolderusagedescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

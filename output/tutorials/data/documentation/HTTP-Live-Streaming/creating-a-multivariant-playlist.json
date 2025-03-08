@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Offer multiple playlist files to provide different encodings of the same content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Multivariant Playlist"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Multivariant Playlist describes all of the available variants for your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each variant is a version of the stream at a particular bit rate and is contained",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a separate playlist. The client switches to the most appropriate variant based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the measured network bit rate. The client’s player is tuned to minimize stalling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of playback, to give the user the best possible streaming experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-multivariant-playlist-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Multivariant Playlist isn’t re-read. Once the client has read the playlist, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assumes the set of variations isn’t changing. The stream ends as soon as the client",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sees the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-ENDLIST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag on one of the individual variant playlists.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-variants",
+          "level": 3,
+          "text": "Define variants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a Multivariant Playlist that defines five different variants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-STREAM-INF:BANDWIDTH=150000,RESOLUTION=416x234,CODECS=\"avc1.42e00a,mp4a.40.2\"",
+            "http://example.com/low/index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=240000,RESOLUTION=416x234,CODECS=\"avc1.42e00a,mp4a.40.2\"",
+            "http://example.com/lo_mid/index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=440000,RESOLUTION=416x234,CODECS=\"avc1.42e00a,mp4a.40.2\"",
+            "http://example.com/hi_mid/index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=640000,RESOLUTION=640x360,CODECS=\"avc1.42e00a,mp4a.40.2\"",
+            "http://example.com/high/index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=64000,CODECS=\"mp4a.40.5\"",
+            "http://example.com/audio/index.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tags used in the playlist example are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that the playlist is an extended M3U file. This type of file is distinguished from a basic M3U file by changing the tag on the first line to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXTM3U",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". All HLS playlists must start with this tag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXTM3U",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that the next URL in the playlist file identifies another playlist file.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-STREAM-INF",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag has the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional, but recommended) An integer that represents the average bit rate for the variant stream.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AVERAGE-BANDWIDTH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) An integer that is the upper bound of the overall bit rate for each media file, in bits per second. The upper bound value is calculated to include any container overhead that appears or will appear in the playlist.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "BANDWIDTH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional, but recommended) A floating-point value that describes the maximum frame rate in a variant stream.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "FRAME-RATE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) Indicates the type of encryption used. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE-0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NONE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Use ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE-0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if the stream may not play unless the output is protected by HDCP.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HDCP-LEVEL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional, but recommended) The optional display size, in pixels, at which to display the video in the playlist. This parameter should be included for any stream that includes video.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "RESOLUTION",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required depending on encoding) A string with valid values of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SDR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PQ",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If transfer characteristic codes 1, 16, or 18 aren’t specified, then this parameter must be omitted.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "VIDEO-RANGE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional, but recommended) A quoted string containing a comma-separated list of formats, where each format specifies a media sample type that’s present in a media segment in the playlist file. Valid format identifiers are those in the ISO file format name space defined by RFC 6381.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CODECS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CODECS",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is optional, every ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXT-X-STREAM-INF",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag should",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "include the attribute. This attribute provides a complete list of codecs that are",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "necessary to decode a particular stream. It allows the client to distinguish between",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "variants that are audio only and those that have both audio and video. The client",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "then makes use of this information to provide a better user experience when switching",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "streams.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-a-multivariant-playlist-1": {
+      "alt": "Flow diagram showing an index file splitting into multiple alternate files. Each alternate file creates the appropriate MP4 file.",
+      "identifier": "creating-a-multivariant-playlist-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67d4ae90b92b9dc32deb63ede697684d/creating-a-multivariant-playlist-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction": {
+      "abstract": [
+        {
+          "text": "Learn about the basic composition of an event session playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction",
+      "kind": "article",
+      "role": "article",
+      "title": "Event playlist construction",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/event-playlist-construction"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/live-playlist-sliding-window-construction": {
+      "abstract": [
+        {
+          "text": "Understand the basic composition for a live session playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/live-playlist-sliding-window-construction",
+      "kind": "article",
+      "role": "article",
+      "title": "Live Playlist (sliding window) construction",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/live-playlist-sliding-window-construction"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction": {
+      "abstract": [
+        {
+          "text": "Understand the basic composition for a Video on Demand playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction",
+      "kind": "article",
+      "role": "article",
+      "title": "Video on Demand playlist construction",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/video-on-demand-playlist-construction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Basic-playlists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/live-playlist-sliding-window-construction",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction"
+      ],
+      "title": "Basic playlists"
+    }
+  ]
+}

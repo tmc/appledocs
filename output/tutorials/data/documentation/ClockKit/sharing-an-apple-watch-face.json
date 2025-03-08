@@ -1,0 +1,1906 @@
+{
+  "abstract": [
+    {
+      "text": "Distribute a customized watch face to Apple Watch users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/sharing-an-apple-watch-face"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sharing an Apple Watch face"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 7 and later, all users (including an app’s developers or marketing departments) can exchange customized watch face files. These files contain all the complications placed on the watch face, as well as any specified colors, features, or images. When the system adds a watch face, it checks for the apps that provide the face’s complications, and prompts the user to install any missing apps. As a result, shared watch faces provide an opportunity to introduce your app to new users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can share a watch face that includes one of your app’s complications—essentially sharing your app at the same time. You can also create and share watch faces that explicitly highlight your app. For example, if your app supports multiple complications, you can share a watch face that shows the range of its complications. You can also offer to load the watch face directly from your watchOS or companion iOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-an-Apple-Watch-face",
+          "level": 3,
+          "text": "Export an Apple Watch face",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share a face from Apple Watch, press firmly on the watch face. When the face configuration interface appears, select the share button and the contact or phone number with which to share the watch face. The watch then shares the watch face using Messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3687796",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, open the Apple Watch app, and select a watch face from the gallery. Then click the share button in the upper-right corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3950623",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then share the watch face file using Messages, Mail, or other apps that support ",
+              "type": "text"
+            },
+            {
+              "code": ".watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files. You can also save the watch face to Files. However, if you plan to share the watch face on your web page or in your app, always use email to share the face. Unlike the other share methods, email includes both the ",
+              "type": "text"
+            },
+            {
+              "code": ".watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and a preview of the face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You don’t need an Apple Watch to share watch faces; you can create and share watch faces in the Watch app in iPhone or from the watchOS simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting ",
+              "type": "text"
+            },
+            {
+              "code": ".watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file contains information about the watch face, including its configuration, color, any images it displays, and its complications. The file may also include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data associated with the complications, although the system removes this data if the user excludes personal data from the watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-Shared-Watch-face",
+          "level": 3,
+          "text": "Display a Shared Watch face",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When presenting a watch face from your app or on the web, always display a preview of the watch face, and a button that uses an official Add Watch Face asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3687953",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preview image from the shared email shows an illustrated bezel framing the face. You can display this image directly on websites and in watchOS and iOS apps. Alternatively, you can replace the illustrated bezel with a high-fidelity hardware bezels that you can download from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/marketing/guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and composite onto the preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, use the ",
+              "type": "text"
+            },
+            {
+              "code": "application/vnd.apple.watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " MIME type to host a watch face file on a web page. Safari uses the MIME type to detect watch faces, prompting the user to install the watch face when appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional guidelines on sharing watch faces, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/watchos/elements/faces/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on the Add Watch Face assets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/resources/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-shared-complications",
+          "level": 3,
+          "text": "Support shared complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that your app’s complications appear as expected in the watch face preview, you must implement your ClockKit data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can’t just add preview images to the assets catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, as soon as the user installs a watch face that includes your app’s complications, the system calls your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use this method to prepare your app so that it can provide complication data for the shared complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a weather app may provide separate complications for all of the user’s favorite cities. When the user receives a shared watch face, the app must be ready to provide data for the city associated with the incoming complication, even if it’s not already in the user’s favorites list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, ClockKit calls your data source’s methods to populate the complication’s timeline. This includes calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if your app supports batch downloading future timeline entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Users can exclude personal information from watch faces that they share. When a user excludes information, the system sets the shared ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property to ",
+                  "type": "text"
+                },
+                {
+                  "code": "CLKDefaultComplicationTypeIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If your watchOS app provides complications, your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " must handle default identifiers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Watch-Faces-from-your-app",
+          "level": 3,
+          "text": "Add Watch Faces from your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To offer a watch face directly in your app, customize and share one of the watch faces, emailing the .",
+              "type": "text"
+            },
+            {
+              "code": "watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and preview to yourself. To embed the watch file in an app, drag both the ",
+              "type": "text"
+            },
+            {
+              "code": ".watchface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and the preview into Xcode to add them to the app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3599969",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can share watch faces from either the watchOS app or the iOS companion app. For the iOS companion, drag the watch file into the iOS app group. For the watchOS app, drag the file into the WatchKit App group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always display both the watch face preview with an official Add Apple Watch Face button. When the user taps the button, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary/addWatchFace(at:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to import the watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let url = Bundle.main.url(forResource: \"My\", withExtension: \"watchface\") else {",
+            "    fatalError(\"*** Unable to find My.watchface in the app bundle ***\")",
+            "}",
+            "",
+            "let library = CLKWatchFaceLibrary()",
+            "library.addWatchFace(at: url) { (error) in",
+            "    // Check for errors here.",
+            "    if let error = error {",
+            "        fatalError(\"*** An error occurred: \\(error.localizedDescription) ***\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only add watch faces in response to the user tapping an Add Apple Watch Face button. In iOS, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/isPaired",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to verify that the user has a paired Apple Watch before offering to add any watch faces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Some newer watch faces are available only on Apple Watch SE and Apple Watch Series 4 and later. Nike watch faces are only available on Apple Watch Nike, and Hermès watch faces on Apple Watch Hermès. If you share a watch face that isn’t available on all watches, check for errors when calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary/addWatchFace(at:completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and provide a face that anyone can install. For a list of watch faces, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/guide/watch/faces-and-features-apde9218b440/watchos",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adding a watch face in your app, all of the complications on the watch face must come from apps that have a valid App Store ID, such as an app from an App Store or TestFlight build. If you try to use complications from a development build, the system won’t recognize the development ID as a valid App Store ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication": {
+      "abstract": [
+        {
+          "text": "Metadata about a custom complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplication"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplication",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userActivity": {
+      "abstract": [
+        {
+          "text": "An object that represents the state of the app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "userActivity",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/useractivity"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userInfo": {
+      "abstract": [
+        {
+          "text": "A dictionary of additional data associated with the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/userinfo"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the timeline entry that you want to display now.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntryForComplication:withHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "getCurrentTimelineEntry(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Gets a localizable template that shows sample data for the specified complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTemplate",
+          "text": "CLKComplicationTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getLocalizableSampleTemplate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getlocalizablesampletemplate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the last date for the data that your app can supply.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEndDate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineenddate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves future timeline entries for the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEntries(for:after:limit:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the app about complications from a shared watch face.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleSharedComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/handleSharedComplicationDescriptors(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleSharedComplicationDescriptors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleSharedComplicationDescriptors(_:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/handlesharedcomplicationdescriptors(_:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary": {
+      "abstract": [
+        {
+          "text": "An object for importing watch faces that the app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKWatchFaceLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKWatchFaceLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKWatchFaceLibrary",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkwatchfacelibrary"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary/addWatchFace(at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds a watch face from the app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addWatchFace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary/addWatchFace(at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addWatchFaceAtURL:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addWatchFace(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkwatchfacelibrary/addwatchface(at:completionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession": {
+      "abstract": [
+        {
+          "text": "The object that initiates communication between a WatchKit extension and its companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WCSession",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/isPaired": {
+      "abstract": [
+        {
+          "text": "A Boolean indicating whether the current iPhone has a paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPaired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/isPaired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPaired",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/isPaired"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/marketing/guidelines/": {
+      "identifier": "https://developer.apple.com/app-store/marketing/guidelines/",
+      "title": "Marketing Resources and Identity Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Marketing Resources and Identity Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/marketing/guidelines/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/watchos/elements/faces/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/watchos/elements/faces/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/watchos/elements/faces/"
+    },
+    "https://developer.apple.com/design/resources/": {
+      "identifier": "https://developer.apple.com/design/resources/",
+      "title": "Apple Design Resources",
+      "titleInlineContent": [
+        {
+          "text": "Apple Design Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/resources/"
+    },
+    "https://support.apple.com/guide/watch/faces-and-features-apde9218b440/watchos": {
+      "identifier": "https://support.apple.com/guide/watch/faces-and-features-apde9218b440/watchos",
+      "title": "Apple Watch faces and their features",
+      "titleInlineContent": [
+        {
+          "text": "Apple Watch faces and their features",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/watch/faces-and-features-apde9218b440/watchos"
+    },
+    "media-3599969": {
+      "alt": "A screenshot of Xcode’s Project navigator, showing an example of dragging the My.watchface file into the iOS app’s bundle.",
+      "identifier": "media-3599969",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b73efa02a89fa44f8c0874f81f5a0c2/media-3599969@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b73efa02a89fa44f8c0874f81f5a0c2/media-3599969~dark@2x.png"
+        }
+      ]
+    },
+    "media-3687796": {
+      "alt": "A screenshot of the configuration scene for the Meridian watch face. The share button is highlighted.",
+      "identifier": "media-3687796",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4bfa9d32d80b9051ede5698f33c8977/media-3687796@2x.png"
+        }
+      ]
+    },
+    "media-3687953": {
+      "alt": "A screenshot of one of the official Add Apple Watch Face assets, a button with rounded edges containing text and an icon of a stylized watch with an arrow pointing down.”",
+      "identifier": "media-3687953",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de29907c06a7a8b74930810dbb50470b/media-3687953@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb399dee0078f5c8b896463ebef74c2f/media-3687953~dark@2x.png"
+        }
+      ]
+    },
+    "media-3950623": {
+      "alt": "An image of an iPhone screen showing the Watch app’s detail scene for a configured Meridian watch face. The detail scene includes options for background color, dial color, and complications. In the top right corner, the share button is highlighted.”",
+      "identifier": "media-3950623",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18b15b41c2a2b4724d2523495868596b/media-3950623@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Face-Sharing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary"
+      ],
+      "title": "Face Sharing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Face-Sharing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary"
+              ],
+              "title": "Face Sharing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1userActivity/title",
+          "value": "userActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1userActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary~1addWatchFace(at:completionHandler:)/title",
+          "value": "addWatchFaceAtURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary~1addWatchFace(at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addWatchFaceAtURL:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/title",
+          "value": "CLKWatchFaceLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKWatchFaceLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKWatchFaceLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WCSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/title",
+          "value": "getCurrentTimelineEntryForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentTimelineEntryForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/title",
+          "value": "CLKComplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/title",
+          "value": "getLocalizableSampleTemplateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1isPaired/title",
+          "value": "paired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1isPaired/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isPaired"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "paired"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/title",
+          "value": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1handleSharedComplicationDescriptors(_:)/title",
+          "value": "handleSharedComplicationDescriptors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1handleSharedComplicationDescriptors(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleSharedComplicationDescriptors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/title",
+          "value": "getTimelineEndDateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEndDateForComplication:withHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/sharing-an-apple-watch-face"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/sharing-an-apple-watch-face"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

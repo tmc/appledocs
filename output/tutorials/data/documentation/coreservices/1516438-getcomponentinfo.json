@@ -1,0 +1,540 @@
+{
+  "abstract": [
+    {
+      "text": "Returns to your application the registration information for a component. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516438,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@GetComponentInfo",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "GetComponentInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GetComponentInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/component",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Component",
+              "text": "Component"
+            },
+            {
+              "kind": "text",
+              "text": " aComponent, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentDescription",
+              "text": "ComponentDescription"
+            },
+            {
+              "kind": "text",
+              "text": " *cd, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " componentName, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " componentInfo, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " componentIcon);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The component about which you wish to obtain information. Your application obtains a component identifier from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. If your application registers a component, it can also obtain a component identifier from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516594-registercomponentresource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You may supply a component instance rather than a component identifier to this function, but you must coerce the data type appropriately. Your application can obtain a component instance from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " functions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aComponent"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. The function returns information about the specified component in this structure. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cd"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a handle to the component’s name. If the component does not have a name, an empty handle. Set this field to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you do not want to receive the component’s name. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentName"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a handle to the component’s information string. If the component does not have an information string, an empty handle. Set this field to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you do not want to receive the component’s information string.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentInfo"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a handle to the component’s icon. If the component does not have an icon, an empty handle. Set this field to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you do not want to receive the component’s icon. To get a handle to the component’s icon suite, if it provides one, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "GetComponentIconSuite",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentIcon"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager#1668759",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on registering components, see “Registering Components”.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516336-getcomponentpublicresource": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516336-getcomponentpublicresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentPublicResource",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516336-getcomponentpublicresource"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo": {
+      "abstract": [
+        {
+          "text": "Returns to your application the registration information for a component. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516438-getcomponentinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516460-getcomponentpublicresourcelist": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516460-getcomponentpublicresourcelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentPublicResourceList",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516460-getcomponentpublicresourcelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516516-getcomponentpublicindstring": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516516-getcomponentpublicindstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentPublicIndString",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516516-getcomponentpublicindstring"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenDefaultComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516523-opendefaultcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516537-registercomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindNextComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516552-findnextcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516594-registercomponentresource": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516594-registercomponentresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterComponentResource",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516594-registercomponentresource"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516607-opencomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager#1668759": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager#1668759",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/component_manager#1668759"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/component": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/component",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/coreservices/component"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentDescription",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription"
+    },
+    "doc://com.apple.documentation/documentation/kernel/handle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Handle",
+      "type": "topic",
+      "url": "/documentation/kernel/handle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1516516-getcomponentpublicindstring",
+        "doc://com.apple.documentation/documentation/coreservices/1516336-getcomponentpublicresource",
+        "doc://com.apple.documentation/documentation/coreservices/1516460-getcomponentpublicresourcelist"
+      ],
+      "title": "Getting Information About Components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1516438-getcomponentinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

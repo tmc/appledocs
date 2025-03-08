@@ -1,0 +1,497 @@
+{
+  "abstract": [
+    {
+      "text": "Save a scene or project as USDZ to read, collect, or display in an app or website.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Exporting a Reality Composer Scene to USDZ"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Export a scene or project from Reality Composer as USDZ to display it in an AR or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3D app. You can also preview a USDZ file in an AR app or website using AR Quick Look.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because USDZ is a universal file format, you can open a USDZ file in third-party",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tools that support it and make changes to your scene or project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-the-export-preference",
+          "level": 3,
+          "text": "Enable the export preference",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable USDZ exports, open Reality Composer’s Preferences menu and check the “Enable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "USDZ export” option under Content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "exporting-a-reality-composer-scene-to-usdz-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-USDZ-File",
+          "level": 3,
+          "text": "Create a USDZ File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From within an open Reality Composer project, choose the File menu > Export option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "exporting-a-reality-composer-scene-to-usdz-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the export sheet, choose whether to export the scene or project in USDZ format",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and click the Export button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer doesn’t support exporting a scene that contains reimported",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": ".reality",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Accommodate-the-custom-USD-schema-and-provide-feedback",
+          "level": 3,
+          "text": "Accommodate the custom USD schema and provide feedback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer extends the USD specification to include most of the features that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".rcproject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files support, such as anchors, behaviors, and physics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because these features aren’t available in the current USD specification, Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer’s USDZ exports provide more functionality on Apple devices than USD files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "created with third-party tools. For more information about Apple’s custom USD schemas,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "USDZ exports support horizontal, vertical, image, and face anchors. Apple’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "custom USD schema doesn’t support object anchors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some or all of the functionality enabled by these custom schemas may eventually funnel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into the USD specification itself. To provide feedback on these schemas, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://feedbackassistant.apple.com/welcome",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "exporting-a-reality-composer-scene-to-usdz-1": {
+      "alt": "Screenshot of Reality Composer’s preferences pane with the “Enable USDZ export” option checked.",
+      "identifier": "exporting-a-reality-composer-scene-to-usdz-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b0e806b5cb80bb0cc139397f6568a44/exporting-a-reality-composer-scene-to-usdz-1@2x.png"
+        }
+      ]
+    },
+    "exporting-a-reality-composer-scene-to-usdz-2": {
+      "alt": "Screenshot of the File Export sheet with “USDZ” chosen in the Format selection menu.",
+      "identifier": "exporting-a-reality-composer-scene-to-usdz-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78f0d4dd5d26a9d92023313bcce824a6/exporting-a-reality-composer-scene-to-usdz-2@2x.png"
+        }
+      ]
+    },
+    "https://feedbackassistant.apple.com/welcome": {
+      "identifier": "https://feedbackassistant.apple.com/welcome",
+      "title": "Feedback Assistant",
+      "titleInlineContent": [
+        {
+          "text": "Feedback Assistant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://feedbackassistant.apple.com/welcome"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/exporting-a-reality-composer-scene-to-usdz"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

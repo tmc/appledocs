@@ -1,0 +1,2483 @@
+{
+  "abstract": [
+    {
+      "text": "Record useful debugging and analysis information, and include dynamic content in your messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os",
+        "doc://com.apple.os/documentation/os/logging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating Log Messages from Your Code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Insert log messages at appropriate points in your code and use them to diagnose issues later. Typically, you use log messages to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write a message at the start and end of functions and important tasks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write a message for any interesting events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write a message when a significant error occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write messages for important or unusual actions with a function. For example, log rarely taken code paths.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write a message before each step of a multi-step task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Messages may contain more than just static strings. The unified logging system allows you to include custom data from your app, and format that data to make it more readable. Like ",
+              "type": "text"
+            },
+            {
+              "code": "fprintf",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can incorporate strings, numbers, Objective-C objects, and other custom data types from your app directly into your log messages. When data types contain sensitive user information, the system has privacy options that hide the actual values without losing any filtering capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Log-Object-to-Organize-Messages",
+          "level": 3,
+          "text": "Create a Log Object to Organize Messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A log object collects messages associated with a particular part of your app. When you generate log messages, you do so either directly from, or in conjunction with, a log object that you create. The type of log object you create depends on whether you write your code using Swift or Objective-C.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/Logger",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure and use its methods to generate log messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object and pass it to logging functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent the system from displaying an overwhelmingly large number of log messages each time you diagnose issues, each log object contains two custom strings to help you filter out unrelated messages. You specify both strings when creating the log object, using values that are relevant to your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subsystem string identifies a large functional area within your app or apps. For example, if your app spawns additional processes, you might use a different string for each process. Use reverse-DNS notation, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.myapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", for each subsystem string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The category string identifies a particular component or module in a given subsystem. For example, you might define separate strings for your app’s user interface, data model, and networking code. Use any convention you want for these strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t need to filter messages, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/Logger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide a default log for storing messages. You might use the default log to record messages that don’t require a specific subsystem and category.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-the-Appropriate-Log-Level-for-Each-Message",
+          "level": 3,
+          "text": "Choose the Appropriate Log Level for Each Message",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Log levels define the severity and importance of a particular message, and you specify a log level value each time you record a message. The log level you choose determines how the system handles the message. The system stores all messages in memory initially, and it writes messages with more severe log levels to disk. The following table lists the log levels in increasing order of severity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Log level",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Persisted to disk",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Debug",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captures verbose information during development that is useful only for debugging your code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Info",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only when collected with the log tool",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captures information that is helpful, but not essential, to troubleshoot problems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notice (Default)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, up to a storage limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captures information that is essential for troubleshooting problems. For example, capture information that might result in a failure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, up to a storage limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captures errors seen during the execution of your code. If an activity object exists, the system captures information for the related process chain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fault",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, up to a storage limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captures information about faults and bugs in your code. If an activity object exists, the system captures information for the related process chain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Normally, the system stores debug and info messages only in memory, but you can write info messages to disk using the ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool. For the other message types, the system compresses the messages and writes them to the on-disk data store. When that data store exceeds a predefined size, the system purges old messages to make room for new ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can override the default storage behavior of each log level using tools or custom configuration profiles. For more information on how to do so, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The severity of the log level impacts the speed at which the system logs the information. Debug logs have very low overhead because the system stores them only in memory. Faults and other severe messages incur more overhead because the system often captures additional information and writes all of that information to disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-Log-Message",
+          "level": 3,
+          "text": "Generate a Log Message",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a log message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, call the appropriate method of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/Logger",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure in macOS 11 and later. In earlier versions of macOS, call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "os_log(_:log:type:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or one of the related log functions that take an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object as a parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C code, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/os_log",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or an equivalent function that takes an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/os-log-t",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " type as a parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest type of log message contains only static text. You might use such messages to report specific events, or anytime you don’t need to include program variables in the message. The following example shows different ways to log messages that contain only static text. The first two examples add messages to the default log, but the third example adds an error message to a custom log object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Log a message to the default log and default log level.os_log(OS_LOG_DEFAULT, \"This is a default message.\");",
+            "    ",
+            "// Log a message to the default log and debug log level",
+            "os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG, \"This is a debug message.\");",
+            "    ",
+            "// Log an error to a custom log object.",
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "os_log_with_type(customLog, OS_LOG_TYPE_ERROR, \"An error occurred!\");",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-Custom-Data-Values-in-Log-Messages",
+          "level": 3,
+          "text": "Include Custom Data Values in Log Messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Message strings may include the content of program variables. How you include these variables depends on which programming language you use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, add interpolated variables of the form ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\(variableName)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to your message strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, add format string specifiers such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%d",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows several log messages that include different types of variables. In macOS 11 and later, specify variables in Swift directly in the message string as interpolated values. Otherwise, use format-string specifiers and a variable list of arguments to specify values. To log raw bytes from a pointer in Objective-C, use the ",
+              "type": "text"
+            },
+            {
+              "code": "%.*P",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "int itemCount = [self getItemCount];",
+            "NSString* selectedColor = [self getSelectedColor];",
+            "char* pointer = \"Hello world\";",
+            "    ",
+            "os_log(customLog, \"The array contains %d items\", itemCount);",
+            "os_log(customLog, \"The user selected the color %@\", selectedColor);",
+            "",
+            "// Log raw bytes from a pointer.",
+            "os_log(customLog, \"%.*P\", 11, pointer);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-Custom-Values-in-Message-Strings",
+          "level": 3,
+          "text": "Format Custom Values in Message Strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unified logging system formats Swift interpolated variables based on the default settings, but you can apply custom formatting to your variables to make them more readable. In particular, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the width of a variable and align the variable’s text inside that space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format integers as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/decimal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/hex",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/octal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " numbers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format floating-point numbers using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/fixed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "-point, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hex",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/exponential",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hybrid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " notation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format Boolean values as true/false or yes/no strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the precision of floating-point numbers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the minimum number of digits.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify whether a number includes an explicit plus or minus sign.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Log binary data contained in a pointer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify a formatting option for an interpolated value, include the appropriate format parameter and value. In the following example, the first log message includes alignment parameters to set the column width and alignment within that column. The second log message formats a floating-point number to include extra digits of precision and a plus sign in front of positive numbers. The third log message formats a Boolean value as a yes/no answer to a question.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shapeType: String = getShapeType()",
+            "let selectedColor: String = getSelectedColor()",
+            "let bigNumber = 1.0234e30",
+            "let theAnswer = true",
+            "",
+            "// Apply custom formatting to variables.",
+            "customLog.debug(\"Shape type: \\(shapeType, align: .right(columns: 15)) Color: \\(selectedColor, align: .left(columns: 10))\")",
+            "customLog.info(\"The big number is \\(bigNumber, format: .exponential(precision: 10, explicitPositiveSign: true, uppercase: false) )\")",
+            "customLog.debug(\"The answer is \\(theAnswer, format: .answer)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the preceding formatting options, the unified logging system supports custom formatting modifiers. In Swift, specify them using the ",
+              "type": "text"
+            },
+            {
+              "code": "format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. In Objective-C, use a modifier of the form ",
+              "type": "text"
+            },
+            {
+              "code": "%{value_type}d",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each modifier formats the corresponding data according to the specific type. To format binary data types, use the ",
+              "type": "text"
+            },
+            {
+              "code": "%.*P",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifier and add the total number of bytes and the pointer as arguments to the function. The following table lists the built-in format specifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom specifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example output",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "time_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{time_t}d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2016-01-12 19:41:37",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "timeval",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{timeval}.*P",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2016-01-12 19:41:37.774236",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "timespec",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{timespec}.*P",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2016-01-12 19:41:37.2382382823",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "errno",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{errno}d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Broken pipe",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iec-bytes",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{iec-bytes}d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2.64 MiB",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bitrate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{bitrate}d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "123 kbps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iec-bitrate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{iec-bitrate}d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "118 Kibps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uuid_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "%{uuid_t}.*16P",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%{uuid_t}.*P",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10742E39-0657-41F8-AB99-878C5EC2DCAA",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to format custom bit rates and a UUID structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "int baudRate = [self getBaudRate];",
+            "uuid_t* uuid = [self getItemUUID];",
+            "",
+            "os_log(customLog, \"The baud rate is %{bitrate}d\", baudRate);",
+            "os_log(customLog, \"The UUID is %{uuid}.*P\", (int)sizeof(uuid_t), uuid);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the options to use when formatting values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogStringAlignment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogBoolFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPointerFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Redact-Sensitive-User-Data-from-a-Log-Message",
+          "level": 3,
+          "text": "Redact Sensitive User Data from a Log Message",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Log messages that contain sensitive user data present a potential problem for users, because anyone with access to the logs or the user’s computer can see the information. To protect the privacy of your users, try to limit your log messages to static strings and numbers that you define. If you must include dynamically generated data in your messages, redact any values that contain sensitive user information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unified logging system uses privacy options to hide or show interpolated variables in a message. By default, the system doesn’t redact integer, floating-point and Boolean values, but it does redact the contents of dynamic strings and complex dynamic objects. To make a private value public again, configure the privacy of the variable using appropriate modifiers in your message string or interpolated variable. For example, the following code shows how to make a dynamic string visible again using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/public",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make the smoothie name visible, because it’s not sensitive data.",
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "os_log(customLog, \"Smoothie name: %{public}s \", smoothieName);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you know a variable contains potentially sensitive user information, mark it as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/private",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " explicitly, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int userAge = getUserAge();",
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "",
+            "// Hide the user’s age in the log entry. ",
+            "os_log(customLog, \"User's age: %{private}d \", userAge);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To diagnose certain problems, you might need to identify when several log messages all refer to the same piece of user data. For example, when diagnosing issues with a particular user account, you might want to see all log messages associated with that account number. To allow this behavior and still protect user privacy, configure your privacy setting with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/Mask/hash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hide the user’s account number, but include a hash mask to allow",
+            "// the correlation of this log message with others for the same account.",
+            "os_log_t customLog = os_log_create(\"com.your_company.your_subsystem\", \"your_category_name\");",
+            "os_log(customLog, \"Start transaction for account: %{mask.hash}d \", accountNumber);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The inclusion of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/Mask/hash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option replaces the generic redaction text with a hash value that is unique for the current process. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/Mask/hash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value corresponds to the redacted value, but doesn’t provide any identifying information about that value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/Logger": {
+      "abstract": [
+        {
+          "text": "An object for writing interpolated string messages to the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logger",
+      "type": "topic",
+      "url": "/documentation/os/logger"
+    },
+    "doc://com.apple.os/documentation/os/OSLog": {
+      "abstract": [
+        {
+          "text": "A container of related log messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLog"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLog",
+      "type": "topic",
+      "url": "/documentation/os/oslog"
+    },
+    "doc://com.apple.os/documentation/os/OSLogBoolFormat": {
+      "abstract": [
+        {
+          "text": "The formatting options for Boolean values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogBoolFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogBoolFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogBoolFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogBoolFormat",
+      "type": "topic",
+      "url": "/documentation/os/oslogboolformat"
+    },
+    "doc://com.apple.os/documentation/os/OSLogFloatFormatting": {
+      "abstract": [
+        {
+          "text": "The formatting options for double and floating-point numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogFloatFormatting",
+      "type": "topic",
+      "url": "/documentation/os/oslogfloatformatting"
+    },
+    "doc://com.apple.os/documentation/os/OSLogFloatFormatting/exponential": {
+      "abstract": [
+        {
+          "text": "The standard exponential format option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exponential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/exponential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exponential",
+      "type": "topic",
+      "url": "/documentation/os/oslogfloatformatting/exponential"
+    },
+    "doc://com.apple.os/documentation/os/OSLogFloatFormatting/fixed": {
+      "abstract": [
+        {
+          "text": "The standard fixed-point format option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/fixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixed",
+      "type": "topic",
+      "url": "/documentation/os/oslogfloatformatting/fixed"
+    },
+    "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hex": {
+      "abstract": [
+        {
+          "text": "The standard hexadecimal format for floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hex",
+      "type": "topic",
+      "url": "/documentation/os/oslogfloatformatting/hex"
+    },
+    "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hybrid": {
+      "abstract": [
+        {
+          "text": "A hybrid option that changes the format according to the size of the number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hybrid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogFloatFormatting/hybrid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hybrid",
+      "type": "topic",
+      "url": "/documentation/os/oslogfloatformatting/hybrid"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat": {
+      "abstract": [
+        {
+          "text": "The formatting options for 32-bit integer values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogInt32ExtendedFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInt32ExtendedFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogInt32ExtendedFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogInt32ExtendedFormat",
+      "type": "topic",
+      "url": "/documentation/os/oslogint32extendedformat"
+    },
+    "doc://com.apple.os/documentation/os/OSLogIntegerFormatting": {
+      "abstract": [
+        {
+          "text": "The formatting options for integer values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogIntegerFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogIntegerFormatting"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogIntegerFormatting",
+      "type": "topic",
+      "url": "/documentation/os/oslogintegerformatting"
+    },
+    "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/decimal": {
+      "abstract": [
+        {
+          "text": "The standard decimal format option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimal",
+      "type": "topic",
+      "url": "/documentation/os/oslogintegerformatting/decimal"
+    },
+    "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/hex": {
+      "abstract": [
+        {
+          "text": "The standard hexadecimal format option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/hex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hex",
+      "type": "topic",
+      "url": "/documentation/os/oslogintegerformatting/hex"
+    },
+    "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/octal": {
+      "abstract": [
+        {
+          "text": "The standard octal format option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "octal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogIntegerFormatting/octal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "octal",
+      "type": "topic",
+      "url": "/documentation/os/oslogintegerformatting/octal"
+    },
+    "doc://com.apple.os/documentation/os/OSLogPointerFormat": {
+      "abstract": [
+        {
+          "text": "The formatting options for pointer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogPointerFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogPointerFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogPointerFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogPointerFormat",
+      "type": "topic",
+      "url": "/documentation/os/oslogpointerformat"
+    },
+    "doc://com.apple.os/documentation/os/OSLogPrivacy/Mask/hash": {
+      "abstract": [
+        {
+          "text": "An option to replace a redacted value with a string that contains a hashed version of the original value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/Mask/hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLogPrivacy.Mask.hash",
+      "type": "topic",
+      "url": "/documentation/os/oslogprivacy/mask/hash"
+    },
+    "doc://com.apple.os/documentation/os/OSLogPrivacy/private": {
+      "abstract": [
+        {
+          "text": "The standard option to always redact the interpolated value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/private",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "private",
+      "type": "topic",
+      "url": "/documentation/os/oslogprivacy/private"
+    },
+    "doc://com.apple.os/documentation/os/OSLogPrivacy/public": {
+      "abstract": [
+        {
+          "text": "The standard option to always show the interpolated value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`public`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogPrivacy/public",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "public",
+      "type": "topic",
+      "url": "/documentation/os/oslogprivacy/public"
+    },
+    "doc://com.apple.os/documentation/os/OSLogStringAlignment": {
+      "abstract": [
+        {
+          "text": "The alignment options for interpolated strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogStringAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogStringAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogStringAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogStringAlignment",
+      "type": "topic",
+      "url": "/documentation/os/oslogstringalignment"
+    },
+    "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging": {
+      "abstract": [
+        {
+          "text": "Control which log events are recorded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Logging Behavior While Debugging",
+      "type": "topic",
+      "url": "/documentation/os/customizing-logging-behavior-while-debugging"
+    },
+    "doc://com.apple.os/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/logging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.os/documentation/os/os-log-t": {
+      "abstract": [
+        {
+          "text": "A log object that you pass to logging functions to send messages to that log.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os-log-t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "os_log_t",
+      "type": "topic",
+      "url": "/documentation/os/os-log-t"
+    },
+    "doc://com.apple.os/documentation/os/os_log": {
+      "abstract": [
+        {
+          "text": "Sends a default-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log",
+      "type": "topic",
+      "url": "/documentation/os/os_log"
+    },
+    "doc://com.apple.os/documentation/os/viewing-log-messages": {
+      "abstract": [
+        {
+          "text": "Use various tools to retrieve log information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/viewing-log-messages",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing Log Messages",
+      "type": "topic",
+      "url": "/documentation/os/viewing-log-messages"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/viewing-log-messages",
+        "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/viewing-log-messages",
+                "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/generating-log-messages-from-your-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/generating-log-messages-from-your-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

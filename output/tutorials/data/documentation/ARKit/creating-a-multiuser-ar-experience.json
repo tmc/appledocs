@@ -1,0 +1,2946 @@
+{
+  "abstract": [
+    {
+      "text": "Enable nearby devices to share an AR experience by using a host-guest multiuser strategy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a multiuser AR experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ConceptArt",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates a simple shared AR experience for two or more iOS 12 devices. Before exploring the code, try building and running the app to familiarize yourself with the user experience it demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app on one device. You can look around the local environment, and tap to place a virtual 3D character on real-world surfaces. (Tap again to place multiple copies of the character.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app on a second device. On both device screens, a message indicates that they have automatically joined a shared session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the Send World Map button on one device. Make sure the other device is in an area that the first device visited before sending the map, or has a similar view of the surrounding environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The other device displays a message indicating that it has received the map and is attempting to use it. When that process succeeds, both devices show virtual content at the same real-world positions, and tapping on either device places virtual content visible to both.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the steps below to see how this app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to save and restore ARKit’s spatial mapping state, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to send world maps between nearby devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-started",
+          "level": 2,
+          "text": "Getting started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requires Xcode 10.0, iOS 12.0 and two or more iOS devices with A9 or later processors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-AR-Session-and-Place-AR-Content",
+          "level": 2,
+          "text": "Run the AR Session and Place AR Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app extends the basic workflow for building an ARKit app. (For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".) It defines an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with plane detection enabled, then runs that configuration in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attached to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that displays the AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITapGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " detects a tap on the screen, the ",
+              "type": "text"
+            },
+            {
+              "code": "handleSceneTap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method uses ARKit hit-testing to find a 3D point on a real-world surface, then places an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " marking that position. When ARKit calls the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app loads a 3D model for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display at the anchor’s position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-to-peer-devices",
+          "level": 2,
+          "text": "Connect to peer devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample ",
+              "type": "text"
+            },
+            {
+              "code": "MultipeerSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides a simple abstraction around the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " features this app uses. After the main view controller creates a ",
+              "type": "text"
+            },
+            {
+              "code": "MultipeerSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance (at app launch), it starts running an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to broadcast the device’s ability to join multipeer sessions and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find other devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: .required)",
+            "session.delegate = self",
+            "",
+            "serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: MultipeerSession.serviceType)",
+            "serviceAdvertiser.delegate = self",
+            "serviceAdvertiser.startAdvertisingPeer()",
+            "",
+            "serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: MultipeerSession.serviceType)",
+            "serviceBrowser.delegate = self",
+            "serviceBrowser.startBrowsingForPeers()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " finds another device, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate/browser(_:foundPeer:withDiscoveryInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. To invite that other device to a shared session, call the browser’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {",
+            "    // Invite the new peer to the session.",
+            "    browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the other device receives that invitation, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate/advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. To accept the invitation, call the provided ",
+              "type": "text"
+            },
+            {
+              "code": "invitationHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func advertiser(_ advertiser: MCNearbyServiceAdvertiser,",
+            "                didReceiveInvitationFromPeer peerID: MCPeerID,",
+            "                withContext context: Data?,",
+            "                invitationHandler: @escaping (Bool, MCSession?) -> Void) {",
+            "    // Call handler to accept invitation and join the session.",
+            "    invitationHandler(true, self.session)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This app automatically joins the first nearby session it finds. Depending on the kind of shared AR experience you want to create, you may want to more precisely control broadcasting, invitation, and acceptance behavior. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " documentation for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a multipeer session, all participants are by definition equal peers; there is no explicit separation of devices into host and guest roles. However, you may wish to define such roles for your own AR experience. For example, a multiplayer game design might require a host role to arbitrate gameplay. If you need to separate peers by role, you can choose a way to do so that fits the design of your app. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have the user choose whether to act as a host or guest before starting a session. The host uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to broadcast availability, and guests use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to find a host to join.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Join a session as peers, then negotiate between peers to nominate a host. (This approach can be helpful for designs that need a host role but also allow peers to join or leave at any time.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Capture-and-send-the-ar-world-map",
+          "level": 2,
+          "text": "Capture and send the ar world map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains a snapshot of all the spatial mapping information that ARKit uses to locate the user’s device in real-world space. Reliably sharing a map to another device requires two key steps: finding a good time to capture a map, and capturing and sending it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value that indicates whether it’s currently a good time to capture a world map (or if it’s better to wait until ARKit has mapped more of the local environment). This app uses that value to provide visual feedback on its Send World Map button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "switch frame.worldMappingStatus {",
+            "case .notAvailable, .limited:",
+            "    sendMapButton.isEnabled = false",
+            "case .extending:",
+            "    sendMapButton.isEnabled = !multipeerSession.connectedPeers.isEmpty",
+            "case .mapped:",
+            "    sendMapButton.isEnabled = !multipeerSession.connectedPeers.isEmpty",
+            "@unknown default:",
+            "    sendMapButton.isEnabled = false",
+            "}",
+            "mappingStatusLabel.text = frame.worldMappingStatus.description"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps the Send World Map button, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to capture the map from the running ARSession, then serializes it to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sends it to other devices in the multipeer session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sceneView.session.getCurrentWorldMap { worldMap, error in",
+            "    guard let map = worldMap",
+            "        else { print(\"Error: \\(error!.localizedDescription)\"); return }",
+            "    guard let data = try? NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)",
+            "        else { fatalError(\"can't encode map\") }",
+            "    self.multipeerSession.sendToAllPeers(data)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-and-relocalize-to-the-shared-map",
+          "level": 2,
+          "text": "Receive and relocalize to the shared map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a device receives data sent by another participant in the multipeer session, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/multipeerconnectivity/mcsessiondelegate/1406934-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "delegate method provides that data. To make use of it, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to deserialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, then creates and runs a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using that map as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data) {",
+            "    // Run the session with the received world map.",
+            "    let configuration = ARWorldTrackingConfiguration()",
+            "    configuration.planeDetection = .horizontal",
+            "    configuration.initialWorldMap = worldMap",
+            "    sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])",
+            "    ",
+            "    // Remember who provided the map for showing UI feedback.",
+            "    mapProvider = peer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit then attempts to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relocalize",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to the new world map—that is, to reconcile the received spatial-mapping information with what it senses of the local environment. For best results:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Thoroughly scan the local environment on the sending device before sharing a world map.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place the receiving device next to the sending device, so that both see the same view of the environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Share-AR-content-and-user-actions",
+          "level": 2,
+          "text": "Share AR content and user actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sharing the world map also shares all existing anchors. In this app, this means that as soon as a receiving device relocalizes to the world map, it shows all the 3D characters that were placed by the sending device before it captured and sent a world map. However, recording and transmitting a world map and relocalizing to a world map are time-consuming, bandwidth-intensive operations, so you should take those steps only once, when a new device joins a session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ongoing shared AR experience, where each user’s actions affect the AR scene visible to other users, after each device relocalizes to the same world map you should share only the information needed to recreate each user action. For example, in this app the user can tap to place a virtual 3D character in the scene. That character is static, so all that is needed to place the character on another participating device is the character’s position and orientation in world space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app communicates virtual character positions by sharing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects between peers. When one user taps in the scene, the app creates an anchor and adds it to the local ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then serializes that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sends it to other devices in the multipeer session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Place an anchor for a virtual character. The model appears in renderer(_:didAdd:for:).",
+            "let anchor = ARAnchor(name: \"panda\", transform: hitTestResult.worldTransform)",
+            "sceneView.session.add(anchor: anchor)",
+            "",
+            "// Send the anchor info to peers, so they can place the same content.",
+            "guard let data = try? NSKeyedArchiver.archivedData(withRootObject: anchor, requiringSecureCoding: true)",
+            "    else { fatalError(\"can't encode anchor\") }",
+            "self.multipeerSession.sendToAllPeers(data)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When other peers receive data from the multipeer session, they test for whether that data contains an archived ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; if so, they decode it and add it to their session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let anchor = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARAnchor.self, from: data) {",
+            "    // Add anchor to the session, ARSCNView delegate adds visible content.",
+            "    sceneView.session.add(anchor: anchor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is just one strategy for adding dynamic features to a shared AR experience—many other strategies are possible. Choose one that fits the user interaction, rendering, and networking requirements of your app. For example, a game where users throw projectiles in the AR world space might define custom data types with attributes like initial position and velocity, then use Swift’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols to serialize that information to a binary representation for sending over the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "152f5a5fdd83/CreatingAMultiuserARExperience.zip": {
+      "checksum": "152f5a5fdd83352f996bc1334bc7b712328d21882c74ba0e93f1d5e5959afbd4e1cea9fce6a07d55d16aff9d91858f4fd8a8c329b1629e6569c5904b034d7222",
+      "identifier": "152f5a5fdd83/CreatingAMultiuserARExperience.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/152f5a5fdd83/CreatingAMultiuserARExperience.zip"
+    },
+    "ConceptArt": {
+      "alt": "Diagram showing AR experiences on two devices viewing, from two different perspectives, the same virtual red panda character sitting on a real table, after an ARWorldMap is transmitted from one device to the other.]",
+      "identifier": "ConceptArt",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59273c977c95660708b55276e4cf1fbc/ConceptArt.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4418def0fdb84a06d40b8946c61761df/ConceptArt~dark.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "The feasibility of generating or relocalizing a world map for this frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldMappingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARWorldMappingStatus",
+          "text": "WorldMappingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldMappingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldMappingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/worldmappingstatus-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for another user in multiuser augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARParticipantAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arparticipantanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNView",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node corresponding to a new AR anchor has been added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didAddNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didAdd:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didadd:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData": {
+      "abstract": [
+        {
+          "text": "An object that holds information that a user has collected about the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession.CollaborationData",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/collaborationdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns an object encapsulating the world-tracking session’s space-mapping state and set of anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentWorldMapWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getCurrentWorldMap(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap": {
+      "abstract": [
+        {
+          "text": "The state in a world-tracking AR session during which a device maps the user’s position in physical space and proximity to anchor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap": {
+      "abstract": [
+        {
+          "text": "The state from a previous AR session to attempt to resume with this session configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/initialworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session": {
+      "abstract": [
+        {
+          "text": "Enable nearby devices to share an AR experience by using a peer-to-peer multiuser strategy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a collaborative session",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-collaborative-session"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Control an AR experience remotely by transferring sensor and user input over the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming an AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/streaming-an-ar-experience"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes": {
+      "abstract": [
+        {
+          "text": "Detect surfaces in the physical environment and visualize their shape and location in 3D space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing planes",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-and-visualizing-planes"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser": {
+      "abstract": [
+        {
+          "text": "The `MCNearbyServiceAdvertiser` class publishes an advertisement for a specific service that your app provides through the Multipeer Connectivity framework and notifies its delegate about invitations from nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiser"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MCNearbyServiceAdvertiser",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate/advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)": {
+      "abstract": [
+        {
+          "text": "Called when an invitation to join a session is received from a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advertiser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "advertiser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCNearbyServiceAdvertiser",
+          "text": "MCNearbyServiceAdvertiser"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveInvitationFromPeer"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContext"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "invitationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate/advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate/advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser": {
+      "abstract": [
+        {
+          "text": "Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session (`MCSession`).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MCNearbyServiceBrowser",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCNearbyServiceBrowser"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)": {
+      "abstract": [
+        {
+          "text": "Invites a discovered peer to join a Multipeer Connectivity session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invitePeer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContext"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invitePeer(_:to:withContext:timeout:)",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate/browser(_:foundPeer:withDiscoveryInfo:)": {
+      "abstract": [
+        {
+          "text": "Called when a nearby peer is found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "browser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "browser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCNearbyServiceBrowser",
+          "text": "MCNearbyServiceBrowser"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "foundPeer"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDiscoveryInfo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate/browser(_:foundPeer:withDiscoveryInfo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "browser(_:foundPeer:withDiscoveryInfo:)",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate/browser(_:foundPeer:withDiscoveryInfo:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets single or multiple taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITapGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITapGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/multipeerconnectivity/mcsessiondelegate/1406934-session": {
+      "abstract": [
+        {
+          "text": "Indicates that an `NSData` object has been received from a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "(MCSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": MCPeerID)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/multipeerconnectivity/mcsessiondelegate/1406934-session",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "session(_:didReceive:fromPeer:)",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate/1406934-session"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "152f5a5fdd83/CreatingAMultiuserARExperience.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shared-Experiences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+        "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+      ],
+      "title": "Shared Experiences"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shared-Experiences",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+                "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+              ],
+              "title": "Shared Experiences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/title",
+          "value": "ARParticipantAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiserDelegate~1advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)/title",
+          "value": "advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiserDelegate~1advertiser(_:didReceiveInvitationFromPeer:withContext:invitationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "advertiser:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCNearbyServiceAdvertiser",
+              "text": "MCNearbyServiceAdvertiser"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "advertiser"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveInvitationFromPeer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCPeerID",
+              "text": "MCPeerID"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peerID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withContext:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "invitationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "accept"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCSession",
+              "text": "MCSession"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "invitationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/title",
+          "value": "renderer:didAddNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didAddNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/title",
+          "value": "initialWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowserDelegate~1browser(_:foundPeer:withDiscoveryInfo:)/title",
+          "value": "browser:foundPeer:withDiscoveryInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowserDelegate~1browser(_:foundPeer:withDiscoveryInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "browser:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCNearbyServiceBrowser",
+              "text": "MCNearbyServiceBrowser"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "browser"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "foundPeer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCPeerID",
+              "text": "MCPeerID"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peerID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withDiscoveryInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "info"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiser"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getCurrentWorldMap(completionHandler:)/title",
+          "value": "getCurrentWorldMapWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getCurrentWorldMap(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentWorldMapWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser~1invitePeer(_:to:withContext:timeout:)/title",
+          "value": "invitePeer:toSession:withContext:timeout:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser~1invitePeer(_:to:withContext:timeout:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "invitePeer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCPeerID",
+              "text": "MCPeerID"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peerID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "toSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCSession",
+              "text": "MCSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withContext:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "timeout:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeout"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/title",
+          "value": "ARCollaborationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowser"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1worldMappingStatus-swift.property/title",
+          "value": "worldMappingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1worldMappingStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldMappingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/title",
+          "value": "ARWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1multipeerconnectivity~1mcsessiondelegate~11406934-session/title",
+          "value": "session:didReceiveData:fromPeer:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-multiuser-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-multiuser-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

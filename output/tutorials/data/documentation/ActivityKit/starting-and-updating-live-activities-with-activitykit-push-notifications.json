@@ -1,0 +1,3758 @@
+{
+  "abstract": [
+    {
+      "text": "Use ActivityKit to receive push tokens and to remotely start, update, and end your Live Activity with ActivityKit notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ActivityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Starting and updating Live Activities with ActivityKit push notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ActivityKit offers functionality to start, update, and end Live Activities from your app. Additionally, it offers functionality to receive push tokens. You can use push tokens to update and end Live Activities with ActivityKit push notifications that you send from your server to Apple Push Notification service (APNs). Starting with iOS 17.2 and iPadOS 17.2, you can also start Live Activities by sending ActivityKit push notifications to push tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 18 and iPadOS 18, you can use broadcast push notifications to update Live Activities for a large audience. You can subscribe to updates on a channel using ActivityKit, and update or end Live Activities for everyone subscribed by sending an ActivityKit push notification on a channel to APNs from your remote server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10185",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-and-update-Live-Activities",
+          "level": 3,
+          "text": "Start and update Live Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start and update your Live Activities by sending ActivityKit push notifications to a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ActivityKit functionality to obtain push tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up a remote notification server or make changes to your existing server to support ActivityKit push notifications. If you’re new to using push notifications, plan to spend time implementing your remote notification server. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send the push tokens you receive from ActivityKit to your server and use them establish a token-based connection to APNs, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle updates to the push tokens and update or invalidate them on your server as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send ActivityKit push notifications from your server with APNs using the push tokens, HTTP header fields, and JSON payloads described in this article to start, update, and end Live Activities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test ActivityKit push notifications locally and verify that your Live Activity behaves as expected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decide the frequency for your ActivityKit push notifications. For more information, refer to the “Determine the update frequency” section below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start and update your Live Activities with ActivityKit push notifications on a channel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable broadcast capabilities for your app as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up a remote notification server or make changes to your existing server to support ActivityKit push notifications. If you’re new to using push notifications, plan to spend time implementing your remote notification server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use channel creation request to create a channel for each Live Activity event. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send the channel ID for the Live Activity event to your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you request a new activity with ActivityKit to subscribe for updates on the channel, use the channel push type with the channel ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send ActivityKit push notifications from your server to APNs using the channel ID, HTTP header fields, and JSON payloads described in this article to update and end Live Activities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test ActivityKit push notifications locally and verify that your Live Activity behaves as expected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-the-Push-Notifications-capability",
+          "level": 3,
+          "text": "Add the Push Notifications capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Xcode project, start by adding the Push Notifications capability to your app in Xcode as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Note that you can’t use the User Notifications framework to register your Live Activity for push notifications. Instead, you use ActivityKit to obtain a push token as described below. If you choose to use broadcast push notifications for your app, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details on enabling broadcast capability for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can’t enable broadcast capability through Xcode. You can only enable broadcast capabilities using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-push-notification-server",
+          "level": 3,
+          "text": "Create a push notification server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, set up a remote notification server or make changes to your existing server and send JSON payloads to APNs as described below. If you’re new to using push notifications, plan to spend time implementing the remote notification server. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use device push notifications, you use the push tokens that you receive from ActivityKit to send push notifications in your remote notification server. For more information about sending push notifcations using push tokens, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For broadcast push notifications, use the channel you created for the Live Activity and shared with the app to send push notifications in your remote notifications server. For more information on creating channels, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For information on how to send a push notification on a channel, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-Live-Activity-that-supports-push-updates-to-push-tokens",
+          "level": 3,
+          "text": "Start a Live Activity that supports push updates to push tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On devices that run iOS or iPadOS 17.1 and earlier, you can’t start Live Activities with ActivityKit push notifications. However, you can update and end them with ActivityKit push notifications. In your app, start a Live Activity with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function and pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType/token",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to its ",
+              "type": "text"
+            },
+            {
+              "code": "pushType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. As a result, you receive a push token that’s unique to your Live Activity when you successfully start the Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project starts a Live Activity and requests a push token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startActivity(hero: EmojiRanger) throws {",
+            "    let adventure = AdventureAttributes(hero: hero)",
+            "    let initialState = AdventureAttributes.ContentState(",
+            "        currentHealthLevel: hero.healthLevel,",
+            "        eventDescription: \"Adventure has begun!\"",
+            "    )",
+            "    ",
+            "    let activity = try Activity.request(",
+            "        attributes: adventure,",
+            "        content: .init(state: initialState, staleDate: nil),",
+            "        pushType: .token",
+            "    )",
+            "  ",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every time you start a new Live Activity, you need to send the push token to your server. However, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t available immediately after calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", because push token creation happens asynchronously and may take some time. Take this into account before accessing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " synchronously. Instead, observe push token updates using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " asynchronous sequence. This makes sure you receive the first push token, and any updates to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code snippet from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project uses an asynchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive push token updates. In the asynchronous for loop, it logs the updated token to the console for debugging and local testing, and sends it to the server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    for await pushToken in activity.pushTokenUpdates {",
+            "        let pushTokenString = pushToken.reduce(\"\") {",
+            "\t          $0 + String(format: \"%02x\", $1)",
+            "        }",
+            "",
+            "        Logger().log(\"New push token: \\(pushTokenString)\")",
+            "                ",
+            "        try await self.sendPushToken(hero: hero, pushTokenString: pushTokenString)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The push token for a Live Activity may change throughout its duration. When your app receives a new token, it receives foreground runtime to process the updated token. Keep track of the push token for each Live Activity. Additionally, invalidate the previous, now-outdated token on your server when you receive an updated token to successfully send subsequent updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-Live-Activity-that-supports-push-updates-on-a-channel",
+          "level": 3,
+          "text": "Start a Live Activity that supports push updates on a channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 18 and iPadOS 18 or later, you can update or end Live Activities by an ActivityKit push notification sent on a channel. To create a channel for your Live Activity event, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The channel you create has a unique identifier, called a channel ID, that devices use to subscribe to Live Activity updates. Your remote server provides the Channel ID to your app before the Live Activity starts.  In your app, start a Live Activity with the ",
+              "type": "text"
+            },
+            {
+              "code": "request(attributes:content:pushType:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and pass channel to its ",
+              "type": "text"
+            },
+            {
+              "code": "pushType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter with the channel ID. If the channel ID isn’t a valid channel, the Live Activity fails to start.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet starts a Live Activity and subscribes to receive push notifications on channel ID:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startLiveActivityWithChannel(string channelId, initialState) {",
+            "    let activity = try Activity.request(",
+            "            attributes: adventure,",
+            "            content: .init(state: initialState, staleDate: nil),",
+            "            //Input your unique channel ID",
+            "            pushType: .channel(channelId)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-new-Live-Activities-with-ActivityKit-push-notifications",
+          "level": 3,
+          "text": "Start new Live Activities with ActivityKit push notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17.2 and iPadOS 17.2, you can start new Live Activities with ActivityKit push notifications. This option is especially useful for tracking events with Live Activities that occur more than once. For example, if someone starts a Live Activity to track their favorite sports team, the sports app might offer to automatically start a Live Activity for each of the team’s games. In the future, the person doesn’t have to remember to start the Live Activity from the app. Instead, a Live Activity for tracking the game might automatically start from an ActivityKit push notification you sent with your remote notification server and APNs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start Live Activities from ActivityKit push notifications, configure your app to support push notifications. Then obtain the token to for starting a Live Activity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " asynchronous sequence to retrieve a push-to-start token that allows you to start new Live Activities. You don’t have to start a Live Activity from your app to receive the push-to-start token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send the push-to-start token to your server and use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sequence to receive token updates. Similar to the update token, update it on your server when needed and invalidate the old token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On your push notification server, use the push-to-start token to send JSON payloads to APNs that start a new Live Activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the system receives the ActivityKit push notification on a device, it starts a new Live Activity, wakes up your app, and grants it background runtime to allow you to download assets that the Live Activity needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While the system starts the new Live Activity and wakes up your app, you receive the push token you use for updates. To update and end the Live Activity on devices that aren’t running iOS 18 or iPadOS 18, use this update push token as if you obtained it by starting a Live Activity from within your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For devices running iOS 18 and iPadOS 18, you can send different APNs payloads to start a Live Activity to listen to updates on a push token or a channel ID. For more information, refer to “Construct the payload that starts a Live Activity” below for more details. If you are using push tokens to send updates, then the system wakes your app and you’ll receive new push tokens to use for updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can’t use broadcast push notifications to start a Live Activity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Construct-the-ActivityKit-remote-push-notification-payload",
+          "level": 3,
+          "text": "Construct the ActivityKit remote push notification payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To successfully start, update, or end a Live Activity with an ActivityKit push notification, send an HTTP request to APNs that conforms to the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-push-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "liveactivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-topic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field using the following format: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<your bundleID>.push-type.liveactivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For more information, refer to “Determine the update frequency” below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about request headers, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To successfully update or end a Live Activity with an ActivityKit push notification to a channel, send an HTTP request to APNs that conforms to the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-push-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "liveactivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-channel-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to the channel you’re using.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For more information, refer to the “Determine the update frequency” section of this article, below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about request headers, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your request’s  ",
+              "type": "text"
+            },
+            {
+              "code": "aps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "timestamp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the current time in seconds since 1970 to allow the system to always display the most recent ActivityKit push update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To start a Live Activity, refer to “Construct the payload that starts a Live Activity” below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To update a Live Activity, set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "event",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "update",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To end a Live Activity, set the value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "event",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "end",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you end a Live Activity, include the final content state to make sure the Live Activity displays the latest data after it ends.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the fields for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "content-state",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to match your custom ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " type to ensure the system can decode the JSON payload and update or end the Live Activity. Additionally, don’t use any custom JSON encoding strategies to encode your data, because the system always decodes JSON payloads for Live Activity updates using its default encoding strategies. Custom encoding strategies will result in update failures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To mark a Live Activity as outdated with an update, optionally set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stale-date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For more information, refer to the “Mark a Live Activity as outdated by setting a stale date” section below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To set a custom dismissal date that tells the system to remove an ended Live Activity from the Lock Screen, refer to the “End the Live Activity with a custom dismissal date” section below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To alert a person about a critical Live Activity update, optionally provide an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to light up their device and display the expanded presentation on devices that support the Dynamic Island or a banner on devices that don’t support it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following payload updates the Live Activity of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " example with the latest information. The content of ",
+              "type": "text"
+            },
+            {
+              "code": "content-state",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must match the properties of the custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type you declare in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation. In the example, ",
+              "type": "text"
+            },
+            {
+              "code": "content-state",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the properties of the custom ",
+              "type": "text"
+            },
+            {
+              "code": "AdventureAttributes.ContentState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type of the sample code project. Additionally, the example payload includes an alert with a custom sound to let the player know that the hero has been knocked down and requires a healing potion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"aps\": {",
+            "        \"timestamp\": 1685952000,",
+            "        \"event\": \"update\",",
+            "        \"content-state\": {",
+            "            \"currentHealthLevel\": 0.0,",
+            "            \"eventDescription\": \"Power Panda has been knocked down!\"",
+            "        },",
+            "        \"alert\": {",
+            "            \"title\": {",
+            "                \"loc-key\": \"%@ is knocked down!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"body\": {",
+            "                \"loc-key\": \"Use a potion to heal %@!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"sound\": \"HeroDown.mp4\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your alert implementation, consider localizing both strings. For more information on displaying alerts for a remote notification, including localized alert messages and a reference of available keys, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember that a person’s device may not receive a push notification — for example, if they’re in an area without a network connection. Similarly, the system ignores an ActivityKit push notification if it arrives after the Live Activity ended. Both cases can cause a Live Activity to display outdated information. To help reduce the chance of showing outdated information, update your Live Activity from your app in addition to push notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you send ActivityKit push notifications to a device, the system wakes the widget extension to render the UI of your Live Activity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Construct-the-payload-that-starts-a-Live-Activity",
+          "level": 3,
+          "text": "Construct the payload that starts a Live Activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JSON payload for starting a Live Activity with an ActivityKit push notification is similar to the payload you use for updates. However, it comes with the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "event",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "start",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the JSON payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributes-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By including an alert in your JSON payload, you make sure a person gets alerted about the started Live Activity and avoid unexpectedly surprising them. The following sample payload starts a Live Activity for devices that aren’t running iOS 18 and iPadOS 18 or later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"aps\": {",
+            "        \"timestamp\": 1234,",
+            "        \"event\": \"start\",",
+            "        \"content-state\": {",
+            "            \"currentHealthLevel\": 100,",
+            "            \"eventDescription\": \"Adventure has begun!\"",
+            "        },",
+            "        \"attributes-type\": \"AdventureAttributes\",",
+            "        \"attributes\": {",
+            "            \"currentHealthLevel\": 100,",
+            "            \"eventDescription\": \"Adventure has begun!\"",
+            "        },",
+            "         \"alert\": {",
+            "            \"title\": {",
+            "                \"loc-key\": \"%@ is on an adventure!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"body\": {",
+            "                \"loc-key\": \"%@ found a sword!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"sound\": \"chime.aiff\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For devices running iOS 18 and iPadOS or later, you can add ",
+              "type": "text"
+            },
+            {
+              "code": "input-push-channel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the appropriate channel ID to start a Live Activity and listen for updates on a channel. After you send this payload, you can send updates on the channel to update a Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "       \"input-push-channel\": \"dHN0LXNyY2gtY2hubA==\",",
+            "       \"attributes-type\": \"AdventureAttributes\",",
+            "       \"attributes\": {",
+            "           \"currentHealthLevel\": 100,",
+            "           \"eventDescription\": \"Adventure has begun!\"",
+            "       }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a channel ID before you send this payload to a device and ensure that the channel ID is valid. If you send this payload to a device that doesn’t run iOS 18 and later, then the Live Activity will not start.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For devices running iOS 18 and iPadOS 18 or later, you can add ",
+              "type": "text"
+            },
+            {
+              "code": "input-push-token: 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your payload to start a Live Activity and receive a new push token. After you receive a new push token, you can use it to send updates to a Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "        \"input-push-token\": 1,",
+            "        \"attributes-type\": \"AdventureAttributes\",",
+            "        \"attributes\": {",
+            "            \"currentHealthLevel\": 100,",
+            "            \"eventDescription\": \"Adventure has begun!\"",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-Live-Activity-updates-locally",
+          "level": 3,
+          "text": "Test Live Activity updates locally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During development, verify your JSON payloads and Live Activity updates locally. Using command-line tools and Simulator or a test device, you can send a JSON payload from the command line to APNs and receive Live Activity updates to verify that your payload updates the Live Activity and the Live Activity behaves as expected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To locally test Live Activity updates during development:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up your command line as described in the “Send a Push Notification Using a Token” section of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-push-notifications-using-command-line-tools#3694579",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code that logs the push token to the console when you start a new Live Activity in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run your app in Simulator or on a test device and start a Live Activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the logged push token from the console and set it as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$ACTIVITY_PUSH_TOKEN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " environment variable in Terminal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "curl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command to send a Live Activity update using APNs. Set the value of the  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to deliver the update quickly with high priority.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a curl command that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project could use to test a Live Activity update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl \\",
+            " --header \"apns-topic: com.example.apple-samplecode.Emoji-Rangers.push-type.liveactivity\" \\",
+            " --header \"apns-push-type: liveactivity\" \\",
+            " --header \"apns-priority: 10\" \\",
+            " --header \"authorization: bearer $AUTHENTICATION_TOKEN\" \\",
+            " --data '{",
+            "     \"aps\": {",
+            "         \"timestamp\": '$(date +%s)',",
+            "         \"event\": \"update\",",
+            "         \"content-state\": {",
+            "             \"currentHealthLevel\": 0.941,",
+            "             \"eventDescription\": \"Power Panda found a sword!\"",
+            "         }",
+            "     }",
+            " }' \\",
+            " --http2 https://api.sandbox.push.apple.com/3/device/$ACTIVITY_PUSH_TOKEN"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To test ActivityKit push notifications in Simulator, use a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/en-us/HT208862",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/en-us/HT211814",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that runs macOS 13 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To locally test Live Activity updates to a channel during development:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up your command line as described in the “Send a Push Notification Using a Token” section of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-push-notifications-using-command-line-tools#3694579",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new channel, and set it as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$CHANNEL_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " variable in your terminal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the newly created channel with ActivityKit when you request a Live Activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run your app in Simulator or on a test device and start a Live Activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "curl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command to send a Live Activity update using APNs. Set the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header field to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to deliver the update quickly with high priority.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also use Push Notifications Console to send ActivityKit push notifications instead of using terminal. For more information, refer to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you encounter failures while sending an ActivityKit push notification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "curl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command succeeded. An error might indicate an incorrect field  for the request, or errors setting up the command-line environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the Console app to view device logs and look for errors that could help you understand the issue. Processes in Console that may contain relevant information are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "liveactivitiesd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apsd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "chronod",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Determine-the-update-frequency",
+          "level": 3,
+          "text": "Determine the update frequency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system allows for a certain budget of ActivityKit push notifications per hour. As with other push notifications you send with APNs, you can set the HTTP header field  ",
+              "type": "text"
+            },
+            {
+              "code": "apns-priority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for your requests to specify the priority of an ActivityKit push notification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, APNs delivers the ActivityKit push notification immediately with the default priority of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and counts it toward the notification budget that the system imposes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you exceed the budget, the system may throttle your ActivityKit push notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid throttling, you can send a low-priority ActivityKit push notification that doesn’t count toward the budget by setting the HTTP header field  ",
+              "type": "text"
+            },
+            {
+              "code": "apns-priority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Consider this lower priority first before using the priority of ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In many cases, choosing a mix of priority ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for updates prevents your Live Activity updates from being throttled. For example, the Live Activity of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project could use priority ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for updates that don’t require a person’s immediate attention, like when the hero heals by a few points. When the hero requires a healing potion, the example would use a priority of ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to immediately update the Live Activity and let the user know about the important change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, your app may need to update its Live Activity more frequently, causing you to hit the budget limit for ActivityKit push notifications. For example, if your app allows people to track a sports event like a basketball match that requires many updates per minute, you may not be able to update your Live Activity often enough.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow for use cases like this, you can enable your Live Activities to receive frequent ActivityKit push notifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your project includes an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entry to it, and set its Boolean value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternatively, open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file as source code, add the key ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", then set the type to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and its value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If your project doesn’t have an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, add ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the list of custom iOS target properties for your iOS app target and set its value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can deactivate frequent ActivityKit push notifications for your app in the Settings app. In your code, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushesEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to detect whether a person deactivated frequent push notifications and display information in your app that asks them to activate frequent ActivityKit push notifications again. Additionally, send the value of this setting to your server and adjust the update frequency accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to other asynchronous sequences ActivityKit provides to receive configuration updates, you can subscribe to changes to the frequent Live Activity push notification setting setting with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushEnablementUpdates-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on available HTTPs headers and sending requests to APNs, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "End-the-Live-Activity-with-a-custom-dismissal-date",
+          "level": 3,
+          "text": "End the Live Activity with a custom dismissal date",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you end a Live Activity, by default the Live Activity appears on the Lock Screen for up to four hours after it ends to allow people to glance at their phone to refer to the latest information. To change the time until the system removes a Live Activity from the Lock Screen after it ends, include the ",
+              "type": "text"
+            },
+            {
+              "code": "\"dismissal-date\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry in the ",
+              "type": "text"
+            },
+            {
+              "code": "\"aps\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary of your JSON payload. If you don’t include the ",
+              "type": "text"
+            },
+            {
+              "code": "\"dismissal-date\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your Live Activity uses the system’s default dismissal behavior. To dismiss the Live Activity from the Lock Screen immediately after it ends, provide a date for ",
+              "type": "text"
+            },
+            {
+              "code": "\"dismissal-date\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s in the past — for example, ",
+              "type": "text"
+            },
+            {
+              "code": "\"dismissal-date\": 1663177260",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Alternatively, provide a date within a four-hour window to set a custom dismissal date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-a-Live-Activity-as-outdated-by-setting-a-stale-date",
+          "level": 3,
+          "text": "Mark a Live Activity as outdated by setting a stale date",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some scenarios — for example,  if a person enters an area without network connectivity — you might not be able update the Live Activity with new information, causing it to display outdated data. To provide the best possible user experience and let the person know that the Live Activity displays outdated information, add a timestamp in the optional ",
+              "type": "text"
+            },
+            {
+              "code": "stale-date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to provide the time when the system will consider the Live Activity to be stale. With each update, you can advance this ",
+              "type": "text"
+            },
+            {
+              "code": "stale-date",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When you can’t update the Live Activity for some time until it becomes stale, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState/stale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at the specified date. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " stream in your app to monitor the activity state and respond to outdated Live Activities that haven’t received updates. For example, while a person has network connectivity, a sports app could update the Live Activity with the latest game information and advance the stale date. When it becomes stale, it displays text to indicate that the displayed information is outdated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-most-important-Live-Activity-in-the-Dynamic-Island",
+          "level": 3,
+          "text": "Display the most important Live Activity in the Dynamic Island",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app starts more than one Live Activity, provide a ",
+              "type": "text"
+            },
+            {
+              "code": "relevance-score",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your JSON payload to determine the order of your Live Activities on the Lock Screen and which of your Live Activities appears in the Dynamic Island:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t provide a relevance score or if Live Activities have the same relevance score, the system shows the first Live Activity you started in the Dynamic Island.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you use different relevance scores, the system shows the Live Activity with the highest relevance score in the Dynamic Island.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system expects relative values for the relevance score. Assign a higher value for an important Live Activity content update — for example, a score of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — and use lower values for less important Live Activity content updates — for example, ",
+              "type": "text"
+            },
+            {
+              "code": "50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Keep track of the relevance scores you assign for each ongoing Live Activity so you can change the order of them as needed with each Live Activity update.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example payload provides a relevance score of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to make sure the Live Activity that receives the update appears in the Dynamic Island and at top of the list on the Lock Screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"aps\": {",
+            "        \"timestamp\": 1685952000,",
+            "        \"event\": \"update\",",
+            "        \"relevance-score\": 100,",
+            "        \"content-state\": {",
+            "            \"currentHealthLevel\": 0.941,",
+            "            \"eventDescription\": \"Power Panda found a sword!\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Settingup-broadcast-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Settingup-broadcast-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/167c2ee164ee75ad9ca79dfaa0f938f9/Settingup-broadcast-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1a4297582c3e863f33c879994cb4360/Settingup-broadcast-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/activitykit"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity": {
+      "abstract": [
+        {
+          "text": "The object you use to start, update, and end a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type alias for the structure that describes the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ContentState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentstate-swift.typealias"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState": {
+      "abstract": [
+        {
+          "text": "The current state of a Live Activity in its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A5StateO",
+          "text": "ActivityState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activitystate"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe activity state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityStateUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C0A12StateUpdatesV",
+          "text": "ActivityStateUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityStateUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activitystateupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the token",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for starting a Live Activity with an ActivityKit push notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToStartTokenUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C16PushTokenUpdatesV",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushToStartTokenUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtostarttokenupdates"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken": {
+      "abstract": [
+        {
+          "text": "The token you use to send ActivityKit push notifications to a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushToken",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtoken"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the push token of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushTokenUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C16PushTokenUpdatesV",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushTokenUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtokenupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)": {
+      "abstract": [
+        {
+          "text": "Requests and starts a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pushType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit8PushTypeV",
+          "text": "PushType"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request(attributes:content:pushType:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/request(attributes:content:pushtype:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to describe the content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityAttributes",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityattributes"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushEnablementUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe whether a person permitted you to update Live",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Activities with frequent ActivityKit push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequentPushEnablementUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A17AuthorizationInfoC",
+          "text": "ActivityAuthorizationInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A17AuthorizationInfoC29FrequentPushEnablementUpdatesV",
+          "text": "FrequentPushEnablementUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushEnablementUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frequentPushEnablementUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityauthorizationinfo/frequentpushenablementupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushesEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a person permitted you to update Live Activities with frequent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ActivityKit push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequentPushesEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo/frequentPushesEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frequentPushesEnabled",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityauthorizationinfo/frequentpushesenabled"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState/stale": {
+      "abstract": [
+        {
+          "text": "The Live Activity content is out of date and needs an update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stale"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState/stale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ActivityState.stale",
+      "type": "topic",
+      "url": "/documentation/activitykit/activitystate/stale"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType/token": {
+      "abstract": [
+        {
+          "text": "A constant you use to configure a Live Activity that updates its dynamic content by receiving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ActivityKit push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit8PushTypeV",
+          "text": "PushType"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType/token",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "token",
+      "type": "topic",
+      "url": "/documentation/activitykit/pushtype/token"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Describe the interface elements of your widgets and Live Activities to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding accessible descriptions to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/adding-accessible-descriptions-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities": {
+      "abstract": [
+        {
+          "text": "Display your app’s data in the Dynamic Island and on the Lock Screen and offer quick interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying live data with Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/displaying-live-data-with-live-activities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app supports Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can update its Live Activities frequently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivitiesFrequentUpdates",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/establishing-a-token-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by using stateless authentication tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a token-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/establishing-a-token-based-connection-to-apns"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification": {
+      "abstract": [
+        {
+          "text": "Send notifications to the user’s device with a JSON payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a remote notification",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/generating-a-remote-notification"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your broadcast notification payload to Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending broadcast push notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/sending-channel-management-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Manage channels that your application uses for broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending channel management requests to APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/sending-channel-management-requests-to-apns"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/sending-push-notifications-using-command-line-tools#3694579": {
+      "abstract": [
+        {
+          "text": "Use basic macOS command-line tools to send push notifications to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-push-notifications-using-command-line-tools#3694579",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending push notifications using command-line tools",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/sending-push-notifications-using-command-line-tools"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/setting-up-broadcast-push-notifications": {
+      "abstract": [
+        {
+          "text": "Enable broadcast capability for Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+      "images": [
+        {
+          "identifier": "Settingup-broadcast-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up broadcast push notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/setting-up-broadcast-push-notifications"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "developer.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10185": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10185",
+      "title": "Session 10185: Update Live Activities with push notifications",
+      "titleInlineContent": [
+        {
+          "text": "Session 10185: Update Live Activities with push notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10185"
+    },
+    "https://support.apple.com/en-us/HT208862": {
+      "identifier": "https://support.apple.com/en-us/HT208862",
+      "title": "Mac with the Apple T2 Security Chip",
+      "titleInlineContent": [
+        {
+          "text": "Mac with the Apple T2 Security Chip",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT208862"
+    },
+    "https://support.apple.com/en-us/HT211814": {
+      "identifier": "https://support.apple.com/en-us/HT211814",
+      "title": "Mac with Apple silicon",
+      "titleInlineContent": [
+        {
+          "text": "Mac with Apple silicon",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT211814"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Live-Activity-implementation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+        "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+      ],
+      "title": "Live Activity implementation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

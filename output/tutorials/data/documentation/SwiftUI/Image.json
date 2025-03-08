@@ -1,0 +1,2972 @@
+{
+  "abstract": [
+    {
+      "text": "A view that displays an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI5ImageV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Image"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Image"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Image"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Image"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Fitting-Images-into-Available-Space"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance when you want to add images to your SwiftUI app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can create images from many sources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image files in your app’s asset library or bundle. Supported types include",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "PNG, JPEG, HEIC, and more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instances of platform-specific image types, like",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bitmap stored in a Core Graphics",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System graphics from the SF Symbols set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to load an image from the app’s asset",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "library or bundle and scale it to fit within its container:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Image(\"Landscape_4\")",
+            "    .resizable()",
+            "    .aspectRatio(contentMode: .fit)",
+            "Text(\"Water wheel\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Image-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use methods on the ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type as well as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "standard view modifiers to adjust the size of the image to fit your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. Here, the ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method scales the image to fit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current view. Then, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier adjusts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this resizing behavior to maintain the image’s original aspect ratio, rather",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than scaling the x- and y-axes independently to fill all four sides of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view. The article",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Fitting-Images-into-Available-Space",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how to apply scaling,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clipping, and tiling to ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances of different sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a late-binding token; the system resolves its actual value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only when it’s about to use the image in an environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Making-images-accessible",
+          "level": 3,
+          "text": "Making images accessible",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use an image as a control, use one of the initializers that takes a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "label",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. This allows the system’s accessibility frameworks to use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the label as the name of the control for users who use features like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "VoiceOver. For images that are only present for aesthetic reasons, use an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer with the ",
+              "type": "text"
+            },
+            {
+              "code": "decorative",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter; the accessibility systems",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ignore these images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Image-1.png": {
+      "alt": "An image of a water wheel and its adjoining building, resized to fit the",
+      "identifier": "Image-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d218460da75fc53e2a4398f3ab30a3b/Image-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c4143a9a48a080f153278c9732c03e7/Image-1~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views": {
+      "abstract": [
+        {
+          "text": "Adjust the characteristics of a view by applying view modifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring views",
+      "type": "topic",
+      "url": "/documentation/swiftui/configuring-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks": {
+      "abstract": [
+        {
+          "text": "Display large numbers of repeated views efficiently with scroll views, stack",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views, and lazy stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating performant scrollable stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating-performant-scrollable-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists": {
+      "abstract": [
+        {
+          "text": "Visualize collections of data with platform-appropriate appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying data in lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/displaying-data-in-lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/allowedDynamicRange": {
+      "abstract": [
+        {
+          "text": "The allowed dynamic range for the view, or nil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedDynamicRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV12DynamicRangeV",
+          "text": "DynamicRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/allowedDynamicRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedDynamicRange",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/alloweddynamicrange"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Fitting-Images-into-Available-Space": {
+      "abstract": [
+        {
+          "text": "Adjust the size and shape of images in your app’s user interface by applying view modifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Fitting-Images-into-Available-Space",
+      "kind": "article",
+      "role": "article",
+      "title": "Fitting images into available space",
+      "type": "topic",
+      "url": "/documentation/swiftui/fitting-images-into-available-space"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/swiftui/image"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/DynamicRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicRange"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/DynamicRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.DynamicRange",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/dynamicrange"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/equatable-implementations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation": {
+      "abstract": [
+        {
+          "text": "The level of quality for rendering an image that requires interpolation,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as a scaled image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.Interpolation",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/interpolation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/JournalingSuggestionAsset-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/JournalingSuggestionAsset-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "JournalingSuggestionAsset Implementations",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/journalingsuggestionasset-implementations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation": {
+      "abstract": [
+        {
+          "text": "The orientation of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Orientation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Orientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.Orientation",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/orientation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode": {
+      "abstract": [
+        {
+          "text": "The modes that SwiftUI uses to resize an image to fit within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its containing view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.ResizingMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/resizingmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale": {
+      "abstract": [
+        {
+          "text": "A scale to apply to vector images relative to text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.Scale",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/scale"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/TemplateRenderingMode": {
+      "abstract": [
+        {
+          "text": "A type that indicates how SwiftUI renders images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemplateRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/TemplateRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemplateRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.TemplateRenderingMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/templaterenderingmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/allowedDynamicRange(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new image configured with the specified allowed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedDynamicRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV12DynamicRangeV",
+          "text": "DynamicRange"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/allowedDynamicRange(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedDynamicRange(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/alloweddynamicrange(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/antialiased(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies whether SwiftUI applies antialiasing when rendering",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "antialiased"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/antialiased(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "antialiased(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/antialiased(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:)": {
+      "abstract": [
+        {
+          "text": "Initialize an ",
+          "type": "text"
+        },
+        {
+          "code": "Image",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with an image resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport13ImageResourceV",
+          "text": "ImageResource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:)": {
+      "abstract": [
+        {
+          "text": "Creates a labeled image that you can use as content for controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:bundle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:bundle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a labeled image that you can use as content for controls, with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:bundle:label:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:bundle:label:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:scale:orientation:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a labeled image based on a Core Graphics image instance, usable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as content for controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV11OrientationO",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:scale:orientation:label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:scale:orientation:label:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:scale:orientation:label:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:)": {
+      "abstract": [
+        {
+          "text": "Creates a labeled image that you can use as content for controls,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with a variable value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "variableValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:variableValue:bundle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:variablevalue:bundle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a labeled image that you can use as content for controls, with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified label and variable value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "variableValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:variableValue:bundle:label:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(_:variablevalue:bundle:label:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:bundle:)": {
+      "abstract": [
+        {
+          "text": "Creates an unlabeled, decorative image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "decorative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:bundle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(decorative:bundle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(decorative:bundle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:scale:orientation:)": {
+      "abstract": [
+        {
+          "text": "Creates an unlabeled, decorative image based on a Core Graphics image",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "decorative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV11OrientationO",
+          "text": "Orientation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:scale:orientation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(decorative:scale:orientation:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(decorative:scale:orientation:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:variableValue:bundle:)": {
+      "abstract": [
+        {
+          "text": "Creates an unlabeled, decorative image, with a variable value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "decorative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "variableValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:variableValue:bundle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(decorative:variableValue:bundle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(decorative:variablevalue:bundle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(nsImage:)": {
+      "abstract": [
+        {
+          "text": "Creates a SwiftUI image from an AppKit image instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nsImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(nsImage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(nsImage:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(nsimage:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(size:label:opaque:colorMode:renderer:)": {
+      "abstract": [
+        {
+          "text": "Initializes an image of the given size, with contents provided by a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom rendering closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opaque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "colorMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18ColorRenderingModeO",
+          "text": "ColorRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15GraphicsContextV",
+          "text": "GraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(size:label:opaque:colorMode:renderer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(size:label:opaque:colorMode:renderer:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(size:label:opaque:colormode:renderer:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:)": {
+      "abstract": [
+        {
+          "text": "Creates a system symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(systemName:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(systemname:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:variableValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a system symbol image with a variable value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "variableValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:variableValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(systemName:variableValue:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(systemname:variablevalue:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(uiImage:)": {
+      "abstract": [
+        {
+          "text": "Creates a SwiftUI image from a UIKit image instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "uiImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(uiImage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(uiImage:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/init(uiimage:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the current level of quality for rendering an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "image that requires interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV13InterpolationO",
+          "text": "Interpolation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/interpolation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/renderingMode(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether SwiftUI renders an image as-is, or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by using a different mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV21TemplateRenderingModeO",
+          "text": "TemplateRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/renderingMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renderingMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/renderingmode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)": {
+      "abstract": [
+        {
+          "text": "Sets the mode by which SwiftUI resizes an image to fit its space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resizable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resizingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV12ResizingModeO",
+          "text": "ResizingMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resizable(capInsets:resizingMode:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/resizable(capinsets:resizingmode:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/symbolRenderingMode(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the rendering mode for symbol images within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19SymbolRenderingModeV",
+          "text": "SymbolRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/symbolRenderingMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolRenderingMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/symbolrenderingmode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/widgetAccentedRenderingMode(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the how to render an ",
+          "type": "text"
+        },
+        {
+          "code": "Image",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when using the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "WidgetKit/WidgetRenderingMode/accented",
+          "type": "codeVoice"
+        },
+        {
+          "text": " mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetAccentedRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A21AccentedRenderingModeV",
+          "text": "WidgetAccentedRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/widgetAccentedRenderingMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetAccentedRenderingMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/widgetaccentedrenderingmode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)": {
+      "abstract": [
+        {
+          "text": "Constrains this view’s dimensions to the specified aspect ratio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "aspectRatio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentMode"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aspectRatio(_:contentMode:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/aspectratio(_:contentmode:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.externally.resolved.symbol/s:21JournalingSuggestions0A15SuggestionAssetP": {
+      "abstract": [
+        {
+          "text": "An interface for the content that the suggestions picker presents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JournalingSuggestionAsset"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:21JournalingSuggestions0A15SuggestionAssetP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JournalingSuggestionAsset",
+      "type": "topic",
+      "url": "/documentation/JournalingSuggestions/JournalingSuggestionAsset"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:21JournalingSuggestions0A15SuggestionAssetP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-image",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:)"
+      ],
+      "title": "Creating an image"
+    },
+    {
+      "anchor": "Creating-an-image-for-use-as-a-control",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:bundle:label:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:variableValue:bundle:label:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(_:scale:orientation:label:)"
+      ],
+      "title": "Creating an image for use as a control"
+    },
+    {
+      "anchor": "Creating-an-image-for-decorative-use",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:bundle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:variableValue:bundle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(decorative:scale:orientation:)"
+      ],
+      "title": "Creating an image for decorative use"
+    },
+    {
+      "anchor": "Creating-a-system-symbol-image",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(systemName:variableValue:)"
+      ],
+      "title": "Creating a system symbol image"
+    },
+    {
+      "anchor": "Creating-an-image-from-another-image",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(uiImage:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(nsImage:)"
+      ],
+      "title": "Creating an image from another image"
+    },
+    {
+      "anchor": "Creating-an-image-from-drawing-instructions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/init(size:label:opaque:colorMode:renderer:)"
+      ],
+      "title": "Creating an image from drawing instructions"
+    },
+    {
+      "anchor": "Resizing-images",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)"
+      ],
+      "title": "Resizing images"
+    },
+    {
+      "anchor": "Specifying-rendering-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/antialiased(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/symbolRenderingMode(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/renderingMode(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/TemplateRenderingMode",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation"
+      ],
+      "title": "Specifying rendering behavior"
+    },
+    {
+      "anchor": "Specifying-dynamic-range",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/allowedDynamicRange(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/allowedDynamicRange",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/DynamicRange"
+      ],
+      "title": "Specifying dynamic range"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/widgetAccentedRenderingMode(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Equatable-Implementations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/JournalingSuggestionAsset-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/image"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2135 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to fetch and process the most recent changes to the Contacts database.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3149-fetching-change-history-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3149: Fetching Contacts change history events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Contacts framework has a new fetch request to retrieve information from the user’s Contacts database. A change history fetch request efficiently",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns a collection of change history events that describes the contacts and groups added to, deleted from, and updated in the Contacts database. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can fetch all changes in the database or limit the search to changes that have occurred since your last fetch operation. Then, inspect the fetch result",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine what changes have occurred such as a contact was updated or a contact was removed from a group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To fetch change history events in your app, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adopt the change history event visitor protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a change history fetch request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the change history fetch request",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Execute the change history fetch request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process a change history event.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Save the starting history token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app needs to obtain permission from the user before accessing Contacts entries. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/contacts/requesting_authorization_to_access_contacts",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Adopt-the-change-history-event-visitor-protocol",
+          "level": 2,
+          "text": "Adopt the change history event visitor protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class encapsulates all possible changes that the system can make to the Contacts database, such as dropping cached information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adding a contact, or updating a group. To receive these changes in your app, create and use a class that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Classes adopting this protocol must implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113275-visitdropeverythingevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113269-visitaddcontactevent/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113278-visitupdatecontactevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113273-visitdeletecontactevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface MyEventVisitor : NSObject <CNChangeHistoryEventVisitor>",
+            "@end",
+            "",
+            "@implementation MyEventVisitor",
+            "// Drop all cached information.",
+            "- (void)visitDropEverythingEvent:(CNChangeHistoryDropEverythingEvent *)event {",
+            "      NSLog(@\"Received a drop everything event.\");",
+            "}",
+            "",
+            "// The user added a contact to the database.",
+            "- (void)visitAddContactEvent:(CNChangeHistoryAddContactEvent *)event {",
+            "      NSLog(@\"The user added a contact with family name, %@, to their account with identifier %@.\",event.contact.familyName, event.containerIdentifier);",
+            "}",
+            "",
+            "// The user updated a contact in the database.",
+            "- (void)visitUpdateContactEvent:(CNChangeHistoryUpdateContactEvent *)event {",
+            "     NSLog(@\"The user updated the contact with family name, %@.\",event.contact.familyName);",
+            "}",
+            "",
+            "// The user removed a contact from the database.",
+            "- (void)visitDeleteContactEvent:(CNChangeHistoryDeleteContactEvent *)event {",
+            "      NSLog(@\"The user removed the contact identified by %@ from the database.\",event.contactIdentifier);",
+            "}",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNChangeHistoryEventVisitor",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNChangeHistoryEventVisitor",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also provides optional methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113271-visitaddmembertogroupevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each method provides the change history event associated with the changes. Inspect the properties of the event to detemine the new values or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifications brought to contact properties. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113278-visitupdatecontactevent",
+              "isActive": true,
+              "overridingTitle": "visitUpdateContactEvent:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "visitUpdateContactEvent:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent/3113287-contact?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property contains updated information about an existing contact. Compare ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent/3113287-contact?language=objc",
+              "isActive": true,
+              "overridingTitle": "contact",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "contact",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to your app’s cached",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contact properties to determine what properties were updated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-change-history-fetch-request",
+          "level": 2,
+          "text": "Create a change history fetch request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a change history fetch request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CNChangeHistoryFetchRequest *fetchRequest = [[CNChangeHistoryFetchRequest alloc] init];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The change history fetch request can be configured to fetch a range of change events that have occurred to the Contacts database. The range of events",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "begins with a starting history token, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294189-startingtoken?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ends with the current state of the database. This starting token has a default value of ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you provide an existing starting token from a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "previous change history fetch, the request only returns changes that occurred in history after this token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@property (nonatomic, copy) NSData *historyToken;",
+            "",
+            "self.historyToken = nil;",
+            "fetchRequest.startingToken = self.historyToken;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your token has a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, is invalid or expired, the fetch request returns a drop event followed by an add event for every contact and group in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Contacts database. The drop event indicates that apps should drop cached information. The token can be persisted between the app launches on the current device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-change-history-fetch-request",
+          "level": 2,
+          "text": "Configure a change history fetch request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNChangeHistoryFetchRequest",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNChangeHistoryFetchRequest",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object comes with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default values that can affect the result of the operation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNChangeHistoryFetchRequest",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNChangeHistoryFetchRequest",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides several properties to update these default values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fetch request always returns changes to contacts. Changes to groups are optional. If you want to also fetch group changes, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294186-includegroupchanges?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This property indicates whether to add group changes to the fetch result. The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fetchRequest.includeGroupChanges = YES;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fetch request returns immutable ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontact?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cngroup?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. To fetch mutable contact and group objects, set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294187-mutableobjects?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This property indicates whether to return mutable objects. The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fetchRequest.mutableObjects = YES;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fetch request returns contact changes as unified contacts. A unified contact is a synthesized merged result of contacts from different accounts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that represent the same person. To fetch individual contact changes, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294188-shouldunifyresults?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This property specifies whether to return contact changes for either unified contacts or individual contacts. The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fetchRequest.shouldUnifyResults = NO;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Contacts framework limits the contact properties that you fetch to the unique identifier when executing a change history fetch request. The request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "always and primarily returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To fetch additional contact properties, update ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294184-additionalcontactkeydescriptors?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with contact keys. This property takes an array of key descriptors, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/contact_keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you want to fetch the email addresses and family name of contacts in addition to their unique identifiers, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNContactFamilyNameKey",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNContactFamilyNameKey",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " keys to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294184-additionalcontactkeydescriptors?language=objc",
+              "isActive": true,
+              "overridingTitle": "additionalContactKeyDescriptors",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "additionalContactKeyDescriptors",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fetchRequest.additionalContactKeyDescriptors = @[CNContactEmailAddressesKey, CNContactFamilyNameKey];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transaction author, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnsaverequest/3824780-transactionauthor?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a string that you provide to identify the author who performs a save request. Transaction authors use reverse-domain-style notation. We recommend",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using your app’s bundle identifier as the transaction author when your app is saving changes to Contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];",
+            "saveRequest.transactionAuthor = @\"com.mycompany.myappname\";"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can later filter that author from fetched change history events. The fetch result won’t include changes made by authors you would like to ignore",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or exclude. To exclude changes made by certain authors, update ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294185-excludedtransactionauthors?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with these authors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fetchRequest.excludedTransactionAuthors = @[@\"com.mycompany.myappname\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Transaction authors allow you to filter transactions returned in the fetched change history events. They don’t provide any information about",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the author responsible for making a given change.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Execute-the-change-history-fetch-request",
+          "level": 2,
+          "text": "Execute the change history fetch request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to execute the change history",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fetch request. Pass the created ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNChangeHistoryFetchRequest",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNChangeHistoryFetchRequest",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/nserror?language=occ",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSError *error = nil;",
+            "// This method is unavailable in Swift.",
+            "CNFetchResult<NSEnumerator<CNChangeHistoryEvent *> *> *fetchResult = [self.store enumeratorForChangeHistoryFetchRequest:fetchRequest error:&error];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the fetch request succeeds, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ",
+              "isActive": true,
+              "overridingTitle": "enumeratorForChangeHistoryFetchRequest:error:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "enumeratorForChangeHistoryFetchRequest:error:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Process the change history events",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returned in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult/3294194-value?language=objc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNFetchResult",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNFetchResult",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the fetch request fails, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ",
+              "isActive": true,
+              "overridingTitle": "enumeratorForChangeHistoryFetchRequest:error:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "enumeratorForChangeHistoryFetchRequest:error:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-a-change-history-event",
+          "level": 2,
+          "text": "Process a change history event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To process a change history event, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent/3113267-accepteventvisitor/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on an instance of a class that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNChangeHistoryEventVisitor",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNChangeHistoryEventVisitor",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MyEventVisitor *myEventVisitor = [[MyEventVisitor alloc] init];",
+            "for (CNChangeHistoryEvent *event in fetchResult.value) {",
+            "    [event acceptVisitor:myEventVisitor];",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app receives a drop everything event, enough has changed since the last time your app fetched the history changes that an incremental sync is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "no longer possible. Following the drop everything event, your app receives an add event for each contact and group currently in the database. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allows you to implement full syncs and incremental syncs using the same code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418511-iskindofclass/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to determine the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "specific class of a change history event isn’t recommended. Use the protocol instance methods as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3149-fetching-change-history-events#Adopt-the-change-history-event-visitor-protocol",
+                  "isActive": true,
+                  "overridingTitle": "Adopt the change history event visitor protocol",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Adopt the change history event visitor protocol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Save-the-starting-history-token",
+          "level": 2,
+          "text": "Save the starting history token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the fetch request succeeds, inspect the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3113739-currenthistorytoken/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc",
+              "isActive": true,
+              "overridingTitle": "CNFetchResult",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CNFetchResult",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This property provides the history token for the current fetch request. Your app should save this token, then use it when fetching the next change history events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.historyToken = fetchResult.currentHistoryToken; "
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-06-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3149-fetching-change-history-events#Adopt-the-change-history-event-visitor-protocol": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3149-fetching-change-history-events#Adopt-the-change-history-event-visitor-protocol",
+      "kind": "section",
+      "title": "Adopt the change history event visitor protocol",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3149-fetching-change-history-events#Adopt-the-change-history-event-visitor-protocol"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryevent/3113267-accepteventvisitor/": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent/3113267-accepteventvisitor/",
+      "title": "acceptEventVisitor:",
+      "titleInlineContent": [
+        {
+          "code": "acceptEventVisitor:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent/3113267-accepteventvisitor/"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc",
+      "title": "CNChangeHistoryEvent",
+      "titleInlineContent": [
+        {
+          "code": "CNChangeHistoryEvent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113269-visitaddcontactevent/": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113269-visitaddcontactevent/",
+      "title": "visitAddContactEvent:",
+      "titleInlineContent": [
+        {
+          "code": "visitAddContactEvent:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113269-visitaddcontactevent/"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113271-visitaddmembertogroupevent": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113271-visitaddmembertogroupevent",
+      "title": "visitAddMemberToGroupEvent:",
+      "titleInlineContent": [
+        {
+          "code": "visitAddMemberToGroupEvent:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113271-visitaddmembertogroupevent"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113273-visitdeletecontactevent": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113273-visitdeletecontactevent",
+      "title": "visitDeleteContactEvent:",
+      "titleInlineContent": [
+        {
+          "code": "visitDeleteContactEvent:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113273-visitdeletecontactevent"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113275-visitdropeverythingevent": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113275-visitdropeverythingevent",
+      "title": "visitDropEverythingEvent:",
+      "titleInlineContent": [
+        {
+          "code": "visitDropEverythingEvent:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113275-visitdropeverythingevent"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113278-visitupdatecontactevent": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113278-visitupdatecontactevent",
+      "title": "visitUpdateContactEvent:",
+      "titleInlineContent": [
+        {
+          "code": "visitUpdateContactEvent:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor/3113278-visitupdatecontactevent"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc",
+      "title": "CNChangeHistoryEventVisitor",
+      "titleInlineContent": [
+        {
+          "code": "CNChangeHistoryEventVisitor",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294184-additionalcontactkeydescriptors?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294184-additionalcontactkeydescriptors?language=objc",
+      "title": "additionalContactKeyDescriptors",
+      "titleInlineContent": [
+        {
+          "code": "additionalContactKeyDescriptors",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294184-additionalcontactkeydescriptors?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294185-excludedtransactionauthors?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294185-excludedtransactionauthors?language=objc",
+      "title": "excludedTransactionAuthors",
+      "titleInlineContent": [
+        {
+          "code": "excludedTransactionAuthors",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294185-excludedtransactionauthors?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294186-includegroupchanges?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294186-includegroupchanges?language=objc",
+      "title": "includeGroupChanges",
+      "titleInlineContent": [
+        {
+          "code": "includeGroupChanges",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294186-includegroupchanges?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294187-mutableobjects?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294187-mutableobjects?language=objc",
+      "title": "mutableObjects",
+      "titleInlineContent": [
+        {
+          "code": "mutableObjects",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294187-mutableobjects?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294188-shouldunifyresults?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294188-shouldunifyresults?language=objc",
+      "title": "shouldUnifyResults",
+      "titleInlineContent": [
+        {
+          "code": "shouldUnifyResults",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294188-shouldunifyresults?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294189-startingtoken?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294189-startingtoken?language=objc",
+      "title": "startingToken",
+      "titleInlineContent": [
+        {
+          "code": "startingToken",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest/3294189-startingtoken?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc",
+      "title": "CNChangeHistoryFetchRequest",
+      "titleInlineContent": [
+        {
+          "code": "CNChangeHistoryFetchRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent/3113287-contact?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent/3113287-contact?language=objc",
+      "title": "contact",
+      "titleInlineContent": [
+        {
+          "code": "contact",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent/3113287-contact?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc",
+      "title": "CNChangeHistoryUpdateContactEvent",
+      "titleInlineContent": [
+        {
+          "code": "CNChangeHistoryUpdateContactEvent",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontact?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontact?language=objc",
+      "title": "CNContact",
+      "titleInlineContent": [
+        {
+          "code": "CNContact",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontact?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc",
+      "title": "CNContactEmailAddressesKey",
+      "titleInlineContent": [
+        {
+          "code": "CNContactEmailAddressesKey",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc",
+      "title": "CNContactIdentifierKey",
+      "titleInlineContent": [
+        {
+          "code": "CNContactIdentifierKey",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontactstore/3113739-currenthistorytoken/": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3113739-currenthistorytoken/",
+      "title": "currentHistoryToken",
+      "titleInlineContent": [
+        {
+          "code": "currentHistoryToken",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontactstore/3113739-currenthistorytoken/"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ",
+      "title": "enumeratorForChangeHistoryFetchRequest:error:",
+      "titleInlineContent": [
+        {
+          "code": "enumeratorForChangeHistoryFetchRequest:error:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontactstore/3294190-enumeratorforchangehistoryfetchr?language=occ"
+    },
+    "https://developer.apple.com/documentation/contacts/cncontactstore?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cncontactstore?language=objc",
+      "title": "CNContactStore",
+      "titleInlineContent": [
+        {
+          "code": "CNContactStore",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cncontactstore?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnfetchresult/3294194-value?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult/3294194-value?language=objc",
+      "title": "value",
+      "titleInlineContent": [
+        {
+          "code": "value",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnfetchresult/3294194-value?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc",
+      "title": "CNFetchResult",
+      "titleInlineContent": [
+        {
+          "code": "CNFetchResult",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cngroup?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cngroup?language=objc",
+      "title": "CNGroup",
+      "titleInlineContent": [
+        {
+          "code": "CNGroup",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cngroup?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/cnsaverequest/3824780-transactionauthor?language=objc": {
+      "identifier": "https://developer.apple.com/documentation/contacts/cnsaverequest/3824780-transactionauthor?language=objc",
+      "title": "transactionAuthor",
+      "titleInlineContent": [
+        {
+          "code": "transactionAuthor",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/cnsaverequest/3824780-transactionauthor?language=objc"
+    },
+    "https://developer.apple.com/documentation/contacts/contact_keys": {
+      "identifier": "https://developer.apple.com/documentation/contacts/contact_keys",
+      "title": "CNKeyDescriptor",
+      "titleInlineContent": [
+        {
+          "code": "CNKeyDescriptor",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/contact_keys"
+    },
+    "https://developer.apple.com/documentation/contacts/requesting_authorization_to_access_contacts": {
+      "identifier": "https://developer.apple.com/documentation/contacts/requesting_authorization_to_access_contacts",
+      "title": "Requesting Authorization to Access Contacts",
+      "titleInlineContent": [
+        {
+          "code": "Requesting Authorization to Access Contacts",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/requesting_authorization_to_access_contacts"
+    },
+    "https://developer.apple.com/documentation/foundation/nserror?language=occ": {
+      "identifier": "https://developer.apple.com/documentation/foundation/nserror?language=occ",
+      "title": "NSError",
+      "titleInlineContent": [
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/nserror?language=occ"
+    },
+    "https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418511-iskindofclass/": {
+      "identifier": "https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418511-iskindofclass/",
+      "title": "isKindOfClass",
+      "titleInlineContent": [
+        {
+          "code": "isKindOfClass",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418511-iskindofclass/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

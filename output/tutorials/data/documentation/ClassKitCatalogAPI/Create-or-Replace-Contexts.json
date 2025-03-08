@@ -1,0 +1,723 @@
+{
+  "abstract": [
+    {
+      "text": "Store information about the assignable content that your educational app provides.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:classkit_api:post:v1-contexts",
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create or Replace Contexts"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ClassKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create or Replace Contexts"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://classkit-catalog.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/contexts"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "development",
+                "production"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The development or production environment to use for this access. For details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "environment",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:classkit_api:ContextsRequest",
+          "text": "ContextsRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The context or contexts to add.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Created",
+          "status": 201,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API accepted but hasn’t completed the request. To ask for a status update later, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Accepted",
+          "status": 202,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request contained an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request wasn’t authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define parent contexts of any of the contexts defined in this call, either in a previous call to the same endpoint, or as part of the same call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify up to 200 contexts for any one call to this endpoint. The call overwrites any contexts that already exist with the same identifier path and locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"contexts\": [",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"en-us\",",
+                    "        \"minimumBundleVersion\": \"1.0.0\",",
+                    "        \"keywords\": [",
+                    "          \"Mathematics\",",
+                    "          \"Fractions\",",
+                    "          \"Quiz\",",
+                    "          \"Grade 5\",",
+                    "          \"Grade 6\",",
+                    "          \"Addition\",",
+                    "          \"Subtraction\"",
+                    "        ],",
+                    "        \"presentableLocales\": [",
+                    "          \"mul\"",
+                    "        ]",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\",",
+                    "          \"Quiz Catalog\",",
+                    "          \"Fun Math Quiz\"",
+                    "        ],",
+                    "        \"title\": \"Fractions Quiz 01\",",
+                    "        \"type\": \"quiz\",",
+                    "        \"summary\": \"This quiz tests your ability to add and subtract fractions.\",",
+                    "        \"thumbnailId\": \"math.png\",",
+                    "        \"displayOrder\": \"1\",",
+                    "        \"topic\": \"math\",",
+                    "        \"suggestedAge\": [",
+                    "          0,",
+                    "          9223372036854775807",
+                    "        ],",
+                    "        \"suggestedCompletionTime\": [",
+                    "          0,",
+                    "          0",
+                    "        ],",
+                    "        \"isAssignable\": true,",
+                    "        \"progressReportingCapabilities\": [",
+                    "          {",
+                    "            \"kind\": \"score\",",
+                    "            \"details\": \"This reports a student’s score on the quiz.\"",
+                    "          },",
+                    "          {",
+                    "            \"kind\": \"duration\",",
+                    "            \"details\": \"This tracks the time elapsed on the quiz.\"",
+                    "          }",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"es-us\",",
+                    "        \"minimumBundleVersion\": \"1.0.0\",",
+                    "        \"keywords\": [",
+                    "          \"Matemáticas\",",
+                    "          \"Fracciones\",",
+                    "          \"Examen\",",
+                    "          \"Grado 5\",",
+                    "          \"Grado 6\",",
+                    "          \"Adición\",",
+                    "          \"Sustracción\"",
+                    "        ],",
+                    "        \"presentableLocales\": [",
+                    "          \"es-us\"",
+                    "        ]",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\",",
+                    "          \"Quiz Catalog\",",
+                    "          \"Fun Math Quiz\"",
+                    "        ],",
+                    "        \"title\": \"Quiz Fracciones 01\",",
+                    "        \"type\": \"quiz\",",
+                    "        \"summary\": \"Este cuestionario evaluará su capacidad para sumar y restar fracciones.\",",
+                    "        \"thumbnailId\": \"math.png\",",
+                    "        \"displayOrder\": \"1\",",
+                    "        \"topic\": \"math\",",
+                    "        \"suggestedAge\": [",
+                    "          0,",
+                    "          9223372036854775807",
+                    "        ],",
+                    "        \"suggestedCompletionTime\": [",
+                    "          0,",
+                    "          0",
+                    "        ],",
+                    "        \"isAssignable\": true,",
+                    "        \"progressReportingCapabilities\": [",
+                    "          {",
+                    "            \"kind\": \"score\",",
+                    "            \"details\": \"Esto informa el puntaje de un estudiante en el cuestionario.\"",
+                    "          },",
+                    "          {",
+                    "            \"kind\": \"duration\",",
+                    "            \"details\": \"Esto rastrea el tiempo transcurrido en la prueba.\"",
+                    "          }",
+                    "        ]",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"en-us\",",
+                    "        \"presentableLocales\": [",
+                    "          \"mul\"",
+                    "        ]",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\",",
+                    "          \"Quiz Catalog\"",
+                    "        ],",
+                    "        \"title\": \"Quiz Catalog\",",
+                    "        \"type\": \"section\",",
+                    "        \"summary\": \"This is a catalog of quizzes for you to complete.\",",
+                    "        \"thumbnailId\": \"catalog.png\",",
+                    "        \"displayOrder\": \"1\"",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"es-us\",",
+                    "        \"presentableLocales\": [",
+                    "          \"es-us\"",
+                    "        ]",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\",",
+                    "          \"Quiz Catalog\"",
+                    "        ],",
+                    "        \"title\": \"Catálogo de Cuestionarios\",",
+                    "        \"type\": \"section\",",
+                    "        \"summary\": \"Este es un catálogo de cuestionarios para completar.\",",
+                    "        \"thumbnailId\": \"catalog.png\",",
+                    "        \"displayOrder\": \"1\"",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"es-us\"",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\"",
+                    "        ],",
+                    "        \"title\": \"Quizzer\",",
+                    "        \"type\": \"app\"",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"metadata\": {",
+                    "        \"locale\": \"en-us\",",
+                    "        \"presentableLocales\": [",
+                    "          \"mul\"",
+                    "        ]",
+                    "      },",
+                    "      \"data\": {",
+                    "        \"identifierPath\": [",
+                    "          \"com.apple.www.Quizzer\"",
+                    "        ],",
+                    "        \"title\": \"Quizzer\",",
+                    "        \"type\": \"app\"",
+                    "      }",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest": {
+      "abstract": [
+        {
+          "text": "A request that you make when modifying context information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContextsRequest",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/contextsrequest"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse": {
+      "abstract": [
+        {
+          "text": "The response you receive after modifying context information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContextsResponse",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/contextsresponse"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts": {
+      "abstract": [
+        {
+          "text": "Store information about the assignable content that your educational app provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create or Replace Contexts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create or Replace Contexts",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/create-or-replace-contexts"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context": {
+      "abstract": [
+        {
+          "text": "Remove information that you previously stored about your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete a Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/delete-a-context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status": {
+      "abstract": [
+        {
+          "text": "Fetch the status of an operation that you initiated earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Status",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-status"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context": {
+      "abstract": [
+        {
+          "text": "Fetch information that you previously stored about your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-a-context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data": {
+      "abstract": [
+        {
+          "text": "Adjust how you manage context data when working with the web API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Context Data",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/preparing-context-data"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation": {
+      "abstract": [
+        {
+          "text": "Verify your server interaction before deployment by operating in a development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Your ClassKit Catalog Implementation",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/testing-your-classkit-catalog-implementation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Declaring-Contexts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsRequest",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/ContextsResponse"
+      ],
+      "title": "Declaring Contexts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/create-or-replace-contexts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

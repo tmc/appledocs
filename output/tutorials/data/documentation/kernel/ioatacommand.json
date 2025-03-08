@@ -1,0 +1,1554 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioatacommand"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1392073,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOATACommand",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOATACommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOATACommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOCommand",
+              "text": "IOCommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Command structure superclass, created and freed only by IOATADevice objects populated by disk device drivers with command parameters then submitted for operation to their IOATADevice provider for execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOATACommand is a virtual class, a concrete subclass contains the methods and fields needed by IOATAControllers. Subclasses may be specific to particular controller hardware. Disk device drivers will only have visibility to this interface and may not subclass this object. Disk device drivers should instead make use of the void* refcon field which the controllers will not touch",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392043-getextendedlba": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getExtendedLBA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392043-getextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392043-getextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392045-getaltstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAltStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392045-getaltstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAltStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392045-getaltstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392047-setcallbackptr": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCallbackPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392047-setcallbackptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCallbackPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392047-setcallbackptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392049-setlba28": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLBA28"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392049-setlba28",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLBA28",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392049-setlba28"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392054-getendstatusreg": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getEndStatusReg"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392054-getendstatusreg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getEndStatusReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392054-getendstatusreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392056-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392056-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392056-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392058-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392058-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392058-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392061-getenderrorreg": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getEndErrorReg"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392061-getenderrorreg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getEndErrorReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392061-getenderrorreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392063-getcyllo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCylLo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392063-getcyllo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCylLo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392063-getcyllo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392065-setcylhi": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCylHi"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392065-setcylhi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCylHi",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392065-setcylhi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392067-setsectornumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSectorNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392067-setsectornumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSectorNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392067-setsectornumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392069-getdatareg": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDataReg"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392069-getdatareg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDataReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392069-getdatareg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392075-setregmask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRegMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392075-setregmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRegMask",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392075-setregmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392077-setposition": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392077-setposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392077-setposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392079-getdevice_head": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDevice_Head"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392079-getdevice_head",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDevice_Head",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392079-getdevice_head"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392083-getcylhi": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCylHi"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392083-getcylhi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCylHi",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392083-getcylhi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392087-setcyllo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCylLo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392087-setcyllo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCylLo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392087-setcyllo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392091-getsectornumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSectorNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392091-getsectornumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSectorNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392091-getsectornumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392093-settimeoutms": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeoutMS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392093-settimeoutms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392093-settimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392097-setpacketcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPacketCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392097-setpacketcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPacketCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392097-setpacketcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392100-setendresult": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEndResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392100-setendresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setEndResult",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392100-setendresult"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392104-getactualtransfer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getActualTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392104-getactualtransfer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getActualTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392104-getactualtransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392106-setcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392106-setcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392106-setcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392109-settransferchunksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTransferChunkSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392109-settransferchunksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTransferChunkSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392109-settransferchunksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392111-setdatareg": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDataReg"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392111-setdatareg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDataReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392111-setdatareg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392113-setbytecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setByteCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392113-setbytecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392113-setbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392116-setunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392116-setunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392116-setunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392118-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392118-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392118-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392123-geterrorreg": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getErrorReg"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392123-geterrorreg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getErrorReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392123-geterrorreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392126-setdevice_head": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDevice_Head"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392126-setdevice_head",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDevice_Head",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392126-setdevice_head"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392132-zerocommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "zeroCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392132-zerocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392132-zerocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392134-setcontrol": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392134-setcontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392134-setcontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392139-setbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392139-setbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392139-setbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392142-getresult": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392142-getresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getResult",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392142-getresult"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392144-setsectorcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSectorCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392144-setsectorcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSectorCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392144-setsectorcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392151-getsectorcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSectorCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392151-getsectorcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSectorCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392151-getsectorcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392154-setfeatures": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392154-setfeatures",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFeatures",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392154-setfeatures"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392158-getstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392158-getstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392158-getstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392166-setopcode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOpcode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392166-setopcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOpcode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392166-setopcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392168-setflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392168-setflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392168-setflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392170-getcommandinuse": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392170-getcommandinuse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandInUse",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392170-getcommandinuse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392172-getbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392172-getbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1392172-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813827-getactualtransfer": {
+      "abstract": [
+        {
+          "text": "The byte count on the ending result, as best as can be determined by the controller. May be zero, but partial transfer may have occurred on error in some cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813827-getactualtransfer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getActualTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813827-getactualtransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813832-getbuffer": {
+      "abstract": [
+        {
+          "text": "the IOMemoryDescriptor used in this transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813832-getbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813832-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813837-getcommandinuse": {
+      "abstract": [
+        {
+          "text": "returns true if IOATAController is still in control of the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813837-getcommandinuse",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandInUse",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813837-getcommandinuse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813841-getcylhi": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813841-getcylhi",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCylHi",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813841-getcylhi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813846-getcyllo": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813846-getcyllo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCylLo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813846-getcyllo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813849-getdevice_head": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813849-getdevice_head",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDevice_Head",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813849-getdevice_head"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813854-getenderrorreg": {
+      "abstract": [
+        {
+          "text": "If the error bit was set in the status register, the value of the error register is returned at the end of a command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813854-getenderrorreg",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getEndErrorReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813854-getenderrorreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813858-getendstatusreg": {
+      "abstract": [
+        {
+          "text": "the value of the status register on the end of the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813858-getendstatusreg",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getEndStatusReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813858-getendstatusreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813861-geterrorreg": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813861-geterrorreg",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getErrorReg",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813861-geterrorreg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813865-getresult": {
+      "abstract": [
+        {
+          "text": "IOReturn value of the result of this command. ATA family errors are defined in IOATATypes.h",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813865-getresult",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getResult",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813865-getresult"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813869-getsectorcount": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813869-getsectorcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSectorCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813869-getsectorcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813872-getsectornumber": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813872-getsectornumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSectorNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813872-getsectornumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813875-getstatus": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813875-getstatus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813875-getstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813877-setbuffer": {
+      "abstract": [
+        {
+          "text": "set the IIOMemoryDescriptor for this transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813877-setbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813877-setbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813880-setbytecount": {
+      "abstract": [
+        {
+          "text": "set the byte count for this transaction. Should agree with the device command and the memory descriptor in use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813880-setbytecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813880-setbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813883-setcallbackptr": {
+      "abstract": [
+        {
+          "text": "set the function pointer to call when this command completes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813883-setcallbackptr",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCallbackPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813883-setcallbackptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813885-setcommand": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813885-setcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813885-setcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813887-setcylhi": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813887-setcylhi",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCylHi",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813887-setcylhi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813888-setcyllo": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813888-setcyllo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCylLo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813888-setcyllo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813890-setdevice_head": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813890-setdevice_head",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDevice_Head",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813890-setdevice_head"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813892-setfeatures": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813892-setfeatures",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFeatures",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813892-setfeatures"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813894-setflags": {
+      "abstract": [
+        {
+          "text": "set the flags for this command, as defined in IOATATypes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813894-setflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813894-setflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813896-setlba28": {
+      "abstract": [
+        {
+          "text": "convenience method that sets the taskfile registers into a 28-bit LBA address, with unit selected and LBA bit set. return err if param out of range, return kIOSuccess (kATANoErr) = 0 on return if successful",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813896-setlba28",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLBA28",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813896-setlba28"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813898-setopcode": {
+      "abstract": [
+        {
+          "text": "command opcode as defined in IOATATypes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813898-setopcode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setOpcode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813898-setopcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813900-setpacketcommand": {
+      "abstract": [
+        {
+          "text": "ATAPI command packet max size is 16 bytes. Makes deep copy of data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813900-setpacketcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPacketCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813900-setpacketcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813902-setposition": {
+      "abstract": [
+        {
+          "text": "used to set an offset into the memory descriptor for this transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813902-setposition",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813902-setposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813904-setregmask": {
+      "abstract": [
+        {
+          "text": "used when accessing registers or reading registers on an error result. Mask is defined in IOATATypes.h",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813904-setregmask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRegMask",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813904-setregmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813906-setsectorcount": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813906-setsectorcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSectorCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813906-setsectorcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813908-setsectornumber": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813908-setsectornumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSectorNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813908-setsectornumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813910-settimeoutms": {
+      "abstract": [
+        {
+          "text": "how long to allow this command to complete, in milliseconds, once issued to the hardware. if the time period expires, this command will return with a timeout error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813910-settimeoutms",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813910-settimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813912-settransferchunksize": {
+      "abstract": [
+        {
+          "text": "set the size of transfer between intervening interrupts. necessary when doing PIO Read/Write Multiple, etc. so the controller knows when to expect an interrupt during multi-sector data transfers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813912-settransferchunksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTransferChunkSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813912-settransferchunksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813914-setunit": {
+      "abstract": [
+        {
+          "text": "set the unit number for this command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813914-setunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813914-setunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813915-zerocommand": {
+      "abstract": [
+        {
+          "text": "set to blank state, MUST call prior to re-use of this object",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813915-zerocommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "zeroCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/1813915-zerocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/fexpansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/fexpansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "fExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/fexpansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon": {
+      "abstract": [
+        {
+          "text": "for use by disk drivers, clients of IOATADevice only. IOATADevice and IOATAControllers shall not use this field in any manner.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "refCon",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/refcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon2": {
+      "abstract": [
+        {
+          "text": "for use by disk drivers, clients of IOATADevice only. IOATADevice and IOATAControllers shall not use this field in any manner.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon2",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "refCon2",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand/refcon2"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommand"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1818849",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813827-getactualtransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813832-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813837-getcommandinuse",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813841-getcylhi",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813846-getcyllo",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813849-getdevice_head",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813854-getenderrorreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813858-getendstatusreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813861-geterrorreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813865-getresult",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813869-getsectorcount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813872-getsectornumber",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813875-getstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813877-setbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813880-setbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813883-setcallbackptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813885-setcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813887-setcylhi",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813888-setcyllo",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813890-setdevice_head",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813892-setfeatures",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813894-setflags",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813896-setlba28",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813898-setopcode",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813900-setpacketcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813902-setposition",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813904-setregmask",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813906-setsectorcount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813908-setsectornumber",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813910-settimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813912-settransferchunksize",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813914-setunit",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1813915-zerocommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818875",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818877",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon2",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/refcon",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/fexpansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2860700",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392056-free",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392104-getactualtransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392045-getaltstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392172-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392170-getcommandinuse",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392083-getcylhi",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392063-getcyllo",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392069-getdatareg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392079-getdevice_head",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392061-getenderrorreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392054-getendstatusreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392123-geterrorreg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392043-getextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392058-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392142-getresult",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392151-getsectorcount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392091-getsectornumber",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392158-getstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392118-init",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392139-setbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392113-setbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392047-setcallbackptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392106-setcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392134-setcontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392065-setcylhi",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392087-setcyllo",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392111-setdatareg",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392126-setdevice_head",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392100-setendresult",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392154-setfeatures",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392168-setflags",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392049-setlba28",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392166-setopcode",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392097-setpacketcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392077-setposition",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392075-setregmask",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392144-setsectorcount",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392067-setsectornumber",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392093-settimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392109-settransferchunksize",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392116-setunit",
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand/1392132-zerocommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioatacommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

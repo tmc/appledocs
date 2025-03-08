@@ -1,0 +1,308 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary that contains the elements you use to create the password hash.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash/SALTED-SHA512-PBKDF2-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-services:PasswordHash.SALTED-SHA512-PBKDF2",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "PasswordHash.SALTED-SHA512-PBKDF2"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PasswordHash.SALTED-SHA512-PBKDF2"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "PasswordHash.SALTED-SHA512-PBKDF2"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "PasswordHash.SALTED-SHA512-PBKDF2"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The derived key from the password hash; for example, from ",
+                  "type": "text"
+                },
+                {
+                  "code": "CCKeyDerivationPBKDF()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "entropy",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of iterations; for example, from ",
+                  "type": "text"
+                },
+                {
+                  "code": "CCCalibratePBKDF()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " using a minimum hash time of 100 milliseconds, or if unknown, a number in the range of 20,000 to 40,000 iterations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "iterations",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The 32-byte randomized data; for example, from ",
+                  "type": "text"
+                },
+                {
+                  "code": "CCRandomCopyBytes()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "salt",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "data"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the password hash for the account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasswordHash"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasswordHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasswordHash",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/passwordhash"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash/SALTED-SHA512-PBKDF2-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the elements you use to create the password hash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasswordHash.SALTED-SHA512-PBKDF2"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash/SALTED-SHA512-PBKDF2-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasswordHash.SALTED-SHA512-PBKDF2"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasswordHash.SALTED-SHA512-PBKDF2",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/passwordhash/salted-sha512-pbkdf2-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/passwordhash/salted-sha512-pbkdf2-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

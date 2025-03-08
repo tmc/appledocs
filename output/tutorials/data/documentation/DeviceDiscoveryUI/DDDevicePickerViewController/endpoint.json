@@ -1,0 +1,424 @@
+{
+  "abstract": [
+    {
+      "text": "A network connection endpoint for the device selected by the user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/endpoint"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "DeviceDiscoveryUI",
+    "externalID": "s:So28DDDevicePickerViewControllerC17DeviceDiscoveryUIE8endpoint7Network10NWEndpointOvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "endpoint"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7Network10NWEndpointO",
+        "text": "NWEndpoint"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceDiscoveryUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "endpoint"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "endpoint"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7Network10NWEndpointO",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7Network10NWEndpointO",
+              "text": "NWEndpoint"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can asynchronously read from this property. The system populates this property when the user selects a device from the endpoint picker. If the user cancels the picker, the system throws an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let endpoint: NWEndpoint",
+            "do {",
+            "    endpoint = try await myEndpointPickerHandler.endpoint",
+            "} catch {",
+            "    // The user canceled the endpoint picker view.",
+            "    return",
+            "}",
+            "",
+            "// Use the endpoint here.",
+            "myDeviceConnectionManager.connectTo(endpoint: endpoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI": {
+      "abstract": [
+        {
+          "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryUI",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A UIKit view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/endpoint": {
+      "abstract": [
+        {
+          "text": "A network connection endpoint for the device selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endpoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network10NWEndpointO",
+          "text": "NWEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/endpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endpoint",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller/endpoint"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Network10NWEndpointO": {
+      "abstract": [
+        {
+          "text": "A local or remote endpoint in a network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Network10NWEndpointO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWEndpoint",
+      "type": "topic",
+      "url": "/documentation/Network/NWEndpoint"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/title",
+          "value": "DDDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryui/dddevicepickerviewcontroller/endpoint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

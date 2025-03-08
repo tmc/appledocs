@@ -1,0 +1,888 @@
+{
+  "abstract": [
+    {
+      "text": "A container for an ordered, random-access collection of objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/osarray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180808,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSArray",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/oscollection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSCollection",
+              "text": "OSCollection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSArray is a collection class for objects derived from OSObject. Storage and access are by array index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must generally cast retrieved objects from OSObject to the desired class using the OSDynamicCast macro. This macro returns the object cast to the desired class, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the object isn't derived from that class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with all DriverKit collection classes, OSArray retains objects added to it, and releases objects removed from it (or replaced). An OSArray also grows as necessary to accommodate new objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSArray provides no concurrency protection; it's up to the usage context to provide any protection necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iofixed": {
+      "abstract": [
+        {
+          "text": "A fixed-point number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iofixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFixed",
+      "type": "topic",
+      "url": "/documentation/driverkit/iofixed"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray": {
+      "abstract": [
+        {
+          "text": "A container for an ordered, random-access collection of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects": {
+      "abstract": [
+        {
+          "text": "Iterates the array calling a callback block for each member.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateObjects",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray/3180818-iterateobjects"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarrayptr": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarrayptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArrayPtr",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarrayptr"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osboolean": {
+      "abstract": [
+        {
+          "text": "A container for a true or false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBoolean",
+      "type": "topic",
+      "url": "/documentation/driverkit/osboolean"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscollection": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit collection objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscontainer": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit data objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSContainer",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscontainer"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdata": {
+      "abstract": [
+        {
+          "text": "A container for untyped data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSData",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdata"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdictionary": {
+      "abstract": [
+        {
+          "text": "A container for a collection with elements that are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osnumber": {
+      "abstract": [
+        {
+          "text": "A container for an integer value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSNumber",
+      "type": "topic",
+      "url": "/documentation/driverkit/osnumber"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit objects",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization": {
+      "abstract": [
+        {
+          "text": "A container for one or more objects, serialized in a binary data format that is suitable for messaging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerialization",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osstring": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/driverkit/osstring"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ossymbol": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSymbol",
+      "type": "topic",
+      "url": "/documentation/driverkit/ossymbol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Allocates capacity for members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180809-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection": {
+      "abstract": [
+        {
+          "text": "Removes and drops references to all members of array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180810-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180811-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns count of currently allocated capacity for members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180812-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount": {
+      "abstract": [
+        {
+          "text": "Returns count of members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180813-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject": {
+      "abstract": [
+        {
+          "text": "Returns the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLastObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLastObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180814-getlastobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject": {
+      "abstract": [
+        {
+          "text": "Searches the array for an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextIndexOfObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextIndexOfObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180815-getnextindexofobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject": {
+      "abstract": [
+        {
+          "text": "Returns a member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180816-getobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares all members of two arrays with isEqualTo().",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180817-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge": {
+      "abstract": [
+        {
+          "text": "Appends all members of an array to this array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180819-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180820-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array and replaces it with another object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180821-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject": {
+      "abstract": [
+        {
+          "text": "Appends an object as the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180822-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with given members and preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180823-witharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180824-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with given members and preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180825-withobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the array with an OSObject",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3433839-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject": {
+      "abstract": [
+        {
+          "text": "Sets an object as the member of the array at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3433840-setobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/oscollection"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+        "doc://com.apple.documentation/documentation/driverkit/osboolean",
+        "doc://com.apple.documentation/documentation/driverkit/osdata",
+        "doc://com.apple.documentation/documentation/driverkit/osnumber",
+        "doc://com.apple.documentation/documentation/driverkit/osstring",
+        "doc://com.apple.documentation/documentation/driverkit/osserialization",
+        "doc://com.apple.documentation/documentation/driverkit/oscollection",
+        "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+        "doc://com.apple.documentation/documentation/driverkit/osobject",
+        "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+        "doc://com.apple.documentation/documentation/driverkit/iofixed"
+      ],
+      "title": "Registry data types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3458220",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Array"
+    },
+    {
+      "anchor": "3458219",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+        "doc://com.apple.documentation/documentation/driverkit/osarray/3180818-iterateobjects",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Elements"
+    },
+    {
+      "anchor": "3458267",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osarrayptr"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting Values"
+    },
+    {
+      "anchor": "3458218",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting an Array"
+    },
+    {
+      "anchor": "3458217",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Arrays"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/osarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

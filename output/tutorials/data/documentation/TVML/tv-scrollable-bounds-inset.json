@@ -1,0 +1,652 @@
+{
+  "abstract": [
+    {
+      "text": "Creates an unscrollable region of a specified size at the top and bottom of the stack",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "template.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "tv-scrollable-bounds-inset"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "tv-scrollable-bounds-inset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " style to create an unscrollable region of specified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size from the top and bottom of the ",
+              "type": "text"
+            },
+            {
+              "code": "stackTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When you use unscrollable regions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the content offset is no longer automatically adjusted to allow “peeking” — the partial",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view of elements directly above and below the focused element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once focus is shifted from an unscrollable region to a scrollable region, the content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offset of the template is adjusted to the specified ",
+              "type": "text"
+            },
+            {
+              "code": "tv-scrollable-bounds-inset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value, so that the unscrollable region doesn’t appear on screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, the entire template is scrollable if you don’t define the tv-scrollable-bounds-inset",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "style.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example that sets the inset (unscrollable space) at the top, right, bottom,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and left all to 100 points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<stackTemplate style=\"tv-scrollable-bounds-inset: 100.0;\">",
+            "    <banner>",
+            "        …",
+            "    </banner>",
+            "    <collectionList>",
+            "        <shelf>",
+            "            <section>",
+            "                <lockup>…</lockup>",
+            "            </section>",
+            "        </shelf>",
+            "    </collectionList>",
+            "</stackTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example that sets the inset (unscrollable space) at the top to 50 points,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the inset at the bottom to 75 points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<stackTemplate style=\"tv-scrollable-bounds-inset: 50.0 0.0 75.0 0.0;\">",
+            "    <banner>",
+            "        …",
+            "    </banner>",
+            "    <collectionList>",
+            "        <shelf>",
+            "            <section>",
+            "                <lockup>…</lockup>",
+            "            </section>",
+            "        </shelf>",
+            "    </collectionList>",
+            "</stackTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Values-for-tv-scrollable-bounds-inset",
+          "level": 3,
+          "text": "Values for tv-scrollable-bounds-inset",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of unscrollable space, in points, set at  the top, right, bottom, and left of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "stackTemplate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Float",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The first value determines the amount of unscrollable space in points at both the top and the bottom of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "stackTemplate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The second value determines the amount of unscrollable space at both the right and left.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Float Float",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The first value determines the amount of unscrollable space in points at the top of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "stackTemplate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The second value determines the amount of unscrollable space at both the right and the left. The third value determines the amount of space at the bottom.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Float Float Float",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The first value determines the amount of unscrollable space in points at the top of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "stackTemplate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The second value determines the amount of unscrollable space at the right. The third value determines the amount of space at the bottom. The fourth value determines the amount of space at the left.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Float Float Float Float",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Currently, creating unscrollable regions at the left and right of the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "stackTemplate ",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "is not supported and will not have any effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Elements-That-Use-tv-scrollable-bounds-inset",
+          "level": 3,
+          "text": "Elements That Use tv-scrollable-bounds-inset",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/stacktemplate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/color-styles": {
+      "abstract": [
+        {
+          "text": "Provide the ability to customize an element’s color.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/color-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Styles",
+      "type": "topic",
+      "url": "/documentation/tvml/color-styles"
+    },
+    "doc://com.apple.TVML/documentation/TVML/element-alignment-and-spacing": {
+      "abstract": [
+        {
+          "text": "Modify the alignment and spacing between elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/element-alignment-and-spacing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Element Alignment and Spacing",
+      "type": "topic",
+      "url": "/documentation/tvml/element-alignment-and-spacing"
+    },
+    "doc://com.apple.TVML/documentation/TVML/element-shaping": {
+      "abstract": [
+        {
+          "text": "Modify the size and shape of an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/element-shaping",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Element Shaping",
+      "type": "topic",
+      "url": "/documentation/tvml/element-shaping"
+    },
+    "doc://com.apple.TVML/documentation/TVML/stacktemplate": {
+      "abstract": [
+        {
+          "text": "Displays groups of products.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/stacktemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "stackTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/stacktemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/text-styles": {
+      "abstract": [
+        {
+          "text": "Change the text characteristics for an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/text-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Styles",
+      "type": "topic",
+      "url": "/documentation/tvml/text-styles"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-placeholder": {
+      "abstract": [
+        {
+          "text": "Sets a default image for an ",
+          "type": "text"
+        },
+        {
+          "code": "img",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "monogram",
+          "type": "codeVoice"
+        },
+        {
+          "text": " element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-placeholder",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-placeholder",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-placeholder"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-rating-style": {
+      "abstract": [
+        {
+          "text": "Sets the displayed image for rating a product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-rating-style",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-rating-style",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-rating-style"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-bottom": {
+      "abstract": [
+        {
+          "text": "Specifies the size of an unscrollable region only at the bottom of the stack template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-bottom",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-scrollable-bounds-inset-bottom",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-scrollable-bounds-inset-bottom"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-top": {
+      "abstract": [
+        {
+          "text": "Specifies the size of an unscrollable region only at the top of the stack template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-top",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-scrollable-bounds-inset-top",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-scrollable-bounds-inset-top"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-text-highlight-style": {
+      "abstract": [
+        {
+          "text": "Specifies how an element looks when it comes into focus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-text-highlight-style",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-text-highlight-style",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-text-highlight-style"
+    },
+    "doc://com.apple.TVML/documentation/TVML/tv-transition": {
+      "abstract": [
+        {
+          "text": "Specifies how an element transitions on and off the screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/tv-transition",
+      "kind": "article",
+      "role": "article",
+      "title": "tv-transition",
+      "type": "topic",
+      "url": "/documentation/tvml/tv-transition"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/color-styles",
+        "doc://com.apple.TVML/documentation/TVML/text-styles",
+        "doc://com.apple.TVML/documentation/TVML/element-shaping",
+        "doc://com.apple.TVML/documentation/TVML/element-alignment-and-spacing",
+        "doc://com.apple.TVML/documentation/TVML/tv-placeholder",
+        "doc://com.apple.TVML/documentation/TVML/tv-rating-style",
+        "doc://com.apple.TVML/documentation/TVML/tv-transition",
+        "doc://com.apple.TVML/documentation/TVML/tv-text-highlight-style"
+      ],
+      "title": "Styles"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-Inset-Location",
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-top",
+        "doc://com.apple.TVML/documentation/TVML/tv-scrollable-bounds-inset-bottom"
+      ],
+      "title": "Specifying Inset Location"
+    }
+  ]
+}

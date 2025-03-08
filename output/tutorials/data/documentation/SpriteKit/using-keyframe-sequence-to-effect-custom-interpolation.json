@@ -1,0 +1,1393 @@
+{
+  "abstract": [
+    {
+      "text": "See a few examples of what keyframe sequence can do.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/using-keyframe-sequence-to-effect-custom-interpolation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Keyframe Sequence to effect Custom Interpolation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The primary use for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is to animate properties on particles emitted by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When a keyframe object is assigned to an appropriate property on the emitter node, particles determine their values by sampling the keyframe sequence. The sequence replaces the normal simulation performed by the emitter node. Only certain properties can be animated using a keyframe sequence. The following table lists the particle emitter properties and the corresponding class for the data that must be stored in the sequence. All value objects stored in a sequence must have the same class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value class",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SKColor",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " containing a floating point value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " containing a floating point value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " containing a floating point value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The time values stored in the sequence are specified in a normalized range of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the time when the particle was created and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the time when the particle dies. You can provide keyframe values for the entire lifetime of the particle or for a subset of the particle’s lifetime. If you choose to cover only a subset of the particle’s lifetime, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/repeatMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property determines how samples are determined for time values that lie outside the specified range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/interpolationMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property determines how samples between the keyframe values are calculated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t limited to working only with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/sample(atTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to generate values interpolated between keyframes for other applications. The following code shows how to create a sequence containing four keyframes and how to iterate over the interpolated values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Creating interpolated values",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sequence = SKKeyframeSequence(keyframeValues: [5, 1, 10, 0],",
+            "                                  times: [0, 0.25, 0.5, 1])",
+            "sequence.interpolationMode = .spline",
+            "stride(from: 0, to: 1, by: 0.025).forEach {",
+            "    let value = sequence.sample(atTime: CGFloat($0))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKInterpolationMode/spline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interpolation, the code above creates the following graph in a playground:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2982413",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can also interpolate colors. The following code shows how to initialize a sequence with four colors and sample the interpolated values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Creating interpolated colors",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let colorSequence = SKKeyframeSequence(keyframeValues: [SKColor.green,",
+            "                                                        SKColor.yellow,",
+            "                                                        SKColor.red,",
+            "                                                        SKColor.blue],",
+            "                                       times: [0, 0.25, 0.5, 1])",
+            "colorSequence.interpolationMode = .linear",
+            "stride(from: 0, to: 1, by: 0.001).forEach {",
+            "    let color = colorSequence.sample(atTime: CGFloat($0)) as! SKColor",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The samples for each color generated by the code above can be used to create a gradient:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2982418",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the alpha value of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlphaSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealphasequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color blend factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color components of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the scale factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScaleSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescalesequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKInterpolationMode/spline": {
+      "abstract": [
+        {
+          "text": "Values between two keyframes using a spline curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spline"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKInterpolationMode/spline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKInterpolationModeSpline"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKInterpolationMode.spline",
+      "type": "topic",
+      "url": "/documentation/spritekit/skinterpolationmode/spline"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence": {
+      "abstract": [
+        {
+          "text": "An object that performs interpolation between values specified at different times (keyframes).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKKeyframeSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKKeyframeSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKKeyframeSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new keyframe sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(capacity:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/init(capacity:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/init(coder:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)": {
+      "abstract": [
+        {
+          "text": "Initializes a keyframe sequence with an initial set of values and times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "keyframeValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "times"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithKeyframeValues:times:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(keyframeValues:times:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/init(keyframevalues:times:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/interpolationMode": {
+      "abstract": [
+        {
+          "text": "The mode used to determine how values for times between the keyframes are calculated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKInterpolationMode",
+          "text": "SKInterpolationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/interpolationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interpolationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "interpolationMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/interpolationmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/repeatMode": {
+      "abstract": [
+        {
+          "text": "The mode used to determine how the keyframe sequence repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKRepeatMode",
+          "text": "SKRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/repeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "repeatMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/repeatmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/sample(atTime:)": {
+      "abstract": [
+        {
+          "text": "Calculates the sample at a particular time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sample"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/sample(atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sample(atTime:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence/sample(attime:)"
+    },
+    "media-2982413": {
+      "alt": "Playground graph generated by SKKeyframeSequence",
+      "identifier": "media-2982413",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/274a44f6e27d19b5886852aa6988bec1/media-2982413@2x.png"
+        }
+      ]
+    },
+    "media-2982418": {
+      "alt": "Gradient generated by keyframe sequence interpolated colors",
+      "identifier": "media-2982418",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c1a5e2c22910e88e5c02dd264a72674/media-2982418@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "First-Steps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(coder:)"
+      ],
+      "title": "First Steps"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(keyframeValues:times:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(capacity:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence/init(coder:)"
+              ],
+              "title": "First Steps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1repeatMode/title",
+          "value": "repeatMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1repeatMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "repeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/title",
+          "value": "particleColorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1sample(atTime:)/title",
+          "value": "sampleAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1sample(atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1interpolationMode/title",
+          "value": "interpolationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1interpolationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interpolationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/title",
+          "value": "particleScaleSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScaleSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/title",
+          "value": "particleColorBlendFactorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKInterpolationMode~1spline/title",
+          "value": "SKInterpolationModeSpline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKInterpolationMode~1spline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKInterpolationModeSpline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/title",
+          "value": "SKKeyframeSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKKeyframeSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKKeyframeSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/title",
+          "value": "particleAlphaSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlphaSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(keyframeValues:times:)/title",
+          "value": "initWithKeyframeValues:times:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(keyframeValues:times:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithKeyframeValues:times:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(capacity:)/title",
+          "value": "initWithCapacity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence~1init(capacity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCapacity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/using-keyframe-sequence-to-effect-custom-interpolation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/using-keyframe-sequence-to-effect-custom-interpolation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

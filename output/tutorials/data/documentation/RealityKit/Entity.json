@@ -1,0 +1,6661 @@
+{
+  "abstract": [
+    {
+      "text": "An element of a RealityKit scene to which you attach components that provide",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "appearance and behavior characteristics for the entity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/Entity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation6EntityC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Entity"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Entity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "Entity"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Entity"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create and configure entities to embody objects that you want to place",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the real world in an AR app. You do this by adding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance associated with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit defines a few concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commonly used functionality. For example, you typically start by creating an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to anchor your content, and add the anchor to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/anchors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " collection. You might then instantiate a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to represent a physical object in the scene, and add that as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a child entity to the anchor. You can also create custom entities, and add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them either to an anchor, or as children of another entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Entity-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can load predefined entities or a hierarchy of entities from your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bundle, or from a file on disk, using the methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/stored-entities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can create entities programmatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Entities contain components (instances conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol) that provide appearance and behaviors for the entity. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " component contains the scale, rotation, and translation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information needed to position an entity in space. You store components in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " collection, which can hold exactly one of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any component type. It makes sense to have only a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "component, one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (specifying the visual appearance of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity), and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Entity-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All entities inherit a few common components from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " base class:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " component for spatial positioning, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which enables synchronization of the entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "among networked peers. Specific types of entities define additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behaviors. For example, the model entity has components for visual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appearance (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), collision detection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and physics simulations (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Entity-1": {
+      "alt": "Block diagram showing how entity hierarchies, composed of different kinds",
+      "identifier": "Entity-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1dd45148e6b513f8be6c51d113384e59/Entity-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51579118b8e133f25dc5ae9d9c4c1e04/Entity-1~dark@2x.png"
+        }
+      ]
+    },
+    "Entity-2": {
+      "alt": "Diagram showing the components present in the base entity class, as well",
+      "identifier": "Entity-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49fe65cf08e611d8df83f5f842db7f4a/Entity-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49fe65cf08e611d8df83f5f842db7f4a/Entity-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchorentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackedEntity": {
+      "abstract": [
+        {
+          "text": "An entity used to animate a virtual character in an AR scene by tracking a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "real person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BodyTrackedEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackedEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BodyTrackedEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "BodyTrackedEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/bodytrackedentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight": {
+      "abstract": [
+        {
+          "text": "An entity that casts a virtual light in a particular direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectionalLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectionalLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/!=(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether two entities are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/==(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ChildCollection": {
+      "abstract": [
+        {
+          "text": "A collection of child entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChildCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ChildCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChildCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ChildCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/childcollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet": {
+      "abstract": [
+        {
+          "text": "A collection of components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ComponentSet",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/componentset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ConfigurationCatalog": {
+      "abstract": [
+        {
+          "text": "A collection of alternative representations of an entity you can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationCatalog"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ConfigurationCatalog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationCatalog"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ConfigurationCatalog",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/configurationcatalog"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CoordinateSpaceReference": {
+      "abstract": [
+        {
+          "text": "Defines the coordinate space reference for transform conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpaceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CoordinateSpaceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoordinateSpaceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.CoordinateSpaceReference",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/coordinatespacereference"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ForwardDirection": {
+      "abstract": [
+        {
+          "text": "Defines the forward direction for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForwardDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ForwardDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForwardDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ForwardDirection",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/forwarddirection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasHierarchy-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasHierarchy-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HasHierarchy Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hashierarchy-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasSynchronization-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasSynchronization-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HasSynchronization Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hassynchronization-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasTransform-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasTransform-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HasTransform Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hastransform-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hashable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ID",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/id-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Identifiable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Identifiable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifiable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/identifiable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ParameterSet": {
+      "abstract": [
+        {
+          "text": "Represents a reference to the parameters for a particular entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ParameterSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity.ParameterSet",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/parameterset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions": {
+      "abstract": [
+        {
+          "text": "An array of custom actions supported by the entity, identified by their localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomActions",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomactions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent": {
+      "abstract": [
+        {
+          "text": "The Custom Content API is useful for delivering accessibility information from complex data sets to your users in measured portions.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Using this API allows you to leverage assistive technologies to present only the accessible content your app’s users need, when they need it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomContent"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV13CustomContentV",
+          "text": "CustomContent"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomContent",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomcontent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors": {
+      "abstract": [
+        {
+          "text": "An array of supported rotors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityCustomRotors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV0A3KitE9RotorTypeO",
+          "text": "RotorType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityCustomRotors",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitycustomrotors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription": {
+      "abstract": [
+        {
+          "text": "A longer description of the entity for use by assistive technologies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDescription",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitydescription"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel": {
+      "abstract": [
+        {
+          "text": "A succinct label that identifies the purpose of the image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitylabel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey": {
+      "abstract": [
+        {
+          "text": "A succinct label that identifies the entity, in a localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabelKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabelKey",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitylabelkey"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions": {
+      "abstract": [
+        {
+          "text": "The set of supported accessibility actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilitySystemActions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV",
+          "text": "AccessibilityComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22AccessibilityComponentV16SupportedActionsV",
+          "text": "SupportedActions"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilitySystemActions",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitysystemactions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits": {
+      "abstract": [
+        {
+          "text": "The combination of accessibility traits that best characterize the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilitytraits"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue": {
+      "abstract": [
+        {
+          "text": "A localized string key that represents the current value of the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/accessibilityvalue"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/addChild(_:preservingWorldTransform:)": {
+      "abstract": [
+        {
+          "text": "Adds the given entity to the collection of child entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preservingWorldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/addChild(_:preservingWorldTransform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addChild(_:preservingWorldTransform:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/addchild(_:preservingworldtransform:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ambientAudio": {
+      "abstract": [
+        {
+          "text": "The component that configures the ambient rendering of sounds from this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ambientAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation21AmbientAudioComponentV",
+          "text": "AmbientAudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ambientAudio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ambientAudio",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/ambientaudio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/anchor": {
+      "abstract": [
+        {
+          "text": "The nearest ancestor entity that can act as an anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12HasAnchoringP",
+          "text": "HasAnchoring"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/anchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchor",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/anchor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/applyTapForBehaviors()": {
+      "abstract": [
+        {
+          "text": "Apply a tap to an Entity or one of its ancestors to trigger a RealityComposer behavior if one is present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyTapForBehaviors"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/applyTapForBehaviors()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyTapForBehaviors()",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/applytapforbehaviors()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations": {
+      "abstract": [
+        {
+          "text": "The list of animations associated with the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableAnimations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableAnimations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/availableanimations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/bindableValues": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindableValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23BindableValuesReferenceV",
+          "text": "BindableValuesReference"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/bindableValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bindableValues",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/bindablevalues"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/channelAudio": {
+      "abstract": [
+        {
+          "text": "The component that configures the channel-based rendering of sounds from this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation21ChannelAudioComponentV",
+          "text": "ChannelAudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/channelAudio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "channelAudio",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/channelaudio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterController": {
+      "abstract": [
+        {
+          "text": "The character controller component for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV",
+          "text": "CharacterControllerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "characterController",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/charactercontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterControllerState": {
+      "abstract": [
+        {
+          "text": "The character controller state for  the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterControllerState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation33CharacterControllerStateComponentV",
+          "text": "CharacterControllerStateComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterControllerState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "characterControllerState",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/charactercontrollerstate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/children": {
+      "abstract": [
+        {
+          "text": "The child entities that the entity manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC15ChildCollectionV",
+          "text": "ChildCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/children",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/children"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)": {
+      "abstract": [
+        {
+          "text": "Duplicates an entity to create a new entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clone(recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/clone(recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components": {
+      "abstract": [
+        {
+          "text": "All the components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC12ComponentSetV",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/components"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/debugDescription": {
+      "abstract": [
+        {
+          "text": "A human readable description of the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/debugdescription"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/defaultAnimationClock": {
+      "abstract": [
+        {
+          "text": "Returns the default animation clock for this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAnimationClock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/defaultAnimationClock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAnimationClock",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/defaultanimationclock"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/didClone(from:)": {
+      "abstract": [
+        {
+          "text": "Tells a newly cloned entity that cloning is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didClone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/didClone(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didClone(from:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/didclone(from:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/findEntity(named:)": {
+      "abstract": [
+        {
+          "text": "Recursively searches all descendant entities for one with the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/findEntity(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "findEntity(named:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/findentity(named:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)": {
+      "abstract": [
+        {
+          "text": "Creates the shape used to detect collisions between two entities that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateCollisionShapes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateCollisionShapes(recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/generatecollisionshapes(recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)": {
+      "abstract": [
+        {
+          "text": "Creates the shape used to detect collisions between two entities that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateCollisionShapes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateCollisionShapes(recursive:static:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/generatecollisionshapes(recursive:static:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the entity by feeding them into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hash(into:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/hashvalue"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/id-8kxa": {
+      "abstract": [
+        {
+          "text": "The stable identity of the entity associated with this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/id-8kxa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/id-8kxa"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-41rn1": {
+      "abstract": [
+        {
+          "text": "Creates an entity with multiple components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9ComponentP",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-41rn1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(components:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(components:)-41rn1"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-80z41": {
+      "abstract": [
+        {
+          "text": "Creates an entity with one or multiple components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<each "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": repeat each "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-80z41",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(components:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(components:)-80z41"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(contentsOf:withName:)": {
+      "abstract": [
+        {
+          "text": "Creates a new entity by asynchronously loading it from a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(contentsOf:withName:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:withName:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(contentsof:withname:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(from:configurations:)": {
+      "abstract": [
+        {
+          "text": "Loads an entity from a configuration catalog and a dictionary of configuration choices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityCAAE20ConfigurationCatalogV",
+          "text": "ConfigurationCatalog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(from:configurations:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:configurations:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(from:configurations:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a new entity by asynchronously loading it from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the receiver is an accessibility",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "element that an assistive application can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isaccessibilityelement"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the entity is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isActive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isactive"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the entity is anchored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnchored"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAnchored",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isanchored"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean that you set to enable or disable the entity and its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isenabled"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabledInHierarchy": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the entity and all of its ancestors are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabledInHierarchy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabledInHierarchy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabledInHierarchy",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isenabledinhierarchy"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isOwner": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the calling process owns the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOwner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isOwner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isOwner",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isowner"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)": {
+      "abstract": [
+        {
+          "text": "Moves the character along a specified vector over a period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "collisionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV",
+          "text": "CharacterControllerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV9CollisionV",
+          "text": "Collision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV",
+          "text": "CharacterControllerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV14CollisionFlagsV",
+          "text": "CollisionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/movecharacter(by:deltatime:relativeto:collisionhandler:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/name": {
+      "abstract": [
+        {
+          "text": "The name of the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/name"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parameters": {
+      "abstract": [
+        {
+          "text": "Represents a reference to the parameters for a particular entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityCAAE12ParameterSetV",
+          "text": "ParameterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parameters",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/parameters"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parent": {
+      "abstract": [
+        {
+          "text": "The parent entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/parent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/pins": {
+      "abstract": [
+        {
+          "text": "The entity’s geometric pins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EntityGeometricPinsV",
+          "text": "EntityGeometricPins"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/pins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pins",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/pins"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:)": {
+      "abstract": [
+        {
+          "text": "Plays an animation with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayerOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "separateAnimatedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(_:transitionduration:blendlayeroffset:separateanimatedvalue:startspaused:clock:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)": {
+      "abstract": [
+        {
+          "text": "Plays an animation with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayerOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "separateAnimatedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handoffType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20AnimationHandoffTypeV",
+          "text": "AnimationHandoffType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(_:transitionduration:blendlayeroffset:separateanimatedvalue:startspaused:clock:handofftype:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)": {
+      "abstract": [
+        {
+          "text": "Plays the given animation on the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(_:transitionDuration:startsPaused:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(_:transitionduration:startspaused:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(named:transitionDuration:startsPaused:recursive:)": {
+      "abstract": [
+        {
+          "text": "Plays all the animations with the given name on the entity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(named:transitionDuration:startsPaused:recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(named:transitionDuration:startsPaused:recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(named:transitionduration:startspaused:recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares and plays a new audio playback instance on this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAudio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAudio(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playaudio(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(configuration:_:)": {
+      "abstract": [
+        {
+          "text": "Prepares and plays a real-time audio playback instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAudio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AudioGeneratorConfigurationV",
+          "text": "AudioGeneratorConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO",
+          "text": "Audio"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO22GeneratorRenderHandlera",
+          "text": "GeneratorRenderHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24AudioGeneratorControllerC",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(configuration:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAudio(configuration:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playaudio(configuration:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares an audio resource for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareAudio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareAudio(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/prepareaudio(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(configuration:_:)": {
+      "abstract": [
+        {
+          "text": "Prepares a real-time audio playback instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareAudio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AudioGeneratorConfigurationV",
+          "text": "AudioGeneratorConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO",
+          "text": "Audio"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5AudioO22GeneratorRenderHandlera",
+          "text": "GeneratorRenderHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24AudioGeneratorControllerC",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(configuration:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareAudio(configuration:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/prepareaudio(configuration:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeChild(_:preservingWorldTransform:)": {
+      "abstract": [
+        {
+          "text": "Removes the given child from the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preservingWorldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeChild(_:preservingWorldTransform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeChild(_:preservingWorldTransform:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/removechild(_:preservingworldtransform:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeFromParent(preservingWorldTransform:)": {
+      "abstract": [
+        {
+          "text": "Removes the entity from its current parent or from the scene if it is a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "root entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "preservingWorldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeFromParent(preservingWorldTransform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeFromParent(preservingWorldTransform:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/removefromparent(preservingworldtransform:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/requestOwnership(timeout:_:)": {
+      "abstract": [
+        {
+          "text": "Requests ownership of the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestOwnership"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24SynchronizationComponentV",
+          "text": "SynchronizationComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24SynchronizationComponentV33OwnershipTransferCompletionResultO",
+          "text": "OwnershipTransferCompletionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/requestOwnership(timeout:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestOwnership(timeout:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/requestownership(timeout:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/scene": {
+      "abstract": [
+        {
+          "text": "The scene that owns the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5SceneC",
+          "text": "Scene"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/setParent(_:preservingWorldTransform:)": {
+      "abstract": [
+        {
+          "text": "Attaches the entity as a child to the specified entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setParent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preservingWorldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/setParent(_:preservingWorldTransform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setParent(_:preservingWorldTransform:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/setparent(_:preservingworldtransform:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/spatialAudio": {
+      "abstract": [
+        {
+          "text": "The component that configures the spatial rendering of sounds from this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation21SpatialAudioComponentV",
+          "text": "SpatialAudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/spatialAudio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spatialAudio",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/spatialaudio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAnimations(recursive:)": {
+      "abstract": [
+        {
+          "text": "Stops all playing of animations on this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAllAnimations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAnimations(recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAllAnimations(recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/stopallanimations(recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAudio()": {
+      "abstract": [
+        {
+          "text": "Stops playback for all audio on this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAllAudio"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAudio()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAllAudio()",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/stopallaudio()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Resolves the entity from the given entity path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO10EntityPathV",
+          "text": "EntityPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/subscript(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/subscript(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization": {
+      "abstract": [
+        {
+          "text": "The entity’s synchronization component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24SynchronizationComponentV",
+          "text": "SynchronizationComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)": {
+      "abstract": [
+        {
+          "text": "Moves the character instantly to a new position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "teleportCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "teleportCharacter(to:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/teleportcharacter(to:relativeto:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transformMatrix(relativeTo:)": {
+      "abstract": [
+        {
+          "text": "Returns the 4 x 4 transform matrix of an entity relative to the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityCAAE24CoordinateSpaceReferenceO",
+          "text": "CoordinateSpaceReference"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:4simd8float4x4a",
+          "text": "float4x4"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transformMatrix(relativeTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformMatrix(relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/transformmatrix(relativeto:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/withUnsynchronized(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure in a way such that component changes that the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closure makes don’t trigger synchronization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsynchronized"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/withUnsynchronized(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsynchronized(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/withunsynchronized(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/write(to:)": {
+      "abstract": [
+        {
+          "text": "Exports the entity as a RealityKit file to a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/write(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/write(to:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EventSource": {
+      "abstract": [
+        {
+          "text": "A type on which events can be published and subscribed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EventSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "EventSource",
+      "type": "topic",
+      "url": "/documentation/realitykit/eventsource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring": {
+      "abstract": [
+        {
+          "text": "An interface that enables anchoring of virtual content to a real-world",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "object in an AR scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasAnchoring"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasAnchoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasAnchoring",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasanchoring"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasHierarchy": {
+      "abstract": [
+        {
+          "text": "An interface that provides access to a parent entity and child entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasHierarchy"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasHierarchy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasHierarchy"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasHierarchy",
+      "type": "topic",
+      "url": "/documentation/realitykit/hashierarchy"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasPhysicsMotion": {
+      "abstract": [
+        {
+          "text": "An interface that provides velocity properties for physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPhysicsMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasPhysicsMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasPhysicsMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasPhysicsMotion",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasphysicsmotion"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding": {
+      "abstract": [
+        {
+          "text": "A specification that detects and reacts to features of the physical",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasSceneUnderstanding"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasSceneUnderstanding"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasSceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/hassceneunderstanding"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasSynchronization": {
+      "abstract": [
+        {
+          "text": "An interface that enables an entity to be synchronized between processes and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "networked applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasSynchronization"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasSynchronization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasSynchronization"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasSynchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/hassynchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform": {
+      "abstract": [
+        {
+          "text": "An interface that enables manipulating the scale, rotation, and translation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasTransform",
+      "type": "topic",
+      "url": "/documentation/realitykit/hastransform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera": {
+      "abstract": [
+        {
+          "text": "A virtual camera that establishes the rendering perspective.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCamera",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecamera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an entity’s behavior in physics body simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsBodyComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsbodycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the motion of the body in physics simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsMotionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsMotionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsMotionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsmotioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLight": {
+      "abstract": [
+        {
+          "text": "An entity that produces an omnidirectional light for virtual objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A 3D coordinate space that exists within a RealityKit hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitycoordinatespace"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent": {
+      "abstract": [
+        {
+          "text": "A component that can load another entity from a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/referencecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Scene": {
+      "abstract": [
+        {
+          "text": "A container that holds the collection of entities that an AR view renders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Scene/anchors": {
+      "abstract": [
+        {
+          "text": "The collection of anchors contained in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5SceneC",
+          "text": "Scene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5SceneC16AnchorCollectionV",
+          "text": "AnchorCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/anchors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene/anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight": {
+      "abstract": [
+        {
+          "text": "An entity that illuminates virtual content in a cone-shaped volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpotLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpotLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent": {
+      "abstract": [
+        {
+          "text": "A component that synchronizes an entity between processes and networked",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SynchronizationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SynchronizationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SynchronizationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/synchronizationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform": {
+      "abstract": [
+        {
+          "text": "A component that defines the scale, rotation, and translation of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume": {
+      "abstract": [
+        {
+          "text": "An invisible 3D shape that detects when objects enter or exit a given region",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TriggerVolume"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TriggerVolume"
+        }
+      ],
+      "role": "symbol",
+      "title": "TriggerVolume",
+      "type": "topic",
+      "url": "/documentation/realitykit/triggervolume"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity": {
+      "abstract": [
+        {
+          "text": "An entity that has a view attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAttachmentEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/viewattachmententity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors": {
+      "abstract": [
+        {
+          "text": "Define what a behavior does by using actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-interactivity-to-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file": {
+      "abstract": [
+        {
+          "text": "Retrieve an entity from storage on disk using a synchronous or an asynchronous load",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading entities from a file",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-entities-from-a-file"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code": {
+      "abstract": [
+        {
+          "text": "Make programmatic changes to your scenes at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Reality Composer scenes from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/stored-entities": {
+      "abstract": [
+        {
+          "text": "Manage entities that you store as assets on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/stored-entities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stored entities",
+      "type": "topic",
+      "url": "/documentation/realitykit/stored-entities"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit": {
+      "abstract": [
+        {
+          "text": "Use systems and postprocessing effects to create a realistic underwater scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an Immersive Experience with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/building_an_immersive_experience_with_realitykit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionOS/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BodyTrackedEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasHierarchy",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasPhysicsMotion",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasSynchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EventSource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasHierarchy",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasSynchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-entity",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-80z41",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(components:)-41rn1",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/didClone(from:)"
+      ],
+      "title": "Creating an entity"
+    },
+    {
+      "anchor": "Loading-an-entity-from-a-file",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file",
+        "doc://com.apple.RealityKit/documentation/RealityKit/stored-entities",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(contentsOf:withName:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ReferenceComponent"
+      ],
+      "title": "Loading an entity from a file"
+    },
+    {
+      "anchor": "Loading-an-entity-from-a-configuration-catalog",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(from:configurations:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ConfigurationCatalog"
+      ],
+      "title": "Loading an entity from a configuration catalog"
+    },
+    {
+      "anchor": "Positioning-entities-in-space",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasTransform",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transformMatrix(relativeTo:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CoordinateSpaceReference",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ForwardDirection"
+      ],
+      "title": "Positioning entities in space"
+    },
+    {
+      "anchor": "Relating-entities",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/setParent(_:preservingWorldTransform:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeFromParent(preservingWorldTransform:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/children",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/addChild(_:preservingWorldTransform:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/removeChild(_:preservingWorldTransform:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ChildCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasHierarchy"
+      ],
+      "title": "Relating entities"
+    },
+    {
+      "anchor": "Managing-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet"
+      ],
+      "title": "Managing components"
+    },
+    {
+      "anchor": "Inspecting-an-entity",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/name",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/findEntity(named:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/id-8kxa",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ID-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/debugDescription"
+      ],
+      "title": "Inspecting an entity"
+    },
+    {
+      "anchor": "Managing-the-entitys-state",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabledInHierarchy",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isActive",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored"
+      ],
+      "title": "Managing the entity’s state"
+    },
+    {
+      "anchor": "Synchronizing-entities-with-other-devices",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isOwner",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/requestOwnership(timeout:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/withUnsynchronized(_:)"
+      ],
+      "title": "Synchronizing entities with other devices"
+    },
+    {
+      "anchor": "Finding-the-nearest-anchor",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/anchor"
+      ],
+      "title": "Finding the nearest anchor"
+    },
+    {
+      "anchor": "Creating-a-collision-shape",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)"
+      ],
+      "title": "Creating a collision shape"
+    },
+    {
+      "anchor": "Animating-an-entity",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAnimations(recursive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/defaultAnimationClock",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/parameters",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ParameterSet",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(named:transitionDuration:startsPaused:recursive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/bindableValues",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/subscript(_:)"
+      ],
+      "title": "Animating an entity"
+    },
+    {
+      "anchor": "Animating-and-controlling-characters",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterController",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/characterControllerState",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)"
+      ],
+      "title": "Animating and controlling characters"
+    },
+    {
+      "anchor": "Playing-audio",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(configuration:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(configuration:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/prepareAudio(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/stopAllAudio()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/spatialAudio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ambientAudio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/channelAudio"
+      ],
+      "title": "Playing audio"
+    },
+    {
+      "anchor": "Saving-an-entity-and-its-descendants",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/write(to:)"
+      ],
+      "title": "Saving an entity and its descendants"
+    },
+    {
+      "anchor": "Configuring-accessibility-features",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAccessibilityElement",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomActions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomContent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityCustomRotors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabelKey",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilitySystemActions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityTraits",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityValue",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityLabel",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/accessibilityDescription"
+      ],
+      "title": "Configuring accessibility features"
+    },
+    {
+      "anchor": "Comparing-entities",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/==(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/!=(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hash(into:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/hashValue"
+      ],
+      "title": "Comparing entities"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/pins"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/applyTapForBehaviors()"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Equatable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasHierarchy-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasSynchronization-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/HasTransform-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Hashable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Entity/Identifiable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/entity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

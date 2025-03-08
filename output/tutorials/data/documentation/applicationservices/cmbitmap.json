@@ -1,0 +1,390 @@
+{
+  "abstract": [
+    {
+      "text": "Contains information that describes color bitmap images.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560482,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CMBitmap",
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CMBitmap"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " CMBitmap {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMBitmap"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ColorSync Manager defines a bitmap structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to describe color bitmap images. When your application calls the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " , you pass a pointer to a source bitmap of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " containing the image whose colors are to be matched to the color gamut of the device specified by the destination profile of the given color world. If you do not want the image color matched in place, you can also pass a pointer to a resulting bitmap of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to define and hold the color-matched image. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For QuickDraw GX, an image can have an indexed bitmap to a list of colors. The ColorSync Manager does not support indexed bitmaps in the same way QuickDraw GX does. ColorSync supports indexed bitmaps only when the ",
+              "type": "text"
+            },
+            {
+              "code": "cmNamedIndexed32Space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " color space constant is used in conjunction with a named color space profile. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560258-user2": {
+      "abstract": [
+        {
+          "text": "Not used by ColorSync. It is recommended that you set this field to 0.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560258-user2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user2",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560258-user2"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560357-space": {
+      "abstract": [
+        {
+          "text": "The color space in which the colors of the bitmap image are specified. For a description of the possible color spaces for color bitmaps, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560357-space",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "space",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560357-space"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560535-width": {
+      "abstract": [
+        {
+          "text": "The width of the bit image, that is, the number of pixels in a row.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560535-width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560535-width"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560543-pixelsize": {
+      "abstract": [
+        {
+          "text": "The number of bits per pixel. The pixel size should correspond to the packing size specified in the ",
+          "type": "text"
+        },
+        {
+          "code": "space",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field. This requirement is not enforced as of ColorSync version 2.5, but it may be enforced in future versions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560543-pixelsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelSize",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560543-pixelsize"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560544-height": {
+      "abstract": [
+        {
+          "text": "The height of the bit image, that is, the number of rows in the image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560544-height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560544-height"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560569-image": {
+      "abstract": [
+        {
+          "text": "A pointer to a bit image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560569-image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560569-image"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560650-rowbytes": {
+      "abstract": [
+        {
+          "text": "The offset in bytes from one row of the image to the next.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560650-rowbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rowBytes",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560650-rowbytes"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560652-user1": {
+      "abstract": [
+        {
+          "text": "Not used by ColorSync. It is recommended that you set this field to 0.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560652-user1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user1",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap/1560652-user1"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMBitmapColorSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmapcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchColors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2974648",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560544-height",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560569-image",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560543-pixelsize",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560650-rowbytes",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560357-space",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560652-user1",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560258-user2",
+        "doc://com.apple.documentation/documentation/applicationservices/cmbitmap/1560535-width"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/cmbitmap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

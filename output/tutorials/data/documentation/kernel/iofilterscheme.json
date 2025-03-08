@@ -1,0 +1,632 @@
+{
+  "abstract": [
+    {
+      "text": "The common base class for all filter scheme objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofilterscheme"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1564813,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFilterScheme",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFilterScheme"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFilterScheme"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOStorage",
+              "text": "IOStorage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOFilterScheme class is the common base class for all filter scheme objects. It extends the IOStorage class by implementing the appropriate open and close semantics for filter objects (standard semantics are act as a relay for incoming opens, producing one outgoing open for each incoming open). It also implements the default read and write semantics, which pass all reads and writes through to the provider media unprocessed. For simple schemes, the default behavior is sufficient. More complex filter schemes such as RAID will want to do extra processing for reads and writes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioapplelabelscheme": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioapplelabelscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAppleLabelScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/ioapplelabelscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioapplepartitionscheme": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioapplepartitionscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOApplePartitionScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/ioapplepartitionscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofdiskpartitionscheme": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofdiskpartitionscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFDiskPartitionScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/iofdiskpartitionscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme": {
+      "abstract": [
+        {
+          "text": "The common base class for all filter scheme objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFilterScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564801-lockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564801-lockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564801-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564802-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564802-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564802-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564803-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564803-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564803-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564804-handleisopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIsOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564804-handleisopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564804-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564806-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564806-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564806-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564807-write": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564807-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564807-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564808-read": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564808-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564808-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564809-synchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564809-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564809-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564810-getprovider": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564810-getprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvider",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564810-getprovider"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564811-unlockphysicalextents": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockPhysicalExtents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564811-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564811-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564812-unmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564812-unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564812-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564814-setpriority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564814-setpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPriority",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564814-setpriority"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564815-copyphysicalextent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyPhysicalExtent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564815-copyphysicalextent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1564815-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1642770-getprovisionstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProvisionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1642770-getprovisionstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProvisionStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1642770-getprovisionstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811149-copyphysicalextent": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811149-copyphysicalextent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyPhysicalExtent",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811149-copyphysicalextent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811170-handleclose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811170-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811170-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811193-handleisopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811193-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811193-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811211-handleopen": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811211-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811211-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811226-lockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811226-lockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811226-lockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811238-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811238-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811238-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811248-synchronizecache": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811248-synchronizecache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811248-synchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811258-unlockphysicalextents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811258-unlockphysicalextents",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlockPhysicalExtents",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811258-unlockphysicalextents"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811266-unmap": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811266-unmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811266-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811274-write": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811274-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/iofilterscheme/1811274-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioguidpartitionscheme": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioguidpartitionscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGUIDPartitionScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/ioguidpartitionscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopartitionscheme": {
+      "abstract": [
+        {
+          "text": "The common base class for all partition scheme objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopartitionscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPartitionScheme",
+      "type": "topic",
+      "url": "/documentation/kernel/iopartitionscheme"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iostorage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iostorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStorage",
+      "type": "topic",
+      "url": "/documentation/kernel/iostorage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iostorage"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioapplelabelscheme",
+        "doc://com.apple.documentation/documentation/kernel/ioapplepartitionscheme",
+        "doc://com.apple.documentation/documentation/kernel/iofdiskpartitionscheme",
+        "doc://com.apple.documentation/documentation/kernel/ioguidpartitionscheme",
+        "doc://com.apple.documentation/documentation/kernel/iopartitionscheme"
+      ],
+      "title": "Schemes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811149-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811170-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811193-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811211-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811226-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811238-read",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811248-synchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811258-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811266-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1811274-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2857618",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564815-copyphysicalextent",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564802-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564810-getprovider",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1642770-getprovisionstatus",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564803-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564804-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564806-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564801-lockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564808-read",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564814-setpriority",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564809-synchronize",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564811-unlockphysicalextents",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564812-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iofilterscheme/1564807-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofilterscheme"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

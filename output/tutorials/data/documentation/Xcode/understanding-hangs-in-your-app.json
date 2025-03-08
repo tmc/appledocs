@@ -1,0 +1,1653 @@
+{
+  "abstract": [
+    {
+      "text": "Determine the cause for delays in user interactions by examining the main thread and the main run loop.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding hangs in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A discrete user interaction occurs when a person performs a single well-contained interaction and the screen then updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An example is when someone presses a key on the keyboard and the corresponding letter then appears onscreen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although the software running on the device needs time to process the incoming user input event and compute the corresponding screen update,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s usually so quick that a human can’t perceive it and the screen update seems instantaneous.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the delay in handling a discrete user interaction becomes noticeable, that period of unresponsiveness is known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hang",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Other common terms for this behavior are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "freeze",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " because the app stops updating, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "spin",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " based on the spinning wait cursor that appears in macOS when an app is unresponsive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although discrete interactions are less sensitive to delays than continuous interactions, it doesn’t take long for a person to perceive a gap between an action and its reaction as a pause, which breaks their immersive experience. A delay of less than 100 ms in a discrete user interaction is rarely noticeable, but even a few hundred milliseconds can make people feel that an app is unresponsive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A hang is almost always the result of long-running work on the main thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This article explains what causes a hang, why the main thread and the main run loop are essential to understanding hangs, and how various tools can detect hangs on Apple devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This article assumes a basic understanding of the event-handling and rendering loop, as well as a basic understanding of hangs and hitches, and how they differ.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’re unfamiliar with hangs and hitches, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information about them, as well as the event-handling and rendering loop.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-work-on-the-main-thread",
+          "level": 3,
+          "text": "Understand work on the main thread",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Processing incoming events and updating the UI accordingly is the responsibility of an app’s main thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As part of handling an event, the main thread performs the following work:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delivers the event to the right place and calls the right handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Makes any state changes, fetches data, updates the UI, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performs a Core Animation (CA) commit, which submits all the changes of the view hierarchy to the render server. The UI framework usually performs the CA commit automatically when your code finishes handling the event.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "understanding-hangs-in-our-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code is involved in each of these stages, but most of it typically deals with the second stage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the Send button in a messaging app using SwiftUI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your implementation might look like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI ",
+            "",
+            "struct MessengerView: View {",
+            "    @State var messageText: String",
+            "",
+            "    var body: someView {",
+            "        // [...] other UI",
+            "        Button(\"Send\", action: {",
+            "            messageSender.send(message: messageText)",
+            "        })",
+            "        // [...] other UI",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone taps the Send button, they touch the screen where the button appears.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system registers this as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "touch-down",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similar events exist for other input methods, like mouse-down on macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As soon as the finger comes in contact with the screen, the touch-down event is sent.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app’s main thread then determines which view is responsible for handling the event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It compares the event’s location on the screen to the frames of all the views in the view hierarchy to find the one that’s frontmost at that location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the user touched the location of your Send button, the view representing that button receives the touch-down event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When they lift their finger from the screen, the touchscreen registers the finger leaving the screen, and the OS creates a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "touch-up",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " event and delivers it to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The touch-up event goes to the same view that received the corresponding touch-down event, even if the finger has moved to a different position by then.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In response to the touch-up event, if the location of the finger is still inside its bounds when the touch-up event occurs, a ",
+              "type": "text"
+            },
+            {
+              "code": "Button",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls its ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the first stage, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "event dispatching",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "event delivery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", is complete.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The event reaches its destination and the UI framework calls the appropriate event-handling method, which is usually your code, on the selected view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your design also contributes to how quickly the system delivers events, as you set up the view hierarchy, decide where to place the button, and add any other UI elements, which might include custom views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All of this can have an impact on the speed of event delivery.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, most of the time, this step is fast and not something you need to worry about.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the second stage, SwiftUI calls your ",
+              "type": "text"
+            },
+            {
+              "code": "send(message:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method as part of calling the Button’s ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where your app likely starts some asynchronous work to serialize the message string into a data packet, send it to a backend server, and so on.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app also needs to add the new message to the list of messages in the current conversation, so it can store it, even if sending the message fails.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, your app needs to update the UI to show the user the result of their action.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For instance, you might want to display a message bubble onscreen and clear the text field to prepare it for the next message.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on responding asynchronously to UI events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the third stage, the UI framework takes over again and commits the changes to the UI so the render server can start rendering the new frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your code usually isn’t directly involved in the CA commit, but your code does influence how many changes the UI framework needs to commit and how expensive the commit is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handling this event isn’t the only thing your app needs the main thread for.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Maybe you set a timer to check whether the user is still typing and then update a typing indicator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or your app’s request to the backend server to check for new messages finishes and returns a new message that the app needs to display onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each of these situations, your app needs to make updates to the user interface, but doing so isn’t thread-safe, meaning the system can’t modify the UI from multiple threads at the same time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, it needs to serialize and execute the updates to the UI one after the other.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For this reason, there’s only one thread that can make UI updates: the main thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Swift, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ensures that your code executes on the main thread. It also helps the compiler prevent any code outside the main thread from making changes to the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because there’s only one thread that can make changes to the UI, you don’t want to block it waiting for someone to press the Send button.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So, the system needs need a way to schedule work to execute on the main thread, and then check for that work and execute it whenever it comes in — whether it’s handling an event, processing the result of a network request, or reacting to a timer firing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This scheduling and sequential processing of various work items is the responsibility of the main thread’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-main-run-loop",
+          "level": 3,
+          "text": "Understand the main run loop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run loops provide a mechanism for threads to wait on input sources and fire input handlers when any of those sources has data or events to process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Any thread can have a run loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The main thread starts a run loop, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "main run loop",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", as soon as an app finishes launching.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is the run loop that processes all incoming user interaction events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A very simplified implementation of a run loop might resemble the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class RunLoop {",
+            "    var stopped = false",
+            "    ",
+            "    func run() {",
+            "        repeat {",
+            "            if let work = workSet.fetchNextWorkItem() {",
+            "                processWork(work)",
+            "            } else {",
+            "                sleepUntilNewWorkArrives()",
+            "            }",
+            "        } while(!stopped)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After calling ",
+              "type": "text"
+            },
+            {
+              "code": "run",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the run loop keeps running in an infinite loop, checking for new work to process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there’s work to do, the run loop processes it by calling an appropriate handler.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there isn’t any work, it goes to sleep, which means the main thread also sleeps, so it isn’t running.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a new work item comes in, the operating system wakes up the main thread, and its run loop processes the incoming work before going back to sleep.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any work that the system needs to execute on the main thread, like updating the UI, becomes a work item that it submits to the run loop, and the run loop then processes it as soon as possible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Work items may include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Incoming user events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A callback of a timer scheduled on the run loop (when a timer fires, it submits its callback to run on the run loop.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Work on the main ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the main ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or the main actor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the run loop performs work items that the system submits to it on the main thread, it isn’t the same as the main dispatch queue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The main dispatch queue, the main ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the main actor, and the main run loop are all ways to submit work to run on the main thread, but for the main thread specifically, the run loop is the foundation of everything.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main dispatch queue, the main ",
+              "type": "text"
+            },
+            {
+              "code": "NSOperationQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the main actor are clients of the run loop, and the run loop executes work you submit to any of them, but it can also execute work from other sources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As such, a long-running item that you submit to the main dispatch queue becomes a long-running item on the main run loop, and prevents other work from executing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "And a long-running item on the main run loop prevents it from executing any work of other run-loop clients, whether it’s the main dispatch queue, a timer, or some other work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ideally, the run loop only wakes up briefly to process an incoming event, goes to sleep again, and spends most of the time asleep waiting for new work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the run loop is already processing work, it can’t handle a new incoming event until processing of the previous work item is complete.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So, it’s important to finish any work on the main thread as quickly as possible so the run loop can go back to sleep and wait for the next incoming event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of an incoming user input event, the run loop simply processes the event by calling the corresponding UI framework, such as UIKit or AppKit, which handles the event, likely calling some of your code in the process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To handle an event promptly, the run loop needs to be asleep or just finishing a work item when the event comes in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "No matter why your code runs on the main run loop, whether its due to handling an event or any of the other ways described above:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If code running on the main runloop takes too long to complete, it prevents the run loop from processing other work, including incoming events, and may cause a hang.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-hangs",
+          "level": 3,
+          "text": "Understand hangs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the relevant delay for the user is the time between interacting with the physical device and the physical screen updating, most of the stages in the event-handling and rendering loop take a short amount of time and are fairly consistent in timing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "understanding-hangs-in-our-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It usually takes just a few milliseconds for the hardware device to recognize user input, send it to the OS, and have the OS forward it to the correct process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although the output side of rendering the new frame and updating pixels on the display can add a delay of 16 ms to 50 ms, it’s rare that these steps take longer when everything else in your app works well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the other stages have fairly consistent timing, it’s almost always main thread work that takes too long when the system doesn’t meet this threshold.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This can be due to the event handling itself taking too long, or due to the main thread being busy with other work and not being available to handle the event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Observing the main runloop’s behavior is a good way to tell whether the main thread is too busy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A healthy run loop spends most of its time asleep and waiting for events, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "understanding-hangs-in-our-app-3a",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the screenshot above, the run loop is waiting for events (the gray areas) most of the time, and the periods where it’s busy (the light blue areas) are very short.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For this reason, the hang reporting feature on Apple platforms focuses on the main run loop being unresponsive for an extended period of time as a proxy for hangs that the user experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "More specifically, hang reporting looks at the duration between two ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "waiting for events",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " periods of the run loop, also known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "busy",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " portion.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During a busy period, the run loop can’t process other incoming events, so if it gets too long, the system reports it as a potential hang.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "understanding-hangs-in-our-app-3b",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most of Apple’s developer tools start reporting issues when the period of unresponsiveness for the main run loop exceeds 250 ms. Some of them, like the Hangs instrument in the Instruments app, allow you to choose lower thresholds for reporting an unresponsive main run loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hang reporting only measures the time on the main run loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The time necessary for event delivery, before handing the event to the main run loop, and the time to render the new screen after the main thread finishes updating the UI can add 10 ms to 50 ms to the overall delay that the user experiences, even under normal operation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more details about what happens after the main thread finishes updating the UI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-frame-lifetime-and-hitch-duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "Identify responsiveness issues your users encounter, and use the hang and hitch data in Xcode Organizer to determine which issues are most important to fix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing responsiveness issues in your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-responsiveness-issues-in-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early": {
+      "abstract": [
+        {
+          "text": "Diagnose potential performance issues in your app during testing with the Thread Performance Checker tool in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing performance issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-performance-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness": {
+      "abstract": [
+        {
+          "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving app responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-app-responsiveness"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app": {
+      "abstract": [
+        {
+          "text": "Minimize how frequently the system stops your app by addressing common termination reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing terminations in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/reduce-terminations-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause of interruptions in motion by examining the render loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hitches in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-frame-lifetime-and-hitch-duration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-frame-lifetime-and-hitch-duration",
+      "kind": "section",
+      "title": "Understand frame lifetime and hitch duration",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app#Understand-frame-lifetime-and-hitch-duration"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness": {
+      "abstract": [
+        {
+          "text": "Make your app more responsive by examining the event-handling and rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding user interface responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-user-interface-responsiveness"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DispatchQueue",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue"
+    },
+    "doc://com.apple.documentation/documentation/Swift/MainActor": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsoperationqueue": {
+      "abstract": [
+        {
+          "text": "A queue that regulates the execution of operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsoperationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsoperationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloop": {
+      "abstract": [
+        {
+          "text": "The programmatic interface to objects that manage input sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "understanding-hangs-in-our-app-1": {
+      "alt": "A timeline illustration consisting of a horizontal block between two dashed vertical lines. The dashed vertical line on the left has a callout that says Begin time, the dashed vertical line on the right has a callout that says Commit deadline. The horizontal block in the center contains the title Main Thread Work and three smaller rectangular boxes. It is slightly offset to the left and doesn’t align with either of the two dashed lines directly. The first box inside the Main Thread Work box says Dispatch Event, the second says Your Code, and the third says CA Commit. ",
+      "identifier": "understanding-hangs-in-our-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aef125312e584e43c3de0448ce027513/understanding-hangs-in-our-app-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea01105b129aa98b472c2515d9a13737/understanding-hangs-in-our-app-1~dark@2x.png"
+        }
+      ]
+    },
+    "understanding-hangs-in-our-app-2": {
+      "alt": "A timeline illustration entitled Delay Perceived by User that consists of six horizontal blocks labeled: Input, Event delivery, Wait for main thread availability, Main thread work, Rendering, and Update display. The Main Thread Work and Wait for main thread availability blocks are significantly wider than the others. The Wait for block has a dashed outline. A line beneath the Input and Event delivery blocks says <10 ms. A line beneath Rendering says: 8 ms to 33 ms, and a line beneath Update display says: 8 ms to 16 ms. A line below the six blocks spans the entire width and says: Goal: <100 ms.",
+      "identifier": "understanding-hangs-in-our-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78b6e2f0f0a0ba2ff794e9d1edc57b28/understanding-hangs-in-our-app-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/349d72975a05d1ddea9bd3d051d5288c/understanding-hangs-in-our-app-2~dark@2x.png"
+        }
+      ]
+    },
+    "understanding-hangs-in-our-app-3a": {
+      "alt": "An Instruments screenshot showing a healthy main run loop. All busy periods are very short, and most of the overall run-loop time consists of waiting for events.",
+      "identifier": "understanding-hangs-in-our-app-3a",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/012f48b9b3f38a4599bec69430e1bdb9/understanding-hangs-in-our-app-3a.png"
+        }
+      ]
+    },
+    "understanding-hangs-in-our-app-3b": {
+      "alt": "An Instruments screenshot showing a main run loop during a hang. The run loop is busy for a period of over 600 ms.",
+      "identifier": "understanding-hangs-in-our-app-3b",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d823296beb839509b72c42372ea527d/understanding-hangs-in-our-app-3b.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responsiveness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Responsiveness"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsoperationqueue/title",
+          "value": "OperationQueue"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsoperationqueue/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "OperationQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsrunloop/title",
+          "value": "RunLoop"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsrunloop/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "RunLoop"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

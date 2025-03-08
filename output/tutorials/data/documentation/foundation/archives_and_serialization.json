@@ -1,0 +1,1075 @@
+{
+  "abstract": [
+    {
+      "text": "Convert objects and values to and from property list, JSON, and other flat binary representations.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2877770,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Archives and Serialization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these APIs to convert your app’s in-memory types to representations suitable for serialization over I/O and network interfaces or to long-term storage. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, the standard library defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types, along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Encoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Decoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to perform encoding and decoding, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/encoding-decoding-and-serialization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Foundation extends this with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols, used for types that require additional static information to encode and decode, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines a protocol for encoding and decoding objects. When adding serialization to your own types, you should also adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This protocol adds protection against security vulnerabilities introduced by instantiating arbitrary objects as part of the decoding process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many system frameworks use these types. When working with external systems, such as URL endpoints, use the JSON and XML APIs to serialize your app’s types to standard formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Codable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/swift/codable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decoder": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decoder",
+      "type": "topic",
+      "url": "/documentation/swift/decoder"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encoder": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encoder",
+      "type": "topic",
+      "url": "/documentation/swift/encoder"
+    },
+    "doc://com.apple.Swift/documentation/Swift/encoding-decoding-and-serialization": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/encoding-decoding-and-serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encoding, Decoding, and Serialization",
+      "type": "topic",
+      "url": "/documentation/swift/encoding-decoding-and-serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "abstract": [
+        {
+          "text": "Convert objects and values to and from property list, JSON, and other flat binary representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types": {
+      "abstract": [
+        {
+          "text": "Make your data types encodable and decodable for compatibility with external representations such as JSON.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding and Decoding Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types": {
+      "abstract": [
+        {
+          "text": "Encode and decode JSON data, regardless of its structure, using Swift’s JSON support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using JSON with Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/using_json_with_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling": {
+      "abstract": [
+        {
+          "text": "Parse XML documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XML Processing and Modeling",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/codableconfiguration": {
+      "abstract": [
+        {
+          "text": "A property wrapper that makes a type codable, by supplying a configuration that provides additional information for serialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/codableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/codableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/codablewithconfiguration": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation with the help of a configuration that handles encoding contained types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableWithConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/codablewithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodableWithConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/codablewithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration": {
+      "abstract": [
+        {
+          "text": "A protocol for types that support decoding when supplied with an additional configuration type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "DecodableWithConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DecodableWithConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/decodablewithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decodingconfigurationproviding": {
+      "abstract": [
+        {
+          "text": "A protocol whose conformers provide a configuration instance to help decode types that don’t support encoding by themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "DecodingConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decodingconfigurationproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DecodingConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/decodingconfigurationproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration": {
+      "abstract": [
+        {
+          "text": "A protocol for types that support encoding when supplied with an additional configuration type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "EncodableWithConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EncodableWithConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/encodablewithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/encodingconfigurationproviding": {
+      "abstract": [
+        {
+          "text": "A protocol whose conformers provide a configuration instance to help encode types that don’t support encoding by themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "EncodingConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/encodingconfigurationproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EncodingConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/encodingconfigurationproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "abstract": [
+        {
+          "text": "Create, read, write, and examine files and folders in the file system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "abstract": [
+        {
+          "text": "Manage files and key-value data that automatically synchronize among a user's iCloud devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes instances of a data type from JSON objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonencoder": {
+      "abstract": [
+        {
+          "text": "An object that encodes instances of a data type as JSON objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONEncoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonencoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonserialization": {
+      "abstract": [
+        {
+          "text": "An object that converts between JSON and the equivalent Foundation objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONSerialization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver": {
+      "abstract": [
+        {
+          "text": "A coder that stores an object's data to an archive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer": {
+      "abstract": [
+        {
+          "text": "A value transformer that converts data to and from classes that support secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureUnarchiveFromDataTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureUnarchiveFromDataTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecureunarchivefromdatatransformer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup": {
+      "abstract": [
+        {
+          "text": "Minimize the space and time that backups take to create by excluding purgeable and nonpurgeable data from backups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Your App’s Data for iCloud Backup",
+      "type": "topic",
+      "url": "/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "abstract": [
+        {
+          "text": "Persistently store domain-scoped pieces of information for configuring your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/foundation/propertylistdecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes instances of data types from a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PropertyListDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/propertylistdecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PropertyListDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/propertylistdecoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/propertylistencoder": {
+      "abstract": [
+        {
+          "text": "An object that encodes instances of data types to a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PropertyListEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/propertylistencoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PropertyListEncoder",
+      "type": "topic",
+      "url": "/documentation/foundation/propertylistencoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/propertylistserialization": {
+      "abstract": [
+        {
+          "text": "An object that converts between a property list and one of several serialized representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PropertyListSerialization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/propertylistserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PropertyListSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/propertylistserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/spotlight": {
+      "abstract": [
+        {
+          "text": "Search for files and other items on the local device, and index your app's content for searching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/spotlight",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Spotlight",
+      "type": "topic",
+      "url": "/documentation/foundation/spotlight"
+    },
+    "doc://com.apple.documentation/documentation/swift/codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/swift/codable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/preferences",
+        "doc://com.apple.documentation/documentation/foundation/spotlight",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/optimizing_your_app_s_data_for_icloud_backup"
+      ],
+      "title": "Files and Data Persistence"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2877987",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+        "doc://com.apple.documentation/documentation/swift/codable",
+        "doc://com.apple.documentation/documentation/foundation/nscoding",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "taskGroup",
+      "title": "Adopting Codability"
+    },
+    {
+      "anchor": "3786964",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/codablewithconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/codableconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/decodablewithconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/decodingconfigurationproviding",
+        "doc://com.apple.documentation/documentation/foundation/encodablewithconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/encodingconfigurationproviding"
+      ],
+      "kind": "taskGroup",
+      "title": "Serializing Arbitrary Payloads"
+    },
+    {
+      "anchor": "2877991",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/using_json_with_custom_types",
+        "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+        "doc://com.apple.documentation/documentation/foundation/jsonserialization"
+      ],
+      "kind": "taskGroup",
+      "title": "JSON"
+    },
+    {
+      "anchor": "2877990",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/propertylistencoder",
+        "doc://com.apple.documentation/documentation/foundation/propertylistdecoder",
+        "doc://com.apple.documentation/documentation/foundation/propertylistserialization"
+      ],
+      "kind": "taskGroup",
+      "title": "Property Lists"
+    },
+    {
+      "anchor": "2877992",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+      ],
+      "kind": "taskGroup",
+      "title": "XML"
+    },
+    {
+      "anchor": "2877988",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nscoder",
+        "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer"
+      ],
+      "kind": "taskGroup",
+      "title": "Keyed Archivers"
+    },
+    {
+      "anchor": "2877989",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nsunarchiver"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/archives_and_serialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/archives_and_serialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

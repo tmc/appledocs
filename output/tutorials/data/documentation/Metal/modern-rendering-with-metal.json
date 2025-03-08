@@ -1,0 +1,327 @@
+{
+  "abstract": [
+    {
+      "text": "Use advanced Metal features such as indirect command buffers, sparse textures, and variable rate rasterization to implement complex rendering techniques.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/modern-rendering-with-metal"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Modern Rendering with Metal"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://developer.apple.com/tech-talks/608",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " tech talk.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this sample app uses indirect command buffers, you can’t run this sample in the Simulator — you need to run it on a device. To run this sample, use one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac from mid-2016 and later with macOS 11 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iPad with A11 Bionic and later using iPadOS 14.1 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with A11 Bionic and later using iOS 14.1 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 12 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Maximize CPU to GPU parallelization by generating render commands on the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "f18d5baae89a/ModernRenderingWithMetal.zip": {
+      "checksum": "f18d5baae89a52ba2e1eac6a0a1971cdd622a76596db13dc95aa33678496ba9e74a43865fd83dbd5fd852963d29c4ef11a62005e1b73cd3c63ffeda991ee83e7",
+      "identifier": "f18d5baae89a/ModernRenderingWithMetal.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f18d5baae89a/ModernRenderingWithMetal.zip"
+    },
+    "http://developer.apple.com/tech-talks/608": {
+      "identifier": "http://developer.apple.com/tech-talks/608",
+      "title": "Metal Enhancements for A13 Bionic",
+      "titleInlineContent": [
+        {
+          "text": "Metal Enhancements for A13 Bionic",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://developer.apple.com/tech-talks/608"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f18d5baae89a/ModernRenderingWithMetal.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiple-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu"
+      ],
+      "title": "Multiple Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multiple-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu"
+              ],
+              "title": "Multiple Techniques"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/modern-rendering-with-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/modern-rendering-with-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

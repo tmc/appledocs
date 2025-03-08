@@ -1,0 +1,565 @@
+{
+  "abstract": [
+    {
+      "text": "Determine how your render and compute passes behave by examining their properties.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting pipeline states"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger allows you to inspect a pipeline state with the Pipeline State viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Double-click a pipeline state to open it and view its associated properties in a table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-psov-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the screenshot above, the name of the pipeline state, G-buffer Creation, appears above the table.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To the right of the name, you can click the Reveal in Memory button or the Reveal in Timeline button to open the Memory viewer or the Performance timeline, respectively, which both highlight the pipeline state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table displays the properties of your pipeline state in a logical hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the disclosure controls on the left to expand the groups to view more information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using the table, you can quickly inspect the properties of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-your-scope-with-filters",
+          "level": 3,
+          "text": "Limit your scope with filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the filter field at the bottom of the Pipeline State viewer to adjust the filtering criteria by typing filter terms into it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then the table displays the related pipeline state properties that match the filter terms, and highlights the matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-psov-filter.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When there are two or more filter terms, you can click the filter button to choose whether to match any or all of the terms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a GPU pipeline configuration for running kernels in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLComputePipelineState",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputePipelineState"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPipelineState"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-psov-filter.png": {
+      "alt": "A screenshot of the Pipeline State viewer filtering for the term pixel. The list displays the matching properties hierarchically.",
+      "identifier": "gputools-metal-debugger-psov-filter.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3116a10923692016388110018552ea03/gputools-metal-debugger-psov-filter.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6e5b1c88ae2addf42882088df8c2a80/gputools-metal-debugger-psov-filter@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc1dee35814df38c0208ef4ff16720c1/gputools-metal-debugger-psov-filter~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/466e7e22fc1ae3b7f7318c1d699a76c5/gputools-metal-debugger-psov-filter~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-psov-overview.png": {
+      "alt": "A screenshot of the Pipeline State viewer displaying the pipeline state’s properties hierarchically.",
+      "identifier": "gputools-metal-debugger-psov-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af93a7a7b2d99d7bdda6275a6eba4334/gputools-metal-debugger-psov-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a2d962b77ee79e65a5e5da43d72e15bf/gputools-metal-debugger-psov-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01e44e1a0d78c48d4fea129fb6d74319/gputools-metal-debugger-psov-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b97d294a30447650bf904b237aa8f446/gputools-metal-debugger-psov-overview~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputePipelineState/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1661 @@
+{
+  "abstract": [
+    {
+      "text": "Offer your app’s camera experience on locked devices from Control Center, the Lock Screen, and the Action button.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/Creating-a-camera-experience-for-the-Lock-Screen"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Locked-Camera-Capture-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "LockedCameraCapture"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a camera experience for the Lock Screen"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A locked camera capture extension allows people to access your app’s camera experience quickly from a WidgetKit control in Control Center, from the Lock Screen, or with the Action button. The lifecycle of a capture extension involves capturing content while a device is locked and allowing someone to continue to your app, once authenticated, to view or complete a task with the captured content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your capture extension is active, the system places the following restrictions to ensure people’s security and privacy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The capture extension can’t access the network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The capture extension can’t read from or write to the App Group’s shared container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the system suspends the capture extension, it erases the capture extension’s container directory. An extension typically suspends when someone dismisses the extension by swiping up from the bottom of the screen or by pressing the side button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app extension terminates shortly after launch if it doesn’t have an active camera view that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVCaptureEventInteraction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to handle events from the hardware buttons, or if access to the camera hasn’t been requested.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-a-locked-camera-capture-extension-to-your-project",
+          "level": 3,
+          "text": "Add a locked camera capture extension to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Locked Camera Capture Extension template provides everything you need to start building your capture extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app project in Xcode and choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Application Extension group, select Capture Extension, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the name of your extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template creates an extension target that contains an implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureUIScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to capture content using the rear camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The capture extension inherits camera permissions from your app. If the person hasn’t granted access, the system prompts them to authenticate and unlock their device. It then opens the app and the app requests access. For more information about requesting camera access, refer to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Launch-your-app-extension",
+          "level": 3,
+          "text": "Launch your app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a control widget that launches the capture extension when the device is locked. People will need to add your app’s control to Control Center, the Lock screen, or configure the Action button with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass data between your app and your app extension on launch with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/CameraCaptureIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "appContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data contains up to four KB of user-specific data. Use this data to configure your capture extension’s UI. For example, you can enable previously purchased camera filters, or remember if someone was using the front or rear camera last. Your app or capture extension reads from and writes to the ",
+              "type": "text"
+            },
+            {
+              "code": "appContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It represents the state of your extension or app when it launches. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " perform function to deep link to the capture experience in your app. Include the ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your app target, control widget extension target, and camera capture extension target. To learn more, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/CameraCaptureIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses a ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to read the camera’s direction, the front or the rear, from the intent’s ",
+              "type": "text"
+            },
+            {
+              "code": "appContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyAppCaptureIntent: CameraCaptureIntent {",
+            "    typealias AppContext = MyAppContext",
+            "    static let title = \"MyAppCaptureIntent\"",
+            "    static let description = IntentDescription(\"Capture photos and videos with MyApp.\")",
+            "",
+            "    @MainActor",
+            "    func perform() async throws -> some IntentResult {",
+            "        do {",
+            "            if let context = try await MyAppCaptureIntent.appContext {",
+            "                // Read the camera direction from the appContext.",
+            "                return context.cameraDirection",
+            "            }",
+            "        } catch {",
+            "            // Handle error condition.",
+            "        }",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code updates the ",
+              "type": "text"
+            },
+            {
+              "code": "appContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of a ",
+              "type": "text"
+            },
+            {
+              "code": "CameraCaptureIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when someone changes the direction of the camera in the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button {",
+            "    Task {",
+            "        do {",
+            "            // Change the direction of the camera.",
+            "            ...",
+            "            // Update the appContext with the new camera direction.",
+            "            try await MyAppCaptureIntent.updateAppContext(content.contextData())",
+            "        } catch {",
+            "            // Log the error and display to the user.",
+            "        }",
+            "    }",
+            "} label: {",
+            "    Image(systemName: “arrow.triangle.2.circlepath.camera”)",
+            "    .font(Font.system(size: 44, weight: .medium))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Capture-images-and-videos",
+          "level": 3,
+          "text": "Capture images and videos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve added your locked camera capture extension to your project, you’re ready to build a view to capture content with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display the capture view with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureUIScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureUIScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that contains information on where to store captured content, and initiates requests to open the app extension’s containing app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance to your capture view in the closure of the ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureUIScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", passing the ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates an extension with a capture view, passing the ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyCameraCaptureExtension: LockedCameraCaptureExtension {",
+            "\tvar body: some LockedCameraCaptureExtensionScene {",
+            "\t\t// The LockedCameraCaptureUIScene contains your extension UI.",
+            "\t\tLockedCameraCaptureUIScene { session in",
+            "\t\t\t// The capture view to display.",
+            "\t\t\tViewfinder(session: session)",
+            "\t\t}",
+            "\t}",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your capture view, create a view that starts an active camera session that uses ",
+              "type": "text"
+            },
+            {
+              "code": "AVCaptureEventInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "AVCaptureEventInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but you can create custom capture views. To learn more about creating custom capture views, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to use UIImagePickerController to capture content in your extension. UIImagePickerController uses AVCaptureEventInteraction and ensures the system won’t terminate your extension after launch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Viewfinder: UIViewControllerRepresentable {",
+            "\t// The session variable contains information on where to store captured content",
+            "\t// and may initiate a request to open the containing app.",
+            "\tlet session: LockedCameraCaptureSession",
+            "\tvar sourceType: UIImagePickerController.SourceType = .camera",
+            "\t",
+            "\tinit(session: LockedCameraCaptureSession) {",
+            "\t\tself.session = session",
+            "\t}",
+            " ",
+            "\tfunc makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {",
+            "\t\tlet imagePicker = UIImagePickerController()",
+            "\t\timagePicker.sourceType = sourceType",
+            "\t\timagePicker.mediaTypes = [UTType.image.identifier, UTType.movie.identifier]",
+            "\t\timagePicker.cameraDevice = .rear",
+            " ",
+            "\t\treturn imagePicker",
+            "\t}",
+            " ",
+            "\tfunc updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Save-captured-content",
+          "level": 3,
+          "text": "Save captured content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotoKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/sessionContentURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to store all captured content. The URL is a temporary directory that’s created when the app extension launches, within the capture extension’s containing app’s data container. The system erases and resets any content saved to the capture extension’s data container when the capture extension suspends or terminates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Launch-your-app-from-the-capture-extension",
+          "level": 3,
+          "text": "Launch your app from the capture extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide a way for someone to launch your app from the capture extension, making it easy for them to continue a flow using the captured content that requires access not available within the capture extension. For example, you can help someone quickly post a video to a social network, or tap a button to begin editing an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/openApplication(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to launch the capture extension’s containing app. If the device isn’t authenticated, the system asks the person to authenticate before it launches the app. Provide an ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains the relevant information your app needs to take someone to the correct area of the app. Create your ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/NSUserActivityTypeLockedCameraCapture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " activity type. The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypeLockedCameraCapture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activity type tells your app that it was launched from your capture extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The systems throws ",
+              "type": "text"
+            },
+            {
+              "code": "ApplicationLaunchError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the application fails to launch. ",
+              "type": "text"
+            },
+            {
+              "code": "failureReason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows you to update the UI, and let someone know why the application wasn’t launched. Failure to authorize and unlock the device is a common reason this error is thrown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows a function in the capture extension that uses ",
+              "type": "text"
+            },
+            {
+              "code": "openApplication(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to open the capture extension’s containing app. It passes the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypeLockedCameraCapture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activity type to let the app know it is being launched from the capture extension. This function also handles the ",
+              "type": "text"
+            },
+            {
+              "code": "ApplicationLaunchError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display an error if the app can’t launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func launchApp(with session: LockedCameraCaptureSession, info: String) {",
+            "\tTask {",
+            "\t\tdo {",
+            "\t\t\tlet activity = NSUserActivityTypeLockedCameraCapture",
+            "\t\t\tactivity.userInfo = [UserInfoKey: info]",
+            "\t\t\ttry await session.openApplication(for: activity)",
+            "\t\t} catch {",
+            "\t\t\tStatusManager.displayError(\"Unable to open app - \\(error.localizedDescription)\")",
+            "\t\t}",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-captured-content-in-your-app",
+          "level": 3,
+          "text": "Access captured content in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/sessionContentUpdates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncSequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the app to process captured content from the capture extension sessions and move the captured content where it belongs long-term. The sequence begins with the URLs of the current session content directories. The sequence continues providing updates about any newly added or removed session content directories. When transitioning from the capture extension to the app, the most recent session content directory may become available shortly after your app launches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re done with each directory, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/invalidateSessionContent(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "code": "LockedCameraCaptureManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". After you invalidate the directory, the system deletes it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses ",
+              "type": "text"
+            },
+            {
+              "code": "sessionContentUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to process captured content from the capture extension within the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for await update in LockedCameraCaptureManager.shared.sessionContentUpdates {",
+            "    switch update {",
+            "    case .initial(let urls):",
+            "        // Process captured content from existing session content directories.",
+            "        break",
+            "    case .added(let url):",
+            "        // Process captured content from a new session content directory.",
+            "        break",
+            "    case .removed(let url):",
+            "        // Process captured content from a removed session content directory.",
+            "        break",
+            "    default:",
+            "        // An unknown sessionContentUpdate was received.",
+            "        break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Locked-Camera-Capture-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Locked-Camera-Capture-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/554cb5f26e2e6a1f759be4a76fdd33fd/Locked-Camera-Capture-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c2a77a54fb9667d1e58e1995951eb99/Locked-Camera-Capture-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture": {
+      "abstract": [
+        {
+          "text": "Capture content with your app’s camera experience when the device is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "locked.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "LockedCameraCapture",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager": {
+      "abstract": [
+        {
+          "text": "An object that provides handling of captured content and transitioning to the extension’s containing app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureManager"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "LockedCameraCaptureManager",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturemanager"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/invalidateSessionContent(at:)": {
+      "abstract": [
+        {
+          "text": "Tells the system that the app no longer needs the directory at the URL and it can be deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateSessionContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/invalidateSessionContent(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidateSessionContent(at:)",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturemanager/invalidatesessioncontent(at:)"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/sessionContentUpdates": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "AsyncSequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to process captured content from your capture extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionContentUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19LockedCameraCapture0abC7ManagerC",
+          "text": "LockedCameraCaptureManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19LockedCameraCapture0abC7ManagerC20SessionContentUpdateO",
+          "text": "SessionContentUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureManager/sessionContentUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionContentUpdates",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturemanager/sessioncontentupdates"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that can request to open the extension’s containing app and receives session configuration",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "LockedCameraCaptureSession",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturesession"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/openApplication(for:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to open the extension’s containing app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openApplication"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/openApplication(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openApplication(for:)",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturesession/openapplication(for:)"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/sessionContentURL": {
+      "abstract": [
+        {
+          "text": "A temporary directory URL inside the extension’s data container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionContentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureSession/sessionContentURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionContentURL",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracapturesession/sessioncontenturl"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureUIScene": {
+      "abstract": [
+        {
+          "text": "A structure that contains the session object and UI to display for the locked camera capture extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureUIScene"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/LockedCameraCaptureUIScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LockedCameraCaptureUIScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "LockedCameraCaptureUIScene",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/lockedcameracaptureuiscene"
+    },
+    "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/NSUserActivityTypeLockedCameraCapture": {
+      "abstract": [
+        {
+          "text": "A type to use when opening your app from the capture extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeLockedCameraCapture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.LockedCameraCapture/documentation/LockedCameraCapture/NSUserActivityTypeLockedCameraCapture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeLockedCameraCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityTypeLockedCameraCapture",
+      "type": "topic",
+      "url": "/documentation/lockedcameracapture/nsuseractivitytypelockedcameracapture"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to capture and save media",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVCaptureEventInteraction": {
+      "abstract": [
+        {
+          "text": "An object that registers handlers to respond to capture events from system hardware buttons.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureEventInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVCaptureEventInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureEventInteraction",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVCaptureEventInteraction"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/CameraCaptureIntent": {
+      "abstract": [
+        {
+          "text": "Designates intent that will launch an activity that uses device’s camera to capture photos or videos. Marking your intent with this protocol makes it available as a possible action for Camera quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraCaptureIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/CameraCaptureIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CameraCaptureIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/CameraCaptureIntent"
+    },
+    "doc://com.apple.documentation/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/PhotoKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVCaptureEventInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureEventInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.LockedCameraCapture~1documentation~1LockedCameraCapture~1NSUserActivityTypeLockedCameraCapture/title",
+          "value": "NSUserActivityTypeLockedCameraCapture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.LockedCameraCapture~1documentation~1LockedCameraCapture~1NSUserActivityTypeLockedCameraCapture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityTypeLockedCameraCapture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/lockedcameracapture/creating-a-camera-experience-for-the-lock-screen"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/lockedcameracapture/creating-a-camera-experience-for-the-lock-screen"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

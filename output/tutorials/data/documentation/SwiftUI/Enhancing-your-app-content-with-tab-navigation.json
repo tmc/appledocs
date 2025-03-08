@@ -1,0 +1,3296 @@
+{
+  "abstract": [
+    {
+      "text": "Keep your app content front and center while providing quick access to navigation using the tab bar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Enhancing your app’s content with tab navigation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewStyle/sidebarAdaptable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tab view style, which optimizes the content browsing experience for each platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iPadOS 18, the tab bar appears on the top of the screen floating over your content instead of appearing at the bottom of the screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This appearance creates an immersive full-screen browsing experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tab bars provide people with access to the top-level navigation in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, too many tabs can make it hard for people to locate content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implementing a sidebar makes it easier to navigate a detailed information hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "Enhancing-your-app-content-with-tab-navigation-hero-video.mp4",
+          "metadata": {
+            "deviceFrame": "iPadPro12-9"
+          },
+          "type": "video"
+        },
+        {
+          "anchor": "Create-a-tab-bar",
+          "level": 3,
+          "text": "Create a tab bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an explicit selection binding using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView/init(selection:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. To add a tab within a ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Destination Video uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(_:systemImage:value:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to create each tab:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var selectedTab: Tabs = .watchNow",
+            "",
+            "var body: some View {",
+            "    TabView(selection: $selectedTab) {",
+            "        Tab(\"Watch Now\", systemImage: \"play\", value: .watchNow) {",
+            "            WatchNowView()",
+            "        }",
+            "        // More tabs...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The selection value type of the ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the value type of the tabs it contains. In this case, the value of each ",
+              "type": "text"
+            },
+            {
+              "code": "Tab",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is of type ",
+              "type": "text"
+            },
+            {
+              "code": "Tabs",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which this sample defines the following enumeration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum Tabs: Equatable, Hashable, Identifiable {",
+            "    case watchNow",
+            "    case library",
+            "    case new",
+            "    case favorites",
+            "    case search",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using symbol images for your tabs, use the outline variant. The system automatically selects the filled variant when it appears in a tab bar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Enhancing-your-app-content-with-tab-navigation-create-tab",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, this sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole/search",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " role with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(value:role:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. Setting the tab role to ",
+              "type": "text"
+            },
+            {
+              "code": "search",
+              "type": "codeVoice"
+            },
+            {
+              "text": " makes the system applies a few default customizations to the ",
+              "type": "text"
+            },
+            {
+              "code": "Tab",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The search tab gets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default title for search, “search”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default system symbol for search, a magnifying glass",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default pinned behavior for search, the system automatically pins it in the tab bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "Tab(value: .search, role: .search) {",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pinned tabs appear at the trailing edge of the tab bar, depending on the preferred language of your app. When the language is a left-to-right language, they appear on the right side. When the language is a right-to-left language, they’re on the left side.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Enhancing-your-app-content-with-tab-navigation-search",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-hierarchy-in-tab-view",
+          "level": 3,
+          "text": "Build hierarchy in tab view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to declare a secondary tab hierarchy within a ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example Destination Video uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection/init(content:header:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to create tab sections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TabView(selection: $selectedTab) {",
+            "    Tab(\"Watch Now\", systemImage: \"play\", value: .watchNow) {",
+            "        WatchNowView()",
+            "    }",
+            "",
+            "    // More tabs...",
+            "    ",
+            "    TabSection {",
+            "        Tab(\"Cinematic Shots\", systemImage: \"list.and.film\", value: .collections(.cinematic)) {",
+            "            // ...",
+            "        }",
+            "    } header: {",
+            "        Label(\"Collections\", systemImage: \"folder\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then it extends the ",
+              "type": "text"
+            },
+            {
+              "code": "Tabs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration to account for secondary tabs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum Tabs: Equatable, Hashable, Identifiable {",
+            "    case watchNow",
+            "    // ..",
+            "    case search",
+            "    case collections(Category)",
+            "    case animations(Category)",
+            "}",
+            "",
+            "enum Category: Equatable, Hashable, Identifiable, CaseIterable {",
+            "    case cinematic",
+            "    case forest",
+            "    case sea",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " loop to iterate and initialize a new ",
+              "type": "text"
+            },
+            {
+              "code": "Tab",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each tab value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TabSection {",
+            "    ForEach(Category.collectionsList) { collection in",
+            "        Tab(collection.name, systemImage: collection.icon, value: Tabs.collections(collection)) {",
+            "            // ..",
+            "        }",
+            "    }",
+            "} header: {",
+            "    Label(\"Collections\", systemImage: \"folder\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Make-the-tab-bar-adaptable",
+          "level": 3,
+          "text": "Make the tab bar adaptable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tab bars with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewStyle/sidebarAdaptable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style allow people to toggle between the sidebar and tab bar. This lets your app leverage the convenience of being able to quickly navigate to top-level destinations within a compact tab bar while providing rich navigation hierarchy and destination options in the sidebar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an adaptable tab bar, Destination Video adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to its ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and passes in the value ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewStyle/sidebarAdaptable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TabView(selection: $selectedTab) {",
+            "    // Tabs",
+            "    // ..",
+            "}",
+            ".tabViewStyle(.sidebarAdaptable)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "sidebarAdaptable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " style appears differently depending on the platform, as shown in the following images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-section-video.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TabView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " appears as top tab bar that becomes a sidebar in iPadOS. Tab sections appear in both the sidebar and the tab bar. In compact view, a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TabView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " appears as a bottom tab bar.",
+                        "type": "text"
+                      }
+                    ],
+                    "deviceFrame": "iPadPro12-9"
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "iPadOS"
+            },
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-iOS-section-video",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TabView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " appears as a bottom tab bar in iOS. Secondary tabs appear in the tab bar. Unlike iPadOS, the section header doesn’t appear in the tab bar.",
+                        "type": "text"
+                      }
+                    ],
+                    "deviceFrame": "iPhone14Pro"
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "iOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Enhancing-your-app-content-with-tab-navigation-macOS",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "A ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "TabView",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " appears as a sidebar in macOS. Tab sections also appear in the sidebar.",
+                            "type": "text"
+                          }
+                        ],
+                        "deviceFrame": "MacBookPro16"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "macOS"
+            },
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-tvOS-video.mp4",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TabView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " appears as a sidebar that collapses into a floating pill after a person selects a tab in tvOS. Tab sections appear in the sidebar.",
+                        "type": "text"
+                      }
+                    ],
+                    "deviceFrame": "tv"
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "tvOS"
+            },
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-visionOS-section-video",
+                  "metadata": {
+                    "abstract": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TabView",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " appears as an ornament in visionOS. Tab section headers appear in the ornament. If you select a tab section header in the ornament, the sidebar displays the tabs in that section.",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "visionOS"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, contents in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "ScrollView(.horizontal)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " scroll under the sidebar when you use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "sidebarAdaptable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tab view style in iPadOS. You can prevent the content from scrolling under the sidebar by adding the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipShape(_:style:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " modifier to ",
+                  "type": "text"
+                },
+                {
+                  "code": "ScrollView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-customization",
+          "level": 3,
+          "text": "Enable customization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tab view customization allows people to enter edit mode and personalize the tab bar. The customization in Destination Video allows people to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag and drop tabs to remove and add tabs to the tab bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hide non-essential tabs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reorder tabs in tab sections in the sidebar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reorder tabs in the tab bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable customizations, this sample defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and attaches it to the ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. To persist the customization, this sample adds ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an identifier for a  ",
+              "type": "text"
+            },
+            {
+              "code": "TabViewCustomization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, it adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationID(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to each tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AppStorage(\"sidebarCustomizations\") var tabViewCustomization: TabViewCustomization",
+            "@State private var selectedTab: Tabs = .watchNow",
+            "",
+            "var body: some View {",
+            "    TabView(selection: $selectedTab) {",
+            "        Tab(\"Watch Now\", systemImage: \"play\", value: .watchNow) {",
+            "            WatchNowView()",
+            "        }",
+            "        .customizationID(Tabs.watchNow.customizationID)",
+            "",
+            "        // More tabs...",
+            "",
+            "    }",
+            "    .tabViewCustomization($tabViewCustomization)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep the most important tabs visible and in a fixed position, turn off customization behavior for those tabs using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationBehavior(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Tab(\"Watch Now\", systemImage: \"play\", value: .watchNow) {",
+            "    WatchNowView()",
+            "}",
+            ".customizationBehavior(.disabled, for: .sidebar, .tabBar)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Enhancing-your-app-content-with-tab-navigation-customization",
+              "metadata": {
+                "deviceFrame": "iPadPro12-9"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-default-visibility-for-tabs",
+          "level": 3,
+          "text": "Set the default visibility for tabs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS, if there are too many tabs to fit in the screen, the system collapses the tabs that don’t fit and enables scrolling. However, having too many tabs can make it harder for people to locate the tab they’re looking for and navigate your app. Consider limiting the number of tabs so they all fit in the tab bar. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/defaultVisibility(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier sets the default visibility of a ",
+              "type": "text"
+            },
+            {
+              "code": "Tab",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "TabSection",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video contains five tabs and two tab sections, each tab section contains multiple secondary tabs, but only seven tabs appear in the tab bar. In order to limit the tab bar to the most important tabs, all tabs within a ",
+              "type": "text"
+            },
+            {
+              "code": "TabSection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are hidden from the tab bar by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TabSection {",
+            "    // Tabs",
+            "} header {",
+            "    // Section header",
+            "}",
+            ".defaultVisibility(.hidden, for: .tabBar)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-iPadOS-video.mp4",
+                  "metadata": {
+                    "deviceFrame": "iPadPro12-9"
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "iPadOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Enhancing-your-app-content-with-tab-navigation-iOS",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "iOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Enhancing-your-app-content-with-tab-navigation-macOS",
+                      "metadata": {
+                        "deviceFrame": "MacBookPro16"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "macOS"
+            },
+            {
+              "content": [
+                {
+                  "identifier": "Enhancing-your-app-content-with-tab-navigation-tvOS-video.mp4",
+                  "metadata": {
+                    "deviceFrame": "tv"
+                  },
+                  "type": "video"
+                }
+              ],
+              "title": "tvOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Enhancing-your-app-content-with-tab-navigation-visionOS",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "visionOS"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you enable customization, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/defaultVisibility(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier still allows people to drag a tab from the sidebar into the tab bar. If you want to restrict tabs to only appear in the sidebar use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement/sidebarOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of setting the default visibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see Human Interface Guidelines >  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/tab-bars",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/visionOS/destination-video"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10147"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "08bd3c5ea0b3/DestinationVideo.zip": {
+      "checksum": "08bd3c5ea0b38e44d56c175dc21897a9d25c1bea5065796a942516c7f09ea771d19f713382b4bcb0a9bf88ccef44bb3c7ea7776cb4c43951eaf0a8639eba107c",
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/08bd3c5ea0b3/DestinationVideo.zip"
+    },
+    "1CE8E467-3C93-4C01-BF6A-83820CD82D3C": {
+      "alt": null,
+      "identifier": "1CE8E467-3C93-4C01-BF6A-83820CD82D3C",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/1CE8E467-3C93-4C01-BF6A-83820CD82D3C/9275_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/1CE8E467-3C93-4C01-BF6A-83820CD82D3C/9275_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/1CE8E467-3C93-4C01-BF6A-83820CD82D3C/9275_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae58e7f18887cfb2b1f8384de4a18017/Enhancing-your-app-content-with-tab-navigation-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b5b06d3a9b048573a534e28a585160e/Enhancing-your-app-content-with-tab-navigation-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-create-tab": {
+      "alt": "A screenshot of the iPadOS tab bar in Simulator. The tab bar is highlighted, the tab bar has an icon on the left that turns it into a sidebar, followed by the tabs: Watch Now, Library, New, Favorites, and Search, which appears as a magnifying glass.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-create-tab",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a5ad10f868c9474778c59000b7602ec/Enhancing-your-app-content-with-tab-navigation-create-tab@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af63690d05f8a6e9f690d23b2a70182a/Enhancing-your-app-content-with-tab-navigation-create-tab~dark@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-customization": {
+      "alt": "A screenshot of a tab view in edit mode on iPad.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-customization",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/493112fc30c02a81d5a079a6b7e45a34/Enhancing-your-app-content-with-tab-navigation-customization@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-hero-video.mp4": {
+      "alt": "A screen recording of Destination Video on iPad that shows the tab bar turning into a sidebar, then becoming editable.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-hero-video.mp4",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-hero.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5874b00c5c2b7ad74c1d96d5e24a0585/Enhancing-your-app-content-with-tab-navigation-hero-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-hero.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/669841631e7dc8762269e8ef432911b0/Enhancing-your-app-content-with-tab-navigation-hero@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-iOS": {
+      "alt": "A screenshot of tab view on iOS.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-iOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b94e40a70cf512f26ed1900ff2e5e71/Enhancing-your-app-content-with-tab-navigation-iOS@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-iOS-section-video": {
+      "alt": "A screenshot of tab view on iOS.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-iOS-section-video",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-iOS-section.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5bb5ee47439678d99d64d5f69e073f3/Enhancing-your-app-content-with-tab-navigation-iOS-section-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-iOS-section.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-iOS-section.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b2a6e4ce2cdc4b511cee474c4c3e6b0/Enhancing-your-app-content-with-tab-navigation-iOS-section@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-iPadOS-video.mp4": {
+      "alt": "A video that shows a tab bar morphing into a sidebar on iPad.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-iPadOS-video.mp4",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-iPadOS.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7802644fe3253c3078b0b1171922f267/Enhancing-your-app-content-with-tab-navigation-iPadOS-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-iPadOS.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-iPadOS.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a62a4e0e8d3b4f239967ef3be338cbe3/Enhancing-your-app-content-with-tab-navigation-iPadOS@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-macOS": {
+      "alt": "A screenshot of tab view on macOS",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d86d64648482d8e9501242564d8d27ba/Enhancing-your-app-content-with-tab-navigation-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0115c382031eb06f52616658835ce146/Enhancing-your-app-content-with-tab-navigation-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-search": {
+      "alt": "A screenshot of the tab bar with the a search tab highlighted.  The tab bar has an icon on the left that turns it into a sidebar, followed by the tabs: Watch Now, Library, New, Favorites, and Search, which appears as a magnifying glass.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-search",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59a57fb092b9a75b4ef8c91d81b0986e/Enhancing-your-app-content-with-tab-navigation-search@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e34e941e7ff17ee422e9b61d1e065450/Enhancing-your-app-content-with-tab-navigation-search~dark@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-section-video.mp4": {
+      "alt": "A video that shows a tab bar morphing into a sidebar on iPad.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-section-video.mp4",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-section.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bb23bd79fe4bb5fae1c2561bc85ea5b/Enhancing-your-app-content-with-tab-navigation-section-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-section.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-section.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59045fc688a6578294a73a927a034ef5/Enhancing-your-app-content-with-tab-navigation-section@2x.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-tvOS-video.mp4": {
+      "alt": "A video that shows tab view on tvOS.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-tvOS-video.mp4",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-tvOS.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c378579774fcddd0ccc8677f34e90e6/Enhancing-your-app-content-with-tab-navigation-tvOS-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-tvOS.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-tvOS.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/605674d4b3f4c3632229dfdd60d3371b/Enhancing-your-app-content-with-tab-navigation-tvOS.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-visionOS": {
+      "alt": "An image that shows tab view on visionOS.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-visionOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c8e9497ef4f8b04e1a24a43058e293b/Enhancing-your-app-content-with-tab-navigation-visionOS.png"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-visionOS-section-video": {
+      "alt": "An image that shows tab view on visionOS.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-visionOS-section-video",
+      "poster": "Enhancing-your-app-content-with-tab-navigation-visionOS-section.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6016b880f35b5a13af378a550abc2a6/Enhancing-your-app-content-with-tab-navigation-visionOS-section-video.mp4"
+        }
+      ]
+    },
+    "Enhancing-your-app-content-with-tab-navigation-visionOS-section.png": {
+      "alt": null,
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-visionOS-section.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18b9ea36541c7e27a6ded3b9e7011176/Enhancing-your-app-content-with-tab-navigation-visionOS-section.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-tab-bars-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-tab-bars-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7101928cf7b5af4185f57ce19c1a36b7/components-tab-bars-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a91688f44f252b669f2445c82cfca2/components-tab-bars-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that reflects a value from ",
+          "type": "text"
+        },
+        {
+          "code": "UserDefaults",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "invalidates a view on a change in value in that user default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStorage",
+      "type": "topic",
+      "url": "/documentation/swiftui/appstorage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/swiftui/foreach"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab": {
+      "abstract": [
+        {
+          "text": "The content for a tab and the tab’s associated tab item in a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tab"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tab"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tab",
+      "type": "topic",
+      "url": "/documentation/swiftui/tab"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(_:systemImage:value:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a tab that the tab view presents when the tab view’s selection",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "matches the tab’s value using a system image for the tab’s tab item image,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with a localized string key label.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Label",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemImage"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(_:systemImage:value:content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "systemImage"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:systemImage:value:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tab/init(_:systemimage:value:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(value:role:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a new tab with a label inferred from the role.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Label",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "role"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab/init(value:role:content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "role"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(value:role:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tab/init(value:role:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationBehavior(_:for:)": {
+      "abstract": [
+        {
+          "text": "Configures the customization behavior of customizable tab view content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customizationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24TabCustomizationBehaviorV",
+          "text": "TabCustomizationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24AdaptableTabBarPlacementV",
+          "text": "AdaptableTabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP",
+          "text": "TabContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP0C5ValueQa",
+          "text": "TabValue"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationBehavior(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customizationBehavior(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcontent/customizationbehavior(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationID(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the identifier for a tab to persist its state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customizationID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP",
+          "text": "TabContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP0C5ValueQa",
+          "text": "TabValue"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/customizationID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customizationID(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcontent/customizationid(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/defaultVisibility(_:for:)": {
+      "abstract": [
+        {
+          "text": "Configures the default visibility of a tab in customizable contexts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24AdaptableTabBarPlacementV",
+          "text": "AdaptableTabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP",
+          "text": "TabContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10TabContentP0C5ValueQa",
+          "text": "TabValue"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent/defaultVisibility(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultVisibility(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcontent/defaultvisibility(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement/sidebarOnly": {
+      "abstract": [
+        {
+          "text": "The sidebar tab placement location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebarOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TabPlacementV",
+          "text": "TabPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement/sidebarOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sidebarOnly",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabplacement/sidebaronly"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole/search": {
+      "abstract": [
+        {
+          "text": "The search role.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "search"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7TabRoleV",
+          "text": "TabRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole/search",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "search",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabrole/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection": {
+      "abstract": [
+        {
+          "text": "A container that you can use to add hierarchy within a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabSection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabSection",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabsection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection/init(content:header:)": {
+      "abstract": [
+        {
+          "text": "Creates a section with a header and the provided section content.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "TabContent",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "SelectionValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "header"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection/init(content:header:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "header"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(content:header:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabsection/init(content:header:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView/init(selection:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a tab view that uses a builder to create and specify",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "selection values for its tabs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView/init(selection:content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(selection:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabview/init(selection:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization": {
+      "abstract": [
+        {
+          "text": "The customizations a person makes to an adaptable sidebar tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabViewCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabViewCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabViewCustomization",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabviewcustomization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewStyle/sidebarAdaptable": {
+      "abstract": [
+        {
+          "text": "A tab bar style that adapts to each platform.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SidebarAdaptableTabViewStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebarAdaptable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28SidebarAdaptableTabViewStyleV",
+          "text": "SidebarAdaptableTabViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewStyle/sidebarAdaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sidebarAdaptable",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabviewstyle/sidebaradaptable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipShape(_:style:)": {
+      "abstract": [
+        {
+          "text": "Sets a clipping shape for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipShape"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9FillStyleV",
+          "text": "FillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipShape(_:style:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipShape(_:style:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/clipshape(_:style:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)": {
+      "abstract": [
+        {
+          "text": "Clips this view to its bounding rectangular frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "antialiased"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipped(antialiased:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/clipped(antialiased:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the customizations to apply to the sidebar representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TabViewCustomizationV",
+          "text": "TabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewCustomization(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewcustomization(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the tab view within the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewstyle(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/tab-bars": {
+      "abstract": [
+        {
+          "text": "A tab bar lets people navigate between top-level sections of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/tab-bars",
+      "images": [
+        {
+          "identifier": "components-tab-bars-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Tab bars",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/tab-bars"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar": {
+      "abstract": [
+        {
+          "text": "Provide a compact, ergonomic tab bar for quick access to key parts of your app, and a sidebar for in-depth navigation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Elevating your iPad app with a tab bar and sidebar",
+      "type": "topic",
+      "url": "/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10147": {
+      "abstract": [
+        {
+          "text": "iPadOS 18 introduces a new navigation system that gives people the flexibility to choose between using a tab bar or sidebar. The newly redesigned tab bar provides more space for content and other functionality. Learn how to use SwiftUI and UIKit to enable customization features – like adding, removing and reordering tabs – to enable a more personal touch in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10147",
+      "images": [
+        {
+          "identifier": "1CE8E467-3C93-4C01-BF6A-83820CD82D3C",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Elevate your tab and sidebar experience in iPadOS",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10147"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download (1.2 GB)",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/enhancing-your-app-content-with-tab-navigation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

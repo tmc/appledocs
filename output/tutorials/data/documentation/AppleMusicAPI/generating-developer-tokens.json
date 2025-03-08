@@ -1,0 +1,899 @@
+{
+  "abstract": [
+    {
+      "text": "Generate a developer token needed to make requests to Apple Music API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating Developer Tokens"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make requests to the Apple Music API, you need to authorize yourself as a trusted developer and member of the Apple Developer Program. The header of every Apple Music API request requires a signed developer token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two paths to generate developer tokens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re developing an app for Apple platforms (iOS, tvOS, watchOS or macOS), the recommended way to integrate with Apple Music is to use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for Swift, following the steps provided in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the directions below to create and manage developer tokens for other platforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-Developer-Token",
+          "level": 3,
+          "text": "Create a Developer Token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A developer token is a signed token used to authenticate a developer in Apple Music requests. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/create-a-media-identifier-and-private-key/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to use a developer token to authenticate yourself as a trusted developer and member of the Apple Developer Program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple Music API supports the JSON Web Token (JWT) specification, so you can pass statements and metadata called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "claims",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the available libraries for generating signed JWTs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Construct a developer token as a JSON object whose header contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The algorithm (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") you use to sign the token, which should have a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ES256",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 10-character key identifier (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") key, obtained from your developer account",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple Music supports only developer tokens signed with the ES256 algorithm. Apple Music rejects unsecured developer tokens or developer tokens signed with other algorithms. These rejections result in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "401",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "claims",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " payload of the token, include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issuer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") registered claim key, whose value is your 10-character Team ID, obtained from your developer account",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issued at",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") registered claim key, whose value indicates the time at which the token was generated, in terms of the number of seconds since epoch, in UTC",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "expiration time",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") registered claim key, whose value must not be greater than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "15777000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (6 months in seconds) from the current Unix time on the server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional, but recommended for web clients, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "origin claim",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). Only use this JWT if the origin header of the request matches one of the values in the array. This addition helps prevent unauthorized use of the tokens. For example: “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    },
+                    {
+                      "code": ":[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    },
+                    {
+                      "code": ",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://music.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”",
+                      "type": "text"
+                    },
+                    {
+                      "code": "]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To locate your Team ID, sign in to your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/account",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and click Membership in the sidebar. Your Team ID appears in the Membership Information section under the team name.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A decoded developer token has the following format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "     \"alg\": \"ES256\",",
+            "     \"kid\": \"ABC123DEFG\"",
+            "}",
+            "{",
+            "     \"iss\": \"DEF123GHIJ\",",
+            "     \"iat\": 1437179036,",
+            "     \"exp\": 1493298100",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the token, sign it with your MusicKit private key using the ES256 algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ES256 is the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://datatracker.ietf.org/doc/html/rfc7518",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " name for the Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and the SHA-256 hash.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Authorize-Requests",
+          "level": 3,
+          "text": "Authorize Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A developer token is used to authorize all Apple Music API requests. If you manage this directly, in all requests, pass the ",
+              "type": "text"
+            },
+            {
+              "code": "Authorization: Bearer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header set to the developer token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -H 'Authorization: Bearer [developer token]' \"https://api.music.apple.com/v1/test\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign in and authenticate requests for an Apple Music subscriber, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about requests, responses, and error handling, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Rate-Limiting",
+          "level": 3,
+          "text": "Request Rate Limiting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music API limits the number of requests your app can make using a developer token within a specific period of time. If this limit is exceeded, you’ll temporarily receive ",
+              "type": "text"
+            },
+            {
+              "code": "429 Too Many Requests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error responses for requests that use the token. This error resolves itself shortly after the request rate has reduced.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page": {
+      "abstract": [
+        {
+          "text": "Use pagination to fetch the next set of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Resources by Page",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetching-resources-by-page"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships": {
+      "abstract": [
+        {
+          "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Resource Representation and Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization": {
+      "abstract": [
+        {
+          "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storefronts and Localization",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts-and-localization"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/MusicKit"
+    },
+    "doc://com.apple.documentation/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API": {
+      "abstract": [
+        {
+          "text": "Enable your app’s integration with the MusicKit App Service in the developer portal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Automatic Developer Token Generation for Apple Music API",
+      "type": "topic",
+      "url": "/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7518": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7518",
+      "title": "JSON Web Algorithms (JWA)",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Algorithms (JWA)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7518"
+    },
+    "https://developer.apple.com/account": {
+      "identifier": "https://developer.apple.com/account",
+      "title": "developer account",
+      "titleInlineContent": [
+        {
+          "text": "developer account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/create-a-media-identifier-and-private-key/": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/create-a-media-identifier-and-private-key/",
+      "title": "Creating a MusicKit identifier and private key",
+      "titleInlineContent": [
+        {
+          "text": "Creating a MusicKit identifier and private key",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/create-a-media-identifier-and-private-key/"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "JWT specification",
+      "titleInlineContent": [
+        {
+          "text": "JWT specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/generating-developer-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

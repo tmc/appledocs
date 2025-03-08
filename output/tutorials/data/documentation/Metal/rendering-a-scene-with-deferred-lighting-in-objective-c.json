@@ -1,0 +1,2217 @@
+{
+  "abstract": [
+    {
+      "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Rendering a Scene with Deferred Lighting in Objective-C"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates a deferred lighting renderer that implements shadows using a shadow map, and culls light volumes using the stencil buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-1-DeferredLighting",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deferred lighting can render a large number of lights more easily than forward lighting. For example, with forward lighting, in a scene with many lights, it’s infeasible for every fragment to calculate the contribution of every light. Complex sorting and binning algorithms must be implemented to limit the calculation of light contributions to only those lights affecting each fragment. With deferred lighting, multiple lights can be applied to the scene with ease.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS.  The default scheme is macOS, which runs the sample as is on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Splitting render targets into separate groups for fragment function execution requires a macOS or iOS device that supports raster order groups. Query the ",
+                  "type": "text"
+                },
+                {
+                  "code": "rasterOrderGroupsSupported",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property of your device to determine support.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample contains the following preprocessor conditionals that you can modify to control the configuration of the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#define USE_EYE_DEPTH              1",
+            "#define LIGHT_STENCIL_CULLING      1",
+            "#define SUPPORT_BUFFER_EXAMINATION 1"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s what they modify in the app’s behavior:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "USE_EYE_DEPTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — When enabled, writes depth values in eye space to the G-buffer depth component. This allows the deferred pass to calculate the eye space fragment position more easily to apply lighting. When disabled, the screen depth is written to the G-buffer depth component and an extra inverse transform from screen space to eye space is necessary to calculate lighting contributions in the deferred pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "LIGHT_STENCIL_CULLING",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — When enabled, uses the stencil buffer to avoid execution of lighting calculations on fragments that don’t intersect with a 3D light volume. When disabled, all fragments covered by a light in screen space will have lighting calculations executed. This means that considerably more fragments will have expensive lighting calculations executed than is actually necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUPPORT_BUFFER_EXAMINATION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Enables toggling of buffer examination mode at runtime. Code protected by this definition is only useful to examine or debug parts of the underlying implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, press the following keys to examine the scene at runtime:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 1 to see all of the examination views at the same time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 2 to see the G-buffer albedo data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 3 to see the G-buffer normal data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 4 to see the G-buffer depth data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 5 to see the G-buffer specular data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 6 to see the G-buffer shadow data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 7 to see the shadow map.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 8 to see the masked light volume coverage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 9 to see the full light volume coverage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press 0 or Return to exit an examination view and return to the standard view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, tap the screen to toggle between the standard and examination views at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-Important-Concepts",
+          "level": 3,
+          "text": "Review Important Concepts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you get started with the sample app, review these concepts to better understand key details of a deferred lighting renderer and some unique Metal features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Traditional Deferred Lighting Renderer",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A traditional deferred lighting renderer is typically separated into two render passes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "First pass: G-buffer rendering.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The renderer draws and transforms the scene’s models, and the fragment function renders the results to a collection of textures known as the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "geometry buffer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "G-buffer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The G-buffer contains material colors from the models, as well as per-fragment normal, shadow, and depth values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Second pass: Deferred lighting and composition.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The renderer draws each light volume, using the G-buffer data to reconstruct the position of each fragment and apply the lighting calculations. As the lights are drawn, the output of each light is blended on top of the previous light outputs. Finally, the renderer composites other data, such as shadows and directional lighting, onto the scene by executing a full-screen quad or a compute kernel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-2-TraditionalDeferredLighting",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some macOS GPUs have an ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "immediate mode rendering",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " (IMR) architecture. On IMR GPUs, a deferred lighting renderer can only be implemented with at least two render passes. Therefore, the sample implements a two-pass deferred lighting algorithm for the macOS version of the app. The iOS and tvOS simulators run on macOS Metal implementations so these also use the two-pass deferred lighting algorithm.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-Pass Deferred Lighting on Apple silicon GPUs",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple silicon GPUs, found on all iOS and tvOS device and now certain macOS devices, use a tile-based deferred rendering (TBDR) architecture, which allows them to render data to tile memory within the GPU. By rendering to tile memory, the device avoids potentially expensive round trips between the GPU and system memory (via a bandwidth-constrained memory bus). Whether a GPU writes tile memory to system memory depends on these configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The store action of the app’s render command encoders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The storage mode of the app’s textures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "MTLStoreActionStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set as a store action, output data for the render targets of a render pass is written from tile memory to system memory, where the render targets are backed by textures. If this data is then used for a subsequent render pass, input data from these textures is read from system memory into a texture cache in the GPU. Therefore, a traditional deferred lighting renderer that accesses system memory requires G-buffer data to be stored in system memory between the first and second render passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-3-TraditionalDeferredLightingOnTBDR",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, because of the TBDR architecture, Apple silicon GPUs can also read data from tile memory at any given time. This allows fragment shaders to read from and perform calculations on render targets in tile memory, before this data is written to tile memory again. This feature allows the sample to avoid storing G-buffer data in system memory between the first and second render passes; thus, a deferred lighting renderer can be implemented with a single render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "G-buffer data is produced and consumed exclusively by the GPU, not the CPU, within the single render pass. Therefore, this data isn’t loaded from system memory before the render pass begins, nor is it stored in system memory after the render pass finishes. Instead of reading G-buffer data from a texture in system memory, the lighting fragment functions read data from the G-buffer while it’s still attached to the render pass as a render target. Thus, system memory doesn’t need to be allocated for G-buffer textures, and each of these textures can be declared with a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLStorageModeMemoryless",
+              "type": "codeVoice"
+            },
+            {
+              "text": " storage mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-4-SinglePassDeferredLightingOnTBDR",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The feature that allows a TBDR GPU to read from attached render targets in a fragment function is also known as ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "programmable blending",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Deferred Lighting with Raster Order Groups",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when a fragment shader writes data to a pixel, the GPU waits until the shader has completely finished writing to that pixel before beginning the execution of another fragment shader for that same pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-5-DeferredLightingWithoutRasterOrderGroups",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Raster order groups allow apps to increase the parallelization of the GPU’s fragment shaders. With raster order groups, a fragment function can separate render targets into different execution groups. This separation allows the GPU to read from and perform calculations on render targets in one group, before a previous instance of a fragment shader has finished writing data to pixels in another group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-6-DeferredLightingWithRasterOrderGroups",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, some lighting fragment functions use these raster order groups:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Raster order group 0.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AAPLLightingROG",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is used for the render target that contains the results of the lighting calculations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Raster order group 1.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AAPLGBufferROG",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is used for the G-buffer data in the lighting function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These raster order groups allow the GPU to read the G-buffer in a fragment shader and execute the lighting calculations, before the lighting calculations from a previous instance of a fragment shader have finished writing their output data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-a-Deferred-Lighting-Frame",
+          "level": 3,
+          "text": "Render a Deferred Lighting Frame",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample renders each full frame by rendering these stages, in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shadow map",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "G-buffer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Directional light",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Light mask",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Point lights",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Skybox",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fairy lights",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s single pass deferred renderer produces the G-buffer and performs all subsequent stages in a single render pass. This single-pass implementation is possible due to the TBDR architecture of iOS and tvOS GPUs, which allows a device to read G-buffer data from render targets in tile memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id <MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:_viewRenderPassDescriptor];",
+            "renderEncoder.label = @\"Combined GBuffer & Lighting Pass\";",
+            "",
+            "[super drawGBuffer:renderEncoder];",
+            "",
+            "[self drawDirectionalLight:renderEncoder];",
+            "",
+            "[super drawPointLightMask:renderEncoder];",
+            "",
+            "[self drawPointLights:renderEncoder];",
+            "",
+            "[super drawSky:renderEncoder];",
+            "",
+            "[super drawFairies:renderEncoder];",
+            "",
+            "[renderEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s traditional deferred renderer produces the G-buffer in one render pass and then performs all subsequent stages in another render pass. This two-pass implementation is necessary with GPUs using an IMR architecture, which don’t support reading render target color data in a fragment function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:_GBufferRenderPassDescriptor];",
+            "renderEncoder.label = @\"GBuffer Generation\";",
+            "",
+            "[super drawGBuffer:renderEncoder];",
+            "",
+            "[renderEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:_finalRenderPassDescriptor];",
+            "renderEncoder.label = @\"Lighting & Composition Pass\";",
+            "",
+            "[self drawDirectionalLight:renderEncoder];",
+            "",
+            "[super drawPointLightMask:renderEncoder];",
+            "",
+            "[self drawPointLights:renderEncoder];",
+            "",
+            "[super drawSky:renderEncoder];",
+            "",
+            "[super drawFairies:renderEncoder];",
+            "",
+            "[renderEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-the-Shadow-Map",
+          "level": 3,
+          "text": "Render the Shadow Map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample renders a shadow map for the single directional light in the scene (the sun) by rendering the model from the light’s perspective.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-7-ShadowMap",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The render pipeline for the shadow map has a vertex function but not a fragment function; therefore, the sample can determine the screen-space depth value written to the shadow map without executing further stages of the render pipeline. (Additionally, the render executes quickly because it doesn’t have a fragment function.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRenderPipelineDescriptor *renderPipelineDescriptor = [MTLRenderPipelineDescriptor new];",
+            "renderPipelineDescriptor.label = @\"Shadow Gen\";",
+            "renderPipelineDescriptor.vertexDescriptor = nil;",
+            "renderPipelineDescriptor.vertexFunction = shadowVertexFunction;",
+            "renderPipelineDescriptor.fragmentFunction = nil;",
+            "renderPipelineDescriptor.depthAttachmentPixelFormat = shadowMapPixelFormat;",
+            "",
+            "_shadowGenPipelineState = [_device newRenderPipelineStateWithDescriptor:renderPipelineDescriptor",
+            "                                                                  error:&error];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before drawing geometry for the shadow map, the sample sets a depth bias value to reduce shadow artifacts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[encoder setDepthBias:0.015 slopeScale:7 clamp:0.02];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in the fragment function of the G-buffer stage, the sample tests whether the fragment is occluded and shadowed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "half shadow_sample = shadowMap.sample_compare(shadowSampler, in.shadow_uv, in.shadow_depth);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample stores the result of the ",
+              "type": "text"
+            },
+            {
+              "code": "sample_compare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the ",
+              "type": "text"
+            },
+            {
+              "code": "w",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component of the ",
+              "type": "text"
+            },
+            {
+              "code": "normal_shadow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " render target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "gBuffer.normal_shadow = half4(eye_normal.xyz, shadow_sample);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the directional light and point light composition stages, the sample reads the shadow value from the G-buffer and applies it to the fragment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-the-G-Buffer",
+          "level": 3,
+          "text": "Render the G-Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s G-buffer contains these textures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "albedo_specular_GBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which stores albedo and specular data. Albedo data is stored in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components; specular data is stored in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "normal_shadow_GBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which stores normal and shadow data. Normal data is stored in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components; shadow data is stored in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "depth_GBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which stores depth values in eye space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-8-GBufferTextures",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sample renders the G-buffer, both the traditional and single pass deferred renderers attach all the G-buffer textures as render targets for the render pass. However, because devices with a TBDR architecture can both render the G-buffer and read from it in a single render pass, the sample creates the G-buffer textures with a memoryless storage mode, which indicates that system memory isn’t allocated for these textures. Instead, these textures are allocated and populated only in tile memory for the duration of the render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the G-buffer textures in the common ",
+              "type": "text"
+            },
+            {
+              "code": "drawableSizeWillChange:withGBufferStorageMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, but the single-pass deferred renderer sets the ",
+              "type": "text"
+            },
+            {
+              "code": "storageMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to ",
+              "type": "text"
+            },
+            {
+              "code": "MTLStorageModeMemoryless",
+              "type": "codeVoice"
+            },
+            {
+              "text": " while the traditional deferred renderer sets it to ",
+              "type": "text"
+            },
+            {
+              "code": "MTLStorageModePrivate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_GBufferStorageMode = MTLStorageModeMemoryless;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the traditional deferred renderer, after the sample finishes writing data to the G-buffer textures, it calls the ",
+              "type": "text"
+            },
+            {
+              "code": "endEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to finalize the G-buffer render pass. Because the store action for the render command encoder is set to ",
+              "type": "text"
+            },
+            {
+              "code": "MTLStoreActionStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the GPU writes each of the render target textures to video memory when the encoder completes its execution. This allows the sample to read these textures from video memory in the subsequent deferred lighting and composition render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the single pass deferred renderer, after the sample finishes writing data to the G-buffer textures, the sample doesn’t finalize the render command encoder and instead continues to use it for subsequent stages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-Directional-Lighting-and-Shadows",
+          "level": 3,
+          "text": "Apply the Directional Lighting and Shadows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample applies directional lighting and shadows to the drawable that’s destined for the display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The traditional deferred renderer reads G-buffer data from textures set as arguments to a fragment function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment half4",
+            "deferred_directional_lighting_fragment_traditional(",
+            "    QuadInOut                in                      [[ stage_in ]],",
+            "    constant AAPLFrameData & frameData               [[ buffer(AAPLBufferIndexFrameData) ]],",
+            "    texture2d<half>          albedo_specular_GBuffer [[ texture(AAPLRenderTargetAlbedo) ]],",
+            "    texture2d<half>          normal_shadow_GBuffer   [[ texture(AAPLRenderTargetNormal) ]],",
+            "    texture2d<float>         depth_GBuffer           [[ texture(AAPLRenderTargetDepth)  ]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The single pass deferred renderer reads G-buffer data from render targets attached to the render pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GBufferData",
+            "{",
+            "    half4 lighting        [[color(AAPLRenderTargetLighting), raster_order_group(AAPLLightingROG)]];",
+            "    half4 albedo_specular [[color(AAPLRenderTargetAlbedo),   raster_order_group(AAPLGBufferROG)]];",
+            "    half4 normal_shadow   [[color(AAPLRenderTargetNormal),   raster_order_group(AAPLGBufferROG)]];",
+            "    float depth           [[color(AAPLRenderTargetDepth),    raster_order_group(AAPLGBufferROG)]];",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "fragment AccumLightBuffer",
+            "deferred_directional_lighting_fragment_single_pass(",
+            "    QuadInOut                in        [[ stage_in ]],",
+            "    constant AAPLFrameData & frameData [[ buffer(AAPLBufferIndexFrameData) ]],",
+            "    GBufferData              GBuffer )"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although these fragment functions have different inputs, they share a common implementation in the ",
+              "type": "text"
+            },
+            {
+              "code": "deferred_directional_lighting_fragment_common",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fragment function. This function performs these operations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reconstructs the normals from the G-buffer normal data to calculate the diffuse term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reconstructs the eye space position from the G-buffer depth data to apply specular highlights.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uses the G-buffer shadow data to darken the fragment and apply the shadow to the scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this is the first stage that renders to the drawable, the iOS and tvOS renderer obtains a drawable before the earlier G-buffer stage so that the drawable can be merged with the output of later stages. The traditional deferred renderer, however, delays obtaining a drawable until after the G-buffer stage is completed and before the directional light stage begins. This delay reduces the amount of time that the app holds onto the drawable and thus improves performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because of the state of ",
+                  "type": "text"
+                },
+                {
+                  "code": "_directionLightDepthStencilState",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the ",
+                  "type": "text"
+                },
+                {
+                  "code": "deferred_directional_lighting_fragment",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " functions only execute for fragments that should be lit. This optimization is simple yet important, and saves many fragment shader execution cycles.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Cull-the-Light-Volumes",
+          "level": 3,
+          "text": "Cull the Light Volumes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a stencil mask that’s used to avoid executing expensive lighting calculations for many fragments. It creates this stencil mask by using the depth buffer from the G-buffer pass, and the stencil buffer, to track whether a light volume intersects any geometry. (If not, then it isn’t casting light on anything.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "drawPointLightMask:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation, the sample sets the ",
+              "type": "text"
+            },
+            {
+              "code": "_lightMaskPipelineState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " render pipeline and encodes an instanced draw call to draw only the back faces of icosahedrons, which encompass the volumes of the point lights. If a fragment within this draw call fails the depth test, this result indicates that the back face of the icosahedron is behind some geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setRenderPipelineState:_lightMaskPipelineState];",
+            "[renderEncoder setDepthStencilState:_lightMaskDepthStencilState];",
+            "",
+            "[renderEncoder setStencilReferenceValue:128];",
+            "[renderEncoder setCullMode:MTLCullModeFront];",
+            "",
+            "[renderEncoder setVertexBuffer:_frameDataBuffers[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexFrameData];",
+            "[renderEncoder setFragmentBuffer:_frameDataBuffers[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexFrameData];",
+            "[renderEncoder setVertexBuffer:_lightsData offset:0 atIndex:AAPLBufferIndexLightsData];",
+            "[renderEncoder setVertexBuffer:_lightPositions[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexLightsPosition];",
+            "",
+            "MTKMeshBuffer *vertexBuffer = _icosahedronMesh.vertexBuffers[AAPLBufferIndexMeshPositions];",
+            "[renderEncoder setVertexBuffer:vertexBuffer.buffer offset:vertexBuffer.offset atIndex:AAPLBufferIndexMeshPositions];",
+            "",
+            "MTKSubmesh *icosahedronSubmesh = _icosahedronMesh.submeshes[0];",
+            "[renderEncoder drawIndexedPrimitives:icosahedronSubmesh.primitiveType",
+            "                          indexCount:icosahedronSubmesh.indexCount",
+            "                           indexType:icosahedronSubmesh.indexType",
+            "                         indexBuffer:icosahedronSubmesh.indexBuffer.buffer",
+            "                   indexBufferOffset:icosahedronSubmesh.indexBuffer.offset",
+            "                       instanceCount:AAPLNumLights];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "_lightMaskPipelineState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t have a fragment function, so no color data is written from this render pipeline. However, due to the set ",
+              "type": "text"
+            },
+            {
+              "code": "_lightMaskDepthStencilState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depth and stencil state, any fragment that fails the depth test increments the stencil buffer for that fragment. Fragments that contain geometry have a starting depth value of ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which the sample set in the G-buffer stage. Therefore, any fragment that fails the depth test while ",
+              "type": "text"
+            },
+            {
+              "code": "_lightMaskDepthStencilState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set increments the depth value to greater than ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (Because front face culling is enabled, a fragment that fails the depth test and has a value greater than ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that at least the back half of the icosahedron is behind all geometry.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the next draw call, in the ",
+              "type": "text"
+            },
+            {
+              "code": "drawPointLightsCommon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation, the sample applies the contribution of the point lights to the drawable. The sample tests whether the front half of the icosahedron is in front of all geometry, which determines if the volume intersects some geometry and thus if the fragment should be lit. The depth and stencil state,  ",
+              "type": "text"
+            },
+            {
+              "code": "_pointLightDepthStencilState",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", set for this draw call only executes the fragment function if the stencil value for the fragment is greater than the reference value of ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (Because the stencil test value is set to ",
+              "type": "text"
+            },
+            {
+              "code": "MTLCompareFunctionLess",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample passes the test only if the reference value of ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is less than the value in the stencil buffer.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setDepthStencilState:_pointLightDepthStencilState];",
+            "",
+            "[renderEncoder setStencilReferenceValue:128];",
+            "[renderEncoder setCullMode:MTLCullModeBack];",
+            "",
+            "[renderEncoder setVertexBuffer:_frameDataBuffers[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexFrameData];",
+            "[renderEncoder setVertexBuffer:_lightsData offset:0 atIndex:AAPLBufferIndexLightsData];",
+            "[renderEncoder setVertexBuffer:_lightPositions[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexLightsPosition];",
+            "",
+            "[renderEncoder setFragmentBuffer:_frameDataBuffers[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexFrameData];",
+            "[renderEncoder setFragmentBuffer:_lightsData offset:0 atIndex:AAPLBufferIndexLightsData];",
+            "[renderEncoder setFragmentBuffer:_lightPositions[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexLightsPosition];",
+            "",
+            "MTKMeshBuffer *vertexBuffer = _icosahedronMesh.vertexBuffers[AAPLBufferIndexMeshPositions];",
+            "[renderEncoder setVertexBuffer:vertexBuffer.buffer offset:vertexBuffer.offset atIndex:AAPLBufferIndexMeshPositions];",
+            "",
+            "MTKSubmesh *icosahedronSubmesh = _icosahedronMesh.submeshes[0];",
+            "[renderEncoder drawIndexedPrimitives:icosahedronSubmesh.primitiveType",
+            "                          indexCount:icosahedronSubmesh.indexCount",
+            "                           indexType:icosahedronSubmesh.indexType",
+            "                         indexBuffer:icosahedronSubmesh.indexBuffer.buffer",
+            "                   indexBufferOffset:icosahedronSubmesh.indexBuffer.offset",
+            "                       instanceCount:AAPLNumLights];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the draw call in ",
+              "type": "text"
+            },
+            {
+              "code": "drawPointLightMask:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " increments the stencil values for fragments that are behind any geometry, the only fragments for which the sample executes the fragment function are those that meet both of these conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fragments whose front face passes the depth test and is in front of some geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fragments whose back face fails the depth test and is behind some geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagrams show the difference in fragment coverage between a rendered frame that uses this stencil mask algorithm and another that doesn’t. When the algorithm is enabled, pixels in green are pixels for which the point light fragment function was executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-9-StencilMaskOnly",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the algorithm is disabled, pixels in green and red are pixels for which the point light fragment function was executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "deferred-lighting-objc-10-StencilMaskVSFullVolumes",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-the-Skybox-and-Fairy-Lights",
+          "level": 3,
+          "text": "Render the Skybox and Fairy Lights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the final lighting stages, the sample applies much simpler lighting techniques to the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample applies depth testing to the skybox, against the temple’s geometry, so the renderer only renders to areas of the drawable that have not been filled by some geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setRenderPipelineState:_skyboxPipelineState];",
+            "[renderEncoder setDepthStencilState:_dontWriteDepthStencilState];",
+            "[renderEncoder setCullMode:MTLCullModeFront];",
+            "",
+            "[renderEncoder setVertexBuffer:_frameDataBuffers[_frameDataBufferIndex] offset:0 atIndex:AAPLBufferIndexFrameData];",
+            "[renderEncoder setFragmentTexture:_skyMap atIndex:AAPLTextureIndexBaseColor];",
+            "",
+            "// Set mesh's vertex buffers",
+            "for (NSUInteger bufferIndex = 0; bufferIndex < _skyMesh.vertexBuffers.count; bufferIndex++)",
+            "{",
+            "    __unsafe_unretained MTKMeshBuffer *vertexBuffer = _skyMesh.vertexBuffers[bufferIndex];",
+            "    if((NSNull*)vertexBuffer != [NSNull null])",
+            "    {",
+            "        [renderEncoder setVertexBuffer:vertexBuffer.buffer",
+            "                                offset:vertexBuffer.offset",
+            "                               atIndex:bufferIndex];",
+            "    }",
+            "}",
+            "",
+            "MTKSubmesh *sphereSubmesh = _skyMesh.submeshes[0];",
+            "[renderEncoder drawIndexedPrimitives:sphereSubmesh.primitiveType",
+            "                          indexCount:sphereSubmesh.indexCount",
+            "                           indexType:sphereSubmesh.indexType",
+            "                         indexBuffer:sphereSubmesh.indexBuffer.buffer",
+            "                   indexBufferOffset:sphereSubmesh.indexBuffer.offset];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample renders fairy lights onto the drawable as 2D circles and uses a texture to determine the alpha blending factors for their fragments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "half4 c = colorMap.sample(linearSampler, float2(in.tex_coord));",
+            "",
+            "half3 fragColor = in.color * c.x;",
+            "",
+            "return half4(fragColor, c.x);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "c13bbfcfea27/RenderingASceneWithDeferredLightingInObjectiveC.zip": {
+      "checksum": "c13bbfcfea2742a633df5bd3461e04bc312a92f374970b85ef705a324d600aac5d963d8047aa5770f089dc722512606b27522e5238ca544d87390381491abab5",
+      "identifier": "c13bbfcfea27/RenderingASceneWithDeferredLightingInObjectiveC.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/c13bbfcfea27/RenderingASceneWithDeferredLightingInObjectiveC.zip"
+    },
+    "deferred-lighting-objc-1-DeferredLighting": {
+      "alt": "Screenshot of the sample app running to show the rich lighting effects.",
+      "identifier": "deferred-lighting-objc-1-DeferredLighting",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b57c4c654a8c9cf836ff539a70bfeb59/deferred-lighting-objc-1-DeferredLighting.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-10-StencilMaskVSFullVolumes": {
+      "alt": "Rendering that shows point light fragment coverage when the stencil mask is disabled.",
+      "identifier": "deferred-lighting-objc-10-StencilMaskVSFullVolumes",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/285a44a90bdba37c7a9adf4245d17cf2/deferred-lighting-objc-10-StencilMaskVSFullVolumes.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-2-TraditionalDeferredLighting": {
+      "alt": "Diagram showing the outputs of the two render passes in a traditional deferred lighting algorithm.",
+      "identifier": "deferred-lighting-objc-2-TraditionalDeferredLighting",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb16b6059e1d10fa353fb7491b0fa3c4/deferred-lighting-objc-2-TraditionalDeferredLighting.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-3-TraditionalDeferredLightingOnTBDR": {
+      "alt": "Diagram showing how G-buffer data in a traditional deferred lighting algorithm is transferred between the GPU and system memory.",
+      "identifier": "deferred-lighting-objc-3-TraditionalDeferredLightingOnTBDR",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2c124cf30e70158df0c358057d5526c/deferred-lighting-objc-3-TraditionalDeferredLightingOnTBDR.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-4-SinglePassDeferredLightingOnTBDR": {
+      "alt": "Diagram showing how G-buffer data in a single-pass deferred lighting algorithm is accessed in tile memory.",
+      "identifier": "deferred-lighting-objc-4-SinglePassDeferredLightingOnTBDR",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef0f59c934f11dc0faad9b37bfe5d269/deferred-lighting-objc-4-SinglePassDeferredLightingOnTBDR.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-5-DeferredLightingWithoutRasterOrderGroups": {
+      "alt": "Diagram showing two lights executed by a fragment shader, without raster order groups.",
+      "identifier": "deferred-lighting-objc-5-DeferredLightingWithoutRasterOrderGroups",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82a3a4f44d2a51fdead28bb54a2eda50/deferred-lighting-objc-5-DeferredLightingWithoutRasterOrderGroups.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-6-DeferredLightingWithRasterOrderGroups": {
+      "alt": "Diagram showing two lights executed by a fragment shader, with raster order groups.",
+      "identifier": "deferred-lighting-objc-6-DeferredLightingWithRasterOrderGroups",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bc70e042db17895e6cec98e56ea7b76/deferred-lighting-objc-6-DeferredLightingWithRasterOrderGroups.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-7-ShadowMap": {
+      "alt": "Rendering that shows the shadow map.",
+      "identifier": "deferred-lighting-objc-7-ShadowMap",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12a52f863370a51de55d4ae8dea30d20/deferred-lighting-objc-7-ShadowMap.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-8-GBufferTextures": {
+      "alt": "Rendering that shows the G-buffer textures.",
+      "identifier": "deferred-lighting-objc-8-GBufferTextures",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a41635942f1a18ca12ec170a704cc37/deferred-lighting-objc-8-GBufferTextures.png"
+        }
+      ]
+    },
+    "deferred-lighting-objc-9-StencilMaskOnly": {
+      "alt": "Rendering that shows point light fragment coverage when the stencil mask is enabled.",
+      "identifier": "deferred-lighting-objc-9-StencilMaskOnly",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b50b2dbf65424a8afffeeffa5c4a13ec/deferred-lighting-objc-9-StencilMaskOnly.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in C++",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-c++"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Swift",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-swift"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders": {
+      "abstract": [
+        {
+          "text": "Implement a forward plus renderer using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Forward Plus Lighting Using Tile Shaders",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes": {
+      "abstract": [
+        {
+          "text": "Use layer selection to reduce the number of render passes needed to generate an environment map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Reflections with Fewer Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-reflections-with-fewer-render-passes"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "c13bbfcfea27/RenderingASceneWithDeferredLightingInObjectiveC.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lighting-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+        "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes"
+      ],
+      "title": "Lighting Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lighting-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+                "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes"
+              ],
+              "title": "Lighting Techniques"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

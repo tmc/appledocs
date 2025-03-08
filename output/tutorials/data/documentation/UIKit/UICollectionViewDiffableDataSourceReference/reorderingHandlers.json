@@ -1,0 +1,813 @@
+{
+  "abstract": [
+    {
+      "text": "The diffable data source’s handlers for reordering items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference/reorderingHandlers"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewDiffableDataSource(py)reorderingHandlers",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "reorderingHandlers"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "__UICollectionViewDiffableDataSourceReorderingHandlers"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "reorderingHandlers"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "reorderingHandlers"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@NSCopying"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "reorderingHandlers"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "__UICollectionViewDiffableDataSourceReorderingHandlers"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide reordering handlers to support the reordering of items in your collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers/didReorderHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handler after a reordering transaction (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") occurs, so you can update your data backing store with information about the changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Allow every item to be reordered",
+                    "dataSource.reorderingHandlers.canReorderItem = { item in return true }",
+                    "",
+                    "// Option 1: Update the backing store from a CollectionDifference",
+                    "dataSource.reorderingHandlers.didReorder = { [weak self] transaction in",
+                    "    guard let self = self else { return }",
+                    "    ",
+                    "    if let updatedBackingStore = self.backingStore.applying(transaction.difference) {",
+                    "        self.backingStore = updatedBackingStore",
+                    "    }",
+                    "}",
+                    "",
+                    "// Option 2: Update the backing store from the final item identifiers",
+                    "dataSource.reorderingHandlers.didReorder = { [weak self] transaction in",
+                    "    guard let self = self else { return }",
+                    "    ",
+                    "    self.backingStore = transaction.finalSnapshot.itemIdentifiers",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Allow every item to be reordered.",
+                    "[dataSource.reorderingHandlers setCanReorderItemHandler:^BOOL(NSString *item) {",
+                    "    return YES;",
+                    "}];",
+                    "",
+                    "// Option 1: Update the backing store from a CollectionDifference.",
+                    "[dataSource.reorderingHandlers setDidReorderHandler:^(NSDiffableDataSourceTransaction<NSNumber *,NSString *> *transaction) {",
+                    "    NSArray<NSString *> *updatedBackingStore = [backingStore arrayByApplyingDifference: transaction.difference];",
+                    "    if (updatedBackingStore != nil) {",
+                    "        backingStore = updatedBackingStore;",
+                    "    }",
+                    "}];",
+                    "",
+                    "// Option 2: Update the backing store from the final item identifiers.",
+                    "[dataSource.reorderingHandlers setDidReorderHandler:^(NSDiffableDataSourceTransaction<NSNumber *,NSString *> *transaction) {",
+                    "    backingStore = transaction.finalSnapshot.itemIdentifiers;",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionTransaction-c.class": {
+      "abstract": [
+        {
+          "text": "A transaction that describes the changes after reordering the items in a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionTransaction-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionTransaction",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectiontransaction-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-c.class": {
+      "abstract": [
+        {
+          "text": "A transaction that describes the changes after reordering the items in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiffableDataSourceTransaction",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcetransaction-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-swift.struct": {
+      "abstract": [
+        {
+          "text": "A transaction that describes the changes after reordering the items in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceTransaction",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcetransaction-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference/reorderingHandlers": {
+      "abstract": [
+        {
+          "text": "The diffable data source’s handlers for reordering items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reorderingHandlers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__UICollectionViewDiffableDataSourceReorderingHandlers"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference/reorderingHandlers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reorderingHandlers"
+        }
+      ],
+      "role": "symbol",
+      "title": "reorderingHandlers",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereference/reorderinghandlers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers": {
+      "abstract": [
+        {
+          "text": "Handlers for reordering items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReorderingHandlers"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReorderingHandlers",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereorderinghandlers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers/didReorderHandler": {
+      "abstract": [
+        {
+          "text": "The handler that processes a reordering transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "didReorderHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers/didReorderHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReorderHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereorderinghandlers/didreorderhandler"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "reorderingHandlers"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reorderingHandlers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Supporting-reordering",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReorderingHandlers",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceTransaction-c.class",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionTransaction-c.class"
+              ],
+              "title": "Supporting reordering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)UICollectionViewDiffableDataSourceReorderingHandlers",
+                    "text": "UICollectionViewDiffableDataSourceReorderingHandlers<id,id>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "reorderingHandlers"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference~1reorderingHandlers/title",
+          "value": "reorderingHandlers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference~1reorderingHandlers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reorderingHandlers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/title",
+          "value": "UICollectionViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewdiffabledatasourcereference/reorderinghandlers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewdiffabledatasourcereference/reorderinghandlers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

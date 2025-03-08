@@ -1,0 +1,593 @@
+{
+  "abstract": [
+    {
+      "text": "Update your server-side code to use new features, and test your code against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-8-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "App Store Connect API 1.8 release notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect API version 1.8 provides resources that enable you to automate actions you take in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "New-features",
+          "level": 3,
+          "text": "New features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app price point information is now updated to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppPricePointV2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to reflect the effect of the tax category settings on proceeds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-salesReports",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint supports a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "reportType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUBSCRIPTION_OFFER_CODE_REDEMPTION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TestFlight now offers a new relationship, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/Build/Relationships-data.dictionary/BetaGroups-data.dictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", that identifies all beta groups for a specific build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 3,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The endpoints and objects listed in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "App Price Reference Data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that used the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appPricePoints",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource are now deprecated, including: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "List All Price Points for an App Price Tier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Read the Territory Information of an App Price Point",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Read App Price Point Information",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "List App Price Points",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppPricePoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppPricePointResponse",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppPricePointsResponse",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/Build/Relationships-data.dictionary/BetaGroups-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data and links that describe the relationship between the resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Build.Relationships.BetaGroups"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/Build/Relationships-data.dictionary/BetaGroups-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Build.Relationships.BetaGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "Build.Relationships.BetaGroups",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build/relationships-data.dictionary/betagroups-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-salesReports": {
+      "abstract": [
+        {
+          "text": "Download sales and trends reports filtered by your specified criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-salesReports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/salesReports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Download Sales and Trends Reports",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-salesreports"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 1.7 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-1-7-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.0 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-0-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.1 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-1-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.2 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-2-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.3 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-3-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 2.4 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-2-4-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.0 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-0-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.1 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-1-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.2 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-2-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.3 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-3-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.4 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-4-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.5 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-5-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.6 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-6-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.7 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-7-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-8-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your server-side code to use new features, and test your code against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-8-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Connect API 3.8 release notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-3-8-release-notes"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Connect API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store Connect API Release Notes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-connect-api-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Versions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-8-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-7-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-6-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-5-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-4-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-3-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-2-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-1-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-3-0-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-4-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-3-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-2-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-1-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-2-0-release-notes",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-connect-api-1-7-release-notes"
+      ],
+      "title": "Versions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/app-store-connect-api-1-8-release-notes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

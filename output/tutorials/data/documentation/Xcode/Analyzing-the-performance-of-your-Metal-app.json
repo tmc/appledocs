@@ -1,0 +1,2238 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing the performance of your Metal app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A low-performing frame rate can cause an app to seem sluggish or disruptive to its users, so it’s important to remove temporary interruptions, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stutters",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", to optimize your app’s user experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To get information about the cause of slowness in your app’s frame rate, you can use the Game Performance template in Instruments, which combines threading and system call information with the Metal system trace instrument.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By presenting important app states and rendering activities, the Game Performance template helps you infer the changes that are necessary to achieve consistent, smooth rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-the-Game-Performance-template",
+          "level": 3,
+          "text": "Open the Game Performance template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the performance analysis from your Xcode project by choosing Product > Profile, or by pressing Command-I.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can launch Instruments and choose a target app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Template Selection window, select Game Performance and click Choose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-choose-template.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-to-know-the-instruments",
+          "level": 3,
+          "text": "Get to know the instruments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Game Performance template includes the following instruments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates locations in the trace that a developer might want to pay special attention to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Points of Interest",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Tracks the performance and current load of the system.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "System Load",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Traces each time the OS scheduler makes a decision that might impact your app’s threads.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Thread State Trace",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records system calls and their duration.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "System Call Trace",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Tracks virtual memory activity per thread.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Virtual Memory Trace",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Profiles the running threads on all cores at regular intervals for the app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Time Profiler",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records the device thermal state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Thermal State",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records Metal GPU resource allocations, such as textures and buffers.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal Resource Events",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records Metal app events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metal Application",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records GPU events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "GPU",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Records display and vertical synchronization events.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Display",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Include-performance-limiter-or-utilization-counters",
+          "level": 3,
+          "text": "Include performance limiter or utilization counters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Instruments doesn’t collect performance counters data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can optionally include this for the instruments.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click and hold the Record button and choose Recording Options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-recording-options-dropdown.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in the Recording Options popover, choose the Performance Limiters option from the Counter Set menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-recording-options-popover.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you record the Instruments trace, it collects performance limiter and utilization counters data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Record-an-Instruments-capture",
+          "level": 3,
+          "text": "Record an Instruments capture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin collecting the data by clicking the Record button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-record.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within your app, perform the actions that reproduce a slow frame rate, and then click the Record button to stop recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-performance-anomalies",
+          "level": 3,
+          "text": "Identify performance anomalies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To expedite your review of the capture results, narrow your focus to around the time the frame rate was slow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Sometimes a frame rate anomaly is a result of infrequently skipped frames, and other times it’s due to a consistently poor frame rate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In either case, you identify frame rate anomalies by finding unexpected delay in your app’s display times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the display results, hover the pointer over a frame to check its duration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, in the screenshot below, the display instance is 50 milliseconds (ms).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below the display instance, you can inspect how many vertical synchronization (vsync) events the app skipped during that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-frame-drops.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the display instance of 50 ms is significantly longer than the display instances around it, you can consider the delay in frame delivery a stutter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In contrast, the following screenshot shows an app that maintained a consistent frame rate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-good-frame-pacing.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A duration of 16.67 ms is one 60 fps frame, and because all other frames consistently achieve this frame duration, there’s no performance anomaly to observe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all displays use a frame interval of ~16 ms. For example, vertical synchronization can happen on ~4 ms intervals.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It isn’t a requirement that display instances align with vertical synchronization for a healthy frame rate. An app that uses a 20 ms frame interval is a healthy frame rate as long as it consistently achieves 50 fps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, a delay of 50 ms is much too long for smooth animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-GPU-utilization",
+          "level": 3,
+          "text": "Check GPU utilization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After finding a performance anomaly, look for the cause by examining the GPU activities occurring around that time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The GPU Hardware track shows your shader pipeline stages that run on the shader cores.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Any long-running stages or inconsistent durations in the track timeline can indicate a utilization issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following screenshot shows a case where a display instance spanned multiple frame intervals, meaning that the app unintentionally skipped frames:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-gpu-fragment-long-running.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin investigating shader core utilization as a potential cause of poor frame rate, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe the performance anomaly. In this case, the display instance spanned multiple frame intervals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the vertex shader. In this case, the vertex shader is healthy because it completes in a small percentage of the frame interval.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hover the pointer over the fragment shader to see its duration. In this case, it ran for 74.64 ms, which is too long.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the combined duration of the vertex and the fragment shader is more than the duration of a 60 fps frame interval (16.67 ms), the app skipped a frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The vertex shader ran quickly in this case, which means the app’s frame rate issues are solely due to fragment shader overutilization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following are additional reasons for overutilization of the shader cores:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Too many render passes:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Indicated by the renderer depriving the GPU of downtime. ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Check the number of render passes that occur at the time of the poor frame rate by using the Dependencies viewer.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "High resolution:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Inidicated by critically more fragment shader activity per the same number of submitted vertices, as compared to when your viewport is set to the smaller size.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To ensure your app’s viewport isn’t related to the slowdown, temporarily reduce the viewport size to see if performance improves.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Large textures:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Indicated by high synchronization time when profiling your fragment shader.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The per-line profiling result shows a high percentage of time in wait memory.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Large meshes:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Indicated by a high number of vertices that your app submits.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Check the affected frames using the Geometry viewer.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Unoptimized shader code:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Indicated by general shader sluggishness.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If you’re able to modify your app’s shaders, profile them to identify hot spots.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, you can optimize your shaders by downsizing data types, or by minimizing the use of control structures.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You don’t necessarily know whether your shaders can benefit from optimization until you try it. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Check-CPU-utilization",
+          "level": 3,
+          "text": "Check CPU utilization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While checking your shader core utilization, also look for signs that indicate problems with your app’s CPU utilization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The screenshot below shows a case where frame skipping appears to result from something other than the shader core.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Note the gap where the shader core was idle for multiple frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-gpu-idle.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Display track spans multiple frame intervals and there are gaps in the shader core timeline, it indicates that your host app’s code is running long.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Inspect your app’s CPU utilization to determine whether it’s responsible for poor frame rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check your app’s CPU utilization, identify your rendering threads in the thread state tracks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the case of healthy CPU utilization, your app’s rendering threads generally show a significant amount of blocked time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following screenshot shows an app’s rendering thread selected, and its blocked time taking around 75% of each ~16 ms frame interval:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-cpu-blocked.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blocked time indicates that your renderer finished submitting its draw commands with some time to spare in the frame interval.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the amount of blocked time above encompasses about two-thirds of its frame interval, the host app has left enough time for the shader core to start and finish its work within the same frame interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By contrast, if your rendering threads don’t show much blocked time, it’s likely that your app is overutilizing the CPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To identify whether your app is overutilizing the CPU, and to determine the reason, perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe a stutter, as identified by a display duration longer than 16.67 ms. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that shader code isn’t the cause of the low frame rate. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "#Check-GPU-utilization",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " above.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the thread states for Running that are blue in color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the thread’s track to select it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Profile from the View Selection menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the results list items and look for the highest weight to find the methods that are spending the most time in your host app code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-cpu-long-running.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Option-click the disclosure triangle to automatically disclose your app’s symbols.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The time a thread spends running is represented by the collection of blue and orange areas in the timeline track.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a frame interval has little blocked time, it indicates CPU overutilization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To resolve the issue, focus your optimization efforts on improving slow-running code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the long-running methods are in your host app, you can easily determine whether — and how — you can optimize them to run faster.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-CPU-thread-prioritization",
+          "level": 3,
+          "text": "Check CPU thread prioritization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other processes can preempt your app if you misconfigure thread priority.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To consider these kinds of thread-related pipelining issues, check the System Load track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-cpu-user-initiated-load.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The orange spikes in the System Load track indicate that runnable threads outnumbered the CPU cores available to process them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The green areas indicate the opposite — the healthy situation where enough CPU cores were available for processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To deal with the problematic orange situations, you can use fewer threads and increase the priority of your app’s threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To confirm whether low thread-priority is affecting your app’s frame rate, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe long-running display instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Visually confirm there are a number of skipped frames. For an app that uses a 60 fps frame interval, you can find that vertical synchronizations don’t align with display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the System Load track.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s rendering thread in the bottom detail area.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the inspection time around the identified performance anomaly in the timeline area, and observe the rendering thread’s state and priority at the inspection time in the bottom detail area.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-instruments-game-performance-cpu-low-thread-priority.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above screenshot, the Preempted thread state indicates that other Runnable and Running threads starved the rendering thread of processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Low thread-priority is an example of how misconfigured host app code relates to low frame rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A priority of 45 is recommended for rendering threads. To set your thread’s priority, call ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_attr_setschedparam(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before creating your thread with ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_create(_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on thread priorities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/110147/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_create",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_attr_setschedparam",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-CPU-GPU-overlap",
+          "level": 3,
+          "text": "Check CPU-GPU overlap",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to shader core and CPU utilization, more subtle causes of low frame rate involve CPU-GPU pipelining.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this context, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pipelining",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refers to how well your app coordinates the efforts of the CPU and the GPU while maintaining a consistent frame rate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By minimizing the amount of time the CPU and the GPU wait for each other, you maximize the amount of work each unit does in parallel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That’s called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "CPU-GPU overlap",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you have a rendering algorithm that needs the result from a compute pass before encoding rendering commands,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal provides indirect command buffers (ICBs) to increase overlap.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By generating rendering commands on the GPU using ICBs, you can avoid having the CPU wait for the compute results.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "#Check-GPU-utilization": {
+      "identifier": "#Check-GPU-utilization",
+      "title": "Check GPU utilization",
+      "titleInlineContent": [
+        {
+          "text": "Check GPU utilization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Check-GPU-utilization"
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies": {
+      "abstract": [
+        {
+          "text": "Avoid unnecessary work in your Metal app by understanding the relationships between resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing resource dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-resource-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Keep your app alive in the background by managing its memory footprint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the memory usage of your Metal app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-the-memory-usage-of-your-metal-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Maximize CPU to GPU parallelization by generating render commands on the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-instruments-game-performance-choose-template.png": {
+      "alt": "A screenshot of the Template Selection window with the Game Performance template selected.",
+      "identifier": "gputools-instruments-game-performance-choose-template.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e07988d2f0463faa54c25dbff8a8d49a/gputools-instruments-game-performance-choose-template.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/413aca0d2375d93079f4af290090bb46/gputools-instruments-game-performance-choose-template@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ee5d602be76a2f508f72855fee73347/gputools-instruments-game-performance-choose-template~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d75cbf25b945f074aa71d90165c68e3/gputools-instruments-game-performance-choose-template~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-cpu-blocked.png": {
+      "alt": "A screenshot showing a significant amount of blocked time on the CPU for the app’s rendering thread.",
+      "identifier": "gputools-instruments-game-performance-cpu-blocked.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21d88a43ab6fd98e1d2ec37707f6e78d/gputools-instruments-game-performance-cpu-blocked.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bdb119826be31e73cd9a2f7e133a0e0d/gputools-instruments-game-performance-cpu-blocked@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a36179e7734047f088adac276d9528e/gputools-instruments-game-performance-cpu-blocked~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b486bd819a1ca566b7d436608625a48/gputools-instruments-game-performance-cpu-blocked~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-cpu-long-running.png": {
+      "alt": "A screenshot showing a significant amount of running time on the CPU. The bottom details pane displays a call tree from Time Profiler. The long-running method on the CPU is highlighted.",
+      "identifier": "gputools-instruments-game-performance-cpu-long-running.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0231381c70c27ec179f5e86e6daf2b8/gputools-instruments-game-performance-cpu-long-running.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2371e03b9480a52050f0b870d367bd57/gputools-instruments-game-performance-cpu-long-running@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/599014fc0d5c9bff43ed3f99fac837db/gputools-instruments-game-performance-cpu-long-running~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/71705008dba45f3d0f134f66d89e2fc1/gputools-instruments-game-performance-cpu-long-running~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-cpu-low-thread-priority.png": {
+      "alt": "A screenshot of Instruments, with the System Load track selected. The bottom details pane displays the threads and their priorities in a table.",
+      "identifier": "gputools-instruments-game-performance-cpu-low-thread-priority.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/848b5affab5607985d632e4a48963010/gputools-instruments-game-performance-cpu-low-thread-priority.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a82e9a3583e85841fc81f554178034e2/gputools-instruments-game-performance-cpu-low-thread-priority@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb5a2e885aa5a41d641c94af888c15ef/gputools-instruments-game-performance-cpu-low-thread-priority~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f17b96127e8f922f936c1980f669c3c/gputools-instruments-game-performance-cpu-low-thread-priority~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-cpu-user-initiated-load.png": {
+      "alt": "A screenshot of the System Load track.",
+      "identifier": "gputools-instruments-game-performance-cpu-user-initiated-load.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b2b2322f9f77a75f62138b192ab045c/gputools-instruments-game-performance-cpu-user-initiated-load.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55e138c484968db03e0fb4dad6e84033/gputools-instruments-game-performance-cpu-user-initiated-load@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c2e41757b73602249a59418d5dfb09e/gputools-instruments-game-performance-cpu-user-initiated-load~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a5f5b57af308aac1e05594339112ffc/gputools-instruments-game-performance-cpu-user-initiated-load~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-frame-drops.png": {
+      "alt": "A screenshot of the Display track showing the popover for an instance that skipped many frames.",
+      "identifier": "gputools-instruments-game-performance-frame-drops.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b159b349a11e39b87d2efb5f8a3ca57b/gputools-instruments-game-performance-frame-drops.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b3fed2a704841bc1f5128249eda4838/gputools-instruments-game-performance-frame-drops@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6314cd3bef9d47b062436ac7625a9f9e/gputools-instruments-game-performance-frame-drops~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1013f7fbc051dc28c5c1c17cb17eab82/gputools-instruments-game-performance-frame-drops~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-good-frame-pacing.png": {
+      "alt": "A screenshot of the Display track with no frame drops.",
+      "identifier": "gputools-instruments-game-performance-good-frame-pacing.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/001478b8a6f2292aecc703826d172182/gputools-instruments-game-performance-good-frame-pacing.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c56c6f812b0d347f19f9cb1bd8bb004/gputools-instruments-game-performance-good-frame-pacing@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a1b26267ef1fbdbb0df6010f32569c3/gputools-instruments-game-performance-good-frame-pacing~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e66d514bd5ffeaf128549bef1e14b79b/gputools-instruments-game-performance-good-frame-pacing~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-gpu-fragment-long-running.png": {
+      "alt": "A screenshot of the GPU channel tracks indicating that a long-running fragment shader is responsible for frameskipping.",
+      "identifier": "gputools-instruments-game-performance-gpu-fragment-long-running.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e6f6b73a4ccca8f08b27305e9d5f25c0/gputools-instruments-game-performance-gpu-fragment-long-running.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c2bfd5adaaf50238cc9b9221062b364/gputools-instruments-game-performance-gpu-fragment-long-running@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98a83f698752f0f90749bfbc871196a0/gputools-instruments-game-performance-gpu-fragment-long-running~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b363939bb57d7d6cdd3ee78826c3aca9/gputools-instruments-game-performance-gpu-fragment-long-running~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-gpu-idle.png": {
+      "alt": "A screenshot of the GPU channel tracks showing a gap where the GPU idles while waiting for the CPU to display.",
+      "identifier": "gputools-instruments-game-performance-gpu-idle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ba4d3df1ef198c3d0c88c632e05c9b4/gputools-instruments-game-performance-gpu-idle.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/668dd5cdab16e77385f258187cd3f895/gputools-instruments-game-performance-gpu-idle@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc0960ce4ee541cd1bb7c2fa5067b294/gputools-instruments-game-performance-gpu-idle~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3374c4108b070afcd3e585d3c5be725/gputools-instruments-game-performance-gpu-idle~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-record.png": {
+      "alt": "A screenshot of the Instruments window highlighting the Record button.",
+      "identifier": "gputools-instruments-game-performance-record.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f2d6d76d44c6b18ee76e402897357ff/gputools-instruments-game-performance-record.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba489cd080137e86b11aff4643df8c16/gputools-instruments-game-performance-record@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c5793568fb453adf7d249a6c8e5783d/gputools-instruments-game-performance-record~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e78acbdaba327d62e9beff4ac9c6f3c8/gputools-instruments-game-performance-record~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-recording-options-dropdown.png": {
+      "alt": "A screenshot of the Recording drop-down menu. The Recording Options menu item is highlighted.",
+      "identifier": "gputools-instruments-game-performance-recording-options-dropdown.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efc80c43b2f894016a6dc8285b0033cb/gputools-instruments-game-performance-recording-options-dropdown.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d60b11c685027ceb9028f9e8d8ef471/gputools-instruments-game-performance-recording-options-dropdown@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/95ae0d29c5d9c519a5805e123bb20674/gputools-instruments-game-performance-recording-options-dropdown~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01e0c2c661a96eff113dbe47c2b2a74a/gputools-instruments-game-performance-recording-options-dropdown~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-instruments-game-performance-recording-options-popover.png": {
+      "alt": "A screenshot of the Recording Options popover showing the Counter Set drop-down menu with the Performance Limiters menu item highlighted.",
+      "identifier": "gputools-instruments-game-performance-recording-options-popover.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0108be47899013c4d28931e67c5a82eb/gputools-instruments-game-performance-recording-options-popover.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab1a17797ac2f78df1ce8eae540d663c/gputools-instruments-game-performance-recording-options-popover@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d03fef92a9b1f4365e239d3a47e187b6/gputools-instruments-game-performance-recording-options-popover~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f200f4c11e2b8cfe0598d8ef154ac0d9/gputools-instruments-game-performance-recording-options-popover~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/tech-talks/110147/": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/110147/",
+      "title": "Tune CPU job scheduling for Apple silicon games",
+      "titleInlineContent": [
+        {
+          "text": "Tune CPU job scheduling for Apple silicon games",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/110147/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Graphics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app"
+      ],
+      "title": "Graphics"
+    }
+  ]
+}

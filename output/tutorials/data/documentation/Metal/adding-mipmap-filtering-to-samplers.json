@@ -1,0 +1,595 @@
+{
+  "abstract": [
+    {
+      "text": "Specify how the GPU samples mipmaps in your textures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Mipmap Filtering to Samplers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, samplers sample data only from mipmap ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your texture contains more than one mipmap, and you want it to sample the lower-level mipmaps, you need to specify this behavior when you create the texture sampler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Sampler-in-Your-App",
+          "level": 3,
+          "text": "Create the Sampler in Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/mipFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The following code uses linear filtering for the minification and magnification filter, and uses linear filtering for mipmaps. This combination is usually called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "trilinear filtering",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". With this configuration, the GPU chooses the two mipmaps nearest in size and generates a sample by linearly filtering four pixels from each mipmap. Then it blends those two values with a linear interpolation to generate the final sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let descriptor = MTLSamplerDescriptor()",
+                    "descriptor.minFilter = MTLSamplerMinMagFilter.linear",
+                    "descriptor.magFilter = MTLSamplerMinMagFilter.linear",
+                    "descriptor.mipFilter = MTLSamplerMipFilter.linear",
+                    "",
+                    "let sampler = device.makeSamplerState(descriptor: descriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLSamplerDescriptor *descriptor = [MTLSamplerDescriptor new];",
+                    "descriptor.minFilter = MTLSamplerMinMagFilterLinear;",
+                    "descriptor.magFilter = MTLSamplerMinMagFilterLinear;",
+                    "descriptor.mipFilter = MTLSamplerMipFilterLinear;",
+                    "",
+                    "id<MTLSamplerState> sampler = [_device newSamplerStateWithDescriptor: descriptor];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, any of these filters could filter from the nearest pixel, instead of a linear filter, resulting in fewer sampled pixels but lower quality. Ultimately, you need to decide the right tradeoffs between sampling performance and quality for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Sampler-in-Your-Shader",
+          "level": 3,
+          "text": "Create the Sampler in Your Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you prefer to create samplers in your shader, specify the mipmap filtering there instead of in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constexpr sampler s(filter::linear, mip_filter::linear)"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure a texture sampler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSamplerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/mipFilter": {
+      "abstract": [
+        {
+          "text": "The filtering option for combining pixels between two mipmap levels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mipFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLSamplerMipFilter",
+          "text": "MTLSamplerMipFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/mipFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mipFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "mipFilter",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerdescriptor/mipfilter"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerState": {
+      "abstract": [
+        {
+          "text": "An object that defines how a texture should be sampled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSamplerState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerstate"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture": {
+      "abstract": [
+        {
+          "text": "Decide whether a texture that you’re creating needs mipmaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mipmapped Texture",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-mipmapped-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail": {
+      "abstract": [
+        {
+          "text": "Defer generating or loading larger mipmaps until that level of detail is needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamically Adjusting Texture Level of Detail",
+      "type": "topic",
+      "url": "/documentation/metal/dynamically-adjusting-texture-level-of-detail"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-mipmap-data": {
+      "abstract": [
+        {
+          "text": "Create your mipmaps either when you author content or at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Mipmap Data",
+      "type": "topic",
+      "url": "/documentation/metal/generating-mipmap-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps": {
+      "abstract": [
+        {
+          "text": "Avoid texture-rendering artifacts and reduce the GPU’s workload by creating smaller versions of a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Texture Sampling Quality and Performance with Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries": {
+      "abstract": [
+        {
+          "text": "Determine in advance which mipmap levels the GPU requires to sample a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Predicting Which Mips the GPU Samples with Level-of-Detail Queries",
+      "type": "topic",
+      "url": "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps": {
+      "abstract": [
+        {
+          "text": "Set the range of mipmap levels that a sampler can access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting Access to Specific Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/restricting-access-to-specific-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Mipmapping",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+        "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+        "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+      ],
+      "title": "Texture Mipmapping"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Mipmapping",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+                "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+                "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+                "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+              ],
+              "title": "Texture Mipmapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/title",
+          "value": "MTLSamplerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerState/title",
+          "value": "MTLSamplerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1mipFilter/title",
+          "value": "mipFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1mipFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mipFilter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/adding-mipmap-filtering-to-samplers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/adding-mipmap-filtering-to-samplers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

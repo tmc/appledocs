@@ -1,0 +1,2674 @@
+{
+  "abstract": [
+    {
+      "text": "Read clinical record data from the HealthKit store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing Health Records"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use HealthKit’s clinical record support to read Fast Healthcare Interoperability Resources (FHIR) from the HealthKit store. Users can download their FHIR records from supported healthcare institutions. The system then updates the records in the background on a regular basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of focusing on documents, FHIR breaks the user’s medical history into discrete records. HealthKit then represents each FHIR record as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample that stores a single condition, procedure, or result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use clinical records, you must request permission to read each record type. Then, use HealthKit’s queries to access the individual records. Finally, you need to parse and handle each record’s FHIR JSON data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode’s simulator provides sample accounts you can use when building and testing your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-HealthKit",
+          "level": 3,
+          "text": "Set Up HealthKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Due to their sensitive nature, clinical records have additional setup requirements. First, when you enable your app’s HealthKit capabilities, you must also select the Clinical Health Records checkbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3873250",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you must provide a Health Records Usage string for your app. Use this string to describe what your app does with the user’s records, and why it’s important for the user to share this data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For projects created using Xcode 13 or later, set the usage key in the Target Properties list on the app’s Info tab. For projects created with Xcode 12 or earlier, set it in the apps ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3873251",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You request authorization to read clinical records using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration. This enumeration specifies the types of FHIR data supported by HealthKit. You must request permission to read all the types that your app intends to use. Additionally, clinical records are read-only, so you can’t request authorization to share clinical record types. You can’t create or save new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let allergiesType = HKObjectType.clinicalType(forIdentifier: .allergyRecord),",
+            "let medicationsType = HKObjectType.clinicalType(forIdentifier: .medicationRecord) else {",
+            "    fatalError(\"*** Unable to create the requested types ***\")",
+            "}",
+            "",
+            "// Clinical types are read-only.",
+            "store.requestAuthorization(toShare: nil, read: [allergiesType, medicationsType]) { (success, error) in",
+            "    ",
+            "    guard success else {",
+            "        // Handle errors here.",
+            "        fatalError(\"*** An error occurred while requesting authorization: \\(error!.localizedDescription) ***\")",
+            "    }",
+            "",
+            "    // You can start accessing clinical record data.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can request authorization of clinical record types and regular HealthKit types in the same method call; however, HealthKit presents the clinical record types in a separate permission sheet to ensure the user understands exactly what they’re approving.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Like all HealthKit apps, apps that read clinical record data must have a valid Privacy Policy URL in the app store submission. This URL appears as a link on the clinical record permission sheet. Make sure the URL works as expected, and is both accessible and legible on supported iOS devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Review may reject apps that don’t use clinical record data appropriately. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/review/guidelines/#health-and-health-research",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/review/guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Query-for-Health-Records",
+          "level": 3,
+          "text": "Query for Health Records",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use HealthKit’s regular queries to look up clinical records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get all the allergy records.",
+            "guard let allergyType = HKObjectType.clinicalType(forIdentifier: .allergyRecord) else {",
+            "    fatalError(\"*** Unable to create the allergy type ***\")",
+            "}",
+            "",
+            "let allergyQuery = HKSampleQuery(sampleType: allergyType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in",
+            "    ",
+            "    guard let actualSamples = samples else {",
+            "        // Handle the error here.",
+            "        print(\"*** An error occurred: \\(error?.localizedDescription ?? \"nil\") ***\")",
+            "        return",
+            "    }",
+            "    ",
+            "    let allergySamples = actualSamples as? [HKClinicalRecord]",
+            "    // Do something with the allergy samples here...",
+            "}",
+            "",
+            "store.execute(allergyQuery)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each query returns a single clinical record type. HealthKit also provides two predicates to further refine your queries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Search for a particular FHIR record. Note that the system only guarantees that the FHIR identifier is unique for a particular resource type from a given source. To identify a record uniquely, you must check the identifier, type, and source.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Search for a specific FHIR resource type. In most cases, there’s a one-to-one correspondence between the clinical record types and the FHIR resource types; therefore, most queries already return samples from a single FHIR resource type. However, queries for the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/medicationRecord",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " type can return records from the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationOrder",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationRequest",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationDispense",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationStatement",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " FHIR resource types. You can use this predicate to limit your query to one of these FHIR types.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Examine-FHIR-Data",
+          "level": 3,
+          "text": "Examine FHIR Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample, you can access the FHIR data through its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents the underlying data from the user’s health care institution. While the resource object provides properties to access a few, useful attributes (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/resourceType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/sourceURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access the underlying JSON, which contains the complete clinical data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let fhirRecord = clinicalRecord.fhirResource else {",
+            "    print(\"No FHIR record found!\")",
+            "    return",
+            "}",
+            "",
+            "do {",
+            "    let jsonDictionary = try JSONSerialization.jsonObject(with: fhirRecord.data, options: [])",
+            "    ",
+            "    // Do something with the JSON data here.",
+            "}",
+            "catch let error {",
+            "    print(\"*** An error occurred while parsing the FHIR data: \\(error.localizedDescription) ***\")",
+            "    // Handle JSON parse errors here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/resourceType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. While the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration is similar to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values, there isn’t a one-to-one relationship between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, HealthKit splits the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/labResultRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/vitalSignRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identifiers. As a result, you must query for lab results and vital signs separately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/medicationRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identifier matches ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationStatement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationOrder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationDispense",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types. Therefore—unless you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " predicate—when you query for medication, you can get a mixture of statement, order, request, and dispense records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sample shows JSON data for an FHIR Condition resource:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"asserter\": {",
+            "        \"display\": \"Juan Chavez\",",
+            "        \"reference\": \"Practitioner/20\"",
+            "    },",
+            "    \"category\": {",
+            "        \"coding\": [",
+            "            {",
+            "                \"code\": \"diagnosis\",",
+            "                \"system\": \"http://hl7.org/fhir/condition-category\"",
+            "            }",
+            "        ]",
+            "    },",
+            "    \"clinicalStatus\": \"active\",",
+            "    \"code\": {",
+            "        \"coding\": [",
+            "            {",
+            "                \"code\": \"367498001\",",
+            "                \"display\": \"Seasonal allergic rhinitis\",",
+            "                \"system\": \"http://snomed.info/sct\"",
+            "            }",
+            "        ],",
+            "        \"text\": \"Seasonal Allergic Rhinitis\"",
+            "    },",
+            "    \"dateRecorded\": \"2012-01-02\",",
+            "    \"id\": \"2\",",
+            "    \"notes\": \"Worse when visiting family in NC during the spring\",",
+            "    \"onsetDateTime\": \"1994-05-12\",",
+            "    \"resourceType\": \"Condition\",",
+            "    \"verificationStatus\": \"confirmed\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Juan Chavez recorded this resource in 2012. It describes seasonal allergic rhinitis (SNOMED code 367498001), with an onset date of May 12, 1994.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FHIR data contains a considerable amount of additional information; however, to access this data you need to understand the FHIR specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the following websites:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "http://www.fhir.org/guides/argonaut/r2/index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "http://hl7.org/fhir/DSTU2/index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "http://www.fhir.org",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample": {
+      "abstract": [
+        {
+          "text": "A Clinical Document Architecture (CDA) sample that stores a single document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCDADocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcdadocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that stores a clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource": {
+      "abstract": [
+        {
+          "text": "The Fast Healthcare Interoperability Resources (FHIR) data for this record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fhirResource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKFHIRResource",
+          "text": "HKFHIRResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FHIRResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "fhirResource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord/fhirresource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "A type identifier for the different categories of clinical records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/labResultRecord": {
+      "abstract": [
+        {
+          "text": "A type identifier for records of lab results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labResultRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKClinicalTypeIdentifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/labResultRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifierLabResultRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "labResultRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltypeidentifier/labresultrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/medicationRecord": {
+      "abstract": [
+        {
+          "text": "A type identifier for records of medication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medicationRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKClinicalTypeIdentifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/medicationRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifierMedicationRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "medicationRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltypeidentifier/medicationrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/vitalSignRecord": {
+      "abstract": [
+        {
+          "text": "A type identifier for records of vital signs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vitalSignRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKClinicalTypeIdentifier",
+          "text": "HKClinicalTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalTypeIdentifier/vitalSignRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalTypeIdentifierVitalSignRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "vitalSignRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltypeidentifier/vitalsignrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a health document in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType": {
+      "abstract": [
+        {
+          "text": "A sample type used to create queries for documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA": {
+      "abstract": [
+        {
+          "text": "The CDA Document type identifier, used when requesting permission to read or share CDA documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CDA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKDocumentTypeIdentifier",
+          "text": "HKDocumentTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentTypeIdentifierCDA"
+        }
+      ],
+      "role": "symbol",
+      "title": "CDA",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttypeidentifier/cda"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource": {
+      "abstract": [
+        {
+          "text": "An object containing Fast Healthcare Interoperability Resources (FHIR) data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKFHIRResource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/data": {
+      "abstract": [
+        {
+          "text": "The JSON representation of the FHIR resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource/data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/identifier": {
+      "abstract": [
+        {
+          "text": "The value from the FHIR resource’s ",
+          "type": "text"
+        },
+        {
+          "code": "id",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource/identifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/resourceType": {
+      "abstract": [
+        {
+          "text": "The value from the FHIR resource’s ",
+          "type": "text"
+        },
+        {
+          "code": "resourceType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/resourceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "resourceType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource/resourcetype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/sourceURL": {
+      "abstract": [
+        {
+          "text": "The full URL for the source of the FHIR resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource/sourceURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceURL",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource/sourceurl"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType": {
+      "abstract": [
+        {
+          "text": "The FHIR resource types supported in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKFHIRResourceType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationDispense": {
+      "abstract": [
+        {
+          "text": "A type that identifies FHIR resources for the delivery of medication (usually in response to a prescription).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medicationDispense"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationDispense",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceTypeMedicationDispense"
+        }
+      ],
+      "role": "symbol",
+      "title": "medicationDispense",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype/medicationdispense"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationOrder": {
+      "abstract": [
+        {
+          "text": "A type that identifies FHIR resources for prescriptions or other orders for medication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medicationOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceTypeMedicationOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "medicationOrder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype/medicationorder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationRequest": {
+      "abstract": [
+        {
+          "text": "A type that identifies FHIR resources for prescriptions or other orders or requests for medication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medicationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceTypeMedicationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "medicationRequest",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype/medicationrequest"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationStatement": {
+      "abstract": [
+        {
+          "text": "A type that identifies FHIR resources for statements about medication taken by the patient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medicationStatement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/medicationStatement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceTypeMedicationStatement"
+        }
+      ],
+      "role": "symbol",
+      "title": "medicationStatement",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype/medicationstatement"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/observation": {
+      "abstract": [
+        {
+          "text": "A type that identifies FHIR resources for medical observations, including lab results and vital signs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "observation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResourceType/observation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResourceTypeObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "observation",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresourcetype/observation"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for a specific FHIR resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForClinicalRecords"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fhirResourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForClinicalRecords(from:fhirResourceType:identifier:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforclinicalrecords(from:fhirresourcetype:identifier:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for a specific FHIR type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForClinicalRecords"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withFHIRResourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKFHIRResourceType",
+          "text": "HKFHIRResourceType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForClinicalRecordsWithFHIRResourceType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForClinicalRecords(withFHIRResourceType:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforclinicalrecords(withfhirresourcetype:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject": {
+      "abstract": [
+        {
+          "text": "The subject associated with a signed clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecordSubject",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecordsubject"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records": {
+      "abstract": [
+        {
+          "text": "Request authorization to query HealthKit for a user’s clinical records and display them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing a User’s Clinical Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-a-user-s-clinical-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card": {
+      "abstract": [
+        {
+          "text": "Query for and validate a verifiable clinical record.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Data from a SMART Health Card",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-data-from-a-smart-health-card"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator": {
+      "abstract": [
+        {
+          "text": "Set up sample accounts to build and test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Sample Data in the Simulator",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-sample-data-in-the-simulator"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/samples": {
+      "abstract": [
+        {
+          "text": "Create and save health and fitness samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/samples"
+    },
+    "http://hl7.org/fhir/DSTU2/index.html": {
+      "identifier": "http://hl7.org/fhir/DSTU2/index.html",
+      "title": "FHIR specification (DSTU2, 1.0.2)",
+      "titleInlineContent": [
+        {
+          "text": "FHIR specification (DSTU2, 1.0.2)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://hl7.org/fhir/DSTU2/index.html"
+    },
+    "http://www.fhir.org": {
+      "identifier": "http://www.fhir.org",
+      "title": "FHIR Foundation",
+      "titleInlineContent": [
+        {
+          "text": "FHIR Foundation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.fhir.org"
+    },
+    "http://www.fhir.org/guides/argonaut/r2/index.html": {
+      "identifier": "http://www.fhir.org/guides/argonaut/r2/index.html",
+      "title": "Argonaut Data Query Implementation Guide 1.0.0",
+      "titleInlineContent": [
+        {
+          "text": "Argonaut Data Query Implementation Guide 1.0.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.fhir.org/guides/argonaut/r2/index.html"
+    },
+    "https://developer.apple.com/app-store/review/guidelines/": {
+      "identifier": "https://developer.apple.com/app-store/review/guidelines/",
+      "title": "App Store Review Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "App Store Review Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/review/guidelines/"
+    },
+    "https://developer.apple.com/app-store/review/guidelines/#health-and-health-research": {
+      "identifier": "https://developer.apple.com/app-store/review/guidelines/#health-and-health-research",
+      "title": "Health and Health Research",
+      "titleInlineContent": [
+        {
+          "text": "Health and Health Research",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/review/guidelines/#health-and-health-research"
+    },
+    "media-3873250": {
+      "alt": "A screenshot of Xcode’s Signing & Capabilities tab with the Clinical Health Records checkbox selected.",
+      "identifier": "media-3873250",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba05f0b259353efaaec7d4bf251d3bfa/media-3873250@2x.png"
+        }
+      ]
+    },
+    "media-3873251": {
+      "alt": "A screenshot showing the Health Records Usage Description in the Target Properties on the app’s Info tab.",
+      "identifier": "media-3873251",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b727d0bfa729ed5b885c95908c2641f/media-3873251@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Medical-records",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType"
+      ],
+      "title": "Medical records"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/title",
+          "value": "HKVerifiableClinicalRecordSubject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/title",
+          "value": "HKClinicalTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1sourceURL/title",
+          "value": "sourceURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1sourceURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/title",
+          "value": "HKFHIRResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForClinicalRecords(from:fhirResourceType:identifier:)/title",
+          "value": "predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForClinicalRecords(from:fhirResourceType:identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/title",
+          "value": "HKCDADocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/title",
+          "value": "HKVerifiableClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/title",
+          "value": "HKDocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationStatement/title",
+          "value": "HKFHIRResourceTypeMedicationStatement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationStatement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceTypeMedicationStatement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1observation/title",
+          "value": "HKFHIRResourceTypeObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1observation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceTypeObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1labResultRecord/title",
+          "value": "HKClinicalTypeIdentifierLabResultRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1labResultRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifierLabResultRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationRequest/title",
+          "value": "HKFHIRResourceTypeMedicationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceTypeMedicationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationDispense/title",
+          "value": "HKFHIRResourceTypeMedicationDispense"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationDispense/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceTypeMedicationDispense"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1medicationRecord/title",
+          "value": "HKClinicalTypeIdentifierMedicationRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1medicationRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifierMedicationRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/title",
+          "value": "HKClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1fhirResource/title",
+          "value": "FHIRResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1fhirResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType/title",
+          "value": "HKFHIRResourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForClinicalRecords(withFHIRResourceType:)/title",
+          "value": "predicateForClinicalRecordsWithFHIRResourceType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForClinicalRecords(withFHIRResourceType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForClinicalRecordsWithFHIRResourceType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationOrder/title",
+          "value": "HKFHIRResourceTypeMedicationOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResourceType~1medicationOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResourceTypeMedicationOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/title",
+          "value": "HKDocumentTypeIdentifierCDA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentTypeIdentifierCDA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1resourceType/title",
+          "value": "resourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource~1resourceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/title",
+          "value": "HKDocumentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1vitalSignRecord/title",
+          "value": "HKClinicalTypeIdentifierVitalSignRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalTypeIdentifier~1vitalSignRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalTypeIdentifierVitalSignRecord"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

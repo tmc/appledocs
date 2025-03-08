@@ -1,0 +1,810 @@
+{
+  "abstract": [
+    {
+      "text": "Supply image resources appropriate for light and dark appearances and for high-contrast environments.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/providing-images-for-different-appearances"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing images for different appearances"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Wherever your app’s interface uses bitmap images, make sure those images look good in both light and dark appearances. A bitmap image that looks good in one appearance might look washed out or be hard to see in another. Fortunately, asset catalogs simplify the process for managing image assets for each appearance style, and for displaying the correct image at the proper time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An alternative to creating bitmap images is to use template images or symbol images instead. Template images specify the shape you want to draw, but not the associated color information. Symbol images are similar to template images but are vector based, so they scale to different sizes. Both types of images simplify the process for supporting Dark Mode. They also reduce the number of image assets you must ship with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-image-assets-for-different-appearances",
+          "level": 3,
+          "text": "Customize image assets for different appearances",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The best way to manage images for different appearances is with asset catalogs. Each asset in an asset catalog represents a named image that you load from your app. Inside that asset are multiple variations of the same image, each with the appropriate content and colors for light, dark, and high-contrast environments. When you load an asset, you get a reference to the entire asset and all of its image variations. During drawing, the system automatically draws the appropriate variant based on the current settings. When the settings change, the system redraws the image with the new settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create image assets in Xcode, and use the Appearance attributes to configure which variants you want to supply.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3013535",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can supply image assets for different combinations of the following characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Screen resolution. Provide images for regular and Retina displays. The system picks the image that best matches the resolution of the current screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Light and dark appearances. Provide images for both light and dark appearances. Use the Any Appearance slots to support older versions of macOS or iOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "High contrast. Provide images with greater visual separation between adjoining colors. Such images make it easier for users with vision impairments to see the image details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-scalable-and-tintable-images-using-symbol-images",
+          "level": 3,
+          "text": "Create scalable and tintable images using symbol images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, tvOS, and watchOS, use symbol images in places where you would usually combine images and text to form icons. A symbol image is a vector-based image that you use in places where you want to display a simple shape or glyph. For example, use symbol images in bar button items or in places where you want to combine an icon with a description. Symbol images have several advantages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They scale without losing any of their sharpness.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can tint them with an appropriate color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They include a baseline for layout with text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can configure them with font-related style information to make them appear as if they belong to that font.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides a library of images for you to use, and you can create new symbol images for any custom iconography your app requires.  For information about how to create and use symbol images, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-tintable-images-using-template-images",
+          "level": 3,
+          "text": "Create tintable images using template images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An alternative to providing separate images for different appearances is to provide a single template image that adapts to all appearances. A template image is a bitmap image where only the opacity of the image matters. Typically, you use template images to represent iconic shapes. For example, you might use template images to represent the play and pause buttons of a media app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a template image to a button or image view, you also specify a tint color. The view applies the tint color to every pixel that doesn’t have an alpha of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", causing the image’s shape to adopt that color. To support different appearances, simply change the tint color. For example, you might apply a dark tint color in light environments and a light tint color in dark environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3009972",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your favorite image editor to create template image files. When creating your image, use a transparent background and add black pixels wherever you want the image to appear. The pixels can be fully or partially opaque, depending on whether you want portions of your template image to blend with the background colors. When adding the image to your asset catalog, set the Render As option for the Image Set asset to Template Image in the inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-images-with-a-drawing-handler-in-macOS",
+          "level": 3,
+          "text": "Create images with a drawing handler in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your app’s interface, you typically create images at design time and include them in the app bundle that you ship. However, in macOS, you can also create images dynamically, which you might do if you don’t yet know what the image content will be, or if that content is changeable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an image that draws its content dynamically, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to initialize your image with a custom drawing handler block. AppKit calls your handler block whenever the system appearance changes, giving you a chance to redraw the image using the new appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an image object whose contents are drawn using the specified block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "drawingHandlerShouldBeCalledWithFlippedContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "drawingHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(size:flipped:drawingHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/init(size:flipped:drawingHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui": {
+      "abstract": [
+        {
+          "text": "Create scalable images that integrate with your app’s text, and adjust the appearance of those images dynamically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring and displaying symbol images in your UI",
+      "type": "topic",
+      "url": "/documentation/uikit/configuring-and-displaying-symbol-images-in-your-ui"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/images-and-pdf": {
+      "abstract": [
+        {
+          "text": "Create and manage images, including those that use bitmap and PDF formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images and PDF",
+      "type": "topic",
+      "url": "/documentation/uikit/images-and-pdf"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface": {
+      "abstract": [
+        {
+          "text": "Update colors, images, and behaviors so that your app adapts automatically when Dark Mode is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-dark-mode-in-your-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Dark Mode in Your Interface",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-dark-mode-in-your-interface"
+    },
+    "media-3009972": {
+      "alt": "Views apply tints to a template image to make it stand out against the background. The tint colors change based on whether the view is displayed with a light or dark appearance.",
+      "identifier": "media-3009972",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3a52be619fd3661abd1aa29b773d44c/media-3009972@2x.png"
+        }
+      ]
+    },
+    "media-3013535": {
+      "alt": "An image of the Xcode interface for configuring an image asset. After configuring the appearance options from the attributes inspector, drag each image variant to the appropriate slot in the editor window. ",
+      "identifier": "media-3013535",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb4d3252a2f2c326daa5fa1775710e13/media-3013535@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb4d3252a2f2c326daa5fa1775710e13/media-3013535~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui"
+      ],
+      "title": "Images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Images",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui"
+              ],
+              "title": "Images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/title",
+          "value": "UIImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(size:flipped:drawingHandler:)/title",
+          "value": "imageWithSize:flipped:drawingHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1init(size:flipped:drawingHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithSize:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "size"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "flipped:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawingHandlerShouldBeCalledWithFlippedContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawingHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dstRect"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawingHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/providing-images-for-different-appearances"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/providing-images-for-different-appearances"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

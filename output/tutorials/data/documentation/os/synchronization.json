@@ -1,0 +1,636 @@
+{
+  "abstract": [
+    {
+      "text": "Access low-level synchronization mechanisms to control state across threads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/synchronization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Synchronization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When possible, use higher-level synchronization primitives such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Grand Central Dispatch, or Swift’s concurrency features to control access to state across different threads. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by refactoring your code to take advantage of asynchronous functions in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/updating_an_app_to_use_swift_concurrency",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating an App to Use Swift Concurrency",
+      "type": "topic",
+      "url": "/documentation/swift/updating_an_app_to_use_swift_concurrency"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSAllocatedUnfairLock": {
+      "abstract": [
+        {
+          "text": "A structure that creates an unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSAllocatedUnfairLock"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSAllocatedUnfairLock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSAllocatedUnfairLock"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSAllocatedUnfairLock",
+      "type": "topic",
+      "url": "/documentation/os/osallocatedunfairlock"
+    },
+    "doc://com.apple.os/documentation/os/OSAllocatedUnfairLockFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSAllocatedUnfairLockFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSAllocatedUnfairLockFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSAllocatedUnfairLockFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSAllocatedUnfairLockFlags",
+      "type": "topic",
+      "url": "/documentation/os/osallocatedunfairlockflags"
+    },
+    "doc://com.apple.os/documentation/os/OS_UNFAIR_LOCK_INIT": {
+      "abstract": [
+        {
+          "text": "A value you use to initialize a new unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_UNFAIR_LOCK_INIT"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OS_UNFAIR_LOCK_INIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_UNFAIR_LOCK_INIT",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_init"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t": {
+      "abstract": [
+        {
+          "text": "Flags to control futex wait behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_flags_t",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_flags_t"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation with a deadline, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_with_deadline"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_with_deadline",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_with_deadline"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation with a timeout, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_with_timeout"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_with_timeout",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_with_timeout"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all": {
+      "abstract": [
+        {
+          "text": "An atomic operation that wakes all threads blocked on a futex wait, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_all"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_all",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_all"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any": {
+      "abstract": [
+        {
+          "text": "An atomic operation that wakes one thread blocked on a futex wait, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_any"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_any",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_any"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t": {
+      "abstract": [
+        {
+          "text": "Flags to control futex wake behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_flags_t",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_flags_t"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock": {
+      "abstract": [
+        {
+          "text": "A structure that contains the data for an unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_assert_not_owner": {
+      "abstract": [
+        {
+          "text": "Triggers an assertion if the calling thread owns the specified unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_assert_not_owner"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_assert_not_owner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_assert_not_owner",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_assert_not_owner"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_assert_owner": {
+      "abstract": [
+        {
+          "text": "Triggers an assertion if the calling thread doesn’t own the specified unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_assert_owner"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_assert_owner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_assert_owner",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_assert_owner"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_flags_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_flags_t",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_flags_t"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_lock": {
+      "abstract": [
+        {
+          "text": "A low-level lock that allows waiters to block efficiently on contention.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_lock"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_lock",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_lock"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_lock_with_flags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_lock_with_flags"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_lock_with_flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_lock_with_flags",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_lock_with_flags"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_t": {
+      "abstract": [
+        {
+          "text": "A pointer to an unfair lock structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_t",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_t"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_trylock": {
+      "abstract": [
+        {
+          "text": "Locks an unfair lock if it is not already locked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_trylock"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_trylock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_trylock",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_trylock"
+    },
+    "doc://com.apple.os/documentation/os/os_unfair_lock_unlock": {
+      "abstract": [
+        {
+          "text": "Unlocks an unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_unfair_lock_unlock"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_unfair_lock_unlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_unfair_lock_unlock",
+      "type": "topic",
+      "url": "/documentation/os/os_unfair_lock_unlock"
+    },
+    "doc://com.apple.os/documentation/os/workgroups": {
+      "abstract": [
+        {
+          "text": "Schedule one or more threads to run at regular intervals and before specific deadlines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/workgroups",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroups",
+      "type": "topic",
+      "url": "/documentation/os/workgroups"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Swift-Wrappers",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSAllocatedUnfairLock",
+        "doc://com.apple.os/documentation/os/OSAllocatedUnfairLockFlags"
+      ],
+      "title": "Swift Wrappers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Unfair-Locking",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/os_unfair_lock",
+                "doc://com.apple.os/documentation/os/OS_UNFAIR_LOCK_INIT",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_t",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_lock",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_trylock",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_lock_with_flags",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_unlock",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_assert_owner",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_assert_not_owner",
+                "doc://com.apple.os/documentation/os/os_unfair_lock_flags_t"
+              ],
+              "title": "Unfair Locking"
+            },
+            {
+              "anchor": "Futex-Conditional-Wait-Primitives",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/os_sync_wait_on_address",
+                "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline",
+                "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout",
+                "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t",
+                "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all",
+                "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any",
+                "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t"
+              ],
+              "title": "Futex Conditional Wait Primitives"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Task-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/workgroups"
+              ],
+              "title": "Task Management"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/synchronization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/synchronization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

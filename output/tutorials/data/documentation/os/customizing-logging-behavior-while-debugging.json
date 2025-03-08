@@ -1,0 +1,656 @@
+{
+  "abstract": [
+    {
+      "text": "Control which log events are recorded.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os",
+        "doc://com.apple.os/documentation/os/logging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing Logging Behavior While Debugging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Logging behavior is normally governed by the system. However, while debugging in macOS, you can enable different logging levels for a subsystem using the ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool’s ",
+              "type": "text"
+            },
+            {
+              "code": "config",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument while logged in as root. The example below shows how to enable debug-level logging for a subsystem:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ sudo log config --mode \"level:debug\" --subsystem com.your_company.your_subsystem_name"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool’s ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument to check the current logging level of a subsystem:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ sudo log config --status --subsystem com.your_company.your_subsystem_name",
+            "Mode for 'com.your_company.your_subsystem_name'  DEBUG"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also override the logging behavior of a specific subsystem by creating and installing a logging configuration profile property list file in the ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Preferences/Logging/Subsystems/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Name the file using an identifier string, in reverse DNS notation that identifies, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "com.your_company.your_subsystem_name.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Next, add one or more settings dictionaries to the top level of the file. A ",
+              "type": "text"
+            },
+            {
+              "code": "DEFAULT-OPTIONS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " settings dictionary defines global behavior settings for the entire subsystem. Category settings dictionaries define behavior for specific categories of messages within the subsystem. The example below shows the top-level structure of a logging configuration profile:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "    <key>DEFAULT-OPTIONS</key>",
+            "    <dict>",
+            "       <!-- GLOBAL SUBSYSTEM OR PROCESS SETTINGS -->",
+            "    </dict>",
+            "    <key>CategoryName</key>",
+            "    <dict>",
+            "       <!-- CATEGORY SETTINGS -->",
+            "    </dict>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each settings dictionary within a logging profile contains a ",
+              "type": "text"
+            },
+            {
+              "code": "Level",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdictionary, which contains the following setting keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Enable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enables a specific log level.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Persist",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Controls whether messages are stored in memory and then saved to the data store, or stored in memory only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Enable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key and ",
+              "type": "text"
+            },
+            {
+              "code": "Persist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key both accept the following string values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Inherit",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Explicitly states that the subsystem or category inherits the behavior of its parent. In the case of a category, the parent is the subsystem. In the case of a subsystem, the parent is the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Default",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only default-level messages are captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Info",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default-level and info-level messages are captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Debug",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default-level, info-level, and debug-level messages are captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a ",
+              "type": "text"
+            },
+            {
+              "code": "Level",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdictionary that enables info-level logging that inherits the persistence behavior of a subsystem or the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>Level</key>",
+            "<dict>",
+            "    <key>Enable</key>",
+            "    <string>Info</string>",
+            "    <key>Persist</key>",
+            "    <string>Inherit</string>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a complete logging profile, which configures a subsystem to perform info-level logging and a ",
+              "type": "text"
+            },
+            {
+              "code": "server-connections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category within the subsystem to perform debug-level logging:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "    <key>DEFAULT-OPTIONS</key>",
+            "    <dict>",
+            "        <key>Level</key>",
+            "        <dict>",
+            "            <key>Enable</key>",
+            "            <string>Info</string>",
+            "            <key>Persist</key>",
+            "            <string>Inherit</string>",
+            "        </dict>",
+            "    </dict>",
+            "    <key>server-connections</key>",
+            "    <dict>",
+            "        <key>Level</key>",
+            "        <dict>",
+            "            <key>Enable</key>",
+            "            <string>Debug</string>",
+            "            <key>Persist</key>",
+            "            <string>Inherit</string>",
+            "        </dict>",
+            "    </dict>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Subsystems inherit the logging behavior of the system, and categories inherit the behavior of the subsystem in which they reside. Therefore, settings only need to be specified if they differ from the inherited behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code": {
+      "abstract": [
+        {
+          "text": "Record useful debugging and analysis information, and include dynamic content in your messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Log Messages from Your Code",
+      "type": "topic",
+      "url": "/documentation/os/generating-log-messages-from-your-code"
+    },
+    "doc://com.apple.os/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/logging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.os/documentation/os/viewing-log-messages": {
+      "abstract": [
+        {
+          "text": "Use various tools to retrieve log information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/viewing-log-messages",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing Log Messages",
+      "type": "topic",
+      "url": "/documentation/os/viewing-log-messages"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+        "doc://com.apple.os/documentation/os/viewing-log-messages"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+                "doc://com.apple.os/documentation/os/viewing-log-messages"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/customizing-logging-behavior-while-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/customizing-logging-behavior-while-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

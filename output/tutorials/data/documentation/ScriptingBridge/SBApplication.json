@@ -1,0 +1,1841 @@
+{
+  "abstract": [
+    {
+      "text": "The ",
+      "type": "text"
+    },
+    {
+      "code": "SBApplication",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class provides a mechanism enabling an Objective-C",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "program to send Apple events to a scriptable application and receive Apple",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "events in response. It thereby makes it possible for that program to control",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the application and exchange data with it. Scripting Bridge works by",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "bridging data types between Apple event descriptors and Cocoa objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SBApplication",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SBApplication"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Scripting Bridge"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SBApplication"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SBApplication"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SBApplication"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "code": "SBApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes methods that manually send and process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple events, you should never have to call these methods directly. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "SBApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implement application-specific methods that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle the sending of Apple events automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you wanted to get the current iTunes track, you can simply",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "code": "currentTrack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the dynamically defined subclass for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iTunes application—which handles the details of sending the Apple event for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you—rather than figuring out the more complicated, low-level alternative:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[iTunes propertyWithCode:'pTrk'];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you do need to send Apple events manually, consider using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleEventDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 2,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You rarely instantiate ",
+              "type": "text"
+            },
+            {
+              "code": "SBApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects directly. Instead, you get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the shared instance of a application-specific subclass typically by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one of the ",
+              "type": "text"
+            },
+            {
+              "code": "applicationWith...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class methods, using a bundle identifier,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process identifier, or URL to identify the application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge": {
+      "abstract": [
+        {
+          "text": "Automate scriptable apps by sending and receiving Apple events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Scripting Bridge",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "SBApplication",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides a mechanism enabling an Objective-C",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "program to send Apple events to a scriptable application and receive Apple",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "events in response. It thereby makes it possible for that program to control",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the application and exchange data with it. Scripting Bridge works by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bridging data types between Apple event descriptors and Cocoa objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SBApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SBApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "SBApplication",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/activate()": {
+      "abstract": [
+        {
+          "text": "Moves the target application to the foreground immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/activate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activate"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/activate()"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithBundleIdentifier:": {
+      "abstract": [
+        {
+          "text": "Returns the shared instance representing the target application specified by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWithBundleIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithBundleIdentifier:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWithBundleIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWithBundleIdentifier:",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/applicationwithbundleidentifier:"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithProcessIdentifier:": {
+      "abstract": [
+        {
+          "text": "Returns the shared instance representing a target application specified by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its process identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWithProcessIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithProcessIdentifier:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWithProcessIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWithProcessIdentifier:",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/applicationwithprocessidentifier:"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithURL:": {
+      "abstract": [
+        {
+          "text": "Returns the shared instance representing a target application specified by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithURL:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWithURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWithURL:",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/applicationwithurl:"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)": {
+      "abstract": [
+        {
+          "text": "Returns a class object that represents a particular class in the target",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forScriptingClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classForScriptingClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "class(forScriptingClass:)",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/class(forscriptingclass:)"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/delegate": {
+      "abstract": [
+        {
+          "text": "The error-handling delegate of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SBApplicationDelegate",
+          "text": "SBApplicationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/delegate"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of an ",
+          "type": "text"
+        },
+        {
+          "code": "SBApplication",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass that represents the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "target application identified by the given bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithBundleIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(bundleIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/init(bundleidentifier:)"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(processIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of an ",
+          "type": "text"
+        },
+        {
+          "code": "SBApplication",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass that represents the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "target application identified by the given process identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "processIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@pid_t",
+          "text": "pid_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(processIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithProcessIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(processIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/init(processidentifier:)"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(url:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of an ",
+          "type": "text"
+        },
+        {
+          "code": "SBApplication",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass that represents the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "target application identified by the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/init(url:)"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/isRunning": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the target application represented by the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "receiver is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRunning"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/isRunning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "running"
+        }
+      ],
+      "role": "symbol",
+      "title": "isRunning",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/isrunning"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/launchFlags": {
+      "abstract": [
+        {
+          "text": "The launch flags for the application represented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@LSLaunchFlags",
+          "text": "LSLaunchFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/launchFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "launchFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "launchFlags",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/launchflags"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/sendMode": {
+      "abstract": [
+        {
+          "text": "The mode for sending Apple events to the target application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AESendMode",
+          "text": "AESendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/sendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendMode",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/sendmode"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/timeout": {
+      "abstract": [
+        {
+          "text": "The period the application will wait to receive reply Apple events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/timeout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeout",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication/timeout"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "SBObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class declares methods that can be invoked on any object in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scriptable application. It defines methods for getting elements and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties of an object, as well as setting a given object to a new value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SBObject"
+        }
+      ],
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SBObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "SBObject",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Scriptable-Application-Object",
+      "identifiers": [
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(processIdentifier:)",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(url:)"
+      ],
+      "title": "Initializing a Scriptable Application Object"
+    },
+    {
+      "anchor": "Creating-a-Scripting-Class",
+      "identifiers": [
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)"
+      ],
+      "title": "Creating a Scripting Class"
+    },
+    {
+      "anchor": "Controlling-the-Application",
+      "identifiers": [
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/activate()",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/isRunning",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/launchFlags",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/sendMode",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/timeout"
+      ],
+      "title": "Controlling the Application"
+    },
+    {
+      "anchor": "Managing-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/delegate"
+      ],
+      "title": "Managing the Delegate"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SBApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-a-Scriptable-Application-Instance",
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithBundleIdentifier:",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithProcessIdentifier:",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/applicationWithURL:"
+              ],
+              "title": "Getting a Scriptable Application Instance"
+            },
+            {
+              "anchor": "Initializing-a-Scriptable-Application-Object",
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(processIdentifier:)",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/init(url:)"
+              ],
+              "title": "Initializing a Scriptable Application Object"
+            },
+            {
+              "anchor": "Creating-a-Scripting-Class",
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)"
+              ],
+              "title": "Creating a Scripting Class"
+            },
+            {
+              "anchor": "Controlling-the-Application",
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/activate()",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/isRunning",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/launchFlags",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/sendMode",
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/timeout"
+              ],
+              "title": "Controlling the Application"
+            },
+            {
+              "anchor": "Managing-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication/delegate"
+              ],
+              "title": "Managing the Delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SBApplication"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)SBObject",
+                    "text": "SBObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1isRunning/title",
+          "value": "running"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1isRunning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "running"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1sendMode/title",
+          "value": "sendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1sendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(processIdentifier:)/title",
+          "value": "initWithProcessIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(processIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithProcessIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(bundleIdentifier:)/title",
+          "value": "initWithBundleIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(bundleIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithBundleIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBObject/title",
+          "value": "SBObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1activate()/title",
+          "value": "activate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1activate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1timeout/title",
+          "value": "timeout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1timeout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication/title",
+          "value": "SBApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SBApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(url:)/title",
+          "value": "initWithURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1init(url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1class(forScriptingClass:)/title",
+          "value": "classForScriptingClass:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1class(forScriptingClass:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classForScriptingClass:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1launchFlags/title",
+          "value": "launchFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Scripting-Bridge~1documentation~1ScriptingBridge~1SBApplication~1launchFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "launchFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scriptingbridge/sbapplication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scriptingbridge/sbapplication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

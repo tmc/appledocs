@@ -1,0 +1,2489 @@
+{
+  "abstract": [
+    {
+      "text": "An object you use to observe, participate in, and affect the UI update process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIUpdateLink",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIUpdateLink"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIUpdateLink"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIUpdateLink"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUpdateLink"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "UI update link",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", you can follow the progress of each UI update and express preferences about how those updates happen. Use a UI update link when you need precise and predictable control over the UI update process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are multiple use cases for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To monitor when UI updates occur and synchronize your drawing code with each update, similar to how you might use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To influence how UI updates occur by expressing preferences to the system, such as requesting continuous UI updates, immediate rendering of frames, and more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To specify precisely at which point in the UI update process to perform certain actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To implement support for low-latency input, such as a custom low-latency drawing implementation for a pencil-drawing app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a UI update link, you associate it with a window or a view. The UI update link activates automatically when you add the view to a visible window, and deactivates when you remove the view from it. If the view moves from one display to another, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adjusts to the timing of the new display automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Monitor UI updates for a specific view.",
+            "let updateLink = UIUpdateLink(view: view)",
+            "updateLink.isEnabled = true",
+            "",
+            "// Influence the UI update process by requesting continuous UI updates.",
+            "updateLink.requiresContinuousUpdates = true",
+            "",
+            "// Specify one or more actions to perform for each UI update.",
+            "// Add an action to the `.beforeCADisplayLinkDispatch` phase, by default.",
+            "updateLink.addAction() { link, info in ",
+            "    // Code that runs each UI update, after processing input events, ",
+            "    // but before `CADisplayLink` callbacks.",
+            "    self.view.center.y = sin(info.modelTime) * 100 + self.view.bounds.midY",
+            "}",
+            "",
+            "// Add an action to a specific UI update phase that you choose.",
+            "updateLink.addAction(to: .afterUpdateScheduled) { link, info in ",
+            "    // Code that runs each UI update, after the system schedules the update, ",
+            "    // but before processing input events.",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " from the main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink": {
+      "abstract": [
+        {
+          "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CADisplayLink",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CADisplayLink"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase": {
+      "abstract": [
+        {
+          "text": "An object that defines specific phases of the UI update process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUpdateActionPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUpdateActionPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUpdateActionPhase",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdateactionphase"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo": {
+      "abstract": [
+        {
+          "text": "An object that contains detailed information about the current UI update state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUpdateInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUpdateInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUpdateInfo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdateinfo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink": {
+      "abstract": [
+        {
+          "text": "An object you use to observe, participate in, and affect the UI update process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUpdateLink"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUpdateLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUpdateLink",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(handler:)": {
+      "abstract": [
+        {
+          "text": "Adds an action with the specified handler to the UI update link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateLink",
+          "text": "UIUpdateLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateInfo",
+          "text": "UIUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addActionWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAction(handler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/addaction(handler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(target:selector:)": {
+      "abstract": [
+        {
+          "text": "Adds an action with the specified target and selector to the UI update link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(target:selector:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addActionWithTarget:selector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAction(target:selector:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/addaction(target:selector:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:handler:)": {
+      "abstract": [
+        {
+          "text": "Adds an action with the specified handler to the UI update link for a particular UI update phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateActionPhase",
+          "text": "UIUpdateActionPhase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateLink",
+          "text": "UIUpdateLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateInfo",
+          "text": "UIUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addActionToPhase:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAction(to:handler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/addaction(to:handler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:target:selector:)": {
+      "abstract": [
+        {
+          "text": "Adds an action with the specified target and selector to the UI update link for a particular UI update phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateActionPhase",
+          "text": "UIUpdateActionPhase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:target:selector:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addActionToPhase:target:selector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAction(to:target:selector:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/addaction(to:target:selector:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/currentUpdateInfo()": {
+      "abstract": [
+        {
+          "text": "Returns an object that describes the current UI update state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateInfo",
+          "text": "UIUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/currentUpdateInfo()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentUpdateInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentUpdateInfo()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/currentupdateinfo()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(view:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(view:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified view using the specified action handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateLink",
+          "text": "UIUpdateLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateInfo",
+          "text": "UIUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForView:actionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(view:actionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(view:actionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionTarget:selector:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified view using the specified target and action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionTarget:selector:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForView:actionTarget:selector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(view:actionTarget:selector:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(view:actiontarget:selector:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForWindowScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowScene:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(windowscene:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified window using the specified action handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateLink",
+          "text": "UIUpdateLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIUpdateInfo",
+          "text": "UIUpdateInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForWindowScene:actionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowScene:actionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(windowscene:actionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionTarget:selector:)": {
+      "abstract": [
+        {
+          "text": "Creates a UI update link for the specified window using the specified target and action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionTarget:selector:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLinkForWindowScene:actionTarget:selector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(windowScene:actionTarget:selector:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/init(windowscene:actiontarget:selector:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the UI update link is monitoring UI updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/isenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/preferredFrameRateRange": {
+      "abstract": [
+        {
+          "text": "The range of frame rates the UI update link prefers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFrameRateRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CAFrameRateRange",
+          "text": "CAFrameRateRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/preferredFrameRateRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFrameRateRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFrameRateRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/preferredframeraterange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/requiresContinuousUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the UI update link needs continuous UI updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresContinuousUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/requiresContinuousUpdates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requiresContinuousUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "requiresContinuousUpdates",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/requirescontinuousupdates"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsImmediatePresentation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the UI update link requests immediate frame presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsImmediatePresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsImmediatePresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsImmediatePresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsImmediatePresentation",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/wantsimmediatepresentation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsLowLatencyEventDispatch": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the UI update link requests dispatch of low-latency eligible events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsLowLatencyEventDispatch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsLowLatencyEventDispatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsLowLatencyEventDispatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsLowLatencyEventDispatch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiupdatelink/wantslowlatencyeventdispatch"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "UI-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase"
+      ],
+      "title": "UI updates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-UI-update-link",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionTarget:selector:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionTarget:selector:)"
+      ],
+      "title": "Creating a UI update link"
+    },
+    {
+      "anchor": "Participating-in-UI-updates",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/isEnabled"
+      ],
+      "title": "Participating in UI updates"
+    },
+    {
+      "anchor": "Configuring-preferences",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/requiresContinuousUpdates",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsLowLatencyEventDispatch",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsImmediatePresentation",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/preferredFrameRateRange"
+      ],
+      "title": "Configuring preferences"
+    },
+    {
+      "anchor": "Getting-the-current-UI-update-information",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/currentUpdateInfo()",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo"
+      ],
+      "title": "Getting the current UI update information"
+    },
+    {
+      "anchor": "Adding-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(handler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:handler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(target:selector:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:target:selector:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase"
+      ],
+      "title": "Adding actions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIUpdateLink"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-UI-update-link",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(view:actionTarget:selector:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/init(windowScene:actionTarget:selector:)"
+              ],
+              "title": "Creating a UI update link"
+            },
+            {
+              "anchor": "Participating-in-UI-updates",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/isEnabled"
+              ],
+              "title": "Participating in UI updates"
+            },
+            {
+              "anchor": "Configuring-preferences",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/requiresContinuousUpdates",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsLowLatencyEventDispatch",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/wantsImmediatePresentation",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/preferredFrameRateRange"
+              ],
+              "title": "Configuring preferences"
+            },
+            {
+              "anchor": "Getting-the-current-UI-update-information",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/currentUpdateInfo()",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo"
+              ],
+              "title": "Getting the current UI update information"
+            },
+            {
+              "anchor": "Adding-actions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(handler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:handler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(target:selector:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateLink/addAction(to:target:selector:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase"
+              ],
+              "title": "Adding actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "UI-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateInfo",
+                "doc://com.apple.uikit/documentation/UIKit/UIUpdateActionPhase"
+              ],
+              "title": "UI updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIUpdateLink"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(handler:)/title",
+          "value": "addActionWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addActionWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:actionTarget:selector:)/title",
+          "value": "updateLinkForView:actionTarget:selector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:actionTarget:selector:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForView:actionTarget:selector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateActionPhase/title",
+          "value": "UIUpdateActionPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateActionPhase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateActionPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateActionPhase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateActionPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1wantsImmediatePresentation/title",
+          "value": "wantsImmediatePresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1wantsImmediatePresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsImmediatePresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1requiresContinuousUpdates/title",
+          "value": "requiresContinuousUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1requiresContinuousUpdates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requiresContinuousUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(to:handler:)/title",
+          "value": "addActionToPhase:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(to:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addActionToPhase:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:actionHandler:)/title",
+          "value": "updateLinkForView:actionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:actionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForView:actionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:)/title",
+          "value": "updateLinkForWindowScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForWindowScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1preferredFrameRateRange/title",
+          "value": "preferredFrameRateRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1preferredFrameRateRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredFrameRateRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:actionHandler:)/title",
+          "value": "updateLinkForWindowScene:actionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:actionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForWindowScene:actionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:)/title",
+          "value": "updateLinkForView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(view:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(to:target:selector:)/title",
+          "value": "addActionToPhase:target:selector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(to:target:selector:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addActionToPhase:target:selector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(target:selector:)/title",
+          "value": "addActionWithTarget:selector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1addAction(target:selector:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addActionWithTarget:selector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CADisplayLink/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateInfo/title",
+          "value": "UIUpdateInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1currentUpdateInfo()/title",
+          "value": "currentUpdateInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1currentUpdateInfo()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentUpdateInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink/title",
+          "value": "UIUpdateLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUpdateLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:actionTarget:selector:)/title",
+          "value": "updateLinkForWindowScene:actionTarget:selector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1init(windowScene:actionTarget:selector:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLinkForWindowScene:actionTarget:selector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1wantsLowLatencyEventDispatch/title",
+          "value": "wantsLowLatencyEventDispatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUpdateLink~1wantsLowLatencyEventDispatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsLowLatencyEventDispatch"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiupdatelink"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiupdatelink"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

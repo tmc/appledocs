@@ -1,0 +1,1123 @@
+{
+  "abstract": [
+    {
+      "text": "Various structures and associated functions for 2D geometric primitives.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cggeometry"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666385,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CGGeometry"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents a point in a two-dimensional coordinate system. The data structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents the location and dimensions of a rectangle. The data structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents the dimensions of width and height.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure does not explicitly define the unit of measure for its member quantities. A point’s x- and y-coordinates or a size’s width and height are unitless quantities—whether such measurements are treated as pixels, scale-factor-independent points, texture elements (texels), or some other unit depends on the API using the measurement, and on the context in which that API is used. For example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure specifying the frame of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object defines the view’s dimensions in points, not pixels. However, the effects of using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " drawing operation depend on the scale factor associated with that context. Where not otherwise specified, you can assume that a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure is defined in points, not pixels. (For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1743223",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1747437",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The height and width stored in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data structure can be negative. For example, a rectangle with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0, 0.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "[10.0,10.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  is exactly equivalent to a rectangle with an origin of ",
+              "type": "text"
+            },
+            {
+              "code": "[10.0, 10.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a size of ",
+              "type": "text"
+            },
+            {
+              "code": "[-10.0,-10.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Your application can standardize a rectangle—that is, ensure that the height and width are stored as positive values—by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "CGRectStandardize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. All functions described in this reference that take ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1719815": {
+      "identifier": "devLink-1719815",
+      "title": "Quartz 2D Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066"
+    },
+    "devLink-1743223": {
+      "identifier": "devLink-1743223",
+      "title": "Drawing and Printing Guide for iOS",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156"
+    },
+    "devLink-1747437": {
+      "identifier": "devLink-1747437",
+      "title": "High Resolution Guidelines for OS X",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012302"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for all floating-point values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgpoint": {
+      "abstract": [
+        {
+          "text": "A structure that contains a point in a two-dimensional coordinate system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPoint",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrectedge": {
+      "abstract": [
+        {
+          "text": "Coordinates that establish the edges of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrectedge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectEdge",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrectedge"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgsize": {
+      "abstract": [
+        {
+          "text": "A structure that contains width and height values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSize",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgsize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgvector": {
+      "abstract": [
+        {
+          "text": "A structure that contains a two-dimensional vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgvector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgvector"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454060-cgrectgetmaxy": {
+      "abstract": [
+        {
+          "text": "Returns the largest value for the y-coordinate of the rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454060-cgrectgetmaxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMaxY",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454060-cgrectgetmaxy"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454186-cgrectcontainsrect": {
+      "abstract": [
+        {
+          "text": "Returns whether the first rectangle contains the second rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454186-cgrectcontainsrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectContainsRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454186-cgrectcontainsrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectInset",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454218-cgrectinset"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454318-cgsizemakewithdictionaryrepresen": {
+      "abstract": [
+        {
+          "text": "Fills in a size using the contents of the specified dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454318-cgsizemakewithdictionaryrepresen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSizeMakeWithDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454318-cgsizemakewithdictionaryrepresen"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454334-cgrectgetmaxx": {
+      "abstract": [
+        {
+          "text": "Returns the largest value of the x-coordinate for the rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454334-cgrectgetmaxx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMaxX",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454334-cgrectgetmaxx"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454747-cgrectintersectsrect": {
+      "abstract": [
+        {
+          "text": "Returns whether two rectangles intersect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454747-cgrectintersectsrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIntersectsRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454747-cgrectintersectsrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454758-cgrectgetwidth": {
+      "abstract": [
+        {
+          "text": "Returns the width of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454758-cgrectgetwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetWidth",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454758-cgrectgetwidth"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454811-cgvectormake": {
+      "abstract": [
+        {
+          "text": "Returns a vector with the specified dimension values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454811-cgvectormake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGVectorMake",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454811-cgvectormake"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454832-cgrectgetminy": {
+      "abstract": [
+        {
+          "text": "Returns the smallest value for the y-coordinate of the rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454832-cgrectgetminy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMinY",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454832-cgrectgetminy"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle with an origin that is offset from that of the source rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectOffset",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454841-cgrectoffset"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454917-cgrectisempty": {
+      "abstract": [
+        {
+          "text": "Returns whether a rectangle has zero width or height, or is a null rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454917-cgrectisempty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIsEmpty",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454917-cgrectisempty"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455008-cgrectisinfinite": {
+      "abstract": [
+        {
+          "text": "Returns whether a rectangle is infinite.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455008-cgrectisinfinite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIsInfinite",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455008-cgrectisinfinite"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455082-cgsizemake": {
+      "abstract": [
+        {
+          "text": "Returns a size with the specified dimension values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455082-cgsizemake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSizeMake",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455082-cgsizemake"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455245-cgrectmake": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle with the specified coordinate and size values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455245-cgrectmake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectMake",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455245-cgrectmake"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455274-cgsizecreatedictionaryrepresenta": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the specified size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455274-cgsizecreatedictionaryrepresenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSizeCreateDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455274-cgsizecreatedictionaryrepresenta"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455338-cgpointmakewithdictionaryreprese": {
+      "abstract": [
+        {
+          "text": "Fills in a point using the contents of the specified dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455338-cgpointmakewithdictionaryreprese",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPointMakeWithDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455338-cgpointmakewithdictionaryreprese"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection": {
+      "abstract": [
+        {
+          "text": "Returns the intersection of two rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIntersection",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455346-cgrectintersection"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455382-cgpointcreatedictionaryrepresent": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the specified point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455382-cgpointcreatedictionaryrepresent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPointCreateDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455382-cgpointcreatedictionaryrepresent"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455471-cgrectisnull": {
+      "abstract": [
+        {
+          "text": "Returns whether the rectangle is equal to the null rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455471-cgrectisnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIsNull",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455471-cgrectisnull"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455645-cgrectgetheight": {
+      "abstract": [
+        {
+          "text": "Returns the height of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455645-cgrectgetheight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetHeight",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455645-cgrectgetheight"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455746-cgpointmake": {
+      "abstract": [
+        {
+          "text": "Returns a point with the specified coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455746-cgpointmake",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPointMake",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455746-cgpointmake"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the provided rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectCreateDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion": {
+      "abstract": [
+        {
+          "text": "Returns the smallest rectangle that contains the two source rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectUnion",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455837-cgrectunion"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide": {
+      "abstract": [
+        {
+          "text": "Divides a source rectangle into two component rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectDivide",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455925-cgrectdivide"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455948-cgrectgetminx": {
+      "abstract": [
+        {
+          "text": "Returns the smallest value for the x-coordinate of the rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455948-cgrectgetminx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMinX",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455948-cgrectgetminx"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456175-cgrectgetmidx": {
+      "abstract": [
+        {
+          "text": "Returns the x- coordinate that establishes the center of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456175-cgrectgetmidx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMidX",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456175-cgrectgetmidx"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456316-cgrectcontainspoint": {
+      "abstract": [
+        {
+          "text": "Returns whether a rectangle contains a specified point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456316-cgrectcontainspoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectContainsPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456316-cgrectcontainspoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral": {
+      "abstract": [
+        {
+          "text": "Returns the smallest rectangle that results from converting the source rectangle values to integers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIntegral",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456348-cgrectintegral"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle with a positive width and height.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectStandardize",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456432-cgrectstandardize"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456516-cgrectequaltorect": {
+      "abstract": [
+        {
+          "text": "Returns whether two rectangles are equal in size and position.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456516-cgrectequaltorect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectEqualToRect",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456516-cgrectequaltorect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456550-cgrectgetmidy": {
+      "abstract": [
+        {
+          "text": "Returns the y-coordinate that establishes the center of the rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456550-cgrectgetmidy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectGetMidY",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456550-cgrectgetmidy"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456558-cgrectmakewithdictionaryrepresen": {
+      "abstract": [
+        {
+          "text": "Fills in a rectangle using the contents of the specified dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456558-cgrectmakewithdictionaryrepresen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectMakeWithDictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456558-cgrectmakewithdictionaryrepresen"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontextref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontextref"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgfloat_informational_macros": {
+      "abstract": [
+        {
+          "text": "Informational macros for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgfloat_informational_macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGFloat Informational Macros",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cggeometry/cgfloat_informational_macros"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgrectinfinite": {
+      "abstract": [
+        {
+          "text": "A rectangle that has infinite extent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgrectinfinite",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGRectInfinite",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cggeometry/cgrectinfinite"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometric_zeros": {
+      "abstract": [
+        {
+          "text": "A zero point, zero rectangle, or zero size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometric_zeros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Geometric Zeros",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cggeometry/geometric_zeros"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometrical_null": {
+      "abstract": [
+        {
+          "text": "The null or empty rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometrical_null",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Geometrical Null",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cggeometry/geometrical_null"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpointequaltopoint": {
+      "abstract": [
+        {
+          "text": "Returns whether two points are equal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpointequaltopoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPointEqualToPoint",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpointequaltopoint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgsizeequaltosize": {
+      "abstract": [
+        {
+          "text": "Returns whether two sizes are equal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgsizeequaltosize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGSizeEqualToSize",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgsizeequaltosize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1719815"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666423",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455382-cgpointcreatedictionaryrepresent",
+        "doc://com.apple.documentation/documentation/coregraphics/1455274-cgsizecreatedictionaryrepresenta",
+        "doc://com.apple.documentation/documentation/coregraphics/1455760-cgrectcreatedictionaryrepresenta"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary Representation from a Geometric Primitive"
+    },
+    {
+      "anchor": "1666483",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455338-cgpointmakewithdictionaryreprese",
+        "doc://com.apple.documentation/documentation/coregraphics/1454318-cgsizemakewithdictionaryrepresen",
+        "doc://com.apple.documentation/documentation/coregraphics/1456558-cgrectmakewithdictionaryrepresen"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Geometric Primitive from a Dictionary Representation"
+    },
+    {
+      "anchor": "1666554",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455746-cgpointmake",
+        "doc://com.apple.documentation/documentation/coregraphics/1455245-cgrectmake",
+        "doc://com.apple.documentation/documentation/coregraphics/1455082-cgsizemake",
+        "doc://com.apple.documentation/documentation/coregraphics/1454811-cgvectormake"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Geometric  Primitive from Values"
+    },
+    {
+      "anchor": "1666638",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide",
+        "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset",
+        "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral",
+        "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection",
+        "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset",
+        "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize",
+        "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion"
+      ],
+      "kind": "taskGroup",
+      "title": "Modifying Rectangles"
+    },
+    {
+      "anchor": "1666752",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgpointequaltopoint",
+        "doc://com.apple.documentation/documentation/coregraphics/cgsizeequaltosize",
+        "doc://com.apple.documentation/documentation/coregraphics/1456516-cgrectequaltorect",
+        "doc://com.apple.documentation/documentation/coregraphics/1454747-cgrectintersectsrect"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Values"
+    },
+    {
+      "anchor": "1666830",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1456316-cgrectcontainspoint",
+        "doc://com.apple.documentation/documentation/coregraphics/1454186-cgrectcontainsrect"
+      ],
+      "kind": "taskGroup",
+      "title": "Checking for Membership"
+    },
+    {
+      "anchor": "1666881",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455948-cgrectgetminx",
+        "doc://com.apple.documentation/documentation/coregraphics/1454832-cgrectgetminy",
+        "doc://com.apple.documentation/documentation/coregraphics/1456175-cgrectgetmidx",
+        "doc://com.apple.documentation/documentation/coregraphics/1456550-cgrectgetmidy",
+        "doc://com.apple.documentation/documentation/coregraphics/1454334-cgrectgetmaxx",
+        "doc://com.apple.documentation/documentation/coregraphics/1454060-cgrectgetmaxy"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Min, Mid, and Max Values"
+    },
+    {
+      "anchor": "1666971",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455645-cgrectgetheight",
+        "doc://com.apple.documentation/documentation/coregraphics/1454758-cgrectgetwidth"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Height and Width"
+    },
+    {
+      "anchor": "1667018",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1454917-cgrectisempty",
+        "doc://com.apple.documentation/documentation/coregraphics/1455471-cgrectisnull",
+        "doc://com.apple.documentation/documentation/coregraphics/1455008-cgrectisinfinite"
+      ],
+      "kind": "taskGroup",
+      "title": "Checking Rectangle Characteristics"
+    },
+    {
+      "anchor": "1667084",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+        "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+        "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+        "doc://com.apple.documentation/documentation/corefoundation/cgsize",
+        "doc://com.apple.documentation/documentation/corefoundation/cgvector"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1667198",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgrectinfinite",
+        "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometric_zeros",
+        "doc://com.apple.documentation/documentation/coregraphics/cggeometry/geometrical_null",
+        "doc://com.apple.documentation/documentation/corefoundation/cgrectedge",
+        "doc://com.apple.documentation/documentation/coregraphics/cggeometry/cgfloat_informational_macros"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/cggeometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

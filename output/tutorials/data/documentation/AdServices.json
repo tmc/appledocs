@@ -1,0 +1,798 @@
+{
+  "abstract": [
+    {
+      "text": "Attribute app-download campaigns that originate from the App Store, Apple News, or",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Stocks on iOS devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdServices/documentation/AdServices"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AdServices",
+    "modules": [
+      {
+        "name": "AdServices"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.1",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "AdServices"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AdServices/documentation/AdServices/Changelog"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple Ads Attribution API is a solution that combines the AdServices framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on client devices and a RESTful API for server-side communication with Apple’s attribution",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server. The API retrieves attribution data from app downloads and redownloads from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple Search Ads campaigns. Measure attribution data using specific Apple Search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ads campaign metadata against the performance of Apple Search Ads campaigns. See",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for attribution responses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some developers use a server-side integration with Mobile Measurement Providers (MMPs)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for enhanced reporting. Developers also have the option to hand off attribution data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to an MMP or to manage their attribution data themselves. The following diagram illustrates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the AdServices framework in combination with a RESTful endpoint to retrieve",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribution data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ad_services-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In step 1, the AdServices framework makes a call to request a token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In step 2, the AdServices framework generates a token. For more detail, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In step 3, an MMP or developer uses the token in a RESTful API request to retrieve",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "an attribution record from Apple’s attribution server. For more detail, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In step 4, the attribution record that returns has key-value pairs that correspond",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to your campaigns in the Apple Search Ads Campaign Management API. For more detail,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload-descriptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ad_services-1": {
+      "alt": "A diagram showing the sequence of interaction between the AdServices framework and RESTful API.",
+      "identifier": "ad_services-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0cd7bd0fb49333e7481ce470651a1cf/ad_services-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36ca14a834809b657fbad5e724acefae/ad_services-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AdServices/documentation/AdServices": {
+      "abstract": [
+        {
+          "text": "Attribute app-download campaigns that originate from the App Store, Apple News, or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Stocks on iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdServices",
+      "type": "topic",
+      "url": "/documentation/adservices"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution": {
+      "abstract": [
+        {
+          "text": "The parent class that the framework uses to request a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AAAttribution"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AAAttribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttribution",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()": {
+      "abstract": [
+        {
+          "text": "Generates a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributionToken"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributionTokenWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributionToken()",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution/attributiontoken()"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload",
+      "kind": "section",
+      "title": "Attribution payload",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution/attributiontoken()#Attribution-payload"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload-descriptions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttribution/attributionToken()#Attribution-payload-descriptions",
+      "kind": "section",
+      "title": "Attribution payload descriptions",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattribution/attributiontoken()#Attribution-payload-descriptions"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError": {
+      "abstract": [
+        {
+          "text": "The error code that the parent class issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AAAttributionError"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AAAttributionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttributionError",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattributionerror"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError/Code": {
+      "abstract": [
+        {
+          "text": "The error code that the parent class issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttributionError.Code",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattributionerror/code"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/AAAttributionErrorDomain": {
+      "abstract": [
+        {
+          "text": "The framework attribution error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AAAttributionErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/AAAttributionErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AAAttributionErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "AAAttributionErrorDomain",
+      "type": "topic",
+      "url": "/documentation/adservices/aaattributionerrordomain"
+    },
+    "doc://com.apple.AdServices/documentation/AdServices/Changelog": {
+      "abstract": [
+        {
+          "text": "A log of Ad Services framework updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdServices/documentation/AdServices/Changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Changelog",
+      "type": "topic",
+      "url": "/documentation/adservices/changelog"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.AdServices/documentation/AdServices/Changelog"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Tokens",
+      "identifiers": [
+        "doc://com.apple.AdServices/documentation/AdServices/AAAttribution"
+      ],
+      "title": "Tokens"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError",
+        "doc://com.apple.AdServices/documentation/AdServices/AAAttributionErrorDomain",
+        "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError/Code"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.AdServices/documentation/AdServices/Changelog"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Tokens",
+              "identifiers": [
+                "doc://com.apple.AdServices/documentation/AdServices/AAAttribution"
+              ],
+              "title": "Tokens"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.AdServices/documentation/AdServices/AAAttributionErrorDomain",
+                "doc://com.apple.AdServices/documentation/AdServices/AAAttributionError/Code"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution~1attributionToken()/title",
+          "value": "attributionTokenWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution~1attributionToken()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributionTokenWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/title",
+          "value": "AAAttribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttributionError~1Code/title",
+          "value": "AAAttributionErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttributionError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttributionErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttributionError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttributionErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttributionErrorDomain/title",
+          "value": "AAAttributionErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AdServices~1documentation~1AdServices~1AAAttributionErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AAAttributionErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adservices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/adservices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

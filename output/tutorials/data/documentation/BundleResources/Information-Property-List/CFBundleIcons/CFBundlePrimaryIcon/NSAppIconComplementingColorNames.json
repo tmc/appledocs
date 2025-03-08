@@ -1,0 +1,590 @@
+{
+  "abstract": [
+    {
+      "text": "The names of the colors to use for the background of the App Shortcuts platter.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconComplementingColorNames"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.CFBundleIcons.CFBundlePrimaryIcon.NSAppIconComplementingColorNames",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSAppIconComplementingColorNames"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "NSAppIconComplementingColorNames"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "NSAppIconComplementingColorNames",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": true,
+            "baseType": "string "
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system chooses an appropriate background color for the App Shortcuts platter — a view that represents a single group of App Shortcuts. You can override that behavior in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the name of a single custom color in your app’s asset catalog to show a solid background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the names of two custom colors to show a gradient background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "array",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the value’s type, even when specifying a single custom color for a solid background.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "<dict>",
+            "     <key>CFBundlePrimaryIcon</key>",
+            "     <dict>",
+            "         <key>NSAppIconActionTintColorName</key>",
+            "         <string>CustomTintColor</string>",
+            "         <key>NSAppIconComplementingColorNames</key>",
+            "         <array>",
+            "             <string>BackgroundGradientColor1</string>",
+            "             <string>BackgroundGradientColor2</string>",
+            "         </array>",
+            "    </dict>",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app provides multiple app icons, you can specify different background colors to match each alternative.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "     <key>CFBundlePrimaryIcon</key>",
+            "     <dict>",
+            "         <key>NSAppIconActionTintColorName</key>",
+            "         <string>CustomTintColor</string>",
+            "         <key>NSAppIconComplementingColorNames</key>",
+            "         <array>",
+            "             <string>BackgroundGradientColor1</string>",
+            "             <string>BackgroundGradientColor2</string>",
+            "         </array>",
+            "    </dict>",
+            "    <key>CFBundleAlternateIcons</key>",
+            "     <dict>",
+            "         <key>MyAlternateIcon</key>",
+            "         <dict>",
+            "            <key>NSAppIconActionTintColorName</key>",
+            "            <string>AlternateCustomTintColor</string>",
+            "            <key>NSAppIconComplementingColorNames</key>",
+            "            <array>",
+            "                <string>AlternateBackgroundGradientColor1</string>",
+            "                <string>AlternateBackgroundGradientColor2</string>",
+            "            </array>",
+            "         </dict>",
+            "    </dict>",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons": {
+      "abstract": [
+        {
+          "text": "Information about all of the icons used by the app.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Icon files (iOS 5)",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons",
+      "kind": "symbol",
+      "name": "CFBundleIcons",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleIcons"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleIcons",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon": {
+      "abstract": [
+        {
+          "text": "The app’s primary icon for display on the Home Screen, in the Settings app, and many other places throughout the system.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Primary Icon",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon",
+      "kind": "symbol",
+      "name": "CFBundlePrimaryIcon",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundlePrimaryIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundlePrimaryIcon",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconActionTintColorName": {
+      "abstract": [
+        {
+          "text": "The tint color to apply to text and symbols in the App Shortcuts platter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconActionTintColorName",
+      "kind": "symbol",
+      "name": "NSAppIconActionTintColorName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppIconActionTintColorName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppIconActionTintColorName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon/nsappiconactiontintcolorname"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconComplementingColorNames": {
+      "abstract": [
+        {
+          "text": "The names of the colors to use for the background of the App Shortcuts platter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconComplementingColorNames",
+      "kind": "symbol",
+      "name": "NSAppIconComplementingColorNames",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppIconComplementingColorNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppIconComplementingColorNames",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon/nsappiconcomplementingcolornames"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-the-App-Shortcuts-platter",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconActionTintColorName"
+      ],
+      "title": "Customizing the App Shortcuts platter"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSAppIconComplementingColorNames"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppIconComplementingColorNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Customizing-the-App-Shortcuts-platter",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/NSAppIconActionTintColorName"
+              ],
+              "title": "Customizing the App Shortcuts platter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon/title",
+          "value": "CFBundlePrimaryIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundlePrimaryIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons/title",
+          "value": "CFBundleIcons"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleIcons"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon~1NSAppIconComplementingColorNames/title",
+          "value": "NSAppIconComplementingColorNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon~1NSAppIconComplementingColorNames/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppIconComplementingColorNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon~1NSAppIconActionTintColorName/title",
+          "value": "NSAppIconActionTintColorName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIcons~1CFBundlePrimaryIcon~1NSAppIconActionTintColorName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppIconActionTintColorName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon/nsappiconcomplementingcolornames"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon/nsappiconcomplementingcolornames"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

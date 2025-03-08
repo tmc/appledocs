@@ -1,0 +1,1315 @@
+{
+  "abstract": [
+    {
+      "text": "The current value of the characteristic.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HMCharacteristic(py)value",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "value"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "value"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "value"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "value"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is the last value that the system saw for the characteristic. Because multiple apps can access a given home, this value may change without your app changing it. To be sure you have the current value, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/readValue(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and wait for the response before checking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also learn about external changes to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when they happen by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/enableNotification(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to enable updates for a particular characteristic. Then implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to receive the updates. You only receive updates for changes made outside your app, for example by Apple’s Home app, or by the accessory itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "How you interpret the value depends on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/characteristicType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". From this, you can tell what the value represents, and infer whether the value contain a string, integer, floating point number, or Boolean. The characteristic’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " gives you additional information about how to interpret and present the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the communication method for state updates from accessories to their delegates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate of a change in value of a characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "service"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateValueFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMCharacteristic",
+          "text": "HMCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate/accessory(_:service:didUpdateValueFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessory:service:didUpdateValueForCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessory(_:service:didUpdateValueFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate/accessory(_:service:didupdatevaluefor:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic": {
+      "abstract": [
+        {
+          "text": "A specific characteristic of a service, like the brightness of a dimmable light or its color temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMCharacteristic"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMCharacteristic",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/characteristicType": {
+      "abstract": [
+        {
+          "text": "The type of the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characteristicType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/characteristicType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "characteristicType"
+        }
+      ],
+      "role": "symbol",
+      "title": "characteristicType",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/characteristictype"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/enableNotification(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables notifications for changes in the value of the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableNotification"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/enableNotification(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enableNotification:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enableNotification(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/enablenotification(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/metadata": {
+      "abstract": [
+        {
+          "text": "Metadata about the units and other properties of the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMCharacteristicMetadata",
+          "text": "HMCharacteristicMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/metadata"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/readValue(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Reads the value for the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/readValue(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readValueWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readValue(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/readvalue(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/updateAuthorizationData(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets or clears authorization data used when writing to the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateAuthorizationData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/updateAuthorizationData(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateAuthorizationData:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateAuthorizationData(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/updateauthorizationdata(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value": {
+      "abstract": [
+        {
+          "text": "The current value of the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "value"
+        }
+      ],
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/value"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/writeValue(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Modifies the value of the characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/writeValue(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeValue:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeValue(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic/writevalue(_:completionhandler:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controlling-a-characteristic",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/readValue(completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/writeValue(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/updateAuthorizationData(_:completionHandler:)"
+      ],
+      "title": "Controlling a characteristic"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "value"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.homekit/documentation/HomeKit",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controlling-a-characteristic",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/readValue(completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/writeValue(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic/updateAuthorizationData(_:completionHandler:)"
+              ],
+              "title": "Controlling a characteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "id"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "value"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1characteristicType/title",
+          "value": "characteristicType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1characteristicType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "characteristicType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/title",
+          "value": "HMCharacteristic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1enableNotification(_:completionHandler:)/title",
+          "value": "enableNotification:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1enableNotification(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enableNotification:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate~1accessory(_:service:didUpdateValueFor:)/title",
+          "value": "accessory:service:didUpdateValueForCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate~1accessory(_:service:didUpdateValueFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessory:service:didUpdateValueForCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1metadata/title",
+          "value": "metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1writeValue(_:completionHandler:)/title",
+          "value": "writeValue:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1writeValue(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeValue:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1updateAuthorizationData(_:completionHandler:)/title",
+          "value": "updateAuthorizationData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1updateAuthorizationData(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateAuthorizationData:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1value/title",
+          "value": "value"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1value/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "value"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/title",
+          "value": "HMAccessoryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1readValue(completionHandler:)/title",
+          "value": "readValueWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic~1readValue(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readValueWithCompletionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/hmcharacteristic/value"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/hmcharacteristic/value"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

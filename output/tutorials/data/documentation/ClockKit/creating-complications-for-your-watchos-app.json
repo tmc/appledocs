@@ -1,0 +1,984 @@
+{
+  "abstract": [
+    {
+      "text": "Set up and implement complications for your watchOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Creating complications for your watchOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complications are small interface elements that users place on the clock face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3598123",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Having your complication on an active watch face gives you the opportunity to provide useful data whenever the user glances at their watch. Users can also interact with your app by tapping on the complication and launching your app. The system also provides apps with active complications larger budgets for background refresh tasks. You can use these tasks to keep the content of your watchOS app and your complications up to date and accurate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Complications-to-Your-App",
+          "level": 3,
+          "text": "Add Complications to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add complications to your watchOS app, perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the data to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable complications for your App.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement your data source.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add placeholders for your complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Select-the-Data-to-Display",
+          "level": 3,
+          "text": "Select the Data to Display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before creating a complication, decide on the data you want to display. Each watch face only provides space for a handful of complications, and users are more likely to add your complication if it provides useful and up-to-date information at a glance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When building a complication, you must fit your data into one of the provided templates. You can choose which template to use for each family, but for many templates, you only have a few characters or a small image. Graphic complications provide richer information using gauges and color, but you’re still limited by the amount and type of data you can display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Can you display your data with the available templates?",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you’re using notifications to deliver updates, a complication might serve as a more unobtrusive way to deliver the same data. For example, a sports app might post updated scores to a complication rather than sending notifications when the scores change.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Do you already use notifications to convey timely information to the user?",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If possible, provide a timeline that contains all the complication updates for the near future. The complication can then use data from the timeline without requiring additional background update tasks. You can always add to or replace this timeline. However, if you update your timeline too frequently, you may exhaust your complication’s budget for background tasks and data transfers.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "How much data can you provide in advance?",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system gives larger background budgets to watchOS apps with complications on the active watch face. However, it still limits the background tasks to about four tasks per hour. Alternatively, you can generate the complication data on your server, and send it to the watch using push notifications. This strategy lets you move complex and time consuming tasks off the watch; however, the system limits you to 50 complication push notifications per day. Be sure that your complications can provide useful and timely information within these constraints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-and-Design-Your-Complications",
+          "level": 3,
+          "text": "Set Up and Design Your Complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can begin designing your complications, you need to enable support. If you’re creating a new project, you can choose to include complications in the project, and Xcode does all the work for you. However, if you want to add complications to an existing app, you may need to create and configure your complications’ data source and an asset group. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement your app’s data source. ClockKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol’s methods to request information about the complications your app supports, and to fill the timeline of any complications on an active watch face. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, an effective complication must display useful information whenever the user glances at it. For information on strategies to keep your complication up to date and accurate, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Placeholders",
+          "level": 3,
+          "text": "Add Placeholders",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit displays placeholders for your app’s complications while the user configures a watch face. Your app can provide static images and localized templates as placeholders. For static placeholders, place images in the Complications group in your watch extension’s assets catalog. For localized templates, implement your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit uses the localizable templates whenever possible; however, it may display the static image if the template isn’t available, such as when the user first installs your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Your-Complications",
+          "level": 3,
+          "text": "Test Your Complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your complications, build and install the app on the simulator or a test device. Then add the complication to an active watch face, as described in this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the sample code project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the Digital Crown to return to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Firmly press the watch face to configure it, then tap Customize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe left until the complications are highlighted. Select the complication you want to modify.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll to select your app’s complication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the Digital Crown again to save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on configuring watch faces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT205536",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you included complications when you created the project, Xcode automatically creates a scheme for installing and debugging your complications. By default, the scheme’s name ends in “WatchKit App (Complication)”. When you run this scheme, Xcode installs the latest version of your app and reloads your complications. You can set breakpoints in your complication’s data source to step through the loading process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Gets a localizable template that shows sample data for the specified complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTemplate",
+          "text": "CLKComplicationTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getLocalizableSampleTemplate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getlocalizablesampletemplate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication": {
+      "abstract": [
+        {
+          "text": "Provide the placeholders that users see when adding your complication to a watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Placeholders for Your Complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-placeholders-for-your-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication": {
+      "abstract": [
+        {
+          "text": "Use text in SwiftUI complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding text to a complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-text-to-a-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app": {
+      "abstract": [
+        {
+          "text": "Define the complications that your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring complications for your app",
+      "type": "topic",
+      "url": "/documentation/clockkit/declaring-complications-for-your-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges": {
+      "abstract": [
+        {
+          "text": "Add rich visual data to your SwiftUI complications with progress views and gauges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying progress views and gauges",
+      "type": "topic",
+      "url": "/documentation/clockkit/displaying-progress-views-and-gauges"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up your watchOS app’s complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Complications for Your watchOS App",
+      "type": "topic",
+      "url": "/documentation/clockkit/enabling-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date": {
+      "abstract": [
+        {
+          "text": "Replace or extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your complications up to date",
+      "type": "topic",
+      "url": "/documentation/clockkit/keeping-your-complications-up-to-date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events": {
+      "abstract": [
+        {
+          "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading future timeline events",
+      "type": "topic",
+      "url": "/documentation/clockkit/loading-future-timeline-events"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/en-us/HT205536": {
+      "identifier": "https://support.apple.com/en-us/HT205536",
+      "title": "Change the watch face on your Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Change the watch face on your Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT205536"
+    },
+    "media-3598123": {
+      "alt": "An image of an Infographic Modular watch face with the complications highlighted. The face uses graphic circular templates for the Weather, Breathe, Air Quality Index, and Workout apps. It uses a graphic large image template for the Heart Rate app.",
+      "identifier": "media-3598123",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8681f07a11801363b1601f240bc5ccc/media-3598123@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8681f07a11801363b1601f240bc5ccc/media-3598123~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+        "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+        "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+        "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+        "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configure-Complications",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+      ],
+      "title": "Configure Complications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configure-Complications",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+              ],
+              "title": "Configure Complications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+                "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+                "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+                "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+                "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/title",
+          "value": "getLocalizableSampleTemplateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/creating-complications-for-your-watchos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/creating-complications-for-your-watchos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

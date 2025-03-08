@@ -1,0 +1,1305 @@
+{
+  "abstract": [
+    {
+      "text": "Perform text recognition on a photo using the Vision framework’s text-recognition request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Locating and displaying recognized text"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates the Vision framework’s ability to perform optical character recognition (OCR) on an image you capture using your device’s camera. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure generates a collection of objects that extract and describe an image’s textual content. These objects provide information like the text string, the confidence of the observation’s accuracy, and the bounding box around the text’s location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with extracting and displaying text from the image, the sample app helps you visualize where an observation occurs by using the bounding boxes to draw red rectangles around the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 16 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone with iOS 18 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connect the iPhone to your Mac over USB-C. The first time you run this sample app, the system prompts you to grant the app access to the camera. You need to allow the sample app to access the camera for it to function correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-camera",
+          "level": 3,
+          "text": "Set up the camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app performs the request on a photo from a physical device. To enable use of the camera, the sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a custom camera interface. Tapping the Take a Photo button on the initial view presents the camera and calls the ",
+              "type": "text"
+            },
+            {
+              "code": "setup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This is where the camera work begins in the sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CameraPreview(camera: $camera)",
+            "    .task {",
+            "        /// If the app has access to the camera, set up and display a live capture preview.",
+            "        if await camera.checkCameraAuthorization() {",
+            "            didSetup = camera.setup()",
+            "        /// If the app doesn't have access, dismiss the camera and display an error.",
+            "        } else {",
+            "            showAccessError = true",
+            "            showCamera = false",
+            "        }",
+            "        ",
+            "        if !didSetup {",
+            "            print(\"Camera setup failed.\")",
+            "            showCamera = false",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to integrate the camera, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/capturing-still-and-live-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-request",
+          "level": 3,
+          "text": "Customize the request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Vision framework provides the ability to customize the way it handles text recognition. Through its text-recognition path, the app demonstrates how to change whether the request prioritizes speed or accuracy. It also shows how to customize the languages the request detects, and whether the request applies a language-correction model during the recognition process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two text-recognition paths are: fast and accurate. The fast path is similar to a traditional OCR approach, and the accurate path uses a neural network that’s similar to how humans read text. By default, the request uses the accurate path, so the system sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/recognitionLevel-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "accurate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on the recognition level and language correction settings, the available recognition languages change. To dynamically generate a list of available languages to choose from, the app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/supportedRecognitionLanguages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The app sets the recognition languages with an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, and prioritizes the first element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateRequestSettings() {",
+            "    /// A Boolean value that indicates whether the system applies the language-correction model.",
+            "    imageOCR.request.usesLanguageCorrection = languageCorrection",
+            "    ",
+            "    imageOCR.request.recognitionLanguages = [selectedLanguage]",
+            "    ",
+            "    switch selectedRecognitionLevel {",
+            "    case \"Fast\":",
+            "        imageOCR.request.recognitionLevel = .fast",
+            "    default:",
+            "        imageOCR.request.recognitionLevel = .accurate",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-the-request",
+          "level": 3,
+          "text": "Perform the request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After capturing a photo, the app creates an instance of the custom OCR class. This class provides an array to hold the results, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "performOCR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to handle the text recognition. The ",
+              "type": "text"
+            },
+            {
+              "code": "performOCR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method performs the request on the image, which returns an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The method then adds each observation to the observations array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Observable",
+            "class OCR {",
+            "    /// The array of `RecognizedTextObservation` objects to hold the request's results.",
+            "    var observations = [RecognizedTextObservation]()",
+            "    ",
+            "    /// The Vision request.",
+            "    var request = RecognizeTextRequest()",
+            "    ",
+            "    func performOCR(imageData: Data) async throws {",
+            "        /// Clear the `observations` array for photo recapture.",
+            "        observations.removeAll()",
+            "        ",
+            "        /// Perform the request on the image data and return the results.",
+            "        let results = try await request.perform(on: imageData)",
+            "        ",
+            "        /// Add each observation to the `observations` array.",
+            "        for observation in results {",
+            "            observations.append(observation)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initially, the app performs the request once when it captures an image. If the app detects any changes to the request settings (for example, the recognition level), it performs the request again. The Vision framework’s perform method is asynchronous, so the system wraps the method in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".onChange(of: settingChanges, initial: true) {",
+            "    updateRequestSettings()",
+            "    Task {",
+            "        try await imageOCR.performOCR(imageData: imageData)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-and-display-bounding-boxes",
+          "level": 3,
+          "text": "Create and display bounding boxes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides a custom implementation to display red bounding boxes where an observation occurs. An observation contains the location and the dimensions of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation/boundingBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the form of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To create a bounding box, the app first converts the ",
+              "type": "text"
+            },
+            {
+              "code": "NormalizedRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw the rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Box: Shape {",
+            "    private let normalizedRect: NormalizedRect",
+            "    ",
+            "    init(observation: any BoundingBoxProviding) {",
+            "        normalizedRect = observation.boundingBox",
+            "    }",
+            "    ",
+            "    func path(in rect: CGRect) -> Path {",
+            "        let rect = normalizedRect.toImageCoordinates(rect.size, origin: .upperLeft)",
+            "        return Path(rect)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the bounding boxes, the app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(alignment:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the image, and creates a bounding box for each of the observations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".overlay {",
+            "    ForEach(imageOCR.observations, id: \\.uuid) { observation in",
+            "        Box(observation: observation)",
+            "            .stroke(.red, lineWidth: 1)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-the-results",
+          "level": 3,
+          "text": "Access the results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app displays the extracted text from the image by iterating through the observations array. If the request doesn’t recognize any text in the image, the app displays the “No text recognized” string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Display the text from the captured image.",
+            "ForEach(imageOCR.observations, id: \\.self) { observation in",
+            "    Text(observation.topCandidates(1).first?.string ?? \"No text recognized\")",
+            "        .textSelection(.enabled)",
+            "}",
+            ".foregroundStyle(.gray)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d57318ba9233/LocatingAndDisplayingRecognizedText.zip": {
+      "checksum": "d57318ba9233cfbbcdc78c43edc7c26079c02e8c055eb87ae0763f002fb0176c929ff29068337ea599d0a7061c024374d4706622cfc4d880acd0d89266c5fa56",
+      "identifier": "d57318ba9233/LocatingAndDisplayingRecognizedText.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d57318ba9233/LocatingAndDisplayingRecognizedText.zip"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/capturing-still-and-live-photos": {
+      "abstract": [
+        {
+          "text": "Configure and capture single or multiple still images, Live Photos, and other forms of photography.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/capturing-still-and-live-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Still and Live Photos",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/capturing-still-and-live-photos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Path": {
+      "abstract": [
+        {
+          "text": "The outline of a 2D shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Path"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Path",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Path"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Layers the views that you specify in front of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlay(alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/overlay(alignment:content:)"
+    },
+    "doc://com.apple.documentation/documentation/Vision/NormalizedRect": {
+      "abstract": [
+        {
+          "text": "The location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NormalizedRect",
+      "type": "topic",
+      "url": "/documentation/Vision/NormalizedRect"
+    },
+    "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that recognizes text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizeTextRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RecognizeTextRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/RecognizeTextRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/recognitionLevel-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that determines whether the request prioritizes accuracy or speed in text recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognitionLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision20RecognizeTextRequestV",
+          "text": "RecognizeTextRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision20RecognizeTextRequestV16RecognitionLevelO",
+          "text": "RecognitionLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/recognitionLevel-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recognitionLevel",
+      "type": "topic",
+      "url": "/documentation/Vision/RecognizeTextRequest/recognitionLevel-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/supportedRecognitionLanguages": {
+      "abstract": [
+        {
+          "text": "The identifiers of the languages that the request supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedRecognitionLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizeTextRequest/supportedRecognitionLanguages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedRecognitionLanguages",
+      "type": "topic",
+      "url": "/documentation/Vision/RecognizeTextRequest/supportedRecognitionLanguages"
+    },
+    "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation": {
+      "abstract": [
+        {
+          "text": "An object that contains information about both the location and content of text and glyphs that the framework recognizes in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizedTextObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RecognizedTextObservation",
+      "type": "topic",
+      "url": "/documentation/Vision/RecognizedTextObservation"
+    },
+    "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation/boundingBox": {
+      "abstract": [
+        {
+          "text": "The bounding box of the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBox"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision14NormalizedRectV",
+          "text": "NormalizedRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/RecognizedTextObservation/boundingBox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingBox",
+      "type": "topic",
+      "url": "/documentation/Vision/RecognizedTextObservation/boundingBox"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/language": {
+      "abstract": [
+        {
+          "text": "A type that represents a language, as used in a locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Language"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Language",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/language"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds regions of visible text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectTextRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectTextRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectTextRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecttextrectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that recognizes text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizeTextRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizeTextRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecognizeTextRequest",
+      "type": "topic",
+      "url": "/documentation/vision/recognizetextrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d57318ba9233/LocatingAndDisplayingRecognizedText.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest"
+      ],
+      "title": "Text detection"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/locating-and-displaying-recognized-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

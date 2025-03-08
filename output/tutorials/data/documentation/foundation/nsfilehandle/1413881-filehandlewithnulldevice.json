@@ -1,0 +1,364 @@
+{
+  "abstract": [
+    {
+      "text": "The file handle associated with a null device.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413881-filehandlewithnulldevice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413881,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileHandle(cpy)fileHandleWithNullDevice",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileHandle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "fileHandleWithNullDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(class, readonly, strong) "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSFileHandle",
+              "text": "NSFileHandle"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "identifier",
+              "text": "fileHandleWithNullDevice"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file handle associated with a null device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use null-device file handles as “placeholders” for standard-device file handles or in collection objects to avoid exceptions and other errors resulting from messages being sent to invalid file handles. Read messages sent to a null-device file handle return an end-of-file indicator (an empty ",
+              "type": "text"
+            },
+            {
+              "code": "NSData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object) rather than raise an exception. Write messages are no-ops, whereas ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1410326-filedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns an illegal value. Other methods are no-ops or return “sensible” values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using this method to create a file handle object, the file handle owns its associated file descriptor and is responsible for closing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409825-initwithfiledescriptor": {
+      "abstract": [
+        {
+          "text": "Creates and returns a file handle object associated with the specified file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithFileDescriptor:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409825-initwithfiledescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithFileDescriptor:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1409825-initwithfiledescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1410326-filedescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1410326-filedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1410326-filedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1411001-filehandlewithstandarderror": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard error file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1411001-filehandlewithstandarderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHandleWithStandardError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1411001-filehandlewithstandarderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413686-filehandlewithstandardinput": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard input file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413686-filehandlewithstandardinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHandleWithStandardInput",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1413686-filehandlewithstandardinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413881-filehandlewithnulldevice": {
+      "abstract": [
+        {
+          "text": "The file handle associated with a null device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413881-filehandlewithnulldevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHandleWithNullDevice",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1413881-filehandlewithnulldevice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416965-filehandlewithstandardoutput": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard output file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416965-filehandlewithstandardoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHandleWithStandardOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandle/1416965-filehandlewithstandardoutput"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1411001-filehandlewithstandarderror",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1413686-filehandlewithstandardinput",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1416965-filehandlewithstandardoutput"
+      ],
+      "title": "Getting a File Handle"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandle/1409825-initwithfiledescriptor"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilehandle/1413881-filehandlewithnulldevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filehandle/1413881-nulldevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

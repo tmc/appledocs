@@ -1,0 +1,1435 @@
+{
+  "abstract": [
+    {
+      "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLDevice",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+        "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+        "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification",
+        "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+        "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+        "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+        "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time",
+        "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+        "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+        "doc://com.apple.metal/documentation/Metal/confirming-which-counters-and-counter-sets-a-gpu-supports",
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can get the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at runtime by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Each Metal device instance represents a GPU and is the main starting point for your app’s interaction with it. With a Metal device instance, you can inspect a GPU’s features and capabilities (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/device-inspection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and create subsidiary type instances with its factory methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Buffers, textures, and other resources store, synchronize, and pass data between the GPU and CPU (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Input/Output command queues efficiently load resources from the file system (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/resource-loading",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Command queues create command encoders and schedule work for the GPU, including rendering and compute commands (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pipeline states store render or compute pipeline configurations — which can be expensive to create — so that you can reuse them, potentially many times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses more than one GPU (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), ensure that instances of these types only interact with others from the same device. For example, your app can pass a texture to a command encoder that comes from the same Metal device, but not to another device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the device instance Metal selects as the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCreateSystemDefaultDevice()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcreatesystemdefaultdevice()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a command queue with the provided configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLCommandQueueDescriptor",
+          "text": "MTLCommandQueueDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newCommandQueueWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeCommandQueue(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecommandqueue(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLogState(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a shader log state with the provided configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeLogState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLLogStateDescriptor",
+          "text": "MTLLogStateDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLLogState",
+          "text": "MTLLogState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLogState(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newLogStateWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeLogState(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makelogstate(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/maximumConcurrentCompilationTaskCount": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumConcurrentCompilationTaskCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/maximumConcurrentCompilationTaskCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumConcurrentCompilationTaskCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "maximumConcurrentCompilationTaskCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/maximumconcurrentcompilationtaskcount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/shouldMaximizeConcurrentCompilation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldMaximizeConcurrentCompilation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/shouldMaximizeConcurrentCompilation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldMaximizeConcurrentCompilation"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "shouldMaximizeConcurrentCompilation",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/shouldmaximizeconcurrentcompilation"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/confirming-which-counters-and-counter-sets-a-gpu-supports": {
+      "abstract": [
+        {
+          "text": "Check whether a GPU produces the runtime performance data you want to sample.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/confirming-which-counters-and-counter-sets-a-gpu-supports",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming which Counters and Counter Sets a GPU Supports",
+      "type": "topic",
+      "url": "/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time": {
+      "abstract": [
+        {
+          "text": "Correlate GPU events with CPU timelines by calculating the CPU time equivalents for GPU timestamps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting GPU Timestamps into CPU Time",
+      "type": "topic",
+      "url": "/documentation/metal/converting-gpu-timestamps-into-cpu-time"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer": {
+      "abstract": [
+        {
+          "text": "Configure a descriptor to specify the properties of an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Indirect Command Buffer",
+      "type": "topic",
+      "url": "/documentation/metal/creating-an-indirect-command-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects": {
+      "abstract": [
+        {
+          "text": "Write your Metal pipeline states to a binary archive at app runtime, and build binaries for any supported GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Binary Archives from Device-Built Pipeline State Objects",
+      "type": "topic",
+      "url": "/documentation/metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Allocate memory for sparse textures by creating a sparse heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Sparse Heaps and Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/creating-sparse-heaps-and-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions": {
+      "abstract": [
+        {
+          "text": "Use the device object’s properties to determine how you perform tasks in Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting GPU Features and Metal Software Versions",
+      "type": "topic",
+      "url": "/documentation/metal/detecting-gpu-features-and-metal-software-versions"
+    },
+    "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator": {
+      "abstract": [
+        {
+          "text": "Prototype and test your Metal apps in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing Metal apps that run in Simulator",
+      "type": "topic",
+      "url": "/documentation/metal/developing-metal-apps-that-run-in-simulator"
+    },
+    "doc://com.apple.metal/documentation/Metal/device-inspection": {
+      "abstract": [
+        {
+          "text": "Locate and identify a GPU and the features it supports, and sample its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/device-inspection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Device Inspection",
+      "type": "topic",
+      "url": "/documentation/metal/device-inspection"
+    },
+    "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac": {
+      "abstract": [
+        {
+          "text": "Locate, identify, and choose suitable GPUs for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding Multiple GPUs on an Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/metal/finding-multiple-gpus-on-an-intel-based-mac"
+    },
+    "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu": {
+      "abstract": [
+        {
+          "text": "Select the system’s default GPU device on which to run your Metal code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the Default GPU",
+      "type": "topic",
+      "url": "/documentation/metal/getting-the-default-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification": {
+      "abstract": [
+        {
+          "text": "Run draw commands that render to different outputs using the same vertex data multiple times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Rendering Performance with Vertex Amplification",
+      "type": "topic",
+      "url": "/documentation/metal/improving-rendering-performance-with-vertex-amplification"
+    },
+    "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library": {
+      "abstract": [
+        {
+          "text": "Reduce the storage footprint of your shaders, and potentially reduce their compile time, by selecting the Metal compiler’s size optimization option.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Minimizing the Binary Size of a Shader Library",
+      "type": "topic",
+      "url": "/documentation/metal/minimizing-the-binary-size-of-a-shader-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/pipeline-state-creation": {
+      "abstract": [
+        {
+          "text": "Create pipeline states for render and compute passes, samplers, depth and stencil states, and indirect command buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/pipeline-state-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pipeline State Creation",
+      "type": "topic",
+      "url": "/documentation/metal/pipeline-state-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-creation": {
+      "abstract": [
+        {
+          "text": "Load assets with input/output queues and make various resource instances, such as buffers, textures, acceleration structures, and memory heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Creation",
+      "type": "topic",
+      "url": "/documentation/metal/resource-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-loading": {
+      "abstract": [
+        {
+          "text": "Load assets in your games and apps quickly by running a dedicated input/output queue alongside your GPU tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-loading",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Loading",
+      "type": "topic",
+      "url": "/documentation/metal/resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation": {
+      "abstract": [
+        {
+          "text": "Create static and dynamic shader libraries, and binary shader archives.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Library and Archive Creation",
+      "type": "topic",
+      "url": "/documentation/metal/shader-library-and-archive-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets": {
+      "abstract": [
+        {
+          "text": "Organize your resources into groups and influence when they become accessible to the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying GPU Resource Management with Residency Sets",
+      "type": "topic",
+      "url": "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+    },
+    "doc://com.apple.metal/documentation/Metal/work-submission": {
+      "abstract": [
+        {
+          "text": "Create queues that submit work to the GPU or load assets into GPU resources, and indirect command buffers that group your frequent commands together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/work-submission"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Locating-and-Inspecting-a-GPU-Device",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+        "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+        "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ],
+      "title": "Locating and Inspecting a GPU Device"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-GPU-Devices",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/device-inspection",
+        "doc://com.apple.metal/documentation/Metal/work-submission",
+        "doc://com.apple.metal/documentation/Metal/pipeline-state-creation",
+        "doc://com.apple.metal/documentation/Metal/resource-creation",
+        "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation"
+      ],
+      "title": "Working with GPU Devices"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/maximumConcurrentCompilationTaskCount",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/shouldMaximizeConcurrentCompilation"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue(descriptor:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLogState(descriptor:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-GPU-Devices",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/device-inspection",
+                "doc://com.apple.metal/documentation/Metal/work-submission",
+                "doc://com.apple.metal/documentation/Metal/pipeline-state-creation",
+                "doc://com.apple.metal/documentation/Metal/resource-creation",
+                "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation"
+              ],
+              "title": "Working with GPU Devices"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/maximumConcurrentCompilationTaskCount",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/shouldMaximizeConcurrentCompilation"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue(descriptor:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLogState(descriptor:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Locating-and-Inspecting-a-GPU-Device",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+                "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+                "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+                "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+              ],
+              "title": "Locating and Inspecting a GPU Device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLDevice"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeLogState(descriptor:)/title",
+          "value": "newLogStateWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeLogState(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newLogStateWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1maximumConcurrentCompilationTaskCount/title",
+          "value": "maximumConcurrentCompilationTaskCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1maximumConcurrentCompilationTaskCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumConcurrentCompilationTaskCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1shouldMaximizeConcurrentCompilation/title",
+          "value": "shouldMaximizeConcurrentCompilation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1shouldMaximizeConcurrentCompilation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldMaximizeConcurrentCompilation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/title",
+          "value": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCreateSystemDefaultDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeCommandQueue(descriptor:)/title",
+          "value": "newCommandQueueWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeCommandQueue(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCommandQueueWithDescriptor:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtldevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtldevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

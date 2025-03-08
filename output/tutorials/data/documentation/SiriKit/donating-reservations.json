@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "Inform Siri of reservations made from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/siri-event-suggestions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Donating Reservations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Siri Event Suggestions integrates reservations made in your app seamlessly with the system, sharing the information with certain apps and features, such as Calendar, Maps, Spotlight, and the Lock Screen. These apps and features can use the information to remind the user to check-in for a flight, get directions to a hotel reservation, return a rental car, or any of several other options. For a complete list of supported reservation types, such as flight, hotel, and car rental, see ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/siri_event_suggestions",
+              "type": "text"
+            },
+            {
+              "text": ". Siri learns about reservations made from your app from donations that your app makes to Siri.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-Reservations-at-the-Right-Time",
+          "level": 3,
+          "text": "Donate Reservations at the Right Time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Donate a reservation each time the user views a reservation in your app. For instance, when a user creates a new reservation, donate the reservation after the user views and confirms the information. Make one, and only one, donation per reservation as the user views the reservation. If the user views the reservation again using your app, make another donation. For example, if the user makes a reservation through your website and then views the reservation in your app, make a donation. However, don’t make more than one donation for an action at the time the user performs the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-an-Interaction",
+          "level": 3,
+          "text": "Donate an Interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app donates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains information about the reservation using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntentResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes, along with the relevant ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INReservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To donate the intent, create an instance of the intent and intent response classes and set the parameter values. To recommend a voice phrase that the user may want to add to Siri, set the intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent/suggestedInvocationPhrase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to a string containing the phrase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the intent, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the intent. Passing the intent tells Siri about the reservation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-User-Interaction",
+          "level": 3,
+          "text": "Handle User Interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps offering reservations with check-in capabilities can integrate with Shortcuts Suggestions on the Lock Screen and allow users to launch your app to complete the check-in. Create the appropriate reservation class with an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INReservationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that contain the user activity and relevant time frame. Siri provides users with the ability to launch your app with the reservation and check-in information. For example, a flight reservation app may provide users the ability to check-in for a flight starting 24 hours before the departure time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Siri may launch your app with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object after a user interacts with a previously donated reservation through Calendar or Spotlight. Similarly, Siri may launch your app with the previously donated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provided in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INReservationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object when the user interacts with a check-in Shortcuts Suggestion on the Lock Screen. Your app uses the interaction information to configure itself and display information related to the specified reservation. For example, your app displays the user’s flight information and provides a check-in button for their next flight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntent": {
+      "abstract": [
+        {
+          "text": "A request for details about one or more reservations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetReservationDetailsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetReservationDetailsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetReservationDetailsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetreservationdetailsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request for reservation details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetReservationDetailsIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetReservationDetailsIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetReservationDetailsIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetReservationDetailsIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ingetreservationdetailsintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent/suggestedInvocationPhrase": {
+      "abstract": [
+        {
+          "text": "The intent’s display name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedInvocationPhrase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent/suggestedInvocationPhrase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "suggestedInvocationPhrase"
+        }
+      ],
+      "role": "symbol",
+      "title": "suggestedInvocationPhrase",
+      "type": "topic",
+      "url": "/documentation/intents/inintent/suggestedinvocationphrase"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction between the user and your app involving an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "INInteraction",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)": {
+      "abstract": [
+        {
+          "text": "Donates this interaction object to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "donateInteractionWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "donate(completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/donate(completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INReservation": {
+      "abstract": [
+        {
+          "text": "An object that describes a reservation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "INReservation",
+      "type": "topic",
+      "url": "/documentation/intents/inreservation"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INReservationAction": {
+      "abstract": [
+        {
+          "text": "An action a user can perform that’s relevant to a reservation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INReservationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INReservationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INReservationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "INReservationAction",
+      "type": "topic",
+      "url": "/documentation/intents/inreservationaction"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Perform final validation of the intent parameters and verify that your services are ready to fulfill the intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Details of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/confirming-the-details-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face": {
+      "abstract": [
+        {
+          "text": "Inform Siri when your app’s shortcuts may be useful to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Relevant Shortcuts for the Siri Watch Face",
+      "type": "topic",
+      "url": "/documentation/sirikit/defining-relevant-shortcuts-for-the-siri-watch-face"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts": {
+      "abstract": [
+        {
+          "text": "Remove your donations from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Deleting Donated Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/deleting-donated-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card": {
+      "abstract": [
+        {
+          "text": "Display and customize watch-specific shortcut information with a default card template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Shortcut Information in a Siri Watch Face Card",
+      "type": "topic",
+      "url": "/documentation/sirikit/displaying-shortcut-information-in-a-siri-watch-face-card"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options": {
+      "abstract": [
+        {
+          "text": "Generate ride options for Maps to display to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a List of Ride Options",
+      "type": "topic",
+      "url": "/documentation/sirikit/generating-a-list-of-ride-options"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent": {
+      "abstract": [
+        {
+          "text": "Fulfill the intent and provide feedback to SiriKit about what you did.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents": {
+      "abstract": [
+        {
+          "text": "Support the different intent-handling sequences for booking rides with Shortcuts or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling the Ride-Booking Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-the-ride-booking-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app": {
+      "abstract": [
+        {
+          "text": "Donate app-specific content, use Siri’s contact suggestions, and adopt the latest platform features to create a more consistent messaging experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving interactions between Siri and your messaging app",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-interactions-between-siri-and-your-messaging-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection": {
+      "abstract": [
+        {
+          "text": "Fine-tune voice controls and improve Siri Suggestions by sharing app capabilities, customized names, and listening habits with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Siri Media Interactions and App Selection",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-siri-media-interactions-and-app-selection"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Register your app’s custom terminology, and provide sample phrases for how to use your app with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Registering Custom Vocabulary with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/registering-custom-vocabulary-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Validate the parameters of an intent and make sure that you have the information you need to continue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving the Parameters of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-the-parameters-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Provide users with current, actionable information connected to a reservation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/siri-event-suggestions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name": {
+      "abstract": [
+        {
+          "text": "Provide alternative names for your app that are more familiar or easier for users to speak.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Synonyms for Your App Name",
+      "type": "topic",
+      "url": "/documentation/sirikit/specifying-synonyms-for-your-app-name"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent~1suggestedInvocationPhrase/title",
+          "value": "suggestedInvocationPhrase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent~1suggestedInvocationPhrase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "suggestedInvocationPhrase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/title",
+          "value": "INInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntentResponse/title",
+          "value": "INGetReservationDetailsIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetReservationDetailsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetReservationDetailsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntent/title",
+          "value": "INGetReservationDetailsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetReservationDetailsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetReservationDetailsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetReservationDetailsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservationAction/title",
+          "value": "INReservationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INReservationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INReservationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1donate(completion:)/title",
+          "value": "donateInteractionWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1donate(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "donateInteractionWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservation/title",
+          "value": "INReservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INReservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INReservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INReservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

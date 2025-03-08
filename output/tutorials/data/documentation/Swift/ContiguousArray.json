@@ -1,0 +1,2922 @@
+{
+  "abstract": [
+    {
+      "text": "A contiguously stored array.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/ContiguousArray"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s15ContiguousArrayV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ContiguousArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ContiguousArray"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ContiguousArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ContiguousArray"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ContiguousArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is a specialized array that always stores its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements in a contiguous region of memory. This contrasts with ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which can store its elements in either a contiguous region of memory or an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance if its ",
+              "type": "text"
+            },
+            {
+              "code": "Element",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is a class or ",
+              "type": "text"
+            },
+            {
+              "code": "@objc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your array’s ",
+              "type": "text"
+            },
+            {
+              "code": "Element",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is a class or ",
+              "type": "text"
+            },
+            {
+              "code": "@objc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and you do",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "not need to bridge the array to ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or pass the array to Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs, using ",
+              "type": "text"
+            },
+            {
+              "code": "ContiguousArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may be more efficient and have more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predictable performance than ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the array’s ",
+              "type": "text"
+            },
+            {
+              "code": "Element",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "struct or enumeration, ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ContiguousArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should have similar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "efficiency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using arrays, see ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ArraySlice",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which ",
+              "type": "text"
+            },
+            {
+              "code": "ContiguousArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shares most properties and methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ArraySlice": {
+      "abstract": [
+        {
+          "text": "A slice of an ",
+          "type": "text"
+        },
+        {
+          "code": "Array",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "ContiguousArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "code": "ArraySlice",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArraySlice"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ArraySlice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArraySlice"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArraySlice",
+      "type": "topic",
+      "url": "/documentation/swift/arrayslice"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports backward as well as forward traversal.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "BidirectionalCollection",
+      "type": "topic",
+      "url": "/documentation/swift/bidirectionalcollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/swift/collection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray": {
+      "abstract": [
+        {
+          "text": "A contiguously stored array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContiguousArray"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContiguousArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContiguousArray",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/BidirectionalCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/BidirectionalCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BidirectionalCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/bidirectionalcollection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Collection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Collection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/collection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomReflectable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomReflectable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomReflectable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/customreflectable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/decodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/encodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/ExpressibleByArrayLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/ExpressibleByArrayLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByArrayLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/expressiblebyarrayliteral-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/MutableCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/MutableCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MutableCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/mutablecollection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RandomAccessCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RandomAccessCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RandomAccessCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/randomaccesscollection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RangeReplaceableCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RangeReplaceableCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RangeReplaceableCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/rangereplaceablecollection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Sequence-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Sequence-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sequence Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/sequence-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/capacity": {
+      "abstract": [
+        {
+          "text": "The total number of elements that the array can contain without",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "allocating new storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/capacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capacity",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/capacity"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an array containing the elements of a sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(unsafeUninitializedCapacity:initializingWith:)": {
+      "abstract": [
+        {
+          "text": "Creates an array with the specified capacity, then calls the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closure with a buffer covering the array’s uninitialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "unsafeUninitializedCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initializingWith"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(unsafeUninitializedCapacity:initializingWith:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(unsafeUninitializedCapacity:initializingWith:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/init(unsafeuninitializedcapacity:initializingwith:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/insert(_:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts a new element at the specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/insert(_:at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/insert(_:at:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/remove(at:)": {
+      "abstract": [
+        {
+          "text": "Removes and returns the element at the specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/remove(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(at:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/remove(at:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/reserveCapacity(_:)": {
+      "abstract": [
+        {
+          "text": "Reserves enough space to store the specified number of elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reserveCapacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/reserveCapacity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserveCapacity(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/reservecapacity(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBufferPointer(_:)": {
+      "abstract": [
+        {
+          "text": "Calls a closure with a pointer to the array’s contiguous storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SR",
+          "text": "UnsafeBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBufferPointer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeBufferPointer(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/withunsafebufferpointer(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBytes(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the underlying bytes of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "array’s contiguous storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBytes(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeBytes(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/withunsafebytes(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBufferPointer(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the array’s mutable contiguous",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBufferPointer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutableBufferPointer(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/withunsafemutablebufferpointer(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBytes(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the underlying bytes of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "array’s mutable contiguous storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutableBytes"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBytes(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutableBytes(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/contiguousarray/withunsafemutablebytes(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "purposes.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "abstract": [
+        {
+          "text": "A type that explicitly supplies its own mirror.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using an array literal.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyarrayliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/MutableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports subscript assignment.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MutableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MutableCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MutableCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MutableCollection",
+      "type": "topic",
+      "url": "/documentation/swift/mutablecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RandomAccessCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports efficient random-access index traversal.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomAccessCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RandomAccessCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomAccessCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomAccessCollection",
+      "type": "topic",
+      "url": "/documentation/swift/randomaccesscollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports replacement of an arbitrary subrange of elements",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with the elements of another collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RangeReplaceableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RangeReplaceableCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "RangeReplaceableCollection",
+      "type": "topic",
+      "url": "/documentation/swift/rangereplaceablecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Accelerate0A13MutableBufferP": {
+      "abstract": [
+        {
+          "text": "A type that represents a mutable buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccelerateMutableBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate0A6BufferP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate0A6BufferP",
+          "text": "AccelerateBuffer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Accelerate0A13MutableBufferP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AccelerateMutableBuffer",
+      "type": "topic",
+      "url": "/documentation/Accelerate/AccelerateMutableBuffer"
+    },
+    "doc://com.externally.resolved.symbol/s:10Accelerate0A6BufferP": {
+      "abstract": [
+        {
+          "text": "A type that represents an immutable buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccelerateBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate0A6BufferP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Accelerate0A6BufferP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AccelerateBuffer",
+      "type": "topic",
+      "url": "/documentation/Accelerate/AccelerateBuffer"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation12DataProtocolP": {
+      "abstract": [
+        {
+          "text": "A protocol that provides consistent data access to the bytes underlying contiguous and noncontiguous data buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation12DataProtocolP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/dataprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation15ContiguousBytesP": {
+      "abstract": [
+        {
+          "text": "A protocol that declares the type offers direct access to the underlying raw bytes in a contiguous manner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContiguousBytes"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation15ContiguousBytesP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContiguousBytes",
+      "type": "topic",
+      "url": "/documentation/foundation/contiguousbytes"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation19MutableDataProtocolP": {
+      "abstract": [
+        {
+          "text": "A protocol that provides consistent data access to the bytes underlying contiguous and noncontiguous mutable data buffers. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MutableDataProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation19MutableDataProtocolP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MutableDataProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/mutabledataprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:10Accelerate0A6BufferP",
+        "doc://com.externally.resolved.symbol/s:10Accelerate0A13MutableBufferP",
+        "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection",
+        "doc://com.apple.Swift/documentation/Swift/Collection",
+        "doc://com.externally.resolved.symbol/s:10Foundation15ContiguousBytesP",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.externally.resolved.symbol/s:10Foundation12DataProtocolP",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/MutableCollection",
+        "doc://com.externally.resolved.symbol/s:10Foundation19MutableDataProtocolP",
+        "doc://com.apple.Swift/documentation/Swift/RandomAccessCollection",
+        "doc://com.apple.Swift/documentation/Swift/RangeReplaceableCollection",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Array-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ArraySlice"
+      ],
+      "title": "Related Array Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/init(unsafeUninitializedCapacity:initializingWith:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/capacity"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/insert(_:at:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/remove(at:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/reserveCapacity(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBufferPointer(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeBytes(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBufferPointer(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/withUnsafeMutableBytes(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/BidirectionalCollection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Collection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomReflectable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/CustomStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Decodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Encodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/ExpressibleByArrayLiteral-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Hashable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/MutableCollection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RandomAccessCollection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/RangeReplaceableCollection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/ContiguousArray/Sequence-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/contiguousarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

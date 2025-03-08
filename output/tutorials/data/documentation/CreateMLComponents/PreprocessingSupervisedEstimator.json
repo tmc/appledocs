@@ -1,0 +1,2022 @@
+{
+  "abstract": [
+    {
+      "text": "A supervised estimator that composes a preprocessing transformer and a supervised estimator.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PreprocessingSupervisedEstimator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PreprocessingSupervisedEstimator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PreprocessingSupervisedEstimator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PreprocessingSupervisedEstimator"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Preprocessor"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Estimator"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Preprocessor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents11TransformerP",
+              "text": "Transformer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Estimator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP",
+              "text": "SupervisedEstimator"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Preprocessor"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Output",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents11TransformerP6OutputQa",
+              "text": "Output"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Estimator"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP11TransformerQa",
+              "text": "Transformer"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents11TransformerP5InputQa",
+              "text": "Input"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingEstimator": {
+      "abstract": [
+        {
+          "text": "An estimator that composes a preprocessing transformer and an estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "A supervised estimator that composes a preprocessing transformer and a supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Annotation": {
+      "abstract": [
+        {
+          "text": "The annotation type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Annotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator.Annotation",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/annotation"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Input": {
+      "abstract": [
+        {
+          "text": "The input type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Input",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator.Input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Intermediate": {
+      "abstract": [
+        {
+          "text": "The intermediate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Intermediate"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Intermediate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Intermediate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator.Intermediate",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/intermediate"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Output": {
+      "abstract": [
+        {
+          "text": "The output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator.Output",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/output"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/SupervisedEstimator-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/SupervisedEstimator-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SupervisedEstimator Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/supervisedestimator-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Transformer": {
+      "abstract": [
+        {
+          "text": "The transformer type created by this estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedEstimator.Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/decode(from:)": {
+      "abstract": [
+        {
+          "text": "Decodes a previously fitted transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16EstimatorDecoderP",
+          "text": "EstimatorDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/decode(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decode(from:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/decode(from:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/encode(_:to:)": {
+      "abstract": [
+        {
+          "text": "Encodes a fitted transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16EstimatorEncoderP",
+          "text": "EstimatorEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/encode(_:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:to:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/encode(_:to:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/estimator": {
+      "abstract": [
+        {
+          "text": "The estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/estimator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "estimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/estimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a composed transformer to a sequence of examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(to:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/fitted(to:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a composed transformer to a sequence of examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(to:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/fitted(to:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a transformer to a sequence of preprocessed features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPreprocessed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(toPreprocessed:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/fitted(topreprocessed:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a composed transformer to a sequence of preprocessed features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPreprocessed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(toPreprocessed:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/fitted(topreprocessed:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/init(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a composed supervised estimator from a preprocessing transformer and an estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/init(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/init(_:_:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessed(from:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Preprocesses a sequence of examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preprocessed"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnySequenceV",
+          "text": "AnySequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16AnnotatedFeatureV",
+          "text": "AnnotatedFeature"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents11TransformerP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV",
+          "text": "PreprocessingSupervisedEstimator"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Estimator"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">>"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessed(from:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preprocessed(from:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/preprocessed(from:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessor": {
+      "abstract": [
+        {
+          "text": "The preprocessing transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preprocessor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Preprocessor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preprocessor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedestimator/preprocessor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTemporalEstimator": {
+      "abstract": [
+        {
+          "text": "A supervised temporal estimator that composes a preprocessing transformer and a supervised temporal estimator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedTemporalEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTemporalEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedTemporalEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedTemporalEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedtemporalestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTemporalEstimator": {
+      "abstract": [
+        {
+          "text": "A temporal estimator that composes a preprocessing transformer and a temporal estimator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingTemporalEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTemporalEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingTemporalEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingTemporalEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingtemporalestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable estimator that composes a preprocessing transformer and an updatable estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatableestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable supervised estimator that composes a preprocessing transformer and an updatable supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableSupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatablesupervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTemporalEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable supervised temporal estimator that composes a preprocessing transformer and an updatable supervised temporal estimator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedTemporalEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTemporalEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedTemporalEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableSupervisedTemporalEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatablesupervisedtemporalestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTemporalEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable temporal estimator that composes a preprocessing transformer and an updatable temporal estimator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableTemporalEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTemporalEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableTemporalEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableTemporalEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatabletemporalestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "An estimator that creates a transformer by fitting to a data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer": {
+      "abstract": [
+        {
+          "text": "The transformer type created by this estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents11TransformerP",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an input and produces an output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input": {
+      "abstract": [
+        {
+          "text": "The input type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Output": {
+      "abstract": [
+        {
+          "text": "The output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Output",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Output",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer/output"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Composition-with-preprocessing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTemporalEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTemporalEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTemporalEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTemporalEstimator"
+      ],
+      "title": "Composition with preprocessing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-estimator",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/init(_:_:)"
+      ],
+      "title": "Creating the estimator"
+    },
+    {
+      "anchor": "Getting-the-properties",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/estimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessor"
+      ],
+      "title": "Getting the properties"
+    },
+    {
+      "anchor": "Encoding-and-decoding",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/encode(_:to:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/decode(from:)"
+      ],
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "Preprocessing-and-fitting",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/preprocessed(from:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(to:validateOn:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/fitted(toPreprocessed:validateOn:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Annotation",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Input",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Intermediate",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Output",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/Transformer"
+      ],
+      "title": "Preprocessing and fitting"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedEstimator/SupervisedEstimator-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/preprocessingsupervisedestimator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

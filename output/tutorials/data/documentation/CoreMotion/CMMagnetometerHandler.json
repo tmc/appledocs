@@ -1,0 +1,1222 @@
+{
+  "abstract": [
+    {
+      "text": "The type of block callback for handling magnetometer data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CMMagnetometerHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMMagnetometerHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMMagnetometerHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "CMMagnetometerHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerHandler"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CMMagnetometerData",
+              "text": "CMMagnetometerData"
+            },
+            {
+              "kind": "text",
+              "text": "?, (any "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5ErrorP",
+              "text": "Error"
+            },
+            {
+              "kind": "text",
+              "text": ")?) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blocks of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMMagnetometerHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are called when there is magnetometer data to process. You pass the block into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as the second argument. Blocks of this type return no value but take two arguments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An object that encapsulates a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagneticField",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " structure with fields holding magnetic-field values for the three axes of movement.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "magnetometerData",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An error object representing an error encountered in providing magnetometer data. If an error occurs, you should stop magnetometer updates and inform the user of the problem. If there is no error, this argument is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Core Motion errors are of the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorDomain",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " domain and the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMError",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMError": {
+      "abstract": [
+        {
+          "text": "Defines motion errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMError"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMError",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmerror"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for Core Motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMErrorDomain",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmerrordomain"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMagneticField": {
+      "abstract": [
+        {
+          "text": "A structure containing 3-axis magnetometer data",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMagneticField"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagneticField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMagneticField"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMagneticField",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmagneticfield"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData": {
+      "abstract": [
+        {
+          "text": "Measurements of the Earth’s magnetic field relative to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMagnetometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmagnetometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerHandler": {
+      "abstract": [
+        {
+          "text": "The type of block callback for handling magnetometer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMagnetometerHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMagnetometerHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMagnetometerHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmagnetometerhandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerData": {
+      "abstract": [
+        {
+          "text": "The latest sample of magnetometer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magnetometerData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMMagnetometerData",
+          "text": "CMMagnetometerData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "magnetometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "magnetometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/magnetometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval": {
+      "abstract": [
+        {
+          "text": "The interval, in seconds, at which the system delivers magnetometer data to the block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magnetometerUpdateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "magnetometerUpdateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "magnetometerUpdateInterval",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/magnetometerupdateinterval"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates()": {
+      "abstract": [
+        {
+          "text": "Starts magnetometer updates without a block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startMagnetometerUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startMagnetometerUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "startMagnetometerUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startmagnetometerupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts magnetometer updates on an operation queue and with a specified handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startMagnetometerUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMMagnetometerHandler",
+          "text": "CMMagnetometerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startMagnetometerUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startMagnetometerUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startmagnetometerupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopMagnetometerUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops magnetometer updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopMagnetometerUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopMagnetometerUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopMagnetometerUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopMagnetometerUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/stopmagnetometerupdates()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    },
+    "doc://com.externally.resolved.symbol/s:s5ErrorP": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Magnetometer-Updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopMagnetometerUpdates()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerData"
+      ],
+      "title": "Managing Magnetometer Updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMMagnetometerHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Magnetometer-Updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopMagnetometerUpdates()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/magnetometerData"
+              ],
+              "title": "Managing Magnetometer Updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:BFv(#*$objc(cs)CMMagnetometerData#*$objc(cs)NSError)",
+                    "text": "void (^)(CMMagnetometerData *, NSError *)"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMMagnetometerHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1magnetometerData/title",
+          "value": "magnetometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1magnetometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "magnetometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1stopMagnetometerUpdates()/title",
+          "value": "stopMagnetometerUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1stopMagnetometerUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopMagnetometerUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/title",
+          "value": "CMMagnetometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMErrorDomain/title",
+          "value": "CMErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerHandler/title",
+          "value": "CMMagnetometerHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagnetometerHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagnetometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMError/title",
+          "value": "CMError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1magnetometerUpdateInterval/title",
+          "value": "magnetometerUpdateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1magnetometerUpdateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "magnetometerUpdateInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagneticField/title",
+          "value": "CMMagneticField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagneticField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagneticField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMagneticField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMagneticField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startMagnetometerUpdates(to:withHandler:)/title",
+          "value": "startMagnetometerUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startMagnetometerUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startMagnetometerUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startMagnetometerUpdates()/title",
+          "value": "startMagnetometerUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startMagnetometerUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startMagnetometerUpdates"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmmagnetometerhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmmagnetometerhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

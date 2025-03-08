@@ -1,0 +1,502 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the display name of the file or directory at a specified path.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409751-displaynameatpath"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409751,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileManager(im)displayNameAtPath:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileManager"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.1",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "displayNameAtPath:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "displayNameAtPath:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "path"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The path of a file or directory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "path"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The name of the file or directory at ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in a localized form appropriate for presentation to the user. If there is no file or directory at ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or if an error occurs, returns ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display names are user-friendly names for files. They are typically used to localize standard file and directory names according to the user’s language settings. They may also reflect other modifications, such as the removal of filename extensions. Such modifications are used only when displaying the file or directory to the user and do not reflect the actual path to the item in the file system. For example, if the current user’s preferred language is French, the following code fragment logs the name ",
+              "type": "text"
+            },
+            {
+              "code": "Bibliothèque",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and not the name ",
+              "type": "text"
+            },
+            {
+              "code": "Library",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the actual name of the directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);",
+            "if ([paths count] > 0)",
+            "{",
+            "    NSString *documentsDirectory = [paths objectAtIndex:0];",
+            "    NSFileManager *fileManager = [[NSFileManager alloc] init];",
+            "    NSString *displayNameAtPath = [fileManager displayNameAtPath:documentsDirectory];",
+            "    NSLog(@\"%@\", displayNameAtPath);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555665",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409751-displaynameatpath": {
+      "abstract": [
+        {
+          "text": "Returns the display name of the file or directory at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayNameAtPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409751-displaynameatpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayNameAtPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1409751-displaynameatpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409751-displaynameatpath#2555665": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409751-displaynameatpath#2555665",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsfilemanager/1409751-displaynameatpath#2555665"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410452-attributesofitematpath": {
+      "abstract": [
+        {
+          "text": "Returns the attributes of the item at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributesOfItemAtPath:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410452-attributesofitematpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfItemAtPath:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1410452-attributesofitematpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411896-attributesoffilesystemforpath": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributesOfFileSystemForPath:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411896-attributesoffilesystemforpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfFileSystemForPath:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1411896-attributesoffilesystemforpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413667-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets the attributes of the specified file or directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes:ofItemAtPath:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413667-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes:ofItemAtPath:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1413667-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413929-componentstodisplayforpath": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings representing the user-visible components of a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "componentsToDisplayForPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413929-componentstodisplayforpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentsToDisplayForPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1413929-componentstodisplayforpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413929-componentstodisplayforpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1410452-attributesofitematpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1411896-attributesoffilesystemforpath",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1413667-setattributes"
+      ],
+      "title": "Getting and Setting Attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanager/1409751-displaynameatpath"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanager/1409751-displayname"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

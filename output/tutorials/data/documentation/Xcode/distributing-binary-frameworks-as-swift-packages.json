@@ -1,0 +1,982 @@
+{
+  "abstract": [
+    {
+      "text": "Make binaries available to other developers by creating Swift packages that include",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "one or more XCFrameworks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing binary frameworks as Swift packages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a Swift package to organize and share your code makes source files available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to developers who use the Swift package as a package dependency. However, you may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to make your code available as binaries to protect your intellectual property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— for example, if you’re developing proprietary, closed-source libraries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Carefully consider whether you want to distribute your code in binary form because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doing so comes with drawbacks. For example, a Swift package that contains a binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is less portable because it can only support platforms that its included binaries",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support. In addition, binary dependencies are only available for Apple platforms,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which limits the audience for your Swift package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Swift package can contain a mix of both source files and binaries. This",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use case is common for packages that contain source code that wraps closed-source",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "binaries.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Package-binaries-as-an-XCFramework-bundle",
+          "level": 3,
+          "text": "Package binaries as an XCFramework bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute code in binary form as a Swift package, create an XCFramework bundle,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "artifact",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that contains the binaries. Then, make the bundle available locally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or on a server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you host the binaries on a server, create a ZIP archive with the XCFramework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in its root directory and make it available publicly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the XCFramework is available locally and included in the package’s Git repository,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you don’t need to create a compressed archive and can reference the XCFramework directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about creating an XCFramework bundle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-a-binary-target-in-the-package-manifest",
+          "level": 3,
+          "text": "Declare a binary target in the package manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, follow the process to create a new Swift package as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, declare a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "binary target",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in your package manifest and make it part of a product,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "just like a target that contains source files. Ensure that the name of the binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target in the package manifest matches the artifact’s module name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To declare a remote, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "URL-based",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", binary target, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/binaryTarget(name:path:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To create the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", open the Terminal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, navigate to the root of the package, and run ",
+              "type": "text"
+            },
+            {
+              "code": "swift package compute-checksum path/to/MyFramework.zip",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Xcode uses the checksum to verify that the hosted archive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file matches the archive you declare in the manifest file. When developers add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package as a binary dependency to their project, and the remote archive’s checksum",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t match the checksum in the package manifest, Xcode displays an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To declare a local, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "path-based",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", binary target, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency/package(name:path:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and don’t generate a checksum. Instead, include the ",
+              "type": "text"
+            },
+            {
+              "code": ".xcframework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package’s Git repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following package manifest for the MyLibrary package declares a library product",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that includes two binary targets: ",
+              "type": "text"
+            },
+            {
+              "code": "SomeRemoteBinaryPackage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a remote, URL-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binary target; and ",
+              "type": "text"
+            },
+            {
+              "code": "SomeLocalBinaryPackage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a local, path-based binary target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// swift-tools-version:5.3",
+            "import PackageDescription",
+            "",
+            "let package = Package(",
+            "    name: \"MyLibrary\",",
+            "    platforms: [",
+            "        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)",
+            "    ],",
+            "    products: [",
+            "        // Products define the executables and libraries a package produces, and make them visible to other packages.",
+            "        .library(",
+            "            name: \"MyLibrary\",",
+            "            targets: [\"MyLibrary\", \"SomeRemoteBinaryPackage\", \"SomeLocalBinaryPackage\"])",
+            "    ],",
+            "    dependencies: [",
+            "        // Dependencies declare other packages that this package depends on.",
+            "    ],",
+            "    targets: [",
+            "        // Targets are the basic building blocks of a package. A target can define a module or a test suite.",
+            "        // Targets can depend on other targets in this package, and on products in packages this package depends on.",
+            "        .target(",
+            "            name: \"MyLibrary\"",
+            "        ),",
+            "        .binaryTarget(",
+            "            name: \"SomeRemoteBinaryPackage\",",
+            "            url: \"https://url/to/some/remote/xcframework.zip\",",
+            "            checksum: \"The checksum of the ZIP archive that contains the XCFramework.\"",
+            "        ),",
+            "        .package(",
+            "            name: \"SomeLocalBinaryPackage\",",
+            "            path: \"path/to/some.xcframework\"",
+            "        )",
+            "        .testTarget(",
+            "            name: \"MyLibraryTests\",",
+            "            dependencies: [\"MyLibrary\"]),",
+            "    ]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Add resource files to your Swift package and access them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundling resources with a Swift package",
+      "type": "topic",
+      "url": "/documentation/xcode/bundling-resources-with-a-swift-package"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle": {
+      "abstract": [
+        {
+          "text": "Combine variants of a binary framework or library into an XCFramework bundle that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "supports multiple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a multiplatform binary framework bundle",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-multi-platform-binary-framework-bundle"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode": {
+      "abstract": [
+        {
+          "text": "Bundle executable or shareable code into a standalone Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a standalone Swift package with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-standalone-swift-package-with-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app": {
+      "abstract": [
+        {
+          "text": "Add your published Swift package as a local package to your app’s project and develop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the package and the app in tandem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a Swift package in tandem with an app",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-swift-package-in-tandem-with-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources": {
+      "abstract": [
+        {
+          "text": "Ensure that your Swift package provides localized resources for many locales.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing package resources",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-package-resources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages": {
+      "abstract": [
+        {
+          "text": "Simplify maintenance, promote modularity, and encourage reuse by organizing your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app’s code into local Swift packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing your code with local packages",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-your-code-with-local-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/PackageDescription"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency/package(name:path:)": {
+      "abstract": [
+        {
+          "text": "Adds a dependency to a package located at the given path on the filesystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "package"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/Dependency/package(name:path:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "package(name:path:)",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Package/Dependency/package(name:path:)"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target/binaryTarget(name:path:)": {
+      "abstract": [
+        {
+          "text": "Creates a binary target that references an artifact on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "binaryTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription6TargetC",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/binaryTarget(name:path:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "binaryTarget(name:path:)",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target/binaryTarget(name:path:)"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum": {
+      "abstract": [
+        {
+          "text": "The checksum for the archive file that contains the referenced binary artifact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checksum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checksum",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target/checksum"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Package-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+        "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+        "doc://com.apple.documentation/documentation/PackageDescription"
+      ],
+      "title": "Package creation"
+    }
+  ]
+}

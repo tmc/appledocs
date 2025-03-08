@@ -1,0 +1,643 @@
+{
+  "abstract": [
+    {
+      "text": "Returns whether a URL download object can resume a download that was decoded with the specified MIME type.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownload"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409113-canresumedownloaddecoded"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409113,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLDownload(cm)canResumeDownloadDecodedWithEncodingMIMEType:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "canResumeDownloadDecoded"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "withEncodingMIMEType"
+      },
+      {
+        "kind": "text",
+        "text": ": String) -> Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLDownload"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "canResumeDownloadDecoded(withEncodingMIMEType:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "canResumeDownloadDecoded"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "withEncodingMIMEType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "MIMEType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The MIME type the caller wants to know about.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "MIMEType"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the URL download object can resume a download that was decoded with the specified MIME type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MIME type of a file, in conjunction with the value returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method, determines whether the ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLDownload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class should decode or decompress the incoming data as it is received.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some compression techniques, such as the ",
+              "type": "text"
+            },
+            {
+              "code": "DEFLATE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " algorithm (",
+              "type": "text"
+            },
+            {
+              "code": "gzip",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") use symbol dictionaries that vary during the compression process, making it impractical to decompress only a portion of the data starting in the middle. For this reason, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " unless both of the following conditions are met:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The MIME type is of a type that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSURLDownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class knows how to decompress or decode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The decoding can be safely resumed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In practice, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for MacBinary and BinHex, otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs to be able to resume file downloads in ",
+              "type": "text"
+            },
+            {
+              "code": "gzip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format, your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method must return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and you must decode the resulting file yourself after you finish downloading it in its entirety.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload": {
+      "abstract": [
+        {
+          "text": "An object that downloads a resource asynchronously and saves the data to a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLDownload",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409113-canresumedownloaddecoded": {
+      "abstract": [
+        {
+          "text": "Returns whether a URL download object can resume a download that was decoded with the specified MIME type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canResumeDownloadDecoded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withEncodingMIMEType"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409113-canresumedownloaddecoded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canResumeDownloadDecoded(withEncodingMIMEType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1409113-canresumedownloaddecoded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409172-deletesfileuponfailure": {
+      "abstract": [
+        {
+          "text": "Returns whether the receiver deletes partially downloaded files when a download stops prematurely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "deletesFileUponFailure"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409172-deletesfileuponfailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deletesFileUponFailure",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1409172-deletesfileuponfailure"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412919-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSURLDownloadDelegate)?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412919-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resumeData:delegate:path:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1412919-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1413244-resumedata": {
+      "abstract": [
+        {
+          "text": "Returns the resume data for a download that is not yet complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1413244-resumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1413244-resumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:shouldDecodeSourceDataOfMIMEType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1408526-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412919-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownload/1413244-resumedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownload/1409172-deletesfileuponfailure"
+      ],
+      "title": "Resuming partial downloads"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurldownload/1409113-canresumedownloaddecodedwithenco"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurldownload/1409113-canresumedownloaddecoded"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

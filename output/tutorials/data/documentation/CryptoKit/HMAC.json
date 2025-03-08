@@ -1,0 +1,1495 @@
+{
+  "abstract": [
+    {
+      "text": "A hash-based message authentication algorithm.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9CryptoKit4HMACV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HMAC"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HMAC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HMAC"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMAC"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "H"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "H"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:9CryptoKit12HashFunctionP",
+              "text": "HashFunction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use hash-based message authentication to create a code with a value that’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependent on both a block of data and a symmetric cryptographic key. Another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "party with access to the data and the same secret key can compute the code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "again and compare it to the original to detect whether the data changed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This serves a purpose similar to digital signing and verification, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depends on a shared symmetric key instead of public-key cryptography.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with digital signing, the data isn’t hidden by this process. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to encrypt the data as well as authenticate it, use a cipher like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/AES",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to put the data into a sealed box (an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/AES/GCM/SealedBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly/SealedBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/AES": {
+      "abstract": [
+        {
+          "text": "A container for Advanced Encryption Standard (AES) ciphers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AES"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/AES",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AES"
+        }
+      ],
+      "role": "symbol",
+      "title": "AES",
+      "type": "topic",
+      "url": "/documentation/cryptokit/aes"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/AES/GCM/SealedBox": {
+      "abstract": [
+        {
+          "text": "A secure container for your data that you can access using a cipher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SealedBox"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/AES/GCM/SealedBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SealedBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "AES.GCM.SealedBox",
+      "type": "topic",
+      "url": "/documentation/cryptokit/aes/gcm/sealedbox"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly": {
+      "abstract": [
+        {
+          "text": "An implementation of the ChaCha20-Poly1305 cipher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChaChaPoly"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChaChaPoly"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChaChaPoly",
+      "type": "topic",
+      "url": "/documentation/cryptokit/chachapoly"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly/SealedBox": {
+      "abstract": [
+        {
+          "text": "A secure container for your data that you access using a cipher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SealedBox"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/ChaChaPoly/SealedBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SealedBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChaChaPoly.SealedBox",
+      "type": "topic",
+      "url": "/documentation/cryptokit/chachapoly/sealedbox"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC": {
+      "abstract": [
+        {
+          "text": "A hash-based message authentication algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAC"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAC"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAC",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/Key": {
+      "abstract": [
+        {
+          "text": "An alias for the symmetric key type used to compute or verify a message",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authentication code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/Key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAC.Key",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/key"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/MAC": {
+      "abstract": [
+        {
+          "text": "An alias for a hash-based message authentication code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAC"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/MAC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAC"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAC.MAC",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/mac"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/authenticationCode(for:using:)": {
+      "abstract": [
+        {
+          "text": "Computes a message authentication code for the given data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authenticationCode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV",
+          "text": "HMAC"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "H"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV3MACa",
+          "text": "MAC"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/authenticationCode(for:using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authenticationCode(for:using:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/authenticationcode(for:using:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/finalize()": {
+      "abstract": [
+        {
+          "text": "Finalizes the message authentication computation and returns the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "computed code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV",
+          "text": "HMAC"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "H"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV3MACa",
+          "text": "MAC"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/finalize()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalize()",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/finalize()"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/init(key:)": {
+      "abstract": [
+        {
+          "text": "Creates a message authentication code generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/init(key:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(key:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/init(key:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5ilt9": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the given message",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authentication code represented as contiguous bytes is valid for a block",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidAuthenticationCode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5ilt9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidAuthenticationCode(_:authenticating:using:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/isvalidauthenticationcode(_:authenticating:using:)-5ilt9"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5jbc8": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the given message",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authentication code is valid for a block of data stored in a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidAuthenticationCode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV",
+          "text": "HMAC"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "H"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV3MACa",
+          "text": "MAC"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5jbc8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidAuthenticationCode(_:authenticating:using:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/isvalidauthenticationcode(_:authenticating:using:)-5jbc8"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-8ezmw": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the given message",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authentication code is valid for a block of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidAuthenticationCode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV",
+          "text": "HMAC"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "H"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HMACV3MACa",
+          "text": "MAC"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-8ezmw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidAuthenticationCode(_:authenticating:using:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/isvalidauthenticationcode(_:authenticating:using:)-8ezmw"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/update(data:)": {
+      "abstract": [
+        {
+          "text": "Updates the message authentication code computation with a block of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/update(data:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(data:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hmac/update(data:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction": {
+      "abstract": [
+        {
+          "text": "A type that performs cryptographically secure hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HashFunction",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hashfunction"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HashedAuthenticationCode": {
+      "abstract": [
+        {
+          "text": "A hash-based message authentication code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HashedAuthenticationCode"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashedAuthenticationCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HashedAuthenticationCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "HashedAuthenticationCode",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hashedauthenticationcode"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/MessageAuthenticationCode": {
+      "abstract": [
+        {
+          "text": "A type that represents a message authentication code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessageAuthenticationCode"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/MessageAuthenticationCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MessageAuthenticationCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MessageAuthenticationCode",
+      "type": "topic",
+      "url": "/documentation/cryptokit/messageauthenticationcode"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey": {
+      "abstract": [
+        {
+          "text": "A symmetric cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymmetricKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SymmetricKey",
+      "type": "topic",
+      "url": "/documentation/cryptokit/symmetrickey"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKeySize": {
+      "abstract": [
+        {
+          "text": "The sizes that a symmetric cryptographic key can take.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymmetricKeySize"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKeySize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymmetricKeySize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SymmetricKeySize",
+      "type": "topic",
+      "url": "/documentation/cryptokit/symmetrickeysize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Message-authentication-codes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKeySize"
+      ],
+      "title": "Message authentication codes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-a-key",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/Key",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey"
+      ],
+      "title": "Getting a key"
+    },
+    {
+      "anchor": "Working-with-codes",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/MAC",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HashedAuthenticationCode",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/MessageAuthenticationCode"
+      ],
+      "title": "Working with codes"
+    },
+    {
+      "anchor": "Creating-an-authentication-code-with-one-call",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/authenticationCode(for:using:)"
+      ],
+      "title": "Creating an authentication code with one call"
+    },
+    {
+      "anchor": "Creating-an-authentication-code-iteratively",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/init(key:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/update(data:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/finalize()"
+      ],
+      "title": "Creating an authentication code iteratively"
+    },
+    {
+      "anchor": "Checking-an-authentication-code",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-8ezmw",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5jbc8",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HMAC/isValidAuthenticationCode(_:authenticating:using:)-5ilt9"
+      ],
+      "title": "Checking an authentication code"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptokit/hmac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

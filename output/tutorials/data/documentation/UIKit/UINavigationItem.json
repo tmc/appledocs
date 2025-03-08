@@ -1,0 +1,4766 @@
+{
+  "abstract": [
+    {
+      "text": "The items that a navigation bar displays when the associated view controller is visible.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UINavigationItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UINavigationItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UINavigationItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UINavigationItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building a navigation interface, each view controller that you push onto the navigation stack must have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains the buttons and views you want to display in the navigation bar. The managing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object uses the navigation items of the topmost two view controllers to populate the navigation bar with content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A navigation item always reflects information about its associated view controller. The navigation item must provide a title to display when the view controller is topmost on the navigation stack. The item can also contain additional buttons to display on the right (or trailing) side of the navigation bar. You can specify buttons and views to display on the left (or leading) side of the toolbar using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, but the navigation controller displays those buttons only when space is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a navigation item reflects the Back button you want to display when the current view controller is just below the topmost view controller. The Back button doesn’t appear when the current view controller is topmost.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When specifying buttons for a navigation item, you must use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. If you want to display custom views in the navigation bar, you must wrap those views inside a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object before adding them to the navigation item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties": {
+      "abstract": [
+        {
+          "text": "Information that UIKit uses to generate a document header for a navigation item’s title menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentproperties"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "abstract": [
+        {
+          "text": "The items that a navigation bar displays when the associated view controller is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/BackButtonDisplayMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the display modes of the Back button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackButtonDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/BackButtonDisplayMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackButtonDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem.BackButtonDisplayMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/ItemStyle": {
+      "abstract": [
+        {
+          "text": "Constants that determine how the content of the navigation item lays out in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ItemStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/ItemStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ItemStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem.ItemStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/itemstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/LargeTitleDisplayMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that indicate how to size the title of this item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LargeTitleDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/LargeTitleDisplayMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LargeTitleDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem.LargeTitleDisplayMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/SearchBarPlacement-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that determine where the search bar appears in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchBarPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/SearchBarPlacement-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchBarPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem.SearchBarPlacement",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/additionalOverflowItems": {
+      "abstract": [
+        {
+          "text": "Additional items to present in the overflow menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalOverflowItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDeferredMenuElement",
+          "text": "UIDeferredMenuElement"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/additionalOverflowItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalOverflowItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalOverflowItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/additionaloverflowitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backAction": {
+      "abstract": [
+        {
+          "text": "The back action for the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIAction",
+          "text": "UIAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "backAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/backaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backBarButtonItem": {
+      "abstract": [
+        {
+          "text": "The bar button item for adding a Back button to the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "backBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/backbarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonDisplayMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The display mode of the Back button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backButtonDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationItem",
+          "text": "UINavigationItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINavigationItemBackButtonDisplayMode",
+          "text": "BackButtonDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonDisplayMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backButtonDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "backButtonDisplayMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonTitle": {
+      "abstract": [
+        {
+          "text": "The custom title of the Back button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backButtonTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backButtonTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "backButtonTitle",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/backbuttontitle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/centerItemGroups": {
+      "abstract": [
+        {
+          "text": "Customizable item groups to display in the center section of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "centerItemGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/centerItemGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "centerItemGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "centerItemGroups",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/centeritemgroups"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactAppearance": {
+      "abstract": [
+        {
+          "text": "The appearance settings for a compact-height navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compactAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationBarAppearance",
+          "text": "UINavigationBarAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compactAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "compactAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/compactappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactScrollEdgeAppearance": {
+      "abstract": [
+        {
+          "text": "The appearance settings for a compact-height navigation bar when the edge of scrollable content aligns with the edge of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compactScrollEdgeAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationBarAppearance",
+          "text": "UINavigationBarAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactScrollEdgeAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compactScrollEdgeAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "compactScrollEdgeAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/compactscrolledgeappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/customizationIdentifier": {
+      "abstract": [
+        {
+          "text": "A globally unique string that enables user customization of the navigation bar layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customizationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/customizationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customizationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "customizationIdentifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/customizationidentifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/documentProperties": {
+      "abstract": [
+        {
+          "text": "An object that provides the document header for the title menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentProperties",
+          "text": "UIDocumentProperties"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/documentProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/documentproperties"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesBackButton": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the navigation item hides the Back button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesBackButton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesBackButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidesBackButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "hidesBackButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/hidesbackbutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesSearchBarWhenScrolling": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app hides the integrated search bar when scrolling any underlying content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesSearchBarWhenScrolling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesSearchBarWhenScrolling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidesSearchBarWhenScrolling"
+        }
+      ],
+      "role": "symbol",
+      "title": "hidesSearchBarWhenScrolling",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/hidessearchbarwhenscrolling"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a navigation item from data in an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/init(coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(title:)": {
+      "abstract": [
+        {
+          "text": "Creates a navigation item with the specified title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(title:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTitle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/init(title:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/largeTitleDisplayMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The mode for displaying the title of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "largeTitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationItem",
+          "text": "UINavigationItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINavigationItemLargeTitleDisplayMode",
+          "text": "LargeTitleDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/largeTitleDisplayMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "largeTitleDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "largeTitleDisplayMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leadingItemGroups": {
+      "abstract": [
+        {
+          "text": "Item groups to display in the leading section of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leadingItemGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leadingItemGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leadingItemGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "leadingItemGroups",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/leadingitemgroups"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A custom bar button item that displays on the left (or leading) edge of the navigation bar when the navigation item is the top item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/leftbarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItems": {
+      "abstract": [
+        {
+          "text": "An array of custom bar button items to display on the left (or leading) side of the navigation bar when the navigation item is the top item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftBarButtonItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftBarButtonItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/leftbarbuttonitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftItemsSupplementBackButton": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the left items display in addition to the Back button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftItemsSupplementBackButton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftItemsSupplementBackButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftItemsSupplementBackButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftItemsSupplementBackButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/leftitemssupplementbackbutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/overflowPresentationSource": {
+      "abstract": [
+        {
+          "text": "The item you can use as an anchor to present a custom UI from the overflow menu button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overflowPresentationSource"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIPopoverPresentationControllerSourceItem",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/overflowPresentationSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overflowPresentationSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "overflowPresentationSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/overflowpresentationsource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/pinnedTrailingGroup": {
+      "abstract": [
+        {
+          "text": "The item group to display on the trailing edge of the navigation bar, on the trailing side of the overflow and search items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinnedTrailingGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/pinnedTrailingGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pinnedTrailingGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "pinnedTrailingGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/pinnedtrailinggroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/preferredSearchBarPlacement": {
+      "abstract": [
+        {
+          "text": "The preferred placement of the search bar in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSearchBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationItem",
+          "text": "UINavigationItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINavigationItemSearchBarPlacement",
+          "text": "SearchBarPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/preferredSearchBarPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredSearchBarPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredSearchBarPlacement",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/preferredsearchbarplacement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt": {
+      "abstract": [
+        {
+          "text": "A single line of text that displays at the top of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prompt"
+        }
+      ],
+      "role": "symbol",
+      "title": "prompt",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/prompt"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-8jiuf": {
+      "abstract": [
+        {
+          "text": "The delegate for renaming the navigation item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renameDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit30UINavigationItemRenameDelegateP",
+          "text": "UINavigationItemRenameDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-8jiuf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renameDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/renamedelegate-8jiuf"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h": {
+      "abstract": [
+        {
+          "text": "The delegate for renaming the navigation item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "renameDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renameDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/renamedelegate-o32h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A custom bar button item that displays on the right (or trailing) edge of the navigation bar when the navigation item is the top item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/rightbarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItems": {
+      "abstract": [
+        {
+          "text": "An array of custom bar button items to display on the right (or trailing) side of the navigation bar when the navigation item is the top item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightBarButtonItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightBarButtonItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/rightbarbuttonitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/scrollEdgeAppearance": {
+      "abstract": [
+        {
+          "text": "The appearance settings for a standard-height navigation bar when the edge of scrollable content aligns with the edge of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollEdgeAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationBarAppearance",
+          "text": "UINavigationBarAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/scrollEdgeAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scrollEdgeAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "scrollEdgeAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/scrolledgeappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchBarPlacement-swift.property": {
+      "abstract": [
+        {
+          "text": "The placement of the search bar in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationItem",
+          "text": "UINavigationItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINavigationItemSearchBarPlacement",
+          "text": "SearchBarPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchBarPlacement-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "searchBarPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "searchBarPlacement",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/searchbarplacement-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchController": {
+      "abstract": [
+        {
+          "text": "The search controller to integrate into your navigation interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISearchController",
+          "text": "UISearchController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "searchController"
+        }
+      ],
+      "role": "symbol",
+      "title": "searchController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/searchcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setHidesBackButton(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Hides or shows the Back button, optionally animating the transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHidesBackButton"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setHidesBackButton(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHidesBackButton:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHidesBackButton(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/sethidesbackbutton(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButton(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the custom bar button item, optionally animating the transition to the new item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLeftBarButton"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButton(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLeftBarButtonItem:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLeftBarButton(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/setleftbarbutton(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButtonItems(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the left bar button items, optionally animating the transition to the new items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLeftBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButtonItems(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLeftBarButtonItems:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLeftBarButtonItems(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/setleftbarbuttonitems(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButton(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the custom bar button item, optionally animating the transition to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRightBarButton"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButton(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRightBarButtonItem:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRightBarButton(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/setrightbarbutton(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButtonItems(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the right bar button items, optionally animating the transition to the new items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRightBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButtonItems(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRightBarButtonItems:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRightBarButtonItems(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/setrightbarbuttonitems(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/standardAppearance": {
+      "abstract": [
+        {
+          "text": "The appearance settings for a standard-height navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationBarAppearance",
+          "text": "UINavigationBarAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/standardAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "standardAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "standardAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/standardappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/style": {
+      "abstract": [
+        {
+          "text": "A style that determines how the content of the navigation item lays out in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationItem",
+          "text": "UINavigationItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINavigationItemStyle",
+          "text": "ItemStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/style",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "style"
+        }
+      ],
+      "role": "symbol",
+      "title": "style",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/style"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/title": {
+      "abstract": [
+        {
+          "text": "The navigation item’s title that displays in the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/title"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleMenuProvider": {
+      "abstract": [
+        {
+          "text": "A closure that generates the navigation item’s title menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleMenuProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuElement",
+          "text": "UIMenuElement"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenu",
+          "text": "UIMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?)?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleMenuProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleMenuProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleMenuProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/titlemenuprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleView": {
+      "abstract": [
+        {
+          "text": "A custom view that displays in the center of the navigation bar when the receiver is the top item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleView"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleView",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/titleview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/trailingItemGroups": {
+      "abstract": [
+        {
+          "text": "Item groups to display in the trailing section of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingItemGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/trailingItemGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trailingItemGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "trailingItemGroups",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/trailingitemgroups"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-5j4ws": {
+      "abstract": [
+        {
+          "text": "Methods an object implements to rename a navigation item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItemRenameDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-5j4ws",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItemRenameDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItemRenameDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitemrenamedelegate-5j4ws"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-96g5t": {
+      "abstract": [
+        {
+          "text": "Methods an object implements to rename a navigation item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItemRenameDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-96g5t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINavigationItemRenameDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitemrenamedelegate-96g5t"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages navigation between pages of content, where a subview controller manages each page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipageviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTab": {
+      "abstract": [
+        {
+          "text": "A tab subclass that represents the system’s search tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTab",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that implements a hierarchical interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISplitViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab": {
+      "abstract": [
+        {
+          "text": "An object that manages a tab in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITab",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItem": {
+      "abstract": [
+        {
+          "text": "An object that describes an item in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of tab objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller": {
+      "abstract": [
+        {
+          "text": "Create a composite interface by combining content from one or more view controllers with other custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a custom container view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-container-view-controller"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-view-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+        "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITab",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+        "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+      ],
+      "title": "Container view controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-an-item",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(title:)",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(coder:)"
+      ],
+      "title": "Initializing an item"
+    },
+    {
+      "anchor": "Configuring-the-title",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/title",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/largeTitleDisplayMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/LargeTitleDisplayMode-swift.enum"
+      ],
+      "title": "Configuring the title"
+    },
+    {
+      "anchor": "Configuring-the-Back-button",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonTitle",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonDisplayMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/BackButtonDisplayMode-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesBackButton",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setHidesBackButton(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backAction"
+      ],
+      "title": "Configuring the Back button"
+    },
+    {
+      "anchor": "Specifying-the-navigation-style",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/style",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/ItemStyle"
+      ],
+      "title": "Specifying the navigation style"
+    },
+    {
+      "anchor": "Specifying-custom-views",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/centerItemGroups",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leadingItemGroups",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/trailingItemGroups",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/pinnedTrailingGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleView",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItems",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItems",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButtonItems(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButton(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButtonItems(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButton(_:animated:)"
+      ],
+      "title": "Specifying custom views"
+    },
+    {
+      "anchor": "Getting-and-setting-properties",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftItemsSupplementBackButton"
+      ],
+      "title": "Getting and setting properties"
+    },
+    {
+      "anchor": "Overriding-the-navigation-bars-appearance-settings",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/standardAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/scrollEdgeAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactScrollEdgeAppearance"
+      ],
+      "title": "Overriding the navigation bar’s appearance settings"
+    },
+    {
+      "anchor": "Integrating-search-into-your-interface",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesSearchBarWhenScrolling",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchBarPlacement-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/preferredSearchBarPlacement",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/SearchBarPlacement-swift.enum"
+      ],
+      "title": "Integrating search into your interface"
+    },
+    {
+      "anchor": "Supporting-navigation-bar-customization",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/customizationIdentifier"
+      ],
+      "title": "Supporting navigation bar customization"
+    },
+    {
+      "anchor": "Working-with-the-overflow-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/additionalOverflowItems",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/overflowPresentationSource"
+      ],
+      "title": "Working with the overflow menu"
+    },
+    {
+      "anchor": "Customizing-the-title-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleMenuProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/documentProperties",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties"
+      ],
+      "title": "Customizing the title menu"
+    },
+    {
+      "anchor": "Renaming-documents",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-8jiuf",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-5j4ws"
+      ],
+      "title": "Renaming documents"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-an-item",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(title:)",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/init(coder:)"
+              ],
+              "title": "Initializing an item"
+            },
+            {
+              "anchor": "Configuring-the-title",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/title",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/largeTitleDisplayMode-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/LargeTitleDisplayMode-swift.enum"
+              ],
+              "title": "Configuring the title"
+            },
+            {
+              "anchor": "Configuring-the-Back-button",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backBarButtonItem",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonTitle",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backButtonDisplayMode-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/BackButtonDisplayMode-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesBackButton",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setHidesBackButton(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/backAction"
+              ],
+              "title": "Configuring the Back button"
+            },
+            {
+              "anchor": "Specifying-the-navigation-style",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/style",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/ItemStyle"
+              ],
+              "title": "Specifying the navigation style"
+            },
+            {
+              "anchor": "Specifying-custom-views",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/centerItemGroups",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leadingItemGroups",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/trailingItemGroups",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/pinnedTrailingGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleView",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItems",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftBarButtonItem",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItems",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/rightBarButtonItem",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButtonItems(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setLeftBarButton(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButtonItems(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/setRightBarButton(_:animated:)"
+              ],
+              "title": "Specifying custom views"
+            },
+            {
+              "anchor": "Getting-and-setting-properties",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/leftItemsSupplementBackButton"
+              ],
+              "title": "Getting and setting properties"
+            },
+            {
+              "anchor": "Overriding-the-navigation-bars-appearance-settings",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/standardAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/scrollEdgeAppearance",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/compactScrollEdgeAppearance"
+              ],
+              "title": "Overriding the navigation bar’s appearance settings"
+            },
+            {
+              "anchor": "Integrating-search-into-your-interface",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/hidesSearchBarWhenScrolling",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/searchBarPlacement-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/preferredSearchBarPlacement",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/SearchBarPlacement-swift.enum"
+              ],
+              "title": "Integrating search into your interface"
+            },
+            {
+              "anchor": "Supporting-navigation-bar-customization",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/customizationIdentifier"
+              ],
+              "title": "Supporting navigation bar customization"
+            },
+            {
+              "anchor": "Working-with-the-overflow-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/additionalOverflowItems",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/overflowPresentationSource"
+              ],
+              "title": "Working with the overflow menu"
+            },
+            {
+              "anchor": "Customizing-the-title-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/titleMenuProvider",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/documentProperties",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties"
+              ],
+              "title": "Customizing the title menu"
+            },
+            {
+              "anchor": "Renaming-documents",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItemRenameDelegate-96g5t"
+              ],
+              "title": "Renaming documents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-view-controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+                "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITab",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+                "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+              ],
+              "title": "Container view controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UINavigationItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setRightBarButton(_:animated:)/title",
+          "value": "setRightBarButtonItem:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setRightBarButton(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRightBarButtonItem:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1prompt/title",
+          "value": "prompt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1prompt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prompt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1hidesSearchBarWhenScrolling/title",
+          "value": "hidesSearchBarWhenScrolling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1hidesSearchBarWhenScrolling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidesSearchBarWhenScrolling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setLeftBarButtonItems(_:animated:)/title",
+          "value": "setLeftBarButtonItems:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setLeftBarButtonItems(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setLeftBarButtonItems:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/title",
+          "value": "UISearchTab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1BackButtonDisplayMode-swift.enum/title",
+          "value": "UINavigationItemBackButtonDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1BackButtonDisplayMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemBackButtonDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1BackButtonDisplayMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemBackButtonDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1largeTitleDisplayMode-swift.property/title",
+          "value": "largeTitleDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1largeTitleDisplayMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "largeTitleDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1standardAppearance/title",
+          "value": "standardAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1standardAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "standardAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/title",
+          "value": "UIBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/title",
+          "value": "UITabBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1compactScrollEdgeAppearance/title",
+          "value": "compactScrollEdgeAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1compactScrollEdgeAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compactScrollEdgeAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1searchController/title",
+          "value": "searchController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1searchController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "searchController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1trailingItemGroups/title",
+          "value": "trailingItemGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1trailingItemGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "trailingItemGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/title",
+          "value": "UITabGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backButtonDisplayMode-swift.property/title",
+          "value": "backButtonDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backButtonDisplayMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backButtonDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1titleView/title",
+          "value": "titleView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1titleView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1hidesBackButton/title",
+          "value": "hidesBackButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1hidesBackButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidesBackButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftBarButtonItem/title",
+          "value": "leftBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backButtonTitle/title",
+          "value": "backButtonTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backButtonTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backButtonTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1additionalOverflowItems/title",
+          "value": "additionalOverflowItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1additionalOverflowItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "additionalOverflowItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1ItemStyle/title",
+          "value": "UINavigationItemStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1ItemStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1ItemStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/title",
+          "value": "UIPageViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1scrollEdgeAppearance/title",
+          "value": "scrollEdgeAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1scrollEdgeAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scrollEdgeAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1titleMenuProvider/title",
+          "value": "titleMenuProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1titleMenuProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleMenuProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1init(title:)/title",
+          "value": "initWithTitle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1init(title:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTitle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backBarButtonItem/title",
+          "value": "backBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1compactAppearance/title",
+          "value": "compactAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1compactAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compactAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftBarButtonItems/title",
+          "value": "leftBarButtonItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftBarButtonItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftBarButtonItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/title",
+          "value": "UIDocumentProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1overflowPresentationSource/title",
+          "value": "overflowPresentationSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1overflowPresentationSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "overflowPresentationSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/title",
+          "value": "UITabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1documentProperties/title",
+          "value": "documentProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1documentProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documentProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1preferredSearchBarPlacement/title",
+          "value": "preferredSearchBarPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1preferredSearchBarPlacement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredSearchBarPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1centerItemGroups/title",
+          "value": "centerItemGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1centerItemGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "centerItemGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftItemsSupplementBackButton/title",
+          "value": "leftItemsSupplementBackButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leftItemsSupplementBackButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftItemsSupplementBackButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1rightBarButtonItems/title",
+          "value": "rightBarButtonItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1rightBarButtonItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rightBarButtonItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/title",
+          "value": "UITabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1LargeTitleDisplayMode-swift.enum/title",
+          "value": "UINavigationItemLargeTitleDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1LargeTitleDisplayMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemLargeTitleDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1LargeTitleDisplayMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemLargeTitleDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1customizationIdentifier/title",
+          "value": "customizationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1customizationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customizationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/title",
+          "value": "UITab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1searchBarPlacement-swift.property/title",
+          "value": "searchBarPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1searchBarPlacement-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "searchBarPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/title",
+          "value": "UISplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setLeftBarButton(_:animated:)/title",
+          "value": "setLeftBarButtonItem:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setLeftBarButton(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setLeftBarButtonItem:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leadingItemGroups/title",
+          "value": "leadingItemGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1leadingItemGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leadingItemGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setHidesBackButton(_:animated:)/title",
+          "value": "setHidesBackButton:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setHidesBackButton(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHidesBackButton:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setRightBarButtonItems(_:animated:)/title",
+          "value": "setRightBarButtonItems:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1setRightBarButtonItems(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRightBarButtonItems:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1SearchBarPlacement-swift.enum/title",
+          "value": "UINavigationItemSearchBarPlacement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1SearchBarPlacement-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemSearchBarPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1SearchBarPlacement-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItemSearchBarPlacement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backAction/title",
+          "value": "backAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1backAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1rightBarButtonItem/title",
+          "value": "rightBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1rightBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rightBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1style/title",
+          "value": "style"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1style/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "style"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1pinnedTrailingGroup/title",
+          "value": "pinnedTrailingGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1pinnedTrailingGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pinnedTrailingGroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uinavigationitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uinavigationitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

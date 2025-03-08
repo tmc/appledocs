@@ -1,0 +1,2621 @@
+{
+  "abstract": [
+    {
+      "text": "An interaction between the user and your app involving an intent object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INInteraction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INInteraction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INInteraction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INInteraction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INInteraction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object encapsulates information about a SiriKit request and your app’s response. SiriKit creates interaction objects automatically when it needs your app to respond to a specific intent, either by handling the intent or providing an error explaining why your app couldn’t handle the intent. SiriKit places the interaction in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that the system passes to your app at launch time. You can also create instances of this class in your app and donate relevant interactions to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Donating interactions provides contextual information that might be helpful to other apps. Some system apps use donated interactions to improve search results or to anticipate user actions. For example, a ride-booking app could donate an interaction containing the user’s planned ride information. If the user subsequently uses the Maps app to search for restaurants, Maps can show relevant results near the user’s destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose which of your app’s interactions you want to donate to the system. To donate an interaction, create an instance of this class, filling it with your intent object and response, and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can also use the methods of this class to delete interactions when they are no longer relevant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Donate interactions only when the user initiates an interaction in your app. SiriKit already knows about interactions that it sends your app for intent handling.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentDonationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentDonationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentDonationMetadata",
+      "type": "topic",
+      "url": "/documentation/intents/inintentdonationmetadata"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentHandlingStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the current state of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentHandlingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentHandlingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentHandlingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentHandlingStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inintenthandlingstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction between the user and your app involving an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "INInteraction",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/dateInterval": {
+      "abstract": [
+        {
+          "text": "The time at which the interaction started and its duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12DateIntervalV",
+          "text": "DateInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/dateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "dateInterval",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/dateinterval"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs": {
+      "abstract": [
+        {
+          "text": "Deletes the specified interactions that were donated by the calling app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteInteractionsWithIdentifiers:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "delete(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/delete(with:completion:)-2d1gs"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-tcq9": {
+      "abstract": [
+        {
+          "text": "Deletes the interactions with the specified group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-tcq9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteInteractionsWithGroupIdentifier:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "delete(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/delete(with:completion:)-tcq9"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/deleteAll(completion:)": {
+      "abstract": [
+        {
+          "text": "Deletes all interactions that you donated previously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/deleteAll(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteAllInteractionsWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteAll(completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/deleteall(completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/direction": {
+      "abstract": [
+        {
+          "text": "The direction in which information flowed to or from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "direction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INInteractionDirection",
+          "text": "INInteractionDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/direction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "direction"
+        }
+      ],
+      "role": "symbol",
+      "title": "direction",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/direction"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)": {
+      "abstract": [
+        {
+          "text": "Donates this interaction object to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "donateInteractionWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "donate(completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/donate(completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/groupIdentifier": {
+      "abstract": [
+        {
+          "text": "The unique identifier of the interaction’s group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/groupIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "groupIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "groupIdentifier",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/groupidentifier"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/identifier": {
+      "abstract": [
+        {
+          "text": "The unique identifier of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/identifier"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/init(intent:response:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an interaction object with an intent object and your app’s response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntent",
+          "text": "INIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntentResponse",
+          "text": "INIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/init(intent:response:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithIntent:response:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(intent:response:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/init(intent:response:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/intent": {
+      "abstract": [
+        {
+          "text": "The intent object that describes the user’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntent",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/intent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intent"
+        }
+      ],
+      "role": "symbol",
+      "title": "intent",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/intent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentHandlingStatus": {
+      "abstract": [
+        {
+          "text": "The current state of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intentHandlingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INIntentHandlingStatus",
+          "text": "INIntentHandlingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentHandlingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intentHandlingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "intentHandlingStatus",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/intenthandlingstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentResponse": {
+      "abstract": [
+        {
+          "text": "The response object that your app created in response to the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntentResponse",
+          "text": "INIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "intentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/intentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction/parameterValue(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the value of the specified parameter of this interaction object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INParameter",
+          "text": "INParameter"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction/parameterValue(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterValueForParameter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "parameterValue(for:)",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction/parametervalue(for:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteractionDirection": {
+      "abstract": [
+        {
+          "text": "Constants indicating whether the app is providing or receiving information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteractionDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteractionDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INInteractionDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "INInteractionDirection",
+      "type": "topic",
+      "url": "/documentation/intents/ininteractiondirection"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum": {
+      "abstract": [
+        {
+          "text": "An action available in your app that the system may suggest to a user or a user may add to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcut"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcut",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcut-swift.enum"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions": {
+      "abstract": [
+        {
+          "text": "Defined contexts in which an intent or activity might be relevant to a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcutAvailabilityOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcutAvailabilityOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcutAvailabilityOptions",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcutavailabilityoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcutReference": {
+      "abstract": [
+        {
+          "text": "An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcutReference"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcutReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcutReference",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcutreference"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut": {
+      "abstract": [
+        {
+          "text": "A shortcut the user added to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcut"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVoiceShortcut",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcut"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter": {
+      "abstract": [
+        {
+          "text": "Retrieve the user’s shortcuts and make shortcut suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcutCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcutCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVoiceShortcutCenter",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface": {
+      "abstract": [
+        {
+          "text": "Configure your view controller to replace or augment the default interface in Siri or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the View Controller for Your Custom Interface",
+      "type": "topic",
+      "url": "/documentation/sirikit/configuring-the-view-controller-for-your-custom-interface"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts": {
+      "abstract": [
+        {
+          "text": "Remove your donations from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Deleting Donated Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/deleting-donated-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations": {
+      "abstract": [
+        {
+          "text": "Inform Siri of reservations made from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts": {
+      "abstract": [
+        {
+          "text": "Tell Siri about shortcuts to actions that the user performed in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app": {
+      "abstract": [
+        {
+          "text": "Donate app-specific content, use Siri’s contact suggestions, and adopt the latest platform features to create a more consistent messaging experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving interactions between Siri and your messaging app",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-interactions-between-siri-and-your-messaging-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection": {
+      "abstract": [
+        {
+          "text": "Fine-tune voice controls and improve Siri Suggestions by sharing app capabilities, customized names, and listening habits with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Siri Media Interactions and App Selection",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-siri-media-interactions-and-app-selection"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Suggest shortcuts users may want to add to Siri or combine with other actions in their own shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering Actions in the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/offering-actions-in-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support": {
+      "abstract": [
+        {
+          "text": "Display relevant shortcuts on the Siri watch face and suggest widgets in Smart Stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Watch and Widget Support",
+      "type": "topic",
+      "url": "/documentation/sirikit/watch-and-widget-support"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shortcuts-and-Donations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum",
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter",
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata",
+        "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support"
+      ],
+      "title": "Shortcuts and Donations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Interaction-Object",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/init(intent:response:)"
+      ],
+      "title": "Creating an Interaction Object"
+    },
+    {
+      "anchor": "Getting-the-Intent-and-Response",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/intent",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentResponse"
+      ],
+      "title": "Getting the Intent and Response"
+    },
+    {
+      "anchor": "Donating-Interactions-to-the-System",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)"
+      ],
+      "title": "Donating Interactions to the System"
+    },
+    {
+      "anchor": "Deleting-Interactions-from-the-System",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/deleteAll(completion:)",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-tcq9"
+      ],
+      "title": "Deleting Interactions from the System"
+    },
+    {
+      "anchor": "Accessing-Interaction-Attributes",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentHandlingStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/direction",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/dateInterval",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/identifier",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/groupIdentifier"
+      ],
+      "title": "Accessing Interaction Attributes"
+    },
+    {
+      "anchor": "Getting-the-Value-of-a-Parameter",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction/parameterValue(for:)"
+      ],
+      "title": "Getting the Value of a Parameter"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntentHandlingStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INInteractionDirection"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Interaction-Object",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/init(intent:response:)"
+              ],
+              "title": "Creating an Interaction Object"
+            },
+            {
+              "anchor": "Getting-the-Intent-and-Response",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/intent",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentResponse"
+              ],
+              "title": "Getting the Intent and Response"
+            },
+            {
+              "anchor": "Donating-Interactions-to-the-System",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/donate(completion:)"
+              ],
+              "title": "Donating Interactions to the System"
+            },
+            {
+              "anchor": "Deleting-Interactions-from-the-System",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/deleteAll(completion:)",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/delete(with:completion:)-tcq9"
+              ],
+              "title": "Deleting Interactions from the System"
+            },
+            {
+              "anchor": "Accessing-Interaction-Attributes",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/intentHandlingStatus",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/direction",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/dateInterval",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/identifier",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/groupIdentifier"
+              ],
+              "title": "Accessing Interaction Attributes"
+            },
+            {
+              "anchor": "Getting-the-Value-of-a-Parameter",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction/parameterValue(for:)"
+              ],
+              "title": "Getting the Value of a Parameter"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INIntentHandlingStatus",
+                "doc://com.apple.sirikit/documentation/Intents/INInteractionDirection"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shortcuts-and-Donations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter",
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata"
+              ],
+              "title": "Shortcuts and Donations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INInteraction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intentResponse/title",
+          "value": "intentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "intentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/title",
+          "value": "INVoiceShortcut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1groupIdentifier/title",
+          "value": "groupIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1groupIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "groupIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1dateInterval/title",
+          "value": "dateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1dateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dateInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/title",
+          "value": "INShortcutAvailabilityOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcutAvailabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcutAvailabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/title",
+          "value": "INIntentDonationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1delete(with:completion:)-tcq9/title",
+          "value": "deleteInteractionsWithGroupIdentifier:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1delete(with:completion:)-tcq9/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteInteractionsWithGroupIdentifier:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/title",
+          "value": "INInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1delete(with:completion:)-2d1gs/title",
+          "value": "deleteInteractionsWithIdentifiers:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1delete(with:completion:)-2d1gs/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteInteractionsWithIdentifiers:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1deleteAll(completion:)/title",
+          "value": "deleteAllInteractionsWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1deleteAll(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteAllInteractionsWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/title",
+          "value": "INShortcut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1direction/title",
+          "value": "direction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1direction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "direction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlingStatus/title",
+          "value": "INIntentHandlingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentHandlingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentHandlingStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentHandlingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intentHandlingStatus/title",
+          "value": "intentHandlingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intentHandlingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "intentHandlingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteractionDirection/title",
+          "value": "INInteractionDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteractionDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteractionDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteractionDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteractionDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1parameterValue(for:)/title",
+          "value": "parameterValueForParameter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1parameterValue(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parameterValueForParameter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1donate(completion:)/title",
+          "value": "donateInteractionWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1donate(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "donateInteractionWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1init(intent:response:)/title",
+          "value": "initWithIntent:response:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1init(intent:response:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithIntent:response:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/title",
+          "value": "INVoiceShortcutCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intent/title",
+          "value": "intent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction~1intent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "intent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/ininteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/ininteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

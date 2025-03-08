@@ -1,0 +1,2837 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable container of traits.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:5UIKit15UIMutableTraitsP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIMutableTraits"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIMutableTraits"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIMutableTraits"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIMutableTraits"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol provides read-write access to get and set trait values on an underlying container. UIKit uses this protocol to facilitate working with instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which are immutable and read-only. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/init(mutations:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which enables you to set a batch of trait values in one method call. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitOverrides-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", making it easy to set trait overrides on trait environments such as views and view controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you define a custom trait, declare a property for the trait in an extension to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so that you can access your custom trait using standard property syntax.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example defines an extension and sets the theme on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/traitOverrides-fd9z",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// ThemeTrait conforms to UITraitDefinition, and has a defaultValue type of Theme",
+            "extension UIMutableTraits {",
+            "    var theme: Theme {",
+            "        get { self[ThemeTrait.self] }",
+            "        set { self[ThemeTrait.self] = newValue }",
+            "    }",
+            "}",
+            "",
+            "// Apply an override for the custom theme trait.",
+            "view.traitOverrides.theme = .monochrome"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that, in conjunction with a presentation controller, determine how to respond to trait changes in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAdaptivePresentationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAdaptivePresentationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAdaptivePresentationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiadaptivepresentationcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5": {
+      "abstract": [
+        {
+          "text": "A mutable container of traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/accessibilityContrast": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityContrast"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIAccessibilityContrast",
+          "text": "UIAccessibilityContrast"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/accessibilityContrast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityContrast",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/accessibilitycontrast"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/activeAppearance": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceActiveAppearance",
+          "text": "UIUserInterfaceActiveAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/activeAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activeAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/activeappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayGamut": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayGamut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDisplayGamut",
+          "text": "UIDisplayGamut"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayGamut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayGamut",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/displaygamut"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayScale": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayScale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayScale",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/displayscale"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/forceTouchCapability": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forceTouchCapability"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIForceTouchCapability",
+          "text": "UIForceTouchCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/forceTouchCapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forceTouchCapability",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/forcetouchcapability"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/horizontalSizeClass": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalSizeClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceSizeClass",
+          "text": "UIUserInterfaceSizeClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/horizontalSizeClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalSizeClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/horizontalsizeclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/imageDynamicRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageDynamicRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImageDynamicRange",
+          "text": "DynamicRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/imageDynamicRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageDynamicRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/imagedynamicrange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/layoutDirection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITraitEnvironmentLayoutDirection",
+          "text": "UITraitEnvironmentLayoutDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/layoutDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/layoutdirection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/legibilityWeight": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "legibilityWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UILegibilityWeight",
+          "text": "UILegibilityWeight"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/legibilityWeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "legibilityWeight",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/legibilityweight"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/listEnvironment": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIListEnvironment",
+          "text": "UIListEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/listEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/listenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/preferredContentSizeCategory": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredContentSizeCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIContentSizeCategory",
+          "text": "UIContentSizeCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/preferredContentSizeCategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredContentSizeCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/preferredcontentsizecategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/sceneCaptureState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneCaptureState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UISceneCaptureState",
+          "text": "UISceneCaptureState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/sceneCaptureState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneCaptureState",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/scenecapturestate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-19j2e": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-19j2e",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-19j2e"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1b2k9": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1b2k9",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-1b2k9"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1k64j": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1k64j",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-1k64j"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2n1bn": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2n1bn",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-2n1bn"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2tbov": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2tbov",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-2tbov"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-4tqsr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-4tqsr",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-4tqsr"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-5h7go": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-5h7go",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-5h7go"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-6s6f5": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-6s6f5",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-6s6f5"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7jap6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7jap6",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-7jap6"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7kxs": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7kxs",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-7kxs"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7m9p0": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7m9p0",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-7m9p0"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-8vqxe": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-8vqxe",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-8vqxe"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9ld0y": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9ld0y",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-9ld0y"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9za2c": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9za2c",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-9za2c"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-dwij": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-dwij",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-dwij"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-ve6h": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-ve6h",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/subscript(_:)-ve6h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/toolbarItemPresentationSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarItemPresentationSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UINSToolbarItemPresentationSize",
+          "text": "UINSToolbarItemPresentationSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/toolbarItemPresentationSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarItemPresentationSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/toolbaritempresentationsize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/typesettingLanguage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typesettingLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/typesettingLanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typesettingLanguage",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/typesettinglanguage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceIdiom": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceIdiom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceIdiom",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceIdiom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInterfaceIdiom",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/userinterfaceidiom"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceLevel": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceLevel",
+          "text": "UIUserInterfaceLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceLevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInterfaceLevel",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/userinterfacelevel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceStyle",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/userinterfacestyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/verticalSizeClass": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalSizeClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceSizeClass",
+          "text": "UIUserInterfaceSizeClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/verticalSizeClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalSizeClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutabletraits-13ja5/verticalsizeclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitAccessibilityContrast-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitAccessibilityContrast"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitAccessibilityContrast-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitAccessibilityContrast"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitAccessibilityContrast",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitaccessibilitycontrast-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitActiveAppearance-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitActiveAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitActiveAppearance-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitActiveAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitActiveAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitactiveappearance-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection": {
+      "abstract": [
+        {
+          "text": "A collection of data that represents the environment for an individual element in your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitCollection",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/init(mutations:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mutations"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit15UIMutableTraitsP",
+          "text": "UIMutableTraits"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/init(mutations:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mutations:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection/init(mutations:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/modifyingTraits(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifyingTraits"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit15UIMutableTraitsP",
+          "text": "UIMutableTraits"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/modifyingTraits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modifyingTraits(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection/modifyingtraits(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayGamut-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitDisplayGamut"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayGamut-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitDisplayGamut"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitDisplayGamut",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdisplaygamut-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayScale-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitDisplayScale"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayScale-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitDisplayScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitDisplayScale",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdisplayscale-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitForceTouchCapability-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitForceTouchCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitForceTouchCapability-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitForceTouchCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitForceTouchCapability",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitforcetouchcapability-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitHorizontalSizeClass-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitHorizontalSizeClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitHorizontalSizeClass-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitHorizontalSizeClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitHorizontalSizeClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraithorizontalsizeclass-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitImageDynamicRange-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitImageDynamicRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitImageDynamicRange-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitImageDynamicRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitImageDynamicRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitimagedynamicrange-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitLayoutDirection-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitLayoutDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitLayoutDirection-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitLayoutDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitLayoutDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitlayoutdirection-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitLegibilityWeight-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitLegibilityWeight"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitLegibilityWeight-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitLegibilityWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitLegibilityWeight",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitlegibilityweight-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitListEnvironment-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitListEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitListEnvironment-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitListEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitListEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitlistenvironment-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitOverrides-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitOverrides"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitOverrides-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitOverrides"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitOverrides",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitoverrides-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitPreferredContentSizeCategory-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitPreferredContentSizeCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitPreferredContentSizeCategory-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitPreferredContentSizeCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitPreferredContentSizeCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitpreferredcontentsizecategory-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitSceneCaptureState-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitSceneCaptureState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitSceneCaptureState-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitSceneCaptureState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitSceneCaptureState",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitscenecapturestate-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitToolbarItemPresentationSize-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitToolbarItemPresentationSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitToolbarItemPresentationSize-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitToolbarItemPresentationSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitToolbarItemPresentationSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraittoolbaritempresentationsize-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitTypesettingLanguage-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitTypesettingLanguage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitTypesettingLanguage-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitTypesettingLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitTypesettingLanguage",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraittypesettinglanguage-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceIdiom-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceIdiom-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceIdiom"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitUserInterfaceIdiom",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraituserinterfaceidiom-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceLevel-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceLevel-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitUserInterfaceLevel",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraituserinterfacelevel-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceStyle-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceStyle-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraituserinterfacestyle-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitVerticalSizeClass-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitVerticalSizeClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitVerticalSizeClass-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitVerticalSizeClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitVerticalSizeClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitverticalsizeclass-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/traitOverrides-fd9z": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "traitOverrides"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit16UITraitOverridesV",
+          "text": "UITraitOverrides"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/traitOverrides-fd9z",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "traitOverrides",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/traitoverrides-fd9z"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking": {
+      "abstract": [
+        {
+          "text": "Reduce the need to manually register for trait changes when you use traits within a method or closure that supports automatic trait tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Automatic trait tracking",
+      "type": "topic",
+      "url": "/documentation/uikit/automatic-trait-tracking"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-changing-display-modes-on-apple-tv": {
+      "abstract": [
+        {
+          "text": "Change images and resources dynamically when the screen gamut on your device changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-changing-display-modes-on-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to changing display modes on Apple TV",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-changing-display-modes-on-apple-tv"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITraitOverrides-swift.struct"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/init(mutations:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/modifyingTraits(_:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Adaptivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/automatic-trait-tracking",
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-changing-display-modes-on-apple-tv",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+      ],
+      "title": "Adaptivity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Defining-custom-traits",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/accessibilityContrast",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitAccessibilityContrast-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/activeAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitActiveAppearance-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayGamut",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayGamut-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/displayScale",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitDisplayScale-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/forceTouchCapability",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitForceTouchCapability-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/horizontalSizeClass",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitHorizontalSizeClass-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/imageDynamicRange",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitImageDynamicRange-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/layoutDirection",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitLayoutDirection-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/legibilityWeight",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitLegibilityWeight-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/listEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitListEnvironment-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/preferredContentSizeCategory",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitPreferredContentSizeCategory-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/sceneCaptureState",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitSceneCaptureState-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/toolbarItemPresentationSize",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitToolbarItemPresentationSize-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/typesettingLanguage",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitTypesettingLanguage-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceIdiom",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceIdiom-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceLevel",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceLevel-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/userInterfaceStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitUserInterfaceStyle-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/verticalSizeClass",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitVerticalSizeClass-swift.struct"
+      ],
+      "title": "Defining custom traits"
+    },
+    {
+      "anchor": "Subscripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-19j2e",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1b2k9",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-1k64j",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2n1bn",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-2tbov",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-4tqsr",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-5h7go",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-6s6f5",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7jap6",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7kxs",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-7m9p0",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-8vqxe",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9ld0y",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-9za2c",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-dwij",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableTraits-13ja5/subscript(_:)-ve6h"
+      ],
+      "title": "Subscripts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/title",
+          "value": "UITraitCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/title",
+          "value": "UIAdaptivePresentationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAdaptivePresentationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAdaptivePresentationControllerDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uimutabletraits-13ja5"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

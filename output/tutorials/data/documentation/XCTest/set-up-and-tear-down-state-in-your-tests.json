@@ -1,0 +1,1750 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare initial state before tests run, and clean up resources after tests complete.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/set-up-and-tear-down-state-in-your-tests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Set Up and Tear Down State in Your Tests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To consistently and reliably check that your code produces the correct results, tests need to start from a known, predictable state. In some cases, you need to set up state once for all the test methods in a test class; in others, you need to reset to a known state before each test method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After each test method or test class completes, you might want to delete files that you don’t need, such as temporary files or screenshots. Or, to assist in failure diagnosis, you might want to capture the final state after a test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare your known state for tests, and clean up temporary files after tests using the methods on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decide-When-to-Set-Up-and-Tear-Down-State-in-Your-Test-Class",
+          "level": 3,
+          "text": "Decide When to Set Up and Tear Down State in Your Test Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run a test case, XCTest calls the ",
+              "type": "text"
+            },
+            {
+              "code": "XCTestCase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "setUp()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class method first. Use this method to set up state common to all the test methods in your test class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XCTest then runs each test method, calling setup and teardown methods in this order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest runs the setup methods once before each test method starts: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "setUp() async throws",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " first, then ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "setUpWithError()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "setUp()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use these methods to prepare state that you need for each test method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest runs the test method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest runs the teardown blocks that you added in the test method, in last-in, first-out order. Use these blocks to tear down state and clean up resources after a specific test method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest runs the teardown methods once after each test method completes, with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tearDown()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " first, then ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tearDownWithError()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tearDown() async throws",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use these methods to tear down state after each test method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When XCTest finishes running all the test methods and the test class completes, XCTest calls the ",
+              "type": "text"
+            },
+            {
+              "code": "XCTestCase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "tearDown()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class method. Use this method to tear down state that’s common to all the test methods in your test class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can include test assertions in a test class’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "setUp() async throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "setUp()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "setUpWithError()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "tearDown() async throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "tearDown()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "tearDownWithError()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instance methods. XCTest evaluates these assertions as part of every test method’s run. However, you can’t include test assertions in a test class’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "setUp()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "tearDown()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class methods. Test assertions require a test class instance, which doesn’t exist within the scope of class methods.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Prepare-and-Tear-Down-State-for-a-Test-Class",
+          "level": 3,
+          "text": "Prepare and Tear Down State for a Test Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For state that’s common to all the test methods in your test class and that doesn’t need a reset for each test method, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override class func setUp() {",
+                    "    // This is the setUp() class method.",
+                    "    // XCTest calls it before calling the first test method.",
+                    "    // Set up any overall initial state here.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "+ (void)setUp {",
+                    "    // This is the setUp class method.",
+                    "    // XCTest calls it before calling the first test method.",
+                    "    // Set up any overall initial state here.",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XCTest runs ",
+              "type": "text"
+            },
+            {
+              "code": "setUp()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " once before the test class begins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to clean up temporary files or capture any data that you want to analyze after the test class is complete, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method on ",
+              "type": "text"
+            },
+            {
+              "code": "XCTestCase",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override class func tearDown() {",
+                    "    // This is the tearDown() class method.",
+                    "    // XCTest calls it after the last test method completes.",
+                    "    // Perform any overall cleanup here.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "+ (void)tearDown {",
+                    "    // This is the tearDown class method.",
+                    "    // XCTest calls it after the last test method completes.",
+                    "    // Perform any overall cleanup here.",
+                    " }"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Prepare-and-Tear-Down-State-for-Each-Test-Method",
+          "level": 3,
+          "text": "Prepare and Tear Down State for Each Test Method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For state that you need in each test method, choose one setup method from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that fits best with your setup requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your setup needs to prepare any state asynchronously, override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your setup prepares all state synchronously and might throw errors, override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This method catches thrown errors and records them as test failures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For tests that prepare state synchronously and don’t need to handle errors, override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func setUp() async throws {",
+                    "    // This is the setUp() async instance method.",
+                    "    // XCTest calls it before each test method.",
+                    "    // Perform any asynchronous setup in this method.",
+                    "}",
+                    "",
+                    "override func setUpWithError() throws {",
+                    "    // This is the setUpWithError() instance method.",
+                    "    // XCTest calls it before each test method.",
+                    "    // Set up any synchronous per-test state that might throw errors here.",
+                    " }",
+                    "",
+                    "override func setUp() {",
+                    "    // This is the setUp() instance method.",
+                    "    // XCTest calls it before each test method.",
+                    "    // Set up any synchronous per-test state here.",
+                    " }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)setUpWithCompletionHandler:(void (^)(NSError * _Nullable))completion {",
+                    "    // This is the setUpWithCompletionHandler instance method. ",
+                    "    // XCTest calls it before each test method.",
+                    "    // Perform any asynchronous setup in this method.",
+                    "}",
+                    "",
+                    "- (BOOL)setUpWithError:(NSError *__autoreleasing  _Nullable *)error {",
+                    "    // This is the setUpWithError instance method.",
+                    "    // XCTest calls it before each test method.",
+                    "    // Set up any synchronous per-test state that might throw errors here.",
+                    "    return YES;",
+                    "}",
+                    "",
+                    "- (void)setUp {",
+                    "    // This is the setUp instance method.",
+                    "    // XCTest calls it before each test method.",
+                    "    // Set up any synchronous per-test state here.",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XCTest runs the setup methods once before each test method starts: ",
+              "type": "text"
+            },
+            {
+              "code": "setUp() async throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": " first, then ",
+              "type": "text"
+            },
+            {
+              "code": "setUpWithError()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then ",
+              "type": "text"
+            },
+            {
+              "code": "setUp()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to clean up temporary files or capture any data that you want to analyze after each test method is complete, override a teardown method from ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func tearDown() {",
+                    "    // This is the tearDown() instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any synchronous per-test cleanup here.",
+                    " }",
+                    "",
+                    "override func tearDownWithError() throws {",
+                    "    // This is the tearDownWithError() instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any synchronous per-test cleanup that might throw errors here.",
+                    " }",
+                    "",
+                    "override func tearDown() async throws {",
+                    "    // This is the tearDown() async instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any asynchronous per-test cleanup here.",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)tearDown {",
+                    "    // This is the tearDown instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any synchronous per-test cleanup here.",
+                    " }",
+                    "",
+                    "- (BOOL)tearDownWithError:(NSError *__autoreleasing  _Nullable *)error {",
+                    "    // This is the tearDownWithError instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any synchronous per-test cleanup that might throw errors here.",
+                    "    return YES;",
+                    "}",
+                    "",
+                    "- (void)tearDownWithCompletionHandler:(void (^)(NSError * _Nullable))completion {",
+                    "    // This is the tearDownWithCompletionHandler async instance method.",
+                    "    // XCTest calls it after each test method.",
+                    "    // Perform any asynchronous per-test cleanup here.",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XCTest runs the teardown methods once after each test method completes: first ",
+              "type": "text"
+            },
+            {
+              "code": "tearDown()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then ",
+              "type": "text"
+            },
+            {
+              "code": "tearDownWithError()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then ",
+              "type": "text"
+            },
+            {
+              "code": "tearDown() async throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Avoid preparing state for subsequent tests in the teardown methods. XCTest doesn’t guarantee that it will call teardown methods; if the test crashes before completion, XCTest doesn’t call the teardown blocks or methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your setup or teardown code needs to run on the Main actor, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "@MainActor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for any asynchronous Swift setup or teardown methods you define. If you don’t specify an actor, the test executes asynchronous code in ",
+                  "type": "text"
+                },
+                {
+                  "code": "setUp() async throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "tearDown() async throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on an arbitrary actor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Tear-Down-State-After-a-Specific-Test-Method",
+          "level": 3,
+          "text": "Tear Down State After a Specific Test Method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For teardown that you need to complete immediately after a specific test method is complete, add a teardown block to the test method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func testMethod1() throws {",
+                    "    // This is the first test method.",
+                    "    // Your testing code goes here.",
+                    "    addTeardownBlock {",
+                    "        // XCTest executes this when testMethod1() ends.",
+                    "    }",
+                    "}",
+                    "",
+                    "func testMethod2() throws {",
+                    "    // This is the second test method.",
+                    "    // Your testing code goes here.",
+                    "    addTeardownBlock {",
+                    "        // XCTest executes this last when testMethod2() ends.",
+                    "    }",
+                    "    addTeardownBlock {",
+                    "        // XCTest executes this first when testMethod2() ends.",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)testMethod1 {",
+                    "    // This is the first test method.",
+                    "    // Your testing code goes here.",
+                    "    [self addTeardownBlock:^{",
+                    "        // XCTest executes this when testMethod1() ends.",
+                    "    }];",
+                    "}",
+                    "",
+                    "- (void)testMethod2 {",
+                    "    // This is the second test method.",
+                    "    // Your testing code goes here.",
+                    "    [self addTeardownBlock:^{",
+                    "        // XCTest executes this last when testMethod2() ends.",
+                    "    }];",
+                    "    [self addTeardownBlock:^{",
+                    "        // XCTest executes this first when testMethod2() ends.",
+                    "    }];",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your teardown block can call asynchronous Swift code using ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and you can throw errors that the test records as test failures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you register any teardown blocks during a test method’s execution, XCTest runs them after that test method ends but before XCTest calls the teardown instance method. XCTest runs teardown blocks on a last-in, first-out basis. XCTest calls registered teardown blocks and methods regardless of whether a test method passes or fails, even if you set the test case’s ",
+              "type": "text"
+            },
+            {
+              "code": "continueAfterFailure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid preparing state for subsequent tests in teardown blocks. XCTest doesn’t guarantee that it will call teardown blocks; if the test crashes before completion, XCTest doesn’t call the teardown blocks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If any asynchronous Swift code you define in your teardown block needs to run on the Main actor, mark your teardown block ",
+                  "type": "text"
+                },
+                {
+                  "code": "@MainActor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you don’t specify an actor, the test executes asynchronous code in teardown blocks on an arbitrary actor. If you call a throwing method with ",
+                  "type": "text"
+                },
+                {
+                  "code": "try",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in a teardown block, the block runs asynchronously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest": {
+      "abstract": [
+        {
+          "text": "An abstract base class for creating, managing, and executing tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTest"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTest"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state asynchronously and handle errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp(completion:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup(completion:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state and to throw errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUpWithError"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUpWithError()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setupwitherror()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addAsyncTeardownBlock:": {
+      "abstract": [
+        {
+          "text": "Registers a block of asynchronous teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAsyncTeardownBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addAsyncTeardownBlock:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAsyncTeardownBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAsyncTeardownBlock:",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addasyncteardownblock:"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon": {
+      "abstract": [
+        {
+          "text": "Registers a block of teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTeardownBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addteardownblock(_:)-2guon"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c": {
+      "abstract": [
+        {
+          "text": "Registers a block of teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTeardownBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addteardownblock(_:)-5zw6c"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock:": {
+      "abstract": [
+        {
+          "text": "Registers a block of teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTeardownBlock:",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addteardownblock:"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to customize initial state before a test case begins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/setup()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup after a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/teardown()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-Test-Setup-and-Teardown",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()"
+      ],
+      "title": "Customizing Test Setup and Teardown"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Customizing-Test-Setup-and-Teardown",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+                "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addAsyncTeardownBlock:",
+                "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock:",
+                "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()"
+              ],
+              "title": "Customizing Test Setup and Teardown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1setUp()/title",
+          "value": "setUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1setUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/title",
+          "value": "XCTestCase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/title",
+          "value": "setUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/title",
+          "value": "setUpWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/title",
+          "value": "setUpWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/title",
+          "value": "XCTest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1tearDown()/title",
+          "value": "tearDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1tearDown()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/set-up-and-tear-down-state-in-your-tests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xctest/set-up-and-tear-down-state-in-your-tests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

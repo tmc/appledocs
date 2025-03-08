@@ -1,0 +1,1403 @@
+{
+  "abstract": [
+    {
+      "text": "A type that describes the criteria, sort order, and any additional",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "configuration to use when performing a fetch.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9SwiftData15FetchDescriptorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FetchDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FetchDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.9",
+        "name": "Swift",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FetchDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FetchDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+              "text": "PersistentModel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a fetch descriptor to capture the criteria necessary to select, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "optionally sort, a specific collection of models from your app’s persistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage. A fetch descriptor retrieves only a single type of persistent model,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and relies on type inference to determine the appropriate type. However, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can configure a fetch descriptor to prefetch related models of different types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/relationshipKeyPathsForPrefetching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch a collection of models, first create a fetch descriptor and specify a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predicate and one or more sort descriptors. The predicate describes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attributes to filter by and the constraints to apply to those attributes. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you don’t specify a predicate, the fetch returns all models of the inferred",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type. You can further tweak a fetch by limiting the number of models it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns, or indicating whether the fetch evaluates any unsaved changes when it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selects the models to return. After configuring the fetch descriptor, pass it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the model context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/fetch(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to run the fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let descriptor = FetchDescriptor<Recipe>(",
+            "    predicate: #Predicate { $0.isFavorite == true },",
+            "    sortBy: [",
+            "        .init(\\.createdAt)",
+            "    ]",
+            ")",
+            "descriptor.fetchLimit = 10",
+            "",
+            "let favoriteRecipes = try modelContext.fetch(descriptor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re displaying the fetched models in a SwiftUI view, use the descriptor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query(_:animation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FavoriteRecipesList: View {",
+            "    static var fetchDescriptor: FetchDescriptor<Recipe> {",
+            "        let descriptor = FetchDescriptor<Recipe>(",
+            "            predicate: #Predicate { $0.isFavorite == true },",
+            "            sortBy: [",
+            "                .init(\\.createdAt)",
+            "            ]",
+            "        )",
+            "        descriptor.fetchLimit = 10",
+            "        return descriptor",
+            "    }",
+            "",
+            "    @Query(FavoriteRecipesList.fetchDescriptor) private var favoriteRecipes: [Recipe]",
+            "    ",
+            "    var body: some View {",
+            "        List(favoriteRecipes) { RecipeRowView($0) }",
+            "    }",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros": {
+      "abstract": [
+        {
+          "text": "Supplementary macros that enable you to narrow query results and tell SwiftData",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "how to sort and order those results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Additional query macros",
+      "type": "topic",
+      "url": "/documentation/swiftdata/additionalquerymacros"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor": {
+      "abstract": [
+        {
+          "text": "A type that describes the criteria, sort order, and any additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "configuration to use when performing a fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchDescriptor",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchLimit": {
+      "abstract": [
+        {
+          "text": "The maximum number of models the fetch can return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchLimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchLimit",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/fetchlimit"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchOffset": {
+      "abstract": [
+        {
+          "text": "The offset of the first matching model to fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchOffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchOffset",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/fetchoffset"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/includePendingChanges": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether, when the fetch runs, it matches against",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "currently unsaved changes in the model context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includePendingChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/includePendingChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "includePendingChanges",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/includependingchanges"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/init(predicate:sortBy:)": {
+      "abstract": [
+        {
+          "text": "Creates a fetch descriptor with the specified predicate that, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "arranges the fetched models in a particular order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9PredicateV",
+          "text": "Predicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortBy"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14SortDescriptorV",
+          "text": "SortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/init(predicate:sortBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(predicate:sortBy:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/init(predicate:sortby:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/predicate": {
+      "abstract": [
+        {
+          "text": "The logical condition that determines whether the fetch includes a specific",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model in its results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9PredicateV",
+          "text": "Predicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/predicate"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/propertiesToFetch": {
+      "abstract": [
+        {
+          "text": "The specific subset of attributes to fetch if you don’t require them all.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertiesToFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/propertiesToFetch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertiesToFetch",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/propertiestofetch"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/relationshipKeyPathsForPrefetching": {
+      "abstract": [
+        {
+          "text": "The key paths that identify any related models to include as part of the fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relationshipKeyPathsForPrefetching"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/relationshipKeyPathsForPrefetching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relationshipKeyPathsForPrefetching",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/relationshipkeypathsforprefetching"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/sortBy": {
+      "abstract": [
+        {
+          "text": "The sort descriptors that tell the fetch how to order its results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortBy"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14SortDescriptorV",
+          "text": "SortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/sortBy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortBy",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor/sortby"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data": {
+      "abstract": [
+        {
+          "text": "Manage data store presentation using predicates and dynamic queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Filtering and sorting persistent data",
+      "type": "topic",
+      "url": "/documentation/swiftdata/filtering-and-sorting-persistent-data"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/fetch(_:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of typed models that match the criteria of the specified fetch",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15FetchDescriptorV",
+          "text": "FetchDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/fetch(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/fetch(_:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to manage a Swift class as a stored model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentModel",
+      "type": "topic",
+      "url": "/documentation/swiftdata/persistentmodel"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches": {
+      "abstract": [
+        {
+          "text": "Describe your model classes to SwiftData using the framework’s macros, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "store instances of those models so they exist beyond the app’s runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches",
+      "kind": "article",
+      "role": "article",
+      "title": "Preserving your app’s model data across launches",
+      "type": "topic",
+      "url": "/documentation/swiftdata/preserving-your-apps-model-data-across-launches"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query": {
+      "abstract": [
+        {
+          "text": "A type that fetches models using the specified criteria, and manages those",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "models so they remain in sync with the underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query()": {
+      "abstract": [
+        {
+          "text": "Fetches all instances of the attached model type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Query()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query(_:animation:)": {
+      "abstract": [
+        {
+          "text": "Fetches only the subset of the attached model type that satisfy the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "fetch descriptor’s criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15FetchDescriptorV",
+          "text": "FetchDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query(_:animation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Query(_:animation:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query(_:animation:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/sortdescriptor": {
+      "abstract": [
+        {
+          "text": "A serializable description of how to sort numerics and strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/sortdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/sortdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-fetch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+        "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query"
+      ],
+      "title": "Model fetch"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-fetch-descriptor",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/init(predicate:sortBy:)",
+        "doc://com.apple.documentation/documentation/foundation/predicate",
+        "doc://com.apple.documentation/documentation/foundation/sortdescriptor"
+      ],
+      "title": "Creating a fetch descriptor"
+    },
+    {
+      "anchor": "Constraining-the-fetch",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/predicate",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/sortBy",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchLimit",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/fetchOffset",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/includePendingChanges"
+      ],
+      "title": "Constraining the fetch"
+    },
+    {
+      "anchor": "Specifying-the-fetched-attributes",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/relationshipKeyPathsForPrefetching",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor/propertiesToFetch"
+      ],
+      "title": "Specifying the fetched attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/fetchdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

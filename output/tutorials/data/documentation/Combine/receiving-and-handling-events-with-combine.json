@@ -1,0 +1,2759 @@
+{
+  "abstract": [
+    {
+      "text": "Customize and receive events from asynchronous sources.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/receiving-and-handling-events-with-combine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving and Handling Events with Combine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Combine framework provides a declarative approach for how your app processes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "events. Rather than potentially implementing multiple delegate callbacks or completion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handler closures, you can create a single processing chain for a given event source.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each part of the chain is a Combine operator that performs a distinct action on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements received from the previous step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider an app that needs to filter a table or collection view based on the contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a text field. In AppKit, each keystroke in the text field produces a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can subscribe to with Combine. After receiving the notification, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use operators to change the content and timing of event delivery, and use the final",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result to update your app’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-a-Publisher-to-a-Subscriber",
+          "level": 3,
+          "text": "Connect a Publisher to a Subscriber",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive the text field’s notifications with Combine, access the default instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. This call takes the notification name and source object that you want notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from, and returns a publisher that produces notification elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pub = NotificationCenter.default",
+            "    .publisher(for: NSControl.textDidChangeNotification, object: filterField)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive elements from the publisher.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The subscriber defines an associated type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/Input",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to declare the type that it receives. The publisher also defines a type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Output",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to declare what it produces. The publisher and subscriber both define a type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Failure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to indicate the kind of error they produce or receive. To connect a subscriber to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a producer, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Output",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must match the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/Input",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Failure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types must also match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine provides two built-in subscribers, which automatically match the output and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "failure types of their attached publisher:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " takes two closures. The first closure executes when it receives ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which is an enumeration that indicates whether the publisher finished normally or failed with an error. The second closure executes when it receives an element from the publisher.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " immediately assigns every element it receives to a property of a given object, using a key path to indicate the property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can use the sink subscriber to log when the publisher completes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and each time it receives an element:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sub = NotificationCenter.default",
+            "    .publisher(for: NSControl.textDidChangeNotification, object: filterField)",
+            "    .sink(receiveCompletion: { print ($0) },",
+            "          receiveValue: { print ($0) })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both the ",
+              "type": "text"
+            },
+            {
+              "code": "sink(receiveCompletion:receiveValue:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscribers request an unlimited number of elements from their publishers. To control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the rate at which you receive elements, create your own subscriber by implementing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-Output-Type-with-Operators",
+          "level": 3,
+          "text": "Change the Output Type with Operators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sink subscriber in the previous section performs all its work in the ",
+              "type": "text"
+            },
+            {
+              "code": "receiveValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure. This could be burdensome if it needs to perform a lot of custom work with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "received elements or maintain state between invocations. The advantage of Combine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comes from combining operators to customize event delivery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher/output",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isn’t a convenient type to receive in the callback if all you need is the text field’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string value. Since a publisher’s output is essentially a sequence of elements over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time, Combine offers sequence-modifying operators like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/flatMap(maxPublishers:_:)-3k7z5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/reduce(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The behavior of these operators is similar to their equivalents in the Swift standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the output type of the publisher, you add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operator whose closure returns a different type. In this case, you can get the notification’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then get the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "field’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSControl/stringValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sub = NotificationCenter.default",
+            "    .publisher(for: NSControl.textDidChangeNotification, object: filterField)",
+            "    .map( { ($0.object as! NSTextField).stringValue } )",
+            "    .sink(receiveCompletion: { print ($0) },",
+            "          receiveValue: { print ($0) })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the publisher chain produces the type you want, replace ",
+              "type": "text"
+            },
+            {
+              "code": "sink(receiveCompletion:receiveValue:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example takes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the strings it receives from the publisher chain and assigns them to the ",
+              "type": "text"
+            },
+            {
+              "code": "filterString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a custom view model object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sub = NotificationCenter.default",
+            "    .publisher(for: NSControl.textDidChangeNotification, object: filterField)",
+            "    .map( { ($0.object as! NSTextField).stringValue } )",
+            "    .assign(to: \\MyViewModel.filterString, on: myViewModel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-Publishers-with-Operators",
+          "level": 3,
+          "text": "Customize Publishers with Operators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can extend the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with an operator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that performs actions that you’d otherwise need to code manually. Here are three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ways you could use operators to improve this event-processing chain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rather than updating the view model with any string typed into the text field, you could use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " operator to ignore input under a certain length or to reject non-alphanumeric characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the filtering operation is expensive — for example, if it’s querying a large database — you might want to wait for the user to stop typing. For this, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " operator lets you set a minimum period of time that must elapse before a publisher emits an event. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class provides conveniences for specifying the time delay in seconds or milliseconds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the results update the UI, you can deliver callbacks to the main thread by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. By specifying the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Scheduler",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance provided by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class as the first parameter, you tell Combine to call your subscriber on the main run loop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting publisher declaration follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sub = NotificationCenter.default",
+            "    .publisher(for: NSControl.textDidChangeNotification, object: filterField)",
+            "    .map( { ($0.object as! NSTextField).stringValue } )",
+            "    .filter( { $0.unicodeScalars.allSatisfy({CharacterSet.alphanumerics.contains($0)}) } )",
+            "    .debounce(for: .milliseconds(500), scheduler: RunLoop.main)",
+            "    .receive(on: RunLoop.main)",
+            "    .assign(to:\\MyViewModel.filterString, on: myViewModel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Cancel-Publishing-when-Desired",
+          "level": 3,
+          "text": "Cancel Publishing when Desired",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A publisher continues to emit elements until it completes normally or fails. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "no longer want to subscribe to the publisher, you can cancel the subscription. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscriber types created by ",
+              "type": "text"
+            },
+            {
+              "code": "sink(receiveCompletion:receiveValue:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, which provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sub?.cancel()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the publisher sends",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object when you first subscribe to it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Store this subscription, and then call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method when you want to cancel publishing. When you create a custom subscriber, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and have your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation forward the call to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stored subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable": {
+      "abstract": [
+        {
+          "text": "A protocol indicating that an activity or action supports cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancellable",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancel the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable/cancel()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher": {
+      "abstract": [
+        {
+          "text": "Declares that a type can transmit a sequence of values over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publisher",
+      "type": "topic",
+      "url": "/documentation/combine/publisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/Failure": {
+      "abstract": [
+        {
+          "text": "The kind of errors this publisher might publish.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Failure",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Failure",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/failure"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/Output": {
+      "abstract": [
+        {
+          "text": "The kind of values published by this publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/Output",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Output",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/output"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)": {
+      "abstract": [
+        {
+          "text": "Assigns each element from a publisher to a property on an object.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assign"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s24ReferenceWritableKeyPathC",
+          "text": "ReferenceWritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assign(to:on:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/assign(to:on:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)": {
+      "abstract": [
+        {
+          "text": "Publishes elements only after a specified time interval elapses between events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debounce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B8TimeTypeQa",
+          "text": "SchedulerTimeType"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sx6StrideQa",
+          "text": "Stride"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B7OptionsQa",
+          "text": "SchedulerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO8DebounceV",
+          "text": "Debounce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debounce(for:scheduler:options:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/debounce(for:scheduler:options:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)": {
+      "abstract": [
+        {
+          "text": "Republishes all elements that match a provided closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO6FilterV",
+          "text": "Filter"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/filter(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/flatMap(maxPublishers:_:)-3k7z5": {
+      "abstract": [
+        {
+          "text": "Transforms all elements from an upstream publisher into a new publisher up to a maximum number of publishers you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flatMap"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxPublishers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO6DemandV",
+          "text": "Demand"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO7FlatMapV",
+          "text": "FlatMap"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/flatMap(maxPublishers:_:)-3k7z5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flatMap(maxPublishers:_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/flatmap(maxpublishers:_:)-3k7z5"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh": {
+      "abstract": [
+        {
+          "text": "Transforms all elements from the upstream publisher with a provided closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "map"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO3MapV",
+          "text": "Map"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/map(_:)-99evh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "map(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/map(_:)-99evh"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)": {
+      "abstract": [
+        {
+          "text": "Specifies the scheduler on which to receive elements from the publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receive"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B7OptionsQa",
+          "text": "SchedulerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO9ReceiveOnV",
+          "text": "ReceiveOn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receive(on:options:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/receive(on:options:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/reduce(_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a closure that collects each element of a stream and publishes a final result upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reduce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO6ReduceV",
+          "text": "Reduce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/reduce(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reduce(_:_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/reduce(_:_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)": {
+      "abstract": [
+        {
+          "text": "Attaches a subscriber with closure-based behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO10CompletionO",
+          "text": "Completion"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveValue"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sink(receiveCompletion:receiveValue:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/sink(receivecompletion:receivevalue:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Scheduler": {
+      "abstract": [
+        {
+          "text": "A protocol that defines when and how to execute a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Scheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scheduler",
+      "type": "topic",
+      "url": "/documentation/combine/scheduler"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber": {
+      "abstract": [
+        {
+          "text": "A protocol that declares a type that can receive input from a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriber",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber/Input": {
+      "abstract": [
+        {
+          "text": "The kind of values this subscriber receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/Input",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber/input"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion": {
+      "abstract": [
+        {
+          "text": "A signal that a publisher doesn’t produce additional elements, either due to normal completion or an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Completion"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Completion"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers.Completion",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/completion"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscription": {
+      "abstract": [
+        {
+          "text": "A protocol representing the connection of a subscriber to a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscription",
+      "type": "topic",
+      "url": "/documentation/combine/subscription"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSControl/stringValue": {
+      "abstract": [
+        {
+          "text": "The value of the receiver’s cell as an `NSString` object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSControl/stringValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSControl/stringValue"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTextField": {
+      "abstract": [
+        {
+          "text": "Text the user can select or edit to send an action message to a target when the user presses the Return key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextField",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextField"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "abstract": [
+        {
+          "text": "A container for information broadcast through a notification center to all registered observers. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher": {
+      "abstract": [
+        {
+          "text": "Returns a publisher that emits events when broadcasting notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "publisher"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Notification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?) -> NotificationCenter.Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publisher(for:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/3329353-publisher"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher/output": {
+      "abstract": [
+        {
+          "text": "The kind of values published by this publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter.Publisher.Output"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher/output",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter.Publisher.Output",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/publisher/output"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop": {
+      "abstract": [
+        {
+          "text": "The programmatic interface to objects that manage input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "RunLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter/title",
+          "value": "NSNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextField/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSControl~1stringValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "stringValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1runloop/title",
+          "value": "NSRunLoop"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/receiving-and-handling-events-with-combine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

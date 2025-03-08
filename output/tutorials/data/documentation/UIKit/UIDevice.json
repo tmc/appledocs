@@ -1,0 +1,3070 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of the current device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIDevice",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to get information about the device such as assigned name, device model, and operating-system name and version. You also use the ",
+              "type": "text"
+            },
+            {
+              "code": "UIDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to detect changes in the device’s characteristics, such as physical orientation. You get the current orientation using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property or receive change notifications by registering for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification. Before using either of these techniques to get orientation data, you must enable data delivery using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/beginGeneratingDeviceOrientationNotifications()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. When you no longer need to track the device orientation, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/endGeneratingDeviceOrientationNotifications()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to disable the delivery of notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "UIDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to obtain information and notifications about changes to the battery’s charge state (described by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryState-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property) and charge level (described by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property). The ",
+              "type": "text"
+            },
+            {
+              "code": "UIDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance also provides access to the proximity sensor state (described by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property). The proximity sensor detects whether the user is holding the device close to their face. Enable battery monitoring or proximity sensing only when you need it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/playInputClick()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance method to play keyboard input clicks in custom input and keyboard accessory views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice": {
+      "abstract": [
+        {
+          "text": "A representation of the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDevice",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/BatteryState-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the battery power state of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BatteryState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/BatteryState-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BatteryState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDevice.BatteryState",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batterystate-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevel": {
+      "abstract": [
+        {
+          "text": "The battery charge level for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "batteryLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryLevel",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batterylevel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the battery level changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryLevelDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceBatteryLevelDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryLevelDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batteryleveldidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryState-swift.property": {
+      "abstract": [
+        {
+          "text": "The battery state for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDevice",
+          "text": "UIDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDeviceBatteryState",
+          "text": "BatteryState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryState-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "batteryState"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryState",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batterystate-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when battery state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryStateDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceBatteryStateDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batterystatedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/beginGeneratingDeviceOrientationNotifications()": {
+      "abstract": [
+        {
+          "text": "Begins the generation of notifications of device orientation changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginGeneratingDeviceOrientationNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/beginGeneratingDeviceOrientationNotifications()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginGeneratingDeviceOrientationNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginGeneratingDeviceOrientationNotifications()",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/begingeneratingdeviceorientationnotifications()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/current": {
+      "abstract": [
+        {
+          "text": "An object that represents the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDevice",
+          "text": "UIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/current",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/current"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/endGeneratingDeviceOrientationNotifications()": {
+      "abstract": [
+        {
+          "text": "Ends the generation of notifications of device orientation changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endGeneratingDeviceOrientationNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/endGeneratingDeviceOrientationNotifications()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endGeneratingDeviceOrientationNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "endGeneratingDeviceOrientationNotifications()",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/endgeneratingdeviceorientationnotifications()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor": {
+      "abstract": [
+        {
+          "text": "An alphanumeric string that uniquely identifies a device to the app’s vendor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifierForVendor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifierForVendor"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifierForVendor",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/identifierforvendor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/isBatteryMonitoringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether battery monitoring is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBatteryMonitoringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/isBatteryMonitoringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "batteryMonitoringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBatteryMonitoringEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/isbatterymonitoringenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/isGeneratingDeviceOrientationNotifications": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device generates orientation notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isGeneratingDeviceOrientationNotifications"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/isGeneratingDeviceOrientationNotifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generatesDeviceOrientationNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "isGeneratingDeviceOrientationNotifications",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/isgeneratingdeviceorientationnotifications"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/isMultitaskingSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current device supports multitasking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultitaskingSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/isMultitaskingSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multitaskingSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMultitaskingSupported",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/ismultitaskingsupported"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/isProximityMonitoringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether proximity monitoring is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isProximityMonitoringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/isProximityMonitoringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "proximityMonitoringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isProximityMonitoringEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/isproximitymonitoringenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/localizedModel": {
+      "abstract": [
+        {
+          "text": "The model of the device as a localized string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/localizedModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedModel",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/localizedmodel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/model": {
+      "abstract": [
+        {
+          "text": "The model of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/model",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "model"
+        }
+      ],
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/model"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/name": {
+      "abstract": [
+        {
+          "text": "The name of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/name"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientation": {
+      "abstract": [
+        {
+          "text": "The physical orientation of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDeviceOrientation",
+          "text": "UIDeviceOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "orientation",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/orientation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the orientation of the device changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "orientationDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/orientationdidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/playInputClick()": {
+      "abstract": [
+        {
+          "text": "Plays an input click in an enabled input view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playInputClick"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/playInputClick()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playInputClick"
+        }
+      ],
+      "role": "symbol",
+      "title": "playInputClick()",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/playinputclick()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityState": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the proximity sensor is close to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proximityState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "proximityState"
+        }
+      ],
+      "role": "symbol",
+      "title": "proximityState",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/proximitystate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the state of the proximity sensor changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proximityStateDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceProximityStateDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "proximityStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/proximitystatedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemName": {
+      "abstract": [
+        {
+          "text": "The name of the operating system running on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemName"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemName",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/systemname"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemVersion": {
+      "abstract": [
+        {
+          "text": "The current version of the operating system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemVersion",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/systemversion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/userInterfaceIdiom": {
+      "abstract": [
+        {
+          "text": "The style of interface to use on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceIdiom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceIdiom",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/userInterfaceIdiom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInterfaceIdiom"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInterfaceIdiom",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/userinterfaceidiom"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation": {
+      "abstract": [
+        {
+          "text": "Constants that describe the physical orientation of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDeviceOrientation",
+      "type": "topic",
+      "url": "/documentation/uikit/uideviceorientation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isFlat": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the specified orientation is face up or face down.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isFlat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationIsFlat"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFlat",
+      "type": "topic",
+      "url": "/documentation/uikit/uideviceorientation/isflat"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isLandscape": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device is in a landscape orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLandscape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isLandscape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationIsLandscape"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLandscape",
+      "type": "topic",
+      "url": "/documentation/uikit/uideviceorientation/islandscape"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isPortrait": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device is in a portrait orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPortrait"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isPortrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationIsPortrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPortrait",
+      "type": "topic",
+      "url": "/documentation/uikit/uideviceorientation/isportrait"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isValidInterfaceOrientation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the specified orientation is one of the portrait or landscape orientations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isValidInterfaceOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationIsValidInterfaceOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "isValidInterfaceOrientation",
+      "type": "topic",
+      "url": "/documentation/uikit/uideviceorientation/isvalidinterfaceorientation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStatusBarManager": {
+      "abstract": [
+        {
+          "text": "An object that describes the configuration of the status bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStatusBarManager"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStatusBarManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStatusBarManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStatusBarManager",
+      "type": "topic",
+      "url": "/documentation/uikit/uistatusbarmanager"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the interface type for the device or an object that has a trait environment, such as a view and view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserInterfaceIdiom",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuserinterfaceidiom"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UI_USER_INTERFACE_IDIOM()": {
+      "abstract": [
+        {
+          "text": "Returns the interface idiom supported by the current device (recommended for apps that run in versions of iOS earlier than 3.2).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UI_USER_INTERFACE_IDIOM"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceIdiom",
+          "text": "UIUserInterfaceIdiom"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UI_USER_INTERFACE_IDIOM()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UI_USER_INTERFACE_IDIOM"
+        }
+      ],
+      "role": "symbol",
+      "title": "UI_USER_INTERFACE_IDIOM()",
+      "type": "topic",
+      "url": "/documentation/uikit/ui_user_interface_idiom()"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-environment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIStatusBarManager"
+      ],
+      "title": "Device environment"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-shared-device-instance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/current"
+      ],
+      "title": "Getting the shared device instance"
+    },
+    {
+      "anchor": "Identifying-the-device-and-operating-system",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/name",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemName",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemVersion",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/model",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/localizedModel",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/userInterfaceIdiom",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor"
+      ],
+      "title": "Identifying the device and operating system"
+    },
+    {
+      "anchor": "Determining-the-available-features",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/isMultitaskingSupported"
+      ],
+      "title": "Determining the available features"
+    },
+    {
+      "anchor": "Tracking-the-device-orientation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/isGeneratingDeviceOrientationNotifications",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/beginGeneratingDeviceOrientationNotifications()",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/endGeneratingDeviceOrientationNotifications()"
+      ],
+      "title": "Tracking the device orientation"
+    },
+    {
+      "anchor": "Determining-the-current-orientation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isPortrait",
+        "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isLandscape",
+        "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isFlat",
+        "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isValidInterfaceOrientation"
+      ],
+      "title": "Determining the current orientation"
+    },
+    {
+      "anchor": "Getting-the-device-battery-state",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevel",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/isBatteryMonitoringEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryState-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/BatteryState-swift.enum"
+      ],
+      "title": "Getting the device battery state"
+    },
+    {
+      "anchor": "Using-the-proximity-sensor",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/isProximityMonitoringEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityState"
+      ],
+      "title": "Using the proximity sensor"
+    },
+    {
+      "anchor": "Playing-input-clicks",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/playInputClick()"
+      ],
+      "title": "Playing input clicks"
+    },
+    {
+      "anchor": "Getting-the-current-idiom",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom",
+        "doc://com.apple.uikit/documentation/UIKit/UI_USER_INTERFACE_IDIOM()"
+      ],
+      "title": "Getting the current idiom"
+    },
+    {
+      "abstract": [
+        {
+          "text": "All ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notifications are posted by the singleton device instance returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/current",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Managing-notifications",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification"
+      ],
+      "title": "Managing notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-shared-device-instance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/current"
+              ],
+              "title": "Getting the shared device instance"
+            },
+            {
+              "anchor": "Identifying-the-device-and-operating-system",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/name",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemName",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/systemVersion",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/model",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/localizedModel",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/userInterfaceIdiom",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor"
+              ],
+              "title": "Identifying the device and operating system"
+            },
+            {
+              "anchor": "Determining-the-available-features",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/isMultitaskingSupported"
+              ],
+              "title": "Determining the available features"
+            },
+            {
+              "anchor": "Tracking-the-device-orientation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientation",
+                "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/isGeneratingDeviceOrientationNotifications",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/beginGeneratingDeviceOrientationNotifications()",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/endGeneratingDeviceOrientationNotifications()"
+              ],
+              "title": "Tracking the device orientation"
+            },
+            {
+              "anchor": "Determining-the-current-orientation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isPortrait",
+                "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isLandscape",
+                "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isFlat",
+                "doc://com.apple.uikit/documentation/UIKit/UIDeviceOrientation/isValidInterfaceOrientation"
+              ],
+              "title": "Determining the current orientation"
+            },
+            {
+              "anchor": "Getting-the-device-battery-state",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevel",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/isBatteryMonitoringEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryState-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/BatteryState-swift.enum"
+              ],
+              "title": "Getting the device battery state"
+            },
+            {
+              "anchor": "Using-the-proximity-sensor",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/isProximityMonitoringEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityState"
+              ],
+              "title": "Using the proximity sensor"
+            },
+            {
+              "anchor": "Playing-input-clicks",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/playInputClick()"
+              ],
+              "title": "Playing input clicks"
+            },
+            {
+              "anchor": "Getting-the-current-idiom",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIUserInterfaceIdiom",
+                "doc://com.apple.uikit/documentation/UIKit/UI_USER_INTERFACE_IDIOM()"
+              ],
+              "title": "Getting the current idiom"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "All ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " notifications are posted by the singleton device instance returned by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/current",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Managing-notifications",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+                "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification"
+              ],
+              "title": "Managing notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Device-environment",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIStatusBarManager"
+              ],
+              "title": "Device environment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIDevice"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1playInputClick()/title",
+          "value": "playInputClick"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1playInputClick()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playInputClick"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityStateDidChangeNotification/title",
+          "value": "UIDeviceProximityStateDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityStateDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceProximityStateDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation/title",
+          "value": "UIDeviceOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isPortrait/title",
+          "value": "UIDeviceOrientationIsPortrait"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isPortrait/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationIsPortrait"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom/title",
+          "value": "UIUserInterfaceIdiom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceIdiom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserInterfaceIdiom/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserInterfaceIdiom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1systemName/title",
+          "value": "systemName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1systemName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientation/title",
+          "value": "orientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "orientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1endGeneratingDeviceOrientationNotifications()/title",
+          "value": "endGeneratingDeviceOrientationNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1endGeneratingDeviceOrientationNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endGeneratingDeviceOrientationNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isBatteryMonitoringEnabled/title",
+          "value": "batteryMonitoringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isBatteryMonitoringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "batteryMonitoringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isProximityMonitoringEnabled/title",
+          "value": "proximityMonitoringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isProximityMonitoringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "proximityMonitoringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1identifierForVendor/title",
+          "value": "identifierForVendor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1identifierForVendor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifierForVendor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isLandscape/title",
+          "value": "UIDeviceOrientationIsLandscape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isLandscape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationIsLandscape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStatusBarManager/title",
+          "value": "UIStatusBarManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStatusBarManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStatusBarManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStatusBarManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStatusBarManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1localizedModel/title",
+          "value": "localizedModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1localizedModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1userInterfaceIdiom/title",
+          "value": "userInterfaceIdiom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1userInterfaceIdiom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInterfaceIdiom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryStateDidChangeNotification/title",
+          "value": "UIDeviceBatteryStateDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryStateDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryStateDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice/title",
+          "value": "UIDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isValidInterfaceOrientation/title",
+          "value": "UIDeviceOrientationIsValidInterfaceOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isValidInterfaceOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationIsValidInterfaceOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryState-swift.property/title",
+          "value": "batteryState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "batteryState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isGeneratingDeviceOrientationNotifications/title",
+          "value": "generatesDeviceOrientationNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isGeneratingDeviceOrientationNotifications/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "generatesDeviceOrientationNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UI_USER_INTERFACE_IDIOM()/title",
+          "value": "UI_USER_INTERFACE_IDIOM"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UI_USER_INTERFACE_IDIOM()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UI_USER_INTERFACE_IDIOM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1beginGeneratingDeviceOrientationNotifications()/title",
+          "value": "beginGeneratingDeviceOrientationNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1beginGeneratingDeviceOrientationNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginGeneratingDeviceOrientationNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isMultitaskingSupported/title",
+          "value": "multitaskingSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1isMultitaskingSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multitaskingSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevelDidChangeNotification/title",
+          "value": "UIDeviceBatteryLevelDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevelDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryLevelDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevel/title",
+          "value": "batteryLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "batteryLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1systemVersion/title",
+          "value": "systemVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1systemVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1current/title",
+          "value": "currentDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1current/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1model/title",
+          "value": "model"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1model/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/title",
+          "value": "UIDeviceOrientationDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityState/title",
+          "value": "proximityState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "proximityState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isFlat/title",
+          "value": "UIDeviceOrientationIsFlat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDeviceOrientation~1isFlat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationIsFlat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1BatteryState-swift.enum/title",
+          "value": "UIDeviceBatteryState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1BatteryState-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1BatteryState-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uidevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uidevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

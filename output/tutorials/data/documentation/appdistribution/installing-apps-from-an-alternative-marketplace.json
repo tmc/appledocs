@@ -1,0 +1,2322 @@
+{
+  "abstract": [
+    {
+      "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing apps from an alternative marketplace"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install apps that others distribute on your marketplace, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " installation functions. The system enforces that calls displaying the install sheet need to source from the callback of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/ActionButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This ensures that app installation occurs as the result of a person’s interaction with your marketplace app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In processing the request, the system retrieves a license from your web server. Provide the license by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a Swift server with an endpoint that the device’s operating system discovers by looking up a standard URL scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your marketplace requires authentication to download apps — for example, a purchase or log in — implement an authentication service that the device can query to decorate the headers of its communication with your endpoints. To set the header, and handle any network failures, provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your app and implement its callbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system receives a license, it requests that licensed app from your web server. Publish two endpoints that field requests for apps, including restore requests for new apps, and update requests. Using MarketplaceKit, handle any errors that might occur as the system communicates with your server, and provide people with visual status during app management tasks that might be long-running, such as installing an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-request-header",
+          "level": 2,
+          "text": "Define the request header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundle an extension with your marketplace to define authorization headers for requests to your server. Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls your implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "additionalHeaders",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add custom information that you choose in each communication it makes with your web server. MarketplaceKit doesn’t require a specific authentication method for the installation of an alternative marketplace’s apps. You can use OAuth 2.0 or add custom information to associate the communication with the person signed in, or the person’s unique device. This effectively authorizes the system to act on the person’s behalf on subsequent calls to your web server for app licenses or alternative distribution packages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an access token or subscription expires, return an HTTP failure code from your marketplace server. The system calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation to correct the issue. If the failure results from:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An expired subscription, set a flag to present an e-commerce flow within your alternative marketplace app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An invalid access token, reauthenticate the person according to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps#Reauthenticate-a-person-in-your-marketplace-app-or-extension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Request-installation-from-an-alternative-app-marketplace",
+          "level": 2,
+          "text": "Request installation from an alternative app marketplace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app requests app installation using MarketplaceKit API. The system enforces that installation requests source from a person’s interaction with your app’s UI. In other words, your app can install another app only when a person requests it by tapping a button. MarketplaceKit provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/ActionButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class for this purpose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code defines an action button that presents the app install sheet for an app identified by the argument ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The code takes a ",
+              "type": "text"
+            },
+            {
+              "code": "confirmInstall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure, and confirms the installation with an install verification token and authentication context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ViewController: UIViewController {",
+            "",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    ",
+            "    // Describe the app to install. ",
+            "    let installMetadata = InstallMetadata( ",
+            "        account: \"Test\", ",
+            "        appleItemID: 6476788646, ",
+            "        alternativeDistributionPackage: URL(",
+            "            string: \"https://example.com/packages/6476788646/version/1\")!, ",
+            "        isUpdate: false)",
+            "    ",
+            "    // Define the app's landing page.  ",
+            "    installMetadata.appShareURL = URL(",
+            "        string: \"https://example.com/apps/6476788646\")!",
+            "    ",
+            "    // Pass the app info to an Install button.",
+            "    let button = ActionButton(",
+            "        action: .install(",
+            "            InstallConfiguration(",
+            "                install: installMetadata, ",
+            "                confirmInstall: {",
+            "                    // Perform e-commerce, if needed.",
+            "                    return .confirmed(",
+            "                        installVerificationToken: installVerificationToken, ",
+            "                           authenticationContext: myLAContext",
+            "                    )",
+            "                }",
+            "            )",
+            "        )",
+            "    )    ",
+            "",
+            "    // Configure the button. ",
+            "    button.addTarget(self, action: #selector(installAction), for: .touchUpInside)",
+            "    button.label = \"Install\"",
+            "    button.fontSize = 18",
+            "    button.tintColor = .white",
+            "    button.backgroundColor = .systemBlue",
+            "    button.size = CGSize(width: 200, height: 75)",
+            "    button.cornerRadius = 15",
+            "    button.isEnabled = true",
+            "    button.center = self.view.center",
+            "    self.view.addSubview(button)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an app requires a purchase before installation, modify the ",
+              "type": "text"
+            },
+            {
+              "code": "confirmInstall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure to present a custom UI and external purchase flow that you implement in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-a-license-for-the-app-from-your-web-server",
+          "level": 2,
+          "text": "Retrieve a license for the app from your web server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your website doesn’t require authentication or the system is already successfully authorized to act on behalf of the page visitor, the system requests an app license from your web server. To process license requests, your web server implements an endpoint that serves generated licenses by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Serve-a-restore-request",
+          "level": 2,
+          "text": "Serve a restore request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your server responds with a license, the system then requests the app. To determine the endpoint to call, the system checks your ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file at the following relative URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fully-qualified-domain>/.well-known/marketplace-kit"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inside the file, define an endpoint to handle ",
+              "type": "text"
+            },
+            {
+              "code": "restore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests that the system makes to retrieve a specific app version:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"restore\": \"<fully-qualified-domain>/PATH\","
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls your restore endpoint with the following example POST:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{ ",
+            "    \"apps\": [",
+            "        { \"appleItemId\": \"<the app's appleItemID>\",",
+            "        \"appleVersionId\" : \"<version number>\" }",
+            "    ], ",
+            "    \"platform\" : \"iOS\" | \"iPadOS\",",
+            "    \"osVersion\" : \"17.4\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The POST contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array that contains an object for each app in the request.  Each object in the array consists of an identifier (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") and version (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") for the requested app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "platform",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies the platform of the installing device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "osVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies the operating system version of the installing device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compare the ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "osVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields to those contained within the app’s manifest to confirm that your alternative distribution package supports the device attempting to install it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Host the file using ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a valid certificate. Don’t use redirects. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If downloading your app requires authorization and the system communicates with your endpoint without a valid access token, respond to the call with a status that requests reauthentication. An invalid access token can result from token expiration, or the restoration of a device from a backup. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, send your app in response by supplying a URL in the ",
+              "type": "text"
+            },
+            {
+              "code": "restores",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to the alternative distribution package for the requested app version:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"restores\": [",
+            "        { \"appleItemId\": \"<the app's appleItemID>\",",
+            "        \"appleVersionId\": \"<version number>\",",
+            "        \"alternativeDistributionPackage\": \"<fully qualified domain>/PATH\",",
+            "        \"installVerificationToken\" : <required-string>",
+            "        \"appShareURL\" : <URL> }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "\"restores\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the response contains an object for each requested app. Each object in the array contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleItemId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for a requested app. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A version number that corresponds to the alternative distribution package. For more information, see  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alternativeDistributionPackage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s alternative distribution package in the assembled format described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This value has unique domain-matching requirements; for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "installVerificationToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A JSON web signature that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requires for installations. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appShareURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional URL to a product landing page for the app on your marketplace website. The operating system populates the value in the Share Sheet when a person touches and holds the app’s icon on the Home Screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Serve-an-app-update-request",
+          "level": 2,
+          "text": "Serve an app update request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person requests an update to an installed app, or when Automatic Updates are on, the system sends a request similar to a restore. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "updates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint in your server’s ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fully-qualified-domain>/.well-known/marketplace-kit"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your server’s endpoint that handles app update requests:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"updates\": {",
+            "    \"url\" : \"<fully-qualified-domain>/PATH\",",
+            "    \"pollingInterval\": 24"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "pollingInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is required. Set it to the minimum number of hours that the system waits to check for app updates. For example, if you set ",
+              "type": "text"
+            },
+            {
+              "code": "pollingInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "48",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system calls your ",
+              "type": "text"
+            },
+            {
+              "code": "updates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint at most every 48 hours. In any case, the system calls your ",
+              "type": "text"
+            },
+            {
+              "code": "updates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint at most once every 24 hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system sends an update POST to your endpoint, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"apps\" : [",
+            "        {",
+            "            \"appleItemId\" : \"<the app's appleItemID>\",",
+            "            \"appleVersionId\" : \"<version number>\",",
+            "        },",
+            "        {",
+            "            \"appleItemId\" : \"<a second app's appleItemID>\",",
+            "            \"appleVersionId\" : \"<version number>\"",
+            "        }",
+            "    ],",
+            "    \"platform\" : \"iOS\" | \"iPadOS\",",
+            "    \"osVersion\" : \"17.0\"    ",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request contains the same fields as the POST for serving a restore request. For more information see the table above in ",
+              "type": "text"
+            },
+            {
+              "identifier": "#Serve-a-restore-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, your endpoint gives the alternative distribution package(s) in the ",
+              "type": "text"
+            },
+            {
+              "code": "updates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element for apps matching the request criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"updates\": [",
+            "        { \"appleItemId\": \"<the app's appleItemID>\",",
+            "        \"appleVersionId\": \"<version number>\",",
+            "        \"alternativeDistributionPackage\": \"<fully qualified domain>/PATH\",",
+            "        \"bundleVersion\" : \"1\",",
+            "        \"shortVersionString\" : \"1.0.14\",",
+            "        \"installVerificationToken\" : <required-string>",
+            "        \"appShareURL\" : <URL> }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "\"restores\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the response contains an object for each requested app. Each object in the array contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleItemId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for an app to update. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A version number that corresponds to the alternative distribution package. For more information, see  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alternativeDistributionPackage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The requested app’s alternative distribution package in the assembled format described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This value has unique domain-matching requirements; for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bundleVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s bundle version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "shortVersionString",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s short version string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "installVerificationToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A JSON web signature that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requires for installations. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appShareURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional URL to a product landing page for the app on your marketplace website. The operating system populates the value in the Share Sheet when a person touches and holds the app’s icon on the Home Screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Indicate-app-unavailability",
+          "level": 2,
+          "text": "Indicate app unavailability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a device requests an app that’s not available on your alternative marketplace, then your marketplace responds with a ",
+              "type": "text"
+            },
+            {
+              "code": "\"failures\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array that includes the unavailable apps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"restores\": [ { ... } ],",
+            "    \"updates\": [ { ... } ],",
+            "    \"failures\": [",
+            "        { \"appleItemId\": \"10737747186\",",
+            "        \"appleVersionId\": \"2000004563\",",
+            "        \"failure\": { \"code\" : 404, \"description\": \"App unavailable.\" } }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "\"failures\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the response contains an object for each requested app you fail to provide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "failures field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleItemId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for the app your server fails to provide. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The version of the app your server fails to provide. For more information, see  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a description of the ",
+              "type": "text"
+            },
+            {
+              "code": "\"restore\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"update\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-a-restore-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-an-app-update-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app might be unavailable if the developer removes it from sale or if Apple sends an app take-down request. A device that’s restoring from a backup might be uninformed of the removal as it requests the app as part of the restore process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate the app isn’t available in the response, set ",
+              "type": "text"
+            },
+            {
+              "code": "\"code\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "404",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the request intiates from someone’s actions, such as tapping a darkened app icon while restoring their device from a backup, the system displays an informative prompt on the Home Screen that reads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "App Not Available ",
+            "\"App 1\" not available from Megabyte Mart."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Override-the-MarketplaceKit-endpoint-for-an-app",
+          "level": 2,
+          "text": "Override the MarketplaceKit endpoint for an app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle a specific app differently, modify the ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to add a configuration just for that app using the ",
+              "type": "text"
+            },
+            {
+              "code": "\"overridesByAppleItemID\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element. Inside, define an ",
+              "type": "text"
+            },
+            {
+              "code": "\"appleItemId\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element that contains a copy of the ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration, differing in just the ways necessary to process the specific app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"overridesByAppleItemID\":",
+            "    {",
+            "        \"<appleItemId>\":",
+            "        {",
+            "            \"restore\": \"<fully-qualified-domain>/PATH\",",
+            "            \"updates\":",
+            "            {",
+            "                \"url\": \"<fully-qualified-domain>/PATH\",",
+            "                \"pollingInterval\": <polling-interval>",
+            "            },",
+            "            \"license\": \"...\"",
+            "        }",
+            "    }",
+            "    // The default configuration follows: ",
+            "    \"restore\": \"<fully-qualified-domain>/PATH\",",
+            "    \"updates\":",
+            "    {",
+            "        \"url\": \"<fully-qualified-domain>/PATH\",",
+            "        \"pollingInterval\": <polling-interval>",
+            "    },",
+            "    \"license\": \"...\" ",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "\"overridesByAppleItemID\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to the bottom of your ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can override the ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint for many reasons. For example, to route requests for a specific app on your marketplace to a different endpoint for processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Show-progress-for-app-downloads",
+          "level": 2,
+          "text": "Show progress for app downloads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a responsive installation experience, give visual feedback while installation is in progress. Display your own custom UI according to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary/App/Installation-swift.struct/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to provide visual feedback on the state of a given installation. Convey the progress in a way that works for your app; MarketplaceKit doesn’t provide a predetermined UI for progress.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "#Serve-a-restore-request": {
+      "identifier": "#Serve-a-restore-request",
+      "title": "Serve a restore request",
+      "titleInlineContent": [
+        {
+          "text": "Serve a restore request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Serve-a-restore-request"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/ActionButton": {
+      "abstract": [
+        {
+          "text": "A user-interface element that enables a person to install, update, or launch apps by tapping the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionButton"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/ActionButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionButton",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/actionbutton"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages search characteristics, licensing, and the installation of apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppLibrary",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary/App/Installation-swift.struct/progress": {
+      "abstract": [
+        {
+          "text": "The progress representing the download & installation of this app. It may be used to pause, resume, or cancel installation depending on the state of this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppLibrary/App/Installation-swift.struct/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary/app/installation-swift.struct/progress"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleItemID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleitemid"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents a single app version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleVersionID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleversionid"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension": {
+      "abstract": [
+        {
+          "text": "An extension that facilitates authentication, installation, and launching a marketplace with deep links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MarketplaceExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MarketplaceExtension",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)": {
+      "abstract": [
+        {
+          "text": "Adds information to the request header for communications from the operating system to your marketplace endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalHeaders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "additionalHeaders(for:account:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension/additionalheaders(for:account:)"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)": {
+      "abstract": [
+        {
+          "text": "Handles when iOS receives an unexpected response from your web server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestFailed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSHTTPURLResponse",
+          "text": "HTTPURLResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "requestFailed(with:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension/requestfailed(with:)"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplacekiturischeme"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appdistribution/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-a-restore-request": {
+      "abstract": [],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-a-restore-request",
+      "kind": "section",
+      "title": "Serve a restore request",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-a-restore-request"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-an-app-update-request": {
+      "abstract": [],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-an-app-update-request",
+      "kind": "section",
+      "title": "Serve an app update request",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-apps-from-an-alternative-marketplace#Serve-an-app-update-request"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/appdistribution/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps": {
+      "abstract": [
+        {
+          "text": "Renew your app’s authorization when an app needs updating or when a device restores from backup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Reauthenticating a person to manage apps",
+      "type": "topic",
+      "url": "/documentation/appdistribution/reauthenticating-a-person-to-manage-apps"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps#Reauthenticate-a-person-in-your-marketplace-app-or-extension": {
+      "abstract": [],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps#Reauthenticate-a-person-in-your-marketplace-app-or-extension",
+      "kind": "section",
+      "title": "Reauthenticate a person in your marketplace app or extension",
+      "type": "topic",
+      "url": "/documentation/appdistribution/reauthenticating-a-person-to-manage-apps#Reauthenticate-a-person-in-your-marketplace-app-or-extension"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token": {
+      "abstract": [
+        {
+          "text": "Support the installation of alternative distribution apps by creating signed JSON web tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Supplying an install verification token",
+      "type": "topic",
+      "url": "/documentation/appdistribution/supplying-an-install-verification-token"
+    },
+    "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/AppLicenseDeliverySDK"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token"
+      ],
+      "title": "Web services"
+    }
+  ]
+}

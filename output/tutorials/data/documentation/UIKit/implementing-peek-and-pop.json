@@ -1,0 +1,1348 @@
+{
+  "abstract": [
+    {
+      "text": "Accelerate actions in your app by providing shortcuts to preview content in detail view controllers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/implementing-peek-and-pop"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing Peek and Pop"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project demonstrates previewing content and providing quick shortcuts to functionality using Peek and Pop APIs. The app uses a table view to display a list of colors and tapping any row in the table navigates to a detail view controller showing the color. The app uses 3D Touch on the table view rows to allow users to peek at the content without placing it on the navigation stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Colors can also be starred or unstarred. Starred colors are shown with a solid filled colored star icon to the left of the name and unstarred colors have a hollow star. Users can toggle whether a color is starred using one of two methods: they can either tap a button in the navigation bar of the detail view, or use 3D Touch to peek at the content. Swiping up while in 3D Touch lets the user access a Peek Quick Action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses a tab bar controller to demonstrate two different methods for implementing Peek and Pop. The first tab contains the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerStoryboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view controller, which configures Peek and Pop using the segue in ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The second tab contains the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view controller to achieve the same functionality, but in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerStoryboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerBase",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains the implementation of everything necessary to display the table view and handle the standard segue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Peek-and-Pop-from-a-storyboard",
+          "level": 3,
+          "text": "Peek and Pop from a storyboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The storyboard uses a Show segue with Peek and Pop enabled to navigate from the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorViewControllerStoryboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "ColorItemViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is done by selecting the Show segue, and turning on “Preview & Commit Segues” next to Peek & Pop in the Attributes inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorItemViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", enable the “Use Preferred Explicit Size” option in the View Controller section of the Attributes inspector. Set the “Content Size” to have 0 width and an appropriate height. Zero width configures the view controller to automatically resize to the device width when the user peeks at the content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerBase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view controller, resist the temptation of using either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathForSelectedRow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathsForSelectedRows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when preparing to execute a segue. If you configure the storyboard with the default implementation of Peek and Pop, these methods return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the time of segue execution. Instead, use the segue’s ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to access the cell initiating the peek.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func prepare(for segue: UIStoryboardSegue, sender: Any?) {",
+            "    guard let selectedTableViewCell = sender as? UITableViewCell,",
+            "        let indexPath = tableView.indexPath(for: selectedTableViewCell)",
+            "        else { preconditionFailure(\"Expected sender to be a valid table view cell\") }",
+            "",
+            "    guard let colorItemViewController = segue.destination as? ColorItemViewController",
+            "        else { preconditionFailure(\"Expected a ColorItemViewController\") }",
+            "",
+            "    // Pass over a reference to the ColorData object and the specific ColorItem being viewed.",
+            "    colorItemViewController.colorData = colorData",
+            "    colorItemViewController.colorItem = colorData.colors[indexPath.row]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Peek-and-Pop-in-code",
+          "level": 3,
+          "text": "Peek and Pop in code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ColorsViewControllerCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view controller adds code to manually register for Peek and Pop instead of using the storyboard to customize the segue. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register a class which implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and then pass in a view which responds to the 3D Touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "",
+            "    registerForPreviewing(with: self, sourceView: tableView)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The protocol requires the implementation of two methods. When the system detects the 3D Touch, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:viewControllerForLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing a ",
+              "type": "text"
+            },
+            {
+              "code": "previewingContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Use this method to configure and pass back a view controller for the peek.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {",
+            "    // First, get the index path and view for the previewed cell.",
+            "    guard let indexPath = tableView.indexPathForRow(at: location),",
+            "        let cell = tableView.cellForRow(at: indexPath)",
+            "        else { return nil }",
+            "",
+            "    // Enable blurring of other UI elements, and a zoom in animation while peeking.",
+            "    previewingContext.sourceRect = cell.frame",
+            "",
+            "    // Create and configure an instance of the color item view controller to show for the peek.",
+            "    guard let viewController = storyboard?.instantiateViewController(withIdentifier: \"ColorItemViewController\") as? ColorItemViewController",
+            "        else { preconditionFailure(\"Expected a ColorItemViewController\") }",
+            "",
+            "    // Pass over a reference to the ColorData object and the specific ColorItem being viewed.",
+            "    viewController.colorData = colorData",
+            "    viewController.colorItem = colorData.colors[indexPath.row]",
+            "",
+            "    return viewController",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system detects enough pressure in the 3D Touch to pop the view controller, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:commit:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Take the passed in view controller and present to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {",
+            "    // Push the configured view controller onto the navigation stack.",
+            "    navigationController?.pushViewController(viewControllerToCommit, animated: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-Peek-Quick-Actions",
+          "level": 3,
+          "text": "Implement Peek Quick Actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable Peek Quick Actions for the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorItemViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you must override the default implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/previewActionItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to return an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both a star/unstar action and a delete action are available as quick actions using the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override var previewActionItems: [UIPreviewActionItem] {",
+            "    let starAction = UIPreviewAction(title: starButtonTitle(), style: .default, handler: { [unowned self] (_, _) in",
+            "        guard let colorItem = self.colorItem",
+            "            else { preconditionFailure(\"Expected a color item\") }",
+            "",
+            "        colorItem.starred.toggle()",
+            "    })",
+            "",
+            "    let deleteAction = UIPreviewAction(title: \"Delete\", style: .destructive) { [unowned self] (_, _) in",
+            "        guard let colorData = self.colorData",
+            "            else { preconditionFailure(\"Expected a reference to the color data container\") }",
+            "",
+            "        guard let colorItem = self.colorItem",
+            "            else { preconditionFailure(\"Expected a color item\") }",
+            "",
+            "        colorData.delete(colorItem)",
+            "    }",
+            "",
+            "    return [ starAction, deleteAction ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The star/unstar action is shown with a default style and the delete action is shown as being destructive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to ensure that your app’s features are still available to devices that do not support 3D Touch. In this sample, both the star/unstar and the delete functionality remain available by navigating into the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorItemViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and tapping buttons in the navigation bar. The Peek Quick Action provides a more convenient way to access that feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "22fe32e34c3a/ImplementingPeekAndPop.zip": {
+      "checksum": "22fe32e34c3a475d2764e9b772bf2316c38395fb934e8f3a194a61b83fc283cbeb9d7a3820e8e03ad93ce801c9e39e3d55f617e5023d97b938963c3bb9f1a824",
+      "identifier": "22fe32e34c3a/ImplementingPeekAndPop.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/22fe32e34c3a/ImplementingPeekAndPop.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction": {
+      "abstract": [
+        {
+          "text": "A preview action, or ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "peek quick action",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", that displays below a peek when a user swipes the peek upward.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more child quick actions, each an instance of the preview action class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewActionGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewactiongroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathForSelectedRow": {
+      "abstract": [
+        {
+          "text": "An index path that identifies the row and section of the selected row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexPathForSelectedRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathForSelectedRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexPathForSelectedRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexPathForSelectedRow",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview/indexpathforselectedrow"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathsForSelectedRows": {
+      "abstract": [
+        {
+          "text": "The index paths that represent the selected rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexPathsForSelectedRows"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView/indexPathsForSelectedRows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexPathsForSelectedRows"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexPathsForSelectedRows",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview/indexpathsforselectedrows"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/previewActionItems": {
+      "abstract": [
+        {
+          "text": "The quick actions displayed when a user swipes upward on a 3D Touch preview.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewActionItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIPreviewActionItem",
+          "text": "UIPreviewActionItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/previewActionItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewActionItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewActionItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/previewactionitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)": {
+      "abstract": [
+        {
+          "text": "Registers a view controller to participate with 3D Touch preview (peek) and commit (pop).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewingDelegate",
+          "text": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewingWithDelegate:sourceView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForPreviewing(with:sourceView:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/registerforpreviewing(with:sourceview:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the interface for configuring a previewing view controller on devices that support 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewing",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods used by the delegate to respond, with a preview view controller and a commit view controller, to the user pressing a view object on the screen of a device that supports 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewingDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewingdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:commit:)": {
+      "abstract": [
+        {
+          "text": "Called to let you prepare the presentation of a commit (pop) view from your commit view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewingContext"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:commit:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewingContext:commitViewController:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "previewingContext(_:commit:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewingdelegate/previewingcontext(_:commit:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:viewControllerForLocation:)": {
+      "abstract": [
+        {
+          "text": "Called when the user has pressed a source view in a previewing view controller, thereby obtaining a surrounding blur to indicate that a preview (peek) is available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewingContext"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewControllerForLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate/previewingContext(_:viewControllerForLocation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewingContext:viewControllerForLocation:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "previewingContext(_:viewControllerForLocation:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewingdelegate/previewingcontext(_:viewcontrollerforlocation:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated symbols",
+      "type": "topic",
+      "url": "/documentation/uikit/deprecated-symbols"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "22fe32e34c3a/ImplementingPeekAndPop.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/title",
+          "value": "UIPreviewActionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate~1previewingContext(_:commit:)/title",
+          "value": "previewingContext:commitViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate~1previewingContext(_:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewingContext:commitViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView~1indexPathsForSelectedRows/title",
+          "value": "indexPathsForSelectedRows"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView~1indexPathsForSelectedRows/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexPathsForSelectedRows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/title",
+          "value": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/title",
+          "value": "UIViewControllerPreviewing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView~1indexPathForSelectedRow/title",
+          "value": "indexPathForSelectedRow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView~1indexPathForSelectedRow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexPathForSelectedRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/title",
+          "value": "UIPreviewAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/title",
+          "value": "registerForPreviewingWithDelegate:sourceView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForPreviewingWithDelegate:sourceView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate~1previewingContext(_:viewControllerForLocation:)/title",
+          "value": "previewingContext:viewControllerForLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate~1previewingContext(_:viewControllerForLocation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewingContext:viewControllerForLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1previewActionItems/title",
+          "value": "previewActionItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1previewActionItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previewActionItems"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/implementing-peek-and-pop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/implementing-peek-and-pop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

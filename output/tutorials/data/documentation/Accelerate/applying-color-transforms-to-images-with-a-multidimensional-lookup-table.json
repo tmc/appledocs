@@ -1,0 +1,1550 @@
+{
+  "abstract": [
+    {
+      "text": "Precompute translation values to optimize color space conversion and other pointwise operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-lookup-tables"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying color transforms to images with a multidimensional lookup table"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you perform color space conversions or other color transformations, it can be quicker to precompute the conversion values rather than performing the calculation for each individual pixel. The vImage library provides functionality for transforming images using multidimensional lookup tables. A multidimensional lookup table allows you to define such complex color transformations between image formats with the same or different numbers of channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example of a multidimensional lookup table is a 3D lookup table that converts RGB colors to the CMYK color model that’s commonly used in printing. As the following image illustrates, an RGB to CMYK multidimensional lookup table is a cube that represents the RGB color space, with axes for red, green, and blue. Each point in that cube corresponds to a unique RGB color that contains the corresponding CMYK value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3707469",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each dimension of the RGB cube in the image above contains eight entries — that is, there are 8³ or 512 source samples, which appear as small cubes. Each sample contains four values that represent the CMYK values for the corresponding RGB color. For example, the sample for pure red (RGB ",
+              "type": "text"
+            },
+            {
+              "code": "[1, 0, 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") contains the CMYK values ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 1, 1, 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the sample for cyan (RGB ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 1, 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") contains the CMYK values ",
+              "type": "text"
+            },
+            {
+              "code": "[1, 0, 0, 0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-lookup-table-size",
+          "level": 3,
+          "text": "Define the lookup table size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define the number of elements in the lookup table from the number of table entries per channel, the number of source channels, and the number of destination channels. For the RGB to CMYK conversion, in the following example, the lookup table contains four values (for cyan, magenta, yellow, and black) at each point in the RGB cube. The RGB cube contains the number of table entries per channels cubed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let entriesPerChannel = UInt8(16)",
+            "let srcChannelCount = UInt32(3)",
+            "let destChannelCount = UInt32(4)",
+            "",
+            "let lookupTableElementCount = Int(pow(Float(entriesPerChannel),",
+            "                                      Float(srcChannelCount))) *",
+            "                              Int(destChannelCount)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the vImage multidimensional lookup table functions to linearly interpolate between values. A high ",
+              "type": "text"
+            },
+            {
+              "code": "entriesPerChannel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value provides greater color fidelity than a low value, but with a corresponding performance and memory overhead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-table-data",
+          "level": 3,
+          "text": "Create the table data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supply the lookup table as a contiguous array of samples that define the lookup table values. The following code iterates over red, green, and blue values and creates an RGB ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for each permutation. The code converts the RGB color instance to the CMYK color space and populates the lookup table with the cyan, magenta, yellow, and black components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tableData = [UInt16](unsafeUninitializedCapacity: lookupTableElementCount) {",
+            "    buffer, count in",
+            "    ",
+            "    /// Supply the samples in the range `0...65535`. The transform function",
+            "    /// interpolates these to the range `0...1`.",
+            "    let multiplier = CGFloat(UInt16.max)",
+            "    var bufferIndex = 0",
+            "    ",
+            "    for red in ( 0 ..< entriesPerChannel) {",
+            "        for green in ( 0 ..< entriesPerChannel) {",
+            "            for blue in ( 0 ..< entriesPerChannel) {",
+            "                ",
+            "                /// Create normalized red, green, and blue values in the range `0...1`.",
+            "                let normalizedColor = simd_double3(",
+            "                    x: CGFloat(red),",
+            "                    y: CGFloat(green),",
+            "                    z: CGFloat(blue)) / CGFloat(entriesPerChannel - 1)",
+            "     ",
+            "                /// Create a CMYK representsation of the RGB color.",
+            "                let cmyk = ColorConverter.rgbToCMYK(normalizedColor) * multiplier",
+            "                ",
+            "                /// Append the cyan, magenta, yellow, and black components to the buffer.",
+            "                buffer[ bufferIndex ] = UInt16(cmyk.x)",
+            "                bufferIndex += 1",
+            "                buffer[ bufferIndex ] = UInt16(cmyk.y)",
+            "                bufferIndex += 1",
+            "                buffer[ bufferIndex ] = UInt16(cmyk.z)",
+            "                bufferIndex += 1",
+            "                buffer[ bufferIndex ] = UInt16(cmyk.w)",
+            "                bufferIndex += 1",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    count = lookupTableElementCount",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the RGB-to-CMYK value conversion code uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to convert a single RGB pixel to a single CMYK pixel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ColorConverter {",
+            "    static let rgbColorSpace = CGColorSpace(name: CGColorSpace.displayP3)!",
+            "    static let cmykColorSpace = CGColorSpace(name: CGColorSpace.genericCMYK)!",
+            "    ",
+            "    static let bitmapInfo = CGBitmapInfo(",
+            "        rawValue: kCGBitmapByteOrder32Host.rawValue |",
+            "        CGBitmapInfo.floatComponents.rawValue |",
+            "        CGImageAlphaInfo.none.rawValue)",
+            "    ",
+            "    static let cmykToLabConverter = try! vImageConverter.make(",
+            "        sourceFormat: .init(bitsPerComponent: 32,",
+            "                            bitsPerPixel: 32 * 3,",
+            "                            colorSpace: rgbColorSpace,",
+            "                            bitmapInfo: bitmapInfo)!,",
+            "        destinationFormat: .init(bitsPerComponent: 32,",
+            "                                 bitsPerPixel: 32 * 4,",
+            "                                 colorSpace: cmykColorSpace,",
+            "                                 bitmapInfo: bitmapInfo)!)",
+            "    ",
+            "    @inlinable",
+            "    static func rgbToCMYK(_ src: simd_double3) -> simd_double4 {",
+            "        ",
+            "        let srcPixelBuffer = vImage.PixelBuffer<vImage.InterleavedFx3>(",
+            "            pixelValues: [src.x, src.y, src.z].map { Float($0) },",
+            "            size: .init(width: 1, height: 1))",
+            "        ",
+            "        let dstPixelBuffer = vImage.PixelBuffer<vImage.InterleavedFx4>(",
+            "            size: .init(width: 1, height: 1))",
+            "        ",
+            "        try! cmykToLabConverter.convert(from: srcPixelBuffer, to: dstPixelBuffer)",
+            "        ",
+            "        let dstColor = dstPixelBuffer.array.map { CGFloat($0 )}",
+            "        ",
+            "        return .init(x: dstColor[0], y: dstColor[1], z: dstColor[2], w: dstColor[3])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-lookup-table",
+          "level": 3,
+          "text": "Create the lookup table",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a multidimensional lookup table from the table data array. Because the code in this example only uses the 32-bit transform function, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageMDTableHint_Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hint to reduce memory overhead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var error = kvImageNoError",
+            "",
+            "let tableEntriesPerDimension = [UInt8](repeating: entriesPerChannel,",
+            "                                       count: Int(srcChannelCount))",
+            "guard let lookupTable = vImageMultidimensionalTable_Create(",
+            "        tableData,",
+            "        srcChannelCount,",
+            "        destChannelCount,",
+            "        tableEntriesPerDimension,",
+            "        kvImageMDTableHint_Float,",
+            "        vImage_Flags(kvImageNoFlags),",
+            "        &error) else {",
+            "    fatalError(\"Unable to create multidimensional table \\(error).\")",
+            "}",
+            "",
+            "defer {",
+            "    vImageMultidimensionalTable_Release(lookupTable)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lookup table structure is immutable and thread-safe, and therefore you can use it with multiple and concurrent calls to the appropriate transform function. After you finish using the lookup table, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Release(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to free its resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-transform",
+          "level": 3,
+          "text": "Apply the transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage provides two functions to apply the multidimensional lookup table to an image: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for 32-bit planar buffers, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for 16Q12 planar buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below applies the lookup table to three 32-bit source buffers (",
+              "type": "text"
+            },
+            {
+              "code": "srcRedBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "srcGreenBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "srcBlueBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and writes the result to four 32-bit destination buffers (",
+              "type": "text"
+            },
+            {
+              "code": "destCyanBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "destMagentaBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "destYellowBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "destBlackBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For more information about working with planar buffers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/optimizing-image-processing-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "error = vImageMultiDimensionalInterpolatedLookupTable_PlanarF(",
+            "    [srcRedBuffer, srcGreenBuffer, srcBlueBuffer],",
+            "    [destCyanBuffer, destMagentaBuffer, destYellowBuffer, destBlackBuffer],",
+            "    nil,",
+            "    lookupTable,",
+            "    kvImageFullInterpolation,",
+            "    vImage_Flags(kvImageNoFlags))",
+            "        ",
+            "if error != kvImageNoError {",
+            "    fatalError(\"Error calling transform function` \\(error).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the four destination planar buffers contain the cyan, magenta, yellow, and black channels of the original RGB source image, as the following image shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3707470",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-multidimensional-lookup-tables-to-pixel-buffers",
+          "level": 3,
+          "text": "Apply multidimensional lookup tables to pixel buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re creating apps for recent operating systems that support the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, the vImage library includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, which provides a simple interface to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_MultidimensionalTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure uses the same lookup table data as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_MultidimensionalTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. The code below performs an RGB-to-CMYK conversion using 32-bit planar pixel buffers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An array of three 32-bit planar pixels buffers that contain the RGB source.",
+            "let sources: [vImage.PixelBuffer<vImage.PlanarF>] = ... ",
+            "",
+            "// An array of four 32-bit planar pixels buffers that represent the CMYK destination.",
+            "let destinations: [vImage.PixelBuffer<vImage.PlanarF>] = ...",
+            "",
+            "let lookupTable = vImage.MultidimensionalLookupTable(",
+            "    entryCountPerSourceChannel: tableEntriesPerDimension,",
+            "    destinationChannelCount: Int(destChannelCount),",
+            "    data: tableData)",
+            "",
+            "lookupTable.apply(sources: sources,",
+            "                  destinations: destinations,",
+            "                  interpolation: .full)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of the convert-any-to-any function by converting a CMYK image to an RGB image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a basic image conversion workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-conversion-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion": {
+      "abstract": [
+        {
+          "text": "Convert an image to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to grayscale using matrix multiplication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting color images to grayscale",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-color-images-to-grayscale"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image": {
+      "abstract": [
+        {
+          "text": "Create a displayable ARGB image using the luminance and chrominance information from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting luminance and chrominance planes to an ARGB image",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageMDTableHint_Float": {
+      "abstract": [
+        {
+          "text": "A table for transforming floating-point data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageMDTableHint_Float"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageMDTableUsageHint",
+          "text": "vImageMDTableUsageHint"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageMDTableHint_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageMDTableHint_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageMDTableHint_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagemdtablehint_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-lookup-tables": {
+      "abstract": [
+        {
+          "text": "Use lookup tables to apply color transformations to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-lookup-tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transforming with lookup tables",
+      "type": "topic",
+      "url": "/documentation/accelerate/transforming-with-lookup-tables"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable": {
+      "abstract": [
+        {
+          "text": "A multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.MultidimensionalLookupTable",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Uses a multidimensional lookup table to transform a 16Q12 planar image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_MultidimensionalTable",
+          "text": "vImage_MultidimensionalTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImage_InterpolationMethod",
+          "text": "vImage_InterpolationMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagemultidimensionalinterpolatedlookuptable_planar16q12(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Uses a multidimensional lookup table to transform a 32-bit planar image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMultiDimensionalInterpolatedLookupTable_PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_MultidimensionalTable",
+          "text": "vImage_MultidimensionalTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImage_InterpolationMethod",
+          "text": "vImage_InterpolationMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMultiDimensionalInterpolatedLookupTable_PlanarF"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagemultidimensionalinterpolatedlookuptable_planarf(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMultidimensionalTable_Create"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageMDTableUsageHint",
+          "text": "vImageMDTableUsageHint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_MultidimensionalTable",
+          "text": "vImage_MultidimensionalTable"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMultidimensionalTable_Create"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagemultidimensionaltable_create(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Release(_:)": {
+      "abstract": [
+        {
+          "text": "Releases a multidimensional table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMultidimensionalTable_Release"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_MultidimensionalTable",
+          "text": "vImage_MultidimensionalTable"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMultidimensionalTable_Release(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMultidimensionalTable_Release"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMultidimensionalTable_Release(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagemultidimensionaltable_release(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_MultidimensionalTable": {
+      "abstract": [
+        {
+          "text": "An opaque pointer that represents a multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_MultidimensionalTable"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_MultidimensionalTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_MultidimensionalTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_MultidimensionalTable",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_multidimensionaltable"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/Accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolor": {
+      "abstract": [
+        {
+          "text": "A set of components that define a color, with a color space specifying how to interpret them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColor",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3707469": {
+      "alt": "A computer-generated image of a cube that is built from eight smaller cubes on each axis. The smaller cube at the main cube’s origin is black. The smaller cubes along the x axis transition to red, the smaller cubes along the y axis transition to green, and the smaller cubes along the z axis transition to blue. Arrows point to two smaller cubes. The small cyan cube at the RGB position 0, 1, 1 represents the CMYK color 1, 0, 0, 0. The small red cube at the RGB position 1, 0, 0 represents the CMYK color 0, 1, 1, 0.",
+      "identifier": "media-3707469",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab99d6f2b4c4ec76e9ba68f365d6bcf0/media-3707469@2x.png"
+        }
+      ]
+    },
+    "media-3707470": {
+      "alt": "Five images of flowers. The first image is a color photograph of a bunch of flowers. The other four are grayscale images of the cyan, magenta, yellow, and black components of the color photograph converted to CMYK.",
+      "identifier": "media-3707470",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ee251b29f6425006b190ff71572513f/media-3707470@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Conversion-Between-Image-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ],
+      "title": "Conversion Between Image Formats"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolor/title",
+          "value": "CGColorRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageMDTableHint_Float/title",
+          "value": "kvImageMDTableHint_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageMDTableHint_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageMDTableHint_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)/title",
+          "value": "vImageMultidimensionalTable_Create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultidimensionalTable_Create(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMultidimensionalTable_Create"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultidimensionalTable_Release(_:)/title",
+          "value": "vImageMultidimensionalTable_Release"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultidimensionalTable_Release(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMultidimensionalTable_Release"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_MultidimensionalTable/title",
+          "value": "vImage_MultidimensionalTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_MultidimensionalTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_MultidimensionalTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_MultidimensionalTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_MultidimensionalTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)/title",
+          "value": "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)/title",
+          "value": "vImageMultiDimensionalInterpolatedLookupTable_PlanarF"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMultiDimensionalInterpolatedLookupTable_PlanarF(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMultiDimensionalInterpolatedLookupTable_PlanarF"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

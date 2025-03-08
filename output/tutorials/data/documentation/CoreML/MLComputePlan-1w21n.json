@@ -1,0 +1,1234 @@
+{
+  "abstract": [
+    {
+      "text": "A class representing the compute plan of a model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6CoreML13MLComputePlanC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLComputePlan"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLComputePlan"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MLComputePlan"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLComputePlan"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The application can use the compute plan to estimate the necessary cost",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and resources of the model before running the predictions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the compute plan of an ML Program model.",
+            "let computePlan = try await MLComputePlan.load(contentsOf: modelURL, configuration: configuration)",
+            "guard case let .program(program) = computePlan.modelStructure else {",
+            "   fatalError(\"Unexpected model type.\")",
+            "}",
+            " // Get the main function.",
+            "guard let mainFunction = program.functions[\"main\"] else {",
+            "   fatalError(\"Missing main function.\")",
+            "}",
+            "",
+            "let operations = mainFunction.block.operations",
+            "for operation in operations {",
+            "   // Get the compute device usage for the operation.",
+            "   let computeDeviceUsage = computePlan.deviceUsage(for: operation)",
+            "   // Get the estimated cost of executing the operation.",
+            "   let estimatedCost = computePlan.estimatedCost(of: operation)",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n": {
+      "abstract": [
+        {
+          "text": "A class representing the compute plan of a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputePlan"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePlan"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePlan",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/Cost": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cost"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/Cost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cost"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePlan.Cost",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/cost"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/DeviceUsage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/DeviceUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePlan.DeviceUsage",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/deviceusage"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-7cdlm": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceUsage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO",
+          "text": "MLModelStructure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO7ProgramV",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO7ProgramV9OperationV",
+          "text": "Operation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC",
+          "text": "MLComputePlan"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC11DeviceUsageV",
+          "text": "DeviceUsage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-7cdlm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceUsage(for:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/deviceusage(for:)-7cdlm"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-9em1q": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceUsage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO",
+          "text": "MLModelStructure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO13NeuralNetworkV",
+          "text": "NeuralNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO13NeuralNetworkV5LayerV",
+          "text": "Layer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC",
+          "text": "MLComputePlan"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC11DeviceUsageV",
+          "text": "DeviceUsage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-9em1q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deviceUsage(for:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/deviceusage(for:)-9em1q"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/estimatedCost(of:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedCost"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO",
+          "text": "MLModelStructure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO7ProgramV",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO7ProgramV9OperationV",
+          "text": "Operation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC",
+          "text": "MLComputePlan"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC4CostV",
+          "text": "Cost"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/estimatedCost(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "estimatedCost(of:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/estimatedcost(of:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(asset:configuration:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModelAsset",
+          "text": "MLModelAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModelConfiguration",
+          "text": "MLModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC",
+          "text": "MLComputePlan"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(asset:configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(asset:configuration:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/load(asset:configuration:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(contentsOf:configuration:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModelConfiguration",
+          "text": "MLModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLComputePlanC",
+          "text": "MLComputePlan"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(contentsOf:configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(contentsOf:configuration:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/load(contentsof:configuration:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/modelStructure": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelStructure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML16MLModelStructureO",
+          "text": "MLModelStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/modelStructure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelStructure",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n/modelstructure"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForMLProgramOperation:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "computeDeviceUsageForMLProgramOperation:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForMLProgramOperation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "computeDeviceUsageForMLProgramOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "computeDeviceUsageForMLProgramOperation:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/computedeviceusageformlprogramoperation:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForNeuralNetworkLayer:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "computeDeviceUsageForNeuralNetworkLayer:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForNeuralNetworkLayer:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "computeDeviceUsageForNeuralNetworkLayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "computeDeviceUsageForNeuralNetworkLayer:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/computedeviceusageforneuralnetworklayer:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/estimatedCostOfMLProgramOperation:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedCostOfMLProgramOperation:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/estimatedCostOfMLProgramOperation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimatedCostOfMLProgramOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedCostOfMLProgramOperation:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/estimatedcostofmlprogramoperation:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadContentsOfURL:configuration:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadContentsOfURL:configuration:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadContentsOfURL:configuration:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/loadcontentsofurl:configuration:completionhandler:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadModelAsset:configuration:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadModelAsset:configuration:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadModelAsset:configuration:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/loadmodelasset:configuration:completionhandler:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/modelStructure": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "modelStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/modelStructure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelStructure",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw/modelstructure"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy": {
+      "abstract": [
+        {
+          "text": "The compute policy determining what compute device, or compute devices, to execute ML workloads on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePolicy",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputepolicy"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enum representing the structure of a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelStructure",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructure-swift.enum"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x": {
+      "abstract": [
+        {
+          "text": "Calls the given closure within a task-local context using the specified compute policy to influence what compute device tensor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operations are executed on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMLTensorComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML15MLComputePolicyV",
+          "text": "MLComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withMLTensorComputePolicy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/withmltensorcomputepolicy(_:_:)-6z33x"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9": {
+      "abstract": [
+        {
+          "text": "Calls the given closure within a task-local context using the specified compute policy to influence what compute device tensor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operations are executed on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMLTensorComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML15MLComputePolicyV",
+          "text": "MLComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withMLTensorComputePolicy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/withmltensorcomputepolicy(_:_:)-8stx9"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compute-plan",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy",
+        "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9",
+        "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x"
+      ],
+      "title": "Compute plan"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/modelStructure",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/modelStructure"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-9em1q",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/deviceUsage(for:)-7cdlm",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/estimatedCost(of:)",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForMLProgramOperation:",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForNeuralNetworkLayer:",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/estimatedCostOfMLProgramOperation:"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(asset:configuration:)",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/load(contentsOf:configuration:)"
+      ],
+      "title": "Type Methods"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/Cost",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n/DeviceUsage",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/mlcomputeplan-1w21n"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

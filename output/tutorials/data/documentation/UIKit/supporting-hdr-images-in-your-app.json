@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "​",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Load, display, edit, and save HDR images using SwiftUI and Core Image.",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "​",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/images-and-pdf"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/supporting-hdr-images-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Supporting HDR images in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to read, write, edit, and display HDR images using SwiftUI, UIKit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "AppKit, Core Image, and Core Graphics. It loads a film strip of multiple images from on-disk or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the Photos library. Then it allows you to select, edit, and save an image in HDR. The sample uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "several new APIs in various frameworks to correctly handle HDR images in a complete HDR workflow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10181: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10181/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "​",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run this sample code project in Xcode, ensure you’re using iOS 17 or later for the iOS target, and macOS 14 or later for the Mac target.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-HDR-on-image-views",
+          "level": 3,
+          "text": "Enable HDR on image views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To turn on HDR in the SwiftUI image view, the sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "allowedDynamicRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier in the film strip to show limited HDR headroom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "FilmStrip(assets: $assets, selectedAsset: $selectedAsset)",
+            "    .allowedDynamicRange(.constrainedHigh)",
+            "    .frame(height: geometry.size.height / 10.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "​For the UIKit main image view, the sample adds the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredImageDynamicRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the ",
+              "type": "text"
+            },
+            {
+              "code": "UIImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let view = UIImageView()",
+            "view.preferredImageDynamicRange = .high"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "​",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​For AppKit, the sample adds the property to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let view = NSImageView()",
+            "view.preferredImageDynamicRange = .high"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "​​",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Edit-HDR-using-Core-Image",
+          "level": 3,
+          "text": "Edit HDR using Core Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure Core Image reads Gain Map HDR images as HDR, the sample sets the ",
+              "type": "text"
+            },
+            {
+              "code": "CIImageOption.expandToHDR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To modify the HDR image data, it uses ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ciOptions: [CIImageOption: Any] = [.applyOrientationProperty: true, .expandToHDR: true]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "​",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​The sample saves the image to disk if it’s an on-disk file to begin with. The sample uses a ",
+              "type": "text"
+            },
+            {
+              "code": "CIContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CGImageDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to render a ",
+              "type": "text"
+            },
+            {
+              "code": "CIImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into a ",
+              "type": "text"
+            },
+            {
+              "code": "CGImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and write it to a 10-bit HEIC image file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cgImage = context.createCGImage(image,",
+            "                                    from: image.extent,",
+            "                                    format: .RGB10,",
+            "                                    colorSpace: colorspace ?? CGColorSpace(name: CGColorSpace.itur_2100_PQ)!,",
+            "                                    deferred: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "​",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "​The sample writes the edited HDR image data back to the Photos library by writing a 10-bit HEIC image to the ",
+              "type": "text"
+            },
+            {
+              "code": "renderedContentURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of a ",
+              "type": "text"
+            },
+            {
+              "code": "PHContentEditingOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. The sample only uses this path when an image comes from the Photos library using the ",
+              "type": "text"
+            },
+            {
+              "code": "PhotosPicker",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let outputURL = try? output.renderedContentURL(for: .heic) else {",
+            "    print(\"Failed to obtain HEIC output URL.\")",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6bb6a5a2302b/SupportingHDRImagesInYourApp.zip": {
+      "checksum": "6bb6a5a2302b73a35f02337e5c84db525c900ad9d700fc6badf72c136e3d67de3c007cf6218f7f250495b5bc3720f0d1903a30c85e469b08ab2195c8c3f083e6",
+      "identifier": "6bb6a5a2302b/SupportingHDRImagesInYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6bb6a5a2302b/SupportingHDRImagesInYourApp.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGraphicsBeginImageContext(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a bitmap-based graphics context and makes it the current context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsBeginImageContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGraphicsBeginImageContext(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsBeginImageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGraphicsBeginImageContext(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uigraphicsbeginimagecontext(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGraphicsEndImageContext()": {
+      "abstract": [
+        {
+          "text": "Removes the current bitmap-based graphics context from the top of the stack.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsEndImageContext"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGraphicsEndImageContext()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsEndImageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGraphicsEndImageContext()",
+      "type": "topic",
+      "url": "/documentation/uikit/uigraphicsendimagecontext()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGraphicsGetImageFromCurrentImageContext()": {
+      "abstract": [
+        {
+          "text": "Returns an image from the contents of the current bitmap-based graphics context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsGetImageFromCurrentImageContext"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGraphicsGetImageFromCurrentImageContext()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGraphicsGetImageFromCurrentImageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGraphicsGetImageFromCurrentImageContext()",
+      "type": "topic",
+      "url": "/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/jpegData(compressionQuality:)": {
+      "abstract": [
+        {
+          "text": "Returns a data object that contains the image in JPEG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jpegData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compressionQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/jpegData(compressionQuality:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageJPEGRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "jpegData(compressionQuality:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/jpegdata(compressionquality:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/pngData()": {
+      "abstract": [
+        {
+          "text": "Returns a data object that contains the specified image in PNG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pngData"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/pngData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePNGRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "pngData()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/pngdata()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/images-and-pdf": {
+      "abstract": [
+        {
+          "text": "Create and manage images, including those that use bitmap and PDF formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images and PDF",
+      "type": "topic",
+      "url": "/documentation/uikit/images-and-pdf"
+    },
+    "https://developer.apple.com/wwdc23/10181/": {
+      "identifier": "https://developer.apple.com/wwdc23/10181/",
+      "title": "Support HDR images in your app",
+      "titleInlineContent": [
+        {
+          "text": "Support HDR images in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10181/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6bb6a5a2302b/SupportingHDRImagesInYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImage/jpegData(compressionQuality:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage/pngData()",
+        "doc://com.apple.uikit/documentation/UIKit/UIGraphicsBeginImageContext(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIGraphicsGetImageFromCurrentImageContext()",
+        "doc://com.apple.uikit/documentation/UIKit/UIGraphicsEndImageContext()"
+      ],
+      "title": "Image creation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-creation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImage/jpegData(compressionQuality:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImage/pngData()",
+                "doc://com.apple.uikit/documentation/UIKit/UIGraphicsBeginImageContext(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIGraphicsGetImageFromCurrentImageContext()",
+                "doc://com.apple.uikit/documentation/UIKit/UIGraphicsEndImageContext()"
+              ],
+              "title": "Image creation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsBeginImageContext(_:)/title",
+          "value": "UIGraphicsBeginImageContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsBeginImageContext(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGraphicsBeginImageContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsGetImageFromCurrentImageContext()/title",
+          "value": "UIGraphicsGetImageFromCurrentImageContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsGetImageFromCurrentImageContext()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGraphicsGetImageFromCurrentImageContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1pngData()/title",
+          "value": "UIImagePNGRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1pngData()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePNGRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1jpegData(compressionQuality:)/title",
+          "value": "UIImageJPEGRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1jpegData(compressionQuality:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageJPEGRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsEndImageContext()/title",
+          "value": "UIGraphicsEndImageContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGraphicsEndImageContext()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGraphicsEndImageContext"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/supporting-hdr-images-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/supporting-hdr-images-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

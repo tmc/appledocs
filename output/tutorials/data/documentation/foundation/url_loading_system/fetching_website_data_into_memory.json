@@ -1,0 +1,1206 @@
+{
+  "abstract": [
+    {
+      "text": "Receive data directly into memory by creating a data task from a URL session.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+  },
+  "kind": "article",
+  "legacy_identifier": 2919362,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fetching website data into memory"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For small interactions with remote servers, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to receive response data into memory (as opposed to using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which stores the data directly to the file system). A data task is ideal for uses like calling a web service endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a URL session instance to create the task. If your needs are fairly simple, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409000-shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. If you want to interact with the transfer through delegate callbacks, you’ll need to create a session instead of using the shared instance. You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance when creating a session, also passing in a class that implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or one of its subprotocols. Sessions can be reused to create multiple tasks, so for each unique configuration you need, create a session and store it as a property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be careful to not create more sessions than you need. For example, if you have several parts of your app that need a similarly configured session, create one session and share it among them. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a session, you create a data task with one of the ",
+              "type": "text"
+            },
+            {
+              "code": "dataTask()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods. Tasks are created in a suspended state, and can be started by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2919375",
+          "level": 3,
+          "text": "Receive results with a completion handler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest way to fetch data is to create a data task that uses a completion handler. With this arrangement, the task delivers the server’s response, data, and possibly errors to a completion handler block that you provide. ",
+              "type": "text"
+            },
+            {
+              "text": " shows the relationship between a session and a task, and how results are delivered to the completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4332611",
+              "metadata": {
+                "anchor": "4332611",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a data task that uses a completion handler, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411554-datatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Your completion handler needs to do three things:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If not, a transport error has occurred; handle the error and exit. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "response",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter to verify that the status code indicates success and that the MIME type is an expected value. If not, handle the server error and exit. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance as needed. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2923296",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  shows a ",
+              "type": "text"
+            },
+            {
+              "code": "startLoad()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method for fetching a URL’s contents. It starts by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class’s shared instance to create a data task that delivers its results to a completion handler. After checking for local and server errors, this handler converts the data to a string, and uses it to populate a ",
+              "type": "text"
+            },
+            {
+              "code": "WKWebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " outlet. Of course, your app might have other uses for fetched data, like parsing it into a data model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startLoad() {",
+            "    let url = URL(string: \"https://www.example.com/\")!",
+            "    let task = URLSession.shared.dataTask(with: url) { data, response, error in",
+            "        if let error = error {",
+            "            self.handleClientError(error)",
+            "            return",
+            "        }",
+            "        guard let httpResponse = response as? HTTPURLResponse,",
+            "            (200...299).contains(httpResponse.statusCode) else {",
+            "            self.handleServerError(response)",
+            "            return",
+            "        }",
+            "        if let mimeType = httpResponse.mimeType, mimeType == \"text/html\",",
+            "            let data = data,",
+            "            let string = String(data: data, encoding: .utf8) {",
+            "            DispatchQueue.main.async {",
+            "                self.webView.loadHTMLString(string, baseURL: url)",
+            "            }",
+            "        }",
+            "    }",
+            "    task.resume()",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a completion handler to receive data-loading results",
+                "type": "text"
+              }
+            ],
+            "anchor": "2923296",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The completion handler is called on a different Grand Central Dispatch queue than the one that created the task. Therefore, any work that uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "data",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "error",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to update the UI — like updating ",
+                  "type": "text"
+                },
+                {
+                  "code": "webView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " — should be explicitly placed on the main queue, as shown here. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2919376",
+          "level": 3,
+          "text": "Receive transfer details and results with a delegate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a greater level of access to the task’s activity as it proceeds, when creating the data task, you can set a delegate on the session, rather than providing a completion handler. ",
+              "type": "text"
+            },
+            {
+              "text": " shows this arrangement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4332610",
+              "metadata": {
+                "anchor": "4332610",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this approach, portions of the data are provided to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1411528-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as they arrive, until the transfer finishes or fails with an error. The delegate also receives other kinds of events as the transfer proceeds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to create your own ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance when using the delegate approach, rather than using the ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class’s simple ",
+              "type": "text"
+            },
+            {
+              "code": "shared",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. Creating a new session allows you to set your own class as the session’s delegate, as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2926952",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare that your class implements one or more of the delegate protocols (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Then create the URL session instance with the initializer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411597-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can customize the configuration instance used with this initializer. For example, it’s a good idea to set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". That way, the session waits for suitable connectivity, rather than failing immediately if the required connectivity is unavailable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private lazy var session: URLSession = {",
+            "    let configuration = URLSessionConfiguration.default",
+            "    configuration.waitsForConnectivity = true",
+            "    return URLSession(configuration: configuration,",
+            "                      delegate: self, delegateQueue: nil)",
+            "}()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a URLSession that uses a delegate",
+                "type": "text"
+              }
+            ],
+            "anchor": "2926952",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2919378",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows a ",
+              "type": "text"
+            },
+            {
+              "code": "startLoad()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that uses this session to start a data task, and uses delegate callbacks to handle received data and errors.  This listing implements three delegate callbacks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1410027-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " verifies that the response has a succesful HTTP status code, and that the MIME type is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "text/html",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "text/plain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If either of these is not the case, the task is canceled; otherwise, it’s allowed to proceed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1411528-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " takes each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance received by the task and appends it to a buffer called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "receivedData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " first looks to see if a transport-level error has occurred. If there is no error, it attempts to convert the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "receivedData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " buffer to a string and set it as the contents of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var receivedData: Data?",
+            "",
+            "func startLoad() {",
+            "    loadButton.isEnabled = false",
+            "    let url = URL(string: \"https://www.example.com/\")!",
+            "    receivedData = Data()",
+            "    let task = session.dataTask(with: url)",
+            "    task.resume()",
+            "}",
+            "",
+            "// delegate methods",
+            "",
+            "func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,",
+            "                completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {",
+            "    guard let response = response as? HTTPURLResponse,",
+            "        (200...299).contains(response.statusCode),",
+            "        let mimeType = response.mimeType,",
+            "        mimeType == \"text/html\" else {",
+            "        completionHandler(.cancel)",
+            "        return",
+            "    }",
+            "    completionHandler(.allow)",
+            "}",
+            "",
+            "func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {",
+            "    self.receivedData?.append(data)",
+            "}",
+            "",
+            "func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {",
+            "    DispatchQueue.main.async {",
+            "        self.loadButton.isEnabled = true",
+            "        if let error = error {",
+            "            handleClientError(error)",
+            "        } else if let receivedData = self.receivedData,",
+            "            let string = String(data: receivedData, encoding: .utf8) {",
+            "            self.webView.loadHTMLString(string, baseURL: task.currentRequest?.url)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Using a delegate with a URL session data task",
+                "type": "text"
+              }
+            ],
+            "anchor": "2919378",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The various delegate protocols offer methods beyond those shown in the above code, for handling authentication challenges, following redirects, and other special cases. ",
+              "type": "text"
+            },
+            {
+              "code": "Using a URL Session",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in the ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " discussion, describes the various callbacks that may occur during a transfer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory": {
+      "abstract": [
+        {
+          "text": "Receive data directly into memory by creating a data task from a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching website data into memory",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2919378": {
+      "abstract": [
+        {
+          "text": "Using a delegate with a URL session data task",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2919378",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2919378"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2923296": {
+      "abstract": [
+        {
+          "text": "Creating a completion handler to receive data-loading results",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2923296",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2923296"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2926952": {
+      "abstract": [
+        {
+          "text": "Creating a URLSession that uses a delegate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2926952",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory#2926952"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1409000-shared": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409000-shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1409000-shared"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411554-datatask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411554-datatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411554-datatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411597-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411597-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(configuration:delegate:delegateQueue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411597-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitsForConnectivity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatadelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1410027-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1410027-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:dataTask:didReceive:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatadelegate/1410027-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1411528-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate/1411528-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:dataTask:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatadelegate/1411528-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "abstract": [
+        {
+          "text": "A task, like downloading a specific resource, performed in a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-4332610": {
+      "identifier": "link-media-4332610",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory#4332610"
+    },
+    "link-media-4332611": {
+      "identifier": "link-media-4332611",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory#4332611"
+    },
+    "media-4332610": {
+      "alt": "Figure showing a URLSession creating a URLSessionDataTask. The session calls back to the delegate with progress updates, retrieved data, authentication challenges, and other events.",
+      "identifier": "media-4332610",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a17ea33e36/rendered2x-1708114179.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23d1fa18f0/renderedDark2x-1708114180.png"
+        }
+      ]
+    },
+    "media-4332611": {
+      "alt": "Figure showing a URL Session creating a URL Session Data Task. The task then sends the original request, retrieved data, or an error to the completion handler.",
+      "identifier": "media-4332611",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/afedccc6cd/renderedDark2x-1708114176.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/657ec8cd2e/rendered2x-1708114178.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

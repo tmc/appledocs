@@ -1,0 +1,3080 @@
+{
+  "abstract": [
+    {
+      "text": "Provide the system with information about the types your app uses to model its",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "data so that your intents can use those types as parameters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-entities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating custom data types into your intents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app likely defines a number of custom types that model the data the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates or consumes. For example, an app that enables people to view information about hiking trails might define types that describe trail information. Because those types are unique to your app, the framework can’t interpret them until you expose them to system experiences like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Siri and the Shortcuts app. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Entities",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are lightweight types that provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information to the system about your app’s data or concepts relating to that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data. An entity identifies and queries the data it represents and describes how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system displays that data onscreen. Create an entity for each of the core types or concepts you want to use as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an input parameter for your intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on creating app intents and specifying their input parameters, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-an-entity-that-represents-your-data",
+          "level": 3,
+          "text": "Define an entity that represents your data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To let an intent use one of your app’s custom data types as a parameter, define",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a new structure in your app’s target to represent that type. Then update the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure’s definition to adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Although custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types can directly conform to the protocol, prefer using distinct entity types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are lightweight and provide only the information the system requires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Distinct types let you separate your entities from the rest of your app’s model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and domain code. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project uses a ",
+              "type": "text"
+            },
+            {
+              "code": "Trail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type and defines a corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TrailEntity: AppEntity {",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app’s model code is lightweight and the amount of data is small enough to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fit into device memory, you can make your models conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to keep your code simple.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, models can contain larger data like images or your app could operate on large amounts of data. For those cases,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use separate types for your entities so you can load only the data the entities need, and make the mechanism that provides the entities’ data more performant. For example, if your app uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to manage its data, set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-31bbq",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property on your fetch operations to return only the data the entities need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of fetching entire records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-a-unique-identifier-for-your-entity",
+          "level": 3,
+          "text": "Specify a unique identifier for your entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every entity must have a stable, unique identifier. The framework uses that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifier as a concrete reference to your entity while mediating between your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app and other parts of the system. For example, when someone selects the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for an entity-based parameter in the shortcut editor, the system asks your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to resolve that parameter using the entity’s identifier. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol inherits the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol to enforce this prerequisite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a unique identifier to your entity type, implement the protocol’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requirement and set its type to one of the three data types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "optimized for the framework:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var id: UUID"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Wherever possible, use one of the three optimized data types for entity",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "identifiers. If you must use a different data type, extend that type and",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "implement the required support. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-a-visual-representation-for-your-entity",
+          "level": 3,
+          "text": "Provide a visual representation for your entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An entity represents a type and the data for that type. In your entity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describe how to display both elements onscreen. For example, the Shortcuts app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uses this information to show type details in the Actions Library and to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "present entity data in the shortcut editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable/typeDisplayRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " variable to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your entity’s structure and return a human-readable, localized string that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes the entity. For example, the hiking app from the previous example displays the number of trails. The system displays this string whenever it needs to present your entity’s type onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var typeDisplayRepresentation: TypeDisplayRepresentation {",
+            "    TypeDisplayRepresentation(",
+            "        name: LocalizedStringResource(\"Trail\", table: \"AppIntents\"),",
+            "        numericFormat: LocalizedStringResource(\"\\(placeholder: .int) trails\", table: \"AppIntents\")",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable/displayRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " variable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes how to display an entity’s represented data at runtime. Update your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure to include this variable and return an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Specify a localized ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that lets people recognize the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a visually rich display of your entity by setting the representation’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/subtitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/image-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " variables. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project displays the name of the trail, a region description, and an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var displayRepresentation: DisplayRepresentation {",
+            "    DisplayRepresentation(title: \"\\(name)\",",
+            "                          subtitle: \"\\(regionDescription)\",",
+            "                          image: DisplayRepresentation.Image(named: imageName))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-your-entity-searchable",
+          "level": 3,
+          "text": "Make your entity searchable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework requires entity types to be searchable so the system can resolve",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifiers at runtime and request a list of suggested entities to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "onscreen. For example, when a person sets a parameter to a specific entity in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the shortcut editor, the system retains that entity’s identifier. Later, when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the intent runs, the framework asks your type to materialize the entity from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its identifier. The framework then updates the relevant parameter with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "materialized entity before invoking the intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your entity searchable, define a new structure that adopts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Place this structure in the app’s target alongside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your entity. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/entities(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, and update the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaration so the element type of the ",
+              "type": "text"
+            },
+            {
+              "code": "identifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array matches your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity’s ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable. Use the provided identifiers to materialize and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return the relevant entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TrailEntityQuery: EntityQuery {",
+            "    ",
+            "    @Dependency",
+            "    var trailManager: TrailDataManager",
+            "",
+            "    func entities(for identifiers: [TrailEntity.ID]) async throws -> [TrailEntity] {",
+            "        Logger.entityQueryLogging.debug(\"[TrailEntityQuery] Query for IDs \\(identifiers)\")",
+            "        ",
+            "        return trailManager.trails(with: identifiers)",
+            "                .map { TrailEntity(trail: $0) }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To offer a better user experience, provide a list of suggested entities that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system displays, at appropriate times, to let people quickly make a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selection. To provide those entities, add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/suggestedEntities()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to your query structure. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your data generates a small number of entities, return them all; otherwise,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return a subset of those entities relevant to the current context. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project  suggests a person’s favorite hiking trails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func suggestedEntities() async throws -> [TrailEntity] {",
+            "    Logger.entityQueryLogging.debug(\"[TrailEntityQuery] Request for suggested entities\")",
+            "    ",
+            "    return trailManager.trails(with: trailManager.favoritesCollection.members)",
+            "            .map { TrailEntity(trail: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To let people use arbitrary text to find specific entities, adopt the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol instead. Queries that adopt this protocol cause",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system to display a search field above the list of suggested entities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implement the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery/entities(matching:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the provided string to match against your data. For example, sample code that displays hiking trail information lets people search for a specific album by matching against the a hiking trail by name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func entities(matching string: String) async throws -> [TrailEntity] {",
+            "    return trailManager.trails { trail in",
+            "        trail.name.localizedCaseInsensitiveContains(string)",
+            "    }.map { TrailEntity(trail: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you implement your query, update the related entity’s definition to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/defaultQuery-4khg7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " variable, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify an instance of your query type as the value. The system uses this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable at runtime to determine which type it can query on behalf of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "related entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var defaultQuery = TrailEntityQuery()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several subprotocols to ",
+              "type": "text"
+            },
+            {
+              "code": "EntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", each of which enables different types of functionality.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project  implements all of them for demonstration purposes, but for a real app, you can choose the ones that meet your needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Find-intents",
+          "level": 3,
+          "text": "Enable Find intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps implementing either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols automatically add a Find intent in the Shortcuts app. These intents enable people to build powerful new features for themselves in Shortcuts, powered by the app’s data — without requiring the app to implement that feature itself.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project focuses its UI on providing trail information, but people could also use its data to plan activities for a vacation. The app doesn’t need to build vacation-planning features because it implements these entity query protocols to provide an interface to the data through an App Shortcut.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about enabling Find intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents#Enable-Find-intents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enumerate-your-data-types-static-values",
+          "level": 3,
+          "text": "Enumerate your data type’s static values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a type has known fixed values at build time, such as a Swift enumeration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expose those types to the system by converting them to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "app enums",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the static",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "equivalent of entities. Because app enum values are constant, the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "introspects them at build time and optimizes their use. The framework provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both an identity and a query by default, and the system can get type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information at runtime without launching the app. For example, a music app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might use an app enum to associate an album with an album type such as studio,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "live, or compilation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert a common type to an app enum, update its declaration to adopt the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. There’s no need to create a separate type because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing type is inherently lightweight and doesn’t store additional data. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework requires that app enums also conform to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/RawRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as their storage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type, so modify your type to satisfy those requirements. Like with entities,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify a localized description of the type that the system can display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum ActivityStyle: String, Codable, Sendable {",
+            "    case biking",
+            "    case equestrian",
+            "    case hiking",
+            "    case jogging",
+            "    case crossCountrySkiing",
+            "    case snowshoeing",
+            "",
+            "    // ...",
+            "}",
+            "",
+            "extension ActivityStyle: AppEnum {",
+            "",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation {",
+            "        TypeDisplayRepresentation(",
+            "            name: LocalizedStringResource(\"Activity\", table: \"AppIntents\"),",
+            "            numericFormat: LocalizedStringResource(\"\\(placeholder: .int) activities\", table: \"AppIntents\")",
+            "        )",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t adopt both protocols in the same type; use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "types that provide dynamic values and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for types that provide a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "limited set of static values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide descriptions for each of your app enum’s values, add the protocol’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable/caseDisplayRepresentations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Return a dictionary that maps the values to their display representations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var caseDisplayRepresentations: [ActivityStyle: DisplayRepresentation] = [",
+            "    .biking: DisplayRepresentation(title: \"Biking\",",
+            "                                   subtitle: \"Mountain bike ride\",",
+            "                                   image: imageRepresentation[.biking]),",
+            "    ",
+            "    .equestrian: DisplayRepresentation(title: \"Equestrian\",",
+            "                                       subtitle: \"Equestrian sports\",",
+            "                                       image: imageRepresentation[.equestrian]),",
+            "    ",
+            "    .hiking: DisplayRepresentation(title: \"Hiking\",",
+            "                                   subtitle: \"A lengthy outdoor walk\",",
+            "                                   image: imageRepresentation[.hiking]),",
+            "    ",
+            "    .jogging: DisplayRepresentation(title: \"Jogging\",",
+            "                                    subtitle: \"A gentle run\",",
+            "                                    image: imageRepresentation[.jogging]),",
+            "    ",
+            "    .crossCountrySkiing: DisplayRepresentation(title: \"Skiing\",",
+            "                                               subtitle: \"Cross-country skiing\",",
+            "                                               image: imageRepresentation[.crossCountrySkiing]),",
+            "    ",
+            "    .snowshoeing: DisplayRepresentation(title: \"Snowshoeing\",",
+            "                                        subtitle: \"Walking in the snow\",",
+            "                                        image: imageRepresentation[.snowshoeing])",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above initializes each representation with a string literal. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "help people quickly understand the values, it also specifies a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/subtitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/image-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents": {
+      "abstract": [
+        {
+          "text": "Enable people to use your app’s features quickly through Siri, Spotlight, and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accelerating app interactions with App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents/acceleratingappinteractionswithappintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents#Enable-Find-intents": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents#Enable-Find-intents",
+      "kind": "section",
+      "title": "Enable Find intents",
+      "type": "topic",
+      "url": "/documentation/appintents/acceleratingappinteractionswithappintents#Enable-Find-intents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent": {
+      "abstract": [
+        {
+          "text": "Enable people to configure app intents with their custom input values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to an app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/adding-parameters-to-an-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/defaultQuery-4khg7": {
+      "abstract": [
+        {
+          "text": "The default query to use to retrieve entity property instances.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultQuery"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6EntityP12DefaultQueryQa",
+          "text": "DefaultQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/defaultQuery-4khg7",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "defaultQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity/defaultquery-4khg7"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/id": {
+      "abstract": [
+        {
+          "text": "The stable identity of the entity associated with this instance.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "RawRepresentable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "ID",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity/id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity/id"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/perform()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable/caseDisplayRepresentations": {
+      "abstract": [
+        {
+          "text": "A dictionary that maps each value to the visual elements that represent it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "caseDisplayRepresentations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents21DisplayRepresentationV",
+          "text": "DisplayRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CaseDisplayRepresentable/caseDisplayRepresentations",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "caseDisplayRepresentations",
+      "type": "topic",
+      "url": "/documentation/appintents/casedisplayrepresentable/casedisplayrepresentations"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent": {
+      "abstract": [
+        {
+          "text": "Create your first app intent that makes your app available in system experiences like Spotlight or the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your first app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/creating-your-first-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation": {
+      "abstract": [
+        {
+          "text": "A type that describes the user interface presentation of a custom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayRepresentation",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentation"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/image-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents21DisplayRepresentationV",
+          "text": "DisplayRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents21DisplayRepresentationV5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/image-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentation/image-swift.property"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/subtitle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/subtitle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtitle",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentation/subtitle"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/title": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentation/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentation/title"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible": {
+      "abstract": [
+        {
+          "text": "An interface for converting between an entity’s identifier and its string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifierConvertible",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifierconvertible"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities by matching values against one or more of their properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/entities(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves instances by identifier.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP0C0Qa",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP0C0Qa",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/entities(for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "entities(for:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquery/entities(for:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/suggestedEntities()": {
+      "abstract": [
+        {
+          "text": "Returns the initial results shown when a list of options backed by this query is presented.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 3,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedEntities"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery/suggestedEntities()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "suggestedEntities()",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquery/suggestedentities()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery": {
+      "abstract": [
+        {
+          "text": "An interface that locates entities using arbitrary string input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityStringQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityStringQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityStringQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entitystringquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery/entities(matching:)": {
+      "abstract": [
+        {
+          "text": "Retrieves instances by string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery/entities(matching:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "entities(matching:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entitystringquery/entities(matching:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface you use to provide a short list of entities that are relatively small in size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnumerableEntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnumerableEntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnumerableEntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/enumerableentityquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable/displayRepresentation": {
+      "abstract": [
+        {
+          "text": "The visual elements to display when presenting an instance of the type.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents21DisplayRepresentationV",
+          "text": "DisplayRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/InstanceDisplayRepresentable/displayRepresentation",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "displayRepresentation",
+      "type": "topic",
+      "url": "/documentation/appintents/instancedisplayrepresentable/displayrepresentation"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable/typeDisplayRepresentation": {
+      "abstract": [
+        {
+          "text": "A short, localized, human-readable name for the type.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeDisplayRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents25TypeDisplayRepresentationV",
+          "text": "TypeDisplayRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/TypeDisplayRepresentable/typeDisplayRepresentation",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "typeDisplayRepresentation",
+      "type": "topic",
+      "url": "/documentation/appintents/typedisplayrepresentable/typedisplayrepresentation"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-entities": {
+      "abstract": [
+        {
+          "text": "Make core types or concepts discoverable to the system by declaring",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as app entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-entities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App entities",
+      "type": "topic",
+      "url": "/documentation/appintents/app-entities"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries": {
+      "abstract": [
+        {
+          "text": "Help the system find the entities your app defines and use",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them to resolve parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Entity queries",
+      "type": "topic",
+      "url": "/documentation/appintents/entity-queries"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution": {
+      "abstract": [
+        {
+          "text": "Define the required parameters for your app intents and specify how to resolve",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "those parameters at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Parameter resolution",
+      "type": "topic",
+      "url": "/documentation/appintents/parameter-resolution"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/resolvers": {
+      "abstract": [
+        {
+          "text": "Resolve the parameters of your app intents, and extend the standard resolution",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "types to include your app’s custom types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/resolvers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolvers",
+      "type": "topic",
+      "url": "/documentation/appintents/resolvers"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-31bbq": {
+      "abstract": [
+        {
+          "text": "The fields of the records to fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-31bbq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "desiredKeys",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKFetchRecordsOperation/desiredKeys-31bbq"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/RawRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/RawRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid": {
+      "abstract": [
+        {
+          "text": "A universally unique value to identify types, interfaces, and other items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UUID",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Parameters-custom-data-types-and-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/parameter-resolution",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-entities",
+        "doc://com.apple.AppIntents/documentation/AppIntents/entity-queries",
+        "doc://com.apple.AppIntents/documentation/AppIntents/resolvers"
+      ],
+      "title": "Parameters, custom data types, and queries"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/integrating-custom-types-into-your-intents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

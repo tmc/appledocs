@@ -1,0 +1,727 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce compile times by eliminating unnecessary module variants using the Xcode build system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/building-your-project-with-explicit-module-dependencies"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building your project with explicit module dependencies"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode build system is responsible for managing the compilation of source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files in a project. Often, this source code has dependencies on other modules",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the project, SDK, or external dependencies. When building with modules, C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or Objective-C source code depends on modules imported with ",
+              "type": "text"
+            },
+            {
+              "code": "@import",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and modules that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cover headers imported using ",
+              "type": "text"
+            },
+            {
+              "code": "#import",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Swift code depends on modules imported",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "code": "import",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These modules must be built before compilation can proceed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Xcode 16 and later, the build system coordinates with the compiler to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "surface this work as a set of explicit tasks in the build log.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Explicit scheduling of module builds allows the Xcode build system to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intelligent scheduling decisions which maximize parallelism and shorten compile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times. It also produces clearer, more actionable error messages in the build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "log when diagnosing a compiler error in a module dependency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode build system explicitly builds module dependencies when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compiling C or Objective-C source code with modules enabled. The",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Enable Modules (C and Objective-C)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setting in the build settings",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "editor controls the use of modules. This is the default setting for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "all new projects, but can be changed in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Apple Clang - Language - Modules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " section of the build settings editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compiling Swift source code which has opted-in to explicitly built modules",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Explicitly Built Modules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setting in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Swift Compiler - General",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "section of the build settings editor. Explicitly built modules aren’t supported",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "when using the C++ interoperability features in Swift.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-how-module-dependencies-are-built",
+          "level": 3,
+          "text": "Understand how module dependencies are built",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When explicitly building module dependencies, compilation is divided into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "three distinct stages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Dependency scanning",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The compiler scans the input source files to determine which modules they depend upon. For C and Objective-C sources, this work is performed by a per-file dependency scanning task. When compiling Swift sources, the compiler scans all module sources during its planning task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Module compilation",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": When dependency scanning is complete, the results are communicated to the Xcode build system. The build system invokes the Clang and Swift compilers to build modules in dependency order, with unrelated modules built in parallel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Source compilation",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The primary compilation unit is compiled using the module dependencies that were built.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to appearing as distinct steps in the build log, you can also review the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks in the build timeline:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-your-project-with-explicit-module-dependencies-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-compile-times-by-reducing-module-variants",
+          "level": 3,
+          "text": "Improve compile times by reducing module variants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In more complex projects, the build log may show multiple tasks that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "correspond to builds of the same module, but with different sets of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "options. Modules are sensitive to the compiler options used by their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependents, so building different parts of a project with different options",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may require building multiple variants. Sometimes, building multiple variants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a module is necessary. For example, when building code for multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "architectures, at least one module variant must be built for each. In other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cases, inconsistent project configurations may lead to building",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "many variants of a module unnecessarily. For example, two targets with the same dependencies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but different values of the ",
+              "type": "text"
+            },
+            {
+              "code": "Preprocessor Macros",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build setting are unable to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "share built modules. To reduce build times and the number of variants to build, you’ll instead update the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project configuration to compile sources using a uniform set of options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides tools to determine when differences in project settings require",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional module variants to be built. If you initiate a build by choosing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Product > Perform Action > Build With Timing Summary, Xcode generates a report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that shows all of the modules that were built along with the differences in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "options used when building them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "building-your-project-with-explicit-module-dependencies-1": {
+      "alt": "A screenshot of an Xcode build log and accompanying timeline showing dependency scanning, module build, and compile tasks.",
+      "identifier": "building-your-project-with-explicit-module-dependencies-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38ec6d9e7cdbcd71c1cb18ff85bf815e/building-your-project-with-explicit-module-dependencies-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ce7a0362c54e53a2dbb48e65658f71d/building-your-project-with-explicit-module-dependencies-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries": {
+      "abstract": [
+        {
+          "text": "Use mergeable dynamic libraries to get app launch times similar to static linking in release builds, without losing dynamically linked build times in debug builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your project to use mergeable libraries",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-project-to-use-mergeable-libraries"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices": {
+      "abstract": [
+        {
+          "text": "Shorten compile times by reducing the number of symbols your code exports and by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "giving the compiler the explicit information it needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving build efficiency with good coding practices",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-build-efficiency-with-good-coding-practices"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds": {
+      "abstract": [
+        {
+          "text": "Tell the Xcode build system about your project’s target-related dependencies, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reduce the compiler workload during each build cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the speed of incremental builds",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-the-speed-of-incremental-builds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-your-project-to-use-mergeable-libraries",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-build-efficiency-with-good-coding-practices"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

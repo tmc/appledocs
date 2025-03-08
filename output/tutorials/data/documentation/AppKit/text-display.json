@@ -1,0 +1,2001 @@
+{
+  "abstract": [
+    {
+      "text": "Display text and check spelling.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/text-display"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Text Display"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, you can lay out your app’s text using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes (or their subclasses). Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to add either a label or a simple text input. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide more comprehensive layout and editing features for larger bodies of text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports rich text, attachments (graphics, file, and other), input management and key binding, and marked text attributes. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " works with the font panel and menu, rulers and paragraph styles, the Services facility (for example, the spell-checking service), and the pasteboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also allows customizing through delegation and notifications—you rarely need to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You rarely create instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " programmatically either, because objects on Interface Builder’s palettes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSForm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", already contain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For even more powerful and more creative text manipulation (such as displaying text in a circle) see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/textkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Spell-checking",
+          "level": 3,
+          "text": "Spell-checking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsspellserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class lets you define a spell-checking service and provide it as a service to other apps. To connect your app to a spell-checking service, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols support the spell-checking mechanism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling": {
+      "abstract": [
+        {
+          "text": "A protocol that responder objects can implement to correct a misspelled word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSChangeSpelling"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSChangeSpelling"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSChangeSpelling",
+      "type": "topic",
+      "url": "/documentation/appkit/nschangespelling"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSForm": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "NSForm",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is a vertical matrix of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFormCell",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects to implement the fields.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSForm"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSForm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSForm"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSForm",
+      "type": "topic",
+      "url": "/documentation/appkit/nsform"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFormCell": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "NSFormCell",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class is used to implement text entry fields in a form. The left part of an ",
+          "type": "text"
+        },
+        {
+          "code": "NSFormCell",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object contains a title. The right part contains an editable text entry field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFormCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFormCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFormCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFormCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsformcell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords": {
+      "abstract": [
+        {
+          "text": "A protocol that enables the Ignore button in the Spelling panel to function properly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIgnoreMisspelledWords"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSIgnoreMisspelledWords"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSIgnoreMisspelledWords",
+      "type": "topic",
+      "url": "/documentation/appkit/nsignoremisspelledwords"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScrollView": {
+      "abstract": [
+        {
+          "text": "A view that displays a portion of a document view and provides scroll bars that allow the user to move the document view within the scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSScrollView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscrollview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker": {
+      "abstract": [
+        {
+          "text": "An interface to the Cocoa spell-checking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpellChecker"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpellChecker"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpellChecker",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspellchecker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSText": {
+      "abstract": [
+        {
+          "text": "The most general programmatic interface for objects that manage text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSText",
+      "type": "topic",
+      "url": "/documentation/appkit/nstext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives": {
+      "abstract": [
+        {
+          "text": "A list of alternative strings for a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextAlternatives"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextAlternatives"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextAlternatives",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextalternatives"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingClient"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextCheckingClient",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcheckingclient"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingController": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextCheckingController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcheckingcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContent": {
+      "abstract": [
+        {
+          "text": "A protocol that describes specific kinds of input content types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContent",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods implemented by the delegate of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSText",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object to edit text and change text formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextField": {
+      "abstract": [
+        {
+          "text": "Text the user can select or edit to send an action message to a target when the user presses the Return key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextField",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfield"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFieldDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that a text field delegate can use to control its field editor action menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextFieldDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFieldDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextFieldDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextFieldDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfielddelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods that text views need to implement to interact properly with the text input management system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInput",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinput"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient": {
+      "abstract": [
+        {
+          "text": "A set of methods that text views need to implement to interact properly with the text input management system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputClient",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputclient"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext": {
+      "abstract": [
+        {
+          "text": "An object that represents the Cocoa text input system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraitType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputTraitType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraitType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputTraitType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputTraitType",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputtraittype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraits": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInputTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInputTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInputTraits",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinputtraits"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator": {
+      "abstract": [
+        {
+          "text": "A view that represents the insertion indicator in text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextInsertionIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextInsertionIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct": {
+      "abstract": [
+        {
+          "text": "Options that affect the automatic display mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticModeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticModeOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator.AutomaticModeOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that determine how to display the system text cursor in a custom text UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextInsertionIndicator.DisplayMode",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that text view delegates can use to manage selection, set text attributes, work with the spell checker, and more.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextviewdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views": {
+      "abstract": [
+        {
+          "text": "Incorporate the system text cursor into your custom text UI in AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the system text cursor in custom text views",
+      "type": "topic",
+      "url": "/documentation/appkit/adopting-the-system-text-cursor-in-custom-text-views"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/fonts": {
+      "abstract": [
+        {
+          "text": "Manage the fonts used to display text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/fonts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fonts",
+      "type": "topic",
+      "url": "/documentation/appkit/fonts"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/textkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/appkit/textkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/writing-tools": {
+      "abstract": [
+        {
+          "text": "Add support for Writing Tools to your app’s text views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/writing-tools",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing Tools",
+      "type": "topic",
+      "url": "/documentation/appkit/writing-tools"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsspellserver": {
+      "abstract": [
+        {
+          "text": "A server that your app uses to provide a spell checker service to other apps running in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpellServer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsspellserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSpellServer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsspellserver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/textkit",
+        "doc://com.apple.appkit/documentation/AppKit/fonts",
+        "doc://com.apple.appkit/documentation/AppKit/writing-tools"
+      ],
+      "title": "Text"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Text-views",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFieldDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSText"
+      ],
+      "title": "Text views"
+    },
+    {
+      "anchor": "Text-input",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct"
+      ],
+      "title": "Text input"
+    },
+    {
+      "anchor": "Text-checking",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraits",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraitType"
+      ],
+      "title": "Text-checking"
+    },
+    {
+      "anchor": "Spell-checking",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+        "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling",
+        "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords"
+      ],
+      "title": "Spell-checking"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextInput"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Text-views",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextFieldDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSText"
+              ],
+              "title": "Text views"
+            },
+            {
+              "anchor": "Text-input",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputContext",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputClient",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextAlternatives",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContent",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct"
+              ],
+              "title": "Text input"
+            },
+            {
+              "anchor": "Text-checking",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraits",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInputTraitType"
+              ],
+              "title": "Text-checking"
+            },
+            {
+              "anchor": "Spell-checking",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+                "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling",
+                "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords"
+              ],
+              "title": "Spell-checking"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextInput"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/textkit",
+                "doc://com.apple.appkit/documentation/AppKit/fonts",
+                "doc://com.apple.appkit/documentation/AppKit/writing-tools"
+              ],
+              "title": "Text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/title",
+          "value": "NSTextInputClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingController/title",
+          "value": "NSTextCheckingController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/title",
+          "value": "NSSpellChecker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpellChecker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpellChecker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraitType/title",
+          "value": "NSTextInputTraitType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraitType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputTraitType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraitType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputTraitType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/title",
+          "value": "NSIgnoreMisspelledWords"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFormCell/title",
+          "value": "NSFormCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFormCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFormCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFormCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFormCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/title",
+          "value": "NSTextInsertionIndicatorAutomaticModeOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorAutomaticModeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1AutomaticModeOptions-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorAutomaticModeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/title",
+          "value": "NSText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/title",
+          "value": "NSTextInsertionIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInput/title",
+          "value": "NSTextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/title",
+          "value": "NSTextAlternatives"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextAlternatives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextAlternatives/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextAlternatives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextViewDelegate/title",
+          "value": "NSTextViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/title",
+          "value": "NSTextInputContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/title",
+          "value": "NSChangeSpelling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSChangeSpelling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSChangeSpelling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/title",
+          "value": "NSTextContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrollView/title",
+          "value": "NSScrollView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrollView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrollView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/title",
+          "value": "NSTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFieldDelegate/title",
+          "value": "NSTextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFieldDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFieldDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/title",
+          "value": "NSTextInsertionIndicatorDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInsertionIndicator~1DisplayMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInsertionIndicatorDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/title",
+          "value": "NSTextCheckingClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextCheckingClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextCheckingClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSForm/title",
+          "value": "NSForm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSForm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSForm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSForm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSForm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraits/title",
+          "value": "NSTextInputTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextInputTraits/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextDelegate/title",
+          "value": "NSTextDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/text-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/text-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

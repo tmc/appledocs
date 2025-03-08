@@ -1,0 +1,689 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your JavaScript project to use CKTool JS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cktooljs/documentation/CKToolJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.cktooljs/documentation/CKToolJS/integrating-cloudkit-access-into-your-javascript-automation-scripts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CKTool JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating CloudKit access into your JavaScript automation scripts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include CKTool JS in your JavaScript automation testing and continuous integration tasks to manipulate the schema and the data in your database. To start using CKTool JS in your scripts, you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a CloudKit management token",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install CKTool JS and configure it for your environment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialize the database API for your scripts to use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Obtain-a-CloudKit-management-token",
+          "level": 3,
+          "text": "Obtain a CloudKit management token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CKTool JS requires a CloudKit management token from the CloudKit Console within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Generate the token from the CloudKit Console by choosing the Settings section for your account. Save this token, because it won’t be visible again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ll be accessing with data in a container, then you’ll also require a user token. You can obtain a user token from CloudKit Console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-and-install-the-CKTool-JS-packages",
+          "level": 3,
+          "text": "Specify and install the CKTool JS packages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install the CKTool JS client library, you need to have the ",
+              "type": "text"
+            },
+            {
+              "code": "npm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package management tool already installed on your machine. The client library suite includes a main database package and a package used to target Node.js.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each package includes TypeScript type definitions, which enable static type checking and code completion while editing your code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the CKTool JS database package to your ",
+              "type": "text"
+            },
+            {
+              "code": "package.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", alongside any other runtime dependencies that you may have.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"dependencies\": {",
+            "    \"@apple/cktool.database\": \"^1.3.2\",",
+            "    \"@apple/cktool.target.nodejs\": \"^1.3.2\",",
+            "    ...",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you’ve specified your additional ",
+              "type": "text"
+            },
+            {
+              "code": "package.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dependencies, install them. Run the following command in your project directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ npm install"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command downloads the CKTool JS packages specified in your dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-client-library-for-use-in-your-scripts",
+          "level": 3,
+          "text": "Prepare the client library for use in your scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, import the configuration factory function for Node.js. This prepares a configuration object for your target platform that the client library requires for initialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import { createConfiguration } from \"@apple/cktool.target.nodejs\";"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After importing the ",
+              "type": "text"
+            },
+            {
+              "code": "createConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, you instantiate ",
+              "type": "text"
+            },
+            {
+              "code": "PromisesApi",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", passing the ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance along with the management token that you generated from CloudKit Console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Place additional imports at the top.",
+            "import { PromisesApi } from \"@apple/cktool.database\";",
+            "",
+            "const api = new PromisesApi({",
+            "  configuration: createConfiguration(),",
+            "  security: { \"ManagementTokenAuth\": \"YOUR_MANAGEMENT_TOKEN\" }",
+            "});",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to access your containers from your scripts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-default-parameters-object-to-provide-required-parameters",
+          "level": 3,
+          "text": "Create a default parameters object to provide required parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most methods on the API object require ",
+              "type": "text"
+            },
+            {
+              "code": "teamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "containerId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "environment",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each method on the API object takes a single parameters dictionary to pass required and optional values to the method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a plain JavaScript object to hold these frequently required parameters, you can use the JavaScript object spread operator to create a parameter dictionary to pass to a method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const defaultParams = {",
+            "  teamId: \"YOUR_TEAM_ID\",",
+            "  containerId: \"YOUR_CONTAINER_ID\",",
+            "  environment: CKEnvironment.DEVELOPMENT",
+            "};"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you call an API object method with your parameters object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const response = await api.importSchema({",
+            "  ...defaultParams,",
+            "  file: yourFile,",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above example, ",
+              "type": "text"
+            },
+            {
+              "code": "importSchema",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires a ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value as well as the values held in ",
+              "type": "text"
+            },
+            {
+              "code": "defaultParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Using the object spread syntax copies all of the values from ",
+              "type": "text"
+            },
+            {
+              "code": "defaultParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " along with the ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter for you to pass it to ",
+              "type": "text"
+            },
+            {
+              "code": "importSchema",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can add additional values to your parameters object. If the method doesn’t use them, it ignores those values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Convert-value-types-into-the-librarys-expected-types",
+          "level": 3,
+          "text": "Convert value types into the library’s expected types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to pass values to CKTool JS functions that expect ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Double",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Int32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Int64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Byte",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ByteArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "UUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, you must convert the parameters into the appropriate type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, ",
+              "type": "text"
+            },
+            {
+              "code": "createCKDBRecordFieldInt64Value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " expects a value that’s an ",
+              "type": "text"
+            },
+            {
+              "code": "Int64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To use that function, first convert the value to the expected type using the ",
+              "type": "text"
+            },
+            {
+              "code": "toInt64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import { toInt64 } from \"@apple/cktool.database\";",
+            "const int64Field = createCKDBRecordFieldInt64Value({",
+            "  value: toInt64(123)",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In TypeScript, the compiler catches attempts to pass values of the wrong type. If the value types are mismatched, JavaScript throws a runtime error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cktooljs/documentation/CKToolJS": {
+      "abstract": [
+        {
+          "text": "Manage your CloudKit containers and databases from JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CKTool JS",
+      "type": "topic",
+      "url": "/documentation/cktooljs"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi": {
+      "abstract": [
+        {
+          "text": "A class that exposes promise-based functions for interacting with the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PromisesApi",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "Apple Developer Portal",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Portal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cktooljs/integrating-cloudkit-access-into-your-javascript-automation-scripts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

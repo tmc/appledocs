@@ -1,0 +1,418 @@
+{
+  "abstract": [
+    {
+      "text": "Find messages related to a specific user action or application event.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os",
+        "doc://com.apple.os/documentation/os/logging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/collecting-log-messages-in-activities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Collecting Log Messages in Activities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensive logging can provide lots of information about the inner workings of your app, but the large number of log messages may make it difficult to find any particular piece of data. Further, when you try to reproduce a bug, you often need to retrace a user’s steps, correlating the actions the user performed with the app’s behaviors. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Activities",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " help you solve both of these problems by associating log messages with user actions or other app-defined events. For example, you might create an activity when the user selects an action from a menu, or when your updates synchronizes its data with a database. While an activity is active, any messages you log are automatically associated with that activity. You can review these activities in Console and find the messages captured for each activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Activities are organized in a hierarchy of parent-child relationships. For small tasks in a single subsystem category, you might use a single activity to encapsulate all the messages. For larger tasks and events that trigger other application activities,  use child activities to organize messages, similar to the way you break out different categories within a logging subsystem. For example, assume you’ve created a parent activity to respond to a user action. Within that activity, you might create a child activity to capture log messages for updates performed to your model data, and a separate child activity to capture messages related to user interface updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Activity",
+          "level": 3,
+          "text": "Create an Activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest way to create an activity is to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_activity_initiate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", specifying a name for the activity and a block that contains the code that should be executed as part of the activity. The system creates the activity, calls the block synchronously, and then releases the activity. By default, the new activity is a child of any currently active activity, if one exists. Use the flags parameter to override this behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the code below is written in an ",
+              "type": "text"
+            },
+            {
+              "code": "IBAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handler that the system calls when the user interacts with the user interface. When the method is called, it creates an activity to encapsulate the work performed by the method. The block logs some information about the action, updates the model, and finally updates the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (IBAction)treeButtonTapped:(UIButton *)sender {",
+            "    os_activity_initiate(\"Chop down tree\", OS_ACTIVITY_FLAG_DEFAULT, ^(void) {",
+            "    os_log_info(ui_log, \"Cutting down trees to turn them into logs\");",
+            "    os_log_debug(ui_log, \"Sender: %@\", sender);",
+            "    [self.company chopDownTree];",
+            "    [self updateButtonCounts];",
+            "    });",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to execute multiple blocks of code as part of the same activity or you want to create the activity with a custom parent object, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_activity_create",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an activity object and then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_activity_apply",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to execute code for that activity. As before, use a block to encapsulate the activity’s code. The code below has the same behavior as the previous code listing, but uses these functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (IBAction)truckButtonTapped:(NSButton *)sender {",
+            "    os_activity_t pulverizeLogs = os_activity_create(\"pulverize logs\", OS_ACTIVITY_CURRENT, OS_ACTIVITY_FLAG_DEFAULT);",
+            "    os_activity_apply(pulverizeLogs, ^(void) {",
+            "        os_log_info(ui_log, \"Taking logs to the paper mill\");",
+            "        os_log_debug(ui_log, \"Sender: %@\", sender);",
+            "        [self.company makePaper];",
+            "        [self updateButtonCounts];",
+            "    });",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, if you cannot use a block to encapsulate your code, you can call functions to explicitly set and restore the current activity. As shown below, you change the current activity by calling",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_activity_scope_enter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This function saves the previous activity information to a variable you pass into the function. When you finish with the task, you restore the previous activity scope using that same variable. When using this option, you must ensure that the activity scope is always restored before leaving the function’s scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (IBAction)paperButtonTapped:(NSButton *)sender {",
+            "    os_activity_t usePaper = os_activity_create(\"Use paper\", OS_ACTIVITY_CURRENT, OS_ACTIVITY_FLAG_DEFAULT);",
+            "    struct os_activity_scope_state_s savedScope;",
+            "",
+            "    os_activity_scope_enter(usePaper, &savedScope);",
+            "    os_log_debug(ui_log, \"This message is in the usePaper scope\");",
+            "    os_activity_scope_leave(&savedScope);",
+            "",
+            "    os_log_debug(ui_log, \"This message is in the restored scope, not usePaper.\");",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/logging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.os/documentation/os/os-activity-t": {
+      "abstract": [
+        {
+          "text": "An object that represents an activity triggered by the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os-activity-t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "os_activity_t",
+      "type": "topic",
+      "url": "/documentation/os/os-activity-t"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_apply": {
+      "abstract": [
+        {
+          "text": "Execute a block using a given activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_apply"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_apply",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_apply"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_create": {
+      "abstract": [
+        {
+          "text": "Creates a new activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_create"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_create",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_create"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_initiate": {
+      "abstract": [
+        {
+          "text": "Synchronously executes a new activity using the provided block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_initiate"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_initiate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_initiate",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_initiate"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_scope_enter": {
+      "abstract": [
+        {
+          "text": "Switches the current activity, saving the existing execution context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_scope_enter"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_scope_enter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_scope_enter",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_scope_enter"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Trace-Activities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/os-activity-t"
+              ],
+              "title": "Trace Activities"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/collecting-log-messages-in-activities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/collecting-log-messages-in-activities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

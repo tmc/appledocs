@@ -1,0 +1,2011 @@
+{
+  "abstract": [
+    {
+      "text": "The device’s orientation relative to a known frame of reference at a point in time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMAttitude",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMAttitude"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMAttitude"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMAttitude"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CMAttitude",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class offers three different mathematical representations of attitude: a rotation matrix, a quaternion, and Euler angles (roll, pitch, and yaw values). You access ",
+              "type": "text"
+            },
+            {
+              "code": "CMAttitude",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects through the attitude property of each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects passed to an application. An application starts receiving these device-motion objects as a result of calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Core Motion outputs a direction cosine matrix (DCM)—basically a rotation from the last “old” orientation to the new orientation of the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude": {
+      "abstract": [
+        {
+          "text": "The device’s orientation relative to a known frame of reference at a point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitude",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)": {
+      "abstract": [
+        {
+          "text": "Yields the change in attitude given a specific attitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byInverseOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMAttitude",
+          "text": "CMAttitude"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiplyByInverseOfAttitude:"
+        }
+      ],
+      "role": "symbol",
+      "title": "multiply(byInverseOf:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/multiply(byinverseof:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch": {
+      "abstract": [
+        {
+          "text": "The pitch of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "pitch",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/pitch"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/quaternion": {
+      "abstract": [
+        {
+          "text": "Returns a quaternion representing the device’s attitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quaternion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMQuaternion",
+          "text": "CMQuaternion"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/quaternion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quaternion"
+        }
+      ],
+      "role": "symbol",
+      "title": "quaternion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/quaternion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll": {
+      "abstract": [
+        {
+          "text": "The roll of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roll"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "roll"
+        }
+      ],
+      "role": "symbol",
+      "title": "roll",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/roll"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/rotationMatrix": {
+      "abstract": [
+        {
+          "text": "Returns a rotation matrix representing the device’s attitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMRotationMatrix",
+          "text": "CMRotationMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/rotationMatrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotationMatrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotationMatrix",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/rotationmatrix"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw": {
+      "abstract": [
+        {
+          "text": "The yaw of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yaw"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yaw"
+        }
+      ],
+      "role": "symbol",
+      "title": "yaw",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/yaw"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the frame of reference for attitude-related motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitudeReferenceFrame",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion": {
+      "abstract": [
+        {
+          "text": "Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDeviceMotion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdevicemotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphonemotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager": {
+      "abstract": [
+        {
+          "text": "The object for starting and managing motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates()": {
+      "abstract": [
+        {
+          "text": "Starts device-motion updates without a block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDeviceMotionUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startdevicemotionupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts device-motion updates on an operation queue and using a specified block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMDeviceMotionHandler",
+          "text": "CMDeviceMotionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDeviceMotionUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:)": {
+      "abstract": [
+        {
+          "text": "Starts device-motion updates using a reference frame but without a block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdatesUsingReferenceFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDeviceMotionUpdates(using:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts device-motion updates on an operation queue and using a specified reference frame and block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMDeviceMotionHandler",
+          "text": "CMDeviceMotionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDeviceMotionUpdates(using:to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMQuaternion": {
+      "abstract": [
+        {
+          "text": "The type for a quaternion representing a measurement of attitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMQuaternion"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMQuaternion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMQuaternion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMQuaternion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmquaternion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMRotationMatrix": {
+      "abstract": [
+        {
+          "text": "The type of a structure representing a rotation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMRotationMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMRotationMatrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMRotationMatrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMRotationMatrix",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmrotationmatrix"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data": {
+      "abstract": [
+        {
+          "text": "Retrieve motion data that the system processed to remove environmental bias, such as the effects of gravity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting processed device-motion data",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-processed-device-motion-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-motion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+      ],
+      "title": "Device motion"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-Euler-Angles",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw"
+      ],
+      "title": "Getting a Mathematical Representation of Attitude as Euler Angles"
+    },
+    {
+      "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-a-Rotation-Matrix",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/rotationMatrix",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMRotationMatrix"
+      ],
+      "title": "Getting a Mathematical Representation of Attitude as a Rotation Matrix"
+    },
+    {
+      "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-a-Quaternion",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/quaternion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMQuaternion"
+      ],
+      "title": "Getting a Mathematical Representation of Attitude as a Quaternion"
+    },
+    {
+      "anchor": "Obtaining-the-Change-in-Attitude",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)"
+      ],
+      "title": "Obtaining the Change in Attitude"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMAttitude"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-Euler-Angles",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw"
+              ],
+              "title": "Getting a Mathematical Representation of Attitude as Euler Angles"
+            },
+            {
+              "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-a-Rotation-Matrix",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/rotationMatrix",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMRotationMatrix"
+              ],
+              "title": "Getting a Mathematical Representation of Attitude as a Rotation Matrix"
+            },
+            {
+              "anchor": "Getting-a-Mathematical-Representation-of-Attitude-as-a-Quaternion",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/quaternion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMQuaternion"
+              ],
+              "title": "Getting a Mathematical Representation of Attitude as a Quaternion"
+            },
+            {
+              "anchor": "Obtaining-the-Change-in-Attitude",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)"
+              ],
+              "title": "Obtaining the Change in Attitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Device-motion",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+              ],
+              "title": "Device motion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMAttitude"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMQuaternion/title",
+          "value": "CMQuaternion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMQuaternion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMQuaternion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMQuaternion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMQuaternion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/title",
+          "value": "CMDeviceMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1yaw/title",
+          "value": "yaw"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1yaw/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "yaw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/title",
+          "value": "CMAttitudeReferenceFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRotationMatrix/title",
+          "value": "CMRotationMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRotationMatrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRotationMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRotationMatrix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRotationMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(using:)/title",
+          "value": "startDeviceMotionUpdatesUsingReferenceFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startDeviceMotionUpdatesUsingReferenceFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(to:withHandler:)/title",
+          "value": "startDeviceMotionUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startDeviceMotionUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(using:to:withHandler:)/title",
+          "value": "startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates(using:to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates()/title",
+          "value": "startDeviceMotionUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startDeviceMotionUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startDeviceMotionUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1quaternion/title",
+          "value": "quaternion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1quaternion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quaternion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/title",
+          "value": "CMMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/title",
+          "value": "CMAttitude"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1rotationMatrix/title",
+          "value": "rotationMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1rotationMatrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rotationMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1pitch/title",
+          "value": "pitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1pitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1multiply(byInverseOf:)/title",
+          "value": "multiplyByInverseOfAttitude:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1multiply(byInverseOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "multiplyByInverseOfAttitude:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/title",
+          "value": "CMHeadphoneMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1roll/title",
+          "value": "roll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1roll/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "roll"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmattitude"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmattitude"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

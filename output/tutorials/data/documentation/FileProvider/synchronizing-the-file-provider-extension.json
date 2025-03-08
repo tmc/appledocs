@@ -1,0 +1,1673 @@
+{
+  "abstract": [
+    {
+      "text": "Keep the local and remote copies of your File Provider extension’s content in sync.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider",
+        "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Synchronizing the File Provider Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system manages a local copy of the items—both documents and folders—stored on your file provider’s remote storage. The local copy can contain either ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dataless",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "materialized",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " copies of these items. A dataless copy just stores the information needed to display the item in the UI, while a materialized copy includes the item’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For documents, a dataless copy means the system just saves the item’s metadata—such as its name, file size, and last used date—while a materialized document includes both the metadata and the content. For folders, the situation is somewhat more abstract. For a dataless folder, the system knows the folder exists, but it hasn’t enumerated its content yet. If the user opens the folder, the system needs to enumerate the content before displaying it to the user. A materialized folder means the system has already enumerated the folder. Therefore, it has either a dataless or a materialized copy of every item in the folder and can display the folder’s content without requiring any additional information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses dataless copies where possible to preserve both disk space and bandwidth. However, users can open materialized copies immediately, without requiring additional access to your remote storage. It’s important, therefore, to keep materialized copies of any items the user is likely to access frequently or when they’re offline. For more information, see Specify the Working Set in  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Content-from-Your-Remote-Server",
+          "level": 3,
+          "text": "Provide Content from Your Remote Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system communicates with your extension whenever it needs additional information about the contents of your remote storage. For example, whenever the user opens a new folder, the system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating/enumerator(for:request:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to populate that folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, your file provider must create an object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. This object then provides the contents of the container specified by the method’s ",
+              "type": "text"
+            },
+            {
+              "code": "containerItemIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The container can be your file provider’s root folder, one of its subfolders, its trash, or its _working set—_a set of files particularly relevant to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the system receives the content, it saves a dataless copy of each item, based on the metadata contained in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects provided by your enumerator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can also convert dataless copies to materialized copies, as needed. For example, if the user opens a dataless file, the system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/fetchContents(for:version:request:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and saves the file’s content. For a dataless folder, the system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating/enumerator(for:request:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enumerate the folder’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system typically requests information as a response to either user actions or updates from your remote storage. However, it can also enumerate your file provider’s content or materialize items as needed. For example, the system can enumerate and materialize the content of your working set in the background, so that Spotlight can index it. It can also convert materialized items back into dataless items to free disk space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To avoid possible data loss, the system won’t convert a materialized item into a dataless item if the item has pending changes that the File Provider extension needs to sync.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Specify-the-Working-Set",
+          "level": 3,
+          "text": "Specify the Working Set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The working set is a list of items that the user may find particularly interesting. Your file provider must maintain its own working set. For a consistent experience across file providers, the working set typically includes the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recently used items",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tagged items",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Favorites",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shared items",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recently deleted items",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may add other documents or folders to the working set, if you think they’re particularly relevant to the user. To provide a consistent view of the user’s data, propagate any changes to the working set across all of the user’s devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that the system applies remote updates to local copies, the working set must also include all materialized items managed by the system when using a replicated file provider. If your file provider doesn’t explicitly track materialized items, the working set must include all items (documents and directories) on your remote storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the working set, the system calls your File Provider extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating/enumerator(for:request:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier/workingSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the container identifier. You must provide an enumerator that returns all of the items and changes for your working set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike other containers, the user doesn’t drive the enumeration of the working set as they browse through your file provider’s content. Instead, the system typically updates the working set as needed in the background. The system saves materialized copies of the working set’s content—letting the user access the content when offline. The device’s Spotlight database also indexes the working set’s contents. The system updates the Spotlight database whenever you notify it of changes to the working set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Track-Materialized-Items",
+          "level": 3,
+          "text": "Track Materialized Items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a remote update occurs, your file provider only needs to alert the system if the item or its parent are in the working set. To optimize remote updates, your File Provider extension can track items as the system materializes them or renders them dataless, adding or removing those items from the working set. If you don’t track the materialized items, your working set must include all items on your remote storage, and you must alert the system to all changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls your file provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/materializedItemsDidChange(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and posts a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializedSetDidChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification when it materializes a new item or when it renders a materialized item dataless. Your file provider must then enumerate the changes by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/enumeratorForMaterializedItems()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the file provider manager for the corresponding domain, and use the provided enumerator to access the changes since the previous sync anchor. Update your working set based on these changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-Local-Copy",
+          "level": 3,
+          "text": "Update the Local Copy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user, an app, or some other event creates, modifies, or deletes an item on your remote storage, your File Provider extension should check the working set to determine whether you need to signal an update. If your file provider doesn’t track materialized items, the working set includes all items on your remote storage, and you must signal an update for every change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For file providers that track the materialized items, check whether the item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/itemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is in the working set. If you find a matching identifier, signal an update for that identifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to notify the system of the change. Pass the matching identifier as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "containerItemIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " a second time. Pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier/workingSet",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " constant as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "containerItemIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property. This tells the system to update the working set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When moving an item, check both its new and old ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the old ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is in the working set, signal a change for the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", even if the new parent isn’t in the working set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, instead of having your File Provider extension call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your remote storage can signal an update directly by sending a push notification to the device. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/using-push-notifications-to-signal-changes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating/enumerator(for:request:)": {
+      "abstract": [
+        {
+          "text": "Tells the file provider to return an enumerator for the provided directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderRequest",
+          "text": "NSFileProviderRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFileProviderEnumerator",
+          "text": "NSFileProviderEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating/enumerator(for:request:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumeratorForContainerItemIdentifier:request:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "enumerator(for:request:)",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderenumerating/enumerator(for:request:)"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerator": {
+      "abstract": [
+        {
+          "text": "A protocol for enumerating items and changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderEnumerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderEnumerator",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderenumerator"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier/workingSet": {
+      "abstract": [
+        {
+          "text": "The persistent identifier representing the working set of documents and directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workingSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier/workingSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderWorkingSetContainerItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "workingSet",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemidentifier/workingset"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the properties of an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemProtocol",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/itemIdentifier": {
+      "abstract": [
+        {
+          "text": "The item’s persistent identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/itemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemIdentifier"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "itemIdentifier",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/itemidentifier"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier": {
+      "abstract": [
+        {
+          "text": "The persistent identifier of the item’s parent folder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/parentItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentItemIdentifier"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parentItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/parentitemidentifier"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager": {
+      "abstract": [
+        {
+          "text": "A manager object that you use to communicate with the file provider from either your app or your File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderManager",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermanager"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/enumeratorForMaterializedItems()": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator for all the items the system currently stores on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumeratorForMaterializedItems"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFileProviderEnumerator",
+          "text": "NSFileProviderEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/enumeratorForMaterializedItems()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumeratorForMaterializedItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumeratorForMaterializedItems()",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermanager/enumeratorformaterializeditems()"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Alerts the system to changes in the specified folder’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager/signalEnumerator(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signalEnumeratorForContainerItemIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "signalEnumerator(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermanager/signalenumerator(for:completionhandler:)"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializedSetDidChange": {
+      "abstract": [
+        {
+          "text": "A notification that the system posts when the set of materialized items changes for your file provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderMaterializedSetDidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializedSetDidChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderMaterializedSetDidChange",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermaterializedsetdidchange"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/fetchContents(for:version:request:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the file provider to download the requested item from remote storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderItemVersion",
+          "text": "NSFileProviderItemVersion"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderRequest",
+          "text": "NSFileProviderRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItem",
+          "text": "NSFileProviderItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/fetchContents(for:version:request:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchContentsForItemWithIdentifier:version:request:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "fetchContents(for:version:request:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderreplicatedextension/fetchcontents(for:version:request:completionhandler:)"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/materializedItemsDidChange(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the file provider that the set of materialized items changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "materializedItemsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension/materializedItemsDidChange(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "materializedItemsDidChangeWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "materializedItemsDidChange(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderreplicatedextension/materializeditemsdidchange(completionhandler:)"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Build a File Provider extension that syncs the local copies of your files with your remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Replicated File Provider extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/replicated-file-provider-extension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/setting-the-finder-sidebar-icon": {
+      "abstract": [
+        {
+          "text": "Specify a standard or custom symbol as a sidebar icon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/setting-the-finder-sidebar-icon",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the Finder Sidebar Icon",
+      "type": "topic",
+      "url": "/documentation/fileprovider/setting-the-finder-sidebar-icon"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions": {
+      "abstract": [
+        {
+          "text": "Make remote files available in macOS and iOS, and synchronize their states by using file provider extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing files using file provider extensions",
+      "type": "topic",
+      "url": "/documentation/fileprovider/synchronizing-files-using-file-provider-extensions"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Keep the local and remote copies of your File Provider extension’s content in sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing the File Provider Extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/synchronizing-the-file-provider-extension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/using-push-notifications-to-signal-changes": {
+      "abstract": [
+        {
+          "text": "Send push notifications to a device to signal changes from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/using-push-notifications-to-signal-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Using push notifications to signal changes",
+      "type": "topic",
+      "url": "/documentation/fileprovider/using-push-notifications-to-signal-changes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions",
+        "doc://com.apple.fileprovider/documentation/FileProvider/setting-the-finder-sidebar-icon"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions",
+                "doc://com.apple.fileprovider/documentation/FileProvider/setting-the-finder-sidebar-icon"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemIdentifier~1workingSet/title",
+          "value": "NSFileProviderWorkingSetContainerItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemIdentifier~1workingSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderWorkingSetContainerItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1parentItemIdentifier/title",
+          "value": "parentItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1parentItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerator/title",
+          "value": "NSFileProviderEnumerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderEnumerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderEnumerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension~1materializedItemsDidChange(completionHandler:)/title",
+          "value": "materializedItemsDidChangeWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension~1materializedItemsDidChange(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "materializedItemsDidChangeWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1itemIdentifier/title",
+          "value": "itemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1itemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager~1signalEnumerator(for:completionHandler:)/title",
+          "value": "signalEnumeratorForContainerItemIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager~1signalEnumerator(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "signalEnumeratorForContainerItemIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/title",
+          "value": "NSFileProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension~1fetchContents(for:version:request:completionHandler:)/title",
+          "value": "fetchContentsForItemWithIdentifier:version:request:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension~1fetchContents(for:version:request:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchContentsForItemWithIdentifier:version:request:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager~1enumeratorForMaterializedItems()/title",
+          "value": "enumeratorForMaterializedItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager~1enumeratorForMaterializedItems()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumeratorForMaterializedItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerating~1enumerator(for:request:)/title",
+          "value": "enumeratorForContainerItemIdentifier:request:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerating~1enumerator(for:request:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumeratorForContainerItemIdentifier:request:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/synchronizing-the-file-provider-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/synchronizing-the-file-provider-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

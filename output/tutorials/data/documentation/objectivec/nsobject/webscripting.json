@@ -1,0 +1,696 @@
+{
+  "abstract": [
+    {
+      "code": "WebScripting",
+      "type": "codeVoice"
+    },
+    {
+      "text": " is an informal protocol that defines methods that classes can implement to export their interfaces to a WebScript environment such as JavaScript.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1655625,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "WebScripting"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all properties and methods are exported to JavaScript by default. The object needs to implement the class methods described below to specify the properties and methods to export. Furthermore, a method is not exported if its return type and all its parameters are not Objective-C objects or scalars. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Method argument and return types that are Objective-C objects will be converted to appropriate types for the scripting environment. For example: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is converted to undefined.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects will be converted to JavaScript numbers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSString",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects will be converted to JavaScript strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSArray",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects will be mapped to special read-only arrays.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSNull",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will be converted to JavaScript’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "null",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WebUndefined",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will be converted to undefined.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WebScriptObject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instances will be unwrapped for the scripting environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of all other classes will be wrapped before being passed to the script, and unwrapped as they return to Objective-C. Primitive types such as ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "char",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are cast to a numeric in JavaScript.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access to an object’s attributes, such as instance variables, is managed by key-value coding (KVC). The KVC methods ",
+              "type": "text"
+            },
+            {
+              "code": "setValue:forKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "valueForKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are used to access the attributes of an object from the scripting environment. Additionally, the scripting environment can attempt any number of attribute requests or method invocations that are not exported by your class. You can manage these requests by overriding the ",
+              "type": "text"
+            },
+            {
+              "code": "setValue:forUndefinedKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "valueForUndefinedKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods from the key-value coding protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exceptions can be raised from the scripting environment by sending a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message to the relevant ",
+              "type": "text"
+            },
+            {
+              "code": "WebScriptObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. The method raising the exception must be within the scope of the script invocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696159": {
+      "identifier": "devLink-1696159",
+      "title": "WebKit Objective-C Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528532-isselectorexcluded": {
+      "abstract": [
+        {
+          "text": "Returns whether a selector should be hidden from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSelectorExcluded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromWebScript"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528532-isselectorexcluded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSelectorExcluded(fromWebScript:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528532-isselectorexcluded"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528539-webscriptname": {
+      "abstract": [
+        {
+          "text": "Returns the scripting environment name for a selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webScriptName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector!) -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528539-webscriptname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webScriptName(for:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528539-webscriptname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528541-webscriptname": {
+      "abstract": [
+        {
+          "text": "Returns the scripting environment name for an attribute specified by a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webScriptName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>!) -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528541-webscriptname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webScriptName(forKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528541-webscriptname"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528543-invokedefaultmethod": {
+      "abstract": [
+        {
+          "text": "Executes when a script attempts to invoke a method on an exposed object directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invokeDefaultMethod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]!) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528543-invokedefaultmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invokeDefaultMethod(withArguments:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528543-invokedefaultmethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528545-iskeyexcluded": {
+      "abstract": [
+        {
+          "text": "Returns whether a key should be hidden from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isKeyExcluded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromWebScript"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528545-iskeyexcluded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isKeyExcluded(fromWebScript:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528545-iskeyexcluded"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528546-finalizeforwebscript": {
+      "abstract": [
+        {
+          "text": "Performs cleanup when the scripting environment is reset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalizeForWebScript"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528546-finalizeforwebscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalizeForWebScript()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528546-finalizeforwebscript"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod": {
+      "abstract": [
+        {
+          "text": "Handles undefined method invocation from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invokeUndefinedMethod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromWebScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]!) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invokeUndefinedMethod(fromWebScript:withArguments:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528562-invokeundefinedmethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting": {
+      "abstract": [
+        {
+          "code": "WebScripting",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is an informal protocol that defines methods that classes can implement to export their interfaces to a WebScript environment such as JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WebScripting",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/webscripting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "throwException(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/throwexception(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696159"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679796",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528541-webscriptname",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528539-webscriptname",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528532-isselectorexcluded",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528545-iskeyexcluded"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting attributes"
+    },
+    {
+      "anchor": "1679870",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528543-invokedefaultmethod",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod"
+      ],
+      "kind": "taskGroup",
+      "title": "Invoking methods"
+    },
+    {
+      "anchor": "1679892",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1528546-finalizeforwebscript"
+      ],
+      "kind": "taskGroup",
+      "title": "Finalizing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/webscripting"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/webscripting"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

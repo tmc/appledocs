@@ -1,0 +1,550 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your watch-only project with unit tests and user interface tests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-tests-for-your-watchos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up tests for your watchOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode offers unit and user interface tests to use while building your watchOS app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Add them to your project to confirm that your features work as expected, prevent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance regressions, and validate user interaction flows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-test-target-to-the-project",
+          "level": 3,
+          "text": "Add a test target to the project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a unit test or UI test target to your existing watch-only watchOS Xcode project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by choosing File > New > Target to open the template selection dialog. Alternatively,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the project in the Project navigator, select the General tab, and click the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Add a Target button (+) at the bottom of the Targets area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode presents the template selection dialog. Select watchOS, and then select the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS UI Testing Bundle or the watchOS Unit Testing Bundle option in the Test section,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-up-tests-for-your-watchos-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify a name for the test target, and then choose the WatchKit Extension option",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the target if you’re adding unit tests, or the WatchKit App option if you’re adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "UI tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-up-tests-for-your-watchos-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds the target and template files to your project, and creates a new scheme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run your tests. Select the new scheme, named [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Project Name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "] ",
+              "type": "text"
+            },
+            {
+              "code": "WatchKit ExtensionTests",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the list of schemes in Xcode’s toolbar, and choose Edit Scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Confirm the selected executable is [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Project Name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "] ",
+              "type": "text"
+            },
+            {
+              "code": "WatchKit App.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If not, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it and click Close.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-up-tests-for-your-watchos-app-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-the-extension-code-visible-in-unit-tests",
+          "level": 3,
+          "text": "Make the extension code visible in unit tests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a unit test file to your test target, your watch extension code isn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visible to your tests by default. Add an ",
+              "type": "text"
+            },
+            {
+              "code": "@testable import",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declaration at the top",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your test file, specifying your watch extension name, to make your extension code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "testable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-up-tests-for-your-watchos-app-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Switch-schemes-to-run-tests",
+          "level": 3,
+          "text": "Switch schemes to run tests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you try to run your tests before switching to the new test scheme, Xcode lets you know",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the current scheme isn’t set up for testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-up-tests-for-your-watchos-app-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click Cancel and select the new test scheme from the list of schemes in Xcode’s toolbar,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and choose Product > Test to run your tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "setting-up-tests-for-your-watchos-app-1": {
+      "alt": "An Xcode screenshot showing the template selection dialog with the watchOS platform in a selected state. The dialog contains three horizontal sections: Test, Application, and Framework & Library. A rectangle surrounds the watchOS UI Testing Bundle and watchOS Unit Testing Bundle options in the Test section. The watchOS Unit Testing Bundle option is in a selected state.",
+      "identifier": "setting-up-tests-for-your-watchos-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90e56560d27e95b5c3c9ab5b3425b3c5/setting-up-tests-for-your-watchos-app-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21f6fc24cd5d1a5850a5f12d40b3fbb8/setting-up-tests-for-your-watchos-app-1~dark@2x.png"
+        }
+      ]
+    },
+    "setting-up-tests-for-your-watchos-app-2": {
+      "alt": "An Xcode screenshot showing the available options for a new target, which include entering a product name and organization identifier, and choosing a team, programming language, project, and target to test. The WatchKit Extension option displays as the target to test.",
+      "identifier": "setting-up-tests-for-your-watchos-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f73942de59ed5f1e815d28fc44b4e3e0/setting-up-tests-for-your-watchos-app-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa4812a8ca3a960decfb53708e0d44f2/setting-up-tests-for-your-watchos-app-2~dark@2x.png"
+        }
+      ]
+    },
+    "setting-up-tests-for-your-watchos-app-3": {
+      "alt": "A screenshot of an Xcode scheme editor showing the Info pane for the selected Run action. Options available for selection are: Build Configuration, Executable, Watch Interface, and Launch. The WatchKit App option displays as the executable option.",
+      "identifier": "setting-up-tests-for-your-watchos-app-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ccdf40dc85f6b03bf91c204c1c730ad0/setting-up-tests-for-your-watchos-app-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc496f3365478838999c2f02685aa185/setting-up-tests-for-your-watchos-app-3~dark@2x.png"
+        }
+      ]
+    },
+    "setting-up-tests-for-your-watchos-app-4": {
+      "alt": "An image of the first three lines of code in a sample test file that Xcode generates. A rectangle surrounds the @testable import declaration on the second line.",
+      "identifier": "setting-up-tests-for-your-watchos-app-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72f653441bf9cbce0fcef768a9cd2880/setting-up-tests-for-your-watchos-app-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33e51dad46908ff83ff11ef1a926b851/setting-up-tests-for-your-watchos-app-4~dark@2x.png"
+        }
+      ]
+    },
+    "setting-up-tests-for-your-watchos-app-5": {
+      "alt": "A dialog that indicates the active scheme doesn’t include the tests you’re trying to run, and asks if you would like to configure the scheme. There are two buttons: the Edit Scheme button and the Cancel button.",
+      "identifier": "setting-up-tests-for-your-watchos-app-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0fe1856ff229c22cb359d2e14a687f7/setting-up-tests-for-your-watchos-app-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8cd3a1b626fafdfb727981b03ab8e624/setting-up-tests-for-your-watchos-app-5~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

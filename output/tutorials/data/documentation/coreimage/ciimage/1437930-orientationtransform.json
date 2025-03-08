@@ -1,0 +1,553 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the transformation needed to reorient the image to the specified orientation.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437930,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIImage(im)imageTransformForOrientation:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "orientationTransform"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "forExifOrientation"
+      },
+      {
+        "kind": "text",
+        "text": ": Int32) -> CGAffineTransform"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIImage"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "orientationTransform(forExifOrientation:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientationTransform"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forExifOrientation"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "orientation"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5Int32V",
+              "text": "Int32"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGAffineTransform",
+              "text": "CGAffineTransform"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An integer specifying an image orientation according to the EXIF specification. For details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.imageio/documentation/ImageIO/kCGImagePropertyOrientation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orientation"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An affine transform that will rotate or mirror the image to match the specified orientation when applied.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method determines the transformation needed to match the specified orientation, but does not apply that transformation to the image. To apply the transformation (possibly after concatenating it with other transformations), use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or the ",
+              "type": "text"
+            },
+            {
+              "code": "CIAffineTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filter. To determine and apply the transformation in a single step, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties": {
+      "abstract": [
+        {
+          "text": "A dictionary containing metadata about the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437733-properties"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace": {
+      "abstract": [
+        {
+          "text": "The color space of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437750-colorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition": {
+      "abstract": [
+        {
+          "text": "Returns a filter shape object that represents the domain of definition of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "definition"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFilterShape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "definition",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437804-definition"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform": {
+      "abstract": [
+        {
+          "text": "Returns the transformation needed to reorient the image to the specified orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forExifOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orientationTransform(forExifOrientation:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437930-orientationtransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent": {
+      "abstract": [
+        {
+          "text": "A rectangle that specifies the extent of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437996-extent"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url": {
+      "abstract": [
+        {
+          "text": "The URL from which the image was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438195-url"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformed(by:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438203-transformed"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oriented(forExifOrientation:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438223-oriented"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO/kCGImagePropertyOrientation": {
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO/kCGImagePropertyOrientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImagePropertyOrientation",
+      "type": "topic",
+      "url": "/documentation/imageio/kcgimagepropertyorientation"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace"
+      ],
+      "title": "Getting Image Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/ciimage/1437930-imagetransformfororientation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/ciimage/1437930-orientationtransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1091 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that calculates k-nearest neighbors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate4BNNSO16NearestNeighborsV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NearestNeighbors"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NearestNeighbors"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "BNNS.NearestNeighbors"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NearestNeighbors"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code generates eight 2D data points and loads them into a k-nearest neighbors object with a single call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/append(samples:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. The code then computes the four nearest neighbors, based on Euclidean distance, to the sample data point at index 7 of the samples data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let samples: [Float] = [",
+            "    1, 2,   // 0",
+            "    7, 2,   // 1",
+            "    3, 4,   // 2",
+            "    8, 4,   // 3",
+            "    3, 7,   // 4",
+            "    7, 7,   // 5",
+            "    2, 8,   // 6",
+            "    2, 5    // 7",
+            "]",
+            "let samplesDescriptor = BNNSNDArrayDescriptor.allocate(",
+            "    initializingFrom: samples,",
+            "    shape: .matrixRowMajor(8, 2))",
+            "",
+            "let maximumSampleCount = 8",
+            "let dimensionCount = 2",
+            "let nearestNeighborCount = 4",
+            "",
+            "let knn = BNNS.NearestNeighbors(",
+            "    capacity: maximumSampleCount,",
+            "    dimensionCount: dimensionCount,",
+            "    neighborCount: nearestNeighborCount,",
+            "    dataType: .float)",
+            "",
+            "knn.append(samples: samplesDescriptor)",
+            "",
+            "let indices = BNNSNDArrayDescriptor.allocateUninitialized(",
+            "    scalarType: Int32.self,",
+            "    shape: .vector(nearestNeighborCount))",
+            "let distances = BNNSNDArrayDescriptor.allocateUninitialized(",
+            "    scalarType: Int32.self,",
+            "    shape: .vector(nearestNeighborCount))",
+            "",
+            "knn.apply(index: 7,",
+            "     outputIndices: indices,",
+            "     outputDistances: distances)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[7, 2, 4, 6]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the distances array contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0, 1.4142135, 2.236068, 3.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4182669",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BNNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors": {
+      "abstract": [
+        {
+          "text": "A structure that calculates k-nearest neighbors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NearestNeighbors"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NearestNeighbors"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.NearestNeighbors",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/nearestneighbors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/append(samples:)": {
+      "abstract": [
+        {
+          "text": "Adds new sample data to a k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "samples"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/append(samples:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(samples:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/nearestneighbors/append(samples:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/apply(index:outputIndices:outputDistances:)": {
+      "abstract": [
+        {
+          "text": "Calculates the sorted indices and Euclidean distances of the k-nearest neighbors to a specified sample data point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputDistances"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/apply(index:outputIndices:outputDistances:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(index:outputIndices:outputDistances:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/nearestneighbors/apply(index:outputindices:outputdistances:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/init(capacity:dimensionCount:neighborCount:dataType:)": {
+      "abstract": [
+        {
+          "text": "Returns a new k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dimensionCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "neighborCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/init(capacity:dimensionCount:neighborCount:dataType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(capacity:dimensionCount:neighborCount:dataType:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/nearestneighbors/init(capacity:dimensioncount:neighborcount:datatype:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSCreateNearestNeighbors(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSCreateNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSNearestNeighbors",
+          "text": "BNNSNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSCreateNearestNeighbors(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSCreateNearestNeighbors"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSCreateNearestNeighbors(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnscreatenearestneighbors(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDestroyNearestNeighbors(_:)": {
+      "abstract": [
+        {
+          "text": "Destroys a k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDestroyNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSNearestNeighbors",
+          "text": "BNNSNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDestroyNearestNeighbors(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDestroyNearestNeighbors"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDestroyNearestNeighbors(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdestroynearestneighbors(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighbors": {
+      "abstract": [
+        {
+          "text": "A k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighbors"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighbors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighbors"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNearestNeighbors",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsnearestneighbors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsGetInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Calculates the sorted indices and Euclidean distances of the k-nearest neighbors to a specified sample data point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighborsGetInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSNearestNeighbors",
+          "text": "BNNSNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsGetInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighborsGetInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNearestNeighborsGetInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsnearestneighborsgetinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsLoad(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds new sample data to a k-nearest neighbors object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighborsLoad"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSNearestNeighbors",
+          "text": "BNNSNearestNeighbors"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsLoad(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNearestNeighborsLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNearestNeighborsLoad(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsnearestneighborsload(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4182669": {
+      "alt": "A scatter plot showing the eight sample positions in the code listing. The sample positions at indices 6, 4, and 2 are linked by lines to the sample at index 7, with labels indicating the distance between the two samples.",
+      "identifier": "media-4182669",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b1dfceed499c9a7f9d1ff929a2ff098/media-4182669@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52194f95b0692df6eb432562957297b3/media-4182669~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "K-nearest-neighbors-calculation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighbors",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSCreateNearestNeighbors(_:_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsLoad(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNearestNeighborsGetInfo(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDestroyNearestNeighbors(_:)"
+      ],
+      "title": "K-nearest neighbors calculation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-k-nearest-neighbors-object",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/init(capacity:dimensionCount:neighborCount:dataType:)"
+      ],
+      "title": "Creating a k-nearest neighbors object"
+    },
+    {
+      "anchor": "Appending-data-points-to-a-k-nearest-neighbors-object",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/append(samples:)"
+      ],
+      "title": "Appending data points to a k-nearest neighbors object"
+    },
+    {
+      "anchor": "Calculating-k-nearest-neighbors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/NearestNeighbors/apply(index:outputIndices:outputDistances:)"
+      ],
+      "title": "Calculating k-nearest neighbors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighborsGetInfo(_:_:_:_:)/title",
+          "value": "BNNSNearestNeighborsGetInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighborsGetInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNearestNeighborsGetInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSCreateNearestNeighbors(_:_:_:_:_:)/title",
+          "value": "BNNSCreateNearestNeighbors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSCreateNearestNeighbors(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSCreateNearestNeighbors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighbors/title",
+          "value": "BNNSNearestNeighbors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighbors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNearestNeighbors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighbors/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNearestNeighbors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighborsLoad(_:_:_:)/title",
+          "value": "BNNSNearestNeighborsLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNearestNeighborsLoad(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNearestNeighborsLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDestroyNearestNeighbors(_:)/title",
+          "value": "BNNSDestroyNearestNeighbors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDestroyNearestNeighbors(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDestroyNearestNeighbors"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnns/nearestneighbors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

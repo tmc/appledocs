@@ -1,0 +1,2625 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the setup and gameplay of a tabletop game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11TabletopKit0A4GameC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TabletopGame"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TabletopGame"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "TabletopGame"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TabletopGame"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents your game layout and equipment. Add seats for players to occupy, conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and equipment for them to manipulate, conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass an object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let table = Table()",
+            "root = createRootEntity(table: table.entity)",
+            "var setup = TableSetup(tabletop: table)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement your structure to initialize the protocol properties, such as ",
+              "type": "text"
+            },
+            {
+              "code": "shape",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties for the ",
+              "type": "text"
+            },
+            {
+              "code": "EntityTabletop",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Table: EntityTabletop {",
+            "    var shape: TabletopShape",
+            "    var entity: Entity",
+            "    var id: EquipmentIdentifier",
+            "    ",
+            "    init() {",
+            "        self.entity = try! Entity.load(named: \"table/table\", in: contentBundle)",
+            "        self.shape = .round(entity: entity)",
+            "        self.id = .table",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create the ",
+              "type": "text"
+            },
+            {
+              "code": "TabletopGame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that represents your game instance by passing the ",
+              "type": "text"
+            },
+            {
+              "code": "TableSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "game = TabletopGame(tableSetup: setup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/localPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a seat at the table using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a similar method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "game.claimAnySeat()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement an object that renders your game layout and equipment. Set the game’s renderer, conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addRenderDelegate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate/onUpdate(timeInterval:snapshot:visualState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to render the current state of the game. Alternatively, conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityRenderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "game.addRenderDelegate(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If needed, you can draw a debug representation of selected items in the game using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/debugDraw(options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "game.debugDraw(options: [.drawTable, .drawSeats, .drawEquipment])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, add actions to the equipment that controls gameplay using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addAction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addActions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, pass an object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addObserver(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/Observer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Implement the ",
+              "type": "text"
+            },
+            {
+              "code": "Observer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol methods to progress gameplay when players interact with the equipment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-tabletop-games-PageImage-card.png": {
+      "alt": "An illustration that depicts a tabletop game showing chess pieces on a grid.",
+      "identifier": "creating-tabletop-games-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5f59743df3d9b99dcf78117bc482672/creating-tabletop-games-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/216dff3d0207d0d68fd8841437084f04/creating-tabletop-games-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityRenderDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol for the object that renders your entire game using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityRenderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityRenderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityRenderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityRenderDelegate",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entityrenderdelegate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game when you render it using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment": {
+      "abstract": [
+        {
+          "text": "A protocol for equipment that players directly interact with in a game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat": {
+      "abstract": [
+        {
+          "text": "A protocol for seats at the table that players occupy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSeat",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tableseat"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup": {
+      "abstract": [
+        {
+          "text": "An object that represents the arrangement of seats, equipment, and counters around the game table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSetup",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame": {
+      "abstract": [
+        {
+          "text": "An object that manages the setup and gameplay of a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/ActionCancellationReason": {
+      "abstract": [
+        {
+          "text": "The possible reasons for cancelling an action or an interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionCancellationReason"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/ActionCancellationReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionCancellationReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame.ActionCancellationReason",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/actioncancellationreason"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/MultiplayerDelegate-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An object that handles players joining multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultiplayerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/MultiplayerDelegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultiplayerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame.MultiplayerDelegate",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/multiplayerdelegate-swift.protocol"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/Observer": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that progress gameplay when players take actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observer"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/Observer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Observer"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame.Observer",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/observer"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol for the object that renders your entire game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame.RenderDelegate",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/renderdelegate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate/onUpdate(timeInterval:snapshot:visualState:)": {
+      "abstract": [],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit13TableSnapshotV",
+          "text": "TableSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visualState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit16TableVisualStateV",
+          "text": "TableVisualState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate/onUpdate(timeInterval:snapshot:visualState:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "onUpdate(timeInterval:snapshot:visualState:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/renderdelegate/onupdate(timeinterval:snapshot:visualstate:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addAction(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A6ActionP",
+          "text": "TabletopAction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAction(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/addaction(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addActions(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addActions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A6ActionP",
+          "text": "TabletopAction"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addActions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addActions(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/addactions(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addObserver(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC",
+          "text": "TabletopGame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC8ObserverP",
+          "text": "Observer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addObserver(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/addobserver(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addRenderDelegate(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRenderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC",
+          "text": "TabletopGame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC14RenderDelegateP",
+          "text": "RenderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addRenderDelegate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addRenderDelegate(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/addrenderdelegate(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/attachNetworkCoordinator(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachNetworkCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A25NetworkSessionCoordinatorP",
+          "text": "TabletopNetworkSessionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/attachNetworkCoordinator(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachNetworkCoordinator(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/attachnetworkcoordinator(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/bookmarks": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit23StateBookmarkIdentifierV",
+          "text": "StateBookmarkIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/bookmarks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarks",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/bookmarks"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimAnySeat()": {
+      "abstract": [
+        {
+          "text": "Claims any free seat. If there are no free seats, it has no effect",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "claimAnySeat"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimAnySeat()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "claimAnySeat()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/claimanyseat()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(_:)": {
+      "abstract": [
+        {
+          "text": "Claims the given seat. If provided Seat is not part of the table, it has no effect",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "claimSeat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit9TableSeatP",
+          "text": "TableSeat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "claimSeat(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/claimseat(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(matching:)": {
+      "abstract": [
+        {
+          "text": "Claims the given seat. If provided ID does not exist, it has no effect",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "claimSeat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19TableSeatIdentifierV",
+          "text": "TableSeatIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "claimSeat(matching:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/claimseat(matching:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/coordinateWithSession(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateWithSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A8ActivityP",
+          "text": "GroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/coordinateWithSession(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinateWithSession(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/coordinatewithsession(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/debugDraw(options:)": {
+      "abstract": [
+        {
+          "text": "Enable or disable debug visualizations",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDraw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit16DebugDrawOptionsV",
+          "text": "DebugDrawOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/debugDraw(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDraw(options:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/debugdraw(options:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/detachNetworkCoordinator()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachNetworkCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/detachNetworkCoordinator()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachNetworkCoordinator()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/detachnetworkcoordinator()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit9EquipmentP",
+          "text": "Equipment"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(matching:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit9EquipmentP",
+          "text": "Equipment"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipment(matching:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipment(matching:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipment(of:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipment(of:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:forEntity:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the specified equipment type associated with an entity if it exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:forEntity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipment(of:forEntity:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipment(of:forentity:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:matching:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipment(of:matching:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipment(of:matching:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipmentIDs": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "equipmentIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipmentIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "equipmentIDs",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/equipmentids"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)": {
+      "abstract": [
+        {
+          "text": "Creates a tabletop game with the specified table configuration and version of rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tableSetup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit10TableSetupV",
+          "text": "TableSetup"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tableSetup:version:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/init(tablesetup:version:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(_:)": {
+      "abstract": [
+        {
+          "text": "Restores game to the given bookmark",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jumpToBookmark"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit13StateBookmarkV",
+          "text": "StateBookmark"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jumpToBookmark(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/jumptobookmark(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(matching:)": {
+      "abstract": [
+        {
+          "text": "Restores game to the given bookmark",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jumpToBookmark"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit23StateBookmarkIdentifierV",
+          "text": "StateBookmarkIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jumpToBookmark(matching:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/jumptobookmark(matching:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/localPlayer": {
+      "abstract": [
+        {
+          "text": "The player who runs this tabletop game instance on their device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit6PlayerV",
+          "text": "Player"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/localPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localPlayer",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/localplayer"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/multiplayerDelegate-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiplayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC",
+          "text": "TabletopGame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC19MultiplayerDelegateP",
+          "text": "MultiplayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/multiplayerDelegate-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiplayerDelegate",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/multiplayerdelegate-swift.property"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/releaseSeat()": {
+      "abstract": [
+        {
+          "text": "Releases the seat for this player. If the player is not seated it has no effect",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "releaseSeat"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/releaseSeat()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "releaseSeat()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/releaseseat()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeObserver(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC",
+          "text": "TabletopGame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC8ObserverP",
+          "text": "Observer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeObserver(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/removeobserver(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeRenderDelegate(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeRenderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC",
+          "text": "TabletopGame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A4GameC14RenderDelegateP",
+          "text": "RenderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeRenderDelegate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeRenderDelegate(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/removerenderdelegate(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/rootPose": {
+      "abstract": [
+        {
+          "text": "Update the root pose for the current player",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootPose"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SPPose3D",
+          "text": "Pose3D"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/rootPose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootPose",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/rootpose"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)": {
+      "abstract": [
+        {
+          "text": "Starts a local interaction. It will return ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if too many interactions are already happening at the same time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onEquipmentID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC10IdentifierV",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startInteraction(onEquipmentID:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/startinteraction(onequipmentid:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/update(deltaTime:)": {
+      "abstract": [
+        {
+          "text": "Update the game manually. Call this function if ",
+          "type": "text"
+        },
+        {
+          "code": "automaticUpdate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " was not set when registering the Tabletop instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/update(deltaTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(deltaTime:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/update(deltatime:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/withCurrentSnapshot(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCurrentSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit13TableSnapshotV",
+          "text": "TableSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/withCurrentSnapshot(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCurrentSnapshot(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/withcurrentsnapshot(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample": {
+      "abstract": [
+        {
+          "text": "Develop a spatial board game where multiple players interact with pieces on a table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+      "images": [
+        {
+          "identifier": "creating-tabletop-games-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating tabletop games",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopkitsample"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape": {
+      "abstract": [
+        {
+          "text": "An object that represents the physical properties of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopShape",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopshape"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-tabletop-game",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/rootPose",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/update(deltaTime:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/withCurrentSnapshot(_:)"
+      ],
+      "title": "Creating a tabletop game"
+    },
+    {
+      "anchor": "Adding-equipment-to-the-game",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipmentIDs",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(matching:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:forEntity:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/equipment(of:matching:)"
+      ],
+      "title": "Adding equipment to the game"
+    },
+    {
+      "anchor": "Managing-seats",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimAnySeat()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/claimSeat(matching:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/releaseSeat()"
+      ],
+      "title": "Managing seats"
+    },
+    {
+      "anchor": "Getting-the-player",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/localPlayer"
+      ],
+      "title": "Getting the player"
+    },
+    {
+      "anchor": "Adding-actions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addAction(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addActions(_:)"
+      ],
+      "title": "Adding actions"
+    },
+    {
+      "anchor": "Observing-actions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/Observer",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addObserver(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeObserver(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/ActionCancellationReason"
+      ],
+      "title": "Observing actions"
+    },
+    {
+      "anchor": "Jumping-to-bookmarks",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/jumpToBookmark(matching:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/bookmarks"
+      ],
+      "title": "Jumping to bookmarks"
+    },
+    {
+      "anchor": "Starting-interactions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)"
+      ],
+      "title": "Starting interactions"
+    },
+    {
+      "anchor": "Rendering-the-table",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/addRenderDelegate(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/removeRenderDelegate(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/RenderDelegate",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityRenderDelegate"
+      ],
+      "title": "Rendering the table"
+    },
+    {
+      "anchor": "Supporting-multiple-players",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/attachNetworkCoordinator(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/detachNetworkCoordinator()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/multiplayerDelegate-swift.property",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/MultiplayerDelegate-swift.protocol"
+      ],
+      "title": "Supporting multiple players"
+    },
+    {
+      "anchor": "Enabling-group-activities",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/coordinateWithSession(_:)"
+      ],
+      "title": "Enabling group activities"
+    },
+    {
+      "anchor": "Drawing-debug-representations",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/debugDraw(options:)"
+      ],
+      "title": "Drawing debug representations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit/tabletopgame"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1700 @@
+{
+  "abstract": [
+    {
+      "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "FileProvider",
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "File Provider"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app focuses on providing and syncing user documents from remote storage, you can implement a File Provider extension to give users access to those documents when they’re using other apps. If you just need to share local documents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider#Share-files-locally",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4032695",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework has two different starting points for building your File Provider extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system manages the content accessed through the File Provider extension. Available in macOS 11+ and iOS 16+.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The extension hosts and manages the files accessed through the File Provider extension. Available in iOS 11+.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The replicated extension takes responsibility for monitoring and managing the local copies of your documents. The file provider focuses on syncing data between the local copy and the remote storage—uploading any local changes and downloading any remote changes. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The nonreplicated extension manages a local copy of the extension’s content, including creating and managing placeholders for remote files. It also syncs the content with your remote storage. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-files-locally",
+          "level": 3,
+          "text": "Share files locally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need a File Provider extension to allow access to documents that your app stores locally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, to give other apps access to the files in your ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, set the following keys in your app’s Info tab or its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For document browser-based apps, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW37",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. For all other apps, set both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW20",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/plist/info/LSSupportsOpeningDocumentsInPlace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you set these keys, other apps can open and edit the contents of your ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory in place. Your files also appear in both the Files app and the document browser. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIDocumentBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDocumentBrowserViewController"
+    },
+    "doc://com.apple.documentation/documentation/Updates/FileProvider": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to File Provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/FileProvider",
+      "kind": "article",
+      "role": "article",
+      "title": "File Provider updates",
+      "type": "topic",
+      "url": "/documentation/Updates/FileProvider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider#Share-files-locally": {
+      "abstract": [],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider#Share-files-locally",
+      "kind": "section",
+      "title": "Share files locally",
+      "type": "topic",
+      "url": "/documentation/fileprovider#Share-files-locally"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/FILEPROVIDER_API_AVAILABILITY_FEEDBACK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FILEPROVIDER_API_AVAILABILITY_FEEDBACK"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/FILEPROVIDER_API_AVAILABILITY_FEEDBACK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FILEPROVIDER_API_AVAILABILITY_FEEDBACK",
+      "type": "topic",
+      "url": "/documentation/fileprovider/fileprovider_api_availability_feedback"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderDomain": {
+      "abstract": [
+        {
+          "text": "A File Provider extension’s domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderDomain",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderdomain"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about File Provider extension errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderError"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderError",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererror"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code": {
+      "abstract": [
+        {
+          "text": "The error codes for the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderError.Code",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererror/code"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorCollidingItemKey": {
+      "abstract": [
+        {
+          "text": "The key for accessing the existing item from a filename collision error’s user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorCollidingItemKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorCollidingItemKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorCollidingItemKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderErrorCollidingItemKey",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererrorcollidingitemkey"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderErrorDomain",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererrordomain"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorItemKey": {
+      "abstract": [
+        {
+          "text": "The key for accessing information about sync-related errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorItemKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorItemKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorItemKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderErrorItemKey",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererroritemkey"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorNonExistentItemIdentifierKey": {
+      "abstract": [
+        {
+          "text": "The key for accessing the specified item’s identifier when the item doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorNonExistentItemIdentifierKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorNonExistentItemIdentifierKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorNonExistentItemIdentifierKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderErrorNonExistentItemIdentifierKey",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererrornonexistentitemidentifierkey"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension": {
+      "abstract": [
+        {
+          "text": "The principal class for the nonreplicated File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderExtension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderextension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An item the File Provider extension manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItem"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItem",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritem-swift.typealias"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities": {
+      "abstract": [
+        {
+          "text": "An item’s capabilities, which define the actions that the user can perform in the document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemCapabilities",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemcapabilities"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemidentifier"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the properties of an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemProtocol",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager": {
+      "abstract": [
+        {
+          "text": "A manager object that you use to communicate with the file provider from either your app or your File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderManager",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermanager"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension": {
+      "abstract": [
+        {
+          "text": "A File Provider extension in which the system replicates the contents on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderReplicatedExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderReplicatedExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderReplicatedExtension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderreplicatedextension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderTypeAndCreator": {
+      "abstract": [
+        {
+          "text": "A structure that contains the file type and file creator codes for an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderTypeAndCreator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderTypeAndCreator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderTypeAndCreator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderTypeAndCreator",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidertypeandcreator"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason": {
+      "abstract": [
+        {
+          "text": "Constants that describe why an external volume might not be eligible for storing a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderVolumeUnsupportedReason"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderVolumeUnsupportedReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderVolumeUnsupportedReason",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidervolumeunsupportedreason"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/exporting-file-provider-metrics-data": {
+      "abstract": [
+        {
+          "text": "Download and analyze usage, consistency, and error data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/exporting-file-provider-metrics-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting file provider metrics data",
+      "type": "topic",
+      "url": "/documentation/fileprovider/exporting-file-provider-metrics-data"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/global-variables-and-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/global-variables-and-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Global variables and macros",
+      "type": "topic",
+      "url": "/documentation/fileprovider/global-variables-and-macros"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Build a File Provider extension that hosts and manages the user’s local files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nonreplicated File Provider extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nonreplicated-file-provider-extension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Build a File Provider extension that syncs the local copies of your files with your remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Replicated File Provider extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/replicated-file-provider-extension"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/plist/info/LSSupportsOpeningDocumentsInPlace": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/plist/info/LSSupportsOpeningDocumentsInPlace",
+      "title": "LSSupportsOpeningDocumentsInPlace",
+      "titleInlineContent": [
+        {
+          "text": "LSSupportsOpeningDocumentsInPlace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/plist/info/LSSupportsOpeningDocumentsInPlace"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW20": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW20",
+      "title": "UIFileSharingEnabled",
+      "titleInlineContent": [
+        {
+          "text": "UIFileSharingEnabled",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW20"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW37": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW37",
+      "title": "UISupportsDocumentBrowser",
+      "titleInlineContent": [
+        {
+          "text": "UISupportsDocumentBrowser",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW37"
+    },
+    "media-4032695": {
+      "alt": "A diagram that depicts the interaction between an app and your server facilitated by a File Provider extension. The app communicates with the document browser, which requests data to the File Provider extension. The File Provider extension syncs updates with the remote server.",
+      "identifier": "media-4032695",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c49c1b9fc90a37cd06b9a7b6f73912d9/media-4032695@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3c2805f7231b3aea932750edc9b94a6/media-4032695~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/FileProvider"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Extension-types",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+        "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension"
+      ],
+      "title": "Extension types"
+    },
+    {
+      "anchor": "Extension-management",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager"
+      ],
+      "title": "Extension management"
+    },
+    {
+      "anchor": "Provided-items",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderTypeAndCreator"
+      ],
+      "title": "Provided items"
+    },
+    {
+      "anchor": "Domains",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderDomain"
+      ],
+      "title": "Domains"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorDomain",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorItemKey",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorNonExistentItemIdentifierKey",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorCollidingItemKey"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Data-export",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/exporting-file-provider-metrics-data"
+      ],
+      "title": "Data export"
+    },
+    {
+      "anchor": "Global-variables-and-macros",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/global-variables-and-macros"
+      ],
+      "title": "Global variables and macros"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/FileProvider"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Extension-types",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+                "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension"
+              ],
+              "title": "Extension types"
+            },
+            {
+              "anchor": "Extension-management",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderManager"
+              ],
+              "title": "Extension management"
+            },
+            {
+              "anchor": "Provided-items",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemIdentifier",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderTypeAndCreator"
+              ],
+              "title": "Provided items"
+            },
+            {
+              "anchor": "Domains",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderDomain"
+              ],
+              "title": "Domains"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorDomain",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorItemKey",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorNonExistentItemIdentifierKey",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderErrorCollidingItemKey"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Data-export",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/exporting-file-provider-metrics-data"
+              ],
+              "title": "Data export"
+            },
+            {
+              "anchor": "Global-variables-and-macros",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/global-variables-and-macros"
+              ],
+              "title": "Global variables and macros"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/FILEPROVIDER_API_AVAILABILITY_FEEDBACK"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Enumerations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderVolumeUnsupportedReason"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDocumentBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/title",
+          "value": "NSFileProviderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorItemKey/title",
+          "value": "NSFileProviderErrorItemKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorItemKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorItemKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code/title",
+          "value": "NSFileProviderErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities/title",
+          "value": "NSFileProviderItemCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemIdentifier/title",
+          "value": "NSFileProviderItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorDomain/title",
+          "value": "NSFileProviderErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderVolumeUnsupportedReason/title",
+          "value": "NSFileProviderVolumeUnsupportedReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderVolumeUnsupportedReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderVolumeUnsupportedReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderVolumeUnsupportedReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderVolumeUnsupportedReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/title",
+          "value": "NSFileProviderReplicatedExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderReplicatedExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderReplicatedExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderDomain/title",
+          "value": "NSFileProviderDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderDomain/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorCollidingItemKey/title",
+          "value": "NSFileProviderErrorCollidingItemKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorCollidingItemKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorCollidingItemKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderTypeAndCreator/title",
+          "value": "NSFileProviderTypeAndCreator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderTypeAndCreator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderTypeAndCreator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderTypeAndCreator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderTypeAndCreator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/title",
+          "value": "NSFileProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorNonExistentItemIdentifierKey/title",
+          "value": "NSFileProviderErrorNonExistentItemIdentifierKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderErrorNonExistentItemIdentifierKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorNonExistentItemIdentifierKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

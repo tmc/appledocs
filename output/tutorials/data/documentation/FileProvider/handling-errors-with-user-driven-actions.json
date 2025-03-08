@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "Handle any errors that occur while processing the action.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider",
+        "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension",
+        "doc://com.apple.fileprovider/documentation/FileProvider/providing-support-for-user-driven-actions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/handling-errors-with-user-driven-actions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling Errors with User-Driven Actions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever possible, handle the error in a way that allows the local action to succeed. If the local action can succeed, pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the completion handler’s ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, and then fix any inconsistencies after the fact.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if an unrecoverable error occurs, do not make the local change. Instead, create an error object that describes the problem and pass it to the completion handler. In general, this error is presented to the user, and the action is canceled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections describe tactics for responding to specific error types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Responding-to-Upload-Errors",
+          "level": 3,
+          "text": "Responding to Upload Errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle any errors that occur while uploading the changes to your server  (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/insufficientQuota",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " errors)  by updating the item locally and setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/uploadingError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Upload errors should not prevent local changes. Instead, attempt to sync the change again, after the error is resolved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For authentication errors, you can present a custom user interface using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProviderUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Responding-to-Name-Collisions",
+          "level": 3,
+          "text": "Responding to Name Collisions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a name collision occurs when syncing a local item with your server, update the local item, giving it a unique file name. A name collision is not considered an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If, however, you can detect a name collision locally, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/filenameCollision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error, and pass this error to the completion handler. The system then asks the user if they want to replace the existing item (taking into account its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsTrashing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsDeleting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capabilities).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Perform all collision checks using case-insensitive comparisons, even if the filesystem or file provider allows case-sensitive names.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/FileProviderUI": {
+      "abstract": [
+        {
+          "text": "Add actions to the document browser’s context menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProviderUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider UI",
+      "type": "topic",
+      "url": "/documentation/FileProviderUI"
+    },
+    "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The custom user interface used to perform a selected action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FPUIActionExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FPUIActionExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/FileProviderUI/FPUIActionExtensionViewController"
+    },
+    "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)": {
+      "abstract": [
+        {
+          "text": "Performs any necessary setup or configuration when an authentication error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forError"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare(forError:)",
+      "type": "topic",
+      "url": "/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision": {
+      "abstract": [
+        {
+          "text": "Returns a properly formatted error object with a  error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProviderErrorForCollision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileProviderItem) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProviderErrorForCollision(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/2882067-fileprovidererrorforcollision"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/filenameCollision": {
+      "abstract": [
+        {
+          "text": "An error indicating that an item with the same name already exists in the same directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filenameCollision"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/filenameCollision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorFilenameCollision"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.filenameCollision",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererror/code/filenamecollision"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/insufficientQuota": {
+      "abstract": [
+        {
+          "text": "An error indicating that the File Provider extension can’t upload the item because it would push the account over its quota.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insufficientQuota"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderError/Code/insufficientQuota",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderErrorInsufficientQuota"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderError.Code.insufficientQuota",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidererror/code/insufficientquota"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension": {
+      "abstract": [
+        {
+          "text": "The principal class for the nonreplicated File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderExtension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderextension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsDeleting": {
+      "abstract": [
+        {
+          "text": "A value indicating that the item can be deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsDeleting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderItemCapabilities",
+          "text": "NSFileProviderItemCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsDeleting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemCapabilitiesAllowsDeleting"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsDeleting",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemcapabilities/allowsdeleting"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsTrashing": {
+      "abstract": [
+        {
+          "text": "A value indicating that the item can be moved to the trash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsTrashing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderItemCapabilities",
+          "text": "NSFileProviderItemCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemCapabilities/allowsTrashing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemCapabilitiesAllowsTrashing"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsTrashing",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemcapabilities/allowstrashing"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/uploadingError": {
+      "abstract": [
+        {
+          "text": "An object describing an error that occurred while uploading the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadingError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/uploadingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uploadingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "uploadingError",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/uploadingerror"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Build a File Provider extension that hosts and manages the user’s local files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/nonreplicated-file-provider-extension",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nonreplicated File Provider extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nonreplicated-file-provider-extension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/providing-support-for-user-driven-actions": {
+      "abstract": [
+        {
+          "text": "Override methods to handle user-initiated actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/providing-support-for-user-driven-actions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Providing support for user-driven actions",
+      "type": "topic",
+      "url": "/documentation/fileprovider/providing-support-for-user-driven-actions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nserror~12882067-fileprovidererrorforcollision/title",
+          "value": "fileProviderErrorForCollisionWithItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code~1insufficientQuota/title",
+          "value": "NSFileProviderErrorInsufficientQuota"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code~1insufficientQuota/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorInsufficientQuota"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/title",
+          "value": "NSFileProviderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1uploadingError/title",
+          "value": "uploadingError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1uploadingError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uploadingError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProviderUI~1FPUIActionExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FPUIActionExtensionViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code~1filenameCollision/title",
+          "value": "NSFileProviderErrorFilenameCollision"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderError~1Code~1filenameCollision/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderErrorFilenameCollision"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProviderUI~1FPUIActionExtensionViewController~1prepare(forError:)/title",
+          "value": "prepareForError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProviderUI~1FPUIActionExtensionViewController~1prepare(forError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities~1allowsDeleting/title",
+          "value": "NSFileProviderItemCapabilitiesAllowsDeleting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities~1allowsDeleting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemCapabilitiesAllowsDeleting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities~1allowsTrashing/title",
+          "value": "NSFileProviderItemCapabilitiesAllowsTrashing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemCapabilities~1allowsTrashing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemCapabilitiesAllowsTrashing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/handling-errors-with-user-driven-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/handling-errors-with-user-driven-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

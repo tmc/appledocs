@@ -1,0 +1,578 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Becoming a now playable app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session 501: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/501/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See the comments for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NowPlayable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol in file ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NowPlayable.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to learn what settings and configuration you may want to customize for your use-case.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the platform-specific ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NowPlayableBehavior",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class to implement your customizations to the standard behavior.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6eacaf8a4885/BecomingANowPlayableApp.zip": {
+      "checksum": "6eacaf8a4885f93cb34aa8034143d9fa1016bd37cd7533a214632b52e28780bcedb0bc3b70b6a35a47c289b66cf86e07812cf348edbd847b4c73ad426fcb41ca",
+      "identifier": "6eacaf8a4885/BecomingANowPlayableApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6eacaf8a4885/BecomingANowPlayableApp.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter": {
+      "abstract": [
+        {
+          "text": "An object for setting the Now Playing information for media that your app plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoCenter",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption": {
+      "abstract": [
+        {
+          "text": "A set of interfaces for setting the language option for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOption",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoption"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup": {
+      "abstract": [
+        {
+          "text": "A grouped set of language options where only a single language option can be active at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOptionGroup",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession": {
+      "abstract": [
+        {
+          "text": "An object that manages Now Playing information and remote commands for multiple players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingSession",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayingsession"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants": {
+      "abstract": [
+        {
+          "text": "The constants for defining language characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Language option characteristic constants",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/language-option-characteristic-constants"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events": {
+      "abstract": [
+        {
+          "text": "Set up the remote command center to handle media player events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Remote command center events",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/remote-command-center-events"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/501/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/501/",
+      "title": "Reaching the Big Screen with AirPlay 2",
+      "titleInlineContent": [
+        {
+          "text": "Reaching the Big Screen with AirPlay 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/501/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6eacaf8a4885/BecomingANowPlayableApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Now-Playing-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+      ],
+      "title": "Now Playing information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Now-Playing-information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+              ],
+              "title": "Now Playing information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/title",
+          "value": "MPNowPlayingInfoLanguageOptionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/title",
+          "value": "MPNowPlayingSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/title",
+          "value": "MPNowPlayingInfoCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/title",
+          "value": "MPNowPlayingInfoLanguageOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/becoming-a-now-playable-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/becoming-a-now-playable-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

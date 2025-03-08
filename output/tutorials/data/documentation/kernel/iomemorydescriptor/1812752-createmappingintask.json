@@ -1,0 +1,461 @@
+{
+  "abstract": [
+    {
+      "text": "Maps an IOMemoryDescriptor into a task.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1812752,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOMemoryDescriptor"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "createMappingInTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "IOMemoryMap * createMappingInTask( "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " task_t intoTask, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " mach_vm_address_t atAddress, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOOptionBits options, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " mach_vm_size_t offset = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " mach_vm_size_t length = 0 ); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Sets the target task for the mapping. Pass kernel_task for the kernel address space.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "intoTask"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If a placed mapping is requested, atAddress specifies its address, and the kIOMapAnywhere should not be set. Otherwise, atAddress is ignored.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "atAddress"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Mapping options are defined in IOTypes.h,",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapAnywhere should be passed if the mapping can be created anywhere. If not set, the atAddress parameter sets the location of the mapping, if it is available in the target map.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapDefaultCache to inhibit the cache in I/O areas, kIOMapCopybackCache in general purpose RAM.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapInhibitCache, kIOMapWriteThruCache, kIOMapCopybackCache to set the appropriate caching.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapReadOnly to allow only read only accesses to the memory - writes will cause and access fault.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapReference will only succeed if the mapping already exists, and the IOMemoryMap object is just an extra reference, ie. no new mapping will be created.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMapUnique allows a special kind of mapping to be created that may be used with the IOMemoryMap::redirect() API. These mappings will not be shared as is the default - there will always be a unique mapping created for the caller, not an existing mapping with an extra reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Is a beginning offset into the IOMemoryDescriptor's memory where the mapping starts. Zero is the default to map all the memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Is the length of the mapping requested for a subset of the IOMemoryDescriptor. Zero is the default to map all the memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "length"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reference to an IOMemoryMap object representing the mapping, which can supply the virtual address of the mapping and other information. The mapping may be shared with multiple callers - multiple maps are avoided if a compatible one exists. The IOMemoryMap object returned should be released only when the caller has finished accessing the mapping, as freeing the object destroys the mapping. The IOMemoryMap instance also retains the IOMemoryDescriptor it maps while it exists.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is the general purpose method to map all or part of the memory described by a memory descriptor into a task at any available address, or at a fixed address if possible. Caching & read-only options may be set for the mapping. The mapping is represented as a returned reference to a IOMemoryMap object, which may be shared if the mapping is compatible with an existing mapping of the IOMemoryDescriptor. The IOMemoryMap object returned should be released only when the caller has finished accessing the mapping, as freeing the object destroys the mapping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createMappingInTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createMappingInTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441859-createmappingintask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into the kernel map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "map"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "map",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441908-map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping": {
+      "abstract": [
+        {
+          "text": "Establishes an already existing mapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441948-setmapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into a task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createMappingInTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812752-createmappingintask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "map",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812830-map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping": {
+      "abstract": [
+        {
+          "text": "Establishes an already existing mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812859-setmapping"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping"
+      ],
+      "title": "Mapping to the Other Address Spaces"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor/1812752-createmappingintask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

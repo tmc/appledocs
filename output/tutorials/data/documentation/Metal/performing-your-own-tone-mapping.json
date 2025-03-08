@@ -1,0 +1,850 @@
+{
+  "abstract": [
+    {
+      "text": "Apply your own tone mapping to get the exact behavior you want.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/hdr-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/performing-your-own-tone-mapping"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing Your Own Tone Mapping"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform your own EDR tone mapping, create a Metal layer, give it an extended linear color space, and set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, the code below creates a Metal layer with an extended color space that linearly maps pixel values to luminance values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CAMetalLayer *metalLayer = [CAMetalLayer new];",
+            "metalLayer.wantsExtendedDynamicRangeContent = YES;",
+            "metalLayer.pixelFormat = MTLPixelFormatRGBA16Float;",
+            "const CFStringRef name = kCGColorSpaceExtendedLinearSRGB;",
+            "CGColorSpaceRef colorspace = CGColorSpaceCreateWithName(name);",
+            "metalLayer.colorspace = colorspace;",
+            "CGColorSpaceRelease(colorspace);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-EDR-Pixel-Values",
+          "level": 3,
+          "text": "Understand EDR Pixel Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Macs that support EDR, a ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for a pixel corresponds to the maximum standard dynamic range (SDR) brightness level, but this brightness level doesn’t have to correspond to the maximum brightness of the display. If the display can produce higher brightness levels, additional range (headroom) may be available.  The amount of headroom may vary, depending on the actual display characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the UI brightness level is at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits and the panel is capable of a maximum brightness of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits, then enabling EDR allows values up to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "4.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to be displayed at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the same panel, if the user adjusts the UI brightness level to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits, then 1.0 values are displayed at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits, and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values are at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " nits.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Map-Your-Content-to-the-Available-Range",
+          "level": 3,
+          "text": "Map Your Content to the Available Range",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The actual upper bound on displayable values may vary from moment to moment. To determine the current upper bound, read the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Note that even on a display that supports EDR, the current maximum might be 1.0, if the display is set to the maximum possible brightness.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code reads the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property as part of the work it does to process a frame. When rendering the frame, map all values to be between ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the current maximum value. If you specify values above this value, the system clamps the value to be no higher than the current maximum value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLDrawable> drawable = metalLayer.nextDrawable;",
+            "NSScreen *screen = view.window.screen;",
+            "float maxEDR = screen.maximumExtendedDynamicRangeColorComponentValue;",
+            "// <encode Metal commands to process the frame."
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification to be informed when the current maximum value changes for a display. Also, note that a user may move the content to a different display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have content that exceeds the current capabilities of the display, decide how you want to present that to the user. For example, you might tone map the content into the available range (adapting the content each time you render a frame), or you might notify the user that some of the content is beyond the capability of the display. When users increase the brightness, they typically expect midtones to increase and highlights to be compressed to fit into the range of the display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the configuration of the displays attached to the computer is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeScreenParametersNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeScreenParametersNotification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/didChangeScreenParametersNotification"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen": {
+      "abstract": [
+        {
+          "text": "An object that describes the attributes of a computer’s monitor or screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScreen",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue": {
+      "abstract": [
+        {
+          "text": "The current maximum color component value for the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumExtendedDynamicRangeColorComponentValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumExtendedDynamicRangeColorComponentValue",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent": {
+      "abstract": [
+        {
+          "text": "Enables extended dynamic range values onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsExtendedDynamicRangeContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wantsExtendedDynamicRangeContent",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values": {
+      "abstract": [
+        {
+          "text": "Check whether a display supports EDR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining Support for EDR Values",
+      "type": "topic",
+      "url": "/documentation/metal/determining-support-for-edr-values"
+    },
+    "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer": {
+      "abstract": [
+        {
+          "text": "Bring your high dynamic range (HDR) content to compatible Mac displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying HDR Content in a Metal Layer",
+      "type": "topic",
+      "url": "/documentation/metal/displaying-hdr-content-in-a-metal-layer"
+    },
+    "doc://com.apple.metal/documentation/Metal/hdr-content": {
+      "abstract": [
+        {
+          "text": "Take advantage of high dynamic range to present more vibrant colors in your apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/hdr-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays": {
+      "abstract": [
+        {
+          "text": "Detect reference displays and keep your content within the capabilities of the display hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing Tone Mapping on Reference Displays",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-tone-mapping-on-reference-displays"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal": {
+      "abstract": [
+        {
+          "text": "Implement a post-processing pipeline using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing HDR Images with Metal",
+      "type": "topic",
+      "url": "/documentation/metal/processing-hdr-images-with-metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content": {
+      "abstract": [
+        {
+          "text": "Use a color space when you don’t need to edit or process the pixel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Color Spaces to Display HDR Content",
+      "type": "topic",
+      "url": "/documentation/metal/using-color-spaces-to-display-hdr-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content": {
+      "abstract": [
+        {
+          "text": "Use EDR metadata to apply the default system tone mapping to a layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Using System Tone Mapping on Video Content",
+      "type": "topic",
+      "url": "/documentation/metal/using-system-tone-mapping-on-video-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "High-Dynamic-Range-Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+        "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+        "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+        "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+        "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+        "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays"
+      ],
+      "title": "High Dynamic Range Content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "High-Dynamic-Range-Content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-hdr-images-with-metal",
+                "doc://com.apple.metal/documentation/Metal/displaying-hdr-content-in-a-metal-layer",
+                "doc://com.apple.metal/documentation/Metal/determining-support-for-edr-values",
+                "doc://com.apple.metal/documentation/Metal/using-color-spaces-to-display-hdr-content",
+                "doc://com.apple.metal/documentation/Metal/using-system-tone-mapping-on-video-content",
+                "doc://com.apple.metal/documentation/Metal/implementing-tone-mapping-on-reference-displays"
+              ],
+              "title": "High Dynamic Range Content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1maximumExtendedDynamicRangeColorComponentValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumExtendedDynamicRangeColorComponentValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1wantsExtendedDynamicRangeContent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "wantsExtendedDynamicRangeContent"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScreen"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1didChangeScreenParametersNotification/title",
+          "value": "NSApplicationDidChangeScreenParametersNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1didChangeScreenParametersNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSApplicationDidChangeScreenParametersNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/performing-your-own-tone-mapping"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/performing-your-own-tone-mapping"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

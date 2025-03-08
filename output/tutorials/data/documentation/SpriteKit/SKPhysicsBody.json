@@ -1,0 +1,4409 @@
+{
+  "abstract": [
+    {
+      "text": "An object that adds physics simulation to a node.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKPhysicsBody",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKPhysicsBody"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKPhysicsBody"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKPhysicsBody"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics-bodies",
+        "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assign a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/physicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to add physics simulation to the node. When a scene processes a new frame, it performs physics calculations on physics bodies attached to nodes in the scene. These calculations include gravity, friction, and collisions with other bodies. You can also apply your own forces and impulses to a body. After the scene completes these calculations, it updates the positions and orientations of the node objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A physics body must be associated with a node before you apply forces or impulses to it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit supports two kinds of physics bodies, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "volume-based bodies",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "edge-based bodies",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". When you create a physics body, its kind, size, and shape are determined by the constructor method you call. An edge-based body does not have mass or volume and is unaffected by forces or impulses in the system. Edge-based bodies are used to represent volumeless boundaries or hollow spaces in your physics simulation. In contrast, volume-based bodies are used to represent objects with mass and volume. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property controls whether a volume-based body is affected by gravity, friction, collisions with other objects, and forces or impulses you directly apply to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines the physical characteristics for the body when it is simulated by the scene. For volume-based bodies, the most important property is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. A volume-based body is assumed to have a uniform density. You can either set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property directly, or you can set the body’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/density",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and let the physics body calculate its own mass. All values in Sprite Kit are specified using the International System of Units (SI units). The actual forces and mass values are not important so long as your game uses consistent values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you design a game that uses physics, you define the different categories of physics objects that appear in the scene. You define up to 32 different categories of physics bodies, and a body can be assigned to as many of these categories as you want. In addition to declaring its own categories, a physics body also declares which categories of bodies it interacts with. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You use a similar mechanism to declare which physics field nodes (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") can affect the physics body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a volume-based body, you can dynamically control how the body is affected by forces or collisions. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode": {
+      "abstract": [
+        {
+          "text": "A node that applies physics effects to nearby nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKFieldNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/physicsBody": {
+      "abstract": [
+        {
+          "text": "The physics body associated with the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicsBody"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsBody",
+          "text": "SKPhysicsBody"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/physicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "physicsBody",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/physicsbody"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody": {
+      "abstract": [
+        {
+          "text": "An object that adds physics simulation to a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/affectedByGravity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this physics body is affected by the physics world’s gravity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "affectedByGravity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/affectedByGravity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "affectedByGravity"
+        }
+      ],
+      "role": "symbol",
+      "title": "affectedByGravity",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/affectedbygravity"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()": {
+      "abstract": [
+        {
+          "text": "The physics bodies that this physics body is in contact with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allContactedBodies"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsBody",
+          "text": "SKPhysicsBody"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allContactedBodies"
+        }
+      ],
+      "role": "symbol",
+      "title": "allContactedBodies()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/allcontactedbodies()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allowsRotation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body is affected by angular forces and impulses applied to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allowsRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsRotation",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/allowsrotation"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping": {
+      "abstract": [
+        {
+          "text": "A property that reduces the body’s rotational velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angularDamping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "angularDamping"
+        }
+      ],
+      "role": "symbol",
+      "title": "angularDamping",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/angulardamping"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularVelocity": {
+      "abstract": [
+        {
+          "text": "The physics body’s angular speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularVelocity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "angularVelocity"
+        }
+      ],
+      "role": "symbol",
+      "title": "angularVelocity",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/angularvelocity"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyAngularImpulse(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an impulse that imparts angular momentum to an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyAngularImpulse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyAngularImpulse(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyAngularImpulse:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyAngularImpulse(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applyangularimpulse(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a force to the center of gravity of a physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyForce"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyForce:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyForce(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applyforce(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:at:)": {
+      "abstract": [
+        {
+          "text": "Applies a force to a specific point of a physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyForce"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyForce:atPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyForce(_:at:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applyforce(_:at:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an impulse to the center of gravity of a physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyImpulse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyImpulse:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyImpulse(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applyimpulse(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:at:)": {
+      "abstract": [
+        {
+          "text": "Applies an impulse to a specific point of a physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyImpulse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyImpulse:atPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyImpulse(_:at:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applyimpulse(_:at:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyTorque(_:)": {
+      "abstract": [
+        {
+          "text": "Applies torque to an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyTorque"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyTorque(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyTorque:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyTorque(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/applytorque(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/area": {
+      "abstract": [
+        {
+          "text": "The area covered by the body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "area"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/area",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "area"
+        }
+      ],
+      "role": "symbol",
+      "title": "area",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/area"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories this physics body belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "categoryBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/categorybitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/charge": {
+      "abstract": [
+        {
+          "text": "The electrical charge of the physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/charge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "charge"
+        }
+      ],
+      "role": "symbol",
+      "title": "charge",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/charge"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics bodies can collide with this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collisionBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collisionBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "collisionBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/collisionbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics bodies cause intersection notifications with this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contactTestBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contactTestBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "contactTestBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/contacttestbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/density": {
+      "abstract": [
+        {
+          "text": "The density of the object, in kilograms per square meter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "density"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/density",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "density"
+        }
+      ],
+      "role": "symbol",
+      "title": "density",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/density"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/fieldBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics fields can exert forces on this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/fieldBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fieldBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "fieldBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/fieldbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/friction": {
+      "abstract": [
+        {
+          "text": "The roughness of the surface of the physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "friction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/friction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "friction"
+        }
+      ],
+      "role": "symbol",
+      "title": "friction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/friction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(bodies:)": {
+      "abstract": [
+        {
+          "text": "Creates a physics body that’s shaped like a union of the argument physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bodies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsBody",
+          "text": "SKPhysicsBody"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(bodies:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithBodies:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(bodies:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(bodies:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:)": {
+      "abstract": [
+        {
+          "text": "Creates a circular physics body centered on the owning node’s origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "circleOfRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithCircleOfRadius:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(circleOfRadius:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(circleofradius:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:center:)": {
+      "abstract": [
+        {
+          "text": "Creates a circular physics body centered on an arbitrary point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "circleOfRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:center:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithCircleOfRadius:center:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(circleOfRadius:center:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(circleofradius:center:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeChainFrom:)": {
+      "abstract": [
+        {
+          "text": "Creates an edge chain from a path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeChainFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGPathRef",
+          "text": "CGPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeChainFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithEdgeChainFromPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(edgeChainFrom:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(edgechainfrom:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeFrom:to:)": {
+      "abstract": [
+        {
+          "text": "Creates an edge between two points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeFrom:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithEdgeFromPoint:toPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(edgeFrom:to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(edgefrom:to:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-5grxu": {
+      "abstract": [
+        {
+          "text": "Creates an edge loop from a path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeLoopFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGPathRef",
+          "text": "CGPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-5grxu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithEdgeLoopFromPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(edgeLoopFrom:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(edgeloopfrom:)-5grxu"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-8sqfy": {
+      "abstract": [
+        {
+          "text": "Creates an edge loop from a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edgeLoopFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-8sqfy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithEdgeLoopFromRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(edgeLoopFrom:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(edgeloopfrom:)-8sqfy"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(polygonFrom:)": {
+      "abstract": [
+        {
+          "text": "Creates a polygonal physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "polygonFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGPathRef",
+          "text": "CGPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(polygonFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithPolygonFromPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(polygonFrom:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(polygonfrom:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:)": {
+      "abstract": [
+        {
+          "text": "Creates a rectangular physics body centered on the owning node’s origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rectangleOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithRectangleOfSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rectangleOf:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(rectangleof:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:center:)": {
+      "abstract": [
+        {
+          "text": "Creates a rectangular physics body centered on an arbitrary point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rectangleOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:center:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithRectangleOfSize:center:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rectangleOf:center:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(rectangleof:center:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:alphaThreshold:size:)": {
+      "abstract": [
+        {
+          "text": "Creates a physics body from the contents of a texture, capturing only the texels that exceed a specified transparency value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alphaThreshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:alphaThreshold:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithTexture:alphaThreshold:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(texture:alphaThreshold:size:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(texture:alphathreshold:size:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:size:)": {
+      "abstract": [
+        {
+          "text": "Creates a physics body from the contents of a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bodyWithTexture:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(texture:size:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/init(texture:size:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body is moved by the physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDynamic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dynamic"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDynamic",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/isdynamic"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isResting": {
+      "abstract": [
+        {
+          "text": "A Boolean property that indicates whether the object is at rest within the physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isResting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isResting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resting"
+        }
+      ],
+      "role": "symbol",
+      "title": "isResting",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/isresting"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/joints": {
+      "abstract": [
+        {
+          "text": "The joints connected to this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsJoint",
+          "text": "SKPhysicsJoint"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/joints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "joints"
+        }
+      ],
+      "role": "symbol",
+      "title": "joints",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/joints"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/linearDamping": {
+      "abstract": [
+        {
+          "text": "A property that reduces the body’s linear velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearDamping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/linearDamping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "linearDamping"
+        }
+      ],
+      "role": "symbol",
+      "title": "linearDamping",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/lineardamping"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass": {
+      "abstract": [
+        {
+          "text": "The mass of the body, in kilograms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mass"
+        }
+      ],
+      "role": "symbol",
+      "title": "mass",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/mass"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/node": {
+      "abstract": [
+        {
+          "text": "The node that this body is connected to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "node"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/node",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "node"
+        }
+      ],
+      "role": "symbol",
+      "title": "node",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/node"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body’s node is pinned to its parent node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        }
+      ],
+      "role": "symbol",
+      "title": "pinned",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/pinned"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/restitution": {
+      "abstract": [
+        {
+          "text": "The bounciness of the physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restitution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/restitution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restitution"
+        }
+      ],
+      "role": "symbol",
+      "title": "restitution",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/restitution"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the physics world uses an iterative collision detection algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesPreciseCollisionDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usesPreciseCollisionDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "usesPreciseCollisionDetection",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/usesprecisecollisiondetection"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/velocity": {
+      "abstract": [
+        {
+          "text": "The physics body’s velocity vector, measured in meters per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "velocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/velocity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "velocity"
+        }
+      ],
+      "role": "symbol",
+      "title": "velocity",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/velocity"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact": {
+      "abstract": [
+        {
+          "text": "A description of the contact between two physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContact"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsContact",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicscontact"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond when physics bodies come into contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContactDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsContactDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsContactDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicscontactdelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld": {
+      "abstract": [
+        {
+          "text": "The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsWorld",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsworld"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/about-collisions-and-contacts": {
+      "abstract": [
+        {
+          "text": "Learn how to set up nodes for collision detection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/about-collisions-and-contacts",
+      "kind": "article",
+      "role": "article",
+      "title": "About Collisions and Contacts",
+      "type": "topic",
+      "url": "/documentation/spritekit/about-collisions-and-contacts"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body": {
+      "abstract": [
+        {
+          "text": "Move a physics body, and make it collide with other objects, by setting its physical properties once or changing them dynamically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Physics Body",
+      "type": "topic",
+      "url": "/documentation/spritekit/configuring-a-physics-body"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-an-edge-loop-around-a-scene": {
+      "abstract": [
+        {
+          "text": "Border your scene with an obstacle that physics bodies cannot penetrate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-an-edge-loop-around-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Edge Loop Around a Scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-an-edge-loop-around-a-scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics": {
+      "abstract": [
+        {
+          "text": "Simulate gravity, acceleration, collision detection, or joints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Physics",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-physics"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics-bodies": {
+      "abstract": [
+        {
+          "text": "Create and assign a physics body to enable physics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics-bodies",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Physics Bodies",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-physics-bodies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/making-physics-bodies-move": {
+      "abstract": [
+        {
+          "text": "Move a body using various physics properties, like velocity, gravity or impulses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/making-physics-bodies-move",
+      "kind": "article",
+      "role": "article",
+      "title": "Making Physics Bodies Move",
+      "type": "topic",
+      "url": "/documentation/spritekit/making-physics-bodies-move"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/pinning-and-rotating-physics-bodies": {
+      "abstract": [
+        {
+          "text": "Pin a node so it’s free to rotate about a certain point on its parent node.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/pinning-and-rotating-physics-bodies",
+      "kind": "article",
+      "role": "article",
+      "title": "Pinning and Rotating Physics Bodies",
+      "type": "topic",
+      "url": "/documentation/spritekit/pinning-and-rotating-physics-bodies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events": {
+      "abstract": [
+        {
+          "text": "Implement per-frame app logic, such as the scene’s update function that’s called every frame.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Frame-Cycle Events",
+      "type": "topic",
+      "url": "/documentation/spritekit/responding-to-frame-cycle-events"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/shaping-a-physics-body-to-match-a-node-s-graphics": {
+      "abstract": [
+        {
+          "text": "Shape a physics body to your graphics for the right blend of collision accuracy and performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/shaping-a-physics-body-to-match-a-node-s-graphics",
+      "kind": "article",
+      "role": "article",
+      "title": "Shaping a Physics Body to Match a Node’s Graphics",
+      "type": "topic",
+      "url": "/documentation/spritekit/shaping-a-physics-body-to-match-a-node-s-graphics"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physics-Simulation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+      ],
+      "title": "Physics Simulation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics-bodies"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "Creating-a-Body-from-a-Shape",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:center:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:center:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(polygonFrom:)"
+      ],
+      "title": "Creating a Body from a Shape"
+    },
+    {
+      "anchor": "Creating-a-Body-from-a-Texture",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/shaping-a-physics-body-to-match-a-node-s-graphics",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:size:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:alphaThreshold:size:)"
+      ],
+      "title": "Creating a Body from a Texture"
+    },
+    {
+      "anchor": "Creating-a-Body-from-a-Collection-of-Bodies",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(bodies:)"
+      ],
+      "title": "Creating a Body from a Collection of Bodies"
+    },
+    {
+      "anchor": "Creating-an-Edge-Based-Physics-Body",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-an-edge-loop-around-a-scene",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-8sqfy",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeFrom:to:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-5grxu",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeChainFrom:)"
+      ],
+      "title": "Creating an Edge-Based Physics Body"
+    },
+    {
+      "anchor": "Defining-How-Forces-Affect-a-Physics-Body",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/affectedByGravity",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allowsRotation",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic"
+      ],
+      "title": "Defining How Forces Affect a Physics Body"
+    },
+    {
+      "anchor": "Defining-a-Physics-Bodys-Physical-Properties",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/density",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/area",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/friction",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/restitution",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/linearDamping",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping"
+      ],
+      "title": "Defining a Physics Body’s Physical Properties"
+    },
+    {
+      "anchor": "Working-with-Collisions-and-Contacts",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/about-collisions-and-contacts",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()"
+      ],
+      "title": "Working with Collisions and Contacts"
+    },
+    {
+      "anchor": "Applying-Forces-and-Impulses-to-a-Physics-Body",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/making-physics-bodies-move",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyTorque(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:at:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyAngularImpulse(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:at:)"
+      ],
+      "title": "Applying Forces and Impulses to a Physics Body"
+    },
+    {
+      "anchor": "Inspecting-a-Physics-Bodys-Position-and-Velocity",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/velocity",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularVelocity",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isResting"
+      ],
+      "title": "Inspecting a Physics Body’s Position and Velocity"
+    },
+    {
+      "anchor": "Reading-a-Physics-Bodys-Node",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/node"
+      ],
+      "title": "Reading a Physics Body’s Node"
+    },
+    {
+      "anchor": "Determining-Which-Joints-Are-Connected-to-a-Physics-Body",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/joints"
+      ],
+      "title": "Determining Which Joints Are Connected to a Physics Body"
+    },
+    {
+      "anchor": "Interacting-with-Physics-Fields",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/fieldBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/charge"
+      ],
+      "title": "Interacting with Physics Fields"
+    },
+    {
+      "anchor": "Pinning-a-Physics-Body-to-a-Nodes-Parent",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/pinning-and-rotating-physics-bodies",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned"
+      ],
+      "title": "Pinning a Physics Body to a Node’s Parent"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics-bodies"
+              ],
+              "title": "First Steps"
+            },
+            {
+              "anchor": "Creating-a-Body-from-a-Shape",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(circleOfRadius:center:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(rectangleOf:center:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(polygonFrom:)"
+              ],
+              "title": "Creating a Body from a Shape"
+            },
+            {
+              "anchor": "Creating-a-Body-from-a-Texture",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/shaping-a-physics-body-to-match-a-node-s-graphics",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:size:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(texture:alphaThreshold:size:)"
+              ],
+              "title": "Creating a Body from a Texture"
+            },
+            {
+              "anchor": "Creating-a-Body-from-a-Collection-of-Bodies",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(bodies:)"
+              ],
+              "title": "Creating a Body from a Collection of Bodies"
+            },
+            {
+              "anchor": "Creating-an-Edge-Based-Physics-Body",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-an-edge-loop-around-a-scene",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-8sqfy",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeFrom:to:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeLoopFrom:)-5grxu",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/init(edgeChainFrom:)"
+              ],
+              "title": "Creating an Edge-Based Physics Body"
+            },
+            {
+              "anchor": "Defining-How-Forces-Affect-a-Physics-Body",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/affectedByGravity",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allowsRotation",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic"
+              ],
+              "title": "Defining How Forces Affect a Physics Body"
+            },
+            {
+              "anchor": "Defining-a-Physics-Bodys-Physical-Properties",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/mass",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/density",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/area",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/friction",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/restitution",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/linearDamping",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping"
+              ],
+              "title": "Defining a Physics Body’s Physical Properties"
+            },
+            {
+              "anchor": "Working-with-Collisions-and-Contacts",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/about-collisions-and-contacts",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()"
+              ],
+              "title": "Working with Collisions and Contacts"
+            },
+            {
+              "anchor": "Applying-Forces-and-Impulses-to-a-Physics-Body",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/making-physics-bodies-move",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyTorque(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyForce(_:at:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyAngularImpulse(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/applyImpulse(_:at:)"
+              ],
+              "title": "Applying Forces and Impulses to a Physics Body"
+            },
+            {
+              "anchor": "Inspecting-a-Physics-Bodys-Position-and-Velocity",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/velocity",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularVelocity",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isResting"
+              ],
+              "title": "Inspecting a Physics Body’s Position and Velocity"
+            },
+            {
+              "anchor": "Reading-a-Physics-Bodys-Node",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/node"
+              ],
+              "title": "Reading a Physics Body’s Node"
+            },
+            {
+              "anchor": "Determining-Which-Joints-Are-Connected-to-a-Physics-Body",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/joints"
+              ],
+              "title": "Determining Which Joints Are Connected to a Physics Body"
+            },
+            {
+              "anchor": "Interacting-with-Physics-Fields",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/fieldBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/charge"
+              ],
+              "title": "Interacting with Physics Fields"
+            },
+            {
+              "anchor": "Pinning-a-Physics-Body-to-a-Nodes-Parent",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/pinning-and-rotating-physics-bodies",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned"
+              ],
+              "title": "Pinning a Physics Body to a Node’s Parent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physics-Simulation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-physics",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContact",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsContactDelegate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+              ],
+              "title": "Physics Simulation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKPhysicsBody"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1fieldBitMask/title",
+          "value": "fieldBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1fieldBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fieldBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(circleOfRadius:center:)/title",
+          "value": "bodyWithCircleOfRadius:center:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(circleOfRadius:center:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithCircleOfRadius:center:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyImpulse(_:)/title",
+          "value": "applyImpulse:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyImpulse(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyImpulse:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeFrom:to:)/title",
+          "value": "bodyWithEdgeFromPoint:toPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeFrom:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithEdgeFromPoint:toPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allContactedBodies()/title",
+          "value": "allContactedBodies"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allContactedBodies()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allContactedBodies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/title",
+          "value": "SKPhysicsContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContact/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1usesPreciseCollisionDetection/title",
+          "value": "usesPreciseCollisionDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1usesPreciseCollisionDetection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usesPreciseCollisionDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/title",
+          "value": "SKPhysicsContactDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsContactDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsContactDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(bodies:)/title",
+          "value": "bodyWithBodies:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(bodies:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithBodies:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1velocity/title",
+          "value": "velocity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1velocity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "velocity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1mass/title",
+          "value": "mass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1mass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyForce(_:)/title",
+          "value": "applyForce:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyForce(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyForce:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1affectedByGravity/title",
+          "value": "affectedByGravity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1affectedByGravity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "affectedByGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyTorque(_:)/title",
+          "value": "applyTorque:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyTorque(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyTorque:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/title",
+          "value": "SKPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1restitution/title",
+          "value": "restitution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1restitution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "restitution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1friction/title",
+          "value": "friction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1friction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "friction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyImpulse(_:at:)/title",
+          "value": "applyImpulse:atPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyImpulse(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyImpulse:atPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1density/title",
+          "value": "density"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1density/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "density"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(polygonFrom:)/title",
+          "value": "bodyWithPolygonFromPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(polygonFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithPolygonFromPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(circleOfRadius:)/title",
+          "value": "bodyWithCircleOfRadius:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(circleOfRadius:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithCircleOfRadius:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1node/title",
+          "value": "node"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1node/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "node"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeLoopFrom:)-5grxu/title",
+          "value": "bodyWithEdgeLoopFromPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeLoopFrom:)-5grxu/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithEdgeLoopFromPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1area/title",
+          "value": "area"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1area/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "area"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/title",
+          "value": "pinned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pinned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(texture:size:)/title",
+          "value": "bodyWithTexture:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(texture:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithTexture:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/title",
+          "value": "SKFieldNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1physicsBody/title",
+          "value": "physicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1physicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(rectangleOf:)/title",
+          "value": "bodyWithRectangleOfSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(rectangleOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithRectangleOfSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyForce(_:at:)/title",
+          "value": "applyForce:atPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyForce(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyForce:atPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/title",
+          "value": "SKPhysicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isResting/title",
+          "value": "resting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isResting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularDamping/title",
+          "value": "angularDamping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularDamping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "angularDamping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(texture:alphaThreshold:size:)/title",
+          "value": "bodyWithTexture:alphaThreshold:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(texture:alphaThreshold:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithTexture:alphaThreshold:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allowsRotation/title",
+          "value": "allowsRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allowsRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularVelocity/title",
+          "value": "angularVelocity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularVelocity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "angularVelocity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeLoopFrom:)-8sqfy/title",
+          "value": "bodyWithEdgeLoopFromRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeLoopFrom:)-8sqfy/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithEdgeLoopFromRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isDynamic/title",
+          "value": "dynamic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isDynamic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dynamic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1categoryBitMask/title",
+          "value": "categoryBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1categoryBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "categoryBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1charge/title",
+          "value": "charge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1charge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "charge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1contactTestBitMask/title",
+          "value": "contactTestBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1contactTestBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contactTestBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeChainFrom:)/title",
+          "value": "bodyWithEdgeChainFromPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(edgeChainFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithEdgeChainFromPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(rectangleOf:center:)/title",
+          "value": "bodyWithRectangleOfSize:center:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1init(rectangleOf:center:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bodyWithRectangleOfSize:center:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyAngularImpulse(_:)/title",
+          "value": "applyAngularImpulse:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1applyAngularImpulse(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyAngularImpulse:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1collisionBitMask/title",
+          "value": "collisionBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1collisionBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collisionBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1joints/title",
+          "value": "joints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1joints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "joints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1linearDamping/title",
+          "value": "linearDamping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1linearDamping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "linearDamping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/skphysicsbody"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/skphysicsbody"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

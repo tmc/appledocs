@@ -1,0 +1,1783 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides display functionality to the guest operating system in a way that the host-side virtual machine app can intercept.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)PGDisplay",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PGDisplay"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Paravirtualized Graphics"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PGDisplay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "PGDisplay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework emulates hot-plugging to the display. After you create the display object, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to a list of modes you want the display to use. The first time you set the mode list, the framework connects the display to the virtualized graphics card. When you release the display object, the device simulates unplugging the display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics": {
+      "abstract": [
+        {
+          "text": "Add graphics acceleration to your guest driver stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Paravirtualized Graphics",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay": {
+      "abstract": [
+        {
+          "text": "An object that provides display functionality to the guest operating system in a way that the host-side virtual machine app can intercept.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplay"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplay",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorGlyphHandler": {
+      "abstract": [
+        {
+          "text": "A handler that the framework calls to change the cursor’s appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorGlyphHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PGDisplayCursorGlyphHandler",
+          "text": "PGDisplayCursorGlyphHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorGlyphHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorGlyphHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cursorGlyphHandler",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/cursorglyphhandler"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorMoveHandler": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorMoveHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PGDisplayCursorMoveHandler",
+          "text": "PGDisplayCursorMoveHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorMoveHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorMoveHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cursorMoveHandler",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/cursormovehandler"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorPosition": {
+      "abstract": [
+        {
+          "text": "The current cursor location in the guest environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@PGDisplayCoord_t",
+          "text": "PGDisplayCoord_t"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorPosition"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cursorPosition",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/cursorposition"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorShowHandler": {
+      "abstract": [
+        {
+          "text": "A handler that the framework calls to change the cursor’s visibility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorShowHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PGDisplayCursorShowHandler",
+          "text": "PGDisplayCursorShowHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorShowHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorShowHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "cursorShowHandler",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/cursorshowhandler"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/encodeCurrentFrame(to:texture:region:)": {
+      "abstract": [
+        {
+          "text": "Encodes Metal commands to process the current frame and write it to a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeCurrentFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/encodeCurrentFrame(to:texture:region:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeCurrentFrameToCommandBuffer:texture:region:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "encodeCurrentFrame(to:texture:region:)",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/encodecurrentframe(to:texture:region:)"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/guestPresentCount": {
+      "abstract": [
+        {
+          "text": "The number of frame presents that the guest has generated since object creation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guestPresentCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/guestPresentCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guestPresentCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "guestPresentCount",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/guestpresentcount"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/hostPresentCount": {
+      "abstract": [
+        {
+          "text": "The number of unique frames that the host has encoded since object creation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hostPresentCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/hostPresentCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hostPresentCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hostPresentCount",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/hostpresentcount"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/minimumTextureUsage": {
+      "abstract": [
+        {
+          "text": "The Metal texture usage flags necessary for any texture that can be a destination for frame data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumTextureUsage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/minimumTextureUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumTextureUsage"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "minimumTextureUsage",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/minimumtextureusage"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeChangeHandler": {
+      "abstract": [
+        {
+          "text": "A handler that the framework calls to change the virtual display’s graphics mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modeChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PGDisplayModeChangeHandler",
+          "text": "PGDisplayModeChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modeChangeHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "modeChangeHandler",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/modechangehandler"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeList": {
+      "abstract": [
+        {
+          "text": "The list of display modes that the virtual display supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modeList"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PGDisplayMode",
+          "text": "PGDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modeList"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "modeList",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/modelist"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/name": {
+      "abstract": [
+        {
+          "text": "The display’s name that you specified at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/name"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/newFrameEventHandler": {
+      "abstract": [
+        {
+          "text": "A handler that the framework calls when the guest environment has a new frame to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newFrameEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PGDisplayNewFrameEventHandler",
+          "text": "PGDisplayNewFrameEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/newFrameEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newFrameEventHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "newFrameEventHandler",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/newframeeventhandler"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/port": {
+      "abstract": [
+        {
+          "text": "The display’s accelerator port that you specified at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/port",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "port"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "port",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/port"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/queue": {
+      "abstract": [
+        {
+          "text": "The queue that the framework uses when dispatching messages to any of the display’s registered handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "queue",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/queue"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/serialNum": {
+      "abstract": [
+        {
+          "text": "The display’s serial number that you specified at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialNum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/serialNum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serialNum"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "serialNum",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/serialnum"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/sizeInMillimeters": {
+      "abstract": [
+        {
+          "text": "The display’s virtual dimensions, in millimeters, that you specified at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeInMillimeters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/sizeInMillimeters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeInMillimeters"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sizeInMillimeters",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplay/sizeinmillimeters"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t": {
+      "abstract": [
+        {
+          "text": "Coordinates that describe sizes or offsets within a 2D array of pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayCoord_t"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayCoord_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayCoord_t",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaycoord_t"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor for a virtual display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayDescriptor",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaydescriptor"
+    },
+    "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode": {
+      "abstract": [
+        {
+          "text": "A description of a supported display mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PGDisplayMode"
+        }
+      ],
+      "identifier": "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PGDisplayMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PGDisplayMode",
+      "type": "topic",
+      "url": "/documentation/paravirtualizedgraphics/pgdisplaymode"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Displays",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t"
+      ],
+      "title": "Displays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-Display-Modes",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeList"
+      ],
+      "title": "Setting Display Modes"
+    },
+    {
+      "anchor": "Getting-the-Guest-Cursor-Position",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorPosition"
+      ],
+      "title": "Getting the Guest Cursor Position"
+    },
+    {
+      "anchor": "Handling-Frame-Updates",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/guestPresentCount",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/hostPresentCount",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/minimumTextureUsage",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/encodeCurrentFrame(to:texture:region:)"
+      ],
+      "title": "Handling Frame Updates"
+    },
+    {
+      "anchor": "Inspecting-Display-Properties",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/name",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/serialNum",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/port",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/sizeInMillimeters"
+      ],
+      "title": "Inspecting Display Properties"
+    },
+    {
+      "anchor": "Inspecting-the-Display-Handlers",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/queue",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorGlyphHandler",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorShowHandler",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeChangeHandler",
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/newFrameEventHandler"
+      ],
+      "title": "Inspecting the Display Handlers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorMoveHandler"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-Display-Modes",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeList"
+              ],
+              "title": "Setting Display Modes"
+            },
+            {
+              "anchor": "Getting-the-Guest-Cursor-Position",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorPosition"
+              ],
+              "title": "Getting the Guest Cursor Position"
+            },
+            {
+              "anchor": "Handling-Frame-Updates",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/guestPresentCount",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/hostPresentCount",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/minimumTextureUsage",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/encodeCurrentFrame(to:texture:region:)"
+              ],
+              "title": "Handling Frame Updates"
+            },
+            {
+              "anchor": "Inspecting-Display-Properties",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/name",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/serialNum",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/port",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/sizeInMillimeters"
+              ],
+              "title": "Inspecting Display Properties"
+            },
+            {
+              "anchor": "Inspecting-the-Display-Handlers",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/queue",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorGlyphHandler",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorShowHandler",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/modeChangeHandler",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/newFrameEventHandler"
+              ],
+              "title": "Inspecting the Display Handlers"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplay/cursorMoveHandler"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Displays",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayDescriptor",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayMode",
+                "doc://com.apple.paravirtualizedgraphics/documentation/ParavirtualizedGraphics/PGDisplayCoord_t"
+              ],
+              "title": "Displays"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PGDisplay"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorPosition/title",
+          "value": "cursorPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cursorPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1hostPresentCount/title",
+          "value": "hostPresentCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1hostPresentCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hostPresentCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorMoveHandler/title",
+          "value": "cursorMoveHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorMoveHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cursorMoveHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1encodeCurrentFrame(to:texture:region:)/title",
+          "value": "encodeCurrentFrameToCommandBuffer:texture:region:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1encodeCurrentFrame(to:texture:region:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeCurrentFrameToCommandBuffer:texture:region:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1port/title",
+          "value": "port"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1port/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "port"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1modeList/title",
+          "value": "modeList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1modeList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modeList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1guestPresentCount/title",
+          "value": "guestPresentCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1guestPresentCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "guestPresentCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1queue/title",
+          "value": "queue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1queue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "queue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/title",
+          "value": "PGDisplayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1serialNum/title",
+          "value": "serialNum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1serialNum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "serialNum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/title",
+          "value": "PGDisplayMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1sizeInMillimeters/title",
+          "value": "sizeInMillimeters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1sizeInMillimeters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sizeInMillimeters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/title",
+          "value": "PGDisplayCoord_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayCoord_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplayCoord_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplayCoord_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1newFrameEventHandler/title",
+          "value": "newFrameEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1newFrameEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "newFrameEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1minimumTextureUsage/title",
+          "value": "minimumTextureUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1minimumTextureUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumTextureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorGlyphHandler/title",
+          "value": "cursorGlyphHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorGlyphHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cursorGlyphHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/title",
+          "value": "PGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1modeChangeHandler/title",
+          "value": "modeChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1modeChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modeChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorShowHandler/title",
+          "value": "cursorShowHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1cursorShowHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cursorShowHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.paravirtualizedgraphics~1documentation~1ParavirtualizedGraphics~1PGDisplay~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/paravirtualizedgraphics/pgdisplay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/paravirtualizedgraphics/pgdisplay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

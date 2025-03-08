@@ -1,0 +1,530 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to a synchronization callbackfunction that is called when the Speech Synthesis Manager encountersa synchronization command embedded in a text buffer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1458946,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@SpeechSyncProcPtr",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpeechSyncProcPtr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "SpeechSyncProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpeechSyncProcPtr"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SpeechChannel",
+              "text": "SpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SRefCon",
+              "text": "SRefCon"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSType",
+              "text": "OSType"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The speech channel that has finished processing input text.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chan"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reference constant associated with the speech channel. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refCon"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The synchronization message passed in the embedded command. Usually, you use this message to distinguish between several different types of synchronization commands, but you can use it any way you wish.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "syncMessage"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Speech Synthesis Manager calls a speech channel’s synchronizationcallback function whenever it encounters a synchronization commandembedded in a text buffer. You might use the synchronization callbackfunction to provide a callback not ordinarily provided. For example,you might inset synchronization commands at the end of every sentencein a text buffer, or you might enter synchronization commands afterevery numeric value in the text. However, to synchronize your applicationwith phonemes or words, it makes more sense to use the built-inphoneme and word callback functions, defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify a synchronization callback function by passingthe ",
+              "type": "text"
+            },
+            {
+              "code": "soSyncCallBack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector tothe ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionand embedding a synchronization command within a text buffer passedto the ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a speech-done callback functionwhich is called when the Speech Synthesis Manager finishes speakinga buffer of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechDoneProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechDoneProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechdoneprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error callback function that handles syntax errors within commands embedded in a ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object being processed by the Speech Synthesis Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorCFProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorCFProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorcfprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error callback functionthat handles syntax errors within commands embedded in a text bufferbeing processed by the Speech Synthesis Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a phoneme callback functionthat is called by the Speech Synthesis Manager before it pronouncesa phoneme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechPhonemeProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechPhonemeProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechphonemeprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a synchronization callbackfunction that is called when the Speech Synthesis Manager encountersa synchronization command embedded in a text buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSyncProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSyncProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechsyncprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a text-done callback functionthat is called when the Speech Synthesis Manager has finished processinga buffer of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechTextDoneProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechTextDoneProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechtextdoneprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a Core Foundation-based word callback function that is called by the Speech Synthesis Manager before it pronounces a word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechWordCFProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechWordCFProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechwordcfprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a word callback functionthat is called by the Speech Synthesis Manager before it pronouncesa word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechWordProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechWordProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechwordprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/speechsyncprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/speechsyncprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

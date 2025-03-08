@@ -1,0 +1,1951 @@
+{
+  "abstract": [
+    {
+      "text": "Create a machine-readable summary of a set of playground books to make them available",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "for others to download.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/creating-a-subscription"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a subscription"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re writing episodic content in your Swift Playgrounds learning material, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to space out the releases of your lessons over time, you can build a subscription",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that guides people through your lessons one by one. To publish your playgrounds,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you create and host the subscription data online so people can subscribe to them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Swift Playgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Playgrounds subscriptions, like podcasts, are a sequence of episodic content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arranged in an order that builds knowledge while allowing more advanced learners",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to skip content. Subscriptions exist on the internet as feeds — downloadable lists",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of items that apps and websites can deal with. You publish a set of playgrounds as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a feed that the Swift Playgrounds app can download, process, and display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Feeds in Swift Playgrounds are structured as JSON, which many apps and websites use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to communicate and share information. It consists primarily of lists, definitions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and raw values like strings and numbers. You use it to build up a feed for your subscription.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A simple — yet complete — JSON document looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"bookTitle\": \"Whimsical Swift Syntax\",",
+            "    \"publishDate\": 2018,",
+            "    \"simpleList\": [\"one\", 1, \"two\", 2]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example document isn’t detailed enough to be a real feed for a playground subscription,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but it shows the kind of information a feed contains. Although the JSON documents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that apps use are typically longer, they follow the same rules of quoting and nesting.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about JSON, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.ecma-international.org/publications/standards/Ecma-404.htm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all JSON documents are feeds. Feeds of JSON documents are informally defined",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by two characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They consist of metadata, like “What’s the name of this feed?”, and a primary list",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of homogeneous data items.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They link to, but don’t contain, some media of interest, such as a link to an audio",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "file, a blog post, or a playground.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The feed format used by Swift Playgrounds has these two characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Feeds contain some details (metadata) used to name, describe, and identify the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Feeds contain a link to each individual playground book in a subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-subscription-feed",
+          "level": 3,
+          "text": "Create a subscription feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the feed for a subscription by defining top-level metadata about the subscription.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The top level of the JSON object that represents the feed must include following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The version of the feed format to which this feed conforms. The current format version is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"1.2\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "formatVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of your subscription.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "title",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The organization publishing the subscription; often an institution or company name.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "publisherName",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A reverse-DNS string for the domain hosting this feed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "feedIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The contact URL you use to get information about, and report problems with, the feed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "contactURL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of objects representing the playground books in your feed. For details about the format for the objects in this array, see doc:creating-a-subscription#Add-Documents-to-the-Feed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "documents",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Add-documents-to-the-feed",
+          "level": 3,
+          "text": "Add documents to the feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each book in your subscription, include an object with the following fields in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your feed’s ",
+              "type": "text"
+            },
+            {
+              "code": "documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the playground book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "title",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The subtitle of the playground book displayed in overviews. Expand on the name of the book to provide additional context.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "overviewSubtitle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The subtitle of the playground book displayed in detail views. Expand further on the name of the book to provide additional context.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "detailSubtitle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A description that appears in detail views before a book in the subscription is opened.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "description",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The difficulty level of the material taught in the book. The level must be ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"beginner\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"intermediate\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"expert\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"advanced\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "difficultyLevel",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": "  An array of attributes that describe the theme of the content in a playground book. The array can contain up to six values.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Values in the array must be one of the following attributes:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "\"short\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"medium\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"long\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"algorithmic\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"appBuilding\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"appLike\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"art\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"astronomy\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"audioExperience\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"augmentedReality\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"biology\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"chemistry\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"codingBasics\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"cryptography\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"curriculumBased\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"databases\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"dataStructuresAndAlgorithms\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"designOriented\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"economics\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"gameBuilding\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"gameLike\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"geometry\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"graphical\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"history\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"languageArts\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"music\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"networking\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"objectOrientedProgramming\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"physics\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"premadeForTinkerers\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"projectBased\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"puzzleSolving\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"simulation\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"startingPoint\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"storyBased\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"usesAccessory\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"usesCamera\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"usesMicrophone\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"usesMotion\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"usesSoundPredominantly\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "attributes",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "contentIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key for a recommended document to follow the current document in a learner’s progression.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "authorChosenUpNext",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A reverse-DNS identifier unique to the book. The identifier must match the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ContentIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key in the book’s manifest and start with the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "feedIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key of the feed that contains this book. For more information about the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ContentIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds#Determine-Book-Level-Information",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "contentIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A version number you increment when you update the book. The version must match the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ContentVersion",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key in the book’s manifest.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For more information about the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ContentVersion",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds#Determine-Book-Level-Information",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "contentVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " An array of device-related features that the book requires to run. A feature is any ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "requiredCapabilities",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " An array of strings that identifies the set of devices the book can run on. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"iPad\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"Mac\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "supportedDevices",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The SHA-512 hash of the zipped version of the book. Required when the playground book is hosted on a domain other than the feed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sha512",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A link to your zipped copy of the book’s ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".playgroundbook",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " file.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "url",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ISO 8601-formatted date when you first published the book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "publishedDate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ISO 8601-formatted date when you last updated the book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "lastUpdatedDate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A link to a picture of the cover of the book. Thumbnail images must be 902 x 678 pixels.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "thumbnailURL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A link to the banner image used to display the book. Banner images must be 1080 x 400 pixels.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "bannerImageURL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of objects you use to supply metadata. The format for the objects in this array is described in doc:creating-a-subscription#Add-Metadata-to-the-Feed-Documents.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "additionalInformation",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of URLs to images that highlight parts of the book. Preview images must be 800 x 600 pixels.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "previewImageURLs",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Add-metadata-to-the-feed-documents",
+          "level": 3,
+          "text": "Add metadata to the feed documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Store additional information and metadata about your feed in the format described",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below. This information is displayed alongside the book’s preview images to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "details about the book — such as available localizations — before a user downloads it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A metadata key name.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A metadata key value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "value",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Optional.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The type of the value specified by the value field. The type must be ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"string\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"date\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"string\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Dates must be ISO 8601-formatted date strings.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-a-subscription-feed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-a-Subscription-by-Adding-Items-to-Its-Feed",
+          "level": 3,
+          "text": "Update a Subscription by Adding Items to Its Feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subscriptions are expected to be updated over time. The same expectation applies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the feeds distributing your playground subscriptions. To add, remove, or update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a subscription, first create a new or updated playground book. Then adjust the JSON",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feed so it corresponds to the updates you’ve just made.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you update a playground book, be sure to update the JSON feed that links to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the book at the same time. If the feed is out of date, there may be a mismatch between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the preview information contained in the feed and the content in the playground books",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the feed links to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a feed with two playground books that make up the whole series.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"title\": \"Whimsical Swift Syntax\",",
+            "    \"subtitle\": \"A Collection of Swift Lessons\",",
+            "    \"publisherName\": \"Company Name Inc.\",",
+            "    \"feedIdentifier\": \"com.example.whimsicalswift\",",
+            "    \"contactURL\": \"https://support.example.com\",",
+            "    \"formatVersion\": \"1.0\",",
+            "    \"documents\": [",
+            "        {",
+            "            \"title\": \"The Key Path Not Taken\",",
+            "            \"overviewSubtitle\": \"Dynamically Choosing Among Key Paths\",",
+            "            \"detailSubtitle\": \"Because key paths in Swift are applied at runtime, their behavior is dynamic.\",",
+            "            \"description\": \"Learn to compare key paths and pick the right one.\",",
+            "            \"contentIdentifier\": \"com.example.whimsicalswift.keypaths\",",
+            "            \"contentVersion\": \"1.0\",",
+            "            \"url\": \"keypaths/keypaths.playgroundbook.zip\",",
+            "            \"publishedDate\": \"2017-11-13T21:13:57+00:00\",",
+            "            \"lastUpdatedDate\": \"2017-11-13T21:13:57+00:00\",",
+            "            \"thumbnailURL\": \"keypaths/thumbnail.png\",",
+            "            \"bannerImageURL\": \"keypaths/banner.png\",",
+            "            \"additionalInformation\": [",
+            "                {",
+            "                    \"name\": \"Languages\",",
+            "                    \"value\": \"English\"",
+            "                }",
+            "            ],",
+            "            \"previewImageURLs\": [",
+            "                \"keypaths/preview-1.png\"",
+            "            ]",
+            "        },",
+            "        {",
+            "            \"title\": \"Structer Things\",",
+            "            \"overviewSubtitle\": \"Understand Structures by Comparing Them with Classes\",",
+            "            \"detailSubtitle\": \"Choose between using a structure or a class to model data.\",",
+            "            \"description\": \"Learn about value semantics and reference semantics.\",",
+            "            \"contentIdentifier\": \"com.example.whimsicalswift.structures-and-classes\",",
+            "            \"contentVersion\": \"1.0\",",
+            "            \"url\": \"structures-and-classes/structures-and-classes.playgroundbook.zip\",",
+            "            \"publishedDate\": \"2017-11-13T21:13:57+00:00\",",
+            "            \"lastUpdatedDate\": \"2017-11-13T21:13:57+00:00\",",
+            "            \"thumbnailURL\": \"structures-and-classes/thumbnail.png\",",
+            "            \"bannerImageURL\": \"structures-and-classes/banner.png\",",
+            "            \"additionalInformation\": [",
+            "                {",
+            "                    \"name\": \"Languages\",",
+            "                    \"value\": \"English\"",
+            "                }",
+            "            ],",
+            "            \"previewImageURLs\": [",
+            "                \"structures-and-classes/preview-1.png\"",
+            "            ]",
+            "        }",
+            "    ]",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-a-subscription-feed": {
+      "abstract": [
+        {
+          "text": "Provide multiple localizations of a subscription’s content in a single feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-a-subscription-feed",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing a Subscription Feed",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/localizing-a-subscription-feed"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/publishing-a-subscription": {
+      "abstract": [
+        {
+          "text": "Make the playground books in a series available online for download and subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/publishing-a-subscription",
+      "kind": "article",
+      "role": "article",
+      "title": "Publishing a Subscription",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/publishing-a-subscription"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds#Determine-Book-Level-Information": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds#Determine-Book-Level-Information",
+      "kind": "section",
+      "title": "Determine Book-Level Information",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds#Determine-Book-Level-Information"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities": {
+      "abstract": [
+        {
+          "text": "The device-related features that your app requires to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiredDeviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://www.ecma-international.org/publications/standards/Ecma-404.htm": {
+      "identifier": "https://www.ecma-international.org/publications/standards/Ecma-404.htm",
+      "title": "ECMA-404: The JSON Data Interchange Format",
+      "titleInlineContent": [
+        {
+          "text": "ECMA-404: The JSON Data Interchange Format",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.ecma-international.org/publications/standards/Ecma-404.htm"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-a-subscription-feed",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/publishing-a-subscription"
+      ],
+      "title": "Subscriptions"
+    }
+  ]
+}

@@ -1,0 +1,1986 @@
+{
+  "abstract": [
+    {
+      "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting acceleration structures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "acceleration structure",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a data structure that Metal uses to accelerate ray intersection tests on the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Metal debugger allows you to inspect an acceleration structure with the Acceleration Structure viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After opening an acceleration structure, you can view it and its associated properties, along with various highlights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-your-acceleration-structure",
+          "level": 3,
+          "text": "Navigate your acceleration structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can navigate your acceleration structure using the two panes of the Acceleration Structure viewer — the structure outline on the left or the scene view on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-outline-primitive.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure outline shows the components of your acceleration structure, along with their various properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can click any row in the structure outline to highlight the component of your acceleration structure in the scene view, or Control-click to jump to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scene view shows a 3D representation of your acceleration structure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can navigate around the scene or interact with your acceleration structure using the following controls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Result",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "W (or ↑)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zooms in at the viewport center",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A (or ←)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pans left",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "S (or ↓)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zooms out at the viewport center",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "D (or →)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pans right",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Up Arrow/Down Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pans up/Pans down",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Option-Up Arrow/Down Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zooms in/Zooms out on the pointer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rotates the camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performs the selection, depending on the selection mode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shift-Control-click",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selects a primitive acceleration structure",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Option-Control-click",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selects the geometry",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Option-Command-Control-click",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selects a primitive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Command-Control-click",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selects an instance",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Change-the-camera-mode",
+          "level": 3,
+          "text": "Change the camera mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using the Fly camera, dragging in the scene view rotates the camera.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, when using the Orbit camera, dragging orbits the camera around any primitive beneath the pointer, or around the scene center if there’s no primitive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can click the Camera button in the control bar to switch between modes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-camera-button.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-intersection-functions",
+          "level": 3,
+          "text": "Configure intersection functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically picks an intersection function table to use when rendering the scene, depending on how you open your acceleration structure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you open your acceleration structure from the Bound Resources viewer, Xcode selects any bound intersection function tables with matching intersector tags. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you open your acceleration structure from the All Resources viewer or the Memory viewer, Xcode automatically selects the last intersection function table, with matching intersector tags, in your workload. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can switch to the intersection function table outline to configure which intersection function table the Acceleration Structure viewer uses.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you select None, the Acceleration Structure viewer doesn’t use any intersection functions and relies solely on the geometry intersection.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you select an intersection function table, the system uses the intersection function corresponding to the intersection function table offset of each geometry to evaluate whether to accept an intersection. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "accept_intersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-intersection-functions.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-acceleration-structure-traversal-behavior",
+          "level": 3,
+          "text": "Configure acceleration structure traversal behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can override the default behavior of the acceleration structure traversal by clicking the arrow in the bottom right of the control bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The popover options let you configure the same properties as the intersector to control traversal behavior (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "overridingTitle": "Metal Shading Language Specification",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Metal Shading Language Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Match the traversal behavior with your shader to ensure that the Acceleration Structure viewer is correct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-intersector.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-your-acceleration-structure-with-highlights",
+          "level": 3,
+          "text": "View your acceleration structure with highlights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view your acceleration structure with different highlights to emphasize various properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To enable and switch between modes, click the Highlight button in the control bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-button.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "You can use the Bounding Volume Traversals mode to highlight areas of your scene that are more expensive to traverse. Xcode color-codes the number of traversals it takes to intersect your acceleration structure on a scale from white (fewer traversals) to dark blue (more traversals). As you move the pointer around the viewport, the inspector (at the bottom left) updates several traversal statistics for the pixel under the pointer, along with the corresponding minimum and maximum values in the viewport.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Bounding Volume Traversals",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-bbox.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "You can use the All Node Traversal mode to highlight the expensive parts of your scene that may be occluded.\nXcode uses the same color-coding as the Bounding Volume Traversals highlight, but doesn’t stop traversing when it hits a surface. In the example below, you can see the eyes inside the ninja’s head:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "All Node Traversal",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-xray.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This mode highlights different primitive acceleration structures. The inspector shows the primitive acceleration structure index as you move the pointer around the viewport.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Acceleration Structures",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-as.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This mode highlights different geometries within primitive acceleration structures. The inspector shows the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "geometry_id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute as you move the pointer around the viewport. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+                        "isActive": true,
+                        "overridingTitle": "Metal Shading Language Specification",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Metal Shading Language Specification",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Geometries",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-geometry.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This mode highlights different primitives within primitive acceleration structures. The inspector shows the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "geometry_id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "primitive_id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attributes as you move the pointer around the viewport. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+                        "isActive": true,
+                        "overridingTitle": "Metal Shading Language Specification",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Metal Shading Language Specification",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Primitives",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-primitive.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This mode highlights different instances of primitive acceleration structures. The inspector shows the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "instance_id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute as you move the pointer around the viewport. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+                        "isActive": true,
+                        "overridingTitle": "Metal Shading Language Specification",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Metal Shading Language Specification",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Instances",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-instance.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This mode highlights different intersection functions.  The inspector shows the intersection function index as you move the pointer around the viewport.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Intersection Functions",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-highlight-intersection-function.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-per-primitive-data",
+          "level": 3,
+          "text": "View per-primitive data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view per-primitive data, first navigate to a primitive in the structure outline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, click the arrow next to the data property to open a Buffer viewer containing the per-primitive data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-primitive-data.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on configuring the Buffer viewer to better interpret the data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use Option-Command-Control-click at any time in the scene view to quickly reveal the primitive in the structure outline.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "View-motion-data",
+          "level": 3,
+          "text": "View motion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your acceleration structure includes motion data, Xcode automatically shows additional motion data properties per-instance or per-geometry in the structure outline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-outline-motion.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional motion controls appear in the control bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can drag the motion timeline playhead to change the preview time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can click the Play/Pause button and Xcode repeatedly bounces the current motion time between the minimum start time and the maximum end time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-asv-motion.gif",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset": {
+      "abstract": [
+        {
+          "text": "An index into the intersection table for determining which intersection function Metal calls when it intersects a ray with the acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersectionFunctionTableOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersectionFunctionTableOffset",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLAccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-asv-camera-button.png": {
+      "alt": "A screenshot of the Camera button in the control bar.",
+      "identifier": "gputools-metal-debugger-asv-camera-button.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/803e1c960f8e1768934443008206e7d5/gputools-metal-debugger-asv-camera-button.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62bbfc1f0acab5e95f255bbd85ae8d0e/gputools-metal-debugger-asv-camera-button@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/073b94153c5a945412745e2a95f59c66/gputools-metal-debugger-asv-camera-button~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dcca515c48c9c61c82b9c316d4f05d4/gputools-metal-debugger-asv-camera-button~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-as.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Acceleration Structures highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-as.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea0d013aa38aea88be4835818a7c67a0/gputools-metal-debugger-asv-highlight-as.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b34d043fc06005ea999b6daf64d36773/gputools-metal-debugger-asv-highlight-as@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1612dfee35fa8d1e0d98e2cee1e57a4/gputools-metal-debugger-asv-highlight-as~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9ebced357e2194e12c71ce3c08696b5/gputools-metal-debugger-asv-highlight-as~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-bbox.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Bounding Volume Traversals highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-bbox.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7783e88aa0b2d4d2c767112ad50b8db1/gputools-metal-debugger-asv-highlight-bbox.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4bc456de22233ed709c0fc7491f5267/gputools-metal-debugger-asv-highlight-bbox@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9a9538cd845ce9f1e5bbd4d04bf02f9/gputools-metal-debugger-asv-highlight-bbox~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f15b09fc8867c3e5346793dfb55f1026/gputools-metal-debugger-asv-highlight-bbox~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-button.png": {
+      "alt": "A screenshot of the Highlight button in the control bar.",
+      "identifier": "gputools-metal-debugger-asv-highlight-button.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4870a9364bc84bf23e7823ddabaa8e36/gputools-metal-debugger-asv-highlight-button.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67b59204fc585cc830eb173705423f96/gputools-metal-debugger-asv-highlight-button@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb408a865cf81f2922fcca53ff473345/gputools-metal-debugger-asv-highlight-button~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/accfb61150ac29995ebf32c9abf30e59/gputools-metal-debugger-asv-highlight-button~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-geometry.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Geometries highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-geometry.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23cb9020a82006a35fe9d2873bc44553/gputools-metal-debugger-asv-highlight-geometry.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4edcfa2b215c9ace161d660f4e859f5e/gputools-metal-debugger-asv-highlight-geometry@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd01658b60e72aadb81abc5806b741d4/gputools-metal-debugger-asv-highlight-geometry~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cb48e53219fb65c0cbae148e98ae023/gputools-metal-debugger-asv-highlight-geometry~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-instance.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Instances highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-instance.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a5f14445ac336af4c570bd16c598ab5/gputools-metal-debugger-asv-highlight-instance.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc33b4bc87725d7553d8b0c912eb319f/gputools-metal-debugger-asv-highlight-instance@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0ca6523f98a99c9ca445327cb34224a9/gputools-metal-debugger-asv-highlight-instance~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5dc4e349d2a4d61719f7b6ed081f7b12/gputools-metal-debugger-asv-highlight-instance~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-intersection-function.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Intersection Functions highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-intersection-function.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e65f180d7c6270d32cff133baee807bb/gputools-metal-debugger-asv-highlight-intersection-function.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/000a4d59d8704be9b6e8fa27907cb51f/gputools-metal-debugger-asv-highlight-intersection-function@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/784e01935c22af3b7f47e9bc71bf56cc/gputools-metal-debugger-asv-highlight-intersection-function~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d43eece60062ac555dc00c6b38476377/gputools-metal-debugger-asv-highlight-intersection-function~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-primitive.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the Primitives highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-primitive.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be2fb0d49e9d4c6e6748fc18f16ca26f/gputools-metal-debugger-asv-highlight-primitive.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/adfafb31bebd191d4f3c76253f4a555b/gputools-metal-debugger-asv-highlight-primitive@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff8c2e0a26a117921fec2c68767a3107/gputools-metal-debugger-asv-highlight-primitive~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b50ff68b06d933bfb8e59662f8fddfb/gputools-metal-debugger-asv-highlight-primitive~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-highlight-xray.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer displaying the scene with the All Node Traversal highlight mode.",
+      "identifier": "gputools-metal-debugger-asv-highlight-xray.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9e4513397b0c8e5c20d787e9286f77d/gputools-metal-debugger-asv-highlight-xray.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1cb8db61a0cc3e4a3bcc03894c26b71/gputools-metal-debugger-asv-highlight-xray@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc37720619d3c3866411e1745a39607b/gputools-metal-debugger-asv-highlight-xray~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3a2f438852397fdd2cf77dd8dbec660/gputools-metal-debugger-asv-highlight-xray~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-intersection-functions.png": {
+      "alt": "A screenshot of the intersection function table outline. The sphere intersection function is selected, and the matching geometries are highlighted in the scene view.",
+      "identifier": "gputools-metal-debugger-asv-intersection-functions.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8613c3f99d4b77601b45a97a40622f9/gputools-metal-debugger-asv-intersection-functions.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de34ebc342e5d61ec322d0a4a048d075/gputools-metal-debugger-asv-intersection-functions@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/548b8f044413d35f161e757fabf0c3ae/gputools-metal-debugger-asv-intersection-functions~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d445f49dbe010e2c0d9ac17bf8187ff6/gputools-metal-debugger-asv-intersection-functions~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-intersector.png": {
+      "alt": "A screenshot of the Intersector Options popover.",
+      "identifier": "gputools-metal-debugger-asv-intersector.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/113461b77bfd675b17df31f9bd28ff56/gputools-metal-debugger-asv-intersector.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6d969eb6b2cf1f0cda7e0d9f531a1bf/gputools-metal-debugger-asv-intersector@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2c51fe4cf0f0d411e10c69a6b9793d5/gputools-metal-debugger-asv-intersector~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b549a3ae06b7a82cf7a99632527e617/gputools-metal-debugger-asv-intersector~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-motion.gif": {
+      "alt": "A screen recording of the Acceleration Structure viewer visualizing an instance motion acceleration structure. It repeatedly bounces the current motion time between the minimum start time and the maximum end time.",
+      "identifier": "gputools-metal-debugger-asv-motion.gif",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c99c8353bfd7db2dfd27fe3ed52a1ca9/gputools-metal-debugger-asv-motion.gif"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-outline-motion.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer highlighting the motion data properties for one instance in the instance acceleration structure.",
+      "identifier": "gputools-metal-debugger-asv-outline-motion.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f27aa1d303e88d602289b8ac9d89ec0a/gputools-metal-debugger-asv-outline-motion.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bab69c4d3a1b7bd8921b4daebca7d53f/gputools-metal-debugger-asv-outline-motion@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88ece0d2c2aa90738277e65608583835/gputools-metal-debugger-asv-outline-motion~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03a372ebdf924359b17af9ecf84cf20b/gputools-metal-debugger-asv-outline-motion~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-outline-primitive.png": {
+      "alt": "A screenshot of the Acceleration Structure viewer, which consists of a navigator, a scene view, and a control bar.",
+      "identifier": "gputools-metal-debugger-asv-outline-primitive.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f709f21be11e773cc0986c62fe5ee3c6/gputools-metal-debugger-asv-outline-primitive.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecbae80da1a3679d8a935bbbdd2ccf2e/gputools-metal-debugger-asv-outline-primitive@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/edf290761f6a95c11e4298e31cceb1ee/gputools-metal-debugger-asv-outline-primitive~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dafe8fe2451af34b4907f071befebd67/gputools-metal-debugger-asv-outline-primitive~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-asv-primitive-data.png": {
+      "alt": "A screenshot of the per-primitive data popover in the instance acceleration structure.",
+      "identifier": "gputools-metal-debugger-asv-primitive-data.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3270990b8d87289d5986764245fa803e/gputools-metal-debugger-asv-primitive-data.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/14ec84775069981237ace89387cdd906/gputools-metal-debugger-asv-primitive-data@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17deb400c37cbe19d1952df720b8943c/gputools-metal-debugger-asv-primitive-data~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e56b59e2352d6d79564a0938b02d0fce/gputools-metal-debugger-asv-primitive-data~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLAccelerationStructureGeometryDescriptor~1intersectionFunctionTableOffset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "intersectionFunctionTableOffset"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

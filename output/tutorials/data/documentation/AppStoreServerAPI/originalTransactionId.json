@@ -1,0 +1,971 @@
+{
+  "abstract": [
+    {
+      "text": "The original transaction identifier of a purchase.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:app_store_server_api:originalTransactionId",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "originalTransactionId"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "originalTransactionId"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "originalTransactionId"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string "
+            },
+            {
+              "kind": "identifier",
+              "text": "originalTransactionId"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store generates an original transaction identifier when a customer makes a successful in-app purchase. Most App Store Server API endpoints accept an ",
+              "type": "text"
+            },
+            {
+              "code": "originalTransactionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several ways to obtain this value: from your app after a user makes a successful in-app purchase, from transaction information provided in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for apps that use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the original transaction identifier from your app, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents the in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve enabled ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your server receives notifications for in-app purchase events that include the transaction information with the original transaction identifier. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the original transaction identifier is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. For restored purchases, the original transaction identifier is found in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/original",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If you verify receipts using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the original transaction identifier is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the value of the original transaction identifier that you get from your app, a notification, or a receipt as the value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you send requests to the App Store Server API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you maintain a database to manage your subscribers, save the original transaction identifier to uniquely identify auto-renewable subscriptions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/effectiveDate": {
+      "abstract": [
+        {
+          "text": "The new subscription expiration date for a subscription-renewal extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveDate"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/effectiveDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectiveDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectiveDate",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/effectivedate"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions": {
+      "abstract": [
+        {
+          "text": "Compensate eligible active subscribers for service interruptions by extending a subscription’s renewal date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending the renewal date for auto-renewable subscriptions",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extending-the-renewal-date-for-auto-renewable-subscriptions"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalTransactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/originaltransactionid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/success": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the subscription-renewal-date extension succeeded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "success"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/success",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "success"
+        }
+      ],
+      "role": "symbol",
+      "title": "success",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/success"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/webOrderLineItemId": {
+      "abstract": [
+        {
+          "text": "The unique identifier of subscription-purchase events across devices, including renewals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "webOrderLineItemId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/webOrderLineItemId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webOrderLineItemId"
+        }
+      ],
+      "role": "symbol",
+      "title": "webOrderLineItemId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/weborderlineitemid"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains the version 2 notification data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responseBodyV2DecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction": {
+      "abstract": [
+        {
+          "text": "An object in the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKPaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentTransaction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/original": {
+      "abstract": [
+        {
+          "text": "The transaction that was restored by the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "original"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentTransaction",
+          "text": "SKPaymentTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/original",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "original",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentTransaction/original"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier": {
+      "abstract": [
+        {
+          "text": "A string that uniquely identifies a successful payment transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactionIdentifier",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalID",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/originalID"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "abstract": [
+        {
+          "text": "Validate app and In-App Purchase receipts with the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id": {
+      "abstract": [
+        {
+          "text": "The transaction identifier of the original purchase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "original_transaction_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/original_transaction_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "original_transaction_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/original_transaction_id"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Response-data-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/effectiveDate",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/success",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/webOrderLineItemId"
+      ],
+      "title": "Response data types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction~1transactionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "transactionIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction~1original/title",
+          "value": "originalTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentTransaction~1original/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKPaymentTransaction",
+              "text": "SKPaymentTransaction"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "originalTransaction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/originaltransactionid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

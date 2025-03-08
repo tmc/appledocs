@@ -1,0 +1,688 @@
+{
+  "abstract": [
+    {
+      "text": "Define terms in the glossary property list and reference them on playground pages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-glossary-to-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Glossary to a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a glossary for your playground book if its material introduces vocabulary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that might be new to your audience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Glossary entries appear in two places:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Tools (…) menu’s Glossary entry, which shows a list of all terms and descriptions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Individual popovers for terms that you reference from within the prose of a playground",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Assemble-Terms-into-a-Glossary",
+          "level": 3,
+          "text": "Assemble Terms into a Glossary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a glossary by placing a property list containing the terms and definitions at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following path inside your playground book:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<book name>.playgroundbook/Contents/PrivateResources/Glossary.plist"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode includes a property list editor you can use to create property lists.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in Xcode Help.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top-level key in a glossary’s property list is a dictionary named ",
+              "type": "text"
+            },
+            {
+              "code": "Terms",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Inside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that dictionary, nest a single dictionary for each term you want to define. The key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each nested dictionary is the name of the term you’re defining.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-a-glossary-to-a-playground-book-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Detail-Keys-to-a-Terms-Definition",
+          "level": 3,
+          "text": "Add Detail Keys to a Term’s Definition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dictionary you use to define a term has three parts. Each part requires a specifically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "named key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string that defines the term. Definitions are displayed both in the full glossary and in the popovers that appear when the term is tapped in prose.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Definition",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary you use to point to the first time a term is used in a book. This dictionary has two required keys: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PageReference",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", which is a link to the chapter and page where the term is first used; and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Title",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", which you use to name the link to the chapter and page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Spaces and other special characters in ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "PageReference",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " must be encoded according",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "to the URI rules in ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://tools.ietf.org/html/rfc3986#section-2",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". For",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "example, a reference to the “Commands” chapter’s “Issuing Commands” page is specified",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "by using the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Commands/Issuing%20Commands",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " URI.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "FirstUse",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string you use to customize the term’s title. Use this key to localize terms. If you omit this key, the term is used as its own title.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Title",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the parts of a glossary as they appear in Swift Playgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-a-glossary-to-a-playground-book-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Links-to-the-Terms-in-Your-Prose",
+          "level": 3,
+          "text": "Add Links to the Terms in Your Prose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Link appropriately to your glossary terms throughout your playground book’s pages.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Link to a term on its first use, as well as any subsequent uses on later pages where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you think learners might need to check the definition again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use markup to add term links. An example of link markup for the term ",
+              "type": "text"
+            },
+            {
+              "code": "command",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "[commands](glossary://command)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Include this markup in the flow of the prose you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write for the learning material in your playground book. The example below shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a term link in context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*:",
+            "In this challenge, you'll practice your [bug](glossary://bug)-finding skills by",
+            "finding and rearranging the [commands](glossary://command) that are out of",
+            "order in the code below.",
+            "*/"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you tap the rendered link on a page, a popover appears with the definition of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-a-glossary-to-a-playground-book-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-a-glossary-to-a-playground-book-1": {
+      "alt": "A screen shot showing several terms defined inside the property list editor in Xcode.",
+      "identifier": "adding-a-glossary-to-a-playground-book-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be85d4ba0951638e976e6a427712c484/adding-a-glossary-to-a-playground-book-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce7151fe23fbbb48da7da4a928eb9a8d/adding-a-glossary-to-a-playground-book-1~dark@2x.png"
+        }
+      ]
+    },
+    "adding-a-glossary-to-a-playground-book-2": {
+      "alt": "A screenshot of the glossary in Swift Playgrounds. Three parts are highlighted: the term, the definition, and the first-use link.",
+      "identifier": "adding-a-glossary-to-a-playground-book-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/466f4aba7651840a9b8e4fa2ea51cd1f/adding-a-glossary-to-a-playground-book-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a2a0bfdcaa2316fbef0e70367e2fe57/adding-a-glossary-to-a-playground-book-2~dark@2x.png"
+        }
+      ]
+    },
+    "adding-a-glossary-to-a-playground-book-3": {
+      "alt": "Screenshot showing the term definition popover for the tapped word “bug” in Swift Playgrounds.",
+      "identifier": "adding-a-glossary-to-a-playground-book-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db989e275b9a0a87fb23670a930192f1/adding-a-glossary-to-a-playground-book-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf91d676bccd6e2e06783c94b0e22107/adding-a-glossary-to-a-playground-book-3~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497",
+      "title": "Markup Formatting Reference",
+      "titleInlineContent": [
+        {
+          "text": "Markup Formatting Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+      "title": "Edit property lists",
+      "titleInlineContent": [
+        {
+          "text": "Edit property lists",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6"
+    },
+    "https://tools.ietf.org/html/rfc3986#section-2": {
+      "identifier": "https://tools.ietf.org/html/rfc3986#section-2",
+      "title": "RFC 3986",
+      "titleInlineContent": [
+        {
+          "text": "RFC 3986",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc3986#section-2"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497"
+      ],
+      "title": "Related Documentation"
+    }
+  ]
+}

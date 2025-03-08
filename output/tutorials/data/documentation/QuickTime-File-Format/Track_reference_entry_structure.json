@@ -1,0 +1,330 @@
+{
+  "abstract": [
+    {
+      "text": "A data structure you use to specify information about any low-resolution image tracks contained in a movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hot_spot_image_tracks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_entry_structure"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Track reference entry structure"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since there are no fields in the pano sample data atom to indicate the presence of low-resolution image tracks, a separate sibling atom must be added to the panorama sample atom container. The track reference array atom contains an array of track reference entry structures that specify information about any low-resolution image tracks contained in a movie. Its atom type is ",
+              "type": "text"
+            },
+            {
+              "code": "kQTVRTrackRefArrayAtomType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (‘tref’).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A track reference entry structure is defined by the QTVRTrackRefEntry data type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct QTVRTrackRefEntry {",
+            "    UInt32                              trackRefType;",
+            "    UInt16                              trackResolution;",
+            "    UInt32                              trackRefIndex;",
+            "} QTVRTrackRefEntry;"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Field descriptions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The track reference type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "trackRefType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The track resolution.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "trackResolution",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The index of the track reference.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "trackRefIndex",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of entries in the track reference array atom is determined by dividing the size of the atom by ",
+              "type": "text"
+            },
+            {
+              "code": "sizeof",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "QTVRTrackRefEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "kQTVRPreviewTrackRes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a special value for the ",
+              "type": "text"
+            },
+            {
+              "code": "trackResolution",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the ",
+              "type": "text"
+            },
+            {
+              "code": "QTVRTrackRefEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. This is used to indicate the presence of a special preview image track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hot_spot_image_tracks": {
+      "abstract": [
+        {
+          "text": "Identify hot spots in a panorama with a hot spot image track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hot_spot_image_tracks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hot spot image tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_image_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Low-resolution_image_tracks": {
+      "abstract": [
+        {
+          "text": "Create low resolution image tracks for low memory conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Low-resolution_image_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Low-resolution image tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/low-resolution_image_tracks"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Hot-spot-image-tracks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Low-resolution_image_tracks"
+      ],
+      "title": "Hot spot image tracks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/track_reference_entry_structure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

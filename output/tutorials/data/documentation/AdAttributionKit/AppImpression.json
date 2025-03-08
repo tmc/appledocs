@@ -1,0 +1,1775 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that represents an attributable impression the developer generates in response to a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "person’s interaction with an ad in an app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:16AdAttributionKit13AppImpressionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AppImpression"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AppImpression"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AppImpression"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AppImpression"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To record a view-through impression,  call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the ad content corresponding to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "impression becomes visible, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the ad content disappears. The advertisement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "needs to be visible for at least two seconds for AdAttributionKit to record a view through impression;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "otherwise, the framework throws an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Regenerate an ",
+                  "type": "text"
+                },
+                {
+                  "code": "AppImpression",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for each ad you show. Don’t reuse ",
+                  "type": "text"
+                },
+                {
+                  "code": "AppImpression",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " structures across multiple ads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support click-through attribution, place a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over the ad content and call  either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after a person taps the ad content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The framework then validates that a person taps a ",
+              "type": "text"
+            },
+            {
+              "code": "UIEventAttributionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before recording the impression, and throws an error if it can’t validate that a tap occurred in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "UIEventAttributionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the framework validates the tap, it records the impression and then attempts to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launch one of the user’s installed marketplaces to show the product page for the advertised app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses the advertised item ID from the JSON Web Signature (JWS) string you provide to initialize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "AppImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in addition to the user’s preferred marketplaces, to help determine which marketplace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the framework needs to launch. If the app is already installed, the framework launches into the app’s Home Screen instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18 and later, ",
+              "type": "text"
+            },
+            {
+              "code": "AppImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports reengagement for click-through interactions when the advertised app is already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "installed on the device. The system can deep-link into the advertised app when using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Click-through impressions can also qualify for reengagement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "postbacks by opting in for reengagement in the impression JWS. For more information about opting in for re-engagement,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Displaying-view-through-ads",
+          "level": 2,
+          "text": "Displaying view-through ads.",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Processing-interactions-with-click-through-ads",
+          "level": 2,
+          "text": "Processing interactions with click-through ads.",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Instance-methods",
+          "level": 2,
+          "text": "Instance methods",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hash(into:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression": {
+      "abstract": [
+        {
+          "text": "A structure that represents an attributable impression the developer generates in response to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "person’s interaction with an ad in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppImpression",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit13AppImpressionV",
+          "text": "AppImpression"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit13AppImpressionV",
+          "text": "AppImpression"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/==(_:_:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/equatable-implementations"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppImpression.ID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/id-swift.typealias"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/adNetworkID": {
+      "abstract": [
+        {
+          "text": "The advertising network ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adNetworkID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/adNetworkID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adNetworkID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/adnetworkid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID": {
+      "abstract": [
+        {
+          "text": "The advertised item’s ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advertisedItemID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advertisedItemID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/advertiseditemid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()": {
+      "abstract": [
+        {
+          "text": "Begins recording a view-through impression when ad content corresponding to the impression becomes visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginView"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginView()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/beginview()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/compactJWSRepresentation": {
+      "abstract": [
+        {
+          "text": "A string that presents the compact representation of the impression’s JSON Web Signature (JWS).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compactJWSRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/compactJWSRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compactJWSRepresentation",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/compactjwsrepresentation"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/eligibleForReengagement": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this impression is eligible for reengagement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eligibleForReengagement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/eligibleForReengagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eligibleForReengagement",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/eligibleforreengagement"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()": {
+      "abstract": [
+        {
+          "text": "Ends the view-through impression when the ad content corresponding to the impression disappears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endView"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endView()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/endview()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()": {
+      "abstract": [
+        {
+          "text": "Processes click-through interactions on your custom rendered ad content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleTap"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleTap()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/handletap()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)": {
+      "abstract": [
+        {
+          "text": "Processes click-through interactions on your custom rendered ad content, and delivers a URL to the advertised app if it’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "installed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reengagementURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleTap(reengagementURL:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/handletap(reengagementurl:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hash(into:)": {
+      "abstract": [
+        {
+          "text": "A function that hashes the essential components of the value by passing them into the hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/hash(into:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/hashvalue"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property": {
+      "abstract": [
+        {
+          "text": "The impression’s unique ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/id-swift.property"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/init(compactJWS:)": {
+      "abstract": [
+        {
+          "text": "Creates a new app impression with the provided compact JSON Web Signature (JWS).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compactJWS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/init(compactJWS:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(compactJWS:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/init(compactjws:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the framework supports app impressions on a person’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/isSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/issupported"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/keyID": {
+      "abstract": [
+        {
+          "text": "The JSON Web Signature (JWS) key ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/keyID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/keyid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID": {
+      "abstract": [
+        {
+          "text": "The publisher app’s item ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "publisherItemID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publisherItemID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/publisheritemid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/sourceID": {
+      "abstract": [
+        {
+          "text": "A four-digit integer that ad networks define to represent the ad campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/sourceID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/sourceid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/timestamp": {
+      "abstract": [
+        {
+          "text": "The impression’s timestamp, in milliseconds since 1970.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/timestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/timestamp"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions": {
+      "abstract": [
+        {
+          "text": "Create a JSON Web Signature (JWS) for use with app impressions in AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JWS impressions",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/generating-jws-impressions"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app": {
+      "abstract": [
+        {
+          "text": "Render different ad styles in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting ads in your app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/presenting-ads-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView": {
+      "abstract": [
+        {
+          "text": "An overlay view that verifies user interaction for Web AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEventAttributionView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIEventAttributionView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIEventAttributionView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/==(_:_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/init(compactJWS:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/adNetworkID",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/compactJWSRepresentation",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/eligibleForReengagement",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hashValue",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/keyID",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/sourceID",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/timestamp"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap(reengagementURL:)",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/hash(into:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/ID-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/isSupported"
+      ],
+      "title": "Type Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEventAttributionView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIEventAttributionView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/appimpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

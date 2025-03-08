@@ -1,0 +1,2153 @@
+{
+  "abstract": [
+    {
+      "text": "A concrete object for managing your view’s text content and generating the text elements necessary for layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTextContentStorage",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTextContentStorage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTextContentStorage"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSTextContentStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides the backing store for a view that contains text. This object stores the text in an attributed string object, and defaults to using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. It also maps portions of the text to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to organize the text into paragraphs, lists, and other common element types found in text content. During layout, TextKit uses these elements to lay out and render the text in your view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard system views use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage their text content. When building a custom text view, use this type to store the text for your view. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " works with an associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextLayoutManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to lay out your view’s text. When someone inserts new text or edits the existing text, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and use a block to modify the contents of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Wrapping your edits in an edit transaction lets the rest of the text system respond to those changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "TextKit uses the abstract ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to identify locations within text. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manager provides its own implementation of this protocol to represent locations within its storage object. To get the start and end locations, access the object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider/documentRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and use them to create new location objects. If you provide your own implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to manage locations in your content, subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and implement your own storage object to support those locations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface and a default implementation for managing the text document contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContentManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContentManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContentManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)": {
+      "abstract": [
+        {
+          "text": "Performs an editing transaction and invokes a block upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performEditingTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager/performEditingTransaction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performEditingTransactionUsingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performEditingTransaction(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentmanager/performeditingtransaction(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage": {
+      "abstract": [
+        {
+          "text": "A concrete object for managing your view’s text content and generating the text elements necessary for layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContentStorage",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)": {
+      "abstract": [
+        {
+          "text": "Returns the text range, if any, in the backing store that required manual adjustment after editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustedRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextRange",
+          "text": "NSTextRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forEditingTextSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextRange",
+          "text": "NSTextRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustedRangeFromRange:forEditingTextSelection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "adjustedRange(from:forEditingTextSelection:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/adjustedrange(from:foreditingtextselection:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString": {
+      "abstract": [
+        {
+          "text": "An attributed string that contains the contents of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributedString",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/attributedstring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString(for:)": {
+      "abstract": [
+        {
+          "text": "Returns a new attributed string for the text element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextElement",
+          "text": "NSTextElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributedStringForTextElement:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributedString(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/attributedstring(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the content storage object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextContentStorageDelegate",
+          "text": "NSTextContentStorageDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)": {
+      "abstract": [
+        {
+          "text": "Returns a new text location object based on an existing location and offset you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextLocation",
+          "text": "NSTextLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextLocation",
+          "text": "NSTextLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationFromLocation:withOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "location(_:offsetBy:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/location(_:offsetby:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/offset(from:to:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of characters between the specified locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextLocation",
+          "text": "NSTextLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextLocation",
+          "text": "NSTextLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/offset(from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "offsetFromLocation:toLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "offset(from:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/offset(from:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/textElement(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the text element corresponding to object’s attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textElement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextElement",
+          "text": "NSTextElement"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/textElement(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textElementForAttributedString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textElement(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorage/textelement(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageDelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods that delegates of content storage objects implement to handle content processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorageDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorageDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContentStorageDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstoragedelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageUnsupportedAttributeAddedNotification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorageUnsupportedAttributeAddedNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageUnsupportedAttributeAddedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextContentStorageUnsupportedAttributeAddedNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontentstorageunsupportedattributeaddednotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextElement": {
+      "abstract": [
+        {
+          "text": "An abstract base class that represents the smallest units of text layout such as paragraphs or attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextElement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextElement",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextelement"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider": {
+      "abstract": [
+        {
+          "text": "A protocol the text content manager and its concrete subclasses conform to, which defines the interface for interacting with custom content types of a text document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextElementProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextElementProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextElementProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextelementprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider/documentRange": {
+      "abstract": [
+        {
+          "text": "Describes the starting and ending locations for the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextRange",
+          "text": "NSTextRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider/documentRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentRange"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "documentRange",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextelementprovider/documentrange"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextLayoutManager": {
+      "abstract": [
+        {
+          "text": "The primary class that you use to manage text layout and presentation for custom text displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextlayoutmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextLocation": {
+      "abstract": [
+        {
+          "text": "An interface you implement that represents an abstract location inside your document’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLocation",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextlocation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage": {
+      "abstract": [
+        {
+          "text": "The fundamental storage mechanism of TextKit that contains the text managed by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorage",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving": {
+      "abstract": [
+        {
+          "text": "Optional methods that delegates implement to handle editing and transaction processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageObserving"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageObserving"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorageObserving",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorageobserving"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/textkit-string-attributes": {
+      "abstract": [
+        {
+          "text": "AppKit-specific keys and values for displaying text and managing documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/textkit-string-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit string attributes",
+      "type": "topic",
+      "url": "/documentation/appkit/textkit-string-attributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring": {
+      "abstract": [
+        {
+          "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring"
+      ],
+      "title": "Text management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-the-stored-text",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString"
+      ],
+      "title": "Managing the stored text"
+    },
+    {
+      "anchor": "Accessing-paragraphs",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageDelegate"
+      ],
+      "title": "Accessing paragraphs"
+    },
+    {
+      "anchor": "Finding-ranges-locations-and-offsets",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/offset(from:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)"
+      ],
+      "title": "Finding ranges, locations, and offsets"
+    },
+    {
+      "anchor": "Managing-text-elements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/textElement(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString(for:)"
+      ],
+      "title": "Managing text elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTextContentStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-the-stored-text",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString"
+              ],
+              "title": "Managing the stored text"
+            },
+            {
+              "anchor": "Accessing-paragraphs",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageDelegate"
+              ],
+              "title": "Accessing paragraphs"
+            },
+            {
+              "anchor": "Finding-ranges-locations-and-offsets",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/offset(from:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)"
+              ],
+              "title": "Finding ranges, locations, and offsets"
+            },
+            {
+              "anchor": "Managing-text-elements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/textElement(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorage/attributedString(for:)"
+              ],
+              "title": "Managing text elements"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentStorageUnsupportedAttributeAddedNotification"
+              ],
+              "title": "Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager",
+                "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+                "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+                "doc://com.apple.appkit/documentation/AppKit/textkit-string-attributes"
+              ],
+              "title": "Text management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTextContentStorage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContentManager",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSTextContentManager",
+                    "text": "NSTextContentManager"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1offset(from:to:)/title",
+          "value": "offsetFromLocation:toLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1offset(from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "offsetFromLocation:toLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLocation/title",
+          "value": "NSTextLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentManager/title",
+          "value": "NSTextContentManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1textElement(for:)/title",
+          "value": "textElementForAttributedString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1textElement(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textElementForAttributedString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentManager~1performEditingTransaction(_:)/title",
+          "value": "performEditingTransactionUsingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentManager~1performEditingTransaction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performEditingTransactionUsingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElementProvider/title",
+          "value": "NSTextElementProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElementProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElementProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElementProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElementProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1adjustedRange(from:forEditingTextSelection:)/title",
+          "value": "adjustedRangeFromRange:forEditingTextSelection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1adjustedRange(from:forEditingTextSelection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjustedRangeFromRange:forEditingTextSelection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElement/title",
+          "value": "NSTextElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1location(_:offsetBy:)/title",
+          "value": "locationFromLocation:withOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1location(_:offsetBy:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationFromLocation:withOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLayoutManager/title",
+          "value": "NSTextLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElementProvider~1documentRange/title",
+          "value": "documentRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextElementProvider~1documentRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documentRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorageDelegate/title",
+          "value": "NSTextContentStorageDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorageDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorageDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1attributedString(for:)/title",
+          "value": "attributedStringForTextElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1attributedString(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributedStringForTextElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/title",
+          "value": "NSTextStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1attributedString/title",
+          "value": "attributedString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage~1attributedString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/title",
+          "value": "NSTextStorageObserving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage/title",
+          "value": "NSTextContentStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContentStorage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstextcontentstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstextcontentstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

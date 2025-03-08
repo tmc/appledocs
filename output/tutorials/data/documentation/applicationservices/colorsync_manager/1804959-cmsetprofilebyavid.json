@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the profile for the specified monitor, optionally setting video card gamma.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804959-cmsetprofilebyavid"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804959,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMSetProfileByAVID"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMSetProfileByAVID ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMDisplayIDType theID,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef prof"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Display Manager ID value. You pass the ID value for the monitor for which to set the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "theAVID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference. Before calling ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMSetProfileByAVID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", set the reference to identify the profile for the monitor specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "theAVID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "prof"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a profile that contains the optional profile tag for video card gamma, ",
+              "type": "text"
+            },
+            {
+              "code": "CMSetProfileByAVID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extracts the tag and sets the video card based on the tag data. This is the only ColorSync function that sets video card gamma. The tag constant ",
+              "type": "text"
+            },
+            {
+              "code": "cmVideoCardGammaTag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1560164-video_card_gamma_tags",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user sets a display profile using the Monitors & Sound control panel, the system profile is set to the same profile. When you call ",
+              "type": "text"
+            },
+            {
+              "code": "CMSetProfileByAVID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to set a profile for a monitor, you may also wish to make that profile the system profile. If so, you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804932-cmsetsystemprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " explicitly—calling ",
+              "type": "text"
+            },
+            {
+              "code": "CMSetProfileByAVID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " alone has no affect on the system profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that if the Display Manager supports ColorSync, the ",
+              "type": "text"
+            },
+            {
+              "code": "CMSetProfileByAVID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls on the Display Manager to set the profile for the specified display. This is the case if the version of the Display Manager is 2.2.5 or higher (if ",
+              "type": "text"
+            },
+            {
+              "code": "gestaltDisplayMgrAttr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the ",
+              "type": "text"
+            },
+            {
+              "code": "gestaltDisplayMgrColorSyncAware",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit set). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1560164-video_card_gamma_tags": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1560164-video_card_gamma_tags",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Video Card Gamma Tags",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1560164-video_card_gamma_tags"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804926-cmgetsystemprofile": {
+      "abstract": [
+        {
+          "text": "Obtains a reference to the current system profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804926-cmgetsystemprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetSystemProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804926-cmgetsystemprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804932-cmsetsystemprofile": {
+      "abstract": [
+        {
+          "text": "Sets the current system profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804932-cmsetsystemprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetSystemProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804932-cmsetsystemprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804936-ncmsetsystemprofile": {
+      "abstract": [
+        {
+          "text": "Sets the location of a color profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804936-ncmsetsystemprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMSetSystemProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804936-ncmsetsystemprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace": {
+      "abstract": [
+        {
+          "text": "Gets the default profile for the specified color space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetDefaultProfileBySpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804944-cmsetdefaultprofilebyspace": {
+      "abstract": [
+        {
+          "text": "Sets the default profile for the specified color space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804944-cmsetdefaultprofilebyspace",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetDefaultProfileBySpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804944-cmsetdefaultprofilebyspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804948-cmgetdefaultprofilebyuse": {
+      "abstract": [
+        {
+          "text": "Obtains the users’ preferred device profile setting.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804948-cmgetdefaultprofilebyuse",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetDefaultProfileByUse",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804948-cmgetdefaultprofilebyuse"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804951-cmsetdefaultprofilebyuse": {
+      "abstract": [
+        {
+          "text": "Sets values for device profile settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804951-cmsetdefaultprofilebyuse",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetDefaultProfileByUse",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804951-cmsetdefaultprofilebyuse"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid": {
+      "abstract": [
+        {
+          "text": "Gets the current profile for a monitor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileByAVID",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804959-cmsetprofilebyavid": {
+      "abstract": [
+        {
+          "text": "Sets the profile for the specified monitor, optionally setting video card gamma.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804959-cmsetprofilebyavid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileByAVID",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804959-cmsetprofilebyavid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804926-cmgetsystemprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804932-cmsetsystemprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804936-ncmsetsystemprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804940-cmgetdefaultprofilebyspace",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804944-cmsetdefaultprofilebyspace",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804948-cmgetdefaultprofilebyuse",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804951-cmsetdefaultprofilebyuse",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804955-cmgetprofilebyavid"
+      ],
+      "title": "Accessing Special Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804959-cmsetprofilebyavid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,553 @@
+{
+  "abstract": [
+    {
+      "text": "Perform computations on large vectors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/veclib"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "vecLib"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vecLib framework contains nine C header files (not counting vecLib.h which merely includes the others). Two of them, ",
+              "type": "text"
+            },
+            {
+              "code": "vDSP.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "vDSP_translate.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", are covered in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/vDSP_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005147",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Three of the header files are Apple’s versions of well-known libraries which are described in detail in external references:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cblas.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vblas.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are the interfaces to Apple’s implementations of BLAS. You can find reference documentation in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BLAS",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Additional documentation on the BLAS standard, including reference implementations, can be found on the web starting from the BLAS FAQ page at these URLs: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://www.netlib.org/blas/faq.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://www.netlib.org/blas/blast-forum/blast-forum.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "clapack.h is the interface to Apple’s implementation of LAPACK. Documentation of the LAPACK interfaces, including reference implementations, can be found on the web starting from the LAPACK FAQ page at this URL: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://netlib.org/lapack/faq.html",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document describes the functions declared in the remaining header files: ",
+              "type": "text"
+            },
+            {
+              "code": "vecLibTypes.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vfp.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vForce.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vBasicOps.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vectorOps.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "vBigNum.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These files support the vector mathematical functions library (also called “vMathLib”), which runs on vector processing hardware if available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This library abstracts the vector processing capability so that code written for it will execute appropriate instructions for the processor available at runtime. For this reason, unless you are writing specialized code that targets a single CPU, you should generally use these functions rather than directly using vector instructions. By using these functions, your code does not have to deal with subtle differences in vector instruction availability between different microarchitectures, freeing you to focus on the problem you are trying to solve. Also, code written using vecLib tends to be easier to port to different CPU architectures (porting your core libraries to ARM on iOS, for example).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BLAS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BLAS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BLAS"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BLAS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BLAS"
+        }
+      ],
+      "role": "symbol",
+      "title": "BLAS",
+      "type": "topic",
+      "url": "/documentation/accelerate/blas"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vDSP.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vbasicops": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic and logical functions on 128-bit vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vbasicops",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vBasicOps",
+      "type": "topic",
+      "url": "/documentation/accelerate/vbasicops"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vbignum": {
+      "abstract": [
+        {
+          "text": "Perform arithmetic and logical functions on large integers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vbignum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vBigNum",
+      "type": "topic",
+      "url": "/documentation/accelerate/vbignum"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/veclib-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/veclib-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Macros",
+      "type": "topic",
+      "url": "/documentation/accelerate/veclib-macros"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/veclibtypes": {
+      "abstract": [
+        {
+          "text": "Create and work with 128-bit vector data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/veclibtypes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vecLibTypes",
+      "type": "topic",
+      "url": "/documentation/accelerate/veclibtypes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vectorops": {
+      "abstract": [
+        {
+          "text": "Perform vector and matrix BLAS functions on arrays of 128-bit vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vectorops",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vectorOps",
+      "type": "topic",
+      "url": "/documentation/accelerate/vectorops"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vforce-library": {
+      "abstract": [
+        {
+          "text": "Perform transcendental and trigonometric functions on vectors of any length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vforce-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vForce",
+      "type": "topic",
+      "url": "/documentation/accelerate/vforce-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vfp-library": {
+      "abstract": [
+        {
+          "text": "Perform floating-point arithmetic, transcendental, and trigonometric functions on 128-bit vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vfp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vfp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vfp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://netlib.org/lapack/faq.html": {
+      "identifier": "http://netlib.org/lapack/faq.html",
+      "title": "http://netlib.org/lapack/faq.html",
+      "titleInlineContent": [
+        {
+          "text": "http://netlib.org/lapack/faq.html",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://netlib.org/lapack/faq.html"
+    },
+    "http://www.netlib.org/blas/blast-forum/blast-forum.html": {
+      "identifier": "http://www.netlib.org/blas/blast-forum/blast-forum.html",
+      "title": "http://www.netlib.org/blas/blast-forum/blast-forum.html",
+      "titleInlineContent": [
+        {
+          "text": "http://www.netlib.org/blas/blast-forum/blast-forum.html",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.netlib.org/blas/blast-forum/blast-forum.html"
+    },
+    "http://www.netlib.org/blas/faq.html": {
+      "identifier": "http://www.netlib.org/blas/faq.html",
+      "title": "http://www.netlib.org/blas/faq.html",
+      "titleInlineContent": [
+        {
+          "text": "http://www.netlib.org/blas/faq.html",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.netlib.org/blas/faq.html"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/vDSP_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005147": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/vDSP_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005147",
+      "title": "vDSP Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "vDSP Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/vDSP_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005147"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "vecLibTypes",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/veclibtypes"
+      ],
+      "title": "vecLibTypes"
+    },
+    {
+      "anchor": "vBasicOps",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vbasicops"
+      ],
+      "title": "vBasicOps"
+    },
+    {
+      "anchor": "vfp",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vfp-library"
+      ],
+      "title": "vfp"
+    },
+    {
+      "anchor": "vForce",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vforce-library"
+      ],
+      "title": "vForce"
+    },
+    {
+      "anchor": "vectorOps",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vectorops"
+      ],
+      "title": "vectorOps"
+    },
+    {
+      "anchor": "vBigNum",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vbignum"
+      ],
+      "title": "vBigNum"
+    },
+    {
+      "anchor": "Macros",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/veclib-macros"
+      ],
+      "title": "Macros"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

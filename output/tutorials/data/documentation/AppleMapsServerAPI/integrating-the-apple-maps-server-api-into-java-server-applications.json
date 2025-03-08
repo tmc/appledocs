@@ -1,0 +1,573 @@
+{
+  "abstract": [
+    {
+      "text": "Streamline your app’s API by moving georelated searches from inside your app to your server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating the Apple Maps Server API into Java server applications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to integrate the Apple Maps Server API into Java-based apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MapsApiClientDemo.java",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file demonstrates how you use the Apple Maps Server APIs and the following API features:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Getting an Access Token — Authenticate with the service and retrieve an Apple Maps Server API token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Geocoding — Retrieve the latitude and longitude from a text address.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reverse Geocoding — Retrieve a list of addresses that are present at the specified latitude and longitude.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Searching — Search for locations by criteria you provide.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SearchAutoComplete - Get a list of autocomplete results for the specified search query.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ETAs — Calculate estimated times of arrival (ETAs) between a specified starting location and one or more destinations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Directions - Get directions between origin and destination points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session: 10006 ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10006",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build this sample, you need the following tools and other information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://www.oracle.com/java/technologies/downloads/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — This sample code can run on older versions of Java with some minor modifications, depending upon your Java installation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://gradle.org",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — The project includes a Gradle command wrapper that uses Gradle version 7.5.1; you may a different version if you need to use a different Java installation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Apple Developer team ID — This is a 10-character team ID you obtain from the membership tab in your Apple Developer portal account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Maps key ID and private key — This is a 10-character key identifier that provides the ID of the private key and the private key that you obtain from your Apple Developer portal account. To create a Maps ID and private key, follow the steps in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+                      "isActive": true,
+                      "overridingTitle": "Creating a Maps identifier and a private key",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Creating a Maps identifier and a private key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "MapsApiClientDemo.java",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, edit the ",
+              "type": "text"
+            },
+            {
+              "code": "createJwt()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to set the ",
+              "type": "text"
+            },
+            {
+              "code": "teamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "keyId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "key",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variables to the values you obtained from your Apple Developer portal account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-sample",
+          "level": 3,
+          "text": "Run the sample",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample, enter the following commands in Terminal while in the ",
+              "type": "text"
+            },
+            {
+              "code": "server-api-examples",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% gradle wrapper",
+            "% ./gradlew clean run"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token": {
+      "abstract": [
+        {
+          "text": "Returns a JWT maps access token that you use to call the service API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate a Maps token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that API responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common objects",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/common-objects"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "abstract": [
+        {
+          "text": "Create a Maps identifier and a private key before generating tokens for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api": {
+      "abstract": [
+        {
+          "text": "Sign JSON Web Tokens to use Maps Server API and debug common signing errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and using tokens with Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-and-using-tokens-with-maps-server-api"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token": {
+      "abstract": [
+        {
+          "text": "Inspect the JavaScript console logs, the token, and events to determine why a token is invalid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an Invalid token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/debugging-an-invalid-token"
+    },
+    "doc://com.apple.documentation/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "abstract": [
+        {
+          "text": "Create a Maps identifier and a private key before generating tokens for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "ff0098d1ddf7/IntegratingTheAppleMapsServerAPIIntoJavaServerApplications.zip": {
+      "checksum": "ff0098d1ddf7a7a6bc9d3733d18c15f7b5a75c76c1357d6451b65b065476f0cdf653d7eb6722037860af247daab9e34d428d568294248519e62a8f494925135e",
+      "identifier": "ff0098d1ddf7/IntegratingTheAppleMapsServerAPIIntoJavaServerApplications.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ff0098d1ddf7/IntegratingTheAppleMapsServerAPIIntoJavaServerApplications.zip"
+    },
+    "https://developer.apple.com/wwdc22/10006": {
+      "identifier": "https://developer.apple.com/wwdc22/10006",
+      "title": "Meet Apple Maps Server APIs",
+      "titleInlineContent": [
+        {
+          "text": "Meet Apple Maps Server APIs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10006"
+    },
+    "https://gradle.org": {
+      "identifier": "https://gradle.org",
+      "title": "Gradle",
+      "titleInlineContent": [
+        {
+          "text": "Gradle",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gradle.org"
+    },
+    "https://www.oracle.com/java/technologies/downloads/": {
+      "identifier": "https://www.oracle.com/java/technologies/downloads/",
+      "title": "Java 17",
+      "titleInlineContent": [
+        {
+          "text": "Java 17",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.oracle.com/java/technologies/downloads/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ff0098d1ddf7/IntegratingTheAppleMapsServerAPIIntoJavaServerApplications.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/integrating-the-apple-maps-server-api-into-java-server-applications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

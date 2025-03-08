@@ -1,0 +1,1475 @@
+{
+  "abstract": [
+    {
+      "text": "The available environment texturing options for world tracking.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "ARKit",
+    "externalID": "c:@E@AREnvironmentTexturing",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EnvironmentTexturing"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EnvironmentTexturing"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "ARWorldTrackingConfiguration.EnvironmentTexturing"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EnvironmentTexturing"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Environment textures are cube-map textures that depict the view in all directions from a specific point in a scene. In 3D asset rendering, environment textures are the basis for image-based lighting algorithms where surfaces can realistically reflect light from their surroundings. ARKit generates environment textures during an AR session using camera imagery, allowing SceneKit or a custom-rendering engine to provide realistic image-based lighting for virtual objects in your AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable texture map generation for your configuration, change this property (from its default value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " environment texturing, you identify points in the scene for which you want light probe texture maps by creating ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects and adding them to the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " environment texturing, ARKit automatically creates, positions, and adds ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects to the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In both cases, ARKit automatically generates environment textures as the session collects camera imagery. Use a delegate method such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find out when a texture is available, and access it from the anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you display AR content using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option, SceneKit automatically retrieves ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " texture maps and uses them to light the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor": {
+      "abstract": [
+        {
+          "text": "An object that provides environmental lighting information for a specific area of space in a world-tracking AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AREnvironmentProbeAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture": {
+      "abstract": [
+        {
+          "text": "A cube-map texture that represents the view in all directions from the probe anchor’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor/environmentTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environmentTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "environmentTexture",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor/environmenttexture"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/environmentTexturing": {
+      "abstract": [
+        {
+          "text": "An option that determines how the framework generates environment textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentTexturing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AREnvironmentTexturing",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/environmentTexturing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environmentTexturing"
+        }
+      ],
+      "role": "symbol",
+      "title": "environmentTexturing",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration/environmenttexturing"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/wantsHDREnvironmentTextures": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the framework to create environment textures in HDR format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsHDREnvironmentTextures"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/wantsHDREnvironmentTextures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsHDREnvironmentTextures"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsHDREnvironmentTextures",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration/wantshdrenvironmenttextures"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNView",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether ARKit creates and updates SceneKit lights in the view’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesLighting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesLighting"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyUpdatesLighting",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/automaticallyupdateslighting"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has adjusted the properties of one or more anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum": {
+      "abstract": [
+        {
+          "text": "The available environment texturing options for world tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic": {
+      "abstract": [
+        {
+          "text": "The framework automatically determines when and where to generate environment textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentTexturingAutomatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing.automatic",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/init(rawvalue:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual": {
+      "abstract": [
+        {
+          "text": "The framework generates environment textures only for probe anchors you explicitly add to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manual"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentTexturingManual"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing.manual",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/none": {
+      "abstract": [
+        {
+          "text": "The framework doesn’t generate environment textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentTexturingNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing.none",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/none"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSInteger": {
+      "abstract": [
+        {
+          "text": "Describes an integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSInteger"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Realistic-Reflections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/environmentTexturing",
+        "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/wantsHDREnvironmentTextures"
+      ],
+      "title": "Creating Realistic Reflections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Enumeration-Cases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/none"
+      ],
+      "title": "Enumeration Cases"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AREnvironmentTexturing"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Enumeration-Cases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/automatic",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/manual",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum/none"
+              ],
+              "title": "Enumeration Cases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Realistic-Reflections",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/environmentTexturing",
+                "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/wantsHDREnvironmentTextures"
+              ],
+              "title": "Creating Realistic Reflections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AREnvironmentTexturing"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1environmentTexturing/title",
+          "value": "environmentTexturing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1environmentTexturing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "environmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1manual/title",
+          "value": "AREnvironmentTexturingManual"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1manual/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturingManual"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1automaticallyUpdatesLighting/title",
+          "value": "automaticallyUpdatesLighting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1automaticallyUpdatesLighting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyUpdatesLighting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-3qtt8/title",
+          "value": "session:didUpdateAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-3qtt8/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/title",
+          "value": "AREnvironmentProbeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1wantsHDREnvironmentTextures/title",
+          "value": "wantsHDREnvironmentTextures"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1wantsHDREnvironmentTextures/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsHDREnvironmentTextures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1automatic/title",
+          "value": "AREnvironmentTexturingAutomatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1automatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturingAutomatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/title",
+          "value": "AREnvironmentTexturing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1none/title",
+          "value": "AREnvironmentTexturingNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturingNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1environmentTexture/title",
+          "value": "environmentTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor~1environmentTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "environmentTexture"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

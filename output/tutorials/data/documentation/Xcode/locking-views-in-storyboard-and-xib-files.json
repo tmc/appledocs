@@ -1,0 +1,564 @@
+{
+  "abstract": [
+    {
+      "text": "Prevent changes to your Interface Builder files while localizing human-facing strings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Locking views in storyboard and XIB files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you export localizations, optionally lock the views in your storyboard and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "XIB files so you don’t inadvertently change localizable properties while you’re waiting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for translations. Use this feature if you want to continue developing your app and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "avoid conflicts when importing localizations later. You can choose a locking level",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that controls the set of editable properties for each view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Lock-views",
+          "level": 3,
+          "text": "Lock views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the locking level for a single view or for the entire user interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. By default, views inherit their lock attribute from their parent view, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "top-level views inherit their lock attribute from the user interface file. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "set a view’s lock attribute, it sets the lock attribute for all its descendant views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To lock a single view, select the user interface file (files with a ",
+              "type": "text"
+            },
+            {
+              "code": ".storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "code": ".xib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension) in the Project navigator, then select the view in Interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Builder. In the Identity inspector, choose a locking level from the Lock pop-up menu",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "under Document:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the parent view’s locking level.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Inherited - ([locking level])",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Don’t lock any properties (make all properties editable).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Nothing",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Lock all properties.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "All Properties",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Lock localizable properties, such as user-facing text and size.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Localizable Properties",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Lock non-localizable properties (make user-facing text and size properties editable).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Non-localizable Properties",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "locking-views-in-storyboard-and-xib-files-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, choose Localizable Properties while waiting for translations from localizers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you import localizations and don’t want to make other changes inadvertently, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Non-localizable Properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To lock all views, select the user interface file in the Project navigator, then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose a locking level from the Editor > Localization Locking menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unlock-views",
+          "level": 3,
+          "text": "Unlock views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To unlock all views after you import localizations, select the user interface file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Project navigator, then choose Editor > Localization Locking > Reset Locking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Controls. To prevent any edits in a user interface file that would impact localized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strings files, choose Editor > Localization Locking > Reset Locking Controls and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then choose Editor > Localization Locking > Localizable Properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers": {
+      "abstract": [
+        {
+          "text": "Share screenshots of your app with localizers to provide context for translation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating screenshots of your app for localizers",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-screenshots-of-your-app-for-localizers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files": {
+      "abstract": [
+        {
+          "text": "Translate or adapt the localizable files for a language and region that you export",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing XLIFF and string catalog files",
+      "type": "topic",
+      "url": "/documentation/xcode/editing-xliff-and-string-catalog-files"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "locking-views-in-storyboard-and-xib-files-1": {
+      "alt": "Screenshot of a view inspector showing the location of the Lock pop-up menu.",
+      "identifier": "locking-views-in-storyboard-and-xib-files-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec4a9d070923ee61715dc39ffd8f3d42/locking-views-in-storyboard-and-xib-files-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Translation-and-adaptation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations"
+      ],
+      "title": "Translation and adaptation"
+    }
+  ]
+}

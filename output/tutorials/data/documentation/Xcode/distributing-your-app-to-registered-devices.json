@@ -1,0 +1,1689 @@
+{
+  "abstract": [
+    {
+      "text": "Register devices in your developer account and deploy your app to them for testing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-to-registered-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing your app to registered devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can distribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "progress builds to a limited set of users on known devices, without having to go",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through beta app review. To distribute to this group of users, register their devices",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can register",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a limited number of devices, per product family per year, that your team uses for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "development and testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-for-your-build",
+          "level": 3,
+          "text": "Prepare for your build",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare to distribute your build, you need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An App ID that you set up for your app in your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/programs/",
+                      "isActive": true,
+                      "overridingTitle": "developer account",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "developer account",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A signing certificate with the public and private key. On iOS, iPadOS, tvOS, visionOS, and watchOS you need a distribution certificate; on macOS you need a development certificate.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information on signing certificates, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/support/certificates/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of test devices registered in your developer account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A provisioning profile for your app and list of test devices. On iOS, iPadOS, tvOS, visionOS, and watchOS you need a distribution profile; on macOS you need a development profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose the default automatic signing, Xcode creates the provisioning profiles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for you, that include all your registered devices; for more advanced cases like large",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "teams with restricted access to signing assets or to only include a subset of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "registered devices, prepare your provisioning assets manually. In both automatic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and manual provisioning, you need to gather and add your list of test devices to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your developer account. When you manually provision a profile, update your provisioning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "profile after adding test devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each iOS, iPadOS, macOS, tvOS, visionOS, and watchOS device has a persistent, unique identifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "referred to as a device ID. When you use automatic signing, Xcode registers the device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for you. Otherwise, you need to collect the device ID and register the device in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-devices-automatically-in-Xcode",
+          "level": 3,
+          "text": "Register devices automatically in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use automatic signing, Xcode registers the connected device or Mac for you.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For iOS, iPadOS, or tvOS attach your device to your computer, and select Trust if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device asks to trust your computer. For watchOS, attach the paired phone for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your watchOS device to your computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, select your attached device as the run destination, and build and run your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. For more information on simulated apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your device needs to be registered, click the Register button in the dialog that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode displays, and Xcode registers and adds the device to your provisioning profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-device-identifiers-iOS-iPadOS-tvOS-visionOS-watchOS",
+          "level": 3,
+          "text": "Collect device identifiers: iOS, iPadOS, tvOS, visionOS, watchOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use manual signing, start by collecting the device identifier for your iOS, iPadOS, tvOS, visionOS, or watchOS device by using either Finder or Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attach your device to your Mac with a cable, and select Trust if your device asks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to trust your computer. For watchOS, attach the phone, to which your watch is paired,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with to your Mac and use Xcode to find the identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the Finder:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locate your device under the Locations section in the sidebar. For more information",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on what to do if the Locations section is not visible, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/mac-help/customize-finder-toolbar-sidebar-mac-mchlp3011/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your device, then click the label below the device name in the info pane",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "once to see the device’s serial number, UDID, and model. Additional clicks rotate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "through other device information, such as model and storage space, and IMEI and MEID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the label to copy the device ID, which the UI labels as UDID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Windows > Devices and Simulators, then select the Devices tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your device under the Connected list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Highlight the device ID, which the UI labels as Identifier, to copy it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Collect-device-identifiers-macOS",
+          "level": 3,
+          "text": "Collect device identifiers: macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find the device ID for your Mac:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Apple menu > About this Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click System Report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Hardware to see the Hardware Overview; the UI displays the device ID as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Hardware UUID (in macOS 10.15 and earlier) or Provisioning UDID (in macOS 11.0 and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "later).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Highlight the Hardware UUID or Provisioning UDID to copy it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Register-devices-in-your-developer-account",
+          "level": 3,
+          "text": "Register devices in your developer account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you collect the device IDs, you can register them all at once by putting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "device names and identifiers in a file. Sign into your developer account, then:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Certificates, Identifiers, and Profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Download Sample File for an example file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customize the example file with your specific device information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upload the device file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on multi-device registration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/register-devices/register-multiple-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a single device by clicking the plus (+) button next to the Devices title. Specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the identifier and a name for the device. Use a name that makes the device easy to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify; for example, combine the owner’s name and device type, ”Ravi Patel’s iPhone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "11”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can disable devices that you no longer permit to use your app: select the device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and click Disable. Code signing doesn’t include the device while it’s disabled, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device counts against the number of devices in the product family until your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "account renewal date. Disabling a device invalidates any provisioning profiles that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include the device; automatic signing regenerates the profile the next time you build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app, or you can regenerate the profile manually if you’re not using automatic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "signing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-provisioning-profile",
+          "level": 3,
+          "text": "Update your provisioning profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use automatic signing, Xcode automatically updates the provisioning profile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you export the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use manual signing, sign in to your developer account, select Certificates, Identifiers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and Profiles, then select Profiles. Click the plus sign next to the Profiles header",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a new provisioning profile. Then:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the type of profile by type and platform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your App ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the device or devices to include in the profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a name for the profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Generate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can edit an existing profile and regenerate it to add or remove devices. Once",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you generate the profile, download it, then drag the downloaded profile to the Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dock icon and drop it to install it. You can also download it from Xcode > Settings >",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Accounts, using the Download Manual Profiles button when you select your account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-code-signing",
+          "level": 3,
+          "text": "Configure code signing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow Xcode to manage signing for you, toggle the Automatically manage signing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "checkbox from the Signing & Capabilities tab in the project editor and select a Team.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To manually sign your app, select a profile to use from the Provisioning Profile dropdown menu.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also select Import profile or Download profile to add an additional profile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Archive-the-app",
+          "level": 3,
+          "text": "Archive the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the main window of your Xcode project, choose a target and a run destination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the Scheme toolbar menu. If you select a simulator for your run destination,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode builds an archive matching the build-only device type for that simulator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose Product > Archive to build the target and Xcode displays the archive in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Archives organizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For an app built with Mac Catalyst, create separate archives for the iPad",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and Mac Catalyst version. When creating the archive for the Mac Catalyst version,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "choose the run destination that includes Mac Catalyst in its name.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For an app built with Designed for iPad, create a single archive using iPad as the run destination or any run destination that includes Designed for iPad in its name. These run destinations produce the same archive.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Export-the-app",
+          "level": 3,
+          "text": "Export the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From the archive, export a version of the app to distribute to users:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Archives organizer, select the archive, then click Distribute App.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Debugging to prepare a version of your app for debugging on your team’s devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Export and select a location to save the exported app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on solving issues with code signing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/forums/thread/707080",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-app-on-user-devices",
+          "level": 3,
+          "text": "Install the app on user devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you save the exported app, Xcode creates a folder that contains a few files,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the iOS App file, which is a file with an ",
+              "type": "text"
+            },
+            {
+              "code": ".ipa",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension. Distribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that file to your users so they can install it on their devices by using Xcode or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple Configurator 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS, double-click the file to install and run it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install iOS, iPadOS, tvOS, visionOS, or watchOS apps using Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach the device to the computer, or attach the paired phone for a watchOS device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Window > Devices and Simulators, and then select the Devices tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the attached device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) under the Installed Apps section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS App file to install the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install iOS, iPadOS, tvOS, visionOS, or watchOS apps with Apple Configurator 2:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach the device to your Mac, or attach the paired phone for a watchOS device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the attached device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS App file to install the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Every time you run your ",
+                  "type": "text"
+                },
+                {
+                  "code": ".ipa",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-based app on an iOS or watchOS device, you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "need to enable Developer Mode on that device. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/enabling-developer-mode-on-a-device",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/enabling-developer-mode-on-a-device": {
+      "abstract": [
+        {
+          "text": "Grant or deny permission for locally installed apps to run on iOS, iPadOS, visionOS, and watchOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/enabling-developer-mode-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Developer Mode on a device",
+      "type": "topic",
+      "url": "/documentation/xcode/enabling-developer-mode-on-a-device"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution": {
+      "abstract": [
+        {
+          "text": "Build a zip archive, disk image, or installer package for distributing your Mac software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Packaging Mac software for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/packaging-mac-software-for-distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-your-app-in-simulator-or-on-a-device": {
+      "abstract": [
+        {
+          "text": "Launch your app in a simulated iOS, iPadOS, tvOS, visionOS, or watchOS device, or on a device connected to a Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your app in Simulator or on a device",
+      "type": "topic",
+      "url": "/documentation/xcode/running-your-app-in-simulator-or-on-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/forums/thread/707080": {
+      "identifier": "https://developer.apple.com/forums/thread/707080",
+      "title": "Code Signing Resources",
+      "titleInlineContent": [
+        {
+          "text": "Code Signing Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/forums/thread/707080"
+    },
+    "https://developer.apple.com/help/account/register-devices/register-multiple-devices": {
+      "identifier": "https://developer.apple.com/help/account/register-devices/register-multiple-devices",
+      "title": "Register multiple devices",
+      "titleInlineContent": [
+        {
+          "text": "Register multiple devices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/register-devices/register-multiple-devices"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "developer account",
+      "titleInlineContent": [
+        {
+          "text": "developer account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/support/certificates/": {
+      "identifier": "https://developer.apple.com/support/certificates/",
+      "title": "Certificates",
+      "titleInlineContent": [
+        {
+          "text": "Certificates",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/certificates/"
+    },
+    "https://support.apple.com/guide/mac-help/customize-finder-toolbar-sidebar-mac-mchlp3011/mac": {
+      "identifier": "https://support.apple.com/guide/mac-help/customize-finder-toolbar-sidebar-mac-mchlp3011/mac",
+      "title": "Customize the Finder toolbar and sidebar on Mac",
+      "titleInlineContent": [
+        {
+          "text": "Customize the Finder",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "toolbar and sidebar on Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/mac-help/customize-finder-toolbar-sidebar-mac-mchlp3011/mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Distribution-and-release",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+        "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution"
+      ],
+      "title": "Distribution and release"
+    }
+  ]
+}

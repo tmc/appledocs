@@ -1,0 +1,1722 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the configuration of a Virtio file system device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VZVirtioFileSystemDeviceConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VZVirtioFileSystemDeviceConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VZVirtioFileSystemDeviceConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "VZVirtioFileSystemDeviceConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtioFileSystemDeviceConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a Virtio file system device which allows the host to expose directories to a guest using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows the creation of a ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtioFileSystemDeviceConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that shares a single directory that the user can manually mount after creating a mount point in the guest VM:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Define a URL to a specific file path, in this case the ",
+                    "// \"Projects\" directory in the user's home directory.",
+                    "let projectsURL = URL(fileURLWithPath: NSHomeDirectory() + \"Projects\")",
+                    "",
+                    "static func createSingleDirectoryShareDeviceConfiguration() -> VZVirtioFileSystemDeviceConfiguration {",
+                    "    let sharedDirectory = VZSharedDirectory(url: projectsURL, readOnly: false)",
+                    "    let singleDirectoryShare = VZSingleDirectoryShare(directory: sharedDirectory)",
+                    "",
+                    "    // Create the VZVirtioFileSystemDeviceConfiguration and assign it a unique tag. ",
+                    "    let sharingConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: \"Projects\")",
+                    "    sharingConfiguration.share = singleDirectoryShare",
+                    "",
+                    "    return sharingConfiguration",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // Define a URL to a specific file path, in this case the",
+                    "    // \"Projects\" directory in the user's home directory.",
+                    "    NSString *projectsPath = [NSHomeDirectory() stringByAppendingPathComponent:@\"Projects\"];",
+                    "    NSURL *projectsURL = [NSURL fileURLWithPath:projectsPath];",
+                    "",
+                    "    VZSharedDirectory *sharedDirectory = [[VZSharedDirectory alloc] initWithURL:projectsURL readOnly:NO];",
+                    "    VZSingleDirectoryShare *singleDirectoryShare = [[VZSingleDirectoryShare alloc] initWithDirectory:sharedDirectory];",
+                    "",
+                    "    // Create the VZVirtioFileSystemDeviceConfiguration and assign it a unique tag.",
+                    "    VZVirtioFileSystemDeviceConfiguration *sharingConfiguration = [[VZVirtioFileSystemDeviceConfiguration alloc] initWithTag:@\"Projects\"];",
+                    "    sharingConfiguration.share = singleDirectoryShare;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtioFileSystemDeviceConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can also share multiple directories. The example below demonstrates sharing the ",
+              "type": "text"
+            },
+            {
+              "code": "~/Invoices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "~/Projects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories from the user’s home directory to the guest VM:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Define URLs at specific file paths, in this case the ",
+                    "// \"Projects\" and \"Invoices\" directories in the user's home directory.",
+                    "let projectsURL = URL(fileURLWithPath: NSHomeDirectory() + \"Projects\")",
+                    "let invoicesURL = URL(fileURLWithPath: NSHomeDirectory() + \"Invoices\")",
+                    "",
+                    "static func createMultipleDirectoryShareDeviceConfiguration() -> VZVirtioFileSystemDeviceConfiguration {",
+                    "    let sharedProjectsDirectory = VZSharedDirectory(url: projectsURL, readOnly: false)",
+                    "",
+                    "    // It's also possible to share directories that are read-only: ",
+                    "    let sharedInvoicesDirectory = VZSharedDirectory(url: invoicesURL, readOnly: true)",
+                    "",
+                    "    // Associate each shared directory with a name, which is how the framework lists them under the mount point.",
+                    "    let directoriesToShare = [\"My Projects\": sharedProjectsDirectory, \"Invoices\": sharedInvoicesDirectory]",
+                    "    let multipleDirectoryShare = VZMultipleDirectoryShare(directories: directoriesToShare)",
+                    "",
+                    "    // Create the VZVirtioFileSystemDeviceConfiguration and assign it a unique tag. ",
+                    "    let sharingConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: \"myfiles\")",
+                    "    sharingConfiguration.share = multipleDirectoryShare",
+                    "",
+                    "    return sharingConfiguration",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // Define URLs at specific file paths, in this case the    ",
+                    "    // \"Projects\" and \"Invoices\" directories in the user's home directory.",
+                    "    NSString *projectsPath = [NSHomeDirectory() stringByAppendingPathComponent:@\"Projects\"];",
+                    "    NSString *invoicesPath = [NSHomeDirectory() stringByAppendingPathComponent:@\"Invoices\"];",
+                    "    NSURL *projectsURL = [NSURL fileURLWithPath:projectsPath];",
+                    "    NSURL *invoicesURL = [NSURL fileURLWithPath:invoicesPath];",
+                    "",
+                    "    VZSharedDirectory *sharedProjectsDirectory = [[VZSharedDirectory alloc] initWithURL:projectsURL readOnly:NO];",
+                    "",
+                    "    // It's also possible to share directories that are read-only:",
+                    "    VZSharedDirectory *sharedInvoicesDirectory = [[VZSharedDirectory alloc] initWithURL:invoicesURL readOnly:YES];",
+                    "",
+                    "    // Associate each shared directory with a name, which is how the framework lists them under the mount point.",
+                    "    VZMultipleDirectoryShare *multipleDirectoryShare = [[VZMultipleDirectoryShare alloc] initWithDirectories:@{",
+                    "        @\"My Projects\": sharedProjectsDirectory,",
+                    "        @\"Invoices\": sharedInvoicesDirectory,",
+                    "    }];",
+                    "",
+                    "    // Create the VZVirtioFileSystemDeviceConfiguration and assign it a unique tag.",
+                    "    VZVirtioFileSystemDeviceConfiguration *sharingConfiguration = [[VZVirtioFileSystemDeviceConfiguration alloc] initWithTag:@\"myfiles\"];",
+                    "    sharingConfiguration.share = multipleDirectoryShare;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Mounting-shared-directories",
+          "level": 3,
+          "text": "Mounting shared directories",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The commands required to mount shared directories in a guest VM aren’t commands that your app can execute or that you can script from inside your application to a VM; the user must perform them either interactively or as part of a script while logged in to the guest. You must communicate these requirements to the user of your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mounting a shared directory requires the user to execute a command in a terminal window, the specific mount command depends on the guest VM’s operating system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS guests, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mount_virtiofs tag directory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Linux guests, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mount -t virtiofs tag directory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "tag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is the file system device configuration label — ",
+              "type": "text"
+            },
+            {
+              "code": "Projects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the single directory case and ",
+              "type": "text"
+            },
+            {
+              "code": "myfiles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the multiple directory case in these examples — and ",
+              "type": "text"
+            },
+            {
+              "code": "directory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the mount point in the guest file system to which the framework attaches the shared directories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Automounting-shared-directories-in-macOS-VMs",
+          "level": 3,
+          "text": "Automounting shared directories in macOS VMs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 and later, it’s possible to specify a file system device that macOS 13 or later guest VMs automount using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The example below demonstrates sharing a single macOS directory, to a macOS guest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define a URL to a specific file path, in this case the ",
+            "// \"Projects\" directory in the user's home directory.",
+            "let projectsURL = URL(fileURLWithPath: NSHomeDirectory() + \"Projects\")",
+            "",
+            "static func createAutomountSingleDirectoryShareDeviceConfiguration() -> VZVirtioFileSystemDeviceConfiguration {",
+            "    let sharedDirectory = VZSharedDirectory(url: projectsURL, readOnly: false)",
+            "    let singleDirectoryShare = VZSingleDirectoryShare(directory: sharedDirectory)",
+            "",
+            "    // Assign the automount tag to this share. macOS shares automounted directories automatically under /Volumes in the guest.  ",
+            "    let sharingConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: VZVirtioFileSystemDeviceConfiguration.macOSGuestAutomountTag)",
+            "    sharingConfiguration.share = singleDirectoryShare",
+            "",
+            "    return sharingConfiguration",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS guest automounts the user’s ",
+              "type": "text"
+            },
+            {
+              "code": "~/Projects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory from the host and shares it under ",
+              "type": "text"
+            },
+            {
+              "code": "/Volumes/My Shared Files/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the macOS guest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s also possible to automount multiple directories in macOS guests. The example below demonstrates sharing the ",
+              "type": "text"
+            },
+            {
+              "code": "~/Invoices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "~/Projects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories from the user’s home directory to the macOS guest VM:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define URLs at specific file paths, in this case the ",
+            "// \"Projects\" and \"Invoices\" directories in the user's home directory.",
+            "let projectsURL = URL(fileURLWithPath: NSHomeDirectory() + \"Projects\")",
+            "let invoicesURL = URL(fileURLWithPath: NSHomeDirectory() + \"Invoices\")",
+            "",
+            "static func createAutomountMultipleDirectoryShareDeviceConfiguration() -> VZVirtioFileSystemDeviceConfiguration {",
+            "    // Share the contents of ~/Projects, which is writeable.",
+            "    let sharedProjectsDirectory = VZSharedDirectory(url: projectsURL, readOnly: false)",
+            "",
+            "    // Share the contents of ~/Invoices, but make it read only.",
+            "    let sharedInvoicesDirectory = VZSharedDirectory(url: invoicesURL, readOnly: true) ",
+            "",
+            "    // Associate each shared directory with a name, which is how the framework lists them under the mount point in the guest.",
+            "    let directoriesToShare = [\"My Projects\": sharedProjectsDirectory, \"Invoices\": sharedInvoicesDirectory]",
+            "    let multipleDirectoryShare = VZMultipleDirectoryShare(directories: directoriesToShare)",
+            "",
+            "    // Assign the automount tag to this share. macOS will automatically mount each shared directory at /Volumes/My Shared Files.",
+            "    let sharingConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: VZVirtioFileSystemDeviceConfiguration.macOSGuestAutomountTag)",
+            "    sharingConfiguration.share = multipleDirectoryShare",
+            "",
+            "    return sharingConfiguration",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the guest, the framework lists each shared directory by its specified name under ",
+              "type": "text"
+            },
+            {
+              "code": "/Volumes/My Shared Files",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Here, the shared directories in the macOS guest are ",
+              "type": "text"
+            },
+            {
+              "code": "/Volumes/My Shared Files/My Projects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "/Volumes/My Shared Files/Invoices",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The base class for a directory sharing device configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDirectorySharingDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdirectorysharingdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare": {
+      "abstract": [
+        {
+          "text": "The Linux directory share for Rosetta.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZLinuxRosettaDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxrosettadirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare": {
+      "abstract": [
+        {
+          "text": "An object that describes a directory share for multiple directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMultipleDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMultipleDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMultipleDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmultipledirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare": {
+      "abstract": [
+        {
+          "text": "An object that defines the directory share for a single directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZSingleDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZSingleDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZSingleDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzsingledirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that represents the configuration of a Virtio file system device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioFileSystemDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)": {
+      "abstract": [
+        {
+          "text": "Creates a configuration for a VIRTIO file system device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTag:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(tag:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/init(tag:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag": {
+      "abstract": [
+        {
+          "text": "A value that indicates that the guest needs to automount this file system device in the guest VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "macOSGuestAutomountTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "macOSGuestAutomountTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "macOSGuestAutomountTag",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/macosguestautomounttag"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share": {
+      "abstract": [
+        {
+          "text": "A value that defines how the host exposes resources to the guest virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "share"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZDirectoryShare",
+          "text": "VZDirectoryShare"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "share"
+        }
+      ],
+      "role": "symbol",
+      "title": "share",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/share"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag": {
+      "abstract": [
+        {
+          "text": "A label that identifies this device in the guest VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "tag",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/tag"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)": {
+      "abstract": [
+        {
+          "text": "Checks to see whether a Virtio tag is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateTag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateTag:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateTag(_:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/validatetag(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Configurations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+      ],
+      "title": "Configurations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-file-system-device-configuration",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)"
+      ],
+      "title": "Creating a file system device configuration"
+    },
+    {
+      "anchor": "Getting-file-system-information",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag"
+      ],
+      "title": "Getting file system information"
+    },
+    {
+      "anchor": "Tag-validation",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)"
+      ],
+      "title": "Tag validation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "VZVirtioFileSystemDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.virtualization/documentation/Virtualization"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-file-system-device-configuration",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)"
+              ],
+              "title": "Creating a file system device configuration"
+            },
+            {
+              "anchor": "Getting-file-system-information",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag"
+              ],
+              "title": "Getting file system information"
+            },
+            {
+              "anchor": "Tag-validation",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)"
+              ],
+              "title": "Tag validation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Configurations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+              ],
+              "title": "Configurations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "VZVirtioFileSystemDeviceConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)VZDirectorySharingDeviceConfiguration",
+                    "text": "VZDirectorySharingDeviceConfiguration"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/title",
+          "value": "VZVirtioFileSystemDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/title",
+          "value": "VZMultipleDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMultipleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMultipleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/title",
+          "value": "VZSingleDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSingleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSingleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/title",
+          "value": "VZDirectorySharingDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1tag/title",
+          "value": "tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1share/title",
+          "value": "share"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1share/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "share"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1macOSGuestAutomountTag/title",
+          "value": "macOSGuestAutomountTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1macOSGuestAutomountTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "macOSGuestAutomountTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1validateTag(_:)/title",
+          "value": "validateTag:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1validateTag(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateTag:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1init(tag:)/title",
+          "value": "initWithTag:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1init(tag:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTag:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/title",
+          "value": "VZLinuxRosettaDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

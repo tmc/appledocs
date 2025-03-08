@@ -1,0 +1,646 @@
+{
+  "abstract": [
+    {
+      "text": "Identify issues within your frame capture by examining pipeline statistics.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing draw command and compute dispatch performance with pipeline statistics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Pipeline Statistics viewer displays each shader stage in your pipeline state, the amount of time it took to complete, and the GPU activities it performed during that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-psv-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-the-GPU-activities",
+          "level": 3,
+          "text": "Interpret the GPU activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Various GPU activities appear with bar charts for compiler statistics and runtime profiling statistics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-psv-pipeline-statistics.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPU activity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Explanation and recommendations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ALU",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends in the arithmetic logic unit. Change floats to half-floats where possible to reduce the time in the ALU. Also, try to minimize your use of complex instructions like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sqrt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "recip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for access to your app’s buffers or texture memory. Reduce time by downsampling textures, or, if you’re not spending much time in memory, improve your texture resolution instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control flow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends in conditional, increment, or jump instructions as a result of branches or loops in your shader. Use a constant iteration count to minimize control flow time for loops because the Metal compiler can generate optimized code in those cases.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for a required resource or event before execution can begin. Synchronization types are described below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (wait memory)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for dependent memory accesses, such as texture sampling or buffer read/write.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (wait pixel)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for underlying pixels to release resources. In addition to color attachments, pixels can come from depth or stencil buffers or user-defined resources. Blending is a common cause of pixel waiting. Use raster order groups to reduce the wait time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (barrier)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends when a thread reaches a barrier and the GPU waits for remaining threads in the same group to arrive at the barrier before proceeding.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (atomics)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends on atomic instructions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Inspect-the-GPU-time-of-the-commands-in-the-pass",
+          "level": 3,
+          "text": "Inspect the GPU time of the commands in the pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom portion of the Pipeline Statistics viewer displays the GPU time in the Total column for each command in the pass so you can compare their respective elapsed times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-psv-commands.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-psv-commands.png": {
+      "alt": "A screenshot of the timing comparison across commands using the pipeline state.",
+      "identifier": "gputools-metal-debugger-psv-commands.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5115d9e84f56769f8cc207d00769755/gputools-metal-debugger-psv-commands.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cfac835c6168984c2d4970b9d9aa5f08/gputools-metal-debugger-psv-commands@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd3e6290fcc4ba8eb0bfde411439e8ca/gputools-metal-debugger-psv-commands~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08562844af54785c8eb91894a31186ad/gputools-metal-debugger-psv-commands~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-psv-overview.png": {
+      "alt": "A screenshot of the Pipeline Statistics viewer showing statistics for each shader and timing comparison across commands using the pipeline state.",
+      "identifier": "gputools-metal-debugger-psv-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce1cd1a560d292077469222b3f5133b1/gputools-metal-debugger-psv-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d42b35a393e4f0397e85ee14ad025126/gputools-metal-debugger-psv-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bde62d05837995ea1ff37f0b16a71e92/gputools-metal-debugger-psv-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4b13493c8a47de887fbbe49a7f2f286/gputools-metal-debugger-psv-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-psv-pipeline-statistics.png": {
+      "alt": "A screenshot of the statistics for a shader. The top portion shows the timing by operations, and the bottom portion shows the number of instructions by operations.",
+      "identifier": "gputools-metal-debugger-psv-pipeline-statistics.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f632feccfd5a0512024a078a4b2d2e78/gputools-metal-debugger-psv-pipeline-statistics.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa185426f0e7bd6cce4350582f5296d5/gputools-metal-debugger-psv-pipeline-statistics@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ffd4cbe75b6975509e44b13ee791208/gputools-metal-debugger-psv-pipeline-statistics~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/27e69a2b98b8e1c4551c8a430331bfed/gputools-metal-debugger-psv-pipeline-statistics~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-command-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters"
+      ],
+      "title": "Metal command analysis"
+    }
+  ]
+}

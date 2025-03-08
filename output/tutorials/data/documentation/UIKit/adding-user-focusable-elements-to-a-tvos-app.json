@@ -1,0 +1,1250 @@
+{
+  "abstract": [
+    {
+      "text": "Create intuitive and easily manipulated user-interactive controls for your tvOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adding-user-focusable-elements-to-a-tvos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding user-focusable elements to a tvOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple TV, people use a remote or game controller to navigate through interface elements like movie posters, apps, or buttons, highlighting each item as they come to it. The highlighted item is said to be ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "focused",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "in focus",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". It appears elevated or otherwise distinct from other items. An item is considered focused when the user has highlighted it, but not selected it. The user moves focus by navigating through different UI items, which triggers a focus update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-focusable-items-to-the-view",
+          "level": 3,
+          "text": "Add focusable items to the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, search the Library pane for the item you want to add to your app, and drag it to your app’s storyboard. Several UIKit elements are focusable by default, including buttons (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), text fields (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and table cells (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). The top-left item is in focus when your app launches. (In right-to-left languages, the top-right item is initially in focus.) You don’t need to do anything to UIKit elements that are focusable by default. However, you can add SceneKit and SpriteKit nodes as focusable elements. To make a SceneKit or SpriteKit node focusable, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKNode/focusBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the node to ",
+              "type": "text"
+            },
+            {
+              "code": "focusable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "node.focusBehavior = .focusable"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Design-your-layout-in-a-grid-pattern",
+          "level": 3,
+          "text": "Design your layout in a grid pattern",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The easiest way to ensure that focus moves between focusable items is to arrange the items in a grid pattern. Swiping on the remote triggers the focus engine—the system that controls focus and movement—to find all of the focusable items in the direction of the swipe. The first item found then becomes the newly focused item. The following image shows the items found by the focus engine when the user swipes right, and the resulting focused item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2923202",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the items found by the focus engine when the user swipes down, and the resulting focused item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2923200",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the focus engine doesn’t find any items in the direction of the swipe, by default the focused item doesn’t change, as shown in the following image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2923201",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When necessary, you can change the default behavior by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to redirect focus to other focusable items in the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SpriteKit/SKNode/focusBehavior": {
+      "abstract": [
+        {
+          "text": "The focus behavior for a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKNodeFocusBehavior",
+          "text": "SKNodeFocusBehavior"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SpriteKit/SKNode/focusBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "focusBehavior",
+      "type": "topic",
+      "url": "/documentation/SpriteKit/SKNode/focusBehavior"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusGroupPriority": {
+      "abstract": [
+        {
+          "text": "The importance of an item within a focus group, used by the focus system to determine the group’s primary item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusGroupPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGroupPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusGroupPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusGroupPriority",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusgrouppriority"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide": {
+      "abstract": [
+        {
+          "text": "An object that exposes nonview areas as focusable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitemcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItemScrollableContainer": {
+      "abstract": [
+        {
+          "text": "A type of focus item container that supports automatic scrolling of focusable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemScrollableContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItemScrollableContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemScrollableContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItemScrollableContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitemscrollablecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusMovementHint": {
+      "abstract": [
+        {
+          "text": "Provides movement hint information for the focused item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusMovementHint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusMovementHint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusMovementHint"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusMovementHint",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusmovementhint"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusSystem": {
+      "abstract": [
+        {
+          "text": "Queries and reevaluates the currently focused item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusSystem",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocussystem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusUpdateContext": {
+      "abstract": [
+        {
+          "text": "An object that provides information relevant to a specific focus update from one view to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusUpdateContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusUpdateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusUpdateContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusupdatecontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell": {
+      "abstract": [
+        {
+          "text": "The visual representation of a single row in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv": {
+      "abstract": [
+        {
+          "text": "Design and implement intuitive control schemes for menus and interactive user interface layouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "About focus interactions for Apple TV",
+      "type": "topic",
+      "url": "/documentation/uikit/about-focus-interactions-for-apple-tv"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard": {
+      "abstract": [
+        {
+          "text": "Navigate between user interface elements using a keyboard and focusable UI elements in iPad apps and apps built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Navigating an app’s user interface using a keyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/navigating-an-app-s-user-interface-using-a-keyboard"
+    },
+    "media-2923200": {
+      "alt": "Image that shows the result of swiping down on the remote.",
+      "identifier": "media-2923200",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42b84cff9a5af577e38c4344dbe5e95c/media-2923200@2x.png"
+        }
+      ]
+    },
+    "media-2923201": {
+      "alt": "Image that shows the result of swiping down with no items.",
+      "identifier": "media-2923201",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd1cf54e395780106979fafdd2d05f2f/media-2923201@2x.png"
+        }
+      ]
+    },
+    "media-2923202": {
+      "alt": "Image that shows the result of swiping right on the remote.",
+      "identifier": "media-2923202",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40e8a8d70b354eaae5c29913389c254f/media-2923202@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Focus-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/navigating-an-app-s-user-interface-using-a-keyboard",
+        "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusSystem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusUpdateContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusMovementHint",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItemScrollableContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusGroupPriority"
+      ],
+      "title": "Focus interactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Focus-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusSystem",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusUpdateContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusMovementHint",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusItemScrollableContainer",
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusGroupPriority"
+              ],
+              "title": "Focus interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/title",
+          "value": "UITableViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/title",
+          "value": "UIFocusItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/title",
+          "value": "UIFocusItemContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SpriteKit~1SKNode~1focusBehavior/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SKNodeFocusBehavior",
+              "text": "SKNodeFocusBehavior"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "focusBehavior"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusSystem/title",
+          "value": "UIFocusSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusMovementHint/title",
+          "value": "UIFocusMovementHint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusMovementHint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusMovementHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusMovementHint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusMovementHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemScrollableContainer/title",
+          "value": "UIFocusItemScrollableContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemScrollableContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemScrollableContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemScrollableContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemScrollableContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/title",
+          "value": "UIFocusGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGroupPriority/title",
+          "value": "UIFocusGroupPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGroupPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGroupPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGroupPriority/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGroupPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusUpdateContext/title",
+          "value": "UIFocusUpdateContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusUpdateContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusUpdateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusUpdateContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusUpdateContext"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adding-user-focusable-elements-to-a-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adding-user-focusable-elements-to-a-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

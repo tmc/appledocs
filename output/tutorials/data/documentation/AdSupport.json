@@ -1,0 +1,985 @@
+{
+  "abstract": [
+    {
+      "text": "Provide apps with access to an advertising identifier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AdSupport",
+    "modules": [
+      {
+        "name": "AdSupport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "AdSupport"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the AdSupport framework to obtain an advertising identifier. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is an alphanumeric string that’s unique to each device, and which you only use for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "advertising. On devices running iOS 14.5 and later and iPadOS 14.5 and later, your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app must support ",
+              "type": "text"
+            },
+            {
+              "code": "App Tracking Transparency",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and define the purpose string ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before it can get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-an-Advertising-Identifier",
+          "level": 3,
+          "text": "Get an Advertising Identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before requesting the advertising identifier for the first time, your app must make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a one-time call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That method presents the app-tracking authorization request to the user. The user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chooses whether to allow tracking, but can change your app’s authorization at any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time in Settings > Privacy > Tracking. You can determine the user’s intent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by checking your app’s authorization status with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the advertising identifier, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the AdSupport framework to call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/shared()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class method to retrieve an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to obtain",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the UUID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below shows how to retrieve the advertising identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import AdSupport",
+            "",
+            "let sharedASIdentifierManager = ASIdentifierManager.shared()",
+            "var adID = sharedASIdentifierManager.advertisingIdentifier",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The advertising identifier returns either a unique UUID, or all zeros. For more information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the returned value, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about asking users for permission to track, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport": {
+      "abstract": [
+        {
+          "text": "Provide apps with access to an advertising identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdSupport",
+      "type": "topic",
+      "url": "/documentation/adsupport"
+    },
+    "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager": {
+      "abstract": [
+        {
+          "text": "The object that contains the advertising identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASIdentifierManager"
+        }
+      ],
+      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASIdentifierManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASIdentifierManager",
+      "type": "topic",
+      "url": "/documentation/adsupport/asidentifiermanager"
+    },
+    "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier": {
+      "abstract": [
+        {
+          "text": "The UUID that is specific to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advertisingIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "advertisingIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "advertisingIdentifier",
+      "type": "topic",
+      "url": "/documentation/adsupport/asidentifiermanager/advertisingidentifier"
+    },
+    "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/shared()": {
+      "abstract": [
+        {
+          "text": "The shared instance of the identifier manager class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASIdentifierManager",
+          "text": "ASIdentifierManager"
+        }
+      ],
+      "identifier": "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/adsupport/asidentifiermanager/shared()"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "The request for user authorization to access app-related data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTrackingAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ATTrackingManager",
+          "text": "ATTrackingManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ATTrackingManagerAuthorizationStatus",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestTrackingAuthorization(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/requestTrackingAuthorization(completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The authorization status that is current for the calling application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackingAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ATTrackingManager",
+          "text": "ATTrackingManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ATTrackingManagerAuthorizationStatus",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackingAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that informs the user why an app is requesting permission to use data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserTrackingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/user-privacy-and-data-use/": {
+      "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+      "title": "User Privacy and Data Use",
+      "titleInlineContent": [
+        {
+          "text": "User Privacy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and Data Use",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/user-privacy-and-data-use/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.App-Tracking-Transparency/documentation/AdSupport/ASIdentifierManager"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager~1shared()/title",
+          "value": "sharedManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1trackingAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ATTrackingManagerAuthorizationStatus",
+              "text": "ATTrackingManagerAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "trackingAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager~1advertisingIdentifier/title",
+          "value": "advertisingIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager~1advertisingIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "advertisingIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager/title",
+          "value": "ASIdentifierManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASIdentifierManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.App-Tracking-Transparency~1documentation~1AdSupport~1ASIdentifierManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASIdentifierManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1requestTrackingAuthorization(completionHandler:)/title",
+          "value": "requestTrackingAuthorizationWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppTrackingTransparency~1ATTrackingManager~1requestTrackingAuthorization(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestTrackingAuthorizationWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ATTrackingManagerAuthorizationStatus",
+              "text": "ATTrackingManagerAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "status"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adsupport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/adsupport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

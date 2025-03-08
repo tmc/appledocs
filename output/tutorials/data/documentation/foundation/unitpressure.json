@@ -1,0 +1,1282 @@
+{
+  "abstract": [
+    {
+      "text": "A unit of measure for pressure.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/unitpressure"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1690849,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitPressure",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnitPressure"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "UnitPressure"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnitPressure"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDimension",
+              "text": "Dimension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnitPressure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent specific quantities of pressure using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1868143",
+          "level": 3,
+          "text": "Pressure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pressure is the normal force over a surface. The SI unit for pressure is the pascal (Pa), which is derived as one newton of force over one square meter (",
+              "type": "text"
+            },
+            {
+              "code": "1 Pa = 1 N / 1 m",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "2",
+                  "type": "text"
+                }
+              ],
+              "type": "superscript"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class defines its base unit as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856096-newtonspermeterssquared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provides the following units, which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " converters initialize with the given coefficients:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2557022",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Definition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Newtons Per Meter Squared (Equivalent to Pascals)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856096-newtonspermeterssquared",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "N/m²",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gigapascals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1855983-gigapascals",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPa",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1e9",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Megapascals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856115-megapascals",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MPa",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000000.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kilopascals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856057-kilopascals",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kPa",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1000.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hectopascals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856111-hectopascals",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "hPa",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100.0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inches of Mercury",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856074-inchesofmercury",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "inHg",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3386.39",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bars",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856109-bars",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Millibars",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856093-millibars",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "mbar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Millimeters of Mercury",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856052-millimetersofmercury",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "mmHg",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "133.322",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pounds Per Square Inch",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856077-poundsforcepersquareinch",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "psi",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "6894.76",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dimension": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dimension",
+      "type": "topic",
+      "url": "/documentation/foundation/dimension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmeasurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMeasurement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmeasurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitConverterLinear",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitmass": {
+      "abstract": [
+        {
+          "text": "A unit of measure for mass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitMass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitmass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitMass",
+      "type": "topic",
+      "url": "/documentation/foundation/unitmass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure": {
+      "abstract": [
+        {
+          "text": "A unit of measure for pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitPressure",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure#2557022": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure#2557022",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/unitpressure#2557022"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1855983-gigapascals": {
+      "abstract": [
+        {
+          "text": "The gigapascals unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "gigapascals"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1855983-gigapascals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gigapascals",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1855983-gigapascals"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856052-millimetersofmercury": {
+      "abstract": [
+        {
+          "text": "The millimeters of mercury unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "millimetersOfMercury"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856052-millimetersofmercury",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "millimetersOfMercury",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856052-millimetersofmercury"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856057-kilopascals": {
+      "abstract": [
+        {
+          "text": "The kilopascals unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kilopascals"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856057-kilopascals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilopascals",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856057-kilopascals"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856074-inchesofmercury": {
+      "abstract": [
+        {
+          "text": "The inches of mercury unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inchesOfMercury"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856074-inchesofmercury",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inchesOfMercury",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856074-inchesofmercury"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856077-poundsforcepersquareinch": {
+      "abstract": [
+        {
+          "text": "The pounds per square inch unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "poundsForcePerSquareInch"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856077-poundsforcepersquareinch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "poundsForcePerSquareInch",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856077-poundsforcepersquareinch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856093-millibars": {
+      "abstract": [
+        {
+          "text": "The millibars unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "millibars"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856093-millibars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "millibars",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856093-millibars"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856096-newtonspermeterssquared": {
+      "abstract": [
+        {
+          "text": "The newtons per square meter unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "newtonsPerMetersSquared"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856096-newtonspermeterssquared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newtonsPerMetersSquared",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856096-newtonspermeterssquared"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856109-bars": {
+      "abstract": [
+        {
+          "text": "The bars unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bars"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856109-bars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bars",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856109-bars"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856111-hectopascals": {
+      "abstract": [
+        {
+          "text": "The hectopascals unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hectopascals"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856111-hectopascals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hectopascals",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856111-hectopascals"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/1856115-megapascals": {
+      "abstract": [
+        {
+          "text": "The megapascals unit of pressure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "megapascals"
+        },
+        {
+          "kind": "text",
+          "text": ": UnitPressure"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/1856115-megapascals",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "megapascals",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/1856115-megapascals"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitpressure/4156636-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitPressure>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitpressure/4156636-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forLocale:usage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unitpressure/4156636-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dimension"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitmass"
+      ],
+      "title": "Mass, Weight, and Force"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1868145",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1855983-gigapascals",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856115-megapascals",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856057-kilopascals",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856111-hectopascals",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856074-inchesofmercury",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856109-bars",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856093-millibars",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856052-millimetersofmercury",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856096-newtonspermeterssquared",
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/1856077-poundsforcepersquareinch"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Predefined Units"
+    },
+    {
+      "anchor": "4162906",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitpressure/4156636-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitpressure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitpressure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

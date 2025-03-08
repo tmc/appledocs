@@ -1,0 +1,1765 @@
+{
+  "abstract": [
+    {
+      "text": "Detect surfaces in the physical environment and visualize their shape and location in 3D space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.6",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.6",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Tracking and visualizing planes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app runs an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " world tracking session with content displayed in a SceneKit view. To demonstrate plane detection, the app visualizes both the estimated shape of and a bounding rectangle for each detected ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. On supported devices, ARKit can recognize many types of real-world surfaces, so the app also labels each detected plane with identifying text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-started",
+          "level": 2,
+          "text": "Getting started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit requires iOS 11 and a device with an A9 (or later) processor. ARKit is not available in iOS Simulator. Building the sample code requires Xcode 9 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-and-run-the-AR-session",
+          "level": 2,
+          "text": "Configure and run the AR session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is a SceneKit view that includes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that manages the motion tracking and image processing required to create an augmented reality (AR) experience. However, to run a session you must provide a session configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tracking-visualizing-planes-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides high-precision motion tracking and enables features to help you place virtual content in relation to real-world surfaces. To start an AR session, create a session configuration object with the options you want (such as plane detection), then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = ARWorldTrackingConfiguration()",
+            "configuration.planeDetection = [.horizontal, .vertical]",
+            "sceneView.session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run your session only when the view that will display it is onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app requires ARKit for its core functionality, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " section of your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file to make your app available only on devices that support ARKit. If AR is a secondary feature of your app, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to determine whether to offer AR-based features.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Place-3D-content-for-detected-planes",
+          "level": 2,
+          "text": "Place 3D content for detected planes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve set up your AR session, you can use SceneKit to place virtual content in the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When plane detection is enabled, ARKit adds and updates anchors for each detected plane. By default, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class adds an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the SceneKit scene for each anchor. Your view’s delegate can implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to add content to the scene. When you add content as a child of the node corresponding to the anchor, the ",
+              "type": "text"
+            },
+            {
+              "code": "ARSCNView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class automatically moves that content as ARKit refines its estimate of the plane’s position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {",
+            "    // Place content only for anchors found by plane detection.",
+            "    guard let planeAnchor = anchor as? ARPlaneAnchor else { return }",
+            "    ",
+            "    // Create a custom object to visualize the plane geometry and extent.",
+            "    let plane = Plane(anchor: planeAnchor, in: sceneView)",
+            "    ",
+            "    // Add the visualization to the ARKit-managed node so that it tracks",
+            "    // changes in the plane anchor as plane estimation continues.",
+            "    node.addChildNode(plane)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit offers two ways to track the area of an estimated plane. A plane anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes a convex polygon tightly enclosing all points that ARKit currently estimates to be part of the same plane (easily visualized using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ARKit also provides a simpler estimate in a plane anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "], which together describe a rectangular boundary (easily visualized using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNPlane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a mesh to visualize the estimated shape of the plane.",
+            "guard let meshGeometry = ARSCNPlaneGeometry(device: sceneView.device!)",
+            "    else { fatalError(\"Can't create plane geometry\") }",
+            "meshGeometry.update(from: anchor.geometry)",
+            "meshNode = SCNNode(geometry: meshGeometry)",
+            "",
+            "// Create a node to visualize the plane's bounding rectangle.",
+            "let extentPlane: SCNPlane = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))",
+            "extentNode = SCNNode(geometry: extentPlane)",
+            "extentNode.simdPosition = anchor.center",
+            "",
+            "// `SCNPlane` is vertically oriented in its local coordinate space, so",
+            "// rotate it to match the orientation of `ARPlaneAnchor`.",
+            "extentNode.eulerAngles.x = -.pi / 2"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit continually updates its estimates of each detected plane’s shape and extent. To show the current estimated shape for each plane, this sample app also implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, updating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNPlane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to reflect the latest information from ARKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {",
+            "    // Update only anchors and nodes set up by `renderer(_:didAdd:for:)`.",
+            "    guard let planeAnchor = anchor as? ARPlaneAnchor,",
+            "        let plane = node.childNodes.first as? Plane",
+            "        else { return }",
+            "    ",
+            "    // Update ARSCNPlaneGeometry to the anchor's new estimated shape.",
+            "    if let planeGeometry = plane.meshNode.geometry as? ARSCNPlaneGeometry {",
+            "        planeGeometry.update(from: planeAnchor.geometry)",
+            "    }",
+            "",
+            "    // Update extent visualization to the anchor's new bounding rectangle.",
+            "    if let extentGeometry = plane.extentNode.geometry as? SCNPlane {",
+            "        extentGeometry.width = CGFloat(planeAnchor.extent.x)",
+            "        extentGeometry.height = CGFloat(planeAnchor.extent.z)",
+            "        plane.extentNode.simdPosition = planeAnchor.center",
+            "    }",
+            "    ",
+            "    // Update the plane's classification and the text position",
+            "    if #available(iOS 12.0, *),",
+            "        let classificationNode = plane.classificationNode,",
+            "        let classificationGeometry = classificationNode.geometry as? SCNText {",
+            "        let currentClassification = planeAnchor.classification.description",
+            "        if let oldClassification = classificationGeometry.string as? String, oldClassification != currentClassification {",
+            "            classificationGeometry.string = currentClassification",
+            "            classificationNode.centerAlign()",
+            "        }",
+            "    }",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On some hardware, ARKit can also classify detected planes, reporting which kind of common real-world surface that plane represents (for example, a table, floor, or wall). In this example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method also displays and updates a text label to show that information when running on hardware that supports it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display the plane's classification, if supported on the device",
+            "if #available(iOS 12.0, *), ARPlaneAnchor.isClassificationSupported {",
+            "    let classification = anchor.classification.description",
+            "    let textNode = self.makeTextNode(classification)",
+            "    classificationNode = textNode",
+            "    // Change the pivot of the text node to its center",
+            "    textNode.centerAlign()",
+            "    // Add the classification node as a child node so that it displays the classification",
+            "    extentNode.addChildNode(textNode)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "c959595c53cc/TrackingAndVisualizingPlanes.zip": {
+      "checksum": "c959595c53ccb15f599d3f5312e098f447a3def05e240b023bc3fb5ffd916e53a899ebe7c1cab9b810c1bdb20f628401a79a47c3440258360a14dfa301d022e9",
+      "identifier": "c959595c53cc/TrackingAndVisualizingPlanes.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/c959595c53cc/TrackingAndVisualizingPlanes.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the current device supports this session configuration class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/issupported"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a physical object that ARKit detects and recreates virtually using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMeshAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMeshAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMeshAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a 2D planar surface that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPlaneAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center": {
+      "abstract": [
+        {
+          "text": "The center point of the plane relative to its anchor position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/center",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "center"
+        }
+      ],
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/center"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent": {
+      "abstract": [
+        {
+          "text": "The estimated width and length of the detected plane.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/extent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extent"
+        }
+      ],
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/extent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry": {
+      "abstract": [
+        {
+          "text": "A coarse triangle mesh representing the general shape of the detected plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARPlaneGeometry",
+          "text": "ARPlaneGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/geometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/geometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry": {
+      "abstract": [
+        {
+          "text": "A SceneKit representation of the 2D shape of a plane, for use with plane detection results in an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNPlaneGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNPlaneGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNPlaneGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNPlaneGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnplanegeometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNView",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session": {
+      "abstract": [
+        {
+          "text": "The AR session that manages motion tracking and camera image processing for the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session"
+        }
+      ],
+      "role": "symbol",
+      "title": "session",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/session"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node corresponding to a new AR anchor has been added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didAddNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didAdd:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didadd:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node’s properties have been updated to match the current state of its corresponding anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didUpdateNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didUpdate:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didupdate:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)": {
+      "abstract": [
+        {
+          "text": "Starts AR processing for the session with the specified configuration and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSessionRunOptions",
+          "text": "RunOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithConfiguration:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:options:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/run(_:options:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities": {
+      "abstract": [
+        {
+          "text": "The device-related features that your app requires to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiredDeviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNNode": {
+      "abstract": [
+        {
+          "text": "A structural element of a scene graph, representing a position and transform in a 3D coordinate space, to which you can attach geometry, lights, cameras, or other displayable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNNode",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNNode"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNPlane": {
+      "abstract": [
+        {
+          "text": "A rectangular, one-sided plane geometry of specified width and height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPlane"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNPlane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNPlane",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNPlane"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3": {
+      "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3",
+      "title": "arkit",
+      "titleInlineContent": [
+        {
+          "code": "arkit",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW3"
+    },
+    "tracking-visualizing-planes-1": {
+      "alt": "Architecture diagram: an ARKit view owns an ARSession, which requires an ARConfiguration to run.",
+      "identifier": "tracking-visualizing-planes-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6ef42e874d7ac79b0101e462bde2c94/tracking-visualizing-planes-1.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "c959595c53cc/TrackingAndVisualizingPlanes.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Surface-Detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARMeshAnchor"
+      ],
+      "title": "Surface Detection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Surface-Detection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARMeshAnchor"
+              ],
+              "title": "Surface Detection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/title",
+          "value": "ARPlaneAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isSupported/title",
+          "value": "isSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didUpdate:for:)/title",
+          "value": "renderer:didUpdateNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didUpdate:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didUpdateNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1session/title",
+          "value": "session"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1session/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "session"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1extent/title",
+          "value": "extent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1extent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/title",
+          "value": "ARSCNPlaneGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNPlaneGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNPlaneGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1geometry/title",
+          "value": "geometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1geometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshAnchor/title",
+          "value": "ARMeshAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/title",
+          "value": "renderer:didAddNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didAddNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/title",
+          "value": "runWithConfiguration:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithConfiguration:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1center/title",
+          "value": "center"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1center/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "center"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNPlane/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNPlane"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SCNGeometry",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/tracking-and-visualizing-planes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/tracking-and-visualizing-planes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

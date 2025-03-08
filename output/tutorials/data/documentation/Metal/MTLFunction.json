@@ -1,0 +1,2686 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a public shader function in a Metal library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLFunction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLFunction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLFunction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLFunction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLFunction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to specify which shaders a Metal pipeline calls when the GPU executes commands that specify that pipeline. For more information on creating pipeline state objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "specialized",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " function if the shader contains function constants, otherwise it is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "nonspecialized",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use standard allocation and initialization techniques to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Instead, use the function creation methods provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. To create a nonspecialized function, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a specialized function, call one of these ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects can use a significant amount of memory; release any strong references to them after you finish creating pipeline objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An instance describing the desired GPU state for a kernel call in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction": {
+      "abstract": [
+        {
+          "text": "An object that represents a public shader function in a Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/device": {
+      "abstract": [
+        {
+          "text": "The device object that created the shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/device"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/functionConstantsDictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary of function constants for a specialized function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "functionConstantsDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionConstant",
+          "text": "MTLFunctionConstant"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/functionConstantsDictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "functionConstantsDictionary"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "functionConstantsDictionary",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/functionconstantsdictionary"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/functionType": {
+      "abstract": [
+        {
+          "text": "The shader function’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "functionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLFunctionType",
+          "text": "MTLFunctionType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/functionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "functionType"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "functionType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/functiontype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/label": {
+      "abstract": [
+        {
+          "text": "A string that identifies the shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/label"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Creates an argument encoder for an argument buffer that’s one of this function’s arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderWithBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoder(bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)": {
+      "abstract": [
+        {
+          "text": "Creates an argument encoder and returns reflection information for an argument buffer that’s one of this function’s arguments",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedArgument",
+          "text": "MTLAutoreleasedArgument"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderWithBufferIndex:reflection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoder(bufferIndex:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/name": {
+      "abstract": [
+        {
+          "text": "The function’s name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/name"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/options": {
+      "abstract": [
+        {
+          "text": "The options that Metal used to compile this function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLFunctionOptions",
+          "text": "MTLFunctionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "options"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/options"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/patchControlPointCount": {
+      "abstract": [
+        {
+          "text": "The number of patch control points in the post-tessellation vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "patchControlPointCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/patchControlPointCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "patchControlPointCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "patchControlPointCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/patchcontrolpointcount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/patchType": {
+      "abstract": [
+        {
+          "text": "The tessellation patch type of a post-tessellation vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "patchType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPatchType",
+          "text": "MTLPatchType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/patchType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "patchType"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "patchType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/patchtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/stageInputAttributes": {
+      "abstract": [
+        {
+          "text": "An array that describes the input attributes to the function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stageInputAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLAttribute",
+          "text": "MTLAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/stageInputAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stageInputAttributes"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "stageInputAttributes",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/stageinputattributes"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/vertexAttributes": {
+      "abstract": [
+        {
+          "text": "An array that describes the vertex input attributes to a vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertexAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLVertexAttribute",
+          "text": "MTLVertexAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/vertexAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vertexAttributes"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "vertexAttributes",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/vertexattributes"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a function object to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctiondescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionHandle": {
+      "abstract": [
+        {
+          "text": "An object representing a function that you can add to a visible function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionhandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionOptions": {
+      "abstract": [
+        {
+          "text": "Options that define how Metal creates the function object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionType": {
+      "abstract": [
+        {
+          "text": "The type of a top-level Metal Shading Language (MSL) function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctiontype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an intersection function that performs an intersection test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiondescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of intersection functions that Metal calls to perform ray-tracing intersection tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor": {
+      "abstract": [
+        {
+          "text": "A specification of how to create an intersection function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTableDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontabledescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary": {
+      "abstract": [
+        {
+          "text": "A collection of Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLibrary",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that represents a shader function in the library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newFunctionWithName:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeFunction(name:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary/makefunction(name:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a specialized shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constantValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionConstantValues",
+          "text": "MTLFunctionConstantValues"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newFunctionWithName:constantValues:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeFunction(name:constantValues:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary/makefunction(name:constantvalues:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a specialized shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constantValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionConstantValues",
+          "text": "MTLFunctionConstantValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ")?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary/makeFunction(name:constantValues:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newFunctionWithName:constantValues:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeFunction(name:constantValues:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary/makefunction(name:constantvalues:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPatchType": {
+      "abstract": [
+        {
+          "text": "Types of tessellation patches that can be inputs of a post-tessellation vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPatchType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPatchType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPatchType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPatchType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpatchtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of shader functions visible to your app that you can pass into compute commands to customize the behavior of a shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibleFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisiblefunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTableDescriptor": {
+      "abstract": [
+        {
+          "text": "A specification of how to create a visible function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTableDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTableDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibleFunctionTableDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibleFunctionTableDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisiblefunctiontabledescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTableDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable"
+      ],
+      "title": "Shader Functions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-Shader-Functions",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/device",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/label",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/functionType",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/name",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionType",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/options",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionOptions"
+      ],
+      "title": "Identifying Shader Functions"
+    },
+    {
+      "anchor": "Identifying-the-Tessellation-Patch",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/patchType",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/patchControlPointCount",
+        "doc://com.apple.metal/documentation/Metal/MTLPatchType"
+      ],
+      "title": "Identifying the Tessellation Patch"
+    },
+    {
+      "anchor": "Retrieving-Function-Attributes",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/vertexAttributes",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/stageInputAttributes"
+      ],
+      "title": "Retrieving Function Attributes"
+    },
+    {
+      "anchor": "Retrieving-Function-Constants",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/functionConstantsDictionary"
+      ],
+      "title": "Retrieving Function Constants"
+    },
+    {
+      "anchor": "Creating-Argument-Encoders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)"
+      ],
+      "title": "Creating Argument Encoders"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-Shader-Functions",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/device",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/label",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/functionType",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/name",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionType",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/options",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionOptions"
+              ],
+              "title": "Identifying Shader Functions"
+            },
+            {
+              "anchor": "Identifying-the-Tessellation-Patch",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/patchType",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/patchControlPointCount",
+                "doc://com.apple.metal/documentation/Metal/MTLPatchType"
+              ],
+              "title": "Identifying the Tessellation Patch"
+            },
+            {
+              "anchor": "Retrieving-Function-Attributes",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/vertexAttributes",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/stageInputAttributes"
+              ],
+              "title": "Retrieving Function Attributes"
+            },
+            {
+              "anchor": "Retrieving-Function-Constants",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/functionConstantsDictionary"
+              ],
+              "title": "Retrieving Function Constants"
+            },
+            {
+              "anchor": "Creating-Argument-Encoders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)"
+              ],
+              "title": "Creating Argument Encoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Functions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTableDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLVisibleFunctionTable",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable"
+              ],
+              "title": "Shader Functions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLFunction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:constantValues:)/title",
+          "value": "newFunctionWithName:constantValues:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:constantValues:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newFunctionWithName:constantValues:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/title",
+          "value": "MTLIntersectionFunctionTableDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:constantValues:completionHandler:)/title",
+          "value": "newFunctionWithName:constantValues:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:constantValues:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newFunctionWithName:constantValues:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1options/title",
+          "value": "options"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1patchType/title",
+          "value": "patchType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1patchType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "patchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionOptions/title",
+          "value": "MTLFunctionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1functionType/title",
+          "value": "functionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1functionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "functionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1patchControlPointCount/title",
+          "value": "patchControlPointCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1patchControlPointCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "patchControlPointCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPatchType/title",
+          "value": "MTLPatchType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPatchType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPatchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPatchType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPatchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/title",
+          "value": "MTLComputePipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1stageInputAttributes/title",
+          "value": "stageInputAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1stageInputAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stageInputAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTableDescriptor/title",
+          "value": "MTLVisibleFunctionTableDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTableDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTableDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/title",
+          "value": "MTLFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1vertexAttributes/title",
+          "value": "vertexAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1vertexAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vertexAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionType/title",
+          "value": "MTLFunctionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/title",
+          "value": "MTLFunctionDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1functionConstantsDictionary/title",
+          "value": "functionConstantsDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1functionConstantsDictionary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "functionConstantsDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionHandle/title",
+          "value": "MTLFunctionHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:)/title",
+          "value": "newArgumentEncoderWithBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderWithBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/title",
+          "value": "MTLLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/title",
+          "value": "MTLVisibleFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibleFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibleFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:)/title",
+          "value": "newFunctionWithName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary~1makeFunction(name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newFunctionWithName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:reflection:)/title",
+          "value": "newArgumentEncoderWithBufferIndex:reflection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderWithBufferIndex:reflection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/title",
+          "value": "MTLIntersectionFunctionDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/title",
+          "value": "MTLIntersectionFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlfunction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlfunction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2202 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve motion data that the system processed to remove environmental bias, such as the effects of gravity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/getting-processed-device-motion-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting processed device-motion data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core Motion framework gives you access to the raw data from many different types of hardware sensors, including accelerometers, gyroscopes, and magnetometers. While the raw data is useful, it sometimes contains additional information you don’t need. For example, the raw accelerometer data contains both the acceleration caused by gravity and by the device’s motion. To get only the device-specific acceleration, you must remove the gravitational acceleration from the raw data values. The removal of this data requires additional information and extra processing time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make it easier to get the data you want, the device-motion service processes the raw data and makes the following values available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device’s attitude (or orientation) in three-dimensional space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unbiased rotation rate of the device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current gravity vector",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device-specific acceleration (without gravity)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current magnetic field vector",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device-motion service combines information from multiple sensors to provide the listed results. Device-motion services are available from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app can’t function without accelerometer or gyroscope data, update your app’s list of required device capabilities to include that hardware. For more information about specifying required device capabilities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-the-availability-of-motion-data",
+          "level": 3,
+          "text": "Check for the availability of motion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Device-motion data might be unavailable for a variety of reasons, so verify that the service is available before you try to start it. Check the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isDeviceMotionAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and make sure it’s ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it’s ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", starting the service doesn’t deliver any data to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In visionOS, device-motion data is available only when your app has an open immersive space. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-a-frame-of-reference-for-interpreting-attitude-data",
+          "level": 3,
+          "text": "Choose a frame of reference for interpreting attitude data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attitude of a device refers to the amount of rotation around each of the device’s axes. The device-motion service reports attitude values relative to a known orientation of the device, also known as the device’s frame of reference. When you start the device-motion service, you specify which frame of reference you want Core Motion to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default frame of reference is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryZVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which places the z-axis perpendicular to the ground and matches the x- and y-axes to the device’s current orientation in space. Use this option or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryCorrectedZVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to measure changes relative to the device’s initial starting position. For example, a golf swing analysis app might use this frame of reference to measure a person’s golf swing. For compass or navigation apps, choose the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xMagneticNorthZVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xTrueNorthZVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " frames of reference, which report the device’s orientation relative to specific magnetic and true north, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the reference frame you want when you start the device-motion service. The ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object stores your chosen frame of reference in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/attitudeReferenceFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, and makes it the default choice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a device’s orientation matches the frame of reference’s orientation, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rotation values of a reported ",
+              "type": "text"
+            },
+            {
+              "code": "CMAttitude",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the value ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". As a person rotates the device, the roll, pitch, and yaw values reflect the amount of rotation (in radians) relative to the frame of reference. The following figure shows how to interpret these values around each axis. Rotation values are in the range -π to π.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4251993",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the coordinate axes of different device types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-device-motion-updates",
+          "level": 3,
+          "text": "Start device-motion updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start collecting device-motion data, create a ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and call one of the appropriate methods. Core Motion offers two options for processing device-motion updates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process a steady stream of updates using a closure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process updates when you want them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both options require you to specify the frequency of updates from the system using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. The maximum update frequency is hardware dependent, but is usually at least 100 Hz. If you specify an update frequency greater than what the hardware supports, Core Motion uses the maximum frequency instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example configures the device-motion service to deliver updates 50 times per second, and to deliver attitude data relative to magnetic north. When starting device motion without a closure, it’s your responsibility to check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at regular intervals. This example sets up a timer to check the value of the property and apply the latest data to the app’s content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startDeviceMotion() {",
+            "    if motion.isDeviceMotionAvailable {",
+            "        self.motion.deviceMotionUpdateInterval = 1.0 / 50.0",
+            "        self.motion.showsDeviceMovementDisplay = true",
+            "        self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical)",
+            "        ",
+            "        // Configure a timer to fetch the motion data.",
+            "        self.timer = Timer(fire: Date(), interval: (1.0 / 50.0), repeats: true,",
+            "                           block: { (timer) in",
+            "                            if let data = self.motion.deviceMotion {",
+            "                                // Get the attitude relative to the magnetic north reference frame.",
+            "                                let x = data.attitude.pitch",
+            "                                let y = data.attitude.roll",
+            "                                let z = data.attitude.yaw",
+            "                                ",
+            "                                // Use the motion data in your app.",
+            "                            }",
+            "        })",
+            "        ",
+            "        // Add the timer to the current run loop.",
+            "        RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.default)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To process a steady stream of events, start the device-motion services using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and a closure of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotionHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Each time Core Motion receives a new data value, it runs your closure on the operation queue. Each new data value comes with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem/timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value, which you can use to verify the timeliness of the data and discard data that’s older than a certain threshold. The following example uses an operation queue to process 60 updates per second:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startQueuedUpdates() {",
+            "   if motion.isDeviceMotionAvailable {",
+            "      self.motion.deviceMotionUpdateInterval = 1.0 / 60.0",
+            "      self.motion.showsDeviceMovementDisplay = true",
+            "      self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, ",
+            "               to: self.queue, withHandler: { (data, error) in",
+            "         // Make sure the data is valid before accessing it.",
+            "         if let validData = data {",
+            "            // Get the attitude relative to the magnetic north reference frame. ",
+            "            let roll = validData.attitude.roll",
+            "            let pitch = validData.attitude.pitch",
+            "            let yaw = validData.attitude.yaw",
+            "",
+            "            // Use the motion data in your app.",
+            "         }",
+            "      })",
+            "   }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Stop-device-motion-updates",
+          "level": 3,
+          "text": "Stop device-motion updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To minimize the impact on a device’s battery life, always call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopDeviceMotionUpdates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object when you no longer need motion data. The device-motion service captures motion data using special hardware, and running this hardware consumes additional power. In particular, stop services:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When your app deactivates or enters the background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the person stops interacting with the feature that requires motion data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As soon as your app has all the motion data it needs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app doesn’t require constant motion updates, start the device-motion service, fetch the data you need, and stop the service immediately. Don’t leave the service running any longer than necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude": {
+      "abstract": [
+        {
+          "text": "The device’s orientation relative to a known frame of reference at a point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitude",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch": {
+      "abstract": [
+        {
+          "text": "The pitch of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/pitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "pitch",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/pitch"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll": {
+      "abstract": [
+        {
+          "text": "The roll of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roll"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/roll",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "roll"
+        }
+      ],
+      "role": "symbol",
+      "title": "roll",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/roll"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw": {
+      "abstract": [
+        {
+          "text": "The yaw of the device, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yaw"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude/yaw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yaw"
+        }
+      ],
+      "role": "symbol",
+      "title": "yaw",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitude/yaw"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the frame of reference for attitude-related motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttitudeReferenceFrame",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryCorrectedZVertical": {
+      "abstract": [
+        {
+          "text": "A reference frame where the Z axis is vertical and has improved rotation accuracy, and the X axis points in an arbitrary direction in the horizontal plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xArbitraryCorrectedZVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryCorrectedZVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "xArbitraryCorrectedZVertical",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe/xarbitrarycorrectedzvertical"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryZVertical": {
+      "abstract": [
+        {
+          "text": "A reference frame where the Z axis is vertical and the X axis points in an arbitrary direction in the horizontal plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xArbitraryZVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xArbitraryZVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrameXArbitraryZVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "xArbitraryZVertical",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe/xarbitraryzvertical"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xMagneticNorthZVertical": {
+      "abstract": [
+        {
+          "text": "A reference frame where the Z axis is vertical and the X axis points to the magnetic north pole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xMagneticNorthZVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xMagneticNorthZVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrameXMagneticNorthZVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "xMagneticNorthZVertical",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe/xmagneticnorthzvertical"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xTrueNorthZVertical": {
+      "abstract": [
+        {
+          "text": "A reference frame where the Z axis is vertical and the X axis points to the geographic north pole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xTrueNorthZVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame/xTrueNorthZVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttitudeReferenceFrameXTrueNorthZVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "xTrueNorthZVertical",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmattitudereferenceframe/xtruenorthzvertical"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBatchedSensorManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMBatchedSensorManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBatchedSensorManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBatchedSensorManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmbatchedsensormanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion": {
+      "abstract": [
+        {
+          "text": "Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDeviceMotion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdevicemotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotionHandler": {
+      "abstract": [
+        {
+          "text": "The type of block callback for handling device-motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMDeviceMotionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMDeviceMotionHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmdevicemotionhandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphonemotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem/timestamp": {
+      "abstract": [
+        {
+          "text": "The time when the logged item is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMLogItem/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmlogitem/timestamp"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager": {
+      "abstract": [
+        {
+          "text": "The object for starting and managing motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/attitudeReferenceFrame": {
+      "abstract": [
+        {
+          "text": "Returns either the reference frame currently being used or the default attitude reference frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attitudeReferenceFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAttitudeReferenceFrame",
+          "text": "CMAttitudeReferenceFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/attitudeReferenceFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attitudeReferenceFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "attitudeReferenceFrame",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/attitudereferenceframe"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotion": {
+      "abstract": [
+        {
+          "text": "The latest sample of device-motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMotion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMDeviceMotion",
+          "text": "CMDeviceMotion"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceMotion",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/devicemotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval": {
+      "abstract": [
+        {
+          "text": "The interval, in seconds, for providing device-motion updates to the block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceMotionUpdateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceMotionUpdateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceMotionUpdateInterval",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/devicemotionupdateinterval"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isDeviceMotionAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device-motion service is available on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDeviceMotionAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isDeviceMotionAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceMotionAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDeviceMotionAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/isdevicemotionavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopDeviceMotionUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops device-motion updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopDeviceMotionUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/stopDeviceMotionUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopDeviceMotionUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopDeviceMotionUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/stopdevicemotionupdates()"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities": {
+      "abstract": [
+        {
+          "text": "The device-related features that your app requires to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiredDeviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ImmersiveSpaceContentP",
+          "text": "ImmersiveSpaceContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue": {
+      "abstract": [
+        {
+          "text": "A queue that regulates the execution of operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4251993": {
+      "alt": "Gyroscopes measure the rotation rate around the x, y, and z axes",
+      "identifier": "media-4251993",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64b92fc751671c47e15435b373ffc1bf/media-4251993@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-motion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+      ],
+      "title": "Device motion"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Device-motion",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMDeviceMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitude",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAttitudeReferenceFrame",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneMotionManager"
+              ],
+              "title": "Device motion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1yaw/title",
+          "value": "yaw"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1yaw/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "yaw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xArbitraryZVertical/title",
+          "value": "CMAttitudeReferenceFrameXArbitraryZVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xArbitraryZVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrameXArbitraryZVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/title",
+          "value": "CMAttitude"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1operationqueue/title",
+          "value": "NSOperationQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1roll/title",
+          "value": "roll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1roll/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "roll"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/title",
+          "value": "CMAttitudeReferenceFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xTrueNorthZVertical/title",
+          "value": "CMAttitudeReferenceFrameXTrueNorthZVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xTrueNorthZVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrameXTrueNorthZVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotionHandler/title",
+          "value": "CMDeviceMotionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1pitch/title",
+          "value": "pitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitude~1pitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMLogItem~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMLogItem~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xArbitraryCorrectedZVertical/title",
+          "value": "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xArbitraryCorrectedZVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1deviceMotion/title",
+          "value": "deviceMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1deviceMotion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xMagneticNorthZVertical/title",
+          "value": "CMAttitudeReferenceFrameXMagneticNorthZVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAttitudeReferenceFrame~1xMagneticNorthZVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAttitudeReferenceFrameXMagneticNorthZVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1deviceMotionUpdateInterval/title",
+          "value": "deviceMotionUpdateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1deviceMotionUpdateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceMotionUpdateInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/title",
+          "value": "CMHeadphoneMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/title",
+          "value": "CMDeviceMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMDeviceMotion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMDeviceMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/title",
+          "value": "CMMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1attitudeReferenceFrame/title",
+          "value": "attitudeReferenceFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1attitudeReferenceFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attitudeReferenceFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isDeviceMotionAvailable/title",
+          "value": "deviceMotionAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isDeviceMotionAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceMotionAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1stopDeviceMotionUpdates()/title",
+          "value": "stopDeviceMotionUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1stopDeviceMotionUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopDeviceMotionUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/title",
+          "value": "CMBatchedSensorManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBatchedSensorManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMBatchedSensorManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBatchedSensorManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/getting-processed-device-motion-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/getting-processed-device-motion-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

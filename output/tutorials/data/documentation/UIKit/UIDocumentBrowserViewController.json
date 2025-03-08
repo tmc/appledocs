@@ -1,0 +1,4316 @@
+{
+  "abstract": [
+    {
+      "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIDocumentBrowserViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIDocumentBrowserViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIDocumentBrowserViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIDocumentBrowserViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+        "doc://com.apple.uikit/documentation/UIKit/customizing-the-browser"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the document browser view controller, users can easily access and view their documents in the cloud. By default, the document browser can access both the system’s local file provider and its iCloud file provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2922157",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The local file provider grants access to all the documents in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Users can also access documents from another app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, if that app declares either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsDocumentBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key, or both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIFileSharingEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSSupportsOpeningDocumentsInPlace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. When the user opens a document from another app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, they edit the document in place, and save the changes to the other app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iCloud file provider creates a folder for your app in the user’s iCloud Drive. Users can access documents from this folder, or from anywhere in their iCloud Drive. The system automatically handles access to iCloud for you, so you don’t need to enable your app’s iCloud capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Third-party storage services can also provide access to the documents they manage by implementing a File Provider extension (iOS 11 or later). For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t assume that the files you access are local. Users can store files in iCloud Drive, or in any cloud storage that provides a current File Provider extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Remember that the system (or other apps) might modify the files that the document browser provides at any time. Therefore, you must coordinate your access to these files using either a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subclass, or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSSupportsOpeningDocumentsInPlace": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app may open the original document from a file provider, rather than a copy of the document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSSupportsOpeningDocumentsInPlace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSupportsOpeningDocumentsInPlace",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSSupportsOpeningDocumentsInPlace"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIFileSharingEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app shares files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIFileSharingEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFileSharingEnabled",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIFileSharingEnabled"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsDocumentBrowser": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app is a document-based app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsDocumentBrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISupportsDocumentBrowser",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UISupportsDocumentBrowser"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/FileProvider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the reading and writing of files and directories among file presenters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileCoordinator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter": {
+      "abstract": [
+        {
+          "text": "The interface a file coordinator uses to inform an object presenting a file about changes to that file made elsewhere in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePresenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFilePresenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocument": {
+      "abstract": [
+        {
+          "text": "An abstract base class for managing discrete portions of your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocument",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocument"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserAction": {
+      "abstract": [
+        {
+          "text": "A custom action that you can create and add to a document browser’s Edit menu or navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowseraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about document browser errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserError"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserError"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserError",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowsererror"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError/Code": {
+      "abstract": [
+        {
+          "text": "The error codes for document browser errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserError.Code",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowsererror/code"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for document browser errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserErrorDomain",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowsererrordomain"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserTransitionController": {
+      "abstract": [
+        {
+          "text": "An object that implements the standard loading and transition animations for a document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserTransitionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserTransitionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserTransitionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserTransitionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowsertransitioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/BrowserUserInterfaceStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "Styles that define the document browser’s appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BrowserUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/BrowserUserInterfaceStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BrowserUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController.BrowserUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/activeDocumentCreationIntent": {
+      "abstract": [
+        {
+          "text": "The current intent that defines how your app creates a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeDocumentCreationIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocument",
+          "text": "UIDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIDocumentCreationIntent",
+          "text": "CreationIntent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/activeDocumentCreationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeDocumentCreationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeDocumentCreationIntent",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/activedocumentcreationintent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalLeadingNavigationBarButtonItems": {
+      "abstract": [
+        {
+          "text": "Additional bar button items that the document browser displays on the leading side of its navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalLeadingNavigationBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalLeadingNavigationBarButtonItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalLeadingNavigationBarButtonItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalLeadingNavigationBarButtonItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/additionalleadingnavigationbarbuttonitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalTrailingNavigationBarButtonItems": {
+      "abstract": [
+        {
+          "text": "Additional bar button items that the document browser displays on the trailing side of its navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalTrailingNavigationBarButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalTrailingNavigationBarButtonItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalTrailingNavigationBarButtonItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalTrailingNavigationBarButtonItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/additionaltrailingnavigationbarbuttonitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowedContentTypes": {
+      "abstract": [
+        {
+          "text": "The document types that the browser can open.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowedContentTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedContentTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedContentTypes",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/allowedcontenttypes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsDocumentCreation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the document browser can create new documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsDocumentCreation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsDocumentCreation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsDocumentCreation"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsDocumentCreation",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/allowsdocumentcreation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsPickingMultipleItems": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the user can select and open more than one document at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsPickingMultipleItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsPickingMultipleItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsPickingMultipleItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsPickingMultipleItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/allowspickingmultipleitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/browserUserInterfaceStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The visual style for the document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "browserUserInterfaceStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentBrowserViewController",
+          "text": "UIDocumentBrowserViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDocumentBrowserUserInterfaceStyle",
+          "text": "BrowserUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/browserUserInterfaceStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "browserUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "browserUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/contentTypesForRecentDocuments": {
+      "abstract": [
+        {
+          "text": "Content types for browsing recent documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentTypesForRecentDocuments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/contentTypesForRecentDocuments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentTypesForRecentDocuments"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentTypesForRecentDocuments",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/contenttypesforrecentdocuments"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/customActions": {
+      "abstract": [
+        {
+          "text": "Custom document browser actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentBrowserAction",
+          "text": "UIDocumentBrowserAction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/customActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "customActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/customactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/defaultDocumentAspectRatio": {
+      "abstract": [
+        {
+          "text": "The aspect ratio for the Create Document button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultDocumentAspectRatio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/defaultDocumentAspectRatio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultDocumentAspectRatio"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultDocumentAspectRatio",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/defaultdocumentaspectratio"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/delegate": {
+      "abstract": [
+        {
+          "text": "The document browser’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDocumentBrowserViewControllerDelegate",
+          "text": "UIDocumentBrowserViewControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/importDocument(at:nextToDocumentAt:mode:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Imports a document into the same location as an existing document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "importDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "nextToDocumentAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentBrowserViewController",
+          "text": "UIDocumentBrowserViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIDocumentBrowserImportMode",
+          "text": "ImportMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/importDocument(at:nextToDocumentAt:mode:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "importDocument(at:nextToDocumentAt:mode:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/importdocument(at:nexttodocumentat:mode:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpening:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a document browser view controller that can open the specified file types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forOpening"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpening:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForOpeningContentTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forOpening:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/init(foropening:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpeningFilesWithContentTypes:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a document browser view controller that can open the specified file types.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forOpeningFilesWithContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpeningFilesWithContentTypes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForOpeningFilesWithContentTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forOpeningFilesWithContentTypes:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/init(foropeningfileswithcontenttypes:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/localizedCreateDocumentActionTitle": {
+      "abstract": [
+        {
+          "text": "The title for the Create Document button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedCreateDocumentActionTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/localizedCreateDocumentActionTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedCreateDocumentActionTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedCreateDocumentActionTitle",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/localizedcreatedocumentactiontitle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/recentDocumentsContentTypes": {
+      "abstract": [
+        {
+          "text": "Content types for browsing recent documents.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recentDocumentsContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/recentDocumentsContentTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recentDocumentsContentTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "recentDocumentsContentTypes",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/recentdocumentscontenttypes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/renameDocument(at:proposedName:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Renames a document at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renameDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/renameDocument(at:proposedName:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renameDocumentAtURL:proposedName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renameDocument(at:proposedName:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/renamedocument(at:proposedname:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/revealDocument(at:importIfNeeded:completion:)": {
+      "abstract": [
+        {
+          "text": "Reveals, and optionally imports, the document at the provided URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revealDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "importIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/revealDocument(at:importIfNeeded:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revealDocumentAtURL:importIfNeeded:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "revealDocument(at:importIfNeeded:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/revealdocument(at:importifneeded:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/shouldShowFileExtensions": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the browser always shows file extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldShowFileExtensions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/shouldShowFileExtensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldShowFileExtensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldShowFileExtensions",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/shouldshowfileextensions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentAt:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition controller that provides the standard system-loading and segue animations for the document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDocumentAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentBrowserTransitionController",
+          "text": "UIDocumentBrowserTransitionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionControllerForDocumentAtURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitionController(forDocumentAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/transitioncontroller(fordocumentat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentURL:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition controller that provides the standard system-loading and segue animations for the document browser.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDocumentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentBrowserTransitionController",
+          "text": "UIDocumentBrowserTransitionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionControllerForDocumentURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitionController(forDocumentURL:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller/transitioncontroller(fordocumenturl:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to respond as the user interacts with the document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController": {
+      "abstract": [
+        {
+          "text": "A view controller that previews, opens, or prints files with a file format that your app can’t handle directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides access to documents or destinations outside your app’s sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentPickerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentpickerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages and presents a document stored locally or in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app": {
+      "abstract": [
+        {
+          "text": "Give users access to their local or remote documents from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adding a document browser to your app",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-a-document-browser-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats": {
+      "abstract": [
+        {
+          "text": "Implement a custom document file format to manage user interactions with files on different cloud storage providers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document browser app for custom file formats",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-document-browser-app-for-custom-file-formats"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app": {
+      "abstract": [
+        {
+          "text": "Use a document browser to provide access to the user’s text files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document browser-based app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-document-browser-based-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience": {
+      "abstract": [
+        {
+          "text": "Add unique elements to your app’s document launch scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing a document-based app’s launch experience",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-a-document-based-app-s-launch-experience"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-the-browser": {
+      "abstract": [
+        {
+          "text": "Customize the document browser’s look and behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-the-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the browser",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-the-browser"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories": {
+      "abstract": [
+        {
+          "text": "Use a document picker to access the content of a directory outside your app’s container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing access to directories",
+      "type": "topic",
+      "url": "/documentation/uikit/providing-access-to-directories"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-2922157": {
+      "alt": "A screenshot of the document browser. The On My iPad location is in a selected state on the left, and several photos and folders appear in the pane on the right.",
+      "identifier": "media-2922157",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/294c1b3d0e1de953ec9fc339c2907ef8/media-2922157@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Documents-and-directories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+      ],
+      "title": "Documents and directories"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-document-browser",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpening:)"
+      ],
+      "title": "Creating a document browser"
+    },
+    {
+      "anchor": "Creating-new-documents",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/activeDocumentCreationIntent"
+      ],
+      "title": "Creating new documents"
+    },
+    {
+      "anchor": "Responding-to-browser-events",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/delegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/importDocument(at:nextToDocumentAt:mode:completionHandler:)"
+      ],
+      "title": "Responding to browser events"
+    },
+    {
+      "anchor": "Configuring-a-document-browser",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsDocumentCreation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsPickingMultipleItems",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/revealDocument(at:importIfNeeded:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/contentTypesForRecentDocuments"
+      ],
+      "title": "Configuring a document browser"
+    },
+    {
+      "anchor": "Modifying-the-browsers-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/browserUserInterfaceStyle-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/BrowserUserInterfaceStyle-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalLeadingNavigationBarButtonItems",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalTrailingNavigationBarButtonItems",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/shouldShowFileExtensions",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/localizedCreateDocumentActionTitle",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/defaultDocumentAspectRatio"
+      ],
+      "title": "Modifying the browser’s appearance"
+    },
+    {
+      "anchor": "Adding-custom-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/customActions",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserAction"
+      ],
+      "title": "Adding custom actions"
+    },
+    {
+      "anchor": "Animating-transitions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentAt:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserTransitionController"
+      ],
+      "title": "Animating transitions"
+    },
+    {
+      "anchor": "Renaming-a-document",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/renameDocument(at:proposedName:completionHandler:)"
+      ],
+      "title": "Renaming a document"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError/Code",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserErrorDomain"
+      ],
+      "title": "Handling errors"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpeningFilesWithContentTypes:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/recentDocumentsContentTypes",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowedContentTypes",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentURL:)"
+      ],
+      "title": "Deprecated symbols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIDocumentBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-document-browser",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpening:)"
+              ],
+              "title": "Creating a document browser"
+            },
+            {
+              "anchor": "Creating-new-documents",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/activeDocumentCreationIntent"
+              ],
+              "title": "Creating new documents"
+            },
+            {
+              "anchor": "Responding-to-browser-events",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/delegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/importDocument(at:nextToDocumentAt:mode:completionHandler:)"
+              ],
+              "title": "Responding to browser events"
+            },
+            {
+              "anchor": "Configuring-a-document-browser",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsDocumentCreation",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowsPickingMultipleItems",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/revealDocument(at:importIfNeeded:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/contentTypesForRecentDocuments"
+              ],
+              "title": "Configuring a document browser"
+            },
+            {
+              "anchor": "Modifying-the-browsers-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/browserUserInterfaceStyle-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/BrowserUserInterfaceStyle-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalLeadingNavigationBarButtonItems",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/additionalTrailingNavigationBarButtonItems",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/shouldShowFileExtensions",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/localizedCreateDocumentActionTitle",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/defaultDocumentAspectRatio"
+              ],
+              "title": "Modifying the browser’s appearance"
+            },
+            {
+              "anchor": "Adding-custom-actions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/customActions",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserAction"
+              ],
+              "title": "Adding custom actions"
+            },
+            {
+              "anchor": "Animating-transitions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentAt:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserTransitionController"
+              ],
+              "title": "Animating transitions"
+            },
+            {
+              "anchor": "Renaming-a-document",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/renameDocument(at:proposedName:completionHandler:)"
+              ],
+              "title": "Renaming a document"
+            },
+            {
+              "anchor": "Handling-errors",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserError/Code",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserErrorDomain"
+              ],
+              "title": "Handling errors"
+            },
+            {
+              "anchor": "Deprecated-symbols",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/init(forOpeningFilesWithContentTypes:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/recentDocumentsContentTypes",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/allowedContentTypes",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController/transitionController(forDocumentURL:)"
+              ],
+              "title": "Deprecated symbols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Documents-and-directories",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+              ],
+              "title": "Documents and directories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIDocumentBrowserViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIViewController",
+                    "text": "UIViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1additionalLeadingNavigationBarButtonItems/title",
+          "value": "additionalLeadingNavigationBarButtonItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1additionalLeadingNavigationBarButtonItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "additionalLeadingNavigationBarButtonItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1activeDocumentCreationIntent/title",
+          "value": "activeDocumentCreationIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1activeDocumentCreationIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeDocumentCreationIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1recentDocumentsContentTypes/title",
+          "value": "recentDocumentsContentTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1recentDocumentsContentTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recentDocumentsContentTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1contentTypesForRecentDocuments/title",
+          "value": "contentTypesForRecentDocuments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1contentTypesForRecentDocuments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentTypesForRecentDocuments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowsPickingMultipleItems/title",
+          "value": "allowsPickingMultipleItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowsPickingMultipleItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsPickingMultipleItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserTransitionController/title",
+          "value": "UIDocumentBrowserTransitionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserTransitionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserTransitionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserTransitionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserTransitionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/title",
+          "value": "UIDocumentBrowserViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserAction/title",
+          "value": "UIDocumentBrowserAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1transitionController(forDocumentURL:)/title",
+          "value": "transitionControllerForDocumentURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1transitionController(forDocumentURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionControllerForDocumentURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/title",
+          "value": "UIDocumentPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserErrorDomain/title",
+          "value": "UIDocumentBrowserErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1renameDocument(at:proposedName:completionHandler:)/title",
+          "value": "renameDocumentAtURL:proposedName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1renameDocument(at:proposedName:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renameDocumentAtURL:proposedName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1browserUserInterfaceStyle-swift.property/title",
+          "value": "browserUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1browserUserInterfaceStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "browserUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowsDocumentCreation/title",
+          "value": "allowsDocumentCreation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowsDocumentCreation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsDocumentCreation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1defaultDocumentAspectRatio/title",
+          "value": "defaultDocumentAspectRatio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1defaultDocumentAspectRatio/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultDocumentAspectRatio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/title",
+          "value": "UIDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1init(forOpeningFilesWithContentTypes:)/title",
+          "value": "initForOpeningFilesWithContentTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1init(forOpeningFilesWithContentTypes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForOpeningFilesWithContentTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1revealDocument(at:importIfNeeded:completion:)/title",
+          "value": "revealDocumentAtURL:importIfNeeded:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1revealDocument(at:importIfNeeded:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "revealDocumentAtURL:importIfNeeded:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1shouldShowFileExtensions/title",
+          "value": "shouldShowFileExtensions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1shouldShowFileExtensions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldShowFileExtensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/title",
+          "value": "UIDocumentBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1BrowserUserInterfaceStyle-swift.enum/title",
+          "value": "UIDocumentBrowserUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1BrowserUserInterfaceStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1BrowserUserInterfaceStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowedContentTypes/title",
+          "value": "allowedContentTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1allowedContentTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedContentTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1transitionController(forDocumentAt:)/title",
+          "value": "transitionControllerForDocumentAtURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1transitionController(forDocumentAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionControllerForDocumentAtURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1importDocument(at:nextToDocumentAt:mode:completionHandler:)/title",
+          "value": "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1importDocument(at:nextToDocumentAt:mode:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1init(forOpening:)/title",
+          "value": "initForOpeningContentTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1init(forOpening:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForOpeningContentTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/title",
+          "value": "UIDocumentInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1localizedCreateDocumentActionTitle/title",
+          "value": "localizedCreateDocumentActionTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1localizedCreateDocumentActionTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedCreateDocumentActionTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1customActions/title",
+          "value": "customActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1customActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserError~1Code/title",
+          "value": "UIDocumentBrowserErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/title",
+          "value": "UIDocumentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1additionalTrailingNavigationBarButtonItems/title",
+          "value": "additionalTrailingNavigationBarButtonItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController~1additionalTrailingNavigationBarButtonItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "additionalTrailingNavigationBarButtonItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uidocumentbrowserviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uidocumentbrowserviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,920 @@
+{
+  "abstract": [
+    {
+      "text": "Test your matchmaking rules before you use them in your game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/testing-matchmaking-rules"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing matchmaking rules"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you write any code, you can test your matchmaking rules on the server side to ensure that they find compatible players without long wait times. You pass the rule set and sample match requests to the test API, and it responds with the match results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To download a script that helps test your matchmaking rules, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/game-center-tools",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For examples using the script, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/111376/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-sample-match-requests",
+          "level": 3,
+          "text": "Create sample match requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that represent sample match requests. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to ",
+              "type": "text"
+            },
+            {
+              "code": "gameCenterMatchmakingTestRequests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to a unique identifier for the match request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field has the same fields as the ",
+              "type": "text"
+            },
+            {
+              "code": "Request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that you use in expressions. Set the required ",
+              "type": "text"
+            },
+            {
+              "code": "requestName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to a unique string and the ",
+              "type": "text"
+            },
+            {
+              "code": "bundleId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to your game’s bundle identifier. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "appVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields to appropriate values, such as ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "IOS",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Set the ",
+              "type": "text"
+            },
+            {
+              "code": "secondsInQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unless you want to test rules with different match request ages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"included\": [",
+            "        {",
+            "            \"type\": \"gameCenterMatchmakingTestRequests\",",
+            "            \"id\": \"${r1}\",",
+            "            \"attributes\": {",
+            "                \"requestName\": \"r1\",",
+            "                \"appVersion\": \"1.0.0\",",
+            "                \"bundleId\": \"com.example.mygame\",",
+            "                \"platform\": \"IOS\",",
+            "                \"secondsInQueue\": 0",
+            "            },",
+            "            \"relationships\": {",
+            "                \"matchmakingPlayerProperties\": {",
+            "                    \"data\": [",
+            "                        {",
+            "                            \"type\": \"gameCenterMatchmakingTestPlayerProperties\",",
+            "                            \"id\": \"${r1_p1}\"",
+            "                        }",
+            "                    ]",
+            "                }",
+            "            }",
+            "        },",
+            "        {",
+            "            \"type\": \"gameCenterMatchmakingTestRequests\",",
+            "            \"id\": \"${r2}\",",
+            "            \"attributes\": {",
+            "                \"requestName\": \"r2\",",
+            "                \"appVersion\": \"1.0.0\",",
+            "                \"bundleId\": \"com.example.mygame\",",
+            "                \"platform\": \"IOS\",",
+            "                \"secondsInQueue\": 0",
+            "            },",
+            "            \"relationships\": {",
+            "                \"matchmakingPlayerProperties\": {",
+            "                    \"data\": [",
+            "                        {",
+            "                            \"type\": \"gameCenterMatchmakingTestPlayerProperties\",",
+            "                            \"id\": \"${r2_p1}\"",
+            "                        }",
+            "                    ]",
+            "                }",
+            "            }",
+            "        },",
+            "..."
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "relationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, include resource objects for any game-specific properties that you use in the expressions. For example, if you’re testing party code rules, described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Relationships-data.dictionary/MatchmakingPlayerProperties-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to each match request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then append a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each of the match request. In the ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, provide a key-value pair for each property, such as the ",
+              "type": "text"
+            },
+            {
+              "code": "partyCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...",
+            "        {",
+            "            \"type\": \"gameCenterMatchmakingTestPlayerProperties\",",
+            "            \"id\": \"${r1_p1}\",",
+            "            \"attributes\": {",
+            "                \"properties\": [",
+            "                    {",
+            "                        \"key\": \"partyCode\",",
+            "                        \"value\": \"\\\"Q1R5A6T9\\\"\"",
+            "                    }",
+            "                ],",
+            "                \"playerId\": \"r1_p1\"",
+            "            }",
+            "        },",
+            "        {",
+            "            \"type\": \"gameCenterMatchmakingTestPlayerProperties\",",
+            "            \"id\": \"${r2_p1}\",",
+            "            \"attributes\": {",
+            "                \"properties\": [",
+            "                    {",
+            "                        \"key\": \"partyCode\",",
+            "                        \"value\": \"\\\"Q1R5A6T9\\\"\"",
+            "                    }",
+            "                ],",
+            "                \"playerId\": \"r2_p1\"",
+            "            }",
+            "        }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-the-matchmaking-rules",
+          "level": 3,
+          "text": "Test the matchmaking rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apply the matchmaking rules by passing the associated rule set and the sample match requests to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSetTests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Pass the rule set ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "code": "matchmakingRuleSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field and pass resource objects representing the match requests in the ",
+              "type": "text"
+            },
+            {
+              "code": "matchmakingRequests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. Then pass the array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, that you create above, in the ",
+              "type": "text"
+            },
+            {
+              "code": "included",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /v1/gameCenterMatchmakingRuleSetTests",
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRuleSetTests\",",
+            "        \"attributes\": {},",
+            "        \"relationships\": {",
+            "            \"matchmakingRuleSet\": {",
+            "                \"data\": {",
+            "                    \"type\": \"gameCenterMatchmakingRuleSets\",",
+            "                    \"id\": \"9e313753-2b8a-4762-b941-26f30c4184d2\"",
+            "                }",
+            "            },",
+            "            \"matchmakingRequests\": {",
+            "                \"data\": [",
+            "                    {",
+            "                        \"type\": \"gameCenterMatchmakingTestRequests\",",
+            "                        \"id\": \"${r1}\"",
+            "                    },",
+            "                    {",
+            "                        \"type\": \"gameCenterMatchmakingTestRequests\",",
+            "                        \"id\": \"${r2}\"",
+            "                    }",
+            "                ]",
+            "            }",
+            "        }",
+            "    },",
+            "    \"included\": [...}",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The endpoint response contains the matchmaking results. Parse the ",
+              "type": "text"
+            },
+            {
+              "code": "matchmakingResults",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If the rule set contains team rules, the team assignments appear in the ",
+              "type": "text"
+            },
+            {
+              "code": "teamAssignments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary/MatchmakingResults-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"data\": {",
+            "        \"type\": \"gameCenterMatchmakingRuleSetTests\",",
+            "        \"attributes\": {",
+            "            \"matchmakingResults\": [",
+            "                [",
+            "                    {",
+            "                        \"requestName\": \"r1\",",
+            "                        \"teamAssignments\": null",
+            "                    },",
+            "                    {",
+            "                        \"requestName\": \"r2\",",
+            "                        \"teamAssignments\": null",
+            "                    }",
+            "                ]",
+            "            ]",
+            "        },",
+            "..."
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a rule set, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and to create team rules, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The results of testing a rule set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingRuleSetTest.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingRuleSetTest.Attributes",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary/MatchmakingResults-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data structure representing the results of a match request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingRuleSetTest.Attributes.MatchmakingResults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary/MatchmakingResults-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingRuleSetTest.Attributes.MatchmakingResults",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingRuleSetTest/Attributes-data.dictionary/MatchmakingResults-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a player’s properties when you create a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingTestPlayerPropertyInlineCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingTestPlayerPropertyInlineCreate",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestPlayerPropertyInlineCreate"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate": {
+      "abstract": [
+        {
+          "text": "A data structure that represents a sample match request for testing a rule set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingTestRequestInlineCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingTestRequestInlineCreate",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Relationships-data.dictionary/MatchmakingPlayerProperties-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A resource object for the game-specific properties for a match request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterMatchmakingTestRequestInlineCreate.Relationships.MatchmakingPlayerProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Relationships-data.dictionary/MatchmakingPlayerProperties-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GameCenterMatchmakingTestRequestInlineCreate.Relationships.MatchmakingPlayerProperties",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GameCenterMatchmakingTestRequestInlineCreate/Relationships-data.dictionary/MatchmakingPlayerProperties-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSetTests": {
+      "abstract": [
+        {
+          "text": "Apply the given rule set to the given sample match requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSetTests",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Test a rule set",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-gameCenterMatchmakingRuleSetTests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules": {
+      "abstract": [
+        {
+          "text": "Set criteria for assigning players to teams in your game using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Assigning players to teams using rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/assigning-players-to-teams-using-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules",
+      "kind": "section",
+      "title": "Create rule sets that contain the matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-players-using-matchmaking-rules#Create-rule-sets-that-contain-the-matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes": {
+      "abstract": [
+        {
+          "text": "Add a rule that lets players invite players and join matches using a shared party code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/letting-players-join-matches-using-party-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Letting players join matches using party codes",
+      "type": "topic",
+      "url": "/documentation/gamekit/letting-players-join-matches-using-party-codes"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/testing-rule-sets-with-player-traffic-using-metrics": {
+      "abstract": [
+        {
+          "text": "Get metrics on a new rule set with real match requests before releasing it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/testing-rule-sets-with-player-traffic-using-metrics",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing rule sets with player traffic using metrics",
+      "type": "topic",
+      "url": "/documentation/gamekit/testing-rule-sets-with-player-traffic-using-metrics"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics": {
+      "abstract": [
+        {
+          "text": "Investigate issues with Game Center by evaluating your matchmaking rules using metrics endpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting matchmaking rules using metrics",
+      "type": "topic",
+      "url": "/documentation/gamekit/troubleshooting-matchmaking-rules-using-metrics"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/111376/": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/111376/",
+      "title": "Meet rule-based matchmaking in Game Center",
+      "titleInlineContent": [
+        {
+          "text": "Meet rule-based matchmaking in Game Center",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/111376/"
+    },
+    "https://github.com/apple/game-center-tools": {
+      "identifier": "https://github.com/apple/game-center-tools",
+      "title": "Testing matchmaking rules using a Python script",
+      "titleInlineContent": [
+        {
+          "text": "Testing matchmaking rules using a Python script",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/game-center-tools"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics",
+        "doc://com.apple.gamekit/documentation/GameKit/testing-rule-sets-with-player-traffic-using-metrics"
+      ],
+      "title": "Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/troubleshooting-matchmaking-rules-using-metrics",
+                "doc://com.apple.gamekit/documentation/GameKit/testing-rule-sets-with-player-traffic-using-metrics"
+              ],
+              "title": "Testing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/testing-matchmaking-rules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/testing-matchmaking-rules"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

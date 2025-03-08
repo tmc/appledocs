@@ -1,0 +1,3301 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt the latest features of the redesigned tvOS player user interface to provide a more streamlined way to watch your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing the tvOS Playback Experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "tvOS 15 introduces an all-new playback experience that helps viewers stay in the moment by providing a more consistent, useful, and interactive user interface. The redesigned UI provides viewers with convenient access to relevant controls and information while always keeping the focus on the content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842260",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s simple to provide this playback experience in your app by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Using this class for your player UI provides your app the same features and familiar interactions found in the Apple TV app, including support for voice commands using the Siri Remote and presenting video in Picture in Picture. In tvOS 15, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is more configurable and customizable than ever, giving you new ways to tailor your app’s video playback experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Existing apps that use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " adopt the new styling and features of the redesigned player UI when they link against the tvOS 15 SDK.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Display-Supporting-Metadata",
+          "level": 3,
+          "text": "Display Supporting Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The player user interface displays a title view above the transport bar when the current player item contains title and subtitle metadata. When playing live streaming content, the title view may also display a badge to indicate that content state to the viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3822567",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The title view retrieves the values it displays from an asset’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierTitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataTrackSubTitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " metadata items, when available. If the media your app plays doesn’t contain embedded metadata, you can add custom metadata by creating instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The table below lists the metadata values that the player user interface supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Title",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierTitle",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subtitle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataTrackSubTitle",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Artwork",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierArtwork",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Genre",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/quickTimeMetadataGenre",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataContentRating",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an app that defines a structure that stores simple string-based metadata values, you could map its values to their appropriate metadata identifiers and build an array of metadata items as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createMetadataItems(for metadata: Metadata) -> [AVMetadataItem] {",
+            "    let mapping: [AVMetadataIdentifier: Any] = [",
+            "        .commonIdentifierTitle: metadata.title,",
+            "        .iTunesMetadataTrackSubTitle: metadata.subtitle,",
+            "        .commonIdentifierArtwork: UIImage(named: metadata.image)?.pngData() as Any,",
+            "        .commonIdentifierDescription: metadata.description,",
+            "        .iTunesMetadataContentRating: metadata.rating,",
+            "        .quickTimeMetadataGenre: metadata.genre",
+            "    ]",
+            "    return mapping.compactMap { createMetadataItem(for:$0, value:$1) }",
+            "}",
+            "",
+            "private func createMetadataItem(for identifier: AVMetadataIdentifier,",
+            "                                value: Any) -> AVMetadataItem {",
+            "    let item = AVMutableMetadataItem()",
+            "    item.identifier = identifier",
+            "    item.value = value as? NSCopying & NSObjectProtocol",
+            "    // Specify \"und\" to indicate an undefined language.",
+            "    item.extendedLanguageTag = \"und\"",
+            "    return item.copy() as! AVMetadataItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply the metadata to the current player item, set the array of metadata items as the value of the player item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/externalMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let metadata: Metadata = // A structure that contains simple string values.",
+            "playerItem.externalMetadata = createMetadataItems(for: metadata)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only the title and subtitle values display in the title view. The player presents the other supported metadata values in its Info tab, which the Display Content Tabs section below describes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app would prefer to always hide the title view, set the value of the player view controller’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarIncludesTitleView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Custom-Transport-Bar-Items",
+          "level": 3,
+          "text": "Add Custom Transport Bar Items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The redesigned transport bar displays controls along its trailing side, which provides viewers quick access to common actions. The system automatically displays controls to configure common playback settings, like selecting subtitles and enabling Picture in Picture, but apps can also add custom controls to the transport bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3822650",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define custom transport bar items by creating instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, to create a simple control that toggles whether the current movie is a favorite, you could create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create ♡ and ♥ images.",
+            "let heartImage = UIImage(systemName: \"heart\")",
+            "let heartFillImage = UIImage(systemName: \"heart.fill\")",
+            "",
+            "// Create an action to add the item to the viewer's favorites.",
+            "let stateImage = isFavorited ? heartFillImage : heartImage",
+            "let favoriteAction = UIAction(title: \"Favorites\",",
+            "                              image: stateImage) { [weak self] action in",
+            "    ",
+            "    // Add the movie to or remove it from the viewer's favorites list.",
+            "    self?.isFavorited.toggle()",
+            "    ",
+            "    // Update the button image to reflect the new state.",
+            "    action.image = isFavorite ? heartFillImage : heartImage",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create more advanced arrangements of actions and present them in a menu. The following example creates a custom preferences menu that adds a gear icon to the transport bar. When a user clicks the icon, the system presents a pop-up menu with an option to enable looping playback and an inline submenu to control playback speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create ∞ and ⚙ images.",
+            "let loopImage = UIImage(systemName: \"infinity\")",
+            "let gearImage = UIImage(systemName: \"gearshape\")",
+            "",
+            "// Create an action to enable looping playback.",
+            "let loopAction = UIAction(title: \"Loop\", image: loopImage, state: .off) { action in",
+            "    action.state = (action.state == .off) ? .on : .off",
+            "}",
+            "",
+            "let speedActions = [\"Half\": 0.5, \"Default\": 1.0, \"Double\": 2.0].map { title, value in",
+            "    UIAction(title: title, state: self.playbackSpeed == value ? .on : .off) { [weak self] action in",
+            "        // Update the current playback speed.",
+            "        self?.playbackSpeed = value",
+            "        action.state = .on",
+            "    }",
+            "}",
+            "",
+            "// Create the submenu.",
+            "let submenu = UIMenu(title: \"Speed\",",
+            "                     options: [.displayInline, .singleSelection],",
+            "                     children: speedActions)",
+            "",
+            "// Create the main menu.",
+            "let menu = UIMenu(title: \"Preferences\", image: gearImage, children: [loopAction, submenu])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To have the player view controller present the custom items, set them as the player view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the custom transport bar items.",
+            "playerViewController.transportBarCustomMenuItems = [favoriteAction, menu]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the custom action and menu adds two new items to the transport bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3820865",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-Content-Tabs",
+          "level": 3,
+          "text": "Display Content Tabs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tvOS player UI can display one or more content tabs below the transport bar to show supporting information or related content. By default, the player presents an Info tab when an asset contains embedded metadata or when you set external metadata on the player item, as the Display Supporting Metadata section above describes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3821023",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can also define custom tabs by creating subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present your supporting content, and set them as the value of the player view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/customInfoViewControllers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The system uses the custom view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property value as the tab title, so initialize it before setting it on the player view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set custom content tabs on the player UI.",
+            "playerViewController.customInfoViewControllers = [",
+            "    BonusContentViewController(title: \"Bonus\"),",
+            "    RelatedContentViewController(title: \"Related\")",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3821592",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the player view controller to size your content appropriately, specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/preferredContentSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or define appropriate auto layout constraints. The system sizes all view controllers to the height of the tallest content tab, so size your custom view controllers consistently or verify that they lay out as you expect at their runtime height.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-Actions-in-the-Info-Tab",
+          "level": 3,
+          "text": "Present Actions in the Info Tab",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A player view controller presents an Info tab when playing an asset with embedded or external metadata. The tab’s view displays the metadata details, and it may show up to two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " controls along its trailing edge, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3872936",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You customize the actions the view presents by setting a value for the player view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/infoViewActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. When playing nonlive content, this property contains a single-element array that presents an action to play the content from the beginning. You may replace the default value (if present), add an additional action, or set this property value to an empty array to display no actions. The example below shows how to add a Watch Later action to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let glasses = UIImage(systemName: \"eyeglasses\")",
+            "let watchLater = UIAction(title: \"Watch Later\", image: glasses) { action in",
+            "    // Add or remove the item from the user's watch list,",
+            "    // and update the action state accordingly.",
+            "}",
+            "// Append the action to the array.",
+            "playerViewController.infoViewActions.append(watchLater)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-Actions-Contextually",
+          "level": 3,
+          "text": "Present Actions Contextually",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the tvOS player UI to present controls contextually, which you display for a specific range of time in the content and then dismiss. A common use for this type of control is a Skip button that displays during the title sequence of a movie or TV show. Clicking the button allows viewers to bypass the introduction and quickly skip to the main content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3820222",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contextualActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that you can use to specify one or more actions to present. The player displays them along the bottom-trailing side of the screen. The following code example shows a simple implementation of an action that seeks the player forward to the time of the main content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define an action to skip the introduction of a media asset.",
+            "private lazy var skipAction = UIAction(title: \"Skip\") { [weak self] _ in",
+            "    guard let self = self else { return }",
+            "    self.player.seek(to: self.skipToTime)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you set a value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contextualActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, the player presents the controls immediately. To present them only during a relevant section of the content, observe the player timing by adding a periodic or boundary time observer. The following example defines a periodic time observer that fires every second during normal playback. In each invocation, it evaluates the new time to determine if it falls within the presentation range. If it does, the example sets the skip action as the contextual actions value; otherwise, it clears the value by setting it to an empty array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func addTimeObserver() {",
+            "    // Observe the player's timing every second.",
+            "    let interval = CMTime(value: 1, timescale: 1)",
+            "    timeObserver = player.addPeriodicTimeObserver(forInterval: interval,",
+            "                                                  queue: .main) { [weak self] time in",
+            "        guard let self = self else { return }",
+            "        // If the time is within the defined skip range, present the skip actions.",
+            "        let actions = self.skipRange.containsTime(time) ? [self.skipAction] : []",
+            "        self.playerViewController.contextualActions = actions",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that proposes content to watch next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContentProposalViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontentproposalviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides an interface to a person so they can select and connect a continuity device to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that responds to events from a continuity device picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager": {
+      "abstract": [
+        {
+          "text": "A tvOS management object that controls whether a TV switches modes to match the video’s native mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDisplayManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avdisplaymanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange": {
+      "abstract": [
+        {
+          "text": "A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVInterstitialTimeRange",
+      "type": "topic",
+      "url": "/documentation/avkit/avinterstitialtimerange"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup": {
+      "abstract": [
+        {
+          "text": "A set of markers for navigating playback of an audiovisual presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVNavigationMarkersGroup",
+      "type": "topic",
+      "url": "/documentation/avkit/avnavigationmarkersgroup"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contextualActions": {
+      "abstract": [
+        {
+          "text": "An array of action controls to present contextually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextualActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIAction",
+          "text": "UIAction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/contextualActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contextualActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "contextualActions",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/contextualactions"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/customInfoViewControllers": {
+      "abstract": [
+        {
+          "text": "An array of view controllers to display as content tabs in the player user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customInfoViewControllers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/customInfoViewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customInfoViewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "customInfoViewControllers",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/custominfoviewcontrollers"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/infoViewActions": {
+      "abstract": [
+        {
+          "text": "An array of actions to present in the Info content view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "infoViewActions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIAction",
+          "text": "UIAction"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/infoViewActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "infoViewActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "infoViewActions",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/infoviewactions"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems": {
+      "abstract": [
+        {
+          "text": "An array of actions and menus to display with the default player controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportBarCustomMenuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuElement",
+          "text": "UIMenuElement"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportBarCustomMenuItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportBarCustomMenuItems",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/transportbarcustommenuitems"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarIncludesTitleView": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the player user interface shows the title view above the scrubber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportBarIncludesTitleView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/transportBarIncludesTitleView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportBarIncludesTitleView"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportBarIncludesTitleView",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/transportbarincludestitleview"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos": {
+      "abstract": [
+        {
+          "text": "Display a preview of an upcoming media item at the conclusion of the currently playing media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Content Proposals in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-content-proposals-in-tvos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers": {
+      "abstract": [
+        {
+          "text": "Present navigation markers in the Chapters panel to help users quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Navigation Markers",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-navigation-markers"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Capture high-quality photos, video, and audio in your Apple TV app by connecting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an iPhone or iPad as a continuity device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Continuity Camera in your tvOS app",
+      "type": "topic",
+      "url": "/documentation/avkit/supporting-continuity-camera-in-your-tvos-app"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content": {
+      "abstract": [
+        {
+          "text": "Present additional content alongside your main media presentation using HTTP Live Streaming support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Interstitial Content",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-interstitial-content"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos": {
+      "abstract": [
+        {
+          "text": "Add interactive overlays, parental controls, and livestream channel flipping using a player view controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Working with Overlays and Parental Controls in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-overlays-and-parental-controls-in-tvos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierArtwork": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an image relating to the album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonIdentifierArtwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierArtwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonIdentifierArtwork",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierArtwork"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierDescription": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the description of the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonIdentifierDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonIdentifierDescription",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierDescription"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierTitle": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the title of the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonIdentifierTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierTitle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonIdentifierTitle",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/commonIdentifierTitle"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataContentRating": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the content rating in iTunes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iTunesMetadataContentRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataContentRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iTunesMetadataContentRating",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataContentRating"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataTrackSubTitle": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the information relating to the contents title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iTunesMetadataTrackSubTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataTrackSubTitle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iTunesMetadataTrackSubTitle",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/iTunesMetadataTrackSubTitle"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/quickTimeMetadataGenre": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the genre or genres to which the movie content conforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quickTimeMetadataGenre"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+          "text": "AVMetadataIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataIdentifier/quickTimeMetadataGenre",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quickTimeMetadataGenre",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataIdentifier/quickTimeMetadataGenre"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataItem": {
+      "abstract": [
+        {
+          "text": "A metadata item for an audiovisual asset or one of its tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVMetadataItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMetadataItem",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVMetadataItem"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/externalMetadata": {
+      "abstract": [
+        {
+          "text": "An array of additional metadata for the player item to supplement or replace an asset’s embedded metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/externalMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalMetadata",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/externalMetadata"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAction": {
+      "abstract": [
+        {
+          "text": "A menu element that performs its action in a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIMenu": {
+      "abstract": [
+        {
+          "text": "A container for grouping related menu elements in an app menu or contextual menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIMenu",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIMenu"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/preferredContentSize": {
+      "abstract": [
+        {
+          "text": "The preferred size for the view controller’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredContentSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/preferredContentSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredContentSize",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/preferredContentSize"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/title": {
+      "abstract": [
+        {
+          "text": "A localized string that represents the view this controller manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/title"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3820222": {
+      "alt": "An image of the player user interface with its standard controls hidden. The UI instead displays a contextual Skip button in the bottom-right corner.",
+      "identifier": "media-3820222",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ee1d1e66806f679ecdc07718b6a92cf/media-3820222@2x.png"
+        }
+      ]
+    },
+    "media-3820865": {
+      "alt": "An image that shows a custom action to add a movie to or remove it from a user’s favorites list. It also shows a custom preferences menu that displays an action to enable looping playback and a list of options to control playback speed.",
+      "identifier": "media-3820865",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00ab208d60fd70808a1e9d603952030c/media-3820865@2x.png"
+        }
+      ]
+    },
+    "media-3821023": {
+      "alt": "An image that shows the tvOS player user interface’s Info tab.",
+      "identifier": "media-3821023",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10a2935ae95c652c397ed8c121144e19/media-3821023@2x.png"
+        }
+      ]
+    },
+    "media-3821592": {
+      "alt": "An image that shows a Related content tab that presents a horizontal row of items.",
+      "identifier": "media-3821592",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/787657e94602fdb7ae8879d2d5103951/media-3821592@2x.png"
+        }
+      ]
+    },
+    "media-3822567": {
+      "alt": "An image that shows a title view that presents a title, subtitle, and live badge.",
+      "identifier": "media-3822567",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d40e176aae522094e3eeadd2a2a2cc54/media-3822567@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1476a8acdfaca79c9cd6eb4b6e85c3ee/media-3822567~dark@2x.png"
+        }
+      ]
+    },
+    "media-3822650": {
+      "alt": "An image that shows a horizontal row of icons that the tvOS player transport bar displays. The image shows system-provided and custom transport bar items.",
+      "identifier": "media-3822650",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d7382e48ca8c2cb377d3f3f86be4522d/media-3822650@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a87eb806f24b3d803ea516f31c42052/media-3822650~dark@2x.png"
+        }
+      ]
+    },
+    "media-3842260": {
+      "alt": "An image that shows a conceptual overview tvOS player user interface. The user interface has a transport bar with a title view on its leading side and action controls on its trailing side, and content tabs below the transport bar. The image also shows a menu that pops up from an action control.",
+      "identifier": "media-3842260",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bca94d0798fd8be4fa4b41907a3179ad/media-3842260@2x.png"
+        }
+      ]
+    },
+    "media-3872936": {
+      "alt": "An image of the Info tab of the player user interface. The Info tab presents two buttons laid out vertically along its trailing edge. Pressing the top button plays the current media from the beginning, and pressing the bottom button toggles whether the media exists in the user’s watch list.",
+      "identifier": "media-3872936",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33f47d3763c5bef723ed4d0dd338424e/media-3872936@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "tvOS-Playback-and-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+        "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+        "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+      ],
+      "title": "tvOS Playback and Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "tvOS-Playback-and-Capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+                "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+                "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+                "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+              ],
+              "title": "tvOS Playback and Capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1contextualActions/title",
+          "value": "contextualActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1contextualActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contextualActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1quickTimeMetadataGenre/title",
+          "value": "AVMetadataIdentifierQuickTimeMetadataGenre"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1quickTimeMetadataGenre/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataIdentifierQuickTimeMetadataGenre"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/title",
+          "value": "AVContentProposalViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierTitle/title",
+          "value": "AVMetadataCommonIdentifierTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierTitle/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataCommonIdentifierTitle"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/title",
+          "value": "AVInterstitialTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierArtwork/title",
+          "value": "AVMetadataCommonIdentifierArtwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierArtwork/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataCommonIdentifierArtwork"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1transportBarCustomMenuItems/title",
+          "value": "transportBarCustomMenuItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1transportBarCustomMenuItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportBarCustomMenuItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1externalMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVMetadataItem *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "externalMetadata"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1title/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "title"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierDescription/title",
+          "value": "AVMetadataCommonIdentifierDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1commonIdentifierDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataCommonIdentifierDescription"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/title",
+          "value": "AVNavigationMarkersGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1customInfoViewControllers/title",
+          "value": "customInfoViewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1customInfoViewControllers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customInfoViewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1iTunesMetadataTrackSubTitle/title",
+          "value": "AVMetadataIdentifieriTunesMetadataTrackSubTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1iTunesMetadataTrackSubTitle/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataIdentifieriTunesMetadataTrackSubTitle"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIMenuElement",
+              "text": "UIMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1transportBarIncludesTitleView/title",
+          "value": "transportBarIncludesTitleView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1transportBarIncludesTitleView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportBarIncludesTitleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1infoViewActions/title",
+          "value": "infoViewActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1infoViewActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "infoViewActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/title",
+          "value": "AVDisplayManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1iTunesMetadataContentRating/title",
+          "value": "AVMetadataIdentifieriTunesMetadataContentRating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVMetadataIdentifier~1iTunesMetadataContentRating/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMetadataIdentifier",
+              "text": "AVMetadataIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMetadataIdentifieriTunesMetadataContentRating"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1preferredContentSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGSize",
+              "text": "CGSize"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredContentSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIMenu/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIMenu"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIMenuElement",
+              "text": "UIMenuElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/title",
+          "value": "AVContinuityDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/title",
+          "value": "AVContinuityDevicePickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/customizing-the-tvos-playback-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/customizing-the-tvos-playback-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

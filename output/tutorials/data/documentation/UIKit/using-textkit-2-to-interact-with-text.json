@@ -1,0 +1,621 @@
+{
+  "abstract": [
+    {
+      "text": "Interact with text by managing text selection and inserting custom text elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/textkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/using-textkit-2-to-interact-with-text"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using TextKit 2 to interact with text"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10061/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "806998142c63/UsingTextKit2ToInteractWithText.zip": {
+      "checksum": "806998142c63b5a6b6a219c9d1ebb3cbab6f915d5caf0297cfd49c62d8f8bfc1df6a82c9ba2f8943da8d719842a9c81607869dfd21f9ab7a9ae6e79c270a315e",
+      "identifier": "806998142c63/UsingTextKit2ToInteractWithText.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/806998142c63/UsingTextKit2ToInteractWithText.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextContainer": {
+      "abstract": [
+        {
+          "text": "A region where text layout occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutFragment",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutfragment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager": {
+      "abstract": [
+        {
+          "text": "The primary class that you use to manage text layout and presentation for custom text displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutManager",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutmanager"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the orientation of text for an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutOrientationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutOrientationProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutOrientationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutorientationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLineFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLineFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLineFragment",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlinefragment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController": {
+      "abstract": [
+        {
+          "text": "Manages the layout process inside the viewport interacting with its delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextViewportLayoutController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewportLayoutController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextViewportLayoutController",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextviewportlayoutcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/display-text-with-a-custom-layout": {
+      "abstract": [
+        {
+          "text": "Lay out text in a custom-shaped container and apply glyph substitutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/display-text-with-a-custom-layout",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Display text with a custom layout",
+      "type": "topic",
+      "url": "/documentation/uikit/display-text-with-a-custom-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/textkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/uikit/textkit"
+    },
+    "https://developer.apple.com/wwdc21/10061/": {
+      "identifier": "https://developer.apple.com/wwdc21/10061/",
+      "title": "10061: Meet TextKit 2",
+      "titleInlineContent": [
+        {
+          "text": "10061: Meet TextKit 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10061/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "806998142c63/UsingTextKit2ToInteractWithText.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/display-text-with-a-custom-layout",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider"
+      ],
+      "title": "Layout"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Layout",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/display-text-with-a-custom-layout",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider"
+              ],
+              "title": "Layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/title",
+          "value": "NSTextContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/title",
+          "value": "NSTextLayoutOrientationProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutOrientationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutOrientationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/title",
+          "value": "NSTextLineFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLineFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLineFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/title",
+          "value": "NSTextViewportLayoutController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewportLayoutController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewportLayoutController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/title",
+          "value": "NSTextLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/title",
+          "value": "NSTextLayoutFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutFragment"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/using-textkit-2-to-interact-with-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/using-textkit-2-to-interact-with-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

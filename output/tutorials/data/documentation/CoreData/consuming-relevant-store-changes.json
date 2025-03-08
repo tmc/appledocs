@@ -1,0 +1,2788 @@
+{
+  "abstract": [
+    {
+      "text": "Filter store transactions for changes relevant to the current view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/consuming-relevant-store-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Consuming relevant store changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use persistent history tracking to determine what changes have occurred in the store, and to update your view context only as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider an app that sometimes shows a list of shopping items, and sometimes shows a list of stores. As the user views the ",
+              "type": "text"
+            },
+            {
+              "code": "ShoppingItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects from the view context, a background context may download additional ",
+              "type": "text"
+            },
+            {
+              "code": "Store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data from a remote source. If the import happens through a batch operation, the save to the store doesn’t generate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1506380-nsmanagedobjectcontextdidsave",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification, and the view misses these relevant updates. Alternatively, the background context may save changes to the store that don’t affect the current view—for example, inserting, modifying, or deleting ",
+              "type": "text"
+            },
+            {
+              "code": "Store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. These changes ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "do",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " generate context save events, so your view context processes them even though it doesn’t need to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Persistent history solves the problem by keeping track of every transaction on the store. You can filter this history for relevant changes and decide how or whether to update a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-history-tracking-for-your-local-store",
+          "level": 3,
+          "text": "Enable history tracking for your local store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a persistent container, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTrackingKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option on the store description to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enable history tracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Pass the data model filename to the container’s initializer.",
+            "let container = PersistentContainer(name: \"DataModel\")",
+            "",
+            "// Get the persistent store description.",
+            "let description = container.persistentStoreDescriptions.first",
+            "",
+            "// Set the persistent history tracking key option.",
+            "description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data tracks all changes to your local store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Listen-for-remote-changes",
+          "level": 3,
+          "text": "Listen for remote changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the persistent container, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreRemoteChangeNotificationPostOptionKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enable listening for remote change notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "description?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your view, add an observer to listen for remote change notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".onReceive(NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange)",
+            "    .receive(on: DispatchQueue.main)) { _ in",
+            "        fetchRemoteChanges()",
+            "        ",
+            "        viewContext.perform {",
+            "            do {",
+            "                try viewContext.save()",
+            "            } catch {",
+            "                print(\"Failed to save changes: \\(error.localizedDescription)\")",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-details-about-a-transactions-source",
+          "level": 3,
+          "text": "Provide details about a transaction’s source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each history transaction automatically includes the originating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/storeID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/bundleID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/processID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can supply additional information about the source of a change by setting each managed object context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a unique ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each context to identify it in the persistent history. The context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " becomes the persistent history transaction’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/contextName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You only need to set this once per context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class PersistentContainer: NSPersistentContainer {",
+            "    override init(name: String, managedObjectModel model: NSManagedObjectModel) {",
+            "        super.init(name: name, managedObjectModel: model)",
+            "        ",
+            "        // Set the context's name.",
+            "        viewContext.name = \"viewContext\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also set a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before each context save to differentiate among multiple call sites that modify the same context. The context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " becomes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/author",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of subsequent persistent history transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let newItem = ShoppingItem(context: viewContext)",
+            "",
+            "// Set newItem properties.",
+            "",
+            "// Set the transaction author.",
+            "viewContext.transactionAuthor = \"addItem\"",
+            "",
+            "// Perform a save.",
+            "viewContext.perform {",
+            "    do {",
+            "        try viewContext.save()",
+            "        ",
+            "        // Reset the transaction author to prevent misattribution of",
+            "        // future transactions.",
+            "        viewContext.transactionAuthor = nil",
+            "    } catch {",
+            "        print(\"Failed to save changes:\", error.localizedDescription)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reset the context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after saving the context to prevent misattribution of future transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-track-of-the-most-recent-history",
+          "level": 3,
+          "text": "Keep track of the most recent history",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to keep track of the most recent history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var lastToken: NSPersistentHistoryToken?"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Save the token to disk so you can track history across app launches and fetch history based on the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var lastToken: NSPersistentHistoryToken? = nil {",
+            "    didSet {",
+            "        // Encode the token.",
+            "        guard let lastToken,",
+            "              let data = try? NSKeyedArchiver.archivedData(withRootObject: lastToken,",
+            "                                                           requiringSecureCoding: true) else {",
+            "            return",
+            "        }",
+            "        ",
+            "        do {",
+            "            // Write the token to disk.",
+            "            try data.write(to: tokenFileURL)",
+            "        } catch {",
+            "            print(\"Failed to write token data:\", error.localizedDescription)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "lazy var tokenFileURL: URL = {",
+            "    // Get the URL to the persistent store directory.",
+            "    let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent(\"ShoppingList\",",
+            "                                                                                 isDirectory: true)",
+            "    ",
+            "    // Create the directory if it doesn't already exist.",
+            "    if FileManager.default.fileExists(atPath: url.path) == false {",
+            "        do {",
+            "            try FileManager.default.createDirectory(at: url,",
+            "                                                    withIntermediateDirectories: true)",
+            "        } catch {",
+            "            print(\"Failed to create persistent container URL:\", error.localizedDescription)",
+            "        }",
+            "    }",
+            "    ",
+            "    // Append the name of the token data file and return the URL.",
+            "    return url.appendingPathComponent(\"token.data\", isDirectory: false)",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-history",
+          "level": 3,
+          "text": "Request history",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request history, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type method on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Execute the fetch request on a background context to avoid blocking the main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a request to fetch new history since the last time you fetched history and convert the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a fetch history request with the last token.",
+            "let fetchHistoryRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: lastToken)",
+            "",
+            "// Get a background context.",
+            "let backgroundContext = persistentContainer.newBackgroundContext()",
+            "",
+            "// Perform the fetch.",
+            "guard let historyResult = await backgroundContext.perform({",
+            "    let historyResult = try? backgroundContext.execute(fetchHistoryRequest) as? NSPersistentHistoryResult",
+            "    return historyResult?.result",
+            "}) else {",
+            "    fatalError(\"Failed to fetch history\")",
+            "}",
+            "",
+            "// Cast the result as an array of history transactions.",
+            "guard let historyTransactions = historyResult as? [NSPersistentHistoryTransaction] else {",
+            "    fatalError(\"Failed to convert history result to history transactions\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get history after a particular date, or after a particular a transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-history-transactions",
+          "level": 3,
+          "text": "Read history transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each transaction represents a set of changes. Iterate through the array of transactions to learn their details. The following code loops through the results of the ",
+              "type": "text"
+            },
+            {
+              "code": "fetchHistoryRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to inspect the properties of each transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for transaction in history.reversed() {",
+            "    // Token, date, and transaction number.",
+            "    let token = transaction.token",
+            "    let timestamp = transaction.timestamp",
+            "    let transactionNumber = transaction.transactionNumber",
+            "    ",
+            "    // Transaction source details.",
+            "    let store = transaction.storeID",
+            "    let bundle = transaction.bundleID",
+            "    let process = transaction.processID",
+            "    let context = transaction.contextName ?? \"Unknown context\"",
+            "    let author = transaction.author ?? \"Unknown author\"",
+            "    ",
+            "    // Get the transaction's changes.",
+            "    guard let changes = transaction.changes else { continue }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transaction’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/changes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array includes information about multiple changes. A single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents the insertion, update, or deletion of an object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Iterate through a transaction’s changes to identify each object that changed, the type of change that occurred, and any details about the change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of an update, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/updatedProperties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set includes any updated attributes and relationships. In the case of a deletion, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/tombstone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary includes key-value pairs for any attributes marked for preservation after deletion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for change in changes {",
+            "    let objectID = change.changedObjectID",
+            "    let changeID = change.changeID",
+            "    let transaction = change.transaction",
+            "    let changeType = change.changeType",
+            "    var changedAttributes = [String]()",
+            "    ",
+            "    // Iterate over the change type to get updated or deleted attributes.",
+            "    switch changeType {",
+            "    case .update:",
+            "        guard let updatedProperties = change.updatedProperties else { break }",
+            "        for property in updatedProperties {",
+            "            changedAttributes.append(property.name)",
+            "        }",
+            "    case .delete:",
+            "        guard let tombstone = change.tombstone else { break }",
+            "        changedAttributes.append(tombstone[\"name\"] as? String ?? \"Unknown name\")",
+            "    default:",
+            "        break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Filter-for-relevant-transactions",
+          "level": 3,
+          "text": "Filter for relevant transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Filter the history to narrow it to changes that affect the current view. The following code filters for changes to ",
+              "type": "text"
+            },
+            {
+              "code": "ShoppingItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, and it updates the last transaction token as it goes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var filteredTransactions = [NSPersistentHistoryTransaction]()",
+            "for transaction in transactions {",
+            "    guard let changes = transaction.changes else { continue }",
+            "    ",
+            "    let filteredChanges = changes.filter { change -> Bool in",
+            "        ShoppingItem.entity().name == change.changedObjectID.entity.name",
+            "    }",
+            "    ",
+            "    if filteredChanges.isEmpty == false {",
+            "        filteredTransactions.append(transaction)",
+            "    }",
+            "    ",
+            "    lastToken = transaction.token",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Relevant changes may include all changes to a given entity, or more selectively, only changes to those properties that are visible on the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Merge-relevant-transactions",
+          "level": 3,
+          "text": "Merge relevant transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To merge the relevant changes into your view context, first obtain a notification by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the transaction. Then, pass the notification to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if filteredTransactions.isEmpty == false {",
+            "    // Iterate over filtered transactions and merge the changes in the",
+            "    // object ID notification that you specify.",
+            "    for transaction in filteredTransactions {",
+            "        await persistentContainer.viewContext.perform {",
+            "            self.persistentContainer.viewContext.mergeChanges(",
+            "                fromContextDidSave: transaction.objectIDNotification()",
+            "            )",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-attributes-of-deleted-objects",
+          "level": 3,
+          "text": "Access attributes of deleted objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you delete an object from the store, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/objectID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is no longer relevant. Identify a deleted object by recording select properties in its tombstone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Core Data model editor, select an attribute. In the data model editor, select the Preserve After Deletion checkbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3233383",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the persistent history, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeType/delete",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " changes include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/tombstone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary with key-value pairs for any attributes marked for preservation after deletion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var deletedAttributes = [String]()",
+            "",
+            "for transaction in history.reversed() {",
+            "    guard let changes = transaction.changes else { continue }",
+            "    ",
+            "    for change in changes where change.changeType == .delete {",
+            "        if let tombstone = change.tombstone {",
+            "            deletedAttributes.append(tombstone[\"name\"] as? String ?? \"Unknown attribute\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Purge-History",
+          "level": 3,
+          "text": "Purge History",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because persistent history tracking transactions take up space on disk, determine a clean-up strategy to remove them when you no longer need them. Before you purge history, ensure that your app and its clients have consumed the history they need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to fetching history, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to delete history older than a token, a transaction, or a date. For example, you can delete all transactions older than seven days:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the point in time seven days ago.",
+            "let sevenDaysAgo = Calendar.current.date(byAdding: .day,",
+            "                                         value: -7,",
+            "                                         to: Date())!",
+            "",
+            "// Create a purge history request to delete history before seven days ago.",
+            "let purgeHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: sevenDaysAgo)",
+            "",
+            "// Get a background context.",
+            "let backgroundContext = persistentContainer.newBackgroundContext()",
+            "",
+            "// Execute the request.",
+            "await backgroundContext.perform {",
+            "    do {",
+            "        try backgroundContext.execute(purgeHistoryRequest)",
+            "    } catch {",
+            "        print(\"Failed to purge history:\", error.localizedDescription)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you attempt to fetch purged history, Core Data throws an expired token error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/objectID": {
+      "abstract": [
+        {
+          "text": "The object ID of the managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectID",
+          "text": "NSManagedObjectID"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject/objectID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectID"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectID",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject/objectid"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)": {
+      "abstract": [
+        {
+          "text": "Merges the changes specified in a given notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromContextDidSave"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mergeChangesFromContextDidSaveNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mergeChanges(fromContextDidSave:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/mergechanges(fromcontextdidsave:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/name": {
+      "abstract": [
+        {
+          "text": "The developer-provided name of the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/name"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor": {
+      "abstract": [
+        {
+          "text": "The author for the context that is used as an identifier in persistent history transactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionAuthor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/transactionAuthor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transactionAuthor"
+        }
+      ],
+      "role": "symbol",
+      "title": "transactionAuthor",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/transactionauthor"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange": {
+      "abstract": [
+        {
+          "text": "A change representing the insertion, update, or deletion of a managed object in the persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryChange"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryChange",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychange"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/tombstone": {
+      "abstract": [
+        {
+          "text": "A dictionary of attributes marked for preservation after deletion, and their values when deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tombstone"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/tombstone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tombstone"
+        }
+      ],
+      "role": "symbol",
+      "title": "tombstone",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychange/tombstone"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/updatedProperties": {
+      "abstract": [
+        {
+          "text": "The set of properties that were updated on the managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatedProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPropertyDescription",
+          "text": "NSPropertyDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChange/updatedProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatedProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatedProperties",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychange/updatedproperties"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to fetch or purge persistent history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryChangeRequest",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychangerequest"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb": {
+      "abstract": [
+        {
+          "text": "Purges history older than that defined by a given token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentHistoryToken",
+          "text": "NSPersistentHistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteHistoryBeforeToken:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteHistory(before:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychangerequest/deletehistory(before:)-5kghb"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm": {
+      "abstract": [
+        {
+          "text": "Retrieves the request history after a given token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentHistoryToken",
+          "text": "NSPersistentHistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchHistoryAfterToken:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchHistory(after:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychangerequest/fetchhistory(after:)-3rmfm"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b": {
+      "abstract": [
+        {
+          "text": "Retrieves history since a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchHistoryAfterDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchHistory(after:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychangerequest/fetchhistory(after:)-qi5b"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeType/delete": {
+      "abstract": [
+        {
+          "text": "The deletion of a managed object from the persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryChangeType/delete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryChangeTypeDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryChangeType.delete",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorychangetype/delete"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryResult": {
+      "abstract": [
+        {
+          "text": "The result of a request to fetch persistent history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryResult"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryResult",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistoryresult"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryToken": {
+      "abstract": [
+        {
+          "text": "A bookmark for keeping track the most recent history that you’ve processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryToken",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytoken"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTrackingKey": {
+      "abstract": [
+        {
+          "text": "The key you use to enable persistent history tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryTrackingKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTrackingKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryTrackingKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryTrackingKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytrackingkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction": {
+      "abstract": [
+        {
+          "text": "A set of changes in the persistent history based on a context save or batch operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentHistoryTransaction",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/author": {
+      "abstract": [
+        {
+          "text": "A granular description of the context that made the persistent history change, if available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "author"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/author",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "author"
+        }
+      ],
+      "role": "symbol",
+      "title": "author",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/author"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/bundleID": {
+      "abstract": [
+        {
+          "text": "The originating bundle’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/bundleID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bundleID"
+        }
+      ],
+      "role": "symbol",
+      "title": "bundleID",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/bundleid"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/changes": {
+      "abstract": [
+        {
+          "text": "The array of persistent history changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentHistoryChange",
+          "text": "NSPersistentHistoryChange"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/changes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changes"
+        }
+      ],
+      "role": "symbol",
+      "title": "changes",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/changes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/contextName": {
+      "abstract": [
+        {
+          "text": "The originating context’s name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/contextName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contextName"
+        }
+      ],
+      "role": "symbol",
+      "title": "contextName",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/contextname"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()": {
+      "abstract": [
+        {
+          "text": "Obtains a notification for use in merging the transaction’s changes into a managed object context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectIDNotification"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectIDNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectIDNotification()",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/objectidnotification()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/processID": {
+      "abstract": [
+        {
+          "text": "The originating process’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/processID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processID"
+        }
+      ],
+      "role": "symbol",
+      "title": "processID",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/processid"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/storeID": {
+      "abstract": [
+        {
+          "text": "The originating store’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentHistoryTransaction/storeID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeID",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistenthistorytransaction/storeid"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreRemoteChangeNotificationPostOptionKey": {
+      "abstract": [
+        {
+          "text": "A key that indicates a persistent store posts a remote change notification for every write to the store, including writes by other processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreRemoteChangeNotificationPostOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreRemoteChangeNotificationPostOptionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreRemoteChangeNotificationPostOptionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentStoreRemoteChangeNotificationPostOptionKey",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstoreremotechangenotificationpostoptionkey"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/accessing-data-when-the-store-changes": {
+      "abstract": [
+        {
+          "text": "Guarantee that a context won’t see store changes until you tell it to look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/accessing-data-when-the-store-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing data when the store changes",
+      "type": "topic",
+      "url": "/documentation/coredata/accessing-data-when-the-store-changes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/persistent-history": {
+      "abstract": [
+        {
+          "text": "Use persistent history tracking to determine what changes have occurred in the store since the enabling of persistent history tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/persistent-history",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Persistent history",
+      "type": "topic",
+      "url": "/documentation/coredata/persistent-history"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1506380-nsmanagedobjectcontextdidsave": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a context finishes writing unsaved changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContextDidSave"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1506380-nsmanagedobjectcontextdidsave",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObjectContextDidSave",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1506380-nsmanagedobjectcontextdidsave"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3233383": {
+      "alt": "Screenshot showing the data model inspector, with the Preserve After Deletion checkbox selected under Advanced. ",
+      "identifier": "media-3233383",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e1c938af187bf038cd4f9a9e391f4fa/media-3233383@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77c05ffb38195105c2023ef1589d98f0/media-3233383~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Change-processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/accessing-data-when-the-store-changes",
+        "doc://com.apple.coredata/documentation/CoreData/persistent-history"
+      ],
+      "title": "Change processing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Change-processing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/accessing-data-when-the-store-changes",
+                "doc://com.apple.coredata/documentation/CoreData/persistent-history"
+              ],
+              "title": "Change processing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeType~1delete/title",
+          "value": "NSPersistentHistoryChangeTypeDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeType~1delete/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryChangeTypeDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction/title",
+          "value": "NSPersistentHistoryTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1fetchHistory(after:)-qi5b/title",
+          "value": "fetchHistoryAfterDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1fetchHistory(after:)-qi5b/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchHistoryAfterDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreRemoteChangeNotificationPostOptionKey/title",
+          "value": "NSPersistentStoreRemoteChangeNotificationPostOptionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreRemoteChangeNotificationPostOptionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreRemoteChangeNotificationPostOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1changes/title",
+          "value": "changes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1changes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest/title",
+          "value": "NSPersistentHistoryChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1deleteHistory(before:)-5kghb/title",
+          "value": "deleteHistoryBeforeToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1deleteHistory(before:)-5kghb/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteHistoryBeforeToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1storeID/title",
+          "value": "storeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1storeID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1contextName/title",
+          "value": "contextName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1contextName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contextName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1transactionAuthor/title",
+          "value": "transactionAuthor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1transactionAuthor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transactionAuthor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange~1updatedProperties/title",
+          "value": "updatedProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange~1updatedProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "updatedProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1fetchHistory(after:)-3rmfm/title",
+          "value": "fetchHistoryAfterToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChangeRequest~1fetchHistory(after:)-3rmfm/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchHistoryAfterToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromContextDidSave:)/title",
+          "value": "mergeChangesFromContextDidSaveNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromContextDidSave:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mergeChangesFromContextDidSaveNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1objectIDNotification()/title",
+          "value": "objectIDNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1objectIDNotification()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectIDNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1processID/title",
+          "value": "processID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1processID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "processID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryToken/title",
+          "value": "NSPersistentHistoryToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1bundleID/title",
+          "value": "bundleID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1bundleID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bundleID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryResult/title",
+          "value": "NSPersistentHistoryResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange/title",
+          "value": "NSPersistentHistoryChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange~1tombstone/title",
+          "value": "tombstone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryChange~1tombstone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tombstone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1author/title",
+          "value": "author"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTransaction~1author/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "author"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1objectID/title",
+          "value": "objectID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject~1objectID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "objectID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTrackingKey/title",
+          "value": "NSPersistentHistoryTrackingKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentHistoryTrackingKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryTrackingKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/consuming-relevant-store-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/consuming-relevant-store-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

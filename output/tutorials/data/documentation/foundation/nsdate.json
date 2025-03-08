@@ -1,0 +1,1849 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/date"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407266,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects can be used in conjunction with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to create localized representations of dates and times, as well as with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to perform calendar arithmetic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "toll-free bridged",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "1651270",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " in order to make it easier to work with a particular calendrical system, or to work with date and time values with a finer temporal granularity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651281",
+          "level": 4,
+          "text": "Methods to Override and Other Requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to obtain behavior different than that provided by the private or public subclasses, you must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare a suitable instance variable to hold the date and time value (relative to an absolute reference date)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance method to provide the correct date and time value based on your instance variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409769-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", one of the designated initializer methods",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If creating a subclass that represents a calendrical system, define methods that partition past and future periods into the units of this calendar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the methods required by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "devLink-1752757",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocols, because ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " adopts these protocols",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651294",
+          "level": 4,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your subclass may use a different reference date than the absolute reference date used by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " (00:00:00 UTC on 1 January 2001). If it does, it must still use the absolute reference date in its implementations of the methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409769-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". That is, the reference date referred to in the titles of these methods is the absolute reference date. If you do not use the absolute reference date in these methods, comparisons between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects of your subclass and ",
+              "type": "text"
+            },
+            {
+              "code": "NSDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects of a private subclass will not work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752757": {
+      "identifier": "devLink-1752757",
+      "title": "NSCoding",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID152"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol": {
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValueProtocol",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalueprotocol"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/date/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendar",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1407172-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized with a date and time value specified by a given string in the international string representation format.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1407172-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1407172-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1407504-timeintervalsince1970": {
+      "abstract": [
+        {
+          "text": "The interval between the date object and 00:00:00 UTC on 1 January 1970.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSince1970"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1407504-timeintervalsince1970",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeIntervalSince1970",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1407504-timeintervalsince1970"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1407720-date": {
+      "abstract": [
+        {
+          "text": "Creates and returns a date object set to the date and time specified by a given string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withNaturalLanguageString"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1407720-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date(withNaturalLanguageString:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1407720-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1407899-date": {
+      "abstract": [
+        {
+          "text": "Converts the receiver to a calendar date with a given format string and time zone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withCalendarFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone?) -> NSCalendarDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1407899-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date(withCalendarFormat:timeZone:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1407899-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1407937-timeintervalsincenow": {
+      "abstract": [
+        {
+          "text": "The interval between the date object and the current date and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSinceNow"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1407937-timeintervalsincenow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeIntervalSinceNow",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1407937-timeintervalsincenow"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1408189-timeintervalsincereferencedate": {
+      "abstract": [
+        {
+          "text": "The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSinceReferenceDate"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1408189-timeintervalsincereferencedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeIntervalSinceReferenceDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1408189-timeintervalsincereferencedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1408398-date": {
+      "abstract": [
+        {
+          "text": "Creates and returns a date object with a date and time value specified by a given string in the international string representation format (",
+          "type": "text"
+        },
+        {
+          "code": "YYYY-MM-DD HH:MM:SS ±HHMM",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1408398-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1408398-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1408823-addingtimeinterval": {
+      "abstract": [
+        {
+          "text": "Returns a new date object that is set to a given number of seconds relative to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addingTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "(TimeInterval) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1408823-addingtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addingTimeInterval(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1408823-addingtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1409058-laterdate": {
+      "abstract": [
+        {
+          "text": "Returns the later of the receiver and another given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "laterDate"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409058-laterdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "laterDate(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1409058-laterdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1409748-compare": {
+      "abstract": [
+        {
+          "text": "Indicates the temporal ordering of the receiver and another given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compare"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409748-compare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compare(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1409748-compare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1409767-description": {
+      "abstract": [
+        {
+          "text": "A string representation of the date object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409767-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1409767-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1409769-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized relative to 00:00:00 UTC on 1 January 2001 by a given number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSinceReferenceDate"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1409769-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeIntervalSinceReferenceDate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1409769-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1410206-timeintervalsince": {
+      "abstract": [
+        {
+          "text": "Returns the interval between the receiver and another given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSince"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1410206-timeintervalsince",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeIntervalSince(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1410206-timeintervalsince"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1411701-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized relative to the current date and time by a given number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSinceNow"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1411701-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeIntervalSinceNow:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1411701-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1412602-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized from data in the given unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1412602-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1412602-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1412791-earlierdate": {
+      "abstract": [
+        {
+          "text": "Returns the earlier of the receiver and another given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "earlierDate"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1412791-earlierdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "earlierDate(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1412791-earlierdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1414108-description": {
+      "abstract": [
+        {
+          "text": "Returns a string representation of the date using the given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1414108-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1414108-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1414201-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized relative to another given date by a given number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval, "
+        },
+        {
+          "kind": "identifier",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1414201-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeInterval:since:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1414201-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture": {
+      "abstract": [
+        {
+          "text": "A date object representing a date in the distant future. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "distantFuture"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distantFuture",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415385-distantfuture"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415407-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized to the current date and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415407-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415407-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415776-date": {
+      "abstract": [
+        {
+          "text": "Creates and returns a date object set to the date and time specified by a given string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withNaturalLanguageString"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415776-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date(withNaturalLanguageString:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415776-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415983-description": {
+      "abstract": [
+        {
+          "text": "Returns a string representation of the date formatted as specified by given conversion specifiers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withCalendarFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415983-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withCalendarFormat:timeZone:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415983-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1416400-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given object is a date that is exactly equal the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1416400-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1416400-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1416453-init": {
+      "abstract": [
+        {
+          "text": "Returns a date object initialized relative to 00:00:00 UTC on 1 January 1970 by a given number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSince1970"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1416453-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timeIntervalSince1970:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1416453-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate": {
+      "abstract": [
+        {
+          "text": "The interval between the date object and 00:00:00 UTC on 1 January 2001.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeIntervalSinceReferenceDate"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeIntervalSinceReferenceDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1418197-distantpast": {
+      "abstract": [
+        {
+          "text": "A date object representing a date in the distant past.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "distantPast"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1418197-distantpast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distantPast",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1418197-distantpast"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1591575-addtimeinterval": {
+      "abstract": [
+        {
+          "text": "Returns a new date object that is set to a given number of seconds relative to the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "(TimeInterval) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1591575-addtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTimeInterval(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1591575-addtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1642973-customplaygroundquicklook": {
+      "abstract": [
+        {
+          "text": "A custom playground Quick Look for this object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPlaygroundQuickLook"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundQuickLook"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1642973-customplaygroundquicklook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPlaygroundQuickLook",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1642973-customplaygroundquicklook"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/3180113-now": {
+      "abstract": [
+        {
+          "text": "The current date and time, as of the time of access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "now"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/3180113-now",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "now",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/3180113-now"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange": {
+      "abstract": [
+        {
+          "text": "A notification posted whenever the system clock is changed. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSystemClockDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSystemClockDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimeintervalsince1970": {
+      "abstract": [
+        {
+          "text": "The number of seconds from 1 January 1970 to the reference date, 1 January 2001.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTimeIntervalSince1970"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimeintervalsince1970",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimeIntervalSince1970",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimeintervalsince1970"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2891799",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1415407-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1411701-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1414201-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1409769-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1416453-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1412602-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Date"
+    },
+    {
+      "anchor": "1651445",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1418197-distantpast"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Temporal Boundaries"
+    },
+    {
+      "anchor": "3744681",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/3180113-now"
+      ],
+      "kind": "taskGroup",
+      "title": "Retrieving the Current Date"
+    },
+    {
+      "anchor": "1651461",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1416400-isequal",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1412791-earlierdate",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1409058-laterdate",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1409748-compare"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Dates"
+    },
+    {
+      "anchor": "1651508",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1410206-timeintervalsince",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1407937-timeintervalsincenow",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1417376-timeintervalsincereferencedate",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1407504-timeintervalsince1970",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1408189-timeintervalsincereferencedate",
+        "doc://com.apple.documentation/documentation/foundation/nstimeintervalsince1970"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Time Intervals"
+    },
+    {
+      "anchor": "1651553",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1408823-addingtimeinterval"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding Time Intervals"
+    },
+    {
+      "anchor": "1651574",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1409767-description",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1414108-description",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1642973-customplaygroundquicklook"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing Dates"
+    },
+    {
+      "anchor": "1680373",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1414255-nssystemclockdidchange"
+      ],
+      "kind": "taskGroup",
+      "title": "Recognizing Notifications"
+    },
+    {
+      "anchor": "1651602",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1415776-date",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1407720-date",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1408398-date",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1407172-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1591575-addtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1407899-date",
+        "doc://com.apple.documentation/documentation/foundation/nsdate/1415983-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Legacy Operations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

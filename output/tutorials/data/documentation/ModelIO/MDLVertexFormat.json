@@ -1,0 +1,4221 @@
+{
+  "abstract": [
+    {
+      "text": "Descriptions of the data size and layout for a vertex attribute, used by the ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/format",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " property.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MDLVertexFormat",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLVertexFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLVertexFormat"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MDLVertexFormat"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormat"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values for vertex formats are constructed such that you can use bit masks to infer useful information about a format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The lowest order byte contains the number of vector components in a vertex format. For example, the raw value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " format is the bitwise OR of the 3 (the number of components) with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charBits",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Special packed formats such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int1010102Normalized",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " have values less than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x10000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For unpacked formats, masking away the lower four bytes leaves information about the data type for scalars or vector components.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/format": {
+      "abstract": [
+        {
+          "text": "The format of per-vertex data for the attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MDLVertexFormat",
+          "text": "MDLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/format",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "format"
+        }
+      ],
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattribute/format"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/name": {
+      "abstract": [
+        {
+          "text": "An identifier for the semantic use of the vertex attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexattribute/name"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat": {
+      "abstract": [
+        {
+          "text": "Descriptions of the data size and layout for a vertex attribute, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/format",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each with a normalized value of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char2Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char2normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each with a normalized value of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char3Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char3normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each with a normalized value of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatChar4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.char4Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/char4normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 8-bit signed integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatCharBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.charBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/charbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a normalized scalar of signed 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatCharNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.charNormalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/charnormalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalizedBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 8-bit signed normalized integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charNormalizedBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalizedBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatCharNormalizedBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.charNormalizedBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/charnormalizedbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of 32-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatFloat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.float",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/float"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of 32-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatFloat2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.float2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/float2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of 32-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatFloat3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.float3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/float3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of 32-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatFloat4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.float4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/float4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/floatBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 32-bit floating-point format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floatBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/floatBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatFloatBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.floatBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/floatbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of 16-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatHalf"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.half",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/half"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of 16-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatHalf2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.half2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/half2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of 16-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatHalf3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.half3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/half3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of 16-bit floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatHalf4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.half4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/half4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/halfBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 16-bit floating-point format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "halfBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/halfBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatHalfBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.halfBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/halfbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/init(rawvalue:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of signed 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.int",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/int"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int1010102Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a packed vector with 4 components of signed integer type. The first three components are 10 bits each, and the fourth component is 2 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int1010102Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int1010102Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInt1010102Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.int1010102Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/int1010102normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of signed 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInt2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.int2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/int2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of signed 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInt3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.int3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/int3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of signed 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInt4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.int4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/int4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/intBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 32-bit signed integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/intBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatIntBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.intBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/intbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/invalid": {
+      "abstract": [
+        {
+          "text": "The vertex attribute has just been initialized or its format is unknown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalid"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/invalid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatInvalid"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.invalid",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/invalid"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/packedBit": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes in packed vector formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "packedBit"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/packedBit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatPackedBit"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.packedBit",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/packedbit"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each with a normalized value of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short2Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short2normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each with a normalized value of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short3Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short3normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each with a normalized value of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShort4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.short4Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/short4normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 16-bit signed integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShortBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.shortBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/shortbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a normalized scalar of signed 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShortNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.shortNormalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/shortnormalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalizedBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 16-bit signed normalized integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortNormalizedBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalizedBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatShortNormalizedBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.shortNormalizedBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/shortnormalizedbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each with a normalized value of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar2Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar2normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each with a normalized value of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar3Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar3normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each with a normalized value of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uChar4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUChar4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uChar4Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uchar4normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 8-bit unsigned integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uCharBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUCharBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uCharBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ucharbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a normalized scalar of unsigned 8-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uCharNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUCharNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uCharNormalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ucharnormalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalizedBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 8-bit unsigned normalized integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uCharNormalizedBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalizedBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUCharNormalizedBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uCharNormalizedBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ucharnormalizedbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of unsigned 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uInt"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uInt",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uint"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt1010102Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a packed vector with 4 components of unsigned integer type. The first three components are 10 bits each, and the fourth component is 2 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uInt1010102Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt1010102Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUInt1010102Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uInt1010102Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uint1010102normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of unsigned 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uInt2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUInt2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uInt2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uint2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of unsigned 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uInt3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUInt3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uInt3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uint3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of unsigned 32-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uInt4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUInt4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uInt4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uint4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uIntBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 32-bit unsigned integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uIntBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uIntBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUIntBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uIntBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/uintbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a scalar of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort2"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort2",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort2"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 2 components, each with a normalized value of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort2Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort2normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort3"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort3",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort3"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 3 components, each with a normalized value of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort3Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort3normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort4"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort4",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort4"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4Normalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a vector with 4 components, each with a normalized value of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShort4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShort4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShort4Normalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushort4normalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 16-bit unsigned integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShortBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShortBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShortBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushortbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalized": {
+      "abstract": [
+        {
+          "text": "The attribute value for each vertex is a normalized scalar of unsigned 16-bit integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShortNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShortNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShortNormalized",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushortnormalized"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalizedBits": {
+      "abstract": [
+        {
+          "text": "A bit mask for vertex attributes whose components are in 16-bit unsigned normalized integer format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uShortNormalizedBits"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalizedBits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLVertexFormatUShortNormalizedBits"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLVertexFormat.uShortNormalizedBits",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlvertexformat/ushortnormalizedbits"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/vertex-attributes": {
+      "abstract": [
+        {
+          "text": "Names that identify semantic uses for vertex attribute data, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLVertexAttribute/name",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/vertex-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vertex Attributes",
+      "type": "topic",
+      "url": "/documentation/modelio/vertex-attributes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSUInteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/vertex-attributes"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/invalid",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/packedBit",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalizedBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalizedBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalizedBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalizedBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uIntBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/intBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/halfBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/floatBits",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float2",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float3",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float4",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int1010102Normalized",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt1010102Normalized"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLVertexFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/invalid",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/packedBit",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalizedBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalizedBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalizedBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalizedBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uIntBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/intBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/halfBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/floatBits",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uCharNormalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar2Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar3Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uChar4Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/charNormalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char2Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char3Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/char4Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShortNormalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort2Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort3Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uShort4Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/shortNormalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short2Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short3Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/short4Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/half4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float2",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float3",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/float4",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/int1010102Normalized",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLVertexFormat/uInt1010102Normalized"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/vertex-attributes"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLVertexFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSUInteger",
+                    "text": "NSUInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short4/title",
+          "value": "MDLVertexFormatShort4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute~1format/title",
+          "value": "format"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute~1format/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "format"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort3Normalized/title",
+          "value": "MDLVertexFormatUShort3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar4/title",
+          "value": "MDLVertexFormatUChar4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half/title",
+          "value": "MDLVertexFormatHalf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half4/title",
+          "value": "MDLVertexFormatHalf4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatHalf4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort4/title",
+          "value": "MDLVertexFormatUShort4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortNormalizedBits/title",
+          "value": "MDLVertexFormatUShortNormalizedBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortNormalizedBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShortNormalizedBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortBits/title",
+          "value": "MDLVertexFormatShortBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShortBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int4/title",
+          "value": "MDLVertexFormatInt4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInt4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char3Normalized/title",
+          "value": "MDLVertexFormatChar3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charBits/title",
+          "value": "MDLVertexFormatCharBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatCharBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uIntBits/title",
+          "value": "MDLVertexFormatUIntBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uIntBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUIntBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat/title",
+          "value": "MDLVertexFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short3/title",
+          "value": "MDLVertexFormatShort3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char2Normalized/title",
+          "value": "MDLVertexFormatChar2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar2Normalized/title",
+          "value": "MDLVertexFormatUChar2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short4Normalized/title",
+          "value": "MDLVertexFormatShort4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1packedBit/title",
+          "value": "MDLVertexFormatPackedBit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1packedBit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatPackedBit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar4Normalized/title",
+          "value": "MDLVertexFormatUChar4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char/title",
+          "value": "MDLVertexFormatChar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float/title",
+          "value": "MDLVertexFormatFloat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatFloat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt/title",
+          "value": "MDLVertexFormatUInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float2/title",
+          "value": "MDLVertexFormatFloat2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatFloat2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt4/title",
+          "value": "MDLVertexFormatUInt4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUInt4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short/title",
+          "value": "MDLVertexFormatShort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt2/title",
+          "value": "MDLVertexFormatUInt2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUInt2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1floatBits/title",
+          "value": "MDLVertexFormatFloatBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1floatBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatFloatBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int2/title",
+          "value": "MDLVertexFormatInt2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInt2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char2/title",
+          "value": "MDLVertexFormatChar2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short2/title",
+          "value": "MDLVertexFormatShort2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar3/title",
+          "value": "MDLVertexFormatUChar3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexAttribute~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1intBits/title",
+          "value": "MDLVertexFormatIntBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1intBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatIntBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char4/title",
+          "value": "MDLVertexFormatChar4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charNormalized/title",
+          "value": "MDLVertexFormatCharNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatCharNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int3/title",
+          "value": "MDLVertexFormatInt3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInt3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half2/title",
+          "value": "MDLVertexFormatHalf2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatHalf2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half3/title",
+          "value": "MDLVertexFormatHalf3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1half3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatHalf3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharNormalizedBits/title",
+          "value": "MDLVertexFormatUCharNormalizedBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharNormalizedBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUCharNormalizedBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt1010102Normalized/title",
+          "value": "MDLVertexFormatUInt1010102Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt1010102Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUInt1010102Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char4Normalized/title",
+          "value": "MDLVertexFormatChar4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar2/title",
+          "value": "MDLVertexFormatUChar2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int/title",
+          "value": "MDLVertexFormatInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortBits/title",
+          "value": "MDLVertexFormatUShortBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShortBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int1010102Normalized/title",
+          "value": "MDLVertexFormatInt1010102Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1int1010102Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInt1010102Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char3/title",
+          "value": "MDLVertexFormatChar3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1char3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatChar3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort4Normalized/title",
+          "value": "MDLVertexFormatUShort4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort2Normalized/title",
+          "value": "MDLVertexFormatUShort2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt3/title",
+          "value": "MDLVertexFormatUInt3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uInt3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUInt3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortNormalized/title",
+          "value": "MDLVertexFormatShortNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShortNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float3/title",
+          "value": "MDLVertexFormatFloat3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatFloat3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort2/title",
+          "value": "MDLVertexFormatUShort2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharBits/title",
+          "value": "MDLVertexFormatUCharBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUCharBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort3/title",
+          "value": "MDLVertexFormatUShort3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charNormalizedBits/title",
+          "value": "MDLVertexFormatCharNormalizedBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1charNormalizedBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatCharNormalizedBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar/title",
+          "value": "MDLVertexFormatUChar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short2Normalized/title",
+          "value": "MDLVertexFormatShort2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float4/title",
+          "value": "MDLVertexFormatFloat4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1float4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatFloat4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1invalid/title",
+          "value": "MDLVertexFormatInvalid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1invalid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatInvalid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short3Normalized/title",
+          "value": "MDLVertexFormatShort3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1short3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShort3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortNormalizedBits/title",
+          "value": "MDLVertexFormatShortNormalizedBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1shortNormalizedBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatShortNormalizedBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharNormalized/title",
+          "value": "MDLVertexFormatUCharNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uCharNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUCharNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1halfBits/title",
+          "value": "MDLVertexFormatHalfBits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1halfBits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatHalfBits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort/title",
+          "value": "MDLVertexFormatUShort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortNormalized/title",
+          "value": "MDLVertexFormatUShortNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uShortNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUShortNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar3Normalized/title",
+          "value": "MDLVertexFormatUChar3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLVertexFormat~1uChar3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLVertexFormatUChar3Normalized"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlvertexformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlvertexformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

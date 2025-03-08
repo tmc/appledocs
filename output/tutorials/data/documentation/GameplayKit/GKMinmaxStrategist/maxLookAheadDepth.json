@@ -1,0 +1,675 @@
+{
+  "abstract": [
+    {
+      "text": "The number of future turns for the strategist to consider when planning moves.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKMinmaxStrategist(py)maxLookAheadDepth",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "maxLookAheadDepth"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "maxLookAheadDepth"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "maxLookAheadDepth"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maxLookAheadDepth"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The strategist works by recursively forming and examining a decision tree of possible future game model states and the moves leading to each. This property determines the number of future turns to consider and the depth of the resulting decision tree. Greater lookahead depth results in stronger play by a strategist-controlled player, but at a cost of increased computation time and memory usage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, at the beginning of a Tic-Tac-Toe game, there are nine possible moves (one for each spot on the board), leading to nine possible states. After a move is made, the number of possible moves reduces by one. If this property’s value is 1, the strategist examines only those nine model states. If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value is 2, the strategist also examines the eight possible model states resulting from the next turn, following each of nine possible states for the current turn, for a total of 72 states. Continuing to add depth exponentially increases the search complexity. Tic-Tac-Toe requires three aligned moves to win, so a strategist that can plan its next three moves (and the two intervening moves of its opponent, for a total lookahead depth of five) is potentially capable of perfect play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist": {
+      "abstract": [
+        {
+          "text": "An AI that chooses moves in turn-based games using a ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "deterministic",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMinmaxStrategist"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMinmaxStrategist"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMinmaxStrategist",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkminmaxstrategist"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth": {
+      "abstract": [
+        {
+          "text": "The number of future turns for the strategist to consider when planning moves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxLookAheadDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxLookAheadDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxLookAheadDepth",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkminmaxstrategist/maxlookaheaddepth"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSInteger": {
+      "abstract": [
+        {
+          "text": "Describes an integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSInteger"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+      "title": "GameplayKit Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "GameplayKit Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "maxLookAheadDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxLookAheadDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMinmaxStrategist"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "assign"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "maxLookAheadDepth"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMinmaxStrategist/title",
+          "value": "GKMinmaxStrategist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMinmaxStrategist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMinmaxStrategist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMinmaxStrategist/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMinmaxStrategist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMinmaxStrategist~1maxLookAheadDepth/title",
+          "value": "maxLookAheadDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMinmaxStrategist~1maxLookAheadDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxLookAheadDepth"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkminmaxstrategist/maxlookaheaddepth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkminmaxstrategist/maxlookaheaddepth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

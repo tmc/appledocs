@@ -1,0 +1,1082 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to launch another app’s App Clip from your app with App Clip links and offer a rich preview of it with the Link Presentation framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Launching another app’s App Clip from your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17, an app can launch another app’s App Clip using the invokation URL of the App Clip. For example, if you develop several apps, your apps can launch your other apps’ App Clips to allow people to use their functionality without requiring an app installation. Or, your app could offer to launch another developer’s App Clip if your app offers workflows that involve usage of the other app. Depending on the App Clip and its invokation URL, choose from the following options to allow people to invoke an App Clip from your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To display a rich preview and allow people to launch default or advanced App Clip experiences, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To allow people to launch a default App Clip experience that makes use of default App Clip links, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Display-a-preview-of-the-App-Clip",
+          "level": 3,
+          "text": "Display a preview of the App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LinkPresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to include a rich preview of the App Clip in your app that people tap to launch the App Clip directly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To fetch metadata using the invokation URL of the App Clip, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To display the App Clip preview, use the metadata you receive in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example fetches the metadata and then passes it to a link view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let provider = LPMetadataProvider()",
+            "let url = URL(string: \"https://appclip.example.com/\")!",
+            "var linkView = ... // A reference to the link view. This could also be a custom view that contains the LPLinkView.",
+            "",
+            "provider.startFetchingMetadata(for: url) { (metadata, error) in",
+            "    guard let metadata = metadata else {",
+            "        // The fetch failed; handle the error.",
+            "        return",
+            "    }",
+            "",
+            "    DispatchQueue.main.async {",
+            "        // Create the LPLinkView using the metadata. If you use a custom view, you could pass the metadata to the custom view and let it handle the creation or formatting of the LPLinkView.",
+            "        linkView = LPLinkView(metadata: metadata)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-a-direct-link-to-an-App-Clip",
+          "level": 3,
+          "text": "Display a direct link to an App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the App Clip uses default App Clip links for its default App Clip experience, you can display a direct link that launches the App Clip. In a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown in the following example that displays a link to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    let appClipURL = URL(",
+            "        string: \"https://appclip.apple.com/id?p=com.example.naturelab.backyardbirds.Clip\"",
+            "    )!",
+            "",
+            "    Link(\"Backyard Birds\", destination: appClipURL)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use UIKit, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow people to invoke the App Clip:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func launchAppClip() {",
+            "    let appClipURL = URL(",
+            "        string: \"https://appclip.apple.com/id?p=com.example.naturelab.backyardbirds.Clip\"",
+            "    )!",
+            "",
+            "    UIApplication.shared.open(appClipURL)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/APActivationPayload": {
+      "abstract": [
+        {
+          "text": "Information that’s passed to an App Clip on launch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "APActivationPayload",
+      "type": "topic",
+      "url": "/documentation/appclip/apactivationpayload"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website": {
+      "abstract": [
+        {
+          "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating your App Clip with your website",
+      "type": "topic",
+      "url": "/documentation/appclip/associating-your-app-clip-with-your-website"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location": {
+      "abstract": [
+        {
+          "text": "Add code to quickly confirm a person’s physical location while respecting their privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming a person’s physical location",
+      "type": "topic",
+      "url": "/documentation/appclip/confirming-a-person-s-physical-location"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations": {
+      "abstract": [
+        {
+          "text": "Add code to respond to invocations and offer a focused launch experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app": {
+      "abstract": [
+        {
+          "text": "Display a Smart App Banner and the App Clip card on your website that people tap to launch your App Clip, and add support for invocations from the Messages app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting invocations from your website and the Messages app",
+      "type": "topic",
+      "url": "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip": {
+      "abstract": [
+        {
+          "text": "A collection of keys that an App Clip uses to get additional capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppClip",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppClip"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation": {
+      "abstract": [
+        {
+          "text": "Fetch, provide, and present rich links in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Link Presentation",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkView": {
+      "abstract": [
+        {
+          "text": "A rich visual representation of a link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LPLinkView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LPLinkView",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation/LPLinkView"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider": {
+      "abstract": [
+        {
+          "text": "An object that retrieves metadata for a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LPMetadataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LPMetadataProvider",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation/LPMetadataProvider"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Attempts to asynchronously open the resource at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenExternalURLOptionsKey",
+          "text": "OpenExternalURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (@"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "open(_:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/open(_:options:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Launch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+        "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+        "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+        "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+        "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+        "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+      ],
+      "title": "Launch"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Launch",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+                "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+                "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+              ],
+              "title": "Launch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPLinkView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LPLinkView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPMetadataProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LPMetadataProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/title",
+          "value": "APActivationPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/title",
+          "value": "openURL:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#b)",
+              "text": "void (^)(_Bool)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/launching-another-app-s-app-clip-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/launching-another-app-s-app-clip-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

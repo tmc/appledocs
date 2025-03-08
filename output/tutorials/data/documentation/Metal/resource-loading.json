@@ -1,0 +1,3013 @@
+{
+  "abstract": [
+    {
+      "text": "Load assets in your games and apps quickly by running a dedicated input/output queue alongside your GPU tasks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/resource-loading"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Resource Loading"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal 3 adds input/output command queues and buffers that make the most of a device’s storage hardware, including flash storage and the unified memory architecture of Apple silicon, when available. When you run a dedicated input/output queue alongside your GPU tasks, you can synchronize them with Metal shared events. With this approach, you can minimize load screen times by fetching the essential assets first and streaming the rest as you need them. You can also start multiple input/output command buffers to load different asset batches and later cancel the ones you don’t need. Ensure that time-sensitive assets, such as sound effects, load with lower latency by running those command buffers on higher-priority queues that you create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances by configuring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and passing it to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOCommandQueue(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create a Metal I/O command queue.",
+                    "let commandQueueDescriptor = MTLIOCommandQueueDescriptor()",
+                    "",
+                    "commandQueueDescriptor.type = .concurrent",
+                    "commandQueueDescriptor.priority = .normal",
+                    "",
+                    "let ioCommandQueue = try device.makeIOCommandQueue(descriptor:",
+                    "                                                    commandQueueDescriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create a Metal I/O command queue.",
+                    "MTLIOCommandQueueDescriptor *commandQueueDescriptor;",
+                    "commandQueueDescriptor = [[MTLIOCommandQueueDescriptor alloc] init];",
+                    "",
+                    "commandQueueDescriptor.type = MTLIOCommandQueueTypeConcurrent;",
+                    "commandQueueDescriptor.priority = MTLIOPriorityNormal;",
+                    "",
+                    "NSError *error = nil;",
+                    "id<MTLIOCommandQueue> ioCommandQueue;",
+                    "ioCommandQueue = [device newIOCommandQueueWithDescriptor:commandQueueDescriptor",
+                    "                                                   error:&error];",
+                    "",
+                    "if (error != nil) {",
+                    "        // Report the error.",
+                    "        ...",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each queue, create one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances by calling the queue’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBuffer()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBufferWithUnretainedReferences()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For each command buffer, load the assets you want by calling any of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol’s load methods. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:offset:size:sourceHandle:sourceHandleOffset:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method loads an asset into an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method loads an asset into an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/loadBytes(_:size:sourceHandle:sourceHandleOffset:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method loads an asset, such as an audio file, into a CPU-accessible memory buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create a Metal I/O command buffer.",
+                    "let ioCommandBuffer = ioCommandQueue.makeCommandBuffer()",
+                    "",
+                    "// Encode a command that loads a texture.",
+                    "ioCommandBuffer.load(texture,",
+                    "                     slice: 0,",
+                    "                     level: 0,",
+                    "                     size: textureSize,",
+                    "                     sourceBytesPerRow: bytesPerRow,",
+                    "                     sourceBytesPerImage: bytesPerImage,",
+                    "                     destinationOrigin: origin,",
+                    "                     sourceHandle: fileHandle,",
+                    "                     sourceHandleOffset: 0)",
+                    "",
+                    "// Encode a command that loads a buffer.",
+                    "ioCommandBuffer.load(buffer,",
+                    "                     offset: 0,",
+                    "                     size: bufferSize,",
+                    "                     sourceHandle: fileHandle,",
+                    "                     sourceHandleOffset: 0)",
+                    "",
+                    "// Submit the command buffer to run.",
+                    "ioCommandBuffer.commit()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create a Metal I/O command buffer.",
+                    "id<MTLIOCommandBuffer> ioCommandBuffer = [ioCommandQueue commandBuffer];",
+                    "",
+                    "// Encode a command that loads a texture.",
+                    "[ioCommandBuffer loadTexture:texture",
+                    "                       slice:0",
+                    "                       level:0",
+                    "                        size:textureSize",
+                    "           sourceBytesPerRow:bytesPerRow",
+                    "         sourceBytesPerImage:bytesPerImage",
+                    "           destinationOrigin:origin",
+                    "                sourceHandle:textureAssetHandle",
+                    "          sourceHandleOffset:0];",
+                    "",
+                    "// Encode a command that loads a buffer.",
+                    "[ioCommandBuffer loadBuffer:buffer",
+                    "                     offset:0",
+                    "                       size:bufferSize",
+                    "               sourceHandle:bufferAssetHandle",
+                    "         sourceHandleOffset:0];",
+                    "",
+                    "",
+                    "// Submit the command buffer to run.",
+                    "[ioCommandBuffer commit];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each asset, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOFileHandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance using the input/output command buffer’s load methods. To create a file handle for your asset, call an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:compressionMethod:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func createHandleForFile(at url: URL, with device: MTLDevice) -> MTLIOFileHandle? {",
+                    "    return try? device.makeIOHandle(url: url)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id<MTLIOFileHandle> createHandleForFile(NSURL *url, id<MTLDevice> device)",
+                    "{",
+                    "    NSError *error = nil;",
+                    "    id<MTLIOFileHandle> assetHandle = [device newIOHandleWithURL:url error:&error];",
+                    "",
+                    "    if (error != nil) {",
+                    "        // Report the error.",
+                    "        ...",
+                    "    }",
+                    "",
+                    "    return assetHandle;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must create each file handle using the same ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance that created the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances that load the files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help minimize your appʼs storage footprint, compress your assets at development time. First, create a new compression context with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Then, add data for an asset to the compression context using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Finally, call the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to save the context to a compressed file that you add to your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOCommandQueue(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates an input/output command queue you use to submit commands that load assets from the file system into GPU resources or system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIOCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLIOCommandQueueDescriptor",
+          "text": "MTLIOCommandQueueDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOCommandQueue",
+          "text": "MTLIOCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOCommandQueue(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newIOCommandQueueWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeIOCommandQueue(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makeiocommandqueue(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:)": {
+      "abstract": [
+        {
+          "text": "Creates an input/output file handle instance that represents a file at a URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIOHandle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOFileHandle",
+          "text": "MTLIOFileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newIOHandleWithURL:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeIOHandle(url:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makeiohandle(url:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:compressionMethod:)": {
+      "abstract": [
+        {
+          "text": "Creates an input/output file handle instance that represents a compressed file at a URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIOHandle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compressionMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIOCompressionMethod",
+          "text": "MTLIOCompressionMethod"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOFileHandle",
+          "text": "MTLIOFileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeIOHandle(url:compressionMethod:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newIOHandleWithURL:compressionMethod:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeIOHandle(url:compressionMethod:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makeiohandle(url:compressionmethod:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A command buffer that contains input/output commands that work with files in the file systems and Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:offset:size:sourceHandle:sourceHandleOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that loads data from a file handle into a GPU buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOFileHandle",
+          "text": "MTLIOFileHandle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:offset:size:sourceHandle:sourceHandleOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "load(_:offset:size:sourceHandle:sourceHandleOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandbuffer/load(_:offset:size:sourcehandle:sourcehandleoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that loads data from a file handle into a GPU texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOFileHandle",
+          "text": "MTLIOFileHandle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandbuffer/load(_:slice:level:size:sourcebytesperrow:sourcebytesperimage:destinationorigin:sourcehandle:sourcehandleoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/loadBytes(_:size:sourceHandle:sourceHandleOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that loads data from a file handle into CPU-accessible memory buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOFileHandle",
+          "text": "MTLIOFileHandle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceHandleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer/loadBytes(_:size:sourceHandle:sourceHandleOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadBytes:size:sourceHandle:sourceHandleOffset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "loadBytes(_:size:sourceHandle:sourceHandleOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandbuffer/loadbytes(_:size:sourcehandle:sourcehandleoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandBufferHandler": {
+      "abstract": [
+        {
+          "text": "A convenience type that defines the signature of an input/output command buffer’s completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandBufferHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandBufferHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandBufferHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCommandBufferHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandbufferhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue": {
+      "abstract": [
+        {
+          "text": "A command queue that schedules input/output commands for reading files in the file system, and writing to GPU resources and memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCommandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBuffer()": {
+      "abstract": [
+        {
+          "text": "Creates an input/output command buffer for the command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOCommandBuffer",
+          "text": "MTLIOCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBuffer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeCommandBuffer()",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandqueue/makecommandbuffer()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBufferWithUnretainedReferences()": {
+      "abstract": [
+        {
+          "text": "Creates an input/output command buffer for the command queue that doesn’t retain the instances you pass to its methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCommandBufferWithUnretainedReferences"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIOCommandBuffer",
+          "text": "MTLIOCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue/makeCommandBufferWithUnretainedReferences()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commandBufferWithUnretainedReferences"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeCommandBufferWithUnretainedReferences()",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandqueue/makecommandbufferwithunretainedreferences()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration template you use to create a new input/output command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCommandQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandqueuedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueType": {
+      "abstract": [
+        {
+          "text": "Designates the queue type for a new input/output command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueueType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCommandQueueType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCommandQueueType",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocommandqueuetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContext": {
+      "abstract": [
+        {
+          "text": "A pointer that represents the state of a file compression session in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCompressionContext",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocompressioncontext"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds data to a compression context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContextAppendData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLIOCompressionContext",
+          "text": "MTLIOCompressionContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContextAppendData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCompressionContextAppendData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocompressioncontextappenddata(_:_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()": {
+      "abstract": [
+        {
+          "text": "Returns a compression chunk size you can use as a default for creating a compression context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContextDefaultChunkSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionContextDefaultChunkSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCompressionContextDefaultChunkSize()",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocompressioncontextdefaultchunksize()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCompressionMethod": {
+      "abstract": [
+        {
+          "text": "The compression codecs that Metal supports for input/output handles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCompressionMethod",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocompressionmethod"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCompressionStatus": {
+      "abstract": [
+        {
+          "text": "Represents the final state of a compression context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCompressionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCompressionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOCompressionStatus",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocompressionstatus"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext": {
+      "abstract": [
+        {
+          "text": "Creates a compression context that you use to compress data into a single file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOCreateCompressionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLIOCreateCompressionContext",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocreatecompressioncontext"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a compression context that you use to compress data into a single file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOCreateCompressionContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIOCompressionMethod",
+          "text": "MTLIOCompressionMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLIOCompressionContext",
+          "text": "MTLIOCompressionContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLIOCreateCompressionContext(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtliocreatecompressioncontext(_:_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "The error codes for creating an input/output file handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOError.Code",
+      "type": "topic",
+      "url": "/documentation/metal/mtlioerror-swift.struct/code"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for input/output command queue errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOErrorDomain",
+      "type": "topic",
+      "url": "/documentation/metal/mtlioerrordomain"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOFileHandle": {
+      "abstract": [
+        {
+          "text": "Represents a raw or compressed file, such as a resource asset file in your app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOFileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOFileHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOFileHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOFileHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtliofilehandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)": {
+      "abstract": [
+        {
+          "text": "Finishes compressing and saves the file that a compression context represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOFlushAndDestroyCompressionContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLIOCompressionContext",
+          "text": "MTLIOCompressionContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIOCompressionStatus",
+          "text": "MTLIOCompressionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOFlushAndDestroyCompressionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOFlushAndDestroyCompressionContext(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlioflushanddestroycompressioncontext(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOPriority": {
+      "abstract": [
+        {
+          "text": "Designates the priority for a new input/output command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOPriority",
+      "type": "topic",
+      "url": "/documentation/metal/mtliopriority"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOScratchBuffer": {
+      "abstract": [
+        {
+          "text": "A protocol your app implements that wraps a Metal buffer instance to serve as scratch memory for an input/output command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOScratchBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOScratchBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOScratchBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOScratchBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlioscratchbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOScratchBufferAllocator": {
+      "abstract": [
+        {
+          "text": "A protocol your app implements to provide scratch memory to an input/output command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOScratchBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOScratchBufferAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOScratchBufferAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOScratchBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/metal/mtlioscratchbufferallocator"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIOStatus": {
+      "abstract": [
+        {
+          "text": "Represents the state of an input/output command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIOStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIOStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIOStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIOStatus",
+      "type": "topic",
+      "url": "/documentation/metal/mtliostatus"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/buffers": {
+      "abstract": [
+        {
+          "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+        "doc://com.apple.metal/documentation/Metal/buffers",
+        "doc://com.apple.metal/documentation/Metal/textures",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "IO-Command-Queues",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIOPriority",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueType",
+        "doc://com.apple.metal/documentation/Metal/MTLIOScratchBufferAllocator",
+        "doc://com.apple.metal/documentation/Metal/MTLIOScratchBuffer"
+      ],
+      "title": "I/O Command Queues"
+    },
+    {
+      "anchor": "IO-Command-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLIOFileHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCommandBufferHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLIOStatus",
+        "doc://com.apple.metal/documentation/Metal/MTLIOError-swift.struct/Code",
+        "doc://com.apple.metal/documentation/Metal/MTLIOErrorDomain"
+      ],
+      "title": "I/O Command Buffers"
+    },
+    {
+      "anchor": "Asset-Compression",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext(_:_:_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCompressionMethod",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContext",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIOCompressionStatus"
+      ],
+      "title": "Asset Compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "IO-Command-Queues",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueue",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIOPriority",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCommandQueueType",
+                "doc://com.apple.metal/documentation/Metal/MTLIOScratchBufferAllocator",
+                "doc://com.apple.metal/documentation/Metal/MTLIOScratchBuffer"
+              ],
+              "title": "I/O Command Queues"
+            },
+            {
+              "anchor": "IO-Command-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIOCommandBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLIOFileHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCommandBufferHandler",
+                "doc://com.apple.metal/documentation/Metal/MTLIOStatus",
+                "doc://com.apple.metal/documentation/Metal/MTLIOError-swift.struct/Code",
+                "doc://com.apple.metal/documentation/Metal/MTLIOErrorDomain"
+              ],
+              "title": "I/O Command Buffers"
+            },
+            {
+              "anchor": "Asset-Compression",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIOCreateCompressionContext",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCompressionMethod",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextDefaultChunkSize()",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContext",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCompressionContextAppendData(_:_:_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIOFlushAndDestroyCompressionContext(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIOCompressionStatus"
+              ],
+              "title": "Asset Compression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resources",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+                "doc://com.apple.metal/documentation/Metal/buffers",
+                "doc://com.apple.metal/documentation/Metal/textures",
+                "doc://com.apple.metal/documentation/Metal/memory-heaps",
+                "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+              ],
+              "title": "Resources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueType/title",
+          "value": "MTLIOCommandQueueType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueueType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueueType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1load(_:offset:size:sourceHandle:sourceHandleOffset:)/title",
+          "value": "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1load(_:offset:size:sourceHandle:sourceHandleOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOErrorDomain/title",
+          "value": "MTLIOErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContext/title",
+          "value": "MTLIOCompressionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)/title",
+          "value": "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1load(_:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue~1makeCommandBufferWithUnretainedReferences()/title",
+          "value": "commandBufferWithUnretainedReferences"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue~1makeCommandBufferWithUnretainedReferences()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commandBufferWithUnretainedReferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOHandle(url:compressionMethod:)/title",
+          "value": "newIOHandleWithURL:compressionMethod:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOHandle(url:compressionMethod:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newIOHandleWithURL:compressionMethod:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionMethod/title",
+          "value": "MTLIOCompressionMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBuffer/title",
+          "value": "MTLIOScratchBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOScratchBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOScratchBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOStatus/title",
+          "value": "MTLIOStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBufferHandler/title",
+          "value": "MTLIOCommandBufferHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBufferHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandBufferHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBufferHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandBufferHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBufferAllocator/title",
+          "value": "MTLIOScratchBufferAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOScratchBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOScratchBufferAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOScratchBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue~1makeCommandBuffer()/title",
+          "value": "commandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue~1makeCommandBuffer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOFlushAndDestroyCompressionContext(_:)/title",
+          "value": "MTLIOFlushAndDestroyCompressionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOFlushAndDestroyCompressionContext(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOFlushAndDestroyCompressionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1loadBytes(_:size:sourceHandle:sourceHandleOffset:)/title",
+          "value": "loadBytes:size:sourceHandle:sourceHandleOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer~1loadBytes(_:size:sourceHandle:sourceHandleOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadBytes:size:sourceHandle:sourceHandleOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOCommandQueue(descriptor:)/title",
+          "value": "newIOCommandQueueWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOCommandQueue(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newIOCommandQueueWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionStatus/title",
+          "value": "MTLIOCompressionStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOError-swift.struct~1Code/title",
+          "value": "MTLIOError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueDescriptor/title",
+          "value": "MTLIOCommandQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer/title",
+          "value": "MTLIOCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOPriority/title",
+          "value": "MTLIOPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOPriority/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContextDefaultChunkSize()/title",
+          "value": "MTLIOCompressionContextDefaultChunkSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContextDefaultChunkSize()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionContextDefaultChunkSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOFileHandle/title",
+          "value": "MTLIOFileHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOFileHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOFileHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOFileHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOFileHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOHandle(url:)/title",
+          "value": "newIOHandleWithURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeIOHandle(url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newIOHandleWithURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContextAppendData(_:_:_:)/title",
+          "value": "MTLIOCompressionContextAppendData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCompressionContextAppendData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCompressionContextAppendData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue/title",
+          "value": "MTLIOCommandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIOCommandQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIOCommandQueue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/resource-loading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/resource-loading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

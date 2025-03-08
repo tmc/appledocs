@@ -1,0 +1,3569 @@
+{
+  "abstract": [
+    {
+      "text": "The service types supported by HomeKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/accessory-service-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Accessory Service Types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s read-only ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService/serviceType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains one of the values listed below to tell you what the service does.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t confuse these values with the accessory categories found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/accessory-category-types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Despite the similarities, they describe different things. Accessories are the physical objects that the user installs in the home, like a garage door opener. Accessories belong to a particular category, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategoryTypeGarageDoorOpener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessories have one or more services that perform tasks. The garage door opener accessory has a garage door opener service with service type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeGarageDoorOpener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", given below. The same accessory might also have an attached light providing a light bulb service with service type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightbulb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", also given below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory": {
+      "abstract": [
+        {
+          "text": "A home automation accessory, like a garage door opener or a thermostat.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessory",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategoryTypeGarageDoorOpener": {
+      "abstract": [
+        {
+          "text": "A garage door opener accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryCategoryTypeGarageDoorOpener"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategoryTypeGarageDoorOpener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryCategoryTypeGarageDoorOpener"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryCategoryTypeGarageDoorOpener",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorycategorytypegaragedooropener"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome": {
+      "abstract": [
+        {
+          "text": "The primary unit of living space, typically composed of rooms organized into zones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHome",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMService": {
+      "abstract": [
+        {
+          "text": "A controllable feature of an accessory, like a light attached to a garage door opener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMService"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMService"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMService",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservice"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMService/localizedDescription": {
+      "abstract": [
+        {
+          "text": "The localized description of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService/localizedDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedDescription",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservice/localizeddescription"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMService/serviceType": {
+      "abstract": [
+        {
+          "text": "The type of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService/serviceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serviceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "serviceType",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservice/servicetype"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAccessoryInformation": {
+      "abstract": [
+        {
+          "text": "An accessory information service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAccessoryInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAccessoryInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAccessoryInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeAccessoryInformation",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeaccessoryinformation"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirPurifier": {
+      "abstract": [
+        {
+          "text": "An air purifier service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAirPurifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirPurifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAirPurifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeAirPurifier",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeairpurifier"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirQualitySensor": {
+      "abstract": [
+        {
+          "text": "An air quality sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAirQualitySensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirQualitySensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeAirQualitySensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeAirQualitySensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeairqualitysensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeBattery": {
+      "abstract": [
+        {
+          "text": "A battery service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeBattery"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeBattery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeBattery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeBattery",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypebattery"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraControl": {
+      "abstract": [
+        {
+          "text": "A camera control service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCameraControl"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCameraControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeCameraControl",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypecameracontrol"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraRTPStreamManagement": {
+      "abstract": [
+        {
+          "text": "A stream management service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCameraRTPStreamManagement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraRTPStreamManagement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCameraRTPStreamManagement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeCameraRTPStreamManagement",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypecamerartpstreammanagement"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonDioxideSensor": {
+      "abstract": [
+        {
+          "text": "A carbon dioxide sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCarbonDioxideSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonDioxideSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCarbonDioxideSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeCarbonDioxideSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypecarbondioxidesensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonMonoxideSensor": {
+      "abstract": [
+        {
+          "text": "A carbon monoxide sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCarbonMonoxideSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonMonoxideSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeCarbonMonoxideSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeCarbonMonoxideSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypecarbonmonoxidesensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeContactSensor": {
+      "abstract": [
+        {
+          "text": "A contact sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeContactSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeContactSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeContactSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeContactSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypecontactsensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoor": {
+      "abstract": [
+        {
+          "text": "A door service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeDoor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeDoor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeDoor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypedoor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoorbell": {
+      "abstract": [
+        {
+          "text": "A doorbell service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeDoorbell"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoorbell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeDoorbell"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeDoorbell",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypedoorbell"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFan": {
+      "abstract": [
+        {
+          "text": "A fan service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFan"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFan"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeFan",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypefan"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFaucet": {
+      "abstract": [
+        {
+          "text": "A faucet service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFaucet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFaucet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFaucet"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeFaucet",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypefaucet"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFilterMaintenance": {
+      "abstract": [
+        {
+          "text": "A filter maintenance service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFilterMaintenance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFilterMaintenance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeFilterMaintenance"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeFilterMaintenance",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypefiltermaintenance"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeGarageDoorOpener": {
+      "abstract": [
+        {
+          "text": "A garage door opener service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeGarageDoorOpener"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeGarageDoorOpener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeGarageDoorOpener"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeGarageDoorOpener",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypegaragedooropener"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHeaterCooler": {
+      "abstract": [
+        {
+          "text": "A heater or cooler service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHeaterCooler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHeaterCooler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHeaterCooler"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeHeaterCooler",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeheatercooler"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumidifierDehumidifier": {
+      "abstract": [
+        {
+          "text": "A humidifier or dehumidifier service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHumidifierDehumidifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumidifierDehumidifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHumidifierDehumidifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeHumidifierDehumidifier",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypehumidifierdehumidifier"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumiditySensor": {
+      "abstract": [
+        {
+          "text": "A humidity sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHumiditySensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumiditySensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeHumiditySensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeHumiditySensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypehumiditysensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeInputSource": {
+      "abstract": [
+        {
+          "text": "An accessory input source service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeInputSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeInputSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeInputSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeInputSource",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeinputsource"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeIrrigationSystem": {
+      "abstract": [
+        {
+          "text": "An irrigation system service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeIrrigationSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeIrrigationSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeIrrigationSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeIrrigationSystem",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeirrigationsystem"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLabel": {
+      "abstract": [
+        {
+          "text": "A label namespace service used when an accessory supports multiple services of the same type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLabel",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypelabel"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLeakSensor": {
+      "abstract": [
+        {
+          "text": "A leak sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLeakSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLeakSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLeakSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLeakSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeleaksensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightSensor": {
+      "abstract": [
+        {
+          "text": "A light sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLightSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLightSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLightSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypelightsensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightbulb": {
+      "abstract": [
+        {
+          "text": "A light bulb service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLightbulb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightbulb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLightbulb"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLightbulb",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypelightbulb"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockManagement": {
+      "abstract": [
+        {
+          "text": "A lock management service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLockManagement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockManagement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLockManagement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLockManagement",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypelockmanagement"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockMechanism": {
+      "abstract": [
+        {
+          "text": "A lock mechanism service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLockMechanism"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockMechanism",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeLockMechanism"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeLockMechanism",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypelockmechanism"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMicrophone": {
+      "abstract": [
+        {
+          "text": "A microphone service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeMicrophone"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMicrophone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeMicrophone"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeMicrophone",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypemicrophone"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMotionSensor": {
+      "abstract": [
+        {
+          "text": "A motion sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeMotionSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMotionSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeMotionSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeMotionSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypemotionsensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOccupancySensor": {
+      "abstract": [
+        {
+          "text": "An occupancy sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeOccupancySensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOccupancySensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeOccupancySensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeOccupancySensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeoccupancysensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOutlet": {
+      "abstract": [
+        {
+          "text": "An outlet service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeOutlet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOutlet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeOutlet"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeOutlet",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeoutlet"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSecuritySystem": {
+      "abstract": [
+        {
+          "text": "A security system service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSecuritySystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSecuritySystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSecuritySystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeSecuritySystem",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypesecuritysystem"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSlats": {
+      "abstract": [
+        {
+          "text": "A slats service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSlats"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSlats",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSlats"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeSlats",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeslats"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSmokeSensor": {
+      "abstract": [
+        {
+          "text": "A smoke sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSmokeSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSmokeSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSmokeSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeSmokeSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypesmokesensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSpeaker": {
+      "abstract": [
+        {
+          "text": "An audio speaker service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSpeaker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSpeaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSpeaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeSpeaker",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypespeaker"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatefulProgrammableSwitch": {
+      "abstract": [
+        {
+          "text": "A stateful programmable switch service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeStatefulProgrammableSwitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatefulProgrammableSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeStatefulProgrammableSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeStatefulProgrammableSwitch",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypestatefulprogrammableswitch"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatelessProgrammableSwitch": {
+      "abstract": [
+        {
+          "text": "A stateless programmable switch service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeStatelessProgrammableSwitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatelessProgrammableSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeStatelessProgrammableSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeStatelessProgrammableSwitch",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypestatelessprogrammableswitch"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSwitch": {
+      "abstract": [
+        {
+          "text": "A switch service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSwitch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeSwitch",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeswitch"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTelevision": {
+      "abstract": [
+        {
+          "text": "A television service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeTelevision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTelevision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeTelevision"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeTelevision",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypetelevision"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTemperatureSensor": {
+      "abstract": [
+        {
+          "text": "A temperature sensor service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeTemperatureSensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTemperatureSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeTemperatureSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeTemperatureSensor",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypetemperaturesensor"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeThermostat": {
+      "abstract": [
+        {
+          "text": "A thermostat service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeThermostat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeThermostat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeThermostat"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeThermostat",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypethermostat"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeValve": {
+      "abstract": [
+        {
+          "text": "A valve service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeValve"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeValve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeValve"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeValve",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypevalve"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeVentilationFan": {
+      "abstract": [
+        {
+          "text": "A ventilation fan service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeVentilationFan"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeVentilationFan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeVentilationFan"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeVentilationFan",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypeventilationfan"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiRouter": {
+      "abstract": [
+        {
+          "text": "A WiFi router service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWiFiRouter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiRouter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWiFiRouter"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeWiFiRouter",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypewifirouter"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiSatellite": {
+      "abstract": [
+        {
+          "text": "A Satellite WiFi router service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWiFiSatellite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiSatellite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWiFiSatellite"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeWiFiSatellite",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypewifisatellite"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindow": {
+      "abstract": [
+        {
+          "text": "A window service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeWindow",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypewindow"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindowCovering": {
+      "abstract": [
+        {
+          "text": "A window covering service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWindowCovering"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindowCovering",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMServiceTypeWindowCovering"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMServiceTypeWindowCovering",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservicetypewindowcovering"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/accessory-category-types": {
+      "abstract": [
+        {
+          "text": "The accessory category types supported by HomeKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/accessory-category-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessory Category Types",
+      "type": "topic",
+      "url": "/documentation/homekit/accessory-category-types"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-service-type",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMService/serviceType",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService/localizedDescription"
+      ],
+      "title": "Getting the service type"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Light",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightbulb",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightSensor"
+      ],
+      "title": "Light"
+    },
+    {
+      "anchor": "Power-and-Switches",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSwitch",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeBattery",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOutlet",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatefulProgrammableSwitch",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatelessProgrammableSwitch"
+      ],
+      "title": "Power and Switches"
+    },
+    {
+      "anchor": "Air-Quality-and-Smoke-Detection",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirPurifier",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirQualitySensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonDioxideSensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonMonoxideSensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSmokeSensor"
+      ],
+      "title": "Air Quality and Smoke Detection"
+    },
+    {
+      "anchor": "Temperature-and-Humidity",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHeaterCooler",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTemperatureSensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeThermostat",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFan",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFilterMaintenance",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumidifierDehumidifier",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumiditySensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeVentilationFan"
+      ],
+      "title": "Temperature and Humidity"
+    },
+    {
+      "anchor": "Windows",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindow",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindowCovering",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSlats"
+      ],
+      "title": "Windows"
+    },
+    {
+      "anchor": "Water",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFaucet",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeValve",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeIrrigationSystem",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLeakSensor"
+      ],
+      "title": "Water"
+    },
+    {
+      "anchor": "Locks-and-Openers",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoorbell",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeGarageDoorOpener",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockManagement",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockMechanism"
+      ],
+      "title": "Locks and Openers"
+    },
+    {
+      "anchor": "Safety-and-Security",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMotionSensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOccupancySensor",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSecuritySystem",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeContactSensor"
+      ],
+      "title": "Safety and Security"
+    },
+    {
+      "anchor": "Video-and-Audio",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraControl",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraRTPStreamManagement",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMicrophone",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSpeaker",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeInputSource",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTelevision"
+      ],
+      "title": "Video and Audio"
+    },
+    {
+      "anchor": "Network",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiRouter",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiSatellite"
+      ],
+      "title": "Network"
+    },
+    {
+      "anchor": "Information",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLabel",
+        "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAccessoryInformation"
+      ],
+      "title": "Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Light",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightbulb",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLightSensor"
+              ],
+              "title": "Light"
+            },
+            {
+              "anchor": "Power-and-Switches",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSwitch",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeBattery",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOutlet",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatefulProgrammableSwitch",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeStatelessProgrammableSwitch"
+              ],
+              "title": "Power and Switches"
+            },
+            {
+              "anchor": "Air-Quality-and-Smoke-Detection",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirPurifier",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAirQualitySensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonDioxideSensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCarbonMonoxideSensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSmokeSensor"
+              ],
+              "title": "Air Quality and Smoke Detection"
+            },
+            {
+              "anchor": "Temperature-and-Humidity",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHeaterCooler",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTemperatureSensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeThermostat",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFan",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFilterMaintenance",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumidifierDehumidifier",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeHumiditySensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeVentilationFan"
+              ],
+              "title": "Temperature and Humidity"
+            },
+            {
+              "anchor": "Windows",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindow",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWindowCovering",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSlats"
+              ],
+              "title": "Windows"
+            },
+            {
+              "anchor": "Water",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeFaucet",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeValve",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeIrrigationSystem",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLeakSensor"
+              ],
+              "title": "Water"
+            },
+            {
+              "anchor": "Locks-and-Openers",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeDoorbell",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeGarageDoorOpener",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockManagement",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLockMechanism"
+              ],
+              "title": "Locks and Openers"
+            },
+            {
+              "anchor": "Safety-and-Security",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMotionSensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeOccupancySensor",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSecuritySystem",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeContactSensor"
+              ],
+              "title": "Safety and Security"
+            },
+            {
+              "anchor": "Video-and-Audio",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraControl",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeCameraRTPStreamManagement",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeMicrophone",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeSpeaker",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeInputSource",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeTelevision"
+              ],
+              "title": "Video and Audio"
+            },
+            {
+              "anchor": "Network",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiRouter",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeWiFiSatellite"
+              ],
+              "title": "Network"
+            },
+            {
+              "anchor": "Information",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeLabel",
+                "doc://com.apple.homekit/documentation/HomeKit/HMServiceTypeAccessoryInformation"
+              ],
+              "title": "Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-the-service-type",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMService/serviceType",
+                "doc://com.apple.homekit/documentation/HomeKit/HMService/localizedDescription"
+              ],
+              "title": "Getting the service type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeTelevision/title",
+          "value": "HMServiceTypeTelevision"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeTelevision/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeTelevision"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHeaterCooler/title",
+          "value": "HMServiceTypeHeaterCooler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHeaterCooler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeHeaterCooler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeDoor/title",
+          "value": "HMServiceTypeDoor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeDoor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeDoor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFan/title",
+          "value": "HMServiceTypeFan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFan/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeFan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeMotionSensor/title",
+          "value": "HMServiceTypeMotionSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeMotionSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeMotionSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeValve/title",
+          "value": "HMServiceTypeValve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeValve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeValve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFaucet/title",
+          "value": "HMServiceTypeFaucet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFaucet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeFaucet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeInputSource/title",
+          "value": "HMServiceTypeInputSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeInputSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeInputSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLightbulb/title",
+          "value": "HMServiceTypeLightbulb"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLightbulb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLightbulb"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFilterMaintenance/title",
+          "value": "HMServiceTypeFilterMaintenance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeFilterMaintenance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeFilterMaintenance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService~1localizedDescription/title",
+          "value": "localizedDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService~1localizedDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/title",
+          "value": "HMHomeManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeGarageDoorOpener/title",
+          "value": "HMServiceTypeGarageDoorOpener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeGarageDoorOpener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeGarageDoorOpener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeOccupancySensor/title",
+          "value": "HMServiceTypeOccupancySensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeOccupancySensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeOccupancySensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeVentilationFan/title",
+          "value": "HMServiceTypeVentilationFan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeVentilationFan/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeVentilationFan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeMicrophone/title",
+          "value": "HMServiceTypeMicrophone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeMicrophone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeMicrophone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSpeaker/title",
+          "value": "HMServiceTypeSpeaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSpeaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeSpeaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSlats/title",
+          "value": "HMServiceTypeSlats"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSlats/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeSlats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService~1serviceType/title",
+          "value": "serviceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService~1serviceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "serviceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeContactSensor/title",
+          "value": "HMServiceTypeContactSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeContactSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeContactSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeIrrigationSystem/title",
+          "value": "HMServiceTypeIrrigationSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeIrrigationSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeIrrigationSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAirPurifier/title",
+          "value": "HMServiceTypeAirPurifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAirPurifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeAirPurifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHumidifierDehumidifier/title",
+          "value": "HMServiceTypeHumidifierDehumidifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHumidifierDehumidifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeHumidifierDehumidifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeDoorbell/title",
+          "value": "HMServiceTypeDoorbell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeDoorbell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeDoorbell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCarbonMonoxideSensor/title",
+          "value": "HMServiceTypeCarbonMonoxideSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCarbonMonoxideSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeCarbonMonoxideSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWiFiSatellite/title",
+          "value": "HMServiceTypeWiFiSatellite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWiFiSatellite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeWiFiSatellite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLeakSensor/title",
+          "value": "HMServiceTypeLeakSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLeakSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLeakSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/title",
+          "value": "HMHome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWindow/title",
+          "value": "HMServiceTypeWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCarbonDioxideSensor/title",
+          "value": "HMServiceTypeCarbonDioxideSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCarbonDioxideSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeCarbonDioxideSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeStatelessProgrammableSwitch/title",
+          "value": "HMServiceTypeStatelessProgrammableSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeStatelessProgrammableSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeStatelessProgrammableSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSwitch/title",
+          "value": "HMServiceTypeSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWindowCovering/title",
+          "value": "HMServiceTypeWindowCovering"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWindowCovering/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeWindowCovering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeOutlet/title",
+          "value": "HMServiceTypeOutlet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeOutlet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeOutlet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeTemperatureSensor/title",
+          "value": "HMServiceTypeTemperatureSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeTemperatureSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeTemperatureSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLabel/title",
+          "value": "HMServiceTypeLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAccessoryInformation/title",
+          "value": "HMServiceTypeAccessoryInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAccessoryInformation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeAccessoryInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLockMechanism/title",
+          "value": "HMServiceTypeLockMechanism"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLockMechanism/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLockMechanism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWiFiRouter/title",
+          "value": "HMServiceTypeWiFiRouter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeWiFiRouter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeWiFiRouter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeStatefulProgrammableSwitch/title",
+          "value": "HMServiceTypeStatefulProgrammableSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeStatefulProgrammableSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeStatefulProgrammableSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeThermostat/title",
+          "value": "HMServiceTypeThermostat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeThermostat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeThermostat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAirQualitySensor/title",
+          "value": "HMServiceTypeAirQualitySensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeAirQualitySensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeAirQualitySensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLightSensor/title",
+          "value": "HMServiceTypeLightSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLightSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLightSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHumiditySensor/title",
+          "value": "HMServiceTypeHumiditySensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeHumiditySensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeHumiditySensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryCategoryTypeGarageDoorOpener/title",
+          "value": "HMAccessoryCategoryTypeGarageDoorOpener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryCategoryTypeGarageDoorOpener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryCategoryTypeGarageDoorOpener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeBattery/title",
+          "value": "HMServiceTypeBattery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeBattery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeBattery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCameraControl/title",
+          "value": "HMServiceTypeCameraControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCameraControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeCameraControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/title",
+          "value": "HMAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSmokeSensor/title",
+          "value": "HMServiceTypeSmokeSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSmokeSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeSmokeSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/title",
+          "value": "HMService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSecuritySystem/title",
+          "value": "HMServiceTypeSecuritySystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeSecuritySystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeSecuritySystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCameraRTPStreamManagement/title",
+          "value": "HMServiceTypeCameraRTPStreamManagement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeCameraRTPStreamManagement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeCameraRTPStreamManagement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLockManagement/title",
+          "value": "HMServiceTypeLockManagement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMServiceTypeLockManagement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMServiceTypeLockManagement"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/accessory-service-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/accessory-service-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

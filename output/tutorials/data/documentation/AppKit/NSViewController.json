@@ -1,0 +1,6111 @@
+{
+  "abstract": [
+    {
+      "text": "A controller that manages a view, typically loaded from a nib file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "View controller management includes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory management of top-level objects similar to that performed by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class, taking the same care to prevent reference cycles when controls are bound to the nib file’s owner.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declaring a generic ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/view",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, to make it easy to establish bindings in the nib to an object that isn’t yet known at nib-loading time or readily available to the code that’s doing the nib loading.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implementing the key-value binding NSEditor informal protocol, so that apps using a view controller can easily make bound controls in the views commit or discard changes by the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.10 and later, a view controller offers a full set of life cycle methods, allowing you to manage the content of a window in a way that is on a par with iOS view controller management. These methods, presented in order here to reflect a typical cycle, are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "View life cycle:",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillAppear()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidAppear()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "User interaction cycle:",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/updateViewConstraints()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillLayout()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLayout()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillDisappear()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidDisappear()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, in macOS 10.10 and later, a view controller participates in the responder chain. You can implement action methods directly in the view controller. Corresponding actions that originate in the view controller’s view proceed up the responder chain and are handled by those methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to OS X v10.10, a typical usage pattern for loading a nib file was to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and override its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to call ",
+              "type": "text"
+            },
+            {
+              "code": "[super loadView]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". But in macOS 10.10 and later, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method automatically looks for a nib file with the same name as the view controller. To take advantage of this behavior, name a nib file after its corresponding view controller and pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to both parameters of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view controller employs lazy loading of its view: Immediately after a view controller is loaded into memory, the value of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/isViewLoaded",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The value changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns and just before the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view controller is meant to be highly reusable, such as for dynamically representing various objects. For example, the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageLayout/addAccessoryController(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes take an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance as the argument, and set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/representedObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that is to be shown to the user. This allows a developer to easily create new printing accessory views using bindings and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s key-value coding and key-value observing compliance. When the user dismisses a printing dialog, the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes each send NSEditor messages to each accessory view controller to ensure that the user’s changes have been committed or discarded properly. The titles of the accessories are retrieved from the view controllers and shown to the user in menus that the user can choose from.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem": {
+      "abstract": [
+        {
+          "text": "The visual representation for a single data element in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController": {
+      "abstract": [
+        {
+          "text": "An object that controls swipe navigation and animations between views or view content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPageController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPageController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPageController",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageLayout": {
+      "abstract": [
+        {
+          "text": "A panel that queries the user for information such as paper type and orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPageLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPageLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPageLayout",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagelayout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageLayout/addAccessoryController(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified controller of an accessory view to be presented in the page setup panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAccessoryController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageLayout/addAccessoryController(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAccessoryController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAccessoryController(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagelayout/addaccessorycontroller(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo": {
+      "abstract": [
+        {
+          "text": "An object that stores information that’s used to generate printed output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel": {
+      "abstract": [
+        {
+          "text": "The Print panel that queries the user for information about a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the mediation of a custom segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSeguePerforming",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegueperforming"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTabViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTabViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTabViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTabViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTabViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstabviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTitlebarAccessoryViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTitlebarAccessoryViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTitlebarAccessoryViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nstitlebaraccessoryviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/layout()": {
+      "abstract": [
+        {
+          "text": "Perform layout in concert with the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layout"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layout()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "layout()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/layout()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/PlaygroundLiveViewable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/PlaygroundLiveViewable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PlaygroundLiveViewable Implementations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/playgroundliveviewable-implementations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/TransitionOptions": {
+      "abstract": [
+        {
+          "text": "Animation options for view transitions in a view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/TransitionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController.TransitionOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/transitionoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading": {
+      "abstract": [
+        {
+          "text": "A property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController.ViewLoading",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewloading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/XCPlaygroundLiveViewable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/XCPlaygroundLiveViewable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XCPlaygroundLiveViewable Implementations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/xcplaygroundliveviewable-implementations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "A convenience method for adding a child view controller at the end of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/children",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/addChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/addchild(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/children": {
+      "abstract": [
+        {
+          "text": "An array of view controllers that are hierarchical children of the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/children",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childViewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/children"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing()": {
+      "abstract": [
+        {
+          "text": "Returns whether the receiver was able to commit any pending edits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitEditing"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commitEditing"
+        }
+      ],
+      "role": "symbol",
+      "title": "commitEditing()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/commitediting()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Attempt to commit any currently edited results of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCommit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commitEditingWithDelegate:didCommitSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "commitEditing(withDelegate:didCommit:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/commitediting(withdelegate:didcommit:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/discardEditing()": {
+      "abstract": [
+        {
+          "text": "Causes the receiver to discard any changes, restoring the previous values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discardEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/discardEditing()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discardEditing"
+        }
+      ],
+      "role": "symbol",
+      "title": "discardEditing()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/discardediting()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-3n76y": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-3n76y",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/dismiss(_:)-3n76y"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-91my5": {
+      "abstract": [
+        {
+          "text": "Dismisses a presented view controller, using the same animator that presented it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/dismiss(_:)-91my5"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, the app extension context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExtensionContext",
+          "text": "NSExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "extensionContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/extensioncontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/init(coder:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)": {
+      "abstract": [
+        {
+          "text": "Returns a view controller object initialized to the nib file in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithNibName:bundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(nibName:bundle:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/init(nibname:bundle:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/insertChild(_:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts a specified child view controller into the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/children",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " array at a specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/insertChild(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertChildViewController:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertChild(_:at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/insertchild(_:at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/isViewLoaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isViewLoaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/isViewLoaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewLoaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "isViewLoaded",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/isviewloaded"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()": {
+      "abstract": [
+        {
+          "text": "Instantiates a view from a nib file and sets the value of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/view",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadView"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadView"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadView()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/loadview()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadViewIfNeeded()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadViewIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadViewIfNeeded()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadViewIfNeeded"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadViewIfNeeded()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/loadviewifneeded()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibBundle": {
+      "abstract": [
+        {
+          "text": "The nib bundle to be loaded to instantiate the receiver’s primary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nibBundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibBundle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nibBundle"
+        }
+      ],
+      "role": "symbol",
+      "title": "nibBundle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/nibbundle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibName": {
+      "abstract": [
+        {
+          "text": "The name of the nib file to be loaded to instantiate the receiver’s primary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nibName"
+        }
+      ],
+      "role": "symbol",
+      "title": "nibName",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/nibname"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/parent": {
+      "abstract": [
+        {
+          "text": "The immediate ancestor view controller of the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/parent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSize": {
+      "abstract": [
+        {
+          "text": "The desired size of the view controller’s view, in screen units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredContentSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredContentSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredContentSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/preferredcontentsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSizeDidChange(for:)": {
+      "abstract": [
+        {
+          "text": "Called when there is a change in value of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSize",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property of a child view controller or a presented view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredContentSizeDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSizeDidChange(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredContentSizeDidChangeForViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredContentSizeDidChange(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/preferredcontentsizedidchange(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMaximumSize": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, the largest allowable size for the app extension’s primary view, in screen units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredMaximumSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMaximumSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredMaximumSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredMaximumSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/preferredmaximumsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMinimumSize": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, the smallest allowable size for the app extension’s primary view, in screen units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredMinimumSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMinimumSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredMinimumSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredMinimumSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/preferredminimumsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredScreenOrigin": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, the preferred screen origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredScreenOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredScreenOrigin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredScreenOrigin"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredScreenOrigin",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/preferredscreenorigin"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:animator:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller using a specified, custom animator for presentation and dismissal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animator"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSViewControllerPresentationAnimator",
+          "text": "NSViewControllerPresentationAnimator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:animator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:animator:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:animator:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/present(_:animator:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller as a popover.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "asPopoverRelativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredEdge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSRectEdge",
+          "text": "NSRectEdge"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPopover",
+          "text": "NSPopover"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPopoverBehavior",
+          "text": "Behavior"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/present(_:aspopoverrelativeto:of:preferrededge:behavior:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "asPopoverRelativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredEdge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSRectEdge",
+          "text": "NSRectEdge"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPopover",
+          "text": "NSPopover"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPopoverBehavior",
+          "text": "Behavior"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hasFullSizeContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/present(_:aspopoverrelativeto:of:preferrededge:behavior:hasfullsizecontent:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(inWidget:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inWidget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(inWidget:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewControllerInWidget:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(inWidget:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/present(inwidget:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsModalWindow(_:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller as a modal window, also known as an alert.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAsModalWindow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsModalWindow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewControllerAsModalWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentAsModalWindow(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/presentasmodalwindow(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsSheet(_:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller as a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAsSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewControllerAsSheet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentAsSheet(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/presentassheet(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentedViewControllers": {
+      "abstract": [
+        {
+          "text": "The view controllers, if any, that are currently presented by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedViewControllers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentedViewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentedViewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentedViewControllers",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/presentedviewcontrollers"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentingViewController": {
+      "abstract": [
+        {
+          "text": "The view controller that presented the view controller or that presented its farthest ancestor view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentingViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentingViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentingViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentingViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/presentingviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeChild(at:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified child controller from the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeChild(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeChildViewControllerAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeChild(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/removechild(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeFromParent()": {
+      "abstract": [
+        {
+          "text": "Removes the called view controller from its parent view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeFromParent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromParentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromParent()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/removefromparent()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/representedObject": {
+      "abstract": [
+        {
+          "text": "The object whose value is presented in the receiver’s primary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "representedObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/representedObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "representedObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "representedObject",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/representedobject"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/sourceItemView": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceItemView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/sourceItemView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceItemView"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceItemView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/sourceitemview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/storyboard": {
+      "abstract": [
+        {
+          "text": "The storyboard from which the view controller was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStoryboard",
+          "text": "NSStoryboard"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/storyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "storyboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/storyboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/title": {
+      "abstract": [
+        {
+          "text": "The localized title of the receiver’s primary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/title"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Performs a transition between two sibling child view controllers of the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSViewControllerTransitionOptions",
+          "text": "TransitionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionFromViewController:toViewController:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transition(from:to:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/transition(from:to:options:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/updateViewConstraints()": {
+      "abstract": [
+        {
+          "text": "Called during Auto Layout constraint updating to enable the view controller to mediate the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateViewConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/updateViewConstraints()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateViewConstraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateViewConstraints()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/updateviewconstraints()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/view": {
+      "abstract": [
+        {
+          "text": "The view controller’s primary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidAppear()": {
+      "abstract": [
+        {
+          "text": "Called when the view controller’s view is fully transitioned onto the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidAppear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidAppear()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewdidappear()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidDisappear()": {
+      "abstract": [
+        {
+          "text": "Called after the view controller’s view is removed from the view hierarchy in a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidDisappear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidDisappear"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidDisappear()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewdiddisappear()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLayout()": {
+      "abstract": [
+        {
+          "text": "Called immediately after the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layout()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method of the view controller’s view is called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLayout"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLayout()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLayout()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewdidlayout()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the view controller’s view has been loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewIfLoaded": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewIfLoaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewIfLoaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewIfLoaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewIfLoaded",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewifloaded"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillAppear()": {
+      "abstract": [
+        {
+          "text": "Called after the view controller’s view has been loaded into memory is about to be added to the view hierarchy in the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillAppear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillAppear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillAppear"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillAppear()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewwillappear()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillDisappear()": {
+      "abstract": [
+        {
+          "text": "Called when the view controller’s view is about to be removed from the view hierarchy in the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillDisappear()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillDisappear"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillDisappear()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewwilldisappear()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillLayout()": {
+      "abstract": [
+        {
+          "text": "Called just before the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/layout()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method of the view controller’s view is called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillLayout"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillLayout()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillLayout()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewwilllayout()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillTransition(to:)": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, called when its view is about to be resized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillTransition(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillTransitionToSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillTransition(to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewwilltransition(to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a window, usually a window stored in a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:17PlaygroundSupport0A12LiveViewableP": {
+      "abstract": [
+        {
+          "text": "A protocol that displays an instance as a live view in a playground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundLiveViewable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:17PlaygroundSupport0A12LiveViewableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundLiveViewable",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundliveviewable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTabViewController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:17PlaygroundSupport0A12LiveViewableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-Controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+        "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+      ],
+      "title": "Content Controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-A-View-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()"
+      ],
+      "title": "Creating A View Controller"
+    },
+    {
+      "anchor": "Represented-Object",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/representedObject"
+      ],
+      "title": "Represented Object"
+    },
+    {
+      "anchor": "Nib-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibBundle",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibName"
+      ],
+      "title": "Nib Properties"
+    },
+    {
+      "anchor": "View-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/view",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/title"
+      ],
+      "title": "View Properties"
+    },
+    {
+      "anchor": "View-Property-Wrappers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading"
+      ],
+      "title": "View Property Wrappers"
+    },
+    {
+      "anchor": "NSEditor-Conformance",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/discardEditing()"
+      ],
+      "title": "NSEditor Conformance"
+    },
+    {
+      "anchor": "Using-a-Storyboard",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/storyboard",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-3n76y"
+      ],
+      "title": "Using a Storyboard"
+    },
+    {
+      "anchor": "Responding-to-View-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadViewIfNeeded()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/isViewLoaded",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewIfLoaded",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillAppear()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidAppear()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillDisappear()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidDisappear()"
+      ],
+      "title": "Responding to View Events"
+    },
+    {
+      "anchor": "Managing-View-Layout",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/updateViewConstraints()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillLayout()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLayout()"
+      ],
+      "title": "Managing View Layout"
+    },
+    {
+      "anchor": "Managing-Child-View-Controllers-in-a-Custom-Container",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/addChild(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/children",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/insertChild(_:at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeChild(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeFromParent()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSizeDidChange(for:)"
+      ],
+      "title": "Managing Child View Controllers in a Custom Container"
+    },
+    {
+      "anchor": "Presenting-Another-View-Controllers-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:animator:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsModalWindow(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(inWidget:)"
+      ],
+      "title": "Presenting Another View Controller’s Content"
+    },
+    {
+      "anchor": "Getting-Related-View-Controllers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/parent",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentedViewControllers",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentingViewController"
+      ],
+      "title": "Getting Related View Controllers"
+    },
+    {
+      "anchor": "Configuring-an-App-Extension-View-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredScreenOrigin",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMaximumSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMinimumSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillTransition(to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/sourceItemView"
+      ],
+      "title": "Configuring an App Extension View Controller"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/TransitionOptions"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(coder:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/PlaygroundLiveViewable-Implementations",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/XCPlaygroundLiveViewable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-A-View-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(nibName:bundle:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadView()"
+              ],
+              "title": "Creating A View Controller"
+            },
+            {
+              "anchor": "Represented-Object",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/representedObject"
+              ],
+              "title": "Represented Object"
+            },
+            {
+              "anchor": "Nib-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibBundle",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/nibName"
+              ],
+              "title": "Nib Properties"
+            },
+            {
+              "anchor": "View-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/view",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/title"
+              ],
+              "title": "View Properties"
+            },
+            {
+              "anchor": "NSEditor-Conformance",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/commitEditing()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/discardEditing()"
+              ],
+              "title": "NSEditor Conformance"
+            },
+            {
+              "anchor": "Using-a-Storyboard",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/storyboard",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-3n76y"
+              ],
+              "title": "Using a Storyboard"
+            },
+            {
+              "anchor": "Responding-to-View-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLoad()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/loadViewIfNeeded()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/isViewLoaded",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewIfLoaded",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillAppear()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidAppear()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillDisappear()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidDisappear()"
+              ],
+              "title": "Responding to View Events"
+            },
+            {
+              "anchor": "Managing-View-Layout",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/updateViewConstraints()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillLayout()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewDidLayout()"
+              ],
+              "title": "Managing View Layout"
+            },
+            {
+              "anchor": "Managing-Child-View-Controllers-in-a-Custom-Container",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/addChild(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/children",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/insertChild(_:at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeChild(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/removeFromParent()",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredContentSizeDidChange(for:)"
+              ],
+              "title": "Managing Child View Controllers in a Custom Container"
+            },
+            {
+              "anchor": "Presenting-Another-View-Controllers-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:animator:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsModalWindow(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/present(inWidget:)"
+              ],
+              "title": "Presenting Another View Controller’s Content"
+            },
+            {
+              "anchor": "Getting-Related-View-Controllers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/parent",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentedViewControllers",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/presentingViewController"
+              ],
+              "title": "Getting Related View Controllers"
+            },
+            {
+              "anchor": "Configuring-an-App-Extension-View-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredScreenOrigin",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMaximumSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/preferredMinimumSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/viewWillTransition(to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/sourceItemView"
+              ],
+              "title": "Configuring an App Extension View Controller"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/TransitionOptions"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController/init(coder:)"
+              ],
+              "title": "Initializers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitViewController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTabViewController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/s:s8CopyableP",
+                "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+                "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+                "doc://com.externally.resolved.symbol/s:17PlaygroundSupport0A12LiveViewableP"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-Controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+                "doc://com.apple.appkit/documentation/AppKit/NSTitlebarAccessoryViewController"
+              ],
+              "title": "Content Controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSResponder",
+                    "text": "NSResponder"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/title",
+          "value": "NSWindowController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/title",
+          "value": "NSEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/title",
+          "value": "NSPrintPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/title",
+          "value": "NSTitlebarAccessoryViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlebarAccessoryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTitlebarAccessoryViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlebarAccessoryViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1parent/title",
+          "value": "parentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:animator:)/title",
+          "value": "presentViewController:animator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:animator:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:animator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1discardEditing()/title",
+          "value": "discardEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1discardEditing()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "discardEditing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/title",
+          "value": "NSCollectionViewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillAppear()/title",
+          "value": "viewWillAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillAppear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillAppear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/title",
+          "value": "NSSeguePerforming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1representedObject/title",
+          "value": "representedObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1representedObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "representedObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1children/title",
+          "value": "childViewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1children/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childViewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentAsModalWindow(_:)/title",
+          "value": "presentViewControllerAsModalWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentAsModalWindow(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewControllerAsModalWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/title",
+          "value": "NSPrintInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1commitEditing(withDelegate:didCommit:contextInfo:)/title",
+          "value": "commitEditingWithDelegate:didCommitSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1commitEditing(withDelegate:didCommit:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commitEditingWithDelegate:didCommitSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1removeFromParent()/title",
+          "value": "removeFromParentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1removeFromParent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromParentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1nibBundle/title",
+          "value": "nibBundle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1nibBundle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nibBundle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillLayout()/title",
+          "value": "viewWillLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillLayout()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)/title",
+          "value": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1loadViewIfNeeded()/title",
+          "value": "loadViewIfNeeded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1loadViewIfNeeded()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadViewIfNeeded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1dismiss(_:)-3n76y/title",
+          "value": "dismissController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1dismiss(_:)-3n76y/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/title",
+          "value": "NSPageController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layout()/title",
+          "value": "layout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1layout()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabViewController/title",
+          "value": "NSTabViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1extensionContext/title",
+          "value": "extensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1extensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewIfLoaded/title",
+          "value": "viewIfLoaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewIfLoaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewIfLoaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1isViewLoaded/title",
+          "value": "viewLoaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1isViewLoaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewLoaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1sourceItemView/title",
+          "value": "sourceItemView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1sourceItemView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceItemView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredMinimumSize/title",
+          "value": "preferredMinimumSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredMinimumSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredMinimumSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredScreenOrigin/title",
+          "value": "preferredScreenOrigin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredScreenOrigin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredScreenOrigin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/title",
+          "value": "NSResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentedViewControllers/title",
+          "value": "presentedViewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentedViewControllers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentedViewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1addChild(_:)/title",
+          "value": "addChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredContentSizeDidChange(for:)/title",
+          "value": "preferredContentSizeDidChangeForViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredContentSizeDidChange(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredContentSizeDidChangeForViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1removeChild(at:)/title",
+          "value": "removeChildViewControllerAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1removeChild(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeChildViewControllerAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidLayout()/title",
+          "value": "viewDidLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidLayout()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1commitEditing()/title",
+          "value": "commitEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1commitEditing()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commitEditing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1loadView()/title",
+          "value": "loadView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1loadView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentingViewController/title",
+          "value": "presentingViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentingViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentingViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(inWidget:)/title",
+          "value": "presentViewControllerInWidget:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(inWidget:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewControllerInWidget:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/title",
+          "value": "presentViewControllerAsSheet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewControllerAsSheet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidDisappear()/title",
+          "value": "viewDidDisappear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidDisappear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidDisappear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1nibName/title",
+          "value": "nibName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1nibName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nibName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1transition(from:to:options:completionHandler:)/title",
+          "value": "transitionFromViewController:toViewController:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1transition(from:to:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transitionFromViewController:toViewController:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageLayout/title",
+          "value": "NSPageLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidAppear()/title",
+          "value": "viewDidAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewDidAppear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidAppear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredContentSize/title",
+          "value": "preferredContentSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredContentSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredContentSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillTransition(to:)/title",
+          "value": "viewWillTransitionToSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillTransition(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillTransitionToSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1updateViewConstraints()/title",
+          "value": "updateViewConstraints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1updateViewConstraints()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateViewConstraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1storyboard/title",
+          "value": "storyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1storyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)/title",
+          "value": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillDisappear()/title",
+          "value": "viewWillDisappear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1viewWillDisappear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillDisappear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/title",
+          "value": "dismissViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1insertChild(_:at:)/title",
+          "value": "insertChildViewController:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1insertChild(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertChildViewController:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredMaximumSize/title",
+          "value": "preferredMaximumSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1preferredMaximumSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredMaximumSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1TransitionOptions/title",
+          "value": "NSViewControllerTransitionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1TransitionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewControllerTransitionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1TransitionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewControllerTransitionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/title",
+          "value": "NSSplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageLayout~1addAccessoryController(_:)/title",
+          "value": "addAccessoryController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageLayout~1addAccessoryController(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAccessoryController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1init(nibName:bundle:)/title",
+          "value": "initWithNibName:bundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1init(nibName:bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithNibName:bundle:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

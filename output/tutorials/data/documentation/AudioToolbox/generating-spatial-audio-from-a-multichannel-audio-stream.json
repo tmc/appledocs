@@ -1,0 +1,1011 @@
+{
+  "abstract": [
+    {
+      "text": "Convert 8-channel audio to 2-channel spatial audio by using a spatial mixer audio unit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/generating-spatial-audio-from-a-multichannel-audio-stream"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Generating spatial audio from a multichannel audio stream"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial audio makes sound seem like it’s coming from all around you. To generate spatialized audio from a multichannel audio stream, you use a spatial mixer audio unit (AUSM). The audio streams can come from the output of a game engine, video player, or audio file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app shows you how to create an AUSM, and how to configure its channel layout and stream format. It streams multichannel input from an audio file, and down-mixes it to 2-channel spatial audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-audio-unit-spatial-mixer",
+          "level": 3,
+          "text": "Create an audio unit spatial mixer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the pull model to get the input from an in-memory file streamer. The ",
+              "type": "text"
+            },
+            {
+              "code": "OutputAU",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class pulls input from the ",
+              "type": "text"
+            },
+            {
+              "code": "AudioKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which manages the AUSM. The AUSM pulls audio from ",
+              "type": "text"
+            },
+            {
+              "code": "AudioFileReader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get input. On macOS, the output unit uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_HALOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to interface with the audio device. On iOS, the interface is configured as  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_RemoteIO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin setup of an AUSM, the sample initializes a mixer with a subtype of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_SpatialMixer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AudioComponentDescription auDescription = {kAudioUnitType_Mixer,",
+            "                                           kAudioUnitSubType_SpatialMixer,",
+            "                                           kAudioUnitManufacturer_Apple,",
+            "                                           0,",
+            "                                           0};",
+            "AudioComponent comp = AudioComponentFindNext(NULL, &auDescription);",
+            "assert(comp);",
+            "",
+            "OSStatus err = AudioComponentInstanceNew(comp, &mAU);",
+            "assert(err == noErr);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After initializing the spatial mixer, the sample calls a convenience function to configure the output stream format and channel layout for stereo audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "err = setStreamFormatAndACL(inOutputSampleRate, kAudioChannelLayoutTag_Stereo, kAudioUnitScope_Output, 0);",
+            "assert(err == noErr);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then configures the input stream format and sets the channel layout to  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioChannelLayoutTag_MPEG_7_1_A",
+              "isActive": true,
+              "overridingTitle": "kAudioChannelLayoutTag_MPEG_7_1_A",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kAudioChannelLayoutTag_MPEG_7_1_A",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "  for 8-channel audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "err = setStreamFormatAndACL(inInputSampleRate,",
+            "                            kAudioChannelLayoutTag_Atmos_7_1_4,",
+            "                            kAudioUnitScope_Input,",
+            "                            elem);",
+            "assert(err == noErr);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-for-spatial-audio",
+          "level": 3,
+          "text": "Configure for spatial audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets the spatialization algorithm to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatializationAlgorithm/spatializationAlgorithm_UseOutputType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the highest-quality spatial rendering across different hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UInt32 renderingAlgorithm = kSpatializationAlgorithm_UseOutputType;",
+            "err = AudioUnitSetProperty(mAU,",
+            "                           kAudioUnitProperty_SpatializationAlgorithm,",
+            "                           kAudioUnitScope_Input,",
+            "                           elem,",
+            "                           &renderingAlgorithm,",
+            "                           sizeof(renderingAlgorithm));",
+            "assert(err == noErr);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The input channels are spatialized around the listener as far-field sources. The channel layout specifies the relative directions of the individual channels. The azimuth and elevation parameters control the audio rotation. The sample configures the source mode to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_AmbienceBed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_PointSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an object to render the input signal as a single source, except if rendering in-head with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode/spatialMixerPointSourceInHeadMode_Bypass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UInt32 sourceMode = kSpatialMixerSourceMode_AmbienceBed;",
+            "err = AudioUnitSetProperty(mAU, kAudioUnitProperty_SpatialMixerSourceMode, kAudioUnitScope_Input, elem, &sourceMode, sizeof(sourceMode));",
+            "assert(err == noErr);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial audio includes dynamic head tracking for apps that enable it. To configure head tracking, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_SpatialMixerEnableHeadTracking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about supported devices, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT211775",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UInt32 ht = 1;",
+            "err = AudioUnitSetProperty(mAU,",
+            "                           kAudioUnitProperty_SpatialMixerEnableHeadTracking,",
+            "                           kAudioUnitScope_Global,",
+            "                           0,",
+            "                           &ht,",
+            "                           sizeof(UInt32));"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "bb4f4c24e243/GeneratingSpatialAudioFromAMultichannelAudioStream.zip": {
+      "checksum": "bb4f4c24e24318b78a85bdb905cf3d02363a3ae48f2d86eeefd5cecd74a234016c808524575280ba7e94fe84cd6730a3519a154c2ec0deedf4fc85bcd3823bb7",
+      "identifier": "bb4f4c24e243/GeneratingSpatialAudioFromAMultichannelAudioStream.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/bb4f4c24e243/GeneratingSpatialAudioFromAMultichannelAudioStream.zip"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode/spatialMixerPointSourceInHeadMode_Bypass": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialMixerPointSourceInHeadMode_Bypass"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode/spatialMixerPointSourceInHeadMode_Bypass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSpatialMixerPointSourceInHeadMode_Bypass"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUSpatialMixerPointSourceInHeadMode.spatialMixerPointSourceInHeadMode_Bypass",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode/spatialmixerpointsourceinheadmode_bypass"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_AmbienceBed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialMixerSourceMode_AmbienceBed"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_AmbienceBed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSpatialMixerSourceMode_AmbienceBed"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUSpatialMixerSourceMode.spatialMixerSourceMode_AmbienceBed",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_ambiencebed"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_PointSource": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialMixerSourceMode_PointSource"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_PointSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSpatialMixerSourceMode_PointSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUSpatialMixerSourceMode.spatialMixerSourceMode_PointSource",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_pointsource"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatializationAlgorithm/spatializationAlgorithm_UseOutputType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatializationAlgorithm_UseOutputType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUSpatializationAlgorithm/spatializationAlgorithm_UseOutputType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSpatializationAlgorithm_UseOutputType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUSpatializationAlgorithm.spatializationAlgorithm_UseOutputType",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_useoutputtype"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-components": {
+      "abstract": [
+        {
+          "text": "Find, load, and configure audio components, such as Audio Units and audio codecs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Components",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-components"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties": {
+      "abstract": [
+        {
+          "text": "Obtain information about the built-in mixers, equalizers, filters, effects, and other Audio Unit app extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api": {
+      "abstract": [
+        {
+          "text": "Configure an Audio Unit and prepare it to render audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v2 (C) API",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v2-c-api"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins": {
+      "abstract": [
+        {
+          "text": "Deliver custom audio effects, instruments, and other audio behaviors using an Audio Unit v3 app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o": {
+      "abstract": [
+        {
+          "text": "Configure system voice processing and respond to speech events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Voice I/O",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-voice-i-o"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_SpatialMixerEnableHeadTracking": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_SpatialMixerEnableHeadTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_SpatialMixerEnableHeadTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_SpatialMixerEnableHeadTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitProperty_SpatialMixerEnableHeadTracking",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitproperty_spatialmixerenableheadtracking"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_HALOutput": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_HALOutput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_HALOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_HALOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitSubType_HALOutput",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitsubtype_haloutput"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_RemoteIO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_RemoteIO"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_RemoteIO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_RemoteIO"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitSubType_RemoteIO",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitsubtype_remoteio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_SpatialMixer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_SpatialMixer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitSubType_SpatialMixer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitSubType_SpatialMixer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioUnitSubType_SpatialMixer",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitsubtype_spatialmixer"
+    },
+    "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioChannelLayoutTag_MPEG_7_1_A": {
+      "abstract": [
+        {
+          "text": "An MPEG 7.1-channel, configuration A, audio layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioChannelLayoutTag_MPEG_7_1_A"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioChannelLayoutTag",
+          "text": "AudioChannelLayoutTag"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioChannelLayoutTag_MPEG_7_1_A",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioChannelLayoutTag_MPEG_7_1_A",
+      "type": "topic",
+      "url": "/documentation/CoreAudioTypes/kAudioChannelLayoutTag_MPEG_7_1_A"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/en-us/HT211775": {
+      "identifier": "https://support.apple.com/en-us/HT211775",
+      "title": "Listen with spatial audio for AirPods and Beats",
+      "titleInlineContent": [
+        {
+          "text": "Listen with spatial audio for AirPods and Beats",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT211775"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "bb4f4c24e243/GeneratingSpatialAudioFromAMultichannelAudioStream.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Units",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-components",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o"
+      ],
+      "title": "Audio Units"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Units",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-components",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o"
+              ],
+              "title": "Audio Units"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerPointSourceInHeadMode~1spatialMixerPointSourceInHeadMode_Bypass/title",
+          "value": "kSpatialMixerPointSourceInHeadMode_Bypass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerPointSourceInHeadMode~1spatialMixerPointSourceInHeadMode_Bypass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSpatialMixerPointSourceInHeadMode_Bypass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreAudioTypes~1kAudioChannelLayoutTag_MPEG_7_1_A/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioChannelLayoutTag_MPEG_7_1_A"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_SpatialMixer/title",
+          "value": "kAudioUnitSubType_SpatialMixer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_SpatialMixer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitSubType_SpatialMixer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatializationAlgorithm~1spatializationAlgorithm_UseOutputType/title",
+          "value": "kSpatializationAlgorithm_UseOutputType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatializationAlgorithm~1spatializationAlgorithm_UseOutputType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSpatializationAlgorithm_UseOutputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_RemoteIO/title",
+          "value": "kAudioUnitSubType_RemoteIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_RemoteIO/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitSubType_RemoteIO"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerSourceMode~1spatialMixerSourceMode_AmbienceBed/title",
+          "value": "kSpatialMixerSourceMode_AmbienceBed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerSourceMode~1spatialMixerSourceMode_AmbienceBed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSpatialMixerSourceMode_AmbienceBed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_SpatialMixerEnableHeadTracking/title",
+          "value": "kAudioUnitProperty_SpatialMixerEnableHeadTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitProperty_SpatialMixerEnableHeadTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitProperty_SpatialMixerEnableHeadTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_HALOutput/title",
+          "value": "kAudioUnitSubType_HALOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioUnitSubType_HALOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioUnitSubType_HALOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerSourceMode~1spatialMixerSourceMode_PointSource/title",
+          "value": "kSpatialMixerSourceMode_PointSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUSpatialMixerSourceMode~1spatialMixerSourceMode_PointSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSpatialMixerSourceMode_PointSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/generating-spatial-audio-from-a-multichannel-audio-stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/generating-spatial-audio-from-a-multichannel-audio-stream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

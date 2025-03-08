@@ -1,0 +1,2565 @@
+{
+  "abstract": [
+    {
+      "text": "Create an encrypted login response and configure the concatenation key derivation function (Concat KDF).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-json-web-encryption-jwe-login-response"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a JSON Web Encryption (JWE) login response"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identity provider (IdP) creates a login response, which is a JWE that’s encrypted according to RFC 7516 Section 5.1 with JWE Compact Serialization. The supported key agreement algorithm is ECDH-ES per RFC 7518 Section 4.6. See the following section for a description of the concatenation key derivation function (Concat KDF) inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Key agreement uses the public key for the ",
+              "type": "text"
+            },
+            {
+              "code": "UserDeviceEncryptionKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s exchanged during registration. The supported encryption algorithm is A256GCM per RFC 7518 Section 5.3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Concat-KDF",
+          "level": 3,
+          "text": "Configure Concat KDF",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RFC 7518 Section 4.6.2 and NIST.800-56A sections 5.8.1 and 6.2.2.2 describe the configuration of Concat KDF for platform SSO. See the table below for input definitions. The system concatenates the values per NIST.800-56A sections 5.8.1, and then computes a SHA-256 hash that it uses to create the key. The login response header needs to contain the ",
+              "type": "text"
+            },
+            {
+              "code": "PartyUInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "extendedData": {
+            "2_1": {
+              "colspan": 2,
+              "rowspan": 1
+            },
+            "2_2": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "3_1": {
+              "colspan": 2,
+              "rowspan": 1
+            },
+            "3_2": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlgorithmID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set to the octets of the ASCII representation of the enc (algorithm) Header Parameter value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2 when using direct key agreement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PartyUInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "`",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PartyVInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This needs to use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "jwe_crypto.apv",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value from the login request. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " `",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SuppPubInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set to the number of bits in the desired output key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SuppPrivInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The key agreement algorithm ECDH-ES is actually ECIES, a proven-secure algorithm with the public keys included.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of the Concat KDF inputs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for a 256-bit key: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "00000001",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reps",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exchanged key:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Z",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "3491708C92422BB807EDF2B8183A42737C5DAA6C39BA9535321D51C836D7ADA1",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "enc",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " from header: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "A256GCM",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ASCII encoded",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "AlgorithmID",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Length || data = ",
+              "type": "text"
+            },
+            {
+              "code": "00000007||4132353647434D",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Prefix: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "APPLE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", UTF8 Encoded",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "PartyUInfo",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Length || data = ",
+              "type": "text"
+            },
+            {
+              "code": "00000005||4150504C45",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ephemeral Public Key (EPK):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "“epk” : {",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "`“y” : “jbOoWZbgDFTEfLa1O_7ZuJy3R8d2XAw0CHWUKmJLsbU”,`",
+            "",
+            "`“x” : “BkFHRYQoleq39LplGqlcmsEdnw64w0wbcbHAEjrM4pw”,`",
+            "",
+            "`“kty” : “EC”,`",
+            "",
+            "`“crv” : “P-256”`"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "}",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Length || data =",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "00000041||0406414745842895EAB7F4BA651AA95C9AC11D9F0EB8C34C1B71B1C0123ACCE29C8DB3A85996E00C54C47CB6B53BFED9B89CB747C7765C0C340875942A624BB1B5",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final ",
+              "type": "text"
+            },
+            {
+              "code": "partyUInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " length || data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "0000004E||000000054150504C45000000410406414745842895EAB7F4BA651AA95C9AC11D9F0EB8C34C1B71B1C0123ACCE29C8DB3A85996E00C54C47CB6B53BFED9B89CB747C7765C0C340875942A624BB1B5",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Response JWE ",
+              "type": "text"
+            },
+            {
+              "code": "apu",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header is the base-64 URL encoded ",
+              "type": "text"
+            },
+            {
+              "code": "partyUInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "`AAAABUFQUExFAAAAQQSf34Uch3TYF27T8SpbtNWCjpKUSjHGDwoiUz8Yoh1nrQidjfO6iMRZIqrsNERt8JnlI2aUwAlZktJ8DZFGWKaB`````",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Prefix: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Apple",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", UTF8 Encoded\u2028Length | data = ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "00000005||4170706C65",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "PartyVInfo",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Device Encryption Public Key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "{",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "`“crv” : “P-256”,`",
+            "",
+            "`“kty” : “EC”,`",
+            "",
+            "`“x” : “mcJyr2BqUQHlscaGoWTw_4QNxDUqI1lR11kCRAzLJkk”,`",
+            "",
+            "`“y” : “P_mLtZKoMMC3G8PtRleKzm1c5D0afPZX_61s70Cx75I”`"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "}",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Length || data =",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "00000041||0499C272AF606A5101E5B1C686A164F0FF840DC4352A235951D75902440CCB26493FF98BB592A830C0B71BC3ED46578ACE6D5CE43D1A7CF657FFAD6CEF40B1EF92",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Nonce: ",
+              "type": "text"
+            },
+            {
+              "code": "B7F1FC32-9121-4E2A-9E32-8417E03675DD",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Length || data =",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "00000024||42374631464333322D393132312D344532412D394533322D383431374530333637354444",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Final ",
+              "type": "text"
+            },
+            {
+              "code": "partyVInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " length || data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "000000054||170706C65000000410499C272AF606A5101E5B1C686A164F0FF840DC4352A235951D75902440CCB26493FF98BB592A830C0B71BC3ED46578ACE6D5CE43D1A7CF657FFAD6CEF40B1EF920000002442374631464333322D393132312D344532412D394533322D383431374530333637354444",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The login request ",
+              "type": "text"
+            },
+            {
+              "code": "jwe_crypto.apv",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header is the base 64 URL encoded ",
+              "type": "text"
+            },
+            {
+              "code": "partyVInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "`AAAABUFwcGxlAAAAQQSZwnKvYGpRAeWxxoahZPD_hA3ENSojWVHXWQJEDMsmST_5i7WSqDDAtxvD7UZXis5tXOQ9Gnz2V_-tbO9Ase-SAAAAJEI3RjFGQzMyLTkxMjEtNEUyQS05RTMyLTg0MTdFMDM2NzVERA```",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "256 bits in the output key = ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "00000100",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "SuppPubInfo",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "NULL",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "SuppPrivInfo",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complete SHA-256 input is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "000000013491708C92422BB807EDF2B8183A42737C5DAA6C39BA9535321D51C836D7ADA1000000074132353647434D0000004E000000054150504C45000000410406414745842895EAB7F4BA651AA95C9AC11D9F0EB8C34C1B71B1C0123ACCE29C8DB3A85996E00C54C47CB6B53BFED9B89CB747C7765C0C340875942A624BB1B500000076000000054170706C65000000410499C272AF606A5101E5B1C686A164F0FF840DC4352A235951D75902440CCB26493FF98BB592A830C0B71BC3ED46578ACE6D5CE43D1A7CF657FFAD6CEF40B1EF920000002442374631464333322D393132312D344532412D394533322D38343137453033363735444400000100",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Concat KDF result is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "A146E4A23BDA2E53826C04D2F442BCFBD87BC2719D74B8A7DA00AF976267712E",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-response-JWE-header",
+          "level": 3,
+          "text": "Create the response JWE header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response is a JWE that’s decrypted according to RFC 7516 Section 5.2 with JWE Compact Serialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWE response header contains the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "JWT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if the extension SDK is macOS 13.x.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "platformsso-login-response+jwt",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional if the extension SDK is macOS 14.x or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "enc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "A256GCM",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The supported encryption algorithm per RFC 7518 Section 4.6.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ECDH-ES",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The supported key agreement algorithm per RFC 7518 Section 5.3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "epk",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ephemeral public key for the key exchange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. Per RFC 7518 Section 4.6.1.1, formatted per RFC 7517.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the ephemeral public key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apu",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base-64 URL encoded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PartyUInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Concat KDF.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. Per RFC 7518 Section 4.6.1.2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base-64 URL encoded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PartyVInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Concat KDF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. Per RFC 7518 Section 4.6.1.3, the client uses the value from the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code provides an example of a login response JWE header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"enc\" : \"A256GCM\",",
+            "    \"kid\" : \"d20/VkvmbjLfmi1ufWQqSzzPx+CFHH4N/57Smjk34FE=\",",
+            "    \"epk\" : {",
+            "        \"y\" : \"doNOTncIN5cjSujnX2qiuHOFL-fag2iypIpDXx1eLdo\",",
+            "        \"x\" : \"43ZFsDGBnttfDSiNBbsdmXnj3N9ieZaT0nEsEZHk7eo\",",
+            "        \"kty\" : \"EC\",",
+            "        \"crv\" : \"P-256\"",
+            "    }, ",
+            "    \"apu\" : \"AAAABUFQUExFAAAAQQTjdkWwMYGe218NKI0Fux2ZeePc32J5lpPScSwRkeTt6naDTk53CDeXI0ro519qorhzhS_n2oNosqSKQ18dXi3a\",",
+            "    \"typ\" : \"platformsso-login-response+jwt\",",
+            "    \"alg\" : \"ECDH-ES\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-response-JWE-body",
+          "level": 3,
+          "text": "Create the response JWE body",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IdP creates a successful login response formatted per the OpenID spec, including an ",
+              "type": "text"
+            },
+            {
+              "code": "id_token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "refresh_token",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "refresh_token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the token that the system uses for SSO.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWE response body contains the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "id_token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Base-64 URL encoded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "id_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " JOSE signed by the IdP.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is treated as an opaque value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "refresh_token_expires_in",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time (in seconds) until the refresh token expires. If not present, the system uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_in",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recommended.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "expires_in",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time in seconds until the tokens expire.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required, if ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "refresh_token_expires_in",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t present",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "token_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Bearer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expected, but not verified",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kerberos TGT",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kerberos TGT, if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/kerberosTicketMappings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is defined.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code provides an example of a login response JWE body:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"refresh_token\" : \"AwABA...0t4B4\",",
+            "    \"id_token\" : \"ewogI...lEvVQ\",",
+            "    \"expires_on\" : 1685766415,",
+            "    \"token_type\" : \"Bearer\",",
+            "    \"expires_in\" : 28800,",
+            "    \"refresh_token_expires_in\" : 28800",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-a-failed-response",
+          "level": 3,
+          "text": "Handle a failed response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the response returns a status code other than ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", platform SSO checks whether there’s a credential failure. If the credential is incorrect, the system prompts the user to enter it again. Other errors require another login attempt at a later time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a HTTP response code of ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a credential error. The IdP can optionally specify a predicate to parse a JSON formatted response to determine if the result is a credential error or not, when the response code is ",
+              "type": "text"
+            },
+            {
+              "code": "400",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/invalidCredentialPredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies the predicate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the system can use the predicate ",
+              "type": "text"
+            },
+            {
+              "code": "errorCode = ‘C0000006’ AND suberror = ‘invalid_password’",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the following failed response to match to a credential error:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Cache-Control: no-store, no-cache",
+            "Pragma: no-cache",
+            "Content-Type: application/json; charset=utf-8",
+            "",
+            "{",
+            "    \"errorCode\": \"C0000006\",",
+            "    \"suberror\": \"invalid_password\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-the-Kerberos-mapping",
+          "level": 3,
+          "text": "Use the Kerberos mapping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SSO response from the IdP can optionally include Kerberos ticket-granting tickets (TGTs) for the user. Platform SSO uses the kerberos mapping from the login configuration to import the TGTs into a Kerberos cache and optionally use the TGT with the Kerberos extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Kerberos mapping is an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/kerberosTicketMappings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It indicates the SSO response entries to use for each of the elements, with each ticket being a sub-dictionary of the login response. The mapping entry maps the response JSON entry names for each ticket.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sample provides an example of a login response body:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "",
+            "    \"expires_in\" : 3600,",
+            "    \"expires_on\" : \"1646867283.216107\",",
+            "    \"id_token\" : \"ewogIC...hyI9w\",",
+            "    \"refresh_token\" : \"abcd1234\",",
+            "    \"token_type\" : \"Bearer\",",
+            "    \"login_tgt\" : {",
+            "        \"clientName\" \"foo\",",
+            "        \"encryptionKeyType\" : 18,",
+            "        \"messageBuffer\" : \"a4IGhDCCBoC...h3YEY6IQ==\",",
+            "        \"realm\" : \"EXAMPLE.COM\",",
+            "        \"serviceName\" : \"krbtgt/EXAMPLE.COM\",",
+            "        \"sessionKey\" : \"EjzbGACRvT1WnSeBkQDnvevt7A7/MuGw0oEVAQRZutU=\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the above login response, the Kerberos ticket mapping is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ticketKeyPath",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "login_tgt",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The keypath in the response JSON that uses this set of mappings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "messageBufferKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "messageBuffer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the base-64 encoded kerberos AS-REP string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "realmKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "realm",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the Kerberos Realm string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "serviceNameKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "serviceName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the Kerberos service name string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clientNameKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clientName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the Kerberos client name string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "encryptionKeyTypeKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "encryptionKeyType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the Kerberos session key type number. The value for this key should be the correct encryption type per RFC 3962 Section 7 for the session key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sessionKeyKeyName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sessionKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The key name that contains the Kerberos session key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var mapping = ASAuthorizationProviderExtensionKerberosMapping()",
+            "mapping.ticketKeyPath = \"login_tgt\"",
+            "mapping.clientNameKeyName = \"clientName\"",
+            "mapping.encryptionKeyTypeKeyName = \"encryptionKeyType\"",
+            "mapping.messageBufferKeyName = \"messageBuffer\"",
+            "mapping.realmKeyName = \"realm\"",
+            "mapping.serviceNameKeyName = \"serviceName\"",
+            "mapping.sessionKeyKeyName = \"sessionKey\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the sytem finds all the values, it imports the ticket into a Kerberos cache that the Kerberos extension can use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the Kerberos ticket is from a read-only domain controller (RODC) per MS-KILE Section 3.1.5.8, a refresh request to the key distribution center (KDC) uses the ticket to exchange it for a TGT that contains a privileged attribute certificate (PAC).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping": {
+      "abstract": [
+        {
+          "text": "A set of Kerberos mappings that the system login process uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKerberosMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionKerberosMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionKerberosMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionKerberosMapping",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionkerberosmapping"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/invalidCredentialPredicate": {
+      "abstract": [
+        {
+          "text": "The predicate string that identifies invalid credential errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidCredentialPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/invalidCredentialPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidCredentialPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidCredentialPredicate",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/invalidcredentialpredicate"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/kerberosTicketMappings": {
+      "abstract": [
+        {
+          "text": "The set of ticket mappings the system uses to import Kerberos tickets from the single sign-on token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kerberosTicketMappings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationProviderExtensionKerberosMapping",
+          "text": "ASAuthorizationProviderExtensionKerberosMapping"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/kerberosTicketMappings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kerberosTicketMappings"
+        }
+      ],
+      "role": "symbol",
+      "title": "kerberosTicketMappings",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/kerberosticketmappings"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process": {
+      "abstract": [
+        {
+          "text": "Use a system-supported method to authenticate with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authentication process",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authentication-process"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification": {
+      "abstract": [
+        {
+          "text": "Verify the login request and create a JSON Web Encryption (JWE) response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing encryption verification",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-encryption-verification"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response": {
+      "abstract": [
+        {
+          "text": "Validate the encrypted response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing the JSON Web Encryption (JWE) login response",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/processing-the-json-web-encryption-jwe-login-response"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Login-response",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification"
+      ],
+      "title": "Login response"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Login-response",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/processing-the-json-web-encryption-jwe-login-response",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-encryption-verification"
+              ],
+              "title": "Login response"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1kerberosTicketMappings/title",
+          "value": "kerberosTicketMappings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1kerberosTicketMappings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kerberosTicketMappings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1invalidCredentialPredicate/title",
+          "value": "invalidCredentialPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1invalidCredentialPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidCredentialPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/title",
+          "value": "ASAuthorizationProviderExtensionKerberosMapping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKerberosMapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionKerberosMapping/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionKerberosMapping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/creating-a-json-web-encryption-jwe-login-response"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/creating-a-json-web-encryption-jwe-login-response"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

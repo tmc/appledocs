@@ -1,0 +1,5350 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-12"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "AppKit Release Notes for macOS Monterey 12"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit in macOS Monterey 12 includes new features, as well as API changes and deprecations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 3,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "anchor": "NSButton",
+          "level": 4,
+          "text": "NSButton",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Buttons no longer highlight using the accent color when clicked. Before using any subclass that performs custom drawing, inspect the button cell’s ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/appkit/nscell/1526141-interiorbackgroundstyle",
+                      "type": "text"
+                    },
+                    {
+                      "text": " property to determine if the bezel draws in a normal or emphasized state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Buttons now support custom tinting with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton/bezelColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. This property — previously applied only in the Touch Bar — now functions for all in-window buttons using the ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/appkit/nsbuttontype/nsbuttontypemomentarypushin",
+                      "type": "text"
+                    },
+                    {
+                      "text": " style.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSSlider",
+          "level": 4,
+          "text": "NSSlider",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When clicking on the track, for linear sliders, circular sliders, or dial, the slider now animates to the new value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now tint sliders with colorful track fills using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSlider/trackFillColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. This property now functions for all in-window sliders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSSegmentedControl",
+          "level": 4,
+          "text": "NSSegmentedControl",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Segmented controls now support custom tinting via the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. This property now functions for all in-window segmented control styles that draw colorful selected segments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSPopover",
+          "level": 4,
+          "text": "NSPopover",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPopover",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has a new animation when appearing and dismissing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Symbol-Images",
+          "level": 4,
+          "text": "Symbol Images",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SF Symbols now support layered symbol images. Layered symbol images use an updated data format to annotate each path element of the symbol with a level in a hierarchy: primary, secondary, tertiary, and so on. At draw time, AppKit can assign different colors to each layer of the symbol using new APIs on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Many system-provided symbol images redesigned to include layered versions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now supports merging two configurations with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now includes a read-only property, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", for its current symbol configuration. You can use this property to configure other symbol images to match a reference image, or to merge an image’s existing configuration with a set of new configuration options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Restorable-State",
+          "level": 4,
+          "text": "Restorable State",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To enable secure coding for a restorable state, implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/applicationSupportsSecureRestorableState(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". When opted in:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The system requires classes passed to ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/restorationClass",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " to explicitly conform to ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Set ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "true",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " and the ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " to ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecodingfailurepolicy/nsdecodingfailurepolicyseterrorandreturn",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " for any coder the following implementations or overrides use ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " set to ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecodingfailurepolicy/nsdecodingfailurepolicyseterrorandreturn",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ":",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "items": [
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration/restoreWindow(withIdentifier:state:completionHandler:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/restoreWindow(withIdentifier:state:completionHandler:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:backgroundQueue:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/restoreState(with:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreState(with:)",
+                                      "isActive": true,
+                                      "type": "reference"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "unorderedList"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Additionally, ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restorableStateKeyPaths",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " must only point at ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "NSSecureCoding",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": "-compliant values and you need to implement ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " to specify the type of the object.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSMenu",
+          "level": 4,
+          "text": "NSMenu",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new user preference “Automatically hide and show the menu bar in full screen” in Dock & Menu Bar preferences is enabled by default. In macOS Monterey 12, the user can choose to disable this setting to always show the menu bar in full screen spaces. Standard full screen windows are resized to fit below the menu bar. Some apps assume a full screen-sized window, and don’t work well with this setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSTableView",
+          "level": 4,
+          "text": "NSTableView",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "20-point spacing precedes each group row to make the separation between sections more visible. Source lists have a similar, but smaller, 13-point spacing. This applies to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/inset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/fullWidth",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " effective styles in apps linked against the macOS 12 SDK. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/plain",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " doesn’t display the spacing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The floating group row transition — previously a push transition — instantly replaces the new floating group row. It occurs when the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x-height",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the group row’s label meets the bottom of a currently floating group row.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSOutlineView",
+          "level": 4,
+          "text": "NSOutlineView",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The disclosure button now aligns with the cell view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/firstBaselineOffsetFromTop",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The system overrides it in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableCellView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " so it matches the baseline of its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableCellView/textField",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (assuming ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textfield",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " sets the baseline). Overriding the property and returning ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " reverts to the previous behavior.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When collapsing several items, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOutlineView/selectionDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " only posts once. Previously, it posted once per collapsed item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSOpenPanel",
+          "level": 4,
+          "text": "NSOpenPanel",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Setting ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel/canChooseFiles",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " automatically disabled files, but all of the directory contents were sent to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenSavePanelDelegate/panel(_:shouldEnable:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1539030-panel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". In macOS Monterey 12, files aren’t sent to the delegate methods unless ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "canChooseFiles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". In addition, file packages are excluded unless ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "treatsFilePackagesAsDirectoriesis",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This change allows optimization in the delegate method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "TextKit-2",
+          "level": 4,
+          "text": "TextKit 2",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TextKit 2 introduces a new text layout engine and its associated API. You can use TextKit 2  alongside the existing ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/textkit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextContentStorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are the two main controller objects superseding ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextStorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " respectively. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextParagraph",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " managed by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextContentStorage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " represents a paragraph of text. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLayoutManager",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " stores the layout information in its model objects: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutFragment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLineFragment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In TextKit 2, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextSelection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " encapsulates information associated with a text selection while ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextSelectionNavigation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " manipulates and converts the selection object based on keyboard and mouse navigation actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/restoreWindow(withIdentifier:state:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Invoked to request that a window be restored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreWindow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+          "text": "NSUserInterfaceItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/restoreWindow(withIdentifier:state:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreWindow(withIdentifier:state:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/restoreWindow(withIdentifier:state:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/applicationSupportsSecureRestorableState(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates if the app supports secure state restoration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationSupportsSecureRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "app"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/applicationSupportsSecureRestorableState(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationSupportsSecureRestorableState(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/applicationSupportsSecureRestorableState(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSButton/bezelColor": {
+      "abstract": [
+        {
+          "text": "The color of the button’s bezel, in appearances that support it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bezelColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton/bezelColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bezelColor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSButton/bezelColor"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)": {
+      "abstract": [
+        {
+          "text": "Returns the classes that support secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedClasses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRestorableStateKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedClasses(forRestorableStateKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Saves the interface-related state of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/encodeRestorableState(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)": {
+      "abstract": [
+        {
+          "text": "Saves the interface-related state of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundQueue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRestorableState(with:backgroundQueue:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/restorableStateKeyPaths": {
+      "abstract": [
+        {
+          "text": "Returns an array of key paths that represent the restorable attributes of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorableStateKeyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restorableStateKeyPaths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restorableStateKeyPaths",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/restorableStateKeyPaths"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreState(with:)": {
+      "abstract": [
+        {
+          "text": "Restores the interface-related state of the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreState(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreState(with:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/restoreState(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Restores a window that was associated with a document, after that document is reopened.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreWindow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+          "text": "NSUserInterfaceItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreWindow(withIdentifier:state:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that contains the specific font, style, and weight attributes to apply to a symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage.SymbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage/SymbolConfiguration-swift.class"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutManager": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the layout and display of text characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLayoutManager",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutManager"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel/canChooseFiles": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the user can choose files in the panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canChooseFiles"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel/canChooseFiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canChooseFiles",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSOpenPanel/canChooseFiles"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSOpenSavePanelDelegate/panel(_:shouldEnable:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether the specified URL should be enabled in the Open panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "panel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldEnable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenSavePanelDelegate/panel(_:shouldEnable:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "panel(_:shouldEnable:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSOpenSavePanelDelegate/panel(_:shouldEnable:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSOutlineView/selectionDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted after the outline view’s selection changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOutlineView/selectionDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectionDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSOutlineView/selectionDidChangeNotification"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSPopover": {
+      "abstract": [
+        {
+          "text": "A means to display additional content related to existing content on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPopover"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPopover",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPopover",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSPopover"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Saves the interface-related state of the responder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSResponder/encodeRestorableState(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:backgroundQueue:)": {
+      "abstract": [
+        {
+          "text": "Saves the interface-related state of the responder to a keyed archiver either synchronously or asynchronously on the given operation queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundQueue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/encodeRestorableState(with:backgroundQueue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRestorableState(with:backgroundQueue:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSResponder/encodeRestorableState(with:backgroundQueue:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSResponder/restoreState(with:)": {
+      "abstract": [
+        {
+          "text": "Restores the interface-related state of the responder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder/restoreState(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreState(with:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSResponder/restoreState(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor": {
+      "abstract": [
+        {
+          "text": "The color of the selected segment’s bezel, in appearances that support it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedSegmentBezelColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedSegmentBezelColor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSSlider/trackFillColor": {
+      "abstract": [
+        {
+          "text": "The color of the filled portion of the slider track, in appearances that support it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackFillColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSlider/trackFillColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackFillColor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSlider/trackFillColor"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableCellView": {
+      "abstract": [
+        {
+          "text": "A reusable container view shown for a particular cell in a table view that uses rows for content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableCellView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableCellView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableCellView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableCellView"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableCellView/textField": {
+      "abstract": [
+        {
+          "text": "Text displayed by the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@IBOutlet"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "unowned(unsafe)"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextField",
+          "text": "NSTextField"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableCellView/textField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textField",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableCellView/textField"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/fullWidth": {
+      "abstract": [
+        {
+          "text": "The table view style resolves to a full-width style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullWidth"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/fullWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableView.Style.fullWidth",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableView/Style-swift.enum/fullWidth"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/inset": {
+      "abstract": [
+        {
+          "text": "The table view style resolves to an inset style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/inset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableView.Style.inset",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableView/Style-swift.enum/inset"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/plain": {
+      "abstract": [
+        {
+          "text": "The table view style resolves to a plain style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "plain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView/Style-swift.enum/plain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableView.Style.plain",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableView/Style-swift.enum/plain"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTextStorage": {
+      "abstract": [
+        {
+          "text": "The fundamental storage mechanism of TextKit that contains the text managed by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextStorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextStorage",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextStorage"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/firstBaselineOffsetFromTop": {
+      "abstract": [
+        {
+          "text": "The distance (in points) between the top of the view’s alignment rectangle and its topmost baseline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstBaselineOffsetFromTop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/firstBaselineOffsetFromTop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstBaselineOffsetFromTop",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/firstBaselineOffsetFromTop"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/restorationClass": {
+      "abstract": [
+        {
+          "text": "The restoration class associated with the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationClass"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSWindowRestoration",
+          "text": "NSWindowRestoration"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/restorationClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restorationClass",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/restorationClass"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration": {
+      "abstract": [
+        {
+          "text": "A set of methods that restoration classes must implement to handle the recreation of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowRestoration"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindowRestoration",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowRestoration"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration/restoreWindow(withIdentifier:state:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the class to provide a new window for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreWindow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+          "text": "NSUserInterfaceItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowRestoration/restoreWindow(withIdentifier:state:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreWindow(withIdentifier:state:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowRestoration/restoreWindow(withIdentifier:state:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/textkit",
+      "kind": "article",
+      "role": "article",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/AppKit/textkit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextContentStorage": {
+      "abstract": [
+        {
+          "text": "A concrete object for managing your view’s text content and generating the text elements necessary for layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContentStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextContentStorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextContentStorage",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextContentStorage"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutFragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextLayoutFragment",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextLayoutFragment"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutManager": {
+      "abstract": [
+        {
+          "text": "The primary class that you use to manage text layout and presentation for custom text displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLayoutManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextLayoutManager",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextLayoutManager"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextLineFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLineFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextLineFragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextLineFragment",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextLineFragment"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextParagraph": {
+      "abstract": [
+        {
+          "text": "A class that represents a single paragraph backed by an attributed string as the contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextParagraph"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextParagraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextParagraph",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextParagraph"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextSelection": {
+      "abstract": [
+        {
+          "text": "A class that represents a single logical selection context that corresponds to an insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextSelection",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextSelection"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/NSTextSelectionNavigation": {
+      "abstract": [
+        {
+          "text": "An interface you use to expose methods for obtaining results from actions performed on text selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextSelectionNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/NSTextSelectionNavigation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextSelectionNavigation",
+      "type": "topic",
+      "url": "/documentation/UIKit/NSTextSelectionNavigation"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a configuration object that applies the specified configuration values on top of the current object’s values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applying"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "otherConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageConfiguration",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applying(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage/Configuration-swift.class/applying(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding": {
+      "abstract": [
+        {
+          "text": "Indicates whether the archiver requires all archived classes to resist object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409845-requiressecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409845-requiressecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "The action the coder should take when decoding fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodingFailurePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecodingfailurepolicy/nsdecodingfailurepolicyseterrorandreturn": {
+      "abstract": [
+        {
+          "text": "A failure policy that directs the coder to capture the failure as an error object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecodingfailurepolicy/nsdecodingfailurepolicyseterrorandreturn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecodingFailurePolicySetErrorAndReturn",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecodingfailurepolicy/nsdecodingfailurepolicyseterrorandreturn"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1539030-panel": {
+      "abstract": [
+        {
+          "text": "Gives the delegate the opportunity to filter items that it doesn’t want the user to choose.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1539030-panel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "panel:shouldShowFilename:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1539030-panel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/title",
+          "value": "NSImageSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:backgroundQueue:)/title",
+          "value": "encodeRestorableStateWithCoder:backgroundQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:backgroundQueue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "backgroundQueue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+              "text": "NSOperationQueue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOutlineView~1selectionDidChangeNotification/title",
+          "value": "NSOutlineViewSelectionDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOutlineView~1selectionDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSOutlineViewSelectionDidChangeNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextParagraph/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextParagraph"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSTextElement",
+              "text": "NSTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSButton~1bezelColor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSColor",
+              "text": "NSColor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "bezelColor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1encodeRestorableState(with:)/title",
+          "value": "encodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1encodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextLayoutFragment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutFragment"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextLineFragment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextLineFragment"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1Configuration-swift.class~1applying(_:)/title",
+          "value": "configurationByApplyingConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1Configuration-swift.class~1applying(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationByApplyingConfiguration:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImageConfiguration",
+              "text": "UIImageConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "otherConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableCellView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTableCellView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1plain/title",
+          "value": "NSTableViewStylePlain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1plain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewStylePlain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1restorationClass/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:QOobjc(pl)NSWindowRestoration",
+              "text": "Class<NSWindowRestoration>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorationClass"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1encodeRestorableState(with:backgroundQueue:)/title",
+          "value": "encodeRestorableStateWithCoder:backgroundQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1encodeRestorableState(with:backgroundQueue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "backgroundQueue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+              "text": "NSOperationQueue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSSlider~1trackFillColor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSColor",
+              "text": "NSColor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "trackFillColor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1restoreWindow(withIdentifier:state:completionHandler:)/title",
+          "value": "restoreWindowWithIdentifier:state:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1restoreWindow(withIdentifier:state:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreWindowWithIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+              "text": "NSUserInterfaceItemIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "state:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "state"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSWindow",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1inset/title",
+          "value": "NSTableViewStyleInset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1inset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewStyleInset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableCellView~1textField/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSTextField",
+              "text": "NSTextField"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1restoreState(with:)/title",
+          "value": "restoreStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1restoreState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1restorableStateKeyPaths/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorableStateKeyPaths"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOpenPanel~1canChooseFiles/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "canChooseFiles"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextContentStorage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextContentStorage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSTextContentManager",
+              "text": "NSTextContentManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOpenSavePanelDelegate~1panel(_:shouldEnable:)/title",
+          "value": "panel:shouldEnableURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOpenSavePanelDelegate~1panel(_:shouldEnable:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "panel:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldEnableURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextSelectionNavigation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextSelectionNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:)/title",
+          "value": "encodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1encodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1restoreWindow(withIdentifier:state:completionHandler:)/title",
+          "value": "restoreDocumentWindowWithIdentifier:state:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1restoreWindow(withIdentifier:state:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreDocumentWindowWithIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+              "text": "NSUserInterfaceItemIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "state:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "state"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSWindow",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextStorage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMutableAttributedString",
+              "text": "NSMutableAttributedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowRestoration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindowRestoration"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextSelection/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextSelection"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1fullWidth/title",
+          "value": "NSTableViewStyleFullWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView~1Style-swift.enum~1fullWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewStyleFullWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1NSTextLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1restoreState(with:)/title",
+          "value": "restoreStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder~1restoreState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreStateWithCoder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowRestoration~1restoreWindow(withIdentifier:state:completionHandler:)/title",
+          "value": "restoreWindowWithIdentifier:state:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowRestoration~1restoreWindow(withIdentifier:state:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreWindowWithIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUserInterfaceItemIdentifier",
+              "text": "NSUserInterfaceItemIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "state:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "state"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSWindow",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1applicationSupportsSecureRestorableState(_:)/title",
+          "value": "applicationSupportsSecureRestorableState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1applicationSupportsSecureRestorableState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationSupportsSecureRestorableState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "app"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1firstBaselineOffsetFromTop/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "firstBaselineOffsetFromTop"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSPopover/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPopover"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSSegmentedControl~1selectedSegmentBezelColor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSColor",
+              "text": "NSColor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedSegmentBezelColor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1allowedClasses(forRestorableStateKeyPath:)/title",
+          "value": "allowedClassesForRestorableStateKeyPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDocument~1allowedClasses(forRestorableStateKeyPath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<Class>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowedClassesForRestorableStateKeyPath:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keyPath"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdecodingfailurepolicy~1nsdecodingfailurepolicyseterrorandreturn/title",
+          "value": "NSCoder.DecodingFailurePolicy.setErrorAndReturn"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdecodingfailurepolicy~1nsdecodingfailurepolicyseterrorandreturn/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "case "
+            },
+            {
+              "kind": "identifier",
+              "text": "setErrorAndReturn"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

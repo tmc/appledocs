@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "Incorporate HealthKit State of Mind into your app and visualize the data in visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/visualizing-healthkit-state-of-mind-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.1",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Visualizing HealthKit State of Mind in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10083: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10083",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and session 10109: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10109",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the developer team for the project target to let Xcode automatically manage the provisioning profile. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "7227217a75ce/VisualizingHealthKitStateOfMindInVisionOS.zip": {
+      "checksum": "7227217a75ce8cd664ecb67311d4f6645cbdfca7447004339324bd11c5401ca9b7d395645f7aa826cb9effc63035f3c645c31367bcde45aa08a3954fdc3550e1",
+      "identifier": "7227217a75ce/VisualizingHealthKitStateOfMindInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7227217a75ce/VisualizingHealthKitStateOfMindInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore": {
+      "abstract": [
+        {
+          "text": "The access point for all data managed by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app": {
+      "abstract": [
+        {
+          "text": "Create a health app that allows a clinical care team to send and receive mobility data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Mobility Health App",
+      "type": "topic",
+      "url": "/documentation/healthkit/creating-a-mobility-health-app"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/data-types": {
+      "abstract": [
+        {
+          "text": "Specify the kind of data used in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data types",
+      "type": "topic",
+      "url": "/documentation/healthkit/data-types"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/queries": {
+      "abstract": [
+        {
+          "text": "Query health and fitness data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit": {
+      "abstract": [
+        {
+          "text": "Use queries to request sample data from HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading data from HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/reading-data-from-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/samples": {
+      "abstract": [
+        {
+          "text": "Create and save health and fitness samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/samples"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit": {
+      "abstract": [
+        {
+          "text": "Create and share HealthKit samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving data to HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/saving-data-to-healthkit"
+    },
+    "https://developer.apple.com/wwdc24/10083": {
+      "identifier": "https://developer.apple.com/wwdc24/10083",
+      "title": "Get started with HealthKit in visionOS",
+      "titleInlineContent": [
+        {
+          "text": "Get started with HealthKit in visionOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10083"
+    },
+    "https://developer.apple.com/wwdc24/10109": {
+      "identifier": "https://developer.apple.com/wwdc24/10109",
+      "title": "Explore wellbeing APIs in HealthKit",
+      "titleInlineContent": [
+        {
+          "text": "Explore wellbeing APIs in HealthKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10109"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "Assign a project to a team",
+      "titleInlineContent": [
+        {
+          "text": "Assign a project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "7227217a75ce/VisualizingHealthKitStateOfMindInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Health-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/saving-data-to-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/reading-data-from-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+        "doc://com.apple.healthkit/documentation/HealthKit/creating-a-mobility-health-app",
+        "doc://com.apple.healthkit/documentation/HealthKit/data-types",
+        "doc://com.apple.healthkit/documentation/HealthKit/samples",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries"
+      ],
+      "title": "Health data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/title",
+          "value": "HKHealthStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

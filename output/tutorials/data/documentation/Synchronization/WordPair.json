@@ -1,0 +1,1094 @@
+{
+  "abstract": [
+    {
+      "text": "A pair of two word sized ",
+      "type": "text"
+    },
+    {
+      "code": "UInt",
+      "type": "codeVoice"
+    },
+    {
+      "text": "s.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Synchronization/WordPair"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15Synchronization8WordPairV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WordPair"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Synchronization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WordPair"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "WordPair"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WordPair"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This type’s primary purpose is to be used in double wide atomic operations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On platforms that support it, atomic operations on ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are done in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "single operation for two words. Users can use this type as itself when used",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on ",
+              "type": "text"
+            },
+            {
+              "code": "Atomic",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or it could be used as an intermediate step for custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types that are also double wide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let atomicPair = Atomic<WordPair>(WordPair(first: 0, second: 0))",
+            "atomicPair.store(WordPair(first: someVersion, second: .max), ordering: .relaxed)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When used as an intermediate step for custom ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is critical that their ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " be equal to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair.AtomicRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GridPoint {",
+            "  var x: Int",
+            "  var y: Int",
+            "}",
+            "",
+            "extension GridPoint: AtomicRepresentable {",
+            "  typealias AtomicRepresentation = WordPair.AtomicRepresentation",
+            "",
+            "  ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This type only conforms to ",
+                  "type": "text"
+                },
+                {
+                  "code": "AtomicRepresentable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on platforms that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "support double wide atomics.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/swift/bitwisecopyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization": {
+      "abstract": [
+        {
+          "text": "Build synchronization constructs using low-level, primitive operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Synchronization",
+      "type": "topic",
+      "url": "/documentation/synchronization"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/Atomic": {
+      "abstract": [
+        {
+          "text": "An atomic value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "role": "symbol",
+      "title": "Atomic",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomic"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference": {
+      "abstract": [
+        {
+          "text": "A lazily initializable atomic strong reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicLazyReference",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable": {
+      "abstract": [
+        {
+          "text": "An atomic value that also supports atomic operations when wrapped",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in an ",
+          "type": "text"
+        },
+        {
+          "code": "Optional",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Atomic optional representable types come with a standalone",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomic representation for their optional-wrapped variants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicOptionalRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicoptionalrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair": {
+      "abstract": [
+        {
+          "text": "A pair of two word sized ",
+          "type": "text"
+        },
+        {
+          "code": "UInt",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "role": "symbol",
+      "title": "WordPair",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/AtomicRepresentable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/AtomicRepresentable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AtomicRepresentable Implementations",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/atomicrepresentable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/first": {
+      "abstract": [
+        {
+          "text": "The first element in this word pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "first"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/first",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "first",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/first"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/init(first:second:)": {
+      "abstract": [
+        {
+          "text": "Initialize a new ",
+          "type": "text"
+        },
+        {
+          "code": "WordPair",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value given both individual words.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "first"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "second"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/init(first:second:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(first:second:)",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/init(first:second:)"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair/second": {
+      "abstract": [
+        {
+          "text": "The second element in this word pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "second"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair/second",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "second",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair/second"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Atomic-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable"
+      ],
+      "title": "Atomic Values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/init(first:second:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/first",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/second"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/AtomicRepresentable-Implementations",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/CustomStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/synchronization/wordpair"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

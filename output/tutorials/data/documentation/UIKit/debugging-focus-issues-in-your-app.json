@@ -1,0 +1,371 @@
+{
+  "abstract": [
+    {
+      "text": "Find errors and determine why the next focused item isn’t what you expected.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/debugging-focus-issues-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging focus issues in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the use of indirect controls for your tvOS app, it’s imperative that focus works correctly. To help you find focus problems, Apple provides two debugging tools: ",
+              "type": "text"
+            },
+            {
+              "code": "UIFocusLoggingEnabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Turn-on-live-focus-logging",
+          "level": 3,
+          "text": "Turn on live focus logging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See how the focus engine determines which view is currently in focus by turning on live focus logging. As the user moves focus, the log updates, showing how the new view came into focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Xcode project, select Edit Scheme and add ",
+              "type": "text"
+            },
+            {
+              "code": "-UIFocusLoggingEnabled YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the Arguments Passed On Launch section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2943321",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On launch, all focus events are logged and displayed in the Xcode console and the Console app. Logs are updated as focus changes in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2943322",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-focus-issues-using-UIFocusDebugger",
+          "level": 3,
+          "text": "Find focus issues using UIFocusDebugger",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class contains several methods to help you find focus issues. You don’t use this class or its methods directly from your code. Instead, during a debugging session, you call the methods of this class from the LLDB debugger command line to obtain information about the state of the focus system. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "po UIFocusDebugger.status()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns the state of the focus engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger": {
+      "abstract": [
+        {
+          "text": "A runtime object for debugging focus-related interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusDebugger"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusDebugger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusDebugger",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusdebugger"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "media-2943321": {
+      "alt": "Screenshot that shows adding the UIFocusLoggingEnabled argument in Xcode.",
+      "identifier": "media-2943321",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecccfd25c9772a507c94811523b9e6c1/media-2943321@2x.png"
+        }
+      ]
+    },
+    "media-2943322": {
+      "alt": "Screenshot of focus debugging logs.",
+      "identifier": "media-2943322",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78442c22f5de2124f3ff4cd105846f19/media-2943322@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Focus-debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger"
+      ],
+      "title": "Focus debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Focus-debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusDebugger"
+              ],
+              "title": "Focus debugging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusDebugger/title",
+          "value": "UIFocusDebugger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusDebugger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusDebugger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusDebugger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusDebugger"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/debugging-focus-issues-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/debugging-focus-issues-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

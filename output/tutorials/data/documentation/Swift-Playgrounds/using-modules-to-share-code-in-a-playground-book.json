@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "In Swift Playgrounds 3.0 and later, make code available across multiple chapters to teach the value of reusable code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Modules to Share Code in a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Where you place the code in a book determines its visibilty to other parts of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "book. For example, the code in the ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file on a page isn’t visible to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rest of the book. If your book contains multiple pages or chapters that require access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a shared codebase, place the code in a module. The following screenshot shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files from multiple modules open across several tabs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "using-modules-to-share-code-in-a-playground-book-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By sharing code throughout your book, you provide consistent APIs that teach a common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-Code-with-Modules",
+          "level": 3,
+          "text": "Share Code with Modules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modules are folders of Swift code that you use to define APIs for learners to use,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while also implementing functionality for your pages’ live views. There are two kinds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of modules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Private Modules: Code that learners don’t need to inspect or edit. Public APIs",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and documentation you define in these modules, however, are still available to learners.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Place these modules in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".playgroundbook/Contents/Modules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-Editable Modules: Use when the code is part of the instructive content of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your book. For example, you might teach the value of code reuse by having learners",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "leverage their code from previous chapters in the solution to a problem in a subsequent",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "chapter. Place these modules in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".playgroundbook/Contents/UserModules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place each module in the Modules or UserModules directory in a new directory that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ends with the suffix ",
+              "type": "text"
+            },
+            {
+              "code": ".playgroundmodule",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Place module source code in a directory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "named Sources within the ",
+              "type": "text"
+            },
+            {
+              "code": ".playgroundmodule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. For example, to define a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user-editable module named Statistics, place code in a path such as ",
+              "type": "text"
+            },
+            {
+              "code": "UserModules/Statistics.playgroundmodule/Sources/MyStatisticsAPIs.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Module names must be valid Swift identifiers, so the ",
+              "type": "text"
+            },
+            {
+              "code": ".playgroundmodule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name can’t include invalid character sequences, like spaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re writing a book that targets a version of the Swift Playgrounds",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "book format earlier than 6.0, modules are unavailable. Instead, add code in a directory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "named Sources that’s adjacent to the PublicResources or PrivateResources directory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in a book, chapter, or page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a folder with a manifest that describes the chapter’s name and page order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Chapter to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-chapter-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and cutscene metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Cutscene to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-cutscene-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and a content file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Page to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-page-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Reuse common assets throughout a book to reduce its size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing Resources in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/sharing-resources-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Add content to a playground book by creating new folders and property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring Content for Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "using-modules-to-share-code-in-a-playground-book-1": {
+      "alt": "A screenshot showing the tabbed interface learners use to switch between files opened from multiple modules. Three tabs are open: main.swift, SharedCode, and AnotherModule. SharedCode is the active tab.",
+      "identifier": "using-modules-to-share-code-in-a-playground-book-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d1040d9c30eca8c7783b286c05955df/using-modules-to-share-code-in-a-playground-book-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8fade56ceb5697cc8c5b36304f387888/using-modules-to-share-code-in-a-playground-book-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Book-Structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book"
+      ],
+      "title": "Book Structure"
+    }
+  ]
+}

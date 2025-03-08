@@ -1,0 +1,2059 @@
+{
+  "abstract": [
+    {
+      "text": "Display nested views using a configurable and highly customizable layout.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/collection-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Collection views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A collection view manages an ordered set of content, such as the grid of photos in the Photos app, and presents it visually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3866672",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collection views are a collaboration between many different objects, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cells. A cell provides the visual representation for each piece of your content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Layouts. A layout defines the visual arrangement of the content in the collection view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your data source object. This object adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and provides the data for the collection view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your delegate object. This object adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and manages user interactions with the collection view’s contents, like selection and highlighting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Collection view controller. You typically use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to manage a collection view. You can use other view controllers too, but a collection view controller is required for some collection-related features to work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios": {
+      "abstract": [
+        {
+          "text": "Add auto layout constraints to your app to achieve localizable views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Autosizing Views for Localization in iOS",
+      "type": "topic",
+      "url": "/documentation/xcode/autosizing_views_for_localization_in_ios"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a layout section at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectionsnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a layout section at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectionsnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView": {
+      "abstract": [
+        {
+          "text": "A view that defines the behavior for all cells and supplementary views presented by a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionReusableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionReusableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionReusableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionreusableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView": {
+      "abstract": [
+        {
+          "text": "An object that manages an ordered collection of data items and presents them using customizable layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell": {
+      "abstract": [
+        {
+          "text": "A single data item when that item is within the collection view’s visible bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching": {
+      "abstract": [
+        {
+          "text": "A protocol that provides advance warning of the data requirements for a collection view, allowing the triggering of asynchronous data load operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage user interactions with items in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDragDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for initiating drags from a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDragDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDragDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDragDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDragDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdragdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropCoordinator": {
+      "abstract": [
+        {
+          "text": "An interface for coordinating your custom drop-related actions with the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropCoordinator",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropcoordinator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for handling drops in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropItem": {
+      "abstract": [
+        {
+          "text": "The data associated with an item being dropped into the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholder": {
+      "abstract": [
+        {
+          "text": "A placeholder for an item dropped on a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropPlaceholder",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropplaceholder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholderContext": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a placeholder in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropPlaceholderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholderContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropPlaceholderContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropPlaceholderContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropplaceholdercontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropProposal": {
+      "abstract": [
+        {
+          "text": "Your proposed solution for handling a drop in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropProposal"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropProposal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDropProposal"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDropProposal",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdropproposal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell": {
+      "abstract": [
+        {
+          "text": "A collection view cell that provides list features and default styling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewListCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlistcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewPlaceholder": {
+      "abstract": [
+        {
+          "text": "A placeholder for an item dragged or dropped on a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewPlaceholder",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewplaceholder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating": {
+      "abstract": [
+        {
+          "text": "An advanced interface for managing a data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDataSourceTranslating",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatasourcetranslating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollView": {
+      "abstract": [
+        {
+          "text": "A view that allows the scrolling and zooming of its contained views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScrollView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/uikit/uistackview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views": {
+      "abstract": [
+        {
+          "text": "Improve the performance of lists and collections in your app with prefetching and image preparation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building high-performance lists and collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/building-high-performance-lists-and-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/changing-the-appearance-of-selected-and-highlighted-cells": {
+      "abstract": [
+        {
+          "text": "Provide visual feedback to the user about the state of a cell and the transition between states.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/changing-the-appearance-of-selected-and-highlighted-cells",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Changing the appearance of selected and highlighted cells",
+      "type": "topic",
+      "url": "/documentation/uikit/changing-the-appearance-of-selected-and-highlighted-cells"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views": {
+      "abstract": [
+        {
+          "text": "Bring compositional layouts to your app and simplify updating your user interface with diffable data sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing modern collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-modern-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/layouts": {
+      "abstract": [
+        {
+          "text": "Arrange your collection view content in a highly configurable layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/layouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layouts",
+      "type": "topic",
+      "url": "/documentation/uikit/layouts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture": {
+      "abstract": [
+        {
+          "text": "Accelerate user selection of multiple items using the multiselect gesture on table and collection views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting multiple items with a two-finger pan gesture",
+      "type": "topic",
+      "url": "/documentation/uikit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-collection-views": {
+      "abstract": [
+        {
+          "text": "Initiate drags and handle drops from a collection view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-collection-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Drag and Drop in Collection Views",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-drag-and-drop-in-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources": {
+      "abstract": [
+        {
+          "text": "Streamline the display and update of data in a collection view using a diffable data source that contains identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating collection views using diffable data sources",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-collection-views-using-diffable-data-sources"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "media-3866672": {
+      "alt": "Screenshot of the Photos app on iOS showing a grid of photos displayed in the Days view.",
+      "identifier": "media-3866672",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/20c46592ad145ab9e4609432a252fa3b/media-3866672@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25db740bf44081b87dce87bbaec66a11/media-3866672~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+        "doc://com.apple.uikit/documentation/UIKit/table-views",
+        "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+      ],
+      "title": "Container views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "View",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController"
+      ],
+      "title": "View"
+    },
+    {
+      "anchor": "Data",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources",
+        "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+      ],
+      "title": "Data"
+    },
+    {
+      "anchor": "Cells",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView"
+      ],
+      "title": "Cells"
+    },
+    {
+      "anchor": "Layouts",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/layouts"
+      ],
+      "title": "Layouts"
+    },
+    {
+      "anchor": "Selection-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/changing-the-appearance-of-selected-and-highlighted-cells",
+        "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+      ],
+      "title": "Selection management"
+    },
+    {
+      "anchor": "Drag-and-drop",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDragDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropCoordinator",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholder",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropProposal",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropItem",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholderContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewPlaceholder"
+      ],
+      "title": "Drag and drop"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "View",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController"
+              ],
+              "title": "View"
+            },
+            {
+              "anchor": "Data",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources",
+                "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference",
+                "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+              ],
+              "title": "Data"
+            },
+            {
+              "anchor": "Cells",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView"
+              ],
+              "title": "Cells"
+            },
+            {
+              "anchor": "Layouts",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/layouts"
+              ],
+              "title": "Layouts"
+            },
+            {
+              "anchor": "Selection-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/changing-the-appearance-of-selected-and-highlighted-cells",
+                "doc://com.apple.uikit/documentation/UIKit/selecting-multiple-items-with-a-two-finger-pan-gesture"
+              ],
+              "title": "Selection management"
+            },
+            {
+              "anchor": "Drag-and-drop",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDragDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropCoordinator",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholder",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropProposal",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropItem",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDropPlaceholderContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewPlaceholder"
+              ],
+              "title": "Drag and drop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/table-views",
+                "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+                "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+              ],
+              "title": "Container views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDragDelegate/title",
+          "value": "UICollectionViewDragDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDragDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDragDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDragDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/title",
+          "value": "UICollectionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/title",
+          "value": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/title",
+          "value": "UICollectionViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/title",
+          "value": "UICollectionViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/title",
+          "value": "NSDiffableDataSourceSectionSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSectionSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSectionSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropCoordinator/title",
+          "value": "UICollectionViewDropCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/title",
+          "value": "UICollectionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholderContext/title",
+          "value": "UICollectionViewDropPlaceholderContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholderContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropPlaceholderContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholderContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropPlaceholderContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/title",
+          "value": "UICollectionViewListCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/title",
+          "value": "UICollectionViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropItem/title",
+          "value": "UICollectionViewDropItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/title",
+          "value": "UICollectionReusableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionReusableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionReusableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewPlaceholder/title",
+          "value": "UICollectionViewPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropProposal/title",
+          "value": "UICollectionViewDropProposal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropProposal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropProposal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/title",
+          "value": "UIDataSourceTranslating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropDelegate/title",
+          "value": "UICollectionViewDropDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/title",
+          "value": "UICollectionViewDataSourcePrefetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/title",
+          "value": "UICollectionViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/title",
+          "value": "UIScrollView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholder/title",
+          "value": "UICollectionViewDropPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDropPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDropPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/title",
+          "value": "UIStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/collection-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/collection-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

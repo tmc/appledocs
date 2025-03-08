@@ -1,0 +1,790 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "to maximize memory efficiency.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Reducing your app’s memory use"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory (RAM) on a device is a limited resource that’s shared by apps, operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system processes, and the kernel. iOS has techniques for satisfying the various demands",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on memory, but these techniques come at the expense of speed and responsiveness.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, iOS might transfer a memory-intensive app to solid-state storage when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app is running in the background. The app then incurs a delay when coming back",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the foreground or attempting to run a background task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is using too much memory, iOS sends it a warning. You get notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of such warnings in the form of a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "crash report",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This report, with an ",
+              "type": "text"
+            },
+            {
+              "code": "EXC_RESOURCE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception type and ",
+              "type": "text"
+            },
+            {
+              "code": "MEMORY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subtype, indicates that the app has approached its memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "limit. It doesn’t mean that iOS has terminated the app, only that it has detected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a memory-use problem. The memory limit that triggers the exception depends on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "device, and once an app exceeds this limit, iOS terminates it. If the app is terminated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when it’s in the foreground, the user sees it disappear. The next time the user opens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app, it launches from the beginning, which takes longer than resuming from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the device shares memory between apps and iOS processes, one app using too",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "much memory can compromise the user experience across the whole device. Limiting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the amount of memory an app uses can benefit users even when they’re using other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-memory-use-metrics",
+          "level": 3,
+          "text": "Understand memory-use metrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode Organizer and MetricKit each provide two metrics about memory use in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. The first metric is peak memory use, which is the highest memory use observed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in any of the samples taken. iOS collects this metric by sampling the app’s memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use periodically throughout the day. The second metric is memory use observed on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suspension, measured when the app enters the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS measures memory use as the number of memory pages in use multiplied by page size,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is typically 16 KB. Writing a single byte to allocated memory can increase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory use by 16 KB if iOS must allocate a new page to store that byte.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reducing-your-app-s-memory-use-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data structures defined in the app’s executable or linked libraries and frameworks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contribute to the memory-use metric. Memory that the app allocates at runtime doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initially contribute to this metric. Such memory is “clean,” and iOS doesn’t need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to dedicate physical RAM to store it. When the app writes to the allocated memory,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it becomes “dirty,” and iOS dedicates RAM to storing its content, as shown in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "illustration below. Dirty memory contributes to the memory-use metric.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "reducing-your-app-s-memory-use-allocated.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "reducing-your-app-s-memory-use-written.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "View-data-on-memory-use",
+          "level": 3,
+          "text": "View data on memory use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "View your app’s memory use in the Memory pane of the Xcode Organizer window or by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reducing-your-app-s-memory-use-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Memory pane shows information for peak memory in the top graph and memory at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suspension on the bottom. Filter the information by device type and by typical memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used (50th percentile) or top memory used (90th percentile), using the two menus",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the top right corner, to find possible problem areas. Compare the memory use of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current release with a previous one by clicking on bar in the graph for the desired",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "release.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use": {
+      "abstract": [
+        {
+          "text": "Identify memory-use inefficiencies by measuring and profiling your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering information about memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/gathering-information-about-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use": {
+      "abstract": [
+        {
+          "text": "Decrease your app’s use of memory by addressing common causes of excessive use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Making changes to reduce memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/making-changes-to-reduce-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions": {
+      "abstract": [
+        {
+          "text": "Measure the memory that your app’s features use, and detect increases by using XCTest",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "performance tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing memory-use regressions",
+      "type": "topic",
+      "url": "/documentation/xcode/preventing-memory-use-regressions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size": {
+      "abstract": [
+        {
+          "text": "Measure your app’s size, optimize its assets and settings, and adopt technologies",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that help streamline installation over a mobile internet connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s size",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-size"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings": {
+      "abstract": [
+        {
+          "text": "Detect when your app is using excessive memory, and bring memory use under control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to low-memory warnings",
+      "type": "topic",
+      "url": "/documentation/xcode/responding-to-low-memory-warnings"
+    },
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "reducing-your-app-s-memory-use-1": {
+      "alt": "Illustration showing memory in use by an app. ",
+      "identifier": "reducing-your-app-s-memory-use-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/621214505d63f4ac2ff1ab13f524e5b0/reducing-your-app-s-memory-use-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcf68311f16abb1094e9a1699208a0e9/reducing-your-app-s-memory-use-1~dark@2x.png"
+        }
+      ]
+    },
+    "reducing-your-app-s-memory-use-3": {
+      "alt": "Screenshot of the Memory metric pane in the Xcode Organizer. From left to right is the list of metrics and reports, the metric UI with two bar graphs: Peak Memory at the top and Memory at Suspension on the bottom, the selected version highlighted in the peak memory graph, and the comparison data for both graphs on the right side.",
+      "identifier": "reducing-your-app-s-memory-use-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cf4e06875c09352c0e59b26b9c78772/reducing-your-app-s-memory-use-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cfbabb40804d2b0ac3214796afe3d010/reducing-your-app-s-memory-use-3~dark@2x.png"
+        }
+      ]
+    },
+    "reducing-your-app-s-memory-use-allocated.png": {
+      "alt": "Illustration showing how memory is considered to be in use when it's allocated.",
+      "identifier": "reducing-your-app-s-memory-use-allocated.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/71445748de8b92d5d0ca84c8980cc49a/reducing-your-app-s-memory-use-allocated@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55be94a6ba48fbd69ed0f86aacc5d4ba/reducing-your-app-s-memory-use-allocated~dark@2x.png"
+        }
+      ]
+    },
+    "reducing-your-app-s-memory-use-written.png": {
+      "alt": "Illustration showing how memory is considered to be in use when it's written to.",
+      "identifier": "reducing-your-app-s-memory-use-written.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/927bc05b4c1535f4fa38ef8252b7d51a/reducing-your-app-s-memory-use-written@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41ddf7715612eb15ba9549057dce4b15/reducing-your-app-s-memory-use-written~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Memory-and-size",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size"
+      ],
+      "title": "Memory and size"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Tasks",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions",
+        "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings"
+      ],
+      "title": "Tasks"
+    }
+  ]
+}

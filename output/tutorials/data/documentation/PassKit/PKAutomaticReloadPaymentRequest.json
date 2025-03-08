@@ -1,0 +1,1578 @@
+{
+  "abstract": [
+    {
+      "text": "A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKAutomaticReloadPaymentRequest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKAutomaticReloadPaymentRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKAutomaticReloadPaymentRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKAutomaticReloadPaymentRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/automaticReloadPaymentRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property on a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class and set up an automatic reload payment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay issues an Apple Pay Merchant Token if the user’s payment network supports merchant-specific payment tokens. Otherwise, Apple Pay issues a device token for the payment request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to provide the user with payment details and a way to manage payment methods for an automatic reload payment. You can optionally display a billing agreement and set up merchant token life cycle notifications for the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/automaticReloadBilling": {
+      "abstract": [
+        {
+          "text": "Summary items that contain the top-up amount and balance threshold amount for the automatic reload payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticReloadBilling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKAutomaticReloadPaymentSummaryItem",
+          "text": "PKAutomaticReloadPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/automaticReloadBilling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticReloadBilling"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticReloadBilling",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/automaticreloadbilling"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/billingAgreement": {
+      "abstract": [
+        {
+          "text": "A localized billing agreement that the payment sheet displays to the user before the user authorizes the payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "billingAgreement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/billingAgreement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "billingAgreement"
+        }
+      ],
+      "role": "symbol",
+      "title": "billingAgreement",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/billingagreement"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/init(paymentDescription:automaticReloadBilling:managementURL:)": {
+      "abstract": [
+        {
+          "text": "Create an automatic reload payment object with a description, automatic billing information, and a management URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "paymentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "automaticReloadBilling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKAutomaticReloadPaymentSummaryItem",
+          "text": "PKAutomaticReloadPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "managementURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/init(paymentDescription:automaticReloadBilling:managementURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPaymentDescription:automaticReloadBilling:managementURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(paymentDescription:automaticReloadBilling:managementURL:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/init(paymentdescription:automaticreloadbilling:managementurl:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/managementURL": {
+      "abstract": [
+        {
+          "text": "A URL to a web page where the user can manage and delete the payment method for the automatic reload payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managementURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/managementURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "managementURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "managementURL",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/managementurl"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/paymentDescription": {
+      "abstract": [
+        {
+          "text": "A description that you provide of the automatic reload payment and that Apple Pay displays to the user in the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/paymentDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentDescription",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/paymentdescription"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL": {
+      "abstract": [
+        {
+          "text": "A URL you provide to receive life-cycle notifications from the Apple Pay servers about the Apple Pay merchant token for the automatic reload payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenNotificationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenNotificationURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenNotificationURL",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest/tokennotificationurl"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item for an automatic reload or refill payment, such as a store card top-up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAutomaticReloadPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request to set up a deferred payment, such as a hotel booking or a pre-order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDeferredPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdeferredpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/automaticReloadPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An optional request to set up an automatic reload payment, such as a store card top-up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticReloadPaymentRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKAutomaticReloadPaymentRequest",
+          "text": "PKAutomaticReloadPaymentRequest"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/automaticReloadPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticReloadPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/automaticreloadpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext": {
+      "abstract": [
+        {
+          "text": "A class that defines the context for a single payment token in a payment request for multimerchant payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentTokenContext"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentTokenContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentTokenContext",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenttokencontext"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentrequest"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext"
+      ],
+      "title": "Payment requests"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-automatic-reload-payment-request",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/init(paymentDescription:automaticReloadBilling:managementURL:)"
+      ],
+      "title": "Creating an automatic reload payment request"
+    },
+    {
+      "anchor": "Describing-an-automatic-reload-payment",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/paymentDescription",
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/billingAgreement"
+      ],
+      "title": "Describing an automatic reload payment"
+    },
+    {
+      "anchor": "Setting-the-payment-summary-items",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/automaticReloadBilling",
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentSummaryItem"
+      ],
+      "title": "Setting the payment summary items"
+    },
+    {
+      "anchor": "Managing-payment-tokens",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/managementURL",
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL"
+      ],
+      "title": "Managing payment tokens"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKAutomaticReloadPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-automatic-reload-payment-request",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/init(paymentDescription:automaticReloadBilling:managementURL:)"
+              ],
+              "title": "Creating an automatic reload payment request"
+            },
+            {
+              "anchor": "Describing-an-automatic-reload-payment",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/paymentDescription",
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/billingAgreement"
+              ],
+              "title": "Describing an automatic reload payment"
+            },
+            {
+              "anchor": "Setting-the-payment-summary-items",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/automaticReloadBilling",
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentSummaryItem"
+              ],
+              "title": "Setting the payment summary items"
+            },
+            {
+              "anchor": "Managing-payment-tokens",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/managementURL",
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest/tokenNotificationURL"
+              ],
+              "title": "Managing payment tokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-requests",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext"
+              ],
+              "title": "Payment requests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKAutomaticReloadPaymentRequest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1tokenNotificationURL/title",
+          "value": "tokenNotificationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1tokenNotificationURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenNotificationURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/title",
+          "value": "PKDeferredPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentSummaryItem/title",
+          "value": "PKAutomaticReloadPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/title",
+          "value": "PKAutomaticReloadPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1init(paymentDescription:automaticReloadBilling:managementURL:)/title",
+          "value": "initWithPaymentDescription:automaticReloadBilling:managementURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1init(paymentDescription:automaticReloadBilling:managementURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithPaymentDescription:automaticReloadBilling:managementURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1automaticReloadBilling/title",
+          "value": "automaticReloadBilling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1automaticReloadBilling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticReloadBilling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1billingAgreement/title",
+          "value": "billingAgreement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1billingAgreement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "billingAgreement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1automaticReloadPaymentRequest/title",
+          "value": "automaticReloadPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1automaticReloadPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/title",
+          "value": "PKRecurringPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1paymentDescription/title",
+          "value": "paymentDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1paymentDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/title",
+          "value": "PKPaymentTokenContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentTokenContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentTokenContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1managementURL/title",
+          "value": "managementURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest~1managementURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "managementURL"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkautomaticreloadpaymentrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkautomaticreloadpaymentrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

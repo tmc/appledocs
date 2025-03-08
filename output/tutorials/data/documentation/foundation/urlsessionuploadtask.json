@@ -1,0 +1,815 @@
+{
+  "abstract": [
+    {
+      "text": "A URL session task that uploads data to the network in a request body.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408427,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionUploadTask",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLSessionUploadTask"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "URLSessionUploadTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLSessionUploadTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSessionDataTask",
+              "text": "URLSessionDataTask"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which in turn is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The methods associated with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class are documented in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upload tasks are used for making HTTP requests that require a request body (such as ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "PUT",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). They behave similarly to data tasks, but you create them by calling different methods on the session that are designed to make it easier to provide the content to upload. As with data tasks, if the server provides a response, upload tasks return that response as one or more ",
+              "type": "text"
+            },
+            {
+              "code": "NSData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Unlike data tasks, you can use upload tasks to upload content in the background.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an upload task, you provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that contains any additional headers that you might need to send alongside the upload, such as the content type, content disposition, and so on. In iOS, when you create an upload task for a file in a background session, the system copies that file to a temporary location and streams data from there. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the upload is in progress, the task calls the session delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1408299-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method periodically to provide you with status information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the upload phase of the request finishes, the task behaves like a data task, calling methods on the session delegate to provide you with the server’s response—headers, status code, content data, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1409763-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading data based on the specified URL request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withStreamedRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(withStreamedRequest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1410934-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411518-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromFile"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:fromFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411550-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromFile"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:fromFile:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411638-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio": {
+      "abstract": [
+        {
+          "text": "Support HTTP resumable upload protocol in SwiftNIO by translating resumable uploads to regular uploads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a resumable upload server with SwiftNIO",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionDataDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatadelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1408299-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1408299-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1408299-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask": {
+      "abstract": [
+        {
+          "text": "A URL session task that uploads data to the network in a request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionUploadTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240644-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240644-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask/3240644-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240645-new": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240645-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask/3240645-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/4198046-cancel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "byProducingResumeData"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/4198046-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel(byProducingResumeData:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask/4198046-cancel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsession/building_a_resumable_upload_server_with_swiftnio",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411550-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411638-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiondatadelegate"
+      ],
+      "title": "Adding upload tasks to a session"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3256442",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240644-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "4309198",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/4198046-cancel"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "4309199",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask/3240645-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionuploadtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionuploadtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

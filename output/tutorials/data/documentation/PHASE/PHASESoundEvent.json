@@ -1,0 +1,2966 @@
+{
+  "abstract": [
+    {
+      "text": "An object that determines which audio to play.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASESoundEvent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASESoundEvent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASESoundEvent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASESoundEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.phase/documentation/PHASE/playing-sound-from-a-location-in-a-3d-scene"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sound event represents a logic tree, or hierarchy, that defines what, when, and how the framework plays a sound at runtime. You configure the tree with conditions based on your app’s state. When you invoke a sound event’s root node at runtime, the framework navigates the tree by branching based on the logic, landing on a playable node that sends the right audio to the output device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To invoke a specific one-time sound, create a sound event from a single sampler node.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To invoke a sound event that tailors its sound based on your app’s state, define a sound event hierarchy containing one or more control nodes; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/sound-event-nodes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For example, to play either footsteps or a jumping noise depending on the hero’s state, you configure a switch node that navigates based on the hero’s hypothetical ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isJumping",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " metaparameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sound event nodes that play audio, the asset’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " determines whether the audio loops. One-time sound events stop automatically at the end of the audio data. Looping sound events (those with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "=",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEPlaybackMode/looping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") require you to explicitly call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/stopAndInvalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to stop the audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Playing-a-one-shot-channel-based-sound",
+          "level": 3,
+          "text": "Playing a one-shot channel-based sound",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps create a sound event by requesting one from a sound event node asset. To create a sound event node asset, combine a sound asset (the source audio data) with a mixer object (which combines sound layers for output) to create a node, and add the node to the asset registry. By creating a sound event from a sampler node (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the following code plays an audio file once before discarding it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a channel layout for audio types that contain no channel metadata. ",
+            "let stereoLayout = AVAudioChannelLayout(layoutTag: kAudioChannelLayoutTag_Stereo)    ",
+            "",
+            "// Load an audio file from the bundle.",
+            "let bangSoundURL = Bundle.main.url(forResource: \"bangSound\", withExtension: \"wav\")!",
+            "",
+            "// Create and register a sound asset.",
+            "var bangSoundAsset:PHASESoundAsset!",
+            "do { ",
+            "    bangSoundAsset = try engine.assetRegistry.registerSoundAsset(",
+            "        url: bangSoundURL, ",
+            "        identifier: \"bangSound\", ",
+            "        assetType: .resident, ",
+            "        channelLayout: stereoLayout,",
+            "        normalizationMode: .dynamic)",
+            "} catch { print(\"Failed to register the sound asset.\") }",
+            "",
+            "// Create a mixer that routes sound directly to the output.",
+            "let stereoMixer = PHASEChannelMixerDefinition(channelLayout:stereoLayout!)",
+            "",
+            "// Create a sound event node.",
+            "let bangSoundSamplerNode = PHASESamplerNodeDefinition(",
+            "    soundAssetIdentifier: bangSoundAsset.identifier, ",
+            "    mixerDefinition: stereoMixer, identifier:\"bangSoundNode\")",
+            "",
+            "// Add the sound event node to the asset registry and retrieve the asset object.",
+            "var bangSoundSoundEventAsset: PHASESoundEventNodeAsset! ",
+            "do {",
+            "    bangSoundEventAsset = try engine.assetRegistry.registerSoundEventAsset(",
+            "        rootNode: bangSoundSamplerNode, identifier:\"bangSoundTree\")",
+            "} catch { print (\"Failed to register the sound event node.\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting node asset represents a template for audio that’s ready for playback. To play the audio, spawn a sound event off of the node asset and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to invoke the sound event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a playable sound event from the template sound event asset.",
+            "var bangSoundEvent: PHASESoundEvent!",
+            "do {",
+            "        bangSoundEvent = try PHASESoundEvent(engine:engine, ",
+            "        assetIdentifier: bangSoundEventAsset.identifier)",
+            "} catch { print (\"Failed to create the sound event.\") }",
+            "",
+            "// Play the one-shot sound event.",
+            "bangSoundEvent.start()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To play the same sound asset again, create another sound event object. After the first ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " call on a particular ",
+                  "type": "text"
+                },
+                {
+                  "code": "PHASESoundEvent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instance, subsequent calls have no effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAsset": {
+      "abstract": [
+        {
+          "text": "A base class that adds a name to framework assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEAsset",
+      "type": "topic",
+      "url": "/documentation/phase/phaseasset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEPlaybackMode/looping": {
+      "abstract": [
+        {
+          "text": "An option that restarts a sound from the begining after it finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "looping"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEPlaybackMode/looping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEPlaybackModeLooping"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEPlaybackMode.looping",
+      "type": "topic",
+      "url": "/documentation/phase/phaseplaybackmode/looping"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition": {
+      "abstract": [
+        {
+          "text": "A node that plays complete audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESamplerNodeDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESamplerNodeDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESamplerNodeDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasesamplernodedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode": {
+      "abstract": [
+        {
+          "text": "An option that determines whether the node’s audio plays in a loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASEPlaybackMode",
+          "text": "PHASEPlaybackMode"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackMode",
+      "type": "topic",
+      "url": "/documentation/phase/phasesamplernodedefinition/playbackmode"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundAsset": {
+      "abstract": [
+        {
+          "text": "A sound resource stored in the asset registry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESoundAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESoundAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundAsset",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundasset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent": {
+      "abstract": [
+        {
+          "text": "An object that determines which audio to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareHandlerReason": {
+      "abstract": [
+        {
+          "text": "Indicates the results of sound-event preparation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrepareHandlerReason"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareHandlerReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrepareHandlerReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent.PrepareHandlerReason",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/preparehandlerreason"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareState-swift.enum": {
+      "abstract": [
+        {
+          "text": "Indicates the state of sound-event preparation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrepareState"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareState-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrepareState"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent.PrepareState",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/preparestate-swift.enum"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum": {
+      "abstract": [
+        {
+          "text": "The playback status of audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingState"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent.RenderingState",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/renderingstate-swift.enum"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/SeekHandlerReason": {
+      "abstract": [
+        {
+          "text": "Indicates the status after a sound event changes its playback position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SeekHandlerReason"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/SeekHandlerReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SeekHandlerReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent.SeekHandlerReason",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/seekhandlerreason"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/StartHandlerReason": {
+      "abstract": [
+        {
+          "text": "Indicates the status after starting a sound event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartHandlerReason"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/StartHandlerReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StartHandlerReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEvent.StartHandlerReason",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/starthandlerreason"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a sound event node with the given asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "engine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEEngine",
+          "text": "PHASEEngine"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "assetIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEngine:assetIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(engine:assetIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/init(engine:assetidentifier:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a sound event node with the given asset and mixer parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "engine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEEngine",
+          "text": "PHASEEngine"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "assetIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mixerParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMixerParameters",
+          "text": "PHASEMixerParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEngine:assetIdentifier:mixerParameters:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(engine:assetIdentifier:mixerParameters:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/init(engine:assetidentifier:mixerparameters:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/isIndefinite": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the sound loops or stops on its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIndefinite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/isIndefinite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indefinite"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIndefinite",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/isindefinite"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters": {
+      "abstract": [
+        {
+          "text": "The object’s meta parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metaParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMetaParameter",
+          "text": "PHASEMetaParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metaParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "metaParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/metaparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/mixers": {
+      "abstract": [
+        {
+          "text": "Nodes in the event tree that control the volume of their child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMixer",
+          "text": "PHASEMixer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/mixers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mixers"
+        }
+      ],
+      "role": "symbol",
+      "title": "mixers",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/mixers"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses the sound event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pause"
+        }
+      ],
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/pause()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepare(completion:)": {
+      "abstract": [
+        {
+          "text": "Enables a sound event to play and runs the argument code when the sound event plays back.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESoundEventPrepareHandlerReason",
+          "text": "PrepareHandlerReason"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepare(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare(completion:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/prepare(completion:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepareState-swift.property": {
+      "abstract": [
+        {
+          "text": "The status of sound-event preparation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESoundEventPrepareState",
+          "text": "PrepareState"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepareState-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareState"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareState",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/preparestate-swift.property"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pullStreamNodes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pullStreamNodes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEPullStreamNode",
+          "text": "PHASEPullStreamNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pullStreamNodes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pullStreamNodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "pullStreamNodes",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/pullstreamnodes"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pushStreamNodes": {
+      "abstract": [
+        {
+          "text": "A collection of audio streams for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushStreamNodes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEPushStreamNode",
+          "text": "PHASEPushStreamNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pushStreamNodes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushStreamNodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "pushStreamNodes",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/pushstreamnodes"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/renderingState-swift.property": {
+      "abstract": [
+        {
+          "text": "The sound event’s playback status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderingState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASERenderingState",
+          "text": "RenderingState"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/renderingState-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderingState",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/renderingstate-swift.property"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/resume()": {
+      "abstract": [
+        {
+          "text": "Resumes the sound event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/resume()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resume"
+        }
+      ],
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/resume()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/seek(to:completion:)": {
+      "abstract": [
+        {
+          "text": "Advances the sound event’s playback position to a specific time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESoundEventSeekHandlerReason",
+          "text": "SeekHandlerReason"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/seek(to:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seekToTime:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "seek(to:completion:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/seek(to:completion:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)": {
+      "abstract": [
+        {
+          "text": "Invokes the sound event and runs the specified code on completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESoundEventStartHandlerReason",
+          "text": "StartHandlerReason"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(completion:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/start(completion:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/stopAndInvalidate()": {
+      "abstract": [
+        {
+          "text": "Stops a sound event and prevents it from resuming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAndInvalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/stopAndInvalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopAndInvalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopAndInvalidate()",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundevent/stopandinvalidate()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeAsset": {
+      "abstract": [
+        {
+          "text": "A template object for sounds that can play in reaction to environmental state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEventNodeAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEventNodeAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEventNodeAsset",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundeventnodeasset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeDefinition": {
+      "abstract": [
+        {
+          "text": "A base class for sound event nodes that connect to form a node hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEventNodeDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESoundEventNodeDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESoundEventNodeDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasesoundeventnodedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/playing-sound-from-a-location-in-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Position sound from a specific direction and automatically raise or lower volume based on the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/playing-sound-from-a-location-in-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing sound from a location in a 3D scene",
+      "type": "topic",
+      "url": "/documentation/phase/playing-sound-from-a-location-in-a-3d-scene"
+    },
+    "doc://com.apple.phase/documentation/PHASE/sound-event-nodes": {
+      "abstract": [
+        {
+          "text": "Objects that connect to form a hierarchical tree of audio actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/sound-event-nodes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound Event Nodes",
+      "type": "topic",
+      "url": "/documentation/phase/sound-event-nodes"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Selection-and-Playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundAsset",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeDefinition",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeAsset",
+        "doc://com.apple.phase/documentation/PHASE/PHASEAsset",
+        "doc://com.apple.phase/documentation/PHASE/sound-event-nodes"
+      ],
+      "title": "Audio Selection and Playback"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Sound-Event",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)"
+      ],
+      "title": "Creating a Sound Event"
+    },
+    {
+      "anchor": "Configuring-Mixers-and-Metaparameters",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/mixers",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters"
+      ],
+      "title": "Configuring Mixers and Metaparameters"
+    },
+    {
+      "anchor": "Preparing-Playback",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepare(completion:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareHandlerReason",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepareState-swift.property",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareState-swift.enum"
+      ],
+      "title": "Preparing Playback"
+    },
+    {
+      "anchor": "Checking-Playback-Status",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/renderingState-swift.property",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum"
+      ],
+      "title": "Checking Playback Status"
+    },
+    {
+      "anchor": "Providing-Buffered-Data",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pushStreamNodes"
+      ],
+      "title": "Providing Buffered Data"
+    },
+    {
+      "anchor": "Starting-Playback",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/StartHandlerReason"
+      ],
+      "title": "Starting Playback"
+    },
+    {
+      "anchor": "Seeking-a-Time",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/seek(to:completion:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/SeekHandlerReason"
+      ],
+      "title": "Seeking a Time"
+    },
+    {
+      "anchor": "Pausing-Playback",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pause()",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/resume()"
+      ],
+      "title": "Pausing Playback"
+    },
+    {
+      "anchor": "Stopping-Playback",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/stopAndInvalidate()",
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/isIndefinite"
+      ],
+      "title": "Stopping Playback"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pullStreamNodes"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASESoundEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Sound-Event",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)"
+              ],
+              "title": "Creating a Sound Event"
+            },
+            {
+              "anchor": "Configuring-Mixers-and-Metaparameters",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/mixers",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/metaParameters"
+              ],
+              "title": "Configuring Mixers and Metaparameters"
+            },
+            {
+              "anchor": "Preparing-Playback",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepare(completion:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareHandlerReason",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/prepareState-swift.property",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/PrepareState-swift.enum"
+              ],
+              "title": "Preparing Playback"
+            },
+            {
+              "anchor": "Checking-Playback-Status",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/renderingState-swift.property",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum"
+              ],
+              "title": "Checking Playback Status"
+            },
+            {
+              "anchor": "Providing-Buffered-Data",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pushStreamNodes"
+              ],
+              "title": "Providing Buffered Data"
+            },
+            {
+              "anchor": "Starting-Playback",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/start(completion:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/StartHandlerReason"
+              ],
+              "title": "Starting Playback"
+            },
+            {
+              "anchor": "Seeking-a-Time",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/seek(to:completion:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/SeekHandlerReason"
+              ],
+              "title": "Seeking a Time"
+            },
+            {
+              "anchor": "Pausing-Playback",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pause()",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/resume()"
+              ],
+              "title": "Pausing Playback"
+            },
+            {
+              "anchor": "Stopping-Playback",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/stopAndInvalidate()",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/isIndefinite"
+              ],
+              "title": "Stopping Playback"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/pullStreamNodes"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Selection-and-Playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundAsset",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEvent/RenderingState-swift.enum",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeDefinition",
+                "doc://com.apple.phase/documentation/PHASE/PHASESoundEventNodeAsset",
+                "doc://com.apple.phase/documentation/PHASE/PHASEAsset",
+                "doc://com.apple.phase/documentation/PHASE/sound-event-nodes"
+              ],
+              "title": "Audio Selection and Playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASESoundEvent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1RenderingState-swift.enum/title",
+          "value": "PHASERenderingState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1RenderingState-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASERenderingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1RenderingState-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASERenderingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pullStreamNodes/title",
+          "value": "pullStreamNodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pullStreamNodes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pullStreamNodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEPlaybackMode~1looping/title",
+          "value": "PHASEPlaybackModeLooping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEPlaybackMode~1looping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEPlaybackModeLooping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1prepareState-swift.property/title",
+          "value": "prepareState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1prepareState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prepareState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1stopAndInvalidate()/title",
+          "value": "stopAndInvalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1stopAndInvalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopAndInvalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1init(engine:assetIdentifier:mixerParameters:)/title",
+          "value": "initWithEngine:assetIdentifier:mixerParameters:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1init(engine:assetIdentifier:mixerParameters:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEngine:assetIdentifier:mixerParameters:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pushStreamNodes/title",
+          "value": "pushStreamNodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pushStreamNodes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pushStreamNodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAsset/title",
+          "value": "PHASEAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1init(engine:assetIdentifier:)/title",
+          "value": "initWithEngine:assetIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1init(engine:assetIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEngine:assetIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1seek(to:completion:)/title",
+          "value": "seekToTime:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1seek(to:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "seekToTime:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/title",
+          "value": "PHASESamplerNodeDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESamplerNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESamplerNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pause()/title",
+          "value": "pause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1pause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1mixers/title",
+          "value": "mixers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1mixers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mixers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1resume()/title",
+          "value": "resume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1resume()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1SeekHandlerReason/title",
+          "value": "PHASESoundEventSeekHandlerReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1SeekHandlerReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventSeekHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1SeekHandlerReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventSeekHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition~1playbackMode/title",
+          "value": "playbackMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESamplerNodeDefinition~1playbackMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/title",
+          "value": "PHASESoundEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareHandlerReason/title",
+          "value": "PHASESoundEventPrepareHandlerReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareHandlerReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventPrepareHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareHandlerReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventPrepareHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1prepare(completion:)/title",
+          "value": "prepareWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1prepare(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1renderingState-swift.property/title",
+          "value": "renderingState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1renderingState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1StartHandlerReason/title",
+          "value": "PHASESoundEventStartHandlerReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1StartHandlerReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventStartHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1StartHandlerReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventStartHandlerReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeAsset/title",
+          "value": "PHASESoundEventNodeAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventNodeAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventNodeAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeDefinition/title",
+          "value": "PHASESoundEventNodeDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEventNodeDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventNodeDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundAsset/title",
+          "value": "PHASESoundAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1isIndefinite/title",
+          "value": "indefinite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1isIndefinite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indefinite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1metaParameters/title",
+          "value": "metaParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1metaParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metaParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1start(completion:)/title",
+          "value": "startWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1start(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareState-swift.enum/title",
+          "value": "PHASESoundEventPrepareState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareState-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventPrepareState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESoundEvent~1PrepareState-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESoundEventPrepareState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phasesoundevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phasesoundevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

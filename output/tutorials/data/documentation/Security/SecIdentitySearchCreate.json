@@ -1,0 +1,583 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a search object for finding identities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecIdentitySearchCreate",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecIdentitySearchCreate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecIdentitySearchCreate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecIdentitySearchCreate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySearchCreate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keychainOrArray"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/CSSM_KEYUSE",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CSSM_KEYUSE",
+              "text": "CSSM_KEYUSE"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keyUsage"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearch",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecIdentitySearchRef",
+              "text": "SecIdentitySearchRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "searchRef"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A keychain object for a single keychain to search, an array of keychain objects for a set of keychains to search, or ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to search the user’s default keychain search list.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keychainOrArray"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A CSSM key use value as defined in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Security.framework/cssmtype.h",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". (Note that, because key recovery is not implemented, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SIGN_RECOVER",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "VERIFY_RECOVER",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " constants are not supported.) Use this parameter to filter the search by specifying the key use for the identity. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you want all identities returned by this search. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "CSSM_KEYUSE_ANY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to limit the identities returned to those that can be used for every operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keyUsage"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, points to the identity search object. In Objective-C, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to release this object when you are done with it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "searchRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can OR ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYUSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values together to set more than one value for key use. Use the returned search object in calls to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to obtain identities that match the search criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSM_KEYUSE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSM_KEYUSE"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSM_KEYUSE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSM_KEYUSE"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSM_KEYUSE",
+      "type": "topic",
+      "url": "/documentation/security/cssm_keyuse"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearch": {
+      "abstract": [
+        {
+          "text": "Contains information about an identity search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearch"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentitySearch",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearch"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Finds the next identity matching specified search criteria",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate": {
+      "abstract": [
+        {
+          "text": "Creates a search object for finding identities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchCreate",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchcreate"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFTypeRef": {
+      "abstract": [
+        {
+          "text": "An untyped \"generic\" reference to any Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFTypeRef"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTypeRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftyperef"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYUSE/title",
+          "value": "CSSM_KEYUSE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYUSE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_KEYUSE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYUSE/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_KEYUSE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/title",
+          "value": "SecIdentitySearchRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySearchRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secidentitysearchcreate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

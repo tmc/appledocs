@@ -1,0 +1,707 @@
+{
+  "abstract": [
+    {
+      "text": "Skip tests when meeting specified conditions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/methods-for-skipping-tests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Methods for Skipping Tests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "XCTSkipIf()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "XCTSkipUnless()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you have a Boolean condition that you can use to evaluate when to skip tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, throw an ",
+              "type": "text"
+            },
+            {
+              "code": "XCTSkip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error when you have other circumstances that result in skipped tests. In Objective-C use ",
+              "type": "text"
+            },
+            {
+              "code": "XCTSkip",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func testSomethingNew() throws {",
+                    "    guard #available(macOS <#VersionNumber#>, *) else {",
+                    "        throw XCTSkip(\"Required API is not available for this test.\")",
+                    "    }",
+                    "    // perform test using <#VersionNumber#> APIs...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)testSomethingNew {",
+                    "    if (@available(macOS <#VersionNumber#>, *)) {",
+                    "        // perform test using <#VersionNumber#> APIs...",
+                    "    } else {",
+                    "        XCTSkip(@\"Required API is not available for this test.\");",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkip-c.macro": {
+      "abstract": [
+        {
+          "text": "Throws an exception that causes the test runner to cease executing the current test and mark the test skipped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkip-c.macro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkip",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskip-c.macro"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that causes the current test to cease executing and the test runner to mark the test as skipped when the test throws the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTSkip",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskip-swift.struct"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method if the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XCTSkipIf"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipIf",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskipif"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method if the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipIf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipIf(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskipif(_:_:file:line:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method unless the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XCTSkipUnless"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipUnless",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskipunless"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method unless the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipUnless"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipUnless(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctskipunless(_:_:file:line:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/boolean-assertions": {
+      "abstract": [
+        {
+          "text": "Test a condition that generates a true or false result.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/boolean-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Boolean Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/boolean-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/comparable-value-assertions": {
+      "abstract": [
+        {
+          "text": "Compare two values to determine whether one is larger or smaller than the other.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/comparable-value-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Value Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/comparable-value-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/equality-and-inequality-assertions": {
+      "abstract": [
+        {
+          "text": "Check whether two values are equal or unequal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/equality-and-inequality-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equality and Inequality Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/equality-and-inequality-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/error-assertions": {
+      "abstract": [
+        {
+          "text": "Check whether a function call throws, or doesn’t throw, an error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/error-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/error-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/expected-failures": {
+      "abstract": [
+        {
+          "text": "Anticipate known test failures to prevent failing tests from affecting your workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/expected-failures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Expected Failures",
+      "type": "topic",
+      "url": "/documentation/xctest/expected-failures"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/nil-and-non-nil-assertions": {
+      "abstract": [
+        {
+          "text": "Check whether a test condition has, or doesn’t have, a value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/nil-and-non-nil-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nil and Non-Nil Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/nil-and-non-nil-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/nsexception-assertions": {
+      "abstract": [
+        {
+          "text": "Check whether a function call throws, or doesn’t throw, an exception.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/nsexception-assertions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSException Assertions",
+      "type": "topic",
+      "url": "/documentation/xctest/nsexception-assertions"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/unconditional-test-failures": {
+      "abstract": [
+        {
+          "text": "Generate a failure immediately and unconditionally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/unconditional-test-failures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unconditional Test Failures",
+      "type": "topic",
+      "url": "/documentation/xctest/unconditional-test-failures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Test-assertions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/boolean-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/nil-and-non-nil-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/equality-and-inequality-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/comparable-value-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/error-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/nsexception-assertions",
+        "doc://com.apple.xctest/documentation/XCTest/unconditional-test-failures",
+        "doc://com.apple.xctest/documentation/XCTest/expected-failures"
+      ],
+      "title": "Test assertions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Methods-for-Skipping-Tests",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+        "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+        "doc://com.apple.xctest/documentation/XCTest/XCTSkip-swift.struct"
+      ],
+      "title": "Methods for Skipping Tests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Methods-for-Skipping-Tests",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTSkipIf",
+                "doc://com.apple.xctest/documentation/XCTest/XCTSkipUnless",
+                "doc://com.apple.xctest/documentation/XCTest/XCTSkip-c.macro"
+              ],
+              "title": "Methods for Skipping Tests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Test-assertions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/boolean-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/nil-and-non-nil-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/equality-and-inequality-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/comparable-value-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/error-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/nsexception-assertions",
+                "doc://com.apple.xctest/documentation/XCTest/unconditional-test-failures",
+                "doc://com.apple.xctest/documentation/XCTest/expected-failures"
+              ],
+              "title": "Test assertions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/methods-for-skipping-tests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xctest/methods-for-skipping-tests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

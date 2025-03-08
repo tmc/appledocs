@@ -1,0 +1,1166 @@
+{
+  "abstract": [
+    {
+      "text": "Verify the contents of app receipts by decoding and parsing the receipt on the device.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device"
+  },
+  "kind": "article",
+  "legacy_identifier": 3744652,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating receipts on the device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users install apps from the App Store, the app contains a cryptographically signed receipt that Apple creates and stores inside the app bundle, which you can then validate. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The receipt isn’t necessary if you use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to validate the app download, or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to validate in-app purchases. Only use the receipt if your app uses the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or needs the receipt to validate the app download because it can’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Validating the receipt locally requires you to develop or use code to read and decode the receipt as a PKCS #7 container, as defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4099285",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The App Store encodes the payload of the container using Abstract Syntax Notation One (ASN.1), as defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4099286",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The payload contains a set of receipt attributes. Each receipt attribute contains a type, a version, and a value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store defines the structure of the payload with the following ASN.1 notation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ReceiptModule DEFINITIONS ::=",
+            "BEGIN",
+            "",
+            "ReceiptAttribute ::= SEQUENCE {",
+            "    type    INTEGER,",
+            "    version INTEGER,",
+            "    value   OCTET STRING",
+            "}",
+            "",
+            "Payload ::= SET OF ReceiptAttribute",
+            "",
+            "END"
+          ],
+          "metadata": {
+            "anchor": "3744734",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744732",
+          "level": 3,
+          "text": "Validate the receipt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS and Mac apps built with Mac Catalyst, implement receipt validation in the main function, before the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate the app receipt, perform the following tests in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locate and load the app receipt from the app’s bundle. The class ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides the location of the receipt with the property ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decode the app receipt as a PKCS #7 container and verify that the chain of trust for the container’s signature traces back to the Apple Inc. Root certificate, available from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3746027",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "receipt_creation_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", identified as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4181107",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when validating the receipt signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the bundle identifier, identified as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3760715",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", matches your app’s bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the version identifier string, identified as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3760717",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", matches the version string in your app’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compute a SHA-1 hash for the device that installs the app and verify that it matches the receipt’s hash, identified as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3760716",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The validation passes if all of the tests pass. If any test fails, the validation fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the keys in a receipt, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3746028",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4180978",
+          "level": 3,
+          "text": "Verify the certificate chain of trust",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decode the app receipt as a PKCS #7 container and verify that the chain of trust for the container’s signature traces back to the Apple Inc. Root certificate, available from ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4180977",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t hardcode intermediate certificates in your app. Ensure that your code supports certificates that use SHA-256 and SHA-1 signing algorithms. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure your app uses the date from the ",
+              "type": "text"
+            },
+            {
+              "code": "receipt_creation_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, identified as ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4181108",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to validate the receipt’s signature. Many cryptographic libraries default to using the device’s current time and date when validating a PKCS #7 package, but this may not produce the correct results when validating a receipt’s signature. For example, if the receipt was signed with a valid certificate, but the certificate has since expired, using the device’s current date incorrectly returns an invalid result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744656",
+          "level": 3,
+          "text": "Compute the SHA-1 hash",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compute the SHA-1 hash to match the local device with the device hash inside the App Store reciept. When computing the SHA-1 hash, use the platform-specific data source. The source of bytes for each platform is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "watchOS: Use the raw bytes from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/identifierForVendor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, iPadOS, tvOS, and iOS apps running on a Mac with Apple silicon: Use the raw bytes from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS and apps built with Mac Catalyst: Use the data that returns from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "copy_mac_address",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the example code below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following two code examples illustrate how to retrieve an identifier in macOS, as the ",
+              "type": "text"
+            },
+            {
+              "code": "copy_mac_address",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function shows, for validating an App Store receipt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following Swift code, the ",
+              "type": "text"
+            },
+            {
+              "code": "io_service",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve network interfaces as an optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object. The ",
+              "type": "text"
+            },
+            {
+              "code": "copy_mac_address",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function looks up an appropriate network interface and returns the hardware address from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object as optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import IOKit",
+            "import Foundation",
+            "",
+            "// Returns an object with a +1 retain count; the caller needs to release.",
+            "func io_service(named name: String, wantBuiltIn: Bool) -> io_service_t? {",
+            "    let default_port = kIOMasterPortDefault",
+            "    var iterator = io_iterator_t()",
+            "    defer {",
+            "        if iterator != IO_OBJECT_NULL {",
+            "            IOObjectRelease(iterator)",
+            "        }",
+            "    }",
+            "",
+            "    guard let matchingDict = IOBSDNameMatching(default_port, 0, name),",
+            "        IOServiceGetMatchingServices(default_port,",
+            "                                     matchingDict as CFDictionary,",
+            "                                     &iterator) == KERN_SUCCESS,",
+            "        iterator != IO_OBJECT_NULL",
+            "    else {",
+            "        return nil",
+            "    }",
+            "",
+            "    var candidate = IOIteratorNext(iterator)",
+            "    while candidate != IO_OBJECT_NULL {",
+            "        if let cftype = IORegistryEntryCreateCFProperty(candidate,",
+            "                                                        \"IOBuiltin\" as CFString,",
+            "                                                        kCFAllocatorDefault,",
+            "                                                        0) {",
+            "            let isBuiltIn = cftype.takeRetainedValue() as! CFBoolean",
+            "            if wantBuiltIn == CFBooleanGetValue(isBuiltIn) {",
+            "                return candidate",
+            "            }",
+            "        }",
+            "",
+            "        IOObjectRelease(candidate)",
+            "        candidate = IOIteratorNext(iterator)",
+            "    }",
+            "",
+            "    return nil",
+            "}",
+            "",
+            "func copy_mac_address() -> CFData? {",
+            "    // Prefer built-in network interfaces.",
+            "    // For example, an external Ethernet adaptor can displace",
+            "    // the built-in Wi-Fi as en0.",
+            "    guard let service = io_service(named: \"en0\", wantBuiltIn: true)",
+            "            ?? io_service(named: \"en1\", wantBuiltIn: true)",
+            "            ?? io_service(named: \"en0\", wantBuiltIn: false)",
+            "        else { return nil }",
+            "    defer { IOObjectRelease(service) }",
+            "",
+            "    if let cftype = IORegistryEntrySearchCFProperty(",
+            "        service,",
+            "        kIOServicePlane,",
+            "        \"IOMACAddress\" as CFString,",
+            "        kCFAllocatorDefault,",
+            "        IOOptionBits(kIORegistryIterateRecursively | kIORegistryIterateParents)) {",
+            "            return (cftype as! CFData)",
+            "    }",
+            "",
+            "    return nil",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3744669",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Objective-C code works in the same fashion. This example uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to look up the relevant network interface, and returns the bytes that identify the built-in network interface:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import <Foundation/Foundation.h>",
+            "#import <IOKit/network/IONetworkLib.h>",
+            "",
+            "io_service_t io_service(const char *name, BOOL wantBuiltIn) {",
+            "    io_iterator_t iterator = IO_OBJECT_NULL;",
+            "    mach_port_t default_port = kIOMasterPortDefault;",
+            "    io_service_t service = IO_OBJECT_NULL;",
+            "",
+            "    if (KERN_SUCCESS != IOMasterPort(MACH_PORT_NULL, &default_port)) {",
+            "        return IO_OBJECT_NULL;",
+            "    }",
+            "",
+            "    CFMutableDictionaryRef matchingDict = IOBSDNameMatching(default_port,",
+            "                                                            0,",
+            "                                                            name);",
+            "    if (matchingDict == NULL) {",
+            "        return IO_OBJECT_NULL;",
+            "    }",
+            "",
+            "    if (KERN_SUCCESS != IOServiceGetMatchingServices(default_port,",
+            "                                                     matchingDict,",
+            "                                                     &iterator)) {",
+            "        return IO_OBJECT_NULL;",
+            "    }",
+            "",
+            "    if (iterator != IO_OBJECT_NULL) {",
+            "        io_service_t candidate = IOIteratorNext(iterator);",
+            "        while (candidate != IO_OBJECT_NULL) {",
+            "            CFTypeRef isBuiltIn =",
+            "            IORegistryEntryCreateCFProperty(candidate,",
+            "                                            CFSTR(kIOBuiltin),",
+            "                                            kCFAllocatorDefault,",
+            "                                            0);",
+            "            if (isBuiltIn != NULL && CFGetTypeID(isBuiltIn) == CFBooleanGetTypeID()) {",
+            "                if (wantBuiltIn == CFBooleanGetValue(isBuiltIn)) {",
+            "                    service = candidate;",
+            "                    break;",
+            "                }",
+            "            }",
+            "",
+            "            IOObjectRelease(candidate);",
+            "            candidate = IOIteratorNext(iterator);",
+            "        }",
+            "        IOObjectRelease(iterator);",
+            "    }",
+            "",
+            "    return service;",
+            "}",
+            "",
+            "CFDataRef copy_mac_address() {",
+            "    CFDataRef macAddress = NULL;",
+            "    io_service_t service = io_service(\"en0\", true);",
+            "",
+            "    if (service == IO_OBJECT_NULL) {",
+            "        service = io_service(\"en1\", true);",
+            "    }",
+            "",
+            "    if (service == IO_OBJECT_NULL) {",
+            "        service = io_service(\"en0\", false);",
+            "    }",
+            "",
+            "    if (service != IO_OBJECT_NULL) {",
+            "        CFTypeRef property =",
+            "        IORegistryEntrySearchCFProperty(service,",
+            "                                        kIOServicePlane,",
+            "                                        CFSTR(kIOMACAddress),",
+            "                                        kCFAllocatorDefault,",
+            "                                        kIORegistryIterateRecursively | kIORegistryIterateParents);",
+            "        if (property != NULL) {",
+            "            if (CFGetTypeID(property) == CFDataGetTypeID()) {",
+            "                macAddress = property;",
+            "            }",
+            "            else {",
+            "                CFRelease(property);",
+            "            }",
+            "        }",
+            "",
+            "        IOObjectRelease(service);",
+            "    }",
+            "",
+            "    return macAddress;",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3746018",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3744733",
+          "level": 3,
+          "text": "Respond to validation failures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app receipt validation fails, respond to that failure as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t try to terminate the app. Without a validated receipt, assume the user doesn’t have access to premium content. Provide a user interface to gracefully handle this case and inform the user what they can do to get full access to your app’s features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the app receipt is missing or corrupt, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to refresh the app receipt.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the sandbox environment, if the app receipt is missing, assume the tester is a new customer and doesn’t have access to premium content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For apps in iOS and iPadOS running in the sandbox environment and in StoreKit testing in Xcode, the app receipt is present only after the tester makes their first in-app purchase. The app receipt is always present in TestFlight on devices running macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain(_:_:)": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplicationMain(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplicationMain(_:_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplicationmain(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device": {
+      "abstract": [
+        {
+          "text": "Verify the contents of app receipts by decoding and parsing the receipt on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts on the device",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3744669": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3744669",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device#3744669"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3744734": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3744734",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device#3744734"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3746018": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device#3746018",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device#3746018"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStoreReceiptURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407276-appstorereceipturl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UUID",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uuid",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid/1779678-uuid"
+    },
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "article",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKReceiptRefreshRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skreceiptrefreshrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/identifierForVendor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifierForVendor",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/identifierforvendor"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/identifierForVendor": {
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/identifierForVendor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifierForVendor",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedevice/identifierforvendor"
+    },
+    "link-3746027": {
+      "identifier": "link-3746027",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple PKI",
+      "type": "topic",
+      "url": "https://www.apple.com/certificateauthority/"
+    },
+    "link-3746028": {
+      "identifier": "link-3746028",
+      "kind": "article",
+      "role": "link",
+      "title": "Receipt Fields",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    },
+    "link-3760715": {
+      "identifier": "link-3760715",
+      "kind": "article",
+      "role": "link",
+      "title": "ASN.1 Field Type 2",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    },
+    "link-3760716": {
+      "identifier": "link-3760716",
+      "kind": "article",
+      "role": "link",
+      "title": "ASN.1 Field Type 5",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    },
+    "link-3760717": {
+      "identifier": "link-3760717",
+      "kind": "article",
+      "role": "link",
+      "title": "ASN.1 Field Type 3",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    },
+    "link-4099285": {
+      "identifier": "link-4099285",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 2315",
+      "type": "topic",
+      "url": "https://www.rfc-editor.org/rfc/rfc2315"
+    },
+    "link-4099286": {
+      "identifier": "link-4099286",
+      "kind": "article",
+      "role": "link",
+      "title": "ITU-T X.690",
+      "type": "topic",
+      "url": "https://www.itu.int/rec/T-REC-X.690/"
+    },
+    "link-4180977": {
+      "identifier": "link-4180977",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple PKI",
+      "type": "topic",
+      "url": "https://www.apple.com/certificateauthority/"
+    },
+    "link-4181107": {
+      "identifier": "link-4181107",
+      "kind": "article",
+      "role": "link",
+      "title": "ASN.1 Field Type 12",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    },
+    "link-4181108": {
+      "identifier": "link-4181108",
+      "kind": "article",
+      "role": "link",
+      "title": "ASN.1 Field Type 12",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/validating_receipts_on_the_device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

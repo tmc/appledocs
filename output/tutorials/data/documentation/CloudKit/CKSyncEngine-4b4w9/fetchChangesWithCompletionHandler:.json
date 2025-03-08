@@ -1,0 +1,539 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches pending remote changes from the server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKSyncEngine(im)fetchChangesWithCompletionHandler:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "fetchChangesWithCompletionHandler:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "fetchChangesWithCompletionHandler:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "fetchChangesWithCompletionHandler:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchChangesWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block to execute when the fetch completes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completionHandler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the fetch fails, the completion handler’s ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is an object that describes that failure; otherwise, it’s ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to ensure the sync engine immediatley fetches all pending remote changes before your app continues. This isn’t necessary in normal use, as the engine automatically syncs your app’s records. It is useful, however, in scenarios where you require more control over sync, such as pull-to-refresh or unit tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The sync engine invokes the completion handler only after your sync delegate finishes processing all related fetch events.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Fetches pending remote changes from the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Fetches pending remote changes from the server using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithOptions:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchChangesWithOptions:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithoptions:completionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Sends pending local changes to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Sends pending local changes to the server using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithOptions:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendChangesWithOptions:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithoptions:completionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions": {
+      "abstract": [
+        {
+          "text": "A set of options to use with a fetch operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchChangesOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchChangesOptions",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchchangesoptions"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions": {
+      "abstract": [
+        {
+          "text": "A set of options to use with a send operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSendChangesOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSendChangesOptions",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesendchangesoptions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Invoking-manual-sync-operations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions"
+      ],
+      "title": "Invoking manual sync operations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

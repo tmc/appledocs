@@ -1,0 +1,2133 @@
+{
+  "abstract": [
+    {
+      "text": "Implement Action Extensions to provide quick access to commonly used features of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/add-functionality-to-finder-with-action-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Add Functionality to Finder with Action Extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Action Extensions can let users access features of your app directly from macOS. For example, if your app contains the functionality to perform image processing, an Action Extension could allow users to process their images directly from Finder. This sample code project creates three Action Extensions, two for processing images and one for processing text. One extension also presents a user interface and all three are available from both the Touch Bar and Finder Preview pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project consists of four targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A macOS app target that has no functionality, but would normally contain your main application.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ThumbnailAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an Action Extension target that takes images of any type as inputs and outputs thumbnail versions of them. This extension preserves the original input files and creates thumbnails as new files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RemoveOpacityAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an Action Extension target that takes PNG images as inputs and replaces them with opaque versions of the same images. During processing, this extension prompts the user for a color to draw as the background behind the transparent image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UppercaseAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an Action Extension target that takes text as input and converts it to be uppercase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extensions in this sample all accept file data from Finder, process it, and output the data back to Finder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, new Action Extensions are not enabled in macOS. After running this sample code project, enable the extensions by selecting the “Create Thumbnail”, “Make PNG Opaque”, and “Convert Text to Upper Case” checkboxes in the Actions, Finder, and Touch Bar categories of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/mac-help/change-extensions-preferences-mchl8baf92fe/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-File-Data",
+          "level": 3,
+          "text": "Accept File Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system makes Action Extensions available depending on the type of data that the user has selected in Finder. For example, if the user selects a ",
+              "type": "text"
+            },
+            {
+              "code": "PNG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, Action Extensions that support images are shown. Each of the extensions in this sample operate on different kinds of input content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ThumbnailAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operates on ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "any",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " kind of image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RemoveOpacityAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operates specifically on PNG images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UppercaseAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operates on text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionActivationRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the associated target determines the conditions under which extensions are available. The value for this key can either be a dictionary, or a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ThumbnailAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UppercaseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are both configured with dictionary values. ",
+              "type": "text"
+            },
+            {
+              "code": "ThumbnailAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies that it accepts image data with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionActivationSupportsImageWithMaxCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key and ",
+              "type": "text"
+            },
+            {
+              "code": "UppercaseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies that it accepts text data with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionActivationSupportsText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on valid dictionary keys for ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionActivationRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RemoveOpacityAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": true,
+              "overridingTitle": "NSPredicate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSPredicate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " query as a string value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionActivationRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The query in this sample project filters images to only be valid if they are in PNG format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SUBQUERY (",
+            "    extensionItems,",
+            "    $extensionItem,",
+            "    SUBQUERY (",
+            "        $extensionItem.attachments,",
+            "        $attachment,",
+            "        ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO \"public.png\"",
+            "    ).@count == $extensionItem.attachments.@count",
+            ").@count == 1"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on defining extension activation rules, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-Input-Attachments",
+          "level": 3,
+          "text": "Process Input Attachments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user invokes an Action Extension, the system instantiates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and asks it to handle the request through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling",
+              "isActive": true,
+              "overridingTitle": "NSExtensionRequestHandling",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSExtensionRequestHandling",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+              "isActive": true,
+              "overridingTitle": "beginRequest(with:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "beginRequest(with:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method and passes in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+              "isActive": true,
+              "overridingTitle": "NSExtensionContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSExtensionContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". To access the input files, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments",
+              "isActive": true,
+              "overridingTitle": "attachments",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "attachments",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+              "isActive": true,
+              "overridingTitle": "NSExtensionItem",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSExtensionItem",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " contained in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1414827-inputitems",
+              "isActive": true,
+              "overridingTitle": "inputItems",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "inputItems",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once processing completes, pass output files back to the system by creating new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "overridingTitle": "NSItemProvider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSItemProvider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects and registering them with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation",
+              "isActive": true,
+              "overridingTitle": "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let itemProvider = NSItemProvider()",
+            "itemProvider.registerFileRepresentation(",
+            "    forTypeIdentifier: kUTTypePNG as String, fileOptions: [.openInPlace],",
+            "    visibility: .all, loadHandler: { completionHandler in",
+            "        guard let sourceImage = NSImage(contentsOf: sourceUrl) else { return nil }",
+            "        let thumbnailImage = sourceImage.thumbnailImage",
+            "        let thumbnailUrl = self.thumbnailUrl(for: sourceUrl)",
+            "        thumbnailImage.savePNGToDisk(at: thumbnailUrl)",
+            "        completionHandler(thumbnailUrl, false, nil)",
+            "        return nil",
+            "    }",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain the correct directory path for writing output files, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+              "isActive": true,
+              "overridingTitle": "url(for:in:appropriateFor:create:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "url(for:in:appropriateFor:create:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory",
+              "isActive": true,
+              "overridingTitle": "itemReplacementDirectory",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "itemReplacementDirectory",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " constant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let itemReplacementDirectory = try FileManager.default.url(",
+            "    for: .itemReplacementDirectory, in: .userDomainMask,",
+            "    appropriateFor: URL(fileURLWithPath: NSHomeDirectory()), create: true)",
+            "let thumbnailFilename = sourceUrl.deletingPathExtension().lastPathComponent + \" Thumbnail.png\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, signal that the action is complete by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1411301-completerequest",
+              "isActive": true,
+              "overridingTitle": "completeRequest(returningItems:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "completeRequest(returningItems:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you wish to preserve the input files instead of replacing them, it is important that ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSItemProvider",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects for the original input files are also included in the returned array of item providers. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "ThumbnailAction",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " target in this sample code project demonstrates passing back both the original input files as well as new thumbnail files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Process-Text-Data",
+          "level": 3,
+          "text": "Process Text Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UppercaseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension accepts any text, either supplied as attachments in the same way as ",
+              "type": "text"
+            },
+            {
+              "code": "ThumbnailAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "RemoveOpacityAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or from other sources such as a standard ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextField",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control. Check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1408297-attributedcontenttext",
+              "isActive": true,
+              "overridingTitle": "attributedContentText",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "attributedContentText",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property for input from text fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "attributedContentText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is empty, check for input in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments",
+              "isActive": true,
+              "overridingTitle": "attachments",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "attachments",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+              "isActive": true,
+              "overridingTitle": "NSExtensionItem",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSExtensionItem",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let outputItem = NSExtensionItem()",
+            "outputItem.attributedContentText = NSAttributedString(string: inputContent.string.uppercased())",
+            "context.completeRequest(returningItems: [outputItem], completionHandler: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-a-User-Interface",
+          "level": 3,
+          "text": "Present a User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the action requires user interaction then the extension may present a user interface. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.ui-services",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ensure that the principal class is a subclass of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the extension does not require user interaction, specify ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.services",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and have the principal class conform to ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionRequestHandling",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When creating a new Action Extension target, Xcode prompts you to decide if your extension will present a user interface. Based on that choice, Xcode sets appropriate initial values for ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSExtensionPointIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW3",
+                  "isActive": true,
+                  "overridingTitle": "NSExtensionPrincipalClass",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "NSExtensionPrincipalClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensions that present a user interface show their view controller’s view immediately after the extension calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+              "isActive": true,
+              "overridingTitle": "beginRequest(with:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "beginRequest(with:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and should input files with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the extension’s user interface has completed any required user interaction for the task, process the files in the normal way by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1411301-completerequest",
+              "isActive": true,
+              "overridingTitle": "completeRequest(returningItems:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "completeRequest(returningItems:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To cancel the task, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1412773-cancelrequest",
+              "isActive": true,
+              "overridingTitle": "cancelRequest(withError:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "cancelRequest(withError:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Pass a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsusercancellederror",
+              "isActive": true,
+              "overridingTitle": "NSUserCancelledError",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSUserCancelledError",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " if the user canceled the task, or an error caused the failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cancelError = NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError, userInfo: nil)",
+            "context.cancelRequest(withError: cancelError)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-the-Touch-Bar-and-Finder-Preview-Pane",
+          "level": 3,
+          "text": "Support the Touch Bar and Finder Preview Pane",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users may also access Action Extensions from the Touch Bar and from the Quick Actions menu in Finder’s Preview pane. Set both ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionServiceAllowsFinderPreviewItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionServiceAllowsTouchBarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to support the Touch Bar and Preview Pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each extension must also have a template icon for use in the Quick Actions menu and the Finder Preview pane. Specify the icon with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionServiceTouchBarIconName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each target. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/activity-views#Share-and-action-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The color of the Touch Bar button can also be customized using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionServiceTouchBarBezelColorName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. By default, this is a ",
+              "type": "text"
+            },
+            {
+              "code": "TouchBarBezel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " color but can be any color in the asset catalog for the target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to add Quick Actions to the Touch Bar see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/automator/use-quick-action-workflows-aut73234890a/mac#aut7b29b7fc1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9de4b65d06cd/AddFunctionalityToFinderWithActionExtensions.zip": {
+      "checksum": "9de4b65d06cd8f69bb28bcda4b9bd087313374f1d92edd17367ddd7cb80b96372b5daecf29ac2a206bc93cb7525587efff4af243706243c10c8f944ca1519811",
+      "identifier": "9de4b65d06cd/AddFunctionalityToFinderWithActionExtensions.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9de4b65d06cd/AddFunctionalityToFinderWithActionExtensions.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext": {
+      "abstract": [
+        {
+          "text": "For a view controller that is part of an app extension, the app extension context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExtensionContext",
+          "text": "NSExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/extensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "extensionContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/extensioncontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/app-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Extensions",
+      "type": "topic",
+      "url": "/documentation/appkit/app-extensions"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsFinderPreviewItem": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the extension appears in the Finder Preview pane and Quick Actions menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsFinderPreviewItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceAllowsFinderPreviewItem",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsFinderPreviewItem"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsTouchBarItem": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the extension appears as a Quick Action in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsTouchBarItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceAllowsTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsTouchBarItem"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewIconName": {
+      "abstract": [
+        {
+          "text": "The name of an icon for display when the extension appears in the Finder Preview pane and Quick Actions menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewIconName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceFinderPreviewIconName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewIconName"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewLabel": {
+      "abstract": [
+        {
+          "text": "A name for display when the extension appears in the Finder Preview pane and Quick Actions menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceFinderPreviewLabel",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewLabel"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarBezelColorName": {
+      "abstract": [
+        {
+          "text": "The color to use for the bezel around the extension when it appears as a Quick Action in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarBezelColorName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceTouchBarBezelColorName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarBezelColorName"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarIconName": {
+      "abstract": [
+        {
+          "text": "The name of an icon for display when the extension appears as a Quick Action in the Touch Bar",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarIconName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceTouchBarIconName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarIconName"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarLabel": {
+      "abstract": [
+        {
+          "text": "A name for display when the extension appears as a Quick Action in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionServiceTouchBarLabel",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarLabel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url": {
+      "abstract": [
+        {
+          "text": "Locates and optionally creates the specified common directory in a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "appropriateFor"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "create"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(for:in:appropriateFor:create:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407693-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory": {
+      "abstract": [
+        {
+          "text": "The constant used to create a temporary directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemReplacementDirectory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.SearchPathDirectory.itemReplacementDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext": {
+      "abstract": [
+        {
+          "text": "The host app context from which an app extension is invoked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionContext",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1411301-completerequest": {
+      "abstract": [
+        {
+          "text": "Tells the host app to complete the app extension request with an array of result items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "returningItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Bool) -> Void)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1411301-completerequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeRequest(returningItems:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext/1411301-completerequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1412773-cancelrequest": {
+      "abstract": [
+        {
+          "text": "Tells the host app to cancel the app extension request, with a supplied error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1412773-cancelrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelRequest(withError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext/1412773-cancelrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1414827-inputitems": {
+      "abstract": [
+        {
+          "text": "The list of input  objects associated with the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1414827-inputitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputItems",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext/1414827-inputitems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionitem": {
+      "abstract": [
+        {
+          "text": "An immutable collection of values representing different aspects of an item for an extension to act upon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionItem",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1408297-attributedcontenttext": {
+      "abstract": [
+        {
+          "text": "An optional string describing the extension item content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedContentText"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAttributedString?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1408297-attributedcontenttext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedContentText",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionitem/1408297-attributedcontenttext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments": {
+      "abstract": [
+        {
+          "text": "An optional array of media data associated with the extension item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachments"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSItemProvider]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionitem/1416690-attachments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest": {
+      "abstract": [
+        {
+          "text": "Tells the extension to prepare for a host app’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExtensionContext)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRequest(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderFileOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((URL?, Bool, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsusercancellederror": {
+      "abstract": [
+        {
+          "text": "The user canceled the operation (for example, by pressing Command-period).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserCancelledError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsusercancellederror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserCancelledError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsusercancellederror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/activity-views#Share-and-action-extensions": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/activity-views#Share-and-action-extensions",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/activity-views#Share-and-action-extensions"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW8": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW8",
+      "title": "App Extension Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "App Extension Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW8"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10",
+      "title": "App Extension Keys reference",
+      "titleInlineContent": [
+        {
+          "text": "App Extension Keys reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15",
+      "title": "NSExtensionPointIdentifier",
+      "titleInlineContent": [
+        {
+          "code": "NSExtensionPointIdentifier",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW3": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW3",
+      "title": "NSExtensionPrincipalClass",
+      "titleInlineContent": [
+        {
+          "code": "NSExtensionPrincipalClass",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW3"
+    },
+    "https://support.apple.com/guide/automator/use-quick-action-workflows-aut73234890a/mac#aut7b29b7fc1": {
+      "identifier": "https://support.apple.com/guide/automator/use-quick-action-workflows-aut73234890a/mac#aut7b29b7fc1",
+      "title": "Automator User Guide",
+      "titleInlineContent": [
+        {
+          "text": "Automator User Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/automator/use-quick-action-workflows-aut73234890a/mac#aut7b29b7fc1"
+    },
+    "https://support.apple.com/guide/mac-help/change-extensions-preferences-mchl8baf92fe/mac": {
+      "identifier": "https://support.apple.com/guide/mac-help/change-extensions-preferences-mchl8baf92fe/mac",
+      "title": "Extensions System Preferences",
+      "titleInlineContent": [
+        {
+          "text": "Extensions System Preferences",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/mac-help/change-extensions-preferences-mchl8baf92fe/mac"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9de4b65d06cd/AddFunctionalityToFinderWithActionExtensions.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Quick-Actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsFinderPreviewItem",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewLabel",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceFinderPreviewIconName",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceAllowsTouchBarItem",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarLabel",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarIconName",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/NSExtensionServiceTouchBarBezelColorName"
+      ],
+      "title": "Quick Actions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1extensionContext/title",
+          "value": "extensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController~1extensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensioncontext~11412773-cancelrequest/title",
+          "value": "cancelRequestWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11407693-url/title",
+          "value": "URLForDirectory:inDomain:appropriateForURL:create:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensionrequesthandling~11413395-beginrequest/title",
+          "value": "beginRequestWithExtensionContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsitemprovider~12888337-registerfilerepresentation/title",
+          "value": "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~1searchpathdirectory~1itemreplacementdirectory/title",
+          "value": "NSItemReplacementDirectory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensioncontext~11411301-completerequest/title",
+          "value": "completeRequestReturningItems:completionHandler:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/add-functionality-to-finder-with-action-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

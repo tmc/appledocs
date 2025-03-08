@@ -1,0 +1,745 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether to allow local resources to load.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSAppTransportSecurity.NSAllowsLocalNetworking",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSAllowsLocalNetworking"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "NSAllowsLocalNetworking"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "ideTitle": "Allows Local Networking",
+        "name": "NSAllowsLocalNetworking",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "boolean"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "default",
+          "value": "NO"
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSAllowsLocalNetworking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key controls whether App Transport Security (ATS) allows your app to connect to unqualified domains, ",
+              "type": "text"
+            },
+            {
+              "code": ".local",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domains, and IP addresses using IPv4 or IPv6.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 9 and macOS 10.11, ATS disallows connections to all three domain types. You can add exceptions for unqualified domains and ",
+              "type": "text"
+            },
+            {
+              "code": ".local",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domains in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary, but you can’t add IP addresses. Instead you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you want to load directly from an IP address.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 10 through iOS 16, iPadOS 13.1 through iPadOS 16, and macOS 10.12 through macOS 13, ATS allows all three of these connections by default, so you no longer need an exception for any of them. However, if you need to maintain compatibility with older versions of the OS, set both of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17, iPadOS 17, and macOS 14, ATS no longer allows connections to IP addresses by default. Add individual IP addresses and classless inter-domain routing (CIDR) ranges in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The local networking exception tells newer versions of the OS to ignore the arbitrary loads key, and enable access to unqualified domains, ",
+              "type": "text"
+            },
+            {
+              "code": ".local",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domains, and IP addresses that they would otherwise restrict. Meanwhile, the arbitrary loads key tells older versions of the OS, which don’t process the local networking exception key, to bypass ATS completely. This allows your app to work on different OS versions while minimizing the use of the wider exception. For more information about how global ATS exceptions interact across OS versions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key’s Versioning section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "While ATS doesn’t block local loads by default in newer versions of the OS, consider setting ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "YES",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as a declaration of intent, if appropriate, even if you don’t support older OS versions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity": {
+      "abstract": [
+        {
+          "text": "A description of changes made to the default security for HTTP connections.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Transport Security Settings",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity",
+      "kind": "symbol",
+      "name": "NSAppTransportSecurity",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppTransportSecurity"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppTransportSecurity",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether App Transport Security restrictions are disabled for all network connections.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allow Arbitrary Loads",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+      "kind": "symbol",
+      "name": "NSAllowsArbitraryLoads",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsArbitraryLoads"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsArbitraryLoads",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloads"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsForMedia": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether all App Transport Security restrictions are disabled for requests made using the AV Foundation framework.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allows Arbitrary Loads for Media",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsForMedia",
+      "kind": "symbol",
+      "name": "NSAllowsArbitraryLoadsForMedia",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsArbitraryLoadsForMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsArbitraryLoadsForMedia",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloadsformedia"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsInWebContent": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether all App Transport Security restrictions are disabled for requests made from web views.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allow Arbitrary Loads in Web Content",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsInWebContent",
+      "kind": "symbol",
+      "name": "NSAllowsArbitraryLoadsInWebContent",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsArbitraryLoadsInWebContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsArbitraryLoadsInWebContent",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloadsinwebcontent"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow local resources to load.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Allows Local Networking",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsLocalNetworking",
+      "kind": "symbol",
+      "name": "NSAllowsLocalNetworking",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAllowsLocalNetworking"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAllowsLocalNetworking",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowslocalnetworking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains": {
+      "abstract": [
+        {
+          "text": "Custom App Transport Security (ATS) configurations for named domains.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Exception Domains",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSExceptionDomains",
+      "kind": "symbol",
+      "name": "NSExceptionDomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionDomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsexceptiondomains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Global-Exceptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsForMedia",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsInWebContent"
+      ],
+      "title": "Global Exceptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSAllowsLocalNetworking"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsLocalNetworking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Global-Exceptions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoads",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsForMedia",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppTransportSecurity/NSAllowsArbitraryLoadsInWebContent"
+              ],
+              "title": "Global Exceptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSExceptionDomains/title",
+          "value": "NSExceptionDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSExceptionDomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoadsForMedia/title",
+          "value": "NSAllowsArbitraryLoadsForMedia"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoadsForMedia/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsArbitraryLoadsForMedia"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity/title",
+          "value": "NSAppTransportSecurity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppTransportSecurity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoadsInWebContent/title",
+          "value": "NSAllowsArbitraryLoadsInWebContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoadsInWebContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsArbitraryLoadsInWebContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoads/title",
+          "value": "NSAllowsArbitraryLoads"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsArbitraryLoads/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsArbitraryLoads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsLocalNetworking/title",
+          "value": "NSAllowsLocalNetworking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppTransportSecurity~1NSAllowsLocalNetworking/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAllowsLocalNetworking"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowslocalnetworking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowslocalnetworking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

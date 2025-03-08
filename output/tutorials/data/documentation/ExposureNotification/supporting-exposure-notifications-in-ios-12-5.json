@@ -1,0 +1,841 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your Exposure Notifications app to run on a previous version of iOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting Exposure Notifications in iOS 12.5"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To increase adoption and broaden usage, the Exposure Notification framework now supports iPhones compatible with iOS 12.5. Because Exposure Notifications was originally released in iOS 13.5, special considerations apply when developing for iOS 12.5. However, all privacy protections put in place with the original release also apply in iOS 12.5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-Level-of-Support-You-Need",
+          "level": 3,
+          "text": "Determine the Level of Support You Need",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on your circumstances, you have a couple of options for adopting Exposure Notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you havenʼt already developed an Exposure Notifications app, or if you have an existing app that uses features in later versions of iOS that arenʼt available in iOS 12.5, consider using Exposure Notifications Express, which provides an app-less experience. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an app that uses version 1 risk scoring and want to support iOS 12.5, consider updating to the more robust version 2 scoring. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-Deployment-Target-and-Link-the-Framework",
+          "level": 3,
+          "text": "Set the Deployment Target and Link the Framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications for iOS 12.5 requires Xcode 12.3 or later. In your Xcode project’s Build Settings tab, set the iOS deployment target. From the menu, select Other and type “12.5.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705948",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Exposure Notification framework explicitly in the Link Binary With Libraries section under Build Phases. Set the status of the framework to Optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705004",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-API-and-iOS-Version-Checks",
+          "level": 3,
+          "text": "Perform API and iOS Version Checks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extend your app to handle different versions of iOS and Exposure Notifications by incorporating the following code. Call ",
+              "type": "text"
+            },
+            {
+              "code": "getSupportedExposureNotificationsVersion()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine if Exposure Notifications is available on the device, and if so, which API version to support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func ENManagerIsAvailable() -> Bool {",
+                    "    return NSClassFromString(\"ENManager\") != nil",
+                    "}",
+                    "",
+                    "enum SupportedENAPIVersion {",
+                    "    case version2",
+                    "    case version1",
+                    "    case unsupported",
+                    "}",
+                    "",
+                    "func getSupportedExposureNotificationsVersion() -> SupportedENAPIVersion {",
+                    "    if #available(iOS 13.7, *) {",
+                    "        return .version2",
+                    "    } else if #available(iOS 13.5, *) {",
+                    "        return .version1",
+                    "    } else if ENManagerIsAvailable() {",
+                    "        return .version2",
+                    "    } else {",
+                    "        return .unsupported",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "typedef enum SupportedENAPIVersion {",
+                    "    ENAPIVersion1Supported,",
+                    "    ENAPIVersion2Supported,",
+                    "    ENAPIUnsupported",
+                    "} ENSupportedAPIVersion;",
+                    "",
+                    "ENSupportedAPIVersion getSupportedExposureNotificationVersion() {",
+                    "    if (@available(iOS 13.7, *)) {",
+                    "        return ENAPIVersion2Supported;",
+                    "    } else if (@available(iOS 13.5, *)) {",
+                    "       return ENAPIVersion1Supported;",
+                    "    } else if (NSClassFromString(@\"ENManager\") != nil) {",
+                    "       return ENAPIVersion2Supported;",
+                    "    } else {",
+                    "       return ENAPIUnsupported;",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although iOS 13.0 to 13.4 doesn’t support Exposure Notifications, your app might still download onto devices with those versions of iOS. If that happens, present a dialog to let the user know Exposure Notifications isn’t available for their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Background-Task-Interval-and-Request-Runtime",
+          "level": 3,
+          "text": "Set Background Task Interval and Request Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that support Exposure Notifications periodically need time in the background to download and evaluate temporary exposure keys. Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t available in iOS 12.5, Bluetooth explicitly grants apps with the Exposure Notifications entitlement 3.5 minutes at least once a day.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the following code to your app to prepare it to receive background processing time at the defined interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct ENActivityFlags: OptionSet {",
+                    "    let rawValue: UInt32",
+                    "    ",
+                    "    /// The app launched to perform periodic operations.",
+                    "    static let periodicRun = ENActivityFlags(rawValue: 1 << 2)",
+                    "}",
+                    "",
+                    "typealias ENActivityHandler = (ENActivityFlags) -> Void",
+                    "",
+                    "extension ENManager {",
+                    "    func setLaunchActivityHandler(activityHandler: @escaping ENActivityHandler) {",
+                    "        let proxyActivityHandler: @convention(block) (UInt32) -> Void = {integerFlag in",
+                    "            activityHandler(ENActivityFlags(rawValue: integerFlag))",
+                    "        }       ",
+                    "        setValue(proxyActivityHandler, forKey: \"activityHandler\")",
+                    "    }",
+                    " }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "typedef NS_OPTIONS( uint32_t, ENActivityFlags )",
+                    "{",
+                    "    /// The app launched to perform periodic operations.",
+                    "    ENActivityFlagsPeriodicRun = ( 1U << 2 )",
+                    "};",
+                    "",
+                    "typedef void (^ENActivityHandler)(ENActivityFlags activityFlags);",
+                    "",
+                    "@interface ENManager (ENActivityHandling)",
+                    "",
+                    "@end",
+                    "",
+                    "@implementation ENManager (ENActivityHandling)",
+                    "",
+                    "- (void)setLaunchActivityHandler:(ENActivityHandler)activityHandler {",
+                    "    [self setValue:activityHandler forKey:@\"activityHandler\"];",
+                    "}",
+                    "",
+                    "@end",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background scheduling starts when the user authorizes and enables Exposure Notifications for the app. Upon user authorization, the first iteration of the background launch happens after the defined interval, and after every subsequent interval. If the app loses authorization, scheduling stops immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the following code to your app to extend the ",
+              "type": "text"
+            },
+            {
+              "code": "setLaunchActivityHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to download and detect exposures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let manager = ENManager()",
+                    "    ",
+                    "// Set the launch activity handler.",
+                    "manager.setLaunchActivityHandler { activityFlags in",
+                    "    if activityFlags.contains(.periodicRun) {",
+                    "        // Your app now has 3.5 minutes to perform download and detection.",
+                    "    }",
+                    "}",
+                    "",
+                    "// Activate the ENManager.",
+                    "manager.activate { error in",
+                    "    // Perform any error checking.",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "ENManager *manager = [[ENManager alloc] init];",
+                    "",
+                    "// Set the launch activity handler.",
+                    "[manager setLaunchActivityHandler:^(ENActivityFlags activityFlags) {",
+                    "    if (activityFlags & ENActivityFlagsPeriodicRun) {",
+                    "        // Your app now has 3.5 minutes to perform download and detection.",
+                    "    }",
+                    "}];",
+                    "",
+                    "// Activate the ENManager.",
+                    "[manager activateWithCompletionHandler:^(NSError * _Nullable error) {",
+                    "    // Perform any error checking.",
+                    "}];",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler": {
+      "abstract": [
+        {
+          "text": "A class for scheduling task requests that launch your app in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGTaskScheduler",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks/BGTaskScheduler"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion": {
+      "abstract": [
+        {
+          "text": "A number that specifies the version of the API to use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENAPIVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENAPIVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion": {
+      "abstract": [
+        {
+          "text": "A string that specifies the region that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENDeveloperRegion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENDeveloperRegion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration": {
+      "abstract": [
+        {
+          "text": "The object that contains parameters for configuring exposure notification risk scoring behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureConfiguration",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager": {
+      "abstract": [
+        {
+          "text": "A class that manages exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENManager",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure": {
+      "abstract": [
+        {
+          "text": "Inform people when they may have been exposed to COVID-19.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an App to Notify Users of COVID-19 Exposure",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/building-an-app-to-notify-users-of-covid-19-exposure"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api": {
+      "abstract": [
+        {
+          "text": "Update Exposure Notifications configuration values from a Public Health Authority’s server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Configuration Values Using the Server‑to‑Server API",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/changing-configuration-values-using-the-server-to-server-api"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server": {
+      "abstract": [
+        {
+          "text": "Ensure that your server meets the requirements for supporting Exposure Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Key Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-a-key-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-express"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later": {
+      "abstract": [
+        {
+          "text": "Perform end-to-end validation of Exposure Notifications apps on a device by manually loading configuration files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Exposure Notifications Apps in iOS 13.7 and Later",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+    },
+    "media-3705004": {
+      "alt": "Image that shows how to add the Exposure Notification framework to your Xcode project.",
+      "identifier": "media-3705004",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ee1e8d23b2ff7db3f331d27f2f006d2/media-3705004@2x.png"
+        }
+      ]
+    },
+    "media-3705948": {
+      "alt": "Image that shows iOS Deployment Target set to iOS 12.5.",
+      "identifier": "media-3705948",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4578d6ca8c268ce64a49ee239ed6a876/media-3705948@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/title",
+          "value": "ENManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/title",
+          "value": "ENExposureConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGTaskScheduler/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/supporting-exposure-notifications-in-ios-12-5"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/supporting-exposure-notifications-in-ios-12-5"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

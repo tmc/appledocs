@@ -1,0 +1,512 @@
+{
+  "abstract": [
+    {
+      "text": "Recovers an active workout session.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/healthkit",
+        "doc://com.apple.documentation/documentation/healthkit/hkhealthstore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2962889,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKHealthStore(im)recoverActiveWorkoutSessionWithCompletion:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "recoverActiveWorkoutSession"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "completion"
+      },
+      {
+        "kind": "text",
+        "text": ": (HKWorkoutSession?, (any Error)?) -> Void)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "parent": {
+      "title": "HKHealthStore"
+    },
+    "platforms": [
+      {
+        "current": "11.4",
+        "introducedAt": "5.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "recoverActiveWorkoutSession(completion:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "recoverActiveWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@Sendable"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkworkoutsession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)HKWorkoutSession",
+              "text": "HKWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "text",
+              "text": "(any "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5ErrorP",
+              "text": "Error"
+            },
+            {
+              "kind": "text",
+              "text": ")?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can call this method from synchronous code using a completion handler, as shown on this page, or you can call it as an asynchronous method that has the following declaration:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "func recoverActiveWorkoutSession() async throws -> HKWorkoutSession?"
+              ],
+              "metadata": {
+                "anchor": "3808487",
+                "title": "Listing 1"
+              },
+              "syntax": "swift",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For information about concurrency and asynchronous code in Swift, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Concurrency Note",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app crashes during an active workout session, the system calls your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method the next time your app launches. To recover the workout session, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " from your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method. HealthKit then attempts to restore the previous workout session, returning either a new session object or an error to the completion block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As soon as you receive the session object, you must access its builder and set up your data source and delegates again, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions#3384926",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Error": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/swift/error"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously",
+      "kind": "article",
+      "role": "article",
+      "title": "Calling Objective-C APIs Asynchronously",
+      "type": "topic",
+      "url": "/documentation/swift/calling-objective-c-apis-asynchronously"
+    },
+    "doc://com.apple.documentation/documentation/healthkit": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore": {
+      "abstract": [
+        {
+          "text": "The access point for all data managed by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614170-splittotalenergy": {
+      "abstract": [
+        {
+          "text": "Calculates the active and resting energy burned based on the total energy burned over the given duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitTotalEnergy"
+        },
+        {
+          "kind": "text",
+          "text": "(HKQuantity, "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (HKQuantity?, HKQuantity?, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614170-splittotalenergy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "splitTotalEnergy(_:start:end:resultsHandler:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/1614170-splittotalenergy"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession": {
+      "abstract": [
+        {
+          "text": "Recovers an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "recoverActiveWorkoutSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (HKWorkoutSession?, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recoverActiveWorkoutSession(completion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession#3808487": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession#3808487",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession#3808487"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkworkoutsession": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkworkoutsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Running workout sessions",
+      "type": "topic",
+      "url": "/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions#3384926": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions#3384926",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Start a session",
+      "type": "section",
+      "url": "/documentation/healthkit/workouts_and_activity_rings/running_workout_sessions#3384926"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()": {
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleActiveWorkoutRecovery()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleactiveworkoutrecovery()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/healthkit/hkhealthstore/1614170-splittotalenergy"
+      ],
+      "title": "Managing workouts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsessionwithc"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/healthkit/hkhealthstore/2962889-recoveractiveworkoutsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

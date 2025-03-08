@@ -1,0 +1,430 @@
+{
+  "abstract": [
+    {
+      "text": "A pointer to the data contained by the mutable data object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/data",
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutabledata/1410770-mutablebytes"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410770,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableData(py)mutableBytes",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "mutableBytes"
+      },
+      {
+        "kind": "text",
+        "text": ": UnsafeMutableRawPointer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSMutableData"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "mutableBytes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "mutableBytes"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the length of the receiver’s data is not zero, this property is guaranteed to contain a pointer to the object's internal bytes. If the length of receiver’s data ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "is",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " zero, this property may or may not contain ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dependent upon many factors related to how the object was created (moreover, in this case the method result might change between different releases). The returned pointer is valid until the data object is deallocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This property is similar to, but different than the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " property contains a pointer to a constant. You can use The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " pointer to read the data managed by the data object, but you cannot modify that data. However, if the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata/1410770-mutablebytes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " property contains a non-",
+                  "type": "text"
+                },
+                {
+                  "code": "null",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " pointer, this pointer points to mutable data. You can use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata/1410770-mutablebytes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " pointer to modify the data managed by the data object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sample using this method can be found in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1699012",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1699012": {
+      "identifier": "devLink-1699012",
+      "title": "Working With Mutable Binary Data",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/BinaryData/Tasks/WorkingMutableData.html#//apple_ref/doc/uid/20002150"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes": {
+      "abstract": [
+        {
+          "text": "A pointer to the data object's contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410616-bytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledata/1410770-mutablebytes": {
+      "abstract": [
+        {
+          "text": "A pointer to the data contained by the mutable data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata/1410770-mutablebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableBytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledata/1410770-mutablebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutabledata/1410770-mutablebytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutabledata/1410770-mutablebytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

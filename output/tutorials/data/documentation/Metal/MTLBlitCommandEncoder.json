@@ -1,0 +1,4676 @@
+{
+  "abstract": [
+    {
+      "text": "An interface you can use to encode GPU commands that copy and modify the underlying memory of various Metal resources.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLBlitCommandEncoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLBlitCommandEncoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLBlitCommandEncoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLBlitCommandEncoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+        "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each GPU driver implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, an interface you use to encode various commands that copy or manipulate resource data, which include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filling buffers with repeating bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generating mipmaps for textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copying data between buffers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copying data between textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copying data between a texture and a buffer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Managing the contents of indirect command buffers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronizing buffers, textures, and other resources between the CPU and GPU",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improving runtime performance for resources by optimizing their memory layout for the GPU or CPU",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps typically use these commands to move data between a resource that uses private storage to, or from, another resource that uses CPU-accessible storage. Some apps use them to apply image-processing and texture effects, such as blurring or reflections, or to render and work with offscreen image data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by calling one of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeBlitCommandEncoder()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you finish encoding blit commands, finalize the blit pass into the command buffer by calling the encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface you can use to encode GPU commands that copy and modify the underlying memory of various Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBlitCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBlitCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command to copy image data from a source buffer into a destination texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:sourcebytesperrow:sourcebytesperimage:sourcesize:to:destinationslice:destinationlevel:destinationorigin:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command to copy image data from a source buffer into a destination texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLBlitOption",
+          "text": "MTLBlitOption"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:sourcebytesperrow:sourcebytesperimage:sourcesize:to:destinationslice:destinationlevel:destinationorigin:options:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:to:destinationOffset:size:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies data from one buffer into another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:to:destinationOffset:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceOffset:to:destinationOffset:size:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:to:destinationoffset:size:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies image data from a texture slice to a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies image data from a texture slice to a buffer, and provides options for special texture formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLBlitOption",
+          "text": "MTLBlitOption"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:options:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies image data from a texture’s slice into another slice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLOrigin",
+          "text": "MTLOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationslice:destinationlevel:destinationorigin:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies slices of a texture to another texture’s slices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationSlice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sliceCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "levelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:to:destinationslice:destinationlevel:slicecount:levelcount:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:to:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies data from one texture to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyFromTexture:toTexture:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copy(from:to:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copy(from:to:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer(_:sourceRange:destination:destinationIndex:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies commands from one indirect command buffer into another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer(_:sourceRange:destination:destinationIndex:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyIndirectCommandBuffer(_:sourceRange:destination:destinationIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copyindirectcommandbuffer(_:sourcerange:destination:destinationindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that copies commands from one indirect command buffer into another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/copyindirectcommandbuffer:sourcerange:destination:destinationindex:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fill(buffer:range:value:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that fills a buffer with a constant value for each byte.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fill"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fill(buffer:range:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fill(buffer:range:value:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/fill(buffer:range:value:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fillBuffer:range:value:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that fills a buffer with a constant value for each byte.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillBuffer:range:value:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fillBuffer:range:value:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillBuffer:range:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fillBuffer:range:value:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/fillbuffer:range:value:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/generateMipmaps(for:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that generates mipmaps for a texture from the base mipmap level up to the highest mipmap level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateMipmaps"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/generateMipmaps(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generateMipmapsForTexture:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "generateMipmaps(for:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/generatemipmaps(for:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that retrieves a sparse texture’s access data for a specific region, mipmap level, and slice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTextureAccessCounters"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resetCounters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "countersBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "countersBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/gettextureaccesscounters(_:region:miplevel:slice:resetcounters:countersbuffer:countersbufferoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that improves the performance of the CPU’s accesses to a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForCPUAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForCPUAccess:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "optimizeContentsForCPUAccess(texture:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizecontentsforcpuaccess(texture:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:slice:level:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that improves the performance of the CPU’s accesses to a specific portion of a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForCPUAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:slice:level:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForCPUAccess:slice:level:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "optimizeContentsForCPUAccess(texture:slice:level:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizecontentsforcpuaccess(texture:slice:level:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that improves the performance of the GPU’s accesses to a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForGPUAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForGPUAccess:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "optimizeContentsForGPUAccess(texture:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizecontentsforgpuaccess(texture:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:slice:level:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that improves the performance of the GPU’s accesses to a specific portion of a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForGPUAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:slice:level:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizeContentsForGPUAccess:slice:level:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "optimizeContentsForGPUAccess(texture:slice:level:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizecontentsforgpuaccess(texture:slice:level:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that can improve the performance of a range of commands within an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "optimizeIndirectCommandBuffer(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizeindirectcommandbuffer(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that can improve the performance of a range of commands within an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimizeIndirectCommandBuffer:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optimizeIndirectCommandBuffer:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "optimizeIndirectCommandBuffer:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/optimizeindirectcommandbuffer:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that resets a range of commands in an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetCommandsInBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetCommandsInBuffer(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resetcommandsinbuffer(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer:withRange:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetCommandsInBuffer:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetCommandsInBuffer:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetCommandsInBuffer:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resetcommandsinbuffer:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetTextureAccessCounters(_:region:mipLevel:slice:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that resets a sparse texture’s access data for a specific region, mipmap level, and slice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetTextureAccessCounters"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetTextureAccessCounters(_:region:mipLevel:slice:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetTextureAccessCounters:region:mipLevel:slice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetTextureAccessCounters(_:region:mipLevel:slice:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resettextureaccesscounters(_:region:miplevel:slice:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that resolves the data from the samples in a sample counter buffer and stores the results into a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveCounters"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSampleBuffer",
+          "text": "MTLCounterSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolveCounters(_:range:destinationBuffer:destinationOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resolvecounters(_:range:destinationbuffer:destinationoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters:inRange:destinationBuffer:destinationOffset:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that resolves the data from the samples in a sample counter buffer and stores the results into a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveCounters:inRange:destinationBuffer:destinationOffset:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters:inRange:destinationBuffer:destinationOffset:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveCounters:inRange:destinationBuffer:destinationOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveCounters:inRange:destinationBuffer:destinationOffset:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/resolvecounters:inrange:destinationbuffer:destinationoffset:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that samples the GPU’s hardware counters during a blit pass and stores the data in a counter sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCounters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSampleBuffer",
+          "text": "MTLCounterSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "barrier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(resource:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that synchronizes the CPU’s copy of a managed resource, such as a buffer or texture, so that it matches the GPU’s copy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(resource:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "synchronizeResource:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "synchronize(resource:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/synchronize(resource:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(texture:slice:level:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that synchronizes a part of the CPU’s copy of a texture so that it matches the GPU’s copy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(texture:slice:level:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "synchronizeTexture:slice:level:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "synchronize(texture:slice:level:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/synchronize(texture:slice:level:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/updateFence(_:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to update a fence, which signals passes waiting on the fence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/updateFence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateFence:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateFence(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/updatefence(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/waitForFence(_:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to wait until a pass updates a fence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/waitForFence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waitForFence:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "waitForFence(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/waitforfence(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitOption": {
+      "abstract": [
+        {
+          "text": "The options that enable behavior for some blit operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBlitOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBlitOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBlitOption",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitoption"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeBlitCommandEncoder()": {
+      "abstract": [
+        {
+          "text": "Creates a block information transfer (blit) encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBlitCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBlitCommandEncoder",
+          "text": "MTLBlitCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeBlitCommandEncoder()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blitCommandEncoder"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBlitCommandEncoder()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/makeblitcommandencoder()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that writes GPU commands into a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "abstract": [
+        {
+          "text": "Declares that all command generation from the encoder is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format": {
+      "abstract": [
+        {
+          "text": "Inspect and use the data within a GPU’s counter sample buffer by resolving it into a standard format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a GPU’s Counter Data into a Readable Format",
+      "type": "topic",
+      "url": "/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus": {
+      "abstract": [
+        {
+          "text": "Use high-speed connections between GPUs to transfer data quickly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring Data Between Connected GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/transferring-data-between-connected-gpus"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-a-Blit-Pass",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitOption"
+      ],
+      "title": "Encoding a Blit Pass"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Initialize the bytes within a Metal buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Filling-Buffers-with-Data",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fill(buffer:range:value:)"
+      ],
+      "title": "Filling Buffers with Data"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Initialize a texture’s mipmap levels with the content in its primary layer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Generating-Texture-Mipmaps",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/generateMipmaps(for:)"
+      ],
+      "title": "Generating Texture Mipmaps"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Transfer bytes from one Metal buffer to another, such as from a buffer with private storage to a buffer with shared storage.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Copying-Buffer-Data-to-Another-Buffer",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:to:destinationOffset:size:)"
+      ],
+      "title": "Copying Buffer Data to Another Buffer"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Transfer bytes from one Metal texture to another, whether it’s the entire texture or just a portion of it.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Copying-Texture-Data-to-Another-Texture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:to:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)"
+      ],
+      "title": "Copying Texture Data to Another Texture"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Transfer bytes from a Metal buffer into a Metal texture.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Copying-Buffer-Data-to-a-Texture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)"
+      ],
+      "title": "Copying Buffer Data to a Texture"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Transfer bytes from a Metal texture into a Metal buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Copying-Texture-Data-to-a-Buffer",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)"
+      ],
+      "title": "Copying Texture Data to a Buffer"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Improve the GPU’s access times to a texture by altering the layout of its underlying memory.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Textures-on-the-GPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:slice:level:)"
+      ],
+      "title": "Working with Textures on the GPU"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Improve the CPU’s access times to a texture by altering the layout of its underlying memory.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Textures-on-the-CPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:slice:level:)"
+      ],
+      "title": "Working with Textures on the CPU"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Update the CPU’s copy of a resource that uses the managed storage mode, including buffers and textures, to match the GPU’s copy.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Managed-Resources",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(resource:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(texture:slice:level:)"
+      ],
+      "title": "Working with Managed Resources"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Inform the GPU driver when a blit pass needs to wait for resources to update before proceeding, or when it finishes modifying resources itself.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Fences",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/waitForFence(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/updateFence(_:)"
+      ],
+      "title": "Working with Fences"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Alter the commands within a Metal indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Indirect-Command-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer(_:sourceRange:destination:destinationIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer(_:range:)"
+      ],
+      "title": "Working with Indirect Command Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Save a GPU’s counter data at runtime and then convert it into a usable data structure.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Sample-Counter-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters(_:range:destinationBuffer:destinationOffset:)"
+      ],
+      "title": "Working with Sample Counter Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Retrieve or clear the number of times the GPU accesses specific areas within a sparse texture.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Working-with-Sparse-Texture-Access-Counters",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetTextureAccessCounters(_:region:mipLevel:slice:)"
+      ],
+      "title": "Working with Sparse Texture Access Counters"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLBlitCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Initialize the bytes within a Metal buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Filling-Buffers-with-Data",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/fillBuffer:range:value:"
+              ],
+              "title": "Filling Buffers with Data"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Initialize a texture’s mipmap levels with the content in its primary layer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Generating-Texture-Mipmaps",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/generateMipmaps(for:)"
+              ],
+              "title": "Generating Texture Mipmaps"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Transfer bytes from one Metal buffer to another, such as from a buffer with private storage to a buffer with shared storage.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Copying-Buffer-Data-to-Another-Buffer",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:to:destinationOffset:size:)"
+              ],
+              "title": "Copying Buffer Data to Another Buffer"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Transfer bytes from one Metal texture to another, whether it’s the entire texture or just a portion of it.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Copying-Texture-Data-to-Another-Texture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:to:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)"
+              ],
+              "title": "Copying Texture Data to Another Texture"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Transfer bytes from a Metal buffer into a Metal texture.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Copying-Buffer-Data-to-a-Texture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)"
+              ],
+              "title": "Copying Buffer Data to a Texture"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Transfer bytes from a Metal texture into a Metal buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Copying-Texture-Data-to-a-Buffer",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)"
+              ],
+              "title": "Copying Texture Data to a Buffer"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Improve the GPU’s access times to a texture by altering the layout of its underlying memory.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Textures-on-the-GPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForGPUAccess(texture:slice:level:)"
+              ],
+              "title": "Working with Textures on the GPU"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Improve the CPU’s access times to a texture by altering the layout of its underlying memory.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Textures-on-the-CPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeContentsForCPUAccess(texture:slice:level:)"
+              ],
+              "title": "Working with Textures on the CPU"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Update the CPU’s copy of a resource that uses the managed storage mode, including buffers and textures, to match the GPU’s copy.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Managed-Resources",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(resource:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/synchronize(texture:slice:level:)"
+              ],
+              "title": "Working with Managed Resources"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Inform the GPU driver when a blit pass needs to wait for resources to update before proceeding, or when it finishes modifying resources itself.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Fences",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/waitForFence(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/updateFence(_:)"
+              ],
+              "title": "Working with Fences"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Alter the commands within a Metal indirect command buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Indirect-Command-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetCommandsInBuffer:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/optimizeIndirectCommandBuffer:withRange:"
+              ],
+              "title": "Working with Indirect Command Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Save a GPU’s counter data at runtime and then convert it into a usable data structure.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Sample-Counter-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resolveCounters:inRange:destinationBuffer:destinationOffset:"
+              ],
+              "title": "Working with Sample Counter Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Retrieve or clear the number of times the GPU accesses specific areas within a sparse texture.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Working-with-Sparse-Texture-Access-Counters",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/resetTextureAccessCounters(_:region:mipLevel:slice:)"
+              ],
+              "title": "Working with Sparse Texture Access Counters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-a-Blit-Pass",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBlitOption"
+              ],
+              "title": "Encoding a Blit Pass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLBlitCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+                    "text": "MTLCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/title",
+          "value": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForCPUAccess(texture:slice:level:)/title",
+          "value": "optimizeContentsForCPUAccess:slice:level:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForCPUAccess(texture:slice:level:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "optimizeContentsForCPUAccess:slice:level:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForCPUAccess(texture:)/title",
+          "value": "optimizeContentsForCPUAccess:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForCPUAccess(texture:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "optimizeContentsForCPUAccess:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1updateFence(_:)/title",
+          "value": "updateFence:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1updateFence(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateFence:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeBlitCommandEncoder()/title",
+          "value": "blitCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeBlitCommandEncoder()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "blitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1generateMipmaps(for:)/title",
+          "value": "generateMipmapsForTexture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1generateMipmaps(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "generateMipmapsForTexture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1waitForFence(_:)/title",
+          "value": "waitForFence:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1waitForFence(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitForFence:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1synchronize(resource:)/title",
+          "value": "synchronizeResource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1synchronize(resource:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "synchronizeResource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/title",
+          "value": "MTLBlitCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)/title",
+          "value": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)/title",
+          "value": "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:to:destinationSlice:destinationLevel:sliceCount:levelCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:to:)/title",
+          "value": "copyFromTexture:toTexture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromTexture:toTexture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitOption/title",
+          "value": "MTLBlitOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBlitOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)/title",
+          "value": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)/title",
+          "value": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:to:destinationSlice:destinationLevel:destinationOrigin:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForGPUAccess(texture:)/title",
+          "value": "optimizeContentsForGPUAccess:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForGPUAccess(texture:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "optimizeContentsForGPUAccess:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/title",
+          "value": "endEncoding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endEncoding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)/title",
+          "value": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)/title",
+          "value": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForGPUAccess(texture:slice:level:)/title",
+          "value": "optimizeContentsForGPUAccess:slice:level:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1optimizeContentsForGPUAccess(texture:slice:level:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "optimizeContentsForGPUAccess:slice:level:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1synchronize(texture:slice:level:)/title",
+          "value": "synchronizeTexture:slice:level:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1synchronize(texture:slice:level:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "synchronizeTexture:slice:level:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1resetTextureAccessCounters(_:region:mipLevel:slice:)/title",
+          "value": "resetTextureAccessCounters:region:mipLevel:slice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1resetTextureAccessCounters(_:region:mipLevel:slice:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resetTextureAccessCounters:region:mipLevel:slice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:to:destinationOffset:size:)/title",
+          "value": "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceOffset:to:destinationOffset:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)/title",
+          "value": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1copy(from:sourceSlice:sourceLevel:sourceOrigin:sourceSize:to:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/title",
+          "value": "MTLCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlblitcommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlblitcommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

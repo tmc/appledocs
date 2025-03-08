@@ -1,0 +1,961 @@
+{
+  "abstract": [
+    {
+      "text": "Deliver notifications to subscribers by using notification centers’ publishers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Routing Notifications to Combine Subscribers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many frameworks deliver asynchronous events to your app with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "API. Your app may already have places where it receives and processes these notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in callback methods or closures. For example, the following code uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to print a message every time an iOS device rotates to portrait orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var notificationToken: NSObjectProtocol?",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    notificationToken = NotificationCenter.default",
+            "        .addObserver(forName: UIDevice.orientationDidChangeNotification,",
+            "                     object: nil,",
+            "                     queue: nil) { _ in",
+            "                        if UIDevice.current.orientation == .portrait {",
+            "                            print (\"Orientation changed to portrait.\")",
+            "                        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Migrate-Notification-Handling-Code-to-Use-Combine",
+          "level": 3,
+          "text": "Migrate Notification-Handling Code to Use Combine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using notification center callbacks and closures requires you to do all your work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside the callback method or closure. By migrating to Combine, you can use operators",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to perform common tasks like filtering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To take advantage of Combine, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to migrate your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code to the Combine idiom. You create this publisher with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "passing in the notification name in which you’re interested and a source object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if any.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rewrite the above code in Combine as shown in the following listing. This code uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default notification center to create a publisher for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notification. When the code receives notifications from this publisher, it applies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a filter operator to only act on portrait orientation notifications, and prints a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var cancellable: Cancellable?",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    cancellable = NotificationCenter.default",
+            "        .publisher(for: UIDevice.orientationDidChangeNotification)",
+            "        .filter() { _ in UIDevice.current.orientation == .portrait }",
+            "        .sink() { _ in print (\"Orientation changed to portrait.\") }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that in this case, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t contain the new orientation in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dictionary, so the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operator queries",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)": {
+      "abstract": [
+        {
+          "text": "Republishes all elements that match a provided closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO6FilterV",
+          "text": "Filter"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/filter(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine": {
+      "abstract": [
+        {
+          "text": "Expose KVO changes with a Combine publisher.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Key-Value Observing with Combine",
+      "type": "topic",
+      "url": "/documentation/combine/performing-key-value-observing-with-combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers": {
+      "abstract": [
+        {
+          "text": "Publish elements periodically by using a timer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+      "kind": "article",
+      "role": "article",
+      "title": "Replacing Foundation Timers with Timer Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/replacing-foundation-timers-with-timer-publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Apply common patterns to migrate your closure-based, event-handling code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Combine for Your App’s Asynchronous Code",
+      "type": "topic",
+      "url": "/documentation/combine/using-combine-for-your-app-s-asynchronous-code"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDevice": {
+      "abstract": [
+        {
+          "text": "A representation of the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDevice",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDevice"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDevice/orientationDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the orientation of the device changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orientationDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDevice/orientationDidChangeNotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo": {
+      "abstract": [
+        {
+          "text": "Storage for values or objects related to this notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/notification/1779652-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center to receive notifications that passed to the provided block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": OperationQueue?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Notification) -> Void) -> any NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(forName:object:queue:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1411723-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher": {
+      "abstract": [
+        {
+          "text": "Returns a publisher that emits events when broadcasting notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "publisher"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Notification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?) -> NotificationCenter.Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/3329353-publisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publisher(for:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/3329353-publisher"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher": {
+      "abstract": [
+        {
+          "text": "A publisher that emits elements when broadcasting notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter.Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/publisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter.Publisher",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/publisher"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Combine-Migration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+        "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+        "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code"
+      ],
+      "title": "Combine Migration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter/title",
+          "value": "NSNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter~11411723-addobserver/title",
+          "value": "addObserverForName:object:queue:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsnotification/abstract",
+          "value": [
+            {
+              "text": "A container for information broadcast through a notification center to all registered observers.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/title",
+          "value": "UIDeviceOrientationDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationDidChangeNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/routing-notifications-to-combine-subscribers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

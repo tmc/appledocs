@@ -1,0 +1,1477 @@
+{
+  "abstract": [
+    {
+      "text": "An object that specifies a date or time in terms of calendar units that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/datecomponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407163,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDateComponents",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDateComponents"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDateComponents"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDateComponents"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulates the components of a date in an extendable, object-oriented manner. It's used to specify a date by providing the temporal components that make up a date and time: hour, minutes, seconds, day, month, year, and so on. You can also use it to specify a duration of time, for example, 5 hours and 16 minutes. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is not required to define all the component fields. When a new instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is created, the date components are set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponentundefined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " object is meaningless in itself; you need to know what calendar it is interpreted against, and you need to know whether the values are absolute values of the units, or quantities of the units.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is not responsible for answering questions about a date beyond the information with which it was initialized. For example, if you initialize one with May 4, 2017, its weekday is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponentundefined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", not Thursday. To get the correct day of the week, you must create a suitable instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1407609-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1414841-components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the weekday—as illustrated in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dateComponents = NSDateComponents()",
+            "dateComponents.day = 4",
+            "dateComponents.month = 5",
+            "dateComponents.year = 2017",
+            "",
+            "if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),",
+            "    let date = gregorianCalendar.date(from: dateComponents as DateComponents) {",
+            "    let weekday = gregorianCalendar.component(.weekday, from: date)",
+            "    print(weekday) // 5, which corresponds to Thursday in the Gregorian Calendar",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "anchor": "2555565",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1729331",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695364",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695364": {
+      "identifier": "devLink-1695364",
+      "title": "Date and Time Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/DatesAndTimes.html#//apple_ref/doc/uid/10000039i"
+    },
+    "devLink-1729331": {
+      "identifier": "devLink-1729331",
+      "title": "Calendars, Date Components, and Calendar Units",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/Articles/dtCalendars.html#//apple_ref/doc/uid/TP40003470"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponents/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateComponents.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponents.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponents/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendar",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1407609-date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1407609-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1407609-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/1414841-components": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/1414841-components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components(_:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/1414841-components"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscalendar/unit": {
+      "abstract": [
+        {
+          "text": "Calendrical units such as year, month, day and hour. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCalendar.Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscalendar/unit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendar.Unit",
+      "type": "topic",
+      "url": "/documentation/foundation/nscalendar/unit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents": {
+      "abstract": [
+        {
+          "text": "An object that specifies a date or time in terms of calendar units that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponents",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDateComponents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDateComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents#2555565": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents#2555565",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatecomponents#2555565"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408233-timezone": {
+      "abstract": [
+        {
+          "text": "The time zone used to interpret the date components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408233-timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408233-timezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month": {
+      "abstract": [
+        {
+          "text": "The number of months.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "month"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "month",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408724-month"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408788-isvaliddate": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408788-isvaliddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408788-isvaliddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the month is a leap month.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLeapMonth"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLeapMonth",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1408836-isleapmonth"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409443-minute": {
+      "abstract": [
+        {
+          "text": "The number of minute units for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "minute"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409443-minute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minute",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1409443-minute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409476-weekdayordinal": {
+      "abstract": [
+        {
+          "text": "The ordinal number of weekdays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "weekdayOrdinal"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409476-weekdayordinal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weekdayOrdinal",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1409476-weekdayordinal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1410442-weekday": {
+      "abstract": [
+        {
+          "text": "The number of the weekdays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "weekday"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1410442-weekday",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weekday",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1410442-weekday"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1411355-hour": {
+      "abstract": [
+        {
+          "text": "The number of hour units for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hour"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1411355-hour",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hour",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1411355-hour"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year": {
+      "abstract": [
+        {
+          "text": "The number of years.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "year"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "year",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1412462-year"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412707-isvaliddate": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current combination of properties represents a date which exists in the specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412707-isvaliddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValidDate(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1412707-isvaliddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412861-date": {
+      "abstract": [
+        {
+          "text": "The date calculated from the current components using the stored calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412861-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1412861-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413168-weekofmonth": {
+      "abstract": [
+        {
+          "text": "The week number of the months.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "weekOfMonth"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413168-weekofmonth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weekOfMonth",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1413168-weekofmonth"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear": {
+      "abstract": [
+        {
+          "text": "The ISO 8601 week-numbering year.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "yearForWeekOfYear"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yearForWeekOfYear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1414045-second": {
+      "abstract": [
+        {
+          "text": "The number of second units for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "second"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1414045-second",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "second",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1414045-second"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415267-day": {
+      "abstract": [
+        {
+          "text": "The number of days.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "day"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415267-day",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "day",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1415267-day"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415730-nanosecond": {
+      "abstract": [
+        {
+          "text": "The number of nanosecond units for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nanosecond"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415730-nanosecond",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nanosecond",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1415730-nanosecond"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415799-calendar": {
+      "abstract": [
+        {
+          "text": "The calendar used to interpret the date components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415799-calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendar",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1415799-calendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415961-setvalue": {
+      "abstract": [
+        {
+          "text": "Sets a value for a given calendar unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415961-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forComponent:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1415961-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era": {
+      "abstract": [
+        {
+          "text": "The number of eras.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "era"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "era",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416364-era"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter": {
+      "abstract": [
+        {
+          "text": "The number of quarters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "quarter"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quarter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416503-quarter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416763-value": {
+      "abstract": [
+        {
+          "text": "Returns the value for a given calendar unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCalendar.Unit) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416763-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forComponent:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416763-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear": {
+      "abstract": [
+        {
+          "text": "The ISO 8601 week date of the year.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "weekOfYear"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weekOfYear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1416908-weekofyear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430328-week": {
+      "abstract": [
+        {
+          "text": "Returns the number of weeks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "week"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430328-week",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "week()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1430328-week"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430337-setweek": {
+      "abstract": [
+        {
+          "text": "Sets the number of weeks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWeek"
+        },
+        {
+          "kind": "text",
+          "text": "(Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430337-setweek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWeek(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1430337-setweek"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430344-undefined_components": {
+      "abstract": [
+        {
+          "text": "Constants that denote that the value of a date component is undefined. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430344-undefined_components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Undefined Components",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/1430344-undefined_components"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/4337905-dayofyear": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dayOfYear"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/4337905-dayofyear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dayOfYear",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponents/4337905-dayofyear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatecomponentundefined": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatecomponentundefined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDateComponentUndefined",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatecomponentundefined"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/datecomponents/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651255",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415799-calendar",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408233-timezone"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting a Calendar and Time Zone"
+    },
+    {
+      "anchor": "1680067",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408788-isvaliddate",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412707-isvaliddate",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412861-date",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430344-undefined_components"
+      ],
+      "kind": "taskGroup",
+      "title": "Validating a Date"
+    },
+    {
+      "anchor": "2897899",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416364-era",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1412462-year",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413809-yearforweekofyear",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416503-quarter",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408724-month",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1408836-isleapmonth"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Years and Months"
+    },
+    {
+      "anchor": "2897903",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1410442-weekday",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409476-weekdayordinal",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1413168-weekofmonth",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416908-weekofyear",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415267-day",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430328-week",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1430337-setweek"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Weeks and Days"
+    },
+    {
+      "anchor": "2897904",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1411355-hour",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1409443-minute",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1414045-second",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415730-nanosecond"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Hours and Seconds"
+    },
+    {
+      "anchor": "2897902",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1416763-value",
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/1415961-setvalue",
+        "doc://com.apple.documentation/documentation/foundation/nscalendar/unit"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Components as Calendrical Units"
+    },
+    {
+      "anchor": "4383039",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatecomponents/4337905-dayofyear"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdatecomponents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdatecomponents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

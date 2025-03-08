@@ -1,0 +1,2516 @@
+{
+  "abstract": [
+    {
+      "text": "Information about the result of a scene-space or view-space search for scene elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNHitTestResult",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNHitTestResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNHitTestResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNHitTestResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ray",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides details about one result from a hit-test search. There are three ways to perform a hit-test search. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/hitTest(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (or other scene renderer), the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/hitTestWithSegment(from:to:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a node, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld/rayTestWithSegment(from:to:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your scene’s physics world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you perform a hit-test search, SceneKit looks for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects along the ray you specify. For each intersection between the ray and and a geometry, SceneKit creates a hit-test result to provide information about both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object containing the geometry and the location of the intersection on the geometry’s surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry": {
+      "abstract": [
+        {
+          "text": "A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult": {
+      "abstract": [
+        {
+          "text": "Information about the result of a scene-space or view-space search for scene elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNHitTestResult"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNHitTestResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNHitTestResult",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/boneNode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boneNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/boneNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boneNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "boneNode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/bonenode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/faceIndex": {
+      "abstract": [
+        {
+          "text": "The index of the primitive in the geometry element intersected by the search ray.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "faceIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/faceIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "faceIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "faceIndex",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/faceindex"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/geometryIndex": {
+      "abstract": [
+        {
+          "text": "The index of the geometry element whose surface the search ray intersects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometryIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/geometryIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometryIndex",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/geometryindex"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localCoordinates": {
+      "abstract": [
+        {
+          "text": "The point of intersection between the geometry and the search ray, in the local coordinate system of the node containing the geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "localCoordinates",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/localcoordinates"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localNormal": {
+      "abstract": [
+        {
+          "text": "The surface normal vector at the point of intersection, in the local coordinate system of the node containing the geometry intersected by the search ray.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localNormal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "localNormal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/localnormal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/modelTransform": {
+      "abstract": [
+        {
+          "text": "The world transform matrix of the node containing the intersection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNMatrix4",
+          "text": "SCNMatrix4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/modelTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modelTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "modelTransform",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/modeltransform"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/node": {
+      "abstract": [
+        {
+          "text": "The node whose geometry intersects the search ray.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "node"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/node",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "node"
+        }
+      ],
+      "role": "symbol",
+      "title": "node",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/node"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalCoordinates": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdLocalCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simdLocalCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "simdLocalCoordinates",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/simdlocalcoordinates"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalNormal": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdLocalNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalNormal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simdLocalNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "simdLocalNormal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/simdlocalnormal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdModelTransform": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdModelTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdModelTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simdModelTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "simdModelTransform",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/simdmodeltransform"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldCoordinates": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdWorldCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simdWorldCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "simdWorldCoordinates",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/simdworldcoordinates"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldNormal": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdWorldNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldNormal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simdWorldNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "simdWorldNormal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/simdworldnormal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/textureCoordinates(withMappingChannel:)": {
+      "abstract": [
+        {
+          "text": "Returns the texture coordinates at the point of intersection for the specified texture mapping channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMappingChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/textureCoordinates(withMappingChannel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureCoordinatesWithMappingChannel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureCoordinates(withMappingChannel:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/texturecoordinates(withmappingchannel:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldCoordinates": {
+      "abstract": [
+        {
+          "text": "The point of intersection between the geometry and the search ray, in the scene’s world coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldCoordinates",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/worldcoordinates"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldNormal": {
+      "abstract": [
+        {
+          "text": "The surface normal vector at the point of intersection, in the scene’s world coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldNormal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldNormal"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldNormal",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult/worldnormal"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that renders a SceneKit scene as its content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNLayer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlayer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode": {
+      "abstract": [
+        {
+          "text": "A structural element of a scene graph, representing a position and transform in a 3D coordinate space, to which you can attach geometry, lights, cameras, or other displayable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNNode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/hitTestWithSegment(from:to:options:)": {
+      "abstract": [
+        {
+          "text": "Searches the node’s child node subtree for objects intersecting a line segment between two specified points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTestWithSegment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNHitTestResult",
+          "text": "SCNHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/hitTestWithSegment(from:to:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTestWithSegmentFromPoint:toPoint:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTestWithSegment(from:to:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/hittestwithsegment(from:to:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld/rayTestWithSegment(from:to:options:)": {
+      "abstract": [
+        {
+          "text": "Searches for physics bodies along a line segment between two points in the physics world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rayTestWithSegment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNPhysicsWorld",
+          "text": "SCNPhysicsWorld"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNPhysicsTestOption",
+          "text": "TestOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNHitTestResult",
+          "text": "SCNHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld/rayTestWithSegment(from:to:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rayTestWithSegmentFromPoint:toPoint:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rayTestWithSegment(from:to:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsworld/raytestwithsegment(from:to:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer": {
+      "abstract": [
+        {
+          "text": "A renderer for displaying a SceneKit scene in an existing Metal workflow or OpenGL context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer": {
+      "abstract": [
+        {
+          "text": "Methods and properties common to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/hitTest(_:options:)": {
+      "abstract": [
+        {
+          "text": "Searches the renderer’s scene for objects corresponding to a point in the rendered image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNHitTestOption",
+          "text": "SCNHitTestOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNHitTestResult",
+          "text": "SCNHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/hitTest(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:options:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hitTest(_:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/hittest(_:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to participate in SceneKit’s animation loop or perform additional rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRendererDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRendererDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneRendererDelegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNView": {
+      "abstract": [
+        {
+          "text": "A view for displaying 3D SceneKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNView",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnview"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Display-and-Interactivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer"
+      ],
+      "title": "Display and Interactivity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Retrieving-Information-About-a-Hit-Test-Result",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/node",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/geometryIndex",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/faceIndex",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localCoordinates",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldCoordinates",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localNormal",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldNormal",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/modelTransform",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/textureCoordinates(withMappingChannel:)"
+      ],
+      "title": "Retrieving Information About a Hit-Test Result"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/boneNode",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalCoordinates",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalNormal",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdModelTransform",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldCoordinates",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldNormal"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNHitTestResult"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Retrieving-Information-About-a-Hit-Test-Result",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/node",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/geometryIndex",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/faceIndex",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localCoordinates",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldCoordinates",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/localNormal",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/worldNormal",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/modelTransform",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/textureCoordinates(withMappingChannel:)"
+              ],
+              "title": "Retrieving Information About a Hit-Test Result"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/boneNode",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalCoordinates",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdLocalNormal",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdModelTransform",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldCoordinates",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult/simdWorldNormal"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Display-and-Interactivity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer"
+              ],
+              "title": "Display and Interactivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNHitTestResult"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/title",
+          "value": "SCNNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1node/title",
+          "value": "node"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1node/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "node"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1boneNode/title",
+          "value": "boneNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1boneNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boneNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdLocalCoordinates/title",
+          "value": "simdLocalCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdLocalCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simdLocalCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/title",
+          "value": "SCNHitTestResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1geometryIndex/title",
+          "value": "geometryIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1geometryIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometryIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdModelTransform/title",
+          "value": "simdModelTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdModelTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simdModelTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/title",
+          "value": "SCNSceneRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1hitTestWithSegment(from:to:options:)/title",
+          "value": "hitTestWithSegmentFromPoint:toPoint:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1hitTestWithSegment(from:to:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTestWithSegmentFromPoint:toPoint:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdWorldCoordinates/title",
+          "value": "simdWorldCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdWorldCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simdWorldCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/title",
+          "value": "SCNSceneRendererDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdLocalNormal/title",
+          "value": "simdLocalNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdLocalNormal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simdLocalNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/title",
+          "value": "SCNLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1hitTest(_:options:)/title",
+          "value": "hitTest:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1hitTest(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/title",
+          "value": "SCNRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1localCoordinates/title",
+          "value": "localCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1localCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld~1rayTestWithSegment(from:to:options:)/title",
+          "value": "rayTestWithSegmentFromPoint:toPoint:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld~1rayTestWithSegment(from:to:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rayTestWithSegmentFromPoint:toPoint:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/title",
+          "value": "SCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/title",
+          "value": "SCNGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1textureCoordinates(withMappingChannel:)/title",
+          "value": "textureCoordinatesWithMappingChannel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1textureCoordinates(withMappingChannel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureCoordinatesWithMappingChannel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdWorldNormal/title",
+          "value": "simdWorldNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1simdWorldNormal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simdWorldNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1worldNormal/title",
+          "value": "worldNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1worldNormal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1modelTransform/title",
+          "value": "modelTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1modelTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modelTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1worldCoordinates/title",
+          "value": "worldCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1worldCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1localNormal/title",
+          "value": "localNormal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1localNormal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localNormal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1faceIndex/title",
+          "value": "faceIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult~1faceIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "faceIndex"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnhittestresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnhittestresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

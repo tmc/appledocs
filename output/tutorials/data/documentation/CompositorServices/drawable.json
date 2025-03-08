@@ -1,0 +1,1145 @@
+{
+  "abstract": [
+    {
+      "text": "A type that provides information on how to render content into the frame’s textures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/drawable"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drawable"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you draw a frame of content, the frame’s  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides the actual textures and rendering information you need.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Do as much work as possible in advance to prepare for rendering,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and retrieve the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only when you’re ready to start encoding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commands into your Metal command buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system recycles frames and their drawables for efficiency,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so if you retrieve the drawable too early, it might not be ready to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the drawable’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to determine where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to draw your content in the provided textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you finish encoding your content, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to add a presentation notification to your command buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This command tells the system when to display the frame,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and is essential for displaying your frame on time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/AxisDirectionConvention": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the axis and direction to use for a perspective projection matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisDirectionConvention"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/AxisDirectionConvention",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisDirectionConvention"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisDirectionConvention",
+      "type": "topic",
+      "url": "/documentation/compositorservices/axisdirectionconvention"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex": {
+      "abstract": [
+        {
+          "text": "The sequential index for a frame in the compositor’s timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorFrameIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorFrameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorframeindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The state of ownership for the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Drawable.State",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/state-swift.enum"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/View": {
+      "abstract": [
+        {
+          "text": "A type that provides information on how to render content into the frame’s textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Drawable.View",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/view"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/depthRange": {
+      "abstract": [
+        {
+          "text": "The distances to the far and near clipping planes from the person viewing the content, in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float2",
+          "text": "simd_float2"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/depthRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_depth_range"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthRange",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/depthrange"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)": {
+      "abstract": [
+        {
+          "text": "Encodes a notification event to the specified command buffer to present the drawable’s content onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodePresent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_encode_present"
+        }
+      ],
+      "role": "symbol",
+      "title": "encodePresent(commandBuffer:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/encodepresent(commandbuffer:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming": {
+      "abstract": [
+        {
+          "text": "The timing information for the drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_frame_timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameTiming",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/frametiming"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/presentationFrameIndex": {
+      "abstract": [
+        {
+          "text": "The sequential index of a drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationFrameIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@cp_compositor_frame_index_t",
+          "text": "CompositorFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/presentationFrameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_presentation_frame_index"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationFrameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/presentationframeindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current operational state of a drawable instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_drawable_t",
+          "text": "Drawable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@cp_drawable_state",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/state-swift.property"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_color_texture": {
+      "abstract": [
+        {
+          "text": "Returns the color texture at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_color_texture"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_color_texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_color_texture",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_color_texture"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_depth_texture": {
+      "abstract": [
+        {
+          "text": "Returns the depth texture at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_depth_texture"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_depth_texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_depth_texture",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_depth_texture"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_device_anchor": {
+      "abstract": [
+        {
+          "text": "Returns the position and orientation you specified for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_device_anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_device_anchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_device_anchor",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_device_anchor"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map": {
+      "abstract": [
+        {
+          "text": "Returns the flipped rasterization rate map at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_flipped_rasterization_rate_map"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_flipped_rasterization_rate_map",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_flipped_rasterization_rate_map"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map": {
+      "abstract": [
+        {
+          "text": "Returns the rasterization rate map at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_rasterization_rate_map"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_rasterization_rate_map",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_rasterization_rate_map"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count": {
+      "abstract": [
+        {
+          "text": "Returns the number of rasterization rate maps associated with the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_rasterization_rate_map_count"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_rasterization_rate_map_count",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_texture_count": {
+      "abstract": [
+        {
+          "text": "Returns the number of color and depth textures available in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_texture_count"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_texture_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_texture_count",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_texture_count"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view": {
+      "abstract": [
+        {
+          "text": "Returns the specified view from the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_view"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_view",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_view"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view_count": {
+      "abstract": [
+        {
+          "text": "Returns the number of separate views to draw for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_view_count"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_view_count",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_view_count"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_depth_range": {
+      "abstract": [
+        {
+          "text": "Sets the distances to the near and far clipping planes for the current drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_set_depth_range"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_depth_range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_set_depth_range",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_set_depth_range"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor": {
+      "abstract": [
+        {
+          "text": "Specifies the world position and orientation to apply to the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_set_device_anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_set_device_anchor",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_set_device_anchor"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/view": {
+      "abstract": [
+        {
+          "text": "A type that manages the viewport and texture details for each portion of your frame’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/compositorservices/view"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drawing-environment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/view"
+      ],
+      "title": "Drawing environment"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-views",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view_count",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_view"
+      ],
+      "title": "Getting the views"
+    },
+    {
+      "anchor": "Accessing-the-device-orientation",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_device_anchor",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_device_anchor"
+      ],
+      "title": "Accessing the device orientation"
+    },
+    {
+      "anchor": "Getting-the-render-textures",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_texture_count",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_depth_texture",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_color_texture"
+      ],
+      "title": "Getting the render textures"
+    },
+    {
+      "anchor": "Enqueueing-a-command-buffer",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/encodePresent(commandBuffer:)"
+      ],
+      "title": "Enqueueing a command buffer"
+    },
+    {
+      "anchor": "Getting-the-rasterization-rate-map",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map"
+      ],
+      "title": "Getting the rasterization rate map"
+    },
+    {
+      "anchor": "Getting-the-projection-matrix",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/AxisDirectionConvention"
+      ],
+      "title": "Getting the projection matrix"
+    },
+    {
+      "anchor": "Accessing-pixel-depth-information",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/depthRange",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_set_depth_range"
+      ],
+      "title": "Accessing pixel depth information"
+    },
+    {
+      "anchor": "Managing-the-state-machine",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/state-swift.property",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/State-swift.enum"
+      ],
+      "title": "Managing the state machine"
+    },
+    {
+      "anchor": "Synchronizing-the-drawing-operation",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/presentationFrameIndex",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex"
+      ],
+      "title": "Synchronizing the drawing operation"
+    },
+    {
+      "anchor": "Getting-the-drawable-type",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t"
+      ],
+      "title": "Getting the drawable type"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/title",
+          "value": "cp_compositor_frame_index_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_compositor_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_compositor_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/title",
+          "value": "cp_drawable_get_frame_timing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_frame_timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1encodePresent(commandBuffer:)/title",
+          "value": "cp_drawable_encode_present"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1encodePresent(commandBuffer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_encode_present"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1State-swift.enum/title",
+          "value": "cp_drawable_state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1AxisDirectionConvention/title",
+          "value": "cp_axis_direction_convention"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1AxisDirectionConvention/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_axis_direction_convention"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1AxisDirectionConvention/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_axis_direction_convention"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1depthRange/title",
+          "value": "cp_drawable_get_depth_range"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1depthRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_depth_range"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1presentationFrameIndex/title",
+          "value": "cp_drawable_get_presentation_frame_index"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1presentationFrameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_presentation_frame_index"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1state-swift.property/title",
+          "value": "cp_drawable_get_state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_state"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/drawable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_5-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "iOS & iPadOS 17.5 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS & iPadOS 17.5 SDK provides support to develop apps for iPhone and iPad running iOS & iPadOS 17.5. The SDK comes bundled with Xcode 15.4, available from the Mac App Store. For information on the compatibility requirements for Xcode 15.4, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-15_4-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accessibility",
+          "level": 3,
+          "text": "Accessibility",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Accessibility AbleNet Hook+ Assistive switch MFi Accessory wired connection when connected to iPhone or iPad might not work.\u2028  (124439667)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Tracking-Transparency",
+          "level": 3,
+          "text": "App Tracking Transparency",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: App Tracking Transparency inaccurately returns denied authorization prior to user consenting to tracking.  (126589236)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Camera-and-AVFoundation-Capture",
+          "level": 3,
+          "text": "Camera and AVFoundation Capture",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AVCaptureDeviceRotationCoordinator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " returns incorrect values in Portrait and Portrait Upside Down for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "videoRotationAngleForHorizonLevelCapture",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "videoRotationAngleForHorizonLevelPreview",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when using the Front Camera on iPad Air 6th generation & iPad Pro 7th generation.  (126887983)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Core-Motion",
+          "level": 3,
+          "text": "Core Motion",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To respect users’ privacy, apps calling CMAltimeter’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "startRelativeAltitudeUpdatesToQueue",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stopRelativeAltitudeUpdates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now required to include the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsmotionusagedescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " string in their plist in order to receive data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps built with SDKs prior to iOS 17.5 and watchOS 10.5 without the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSMotionUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " string in their plists will not receive data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps built with iOS 17.5 and watchOS 10.5 or later will crash if they do not have the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSMotionUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " string in their plist as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coremotion/cmaltimeter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (125573971)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "eSIM",
+          "level": 3,
+          "text": "eSIM",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New Apple Universal Link for eSIM install:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$GSMA_SMDP_Address$activation_code"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Universal Links should be all lower case. Only the GSMA activation code (QR code), passed in as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "carddata",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", is customized for the carrier’s SM-DP+ and eSIM profile. Use the iOS user agent in web requests to determine when to offer Universal Links for eSIM, which are only be enabled on iOS 17.4 and later.  (92405493)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the Terms of Service button on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SubscriptionStoreView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " could cause a crash when tapped.  (123383479)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Wallpaper",
+          "level": 3,
+          "text": "Wallpaper",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Add New Wallpaper sheet does not load any content after restoring device.  (126299569)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-15_4-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-15_4-release-notes",
+      "title": "Xcode 15.4 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 15.4 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-15_4-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_1-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_2-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_3-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_4-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_6-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the iOS & iPadOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "iOS & iPadOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nsmotionusagedescription": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsmotionusagedescription",
+      "title": "NSMotionUsageDescription",
+      "titleInlineContent": [
+        {
+          "code": "NSMotionUsageDescription",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsmotionusagedescription"
+    },
+    "https://developer.apple.com/documentation/coremotion/cmaltimeter": {
+      "identifier": "https://developer.apple.com/documentation/coremotion/cmaltimeter",
+      "title": "CMAltimeter",
+      "titleInlineContent": [
+        {
+          "text": "CMAltimeter",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coremotion/cmaltimeter"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS--iPadOS-17",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes"
+      ],
+      "title": "iOS & iPadOS 17"
+    }
+  ]
+}

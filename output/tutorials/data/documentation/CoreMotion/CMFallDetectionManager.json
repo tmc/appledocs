@@ -1,0 +1,1817 @@
+{
+  "abstract": [
+    {
+      "text": "An object for managing fall detection events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMFallDetectionManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMFallDetectionManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMFallDetectionManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMFallDetectionManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Series 4 and later, Apple Watch can detect when a wearer falls, and contact emergency services if necessary. Using the ",
+              "type": "text"
+            },
+            {
+              "code": "CMFallDetectionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your app can request the user’s authorization, and set up a delegate to receive notifications about these ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fall detection events",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT208944",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use this API, you must include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file and provide a usage description string for the key. The description appears in the prompt that the user receives when the system asks to access fall detection data for your app. If you don’t include a usage description string, your app crashes when you call this API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CMFallDetectionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires an entitlement from Apple. To apply for the entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/fall-detection-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This entitlement allows the app to run in the background without requiring any additional capabilities. However, you can add capabilities for other background modes, as needed by your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two approaches to detecting falls in your app. You can either query for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615592-numberoftimesfallen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " samples in HealthKit, or you can use Core Motion’s ",
+              "type": "text"
+            },
+            {
+              "code": "CMFallDetectionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-and-Respond-to-Falls",
+          "level": 3,
+          "text": "Detect and Respond to Falls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core Motion fall detection manager is particularly useful for apps that need to respond to falls in a timely manner so that the app can provide help to the person who fell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fall detection manager:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notifies the app in real time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notifies the app of all fall events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provides background runtime so that your app can respond to the fall",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Detect-and-Monitor-Falls-Over-Time",
+          "level": 3,
+          "text": "Detect and Monitor Falls Over Time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HealthKit sample is particularly useful for apps that monitor falls over longer time periods, because there can be a delay between the fall event and HealthKit updating its samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HealthKit provides:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Samples that are available on all devices that can access the person’s HealthKit data—not just the device that detected the fall",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Samples for falls where the person who fell confirmed the fall, or the system escalated the fall to emergency services. If the person who fell dismisses the fall alert, HealthKit doesn’t record the fall.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-the-Manager",
+          "level": 3,
+          "text": "Create the Manager",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive fall detection notifications, ensure that the feature is available on the current device. If the feature is available, create the manager and set its delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if CMFallDetectionManager.isAvailable  {",
+            "    ",
+            "    // Create the manager.",
+            "    let manager = CMFallDetectionManager()",
+            "    ",
+            "    // Assign a delegate that adopts the CMFallDetectionDelegte protocol.",
+            "    manager.delegate = myDelegate",
+            "    ",
+            "    // Keep a reference to the manager.",
+            "    myManager = manager",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the delegate as early as possible, ideally in your extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The system may not instantiate your app’s user interface when launching your app in the background, so you can’t set the delegate from your user interface code, such as when an interface controller activates, or in response to a change in SwiftUI’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Create only a single instance of the detection manager. Store the manager in a variable so you can access it later. Be sure to use a variable that remains in memory throughout your app’s lifetime—for example, add the variable to your extension delegate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-User-Authorization",
+          "level": 3,
+          "text": "Request User Authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your user interface loads, check if you previously requested approval. If you haven’t, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to initiate a request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check to see if you have already asked the user to",
+            "// authorize fall detection event notifications.",
+            "if myManager?.authorizationStatus == .notDetermined {",
+            "    ",
+            "    // Request Authorization.",
+            "    myManager?.requestAuthorization { (authorizationStatus) in",
+            "        ",
+            "        // Respond to the authorization status.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your delegate only receives fall detection event notifications if the user authorizes your app. The user can change your app’s authorization state at any time from Settings > Privacy > Fall Detection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you set the delegate and the user grants authorization, your app checks for recent fall events. If the system finds an event, it calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate/fallDetectionManager(_:didDetect:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and passes the most recent event. On subsequent launches, as long as your app remains authorized and the system has detected a recent fall event, the system calls ",
+              "type": "text"
+            },
+            {
+              "code": "fallDetectionManager(_:didDetect:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as soon as you set the delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also wakes your app in the background to respond to any new fall detection events. The system only gives your app a short amount of time to respond to the event and call the completion handler. If the app exceeds the allotted time, the system may suspend it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The authorization status for motion-related features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmauthorizationstatus"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives information about fall detection events and authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionDelegate",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectiondelegate"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate/fallDetectionManager(_:didDetect:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates a fall detection event occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fallDetectionManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMFallDetectionManager",
+          "text": "CMFallDetectionManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDetect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMFallDetectionEvent",
+          "text": "CMFallDetectionEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate/fallDetectionManager(_:didDetect:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fallDetectionManager:didDetectEvent:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fallDetectionManager(_:didDetect:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectiondelegate/falldetectionmanager(_:diddetect:completionhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains data about a fall detection event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager": {
+      "abstract": [
+        {
+          "text": "An object for managing fall detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMFallDetectionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMFallDetectionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The authorization status for receiving fall detection event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAuthorizationStatus",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager/authorizationstatus"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that can receive notifications about fall detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CMFallDetectionDelegate",
+          "text": "CMFallDetectionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager/delegate"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/isAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current device supports fall detection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/isAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "available"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager/isavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization to receive notifications about fall detection events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAuthorizationStatus",
+          "text": "CMAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(handler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmfalldetectionmanager/requestauthorization(handler:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains the app’s request for permission to access fall detection event data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFallDetectionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase": {
+      "abstract": [
+        {
+          "text": "An indication of a scene’s operational state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScenePhase",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScenePhase"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the extension is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidFinishLaunching"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidFinishLaunching()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615592-numberoftimesfallen": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the number of times the user fell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfTimesFallen"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615592-numberoftimesfallen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfTimesFallen",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615592-numberoftimesfallen"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/contact/request/fall-detection-api": {
+      "identifier": "https://developer.apple.com/contact/request/fall-detection-api",
+      "title": "Fall Detection Entitlement Request",
+      "titleInlineContent": [
+        {
+          "text": "Fall Detection Entitlement Request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/fall-detection-api"
+    },
+    "https://support.apple.com/en-us/HT208944": {
+      "identifier": "https://support.apple.com/en-us/HT208944",
+      "title": "Use fall detection with Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Use fall detection with Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT208944"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fall-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+      ],
+      "title": "Fall detection"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-Availability",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/isAvailable"
+      ],
+      "title": "Checking Availability"
+    },
+    {
+      "anchor": "Requesting-Authorization",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus"
+      ],
+      "title": "Requesting Authorization"
+    },
+    {
+      "anchor": "Handling-Events",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/delegate",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate"
+      ],
+      "title": "Handling Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMFallDetectionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Checking-Availability",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/isAvailable"
+              ],
+              "title": "Checking Availability"
+            },
+            {
+              "anchor": "Requesting-Authorization",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus"
+              ],
+              "title": "Requesting Authorization"
+            },
+            {
+              "anchor": "Handling-Events",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionManager/delegate",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate"
+              ],
+              "title": "Handling Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Fall-detection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionDelegate",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMFallDetectionEvent",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+              ],
+              "title": "Fall detection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMFallDetectionManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1authorizationStatus/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/title",
+          "value": "CMFallDetectionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1healthkit~1hkquantitytypeidentifier~11615592-numberoftimesfallen/title",
+          "value": "HKQuantityTypeIdentifierNumberOfTimesFallen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1requestAuthorization(handler:)/title",
+          "value": "requestAuthorizationWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1requestAuthorization(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/title",
+          "value": "CMFallDetectionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/title",
+          "value": "applicationDidFinishLaunching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidFinishLaunching"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1isAvailable/title",
+          "value": "available"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager~1isAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "available"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/title",
+          "value": "CMAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate~1fallDetectionManager(_:didDetect:completionHandler:)/title",
+          "value": "fallDetectionManager:didDetectEvent:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionDelegate~1fallDetectionManager(_:didDetect:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fallDetectionManager:didDetectEvent:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/title",
+          "value": "CMFallDetectionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMFallDetectionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMFallDetectionManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmfalldetectionmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmfalldetectionmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

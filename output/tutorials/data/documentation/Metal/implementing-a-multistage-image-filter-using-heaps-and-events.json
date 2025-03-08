@@ -1,0 +1,1656 @@
+{
+  "abstract": [
+    {
+      "text": "Use events to synchronize access to resources allocated on a heap.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing a Multistage Image Filter Using Heaps and Events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using events instead of fences to manage resource dependencies and work synchronization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating heaps for static and dynamic textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using aliasing to reduce the amount of memory used for temporary resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using events to manage dependencies between encoders that produce and consume dynamic textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-events-1-ImageFilterGraphWithHeapsAndEvents.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This implementation minimizes memory usage in an orderly fashion for a filter graph with a downsample and Gaussian blur filter. For more information, including implementation details about heaps for static and dynamic textures, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS.  The default scheme is macOS, which runs the sample as is on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compare-Events-with-Fences",
+          "level": 3,
+          "text": "Compare Events with Fences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API allows you to specify synchronization points in your app that wait for a workload to complete execution, provided that execution begins ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "before",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a fence is encountered. However, this synchronization mechanism means that your app can’t wait for a workload to complete execution if the execution begins ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "after",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a fence is encountered. A fence can wait for workloads that have already begun, but it can’t wait for future workloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fences work well in an image filter graph because each filter in the graph is applied sequentially. You can use a fence to wait for one filter to complete execution before you begin executing another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In contrast, although the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API also allows you to specify similar synchronization points in your app, it allows for more flexibility than the ",
+              "type": "text"
+            },
+            {
+              "code": "MTLFence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API. Unlike fences, events can wait for workloads that have already begun, as well as future workloads. Additionally, events are specified outside command encoder boundaries, not between the encoded commands of a command encoder. Because the event synchronization mechanism is implemented in the command buffer scheduler, events block workloads at the command buffer level within the GPU. Therefore, command buffers on one queue can execute while a command buffer on another queue is blocked by an event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Events also work well in an image filter graph because they provide the equivalent functionality of fences. However, events are easier to specify and track because their synchronization mechanism is managed with a discrete signal value that increases monotonically. Using this signal value, events insert a strict execution order between command encoder boundaries in the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-an-Event-Wrapper-for-Synchronization-Routines",
+          "level": 3,
+          "text": "Implement an Event Wrapper for Synchronization Routines",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample wraps the ",
+              "type": "text"
+            },
+            {
+              "code": "MTLEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API in the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLEventWrapper",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol accessed through an ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLSingleDeviceEventWrapper",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. This convenience wrapper encapsulates the main synchronization mechanism, and primarily manages the discrete signal value through the ",
+              "type": "text"
+            },
+            {
+              "code": "_signalCounter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because the event’s signal counter is wrapped within ",
+                  "type": "text"
+                },
+                {
+                  "code": "AAPLSingleDeviceEventWrapper",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", it can be used as a bridge between two or more nodes that depend on each other in an execution graph. Without this bridge, the signal counter and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "MTLEvent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object wouldn’t be tightly paired, and this potential mismatch could lead to synchronization errors in your code (for example, you might use a wrong ",
+                  "type": "text"
+                },
+                {
+                  "code": "MTLEvent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object for a signal counter, or vice versa).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "wait:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to wait for a workload to complete execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void) wait:(_Nonnull id <MTLCommandBuffer>)commandBuffer",
+            "{",
+            "    assert([_event.class conformsToProtocol:@protocol(MTLSharedEvent)] || (commandBuffer.device == _event.device));",
+            "    ",
+            "    // Wait for the event to be signaled",
+            "    [commandBuffer encodeWaitForEvent:_event value:_signalCounter];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "signal:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to signal that a workload has completed execution. (This method increments the value of ",
+              "type": "text"
+            },
+            {
+              "code": "_signalCounter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void) signal:(_Nonnull id<MTLCommandBuffer>)commandBuffer",
+            "{",
+            "    assert([_event.class conformsToProtocol:@protocol(MTLSharedEvent)] || (commandBuffer.device == _event.device));",
+            "",
+            "    // Increase the signal counter",
+            "    ++_signalCounter;",
+            "    // Signal the event",
+            "    [commandBuffer encodeSignalEvent:_event value:_signalCounter];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can reimplement this wrapper to support any other type of synchronization primitive, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or CPU-side routines.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manage-Dependencies-Between-Filters",
+          "level": 3,
+          "text": "Manage Dependencies Between Filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "_event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to control access to dynamic textures allocated from ",
+              "type": "text"
+            },
+            {
+              "code": "_scratchHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and prevent GPU race conditions in the filter graph. The event ensures that operations on dynamic textures are completed before the filter graph begins subsequent operations that depend on the result of previous operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the start of the filter graph, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "wait:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to ensure that the previous frame has completed execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[event wait:commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first filter, implemented by the sample in ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLDownsampleFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", creates a dynamic texture, ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the heap and allocates enough space for mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLTextureDescriptor *textureDescriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:inTexture.pixelFormat",
+            "                                                                                             width:inTexture.width",
+            "                                                                                            height:inTexture.height",
+            "                                                                                         mipmapped:YES];",
+            "textureDescriptor.storageMode = heap.storageMode;",
+            "textureDescriptor.usage = MTLTextureUsageShaderWrite | MTLTextureUsageShaderRead;",
+            "",
+            "id <MTLTexture> outTexture = [heap newTextureWithDescriptor:textureDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the downsample filter blits a source texture, ",
+              "type": "text"
+            },
+            {
+              "code": "inTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and generates the mipmaps. The sample then calls the ",
+              "type": "text"
+            },
+            {
+              "code": "endEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to finalize the blit pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[blitCommandEncoder copyFromTexture:inTexture",
+            "                        sourceSlice:0",
+            "                        sourceLevel:0",
+            "                       sourceOrigin:(MTLOrigin){ 0, 0, 0 }",
+            "                         sourceSize:(MTLSize){ inTexture.width, inTexture.height, inTexture.depth }",
+            "                          toTexture:outTexture",
+            "                   destinationSlice:0",
+            "                   destinationLevel:0",
+            "                  destinationOrigin:(MTLOrigin){ 0, 0, 0}];",
+            "",
+            "[blitCommandEncoder generateMipmapsForTexture:outTexture];",
+            "",
+            "[blitCommandEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the downsample filter calls the ",
+              "type": "text"
+            },
+            {
+              "code": "signal:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that its operations are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[event signal:commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second filter, implemented by the sample in ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLGaussianBlurFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", calls the ",
+              "type": "text"
+            },
+            {
+              "code": "wait:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method immediately before creating a compute command encoder. This forces the Gaussian blur filter to wait for the downsample filter to complete its work before beginning its own work. A waiting period is necessary because the Gaussian blur filter depends on dynamic texture data generated by the downsample filter. Without the event, the GPU could execute both filters in parallel, and thus read uninitialized dynamic texture data allocated from the heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[event wait:commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-events-2-EventBetweenFilters.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reuse-Memory-and-Manage-Dependencies-Within-a-Filter",
+          "level": 3,
+          "text": "Reuse Memory and Manage Dependencies Within a Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Gaussian blur filter performs a horizontal blur and a vertical blur for each mipmap level of the dynamic texture produced by the downsample filter. For each mipmap level, the sample allocates a temporary texture, ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the dynamic textures heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id <MTLTexture> intermediaryTexture = [heap newTextureWithDescriptor:textureDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This texture is temporary because it’s used only as an output destination from the horizontal blur and as an input source to the vertical blur. After the sample executes these blurs, the final texture data is stored in ",
+              "type": "text"
+            },
+            {
+              "code": "outTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (which is a texture view of ",
+              "type": "text"
+            },
+            {
+              "code": "inTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Therefore, the texture data contained in ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is unused after each mipmap level iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Perform horizontal blur using the input texture as an input",
+            "// and a view of the mipmap level of input texture as the output",
+            "",
+            "[computeEncoder setComputePipelineState:_horizontalKernel];",
+            "",
+            "[computeEncoder setTexture:inTexture",
+            "                   atIndex:AAPLBlurTextureIndexInput];",
+            "",
+            "[computeEncoder setTexture:intermediaryTexture",
+            "                   atIndex:AAPLBlurTextureIndexOutput];",
+            "",
+            "[computeEncoder setBytes:&mipmapLevel",
+            "                  length:sizeof(mipmapLevel)",
+            "                 atIndex:AAPLBlurBufferIndexLOD];",
+            "",
+            "[computeEncoder dispatchThreadgroups:threadgroupCount",
+            "               threadsPerThreadgroup:threadgroupSize];",
+            "",
+            "// Perform vertical blur using the horizontally blurred texture as an input",
+            "// and a view of the mipmap level of the input texture as the output",
+            "",
+            "[computeEncoder setComputePipelineState:_verticalKernel];",
+            "",
+            "[computeEncoder setTexture:intermediaryTexture",
+            "                   atIndex:AAPLBlurTextureIndexInput];",
+            "",
+            "[computeEncoder setTexture:outTexture",
+            "                   atIndex:AAPLBlurTextureIndexOutput];",
+            "",
+            "static const uint32_t mipmapLevelZero = 0;",
+            "[computeEncoder setBytes:&mipmapLevelZero",
+            "                  length:sizeof(mipmapLevelZero)",
+            "                 atIndex:AAPLBlurBufferIndexLOD];",
+            "",
+            "[computeEncoder dispatchThreadgroups:threadgroupCount",
+            "               threadsPerThreadgroup:threadgroupSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After blurring each mipmap level, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "endEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that the compute operations for the given mipmap level are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of allocating new memory for each mipmap level, the sample reuses the existing memory allocated for ",
+              "type": "text"
+            },
+            {
+              "code": "intermediaryTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". After each mipmap level iteration, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "makeAliasable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that this memory can be reused by subsequent allocations from the same dynamic textures heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[intermediaryTexture makeAliasable];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This memory reuse creates dynamic texture dependencies between mipmap levels. Therefore, after blurring each mipmap level, the sample also calls the ",
+              "type": "text"
+            },
+            {
+              "code": "signal:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that the blur operations for the given mipmap level are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[event signal:commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample already calls the ",
+              "type": "text"
+            },
+            {
+              "code": "wait:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to wait for the downsample filter to complete its work, the sample leverages this same call to wait for any previous mipmap levels to complete their work before beginning a new mipmap level iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-events-3-EventWithinFilter.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Dependencies-Between-Frames",
+          "level": 3,
+          "text": "Manage Dependencies Between Frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "wait:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to wait for the filter graph to complete execution before rendering the filtered image to a drawable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Wait for the filter graph to complete execution",
+            "[_event wait:commandBuffer];",
+            "",
+            "// Obtain a render pass descriptor generated from the view's drawable textures",
+            "MTLRenderPassDescriptor* renderPassDescriptor = _view.currentRenderPassDescriptor;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then renders the filtered image and schedules a drawable presentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer presentDrawable:_view.currentDrawable];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "signal:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to indicate that the frame has been completed and rendered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Signal event for the frame completion",
+            "[_event signal:commandBuffer];",
+            "",
+            "// Finalize rendering for the frame",
+            "[commandBuffer commit];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image-filtering-with-heaps-and-events-4-EventBetweenFrames.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "0b3a56b621c9/ImplementingAMultistageImageFilterUsingHeapsAndEvents.zip": {
+      "checksum": "0b3a56b621c90ab3aa429d160b3b0b163bc9ee9efc43f6c6c367ffae70ff7ff2f3494fa5c7a317554f41b38c5e1608ad0ee28b81f32596cbf46c20d4ca9f2185",
+      "identifier": "0b3a56b621c9/ImplementingAMultistageImageFilterUsingHeapsAndEvents.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0b3a56b621c9/ImplementingAMultistageImageFilterUsingHeapsAndEvents.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLEvent": {
+      "abstract": [
+        {
+          "text": "A simple semaphore to synchronize access to Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFence": {
+      "abstract": [
+        {
+          "text": "A memory fence to capture, track, and manage resource dependencies across command encoders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFence",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfence"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a Metal memory heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeapDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeapDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeapDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheapdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeapType": {
+      "abstract": [
+        {
+          "text": "The options you use to choose the heap type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeapType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeapType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeapType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheaptype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent": {
+      "abstract": [
+        {
+          "text": "An object you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign": {
+      "abstract": [
+        {
+          "text": "The size and alignment of a resource, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSizeAndAlign"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSizeAndAlign"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSizeAndAlign",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsizeandalign"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences": {
+      "abstract": [
+        {
+          "text": "Use fences to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Fences",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    },
+    "image-filtering-with-heaps-and-events-1-ImageFilterGraphWithHeapsAndEvents.png": {
+      "alt": "Screenshot of the sample app running to show a filtered image.",
+      "identifier": "image-filtering-with-heaps-and-events-1-ImageFilterGraphWithHeapsAndEvents.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0e0be8f7c006a6b14466de6eb449c11/image-filtering-with-heaps-and-events-1-ImageFilterGraphWithHeapsAndEvents.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-events-2-EventBetweenFilters.png": {
+      "alt": "Timeline diagram that shows how an event manages dependencies between filters.",
+      "identifier": "image-filtering-with-heaps-and-events-2-EventBetweenFilters.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2acf2f1e09ade27278cc5bc6d8cba3c8/image-filtering-with-heaps-and-events-2-EventBetweenFilters.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-events-3-EventWithinFilter.png": {
+      "alt": "Timeline diagram that shows how an event manages dependencies within a filter.",
+      "identifier": "image-filtering-with-heaps-and-events-3-EventWithinFilter.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b410457dbaa25a62bf83e44b15992cb/image-filtering-with-heaps-and-events-3-EventWithinFilter.png"
+        }
+      ]
+    },
+    "image-filtering-with-heaps-and-events-4-EventBetweenFrames.png": {
+      "alt": "Timeline diagram that shows how an event manages dependencies between frames.",
+      "identifier": "image-filtering-with-heaps-and-events-4-EventBetweenFrames.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6fa7c1c14eebecfd1c4af38d28d305f7/image-filtering-with-heaps-and-events-4-EventBetweenFrames.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "0b3a56b621c9/ImplementingAMultistageImageFilterUsingHeapsAndEvents.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resource-Memory-Allocation-and-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+        "doc://com.apple.metal/documentation/Metal/MTLHeap",
+        "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+        "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign"
+      ],
+      "title": "Resource Memory Allocation and Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resource-Memory-Allocation-and-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+                "doc://com.apple.metal/documentation/Metal/MTLHeap",
+                "doc://com.apple.metal/documentation/Metal/MTLHeapDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLHeapType",
+                "doc://com.apple.metal/documentation/Metal/MTLSizeAndAlign"
+              ],
+              "title": "Resource Memory Allocation and Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/title",
+          "value": "MTLEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/title",
+          "value": "MTLHeapType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/title",
+          "value": "MTLSharedEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/title",
+          "value": "MTLHeapDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeapDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/title",
+          "value": "MTLSizeAndAlign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSizeAndAlign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSizeAndAlign/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSizeAndAlign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/title",
+          "value": "MTLFence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

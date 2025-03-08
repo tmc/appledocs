@@ -1,0 +1,1193 @@
+{
+  "abstract": [
+    {
+      "text": "The interface a file manager's delegate uses to intervene during operations or if an error occurs.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410050,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSFileManagerDelegate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "FileManagerDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "FileManagerDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FileManagerDelegate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " protocol defines optional methods for managing operations involving the copying, moving, linking, or removal of files and directories. When you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to initiate a copy, move, link, or remove operation, the file manager asks its delegate whether the operation should begin at all and whether it should proceed when an error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods of this protocol accept either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The file manager always prefers methods that take an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object over those that take an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should associate your delegate with a unique instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class, as opposed to the shared instance. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system": {
+      "abstract": [
+        {
+          "text": "Use high-level APIs to get the most out of Apple File System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "About Apple File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/about_apple_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system": {
+      "abstract": [
+        {
+          "text": "Prevent data loss and app crashes by interacting with the file system in a coordinated, asynchronous manner and by avoiding unnecessary disk I/O.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving performance and stability when accessing the file system",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate": {
+      "abstract": [
+        {
+          "text": "The interface a file manager's delegate uses to intervene during operations or if an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1407734-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the file manager should move the specified item to the new path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldMoveItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1407734-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldMoveItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1407734-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408003-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the operation should continue after an error occurs while linking to the item at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkingItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408003-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:linkingItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1408003-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408660-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the operation should continue after an error occurs while removing the item at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "removingItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408660-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:removingItemAt:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1408660-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1409791-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the operation should continue after an error occurs while removing the item at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "removingItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1409791-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:removingItemAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1409791-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410189-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the move operation should continue after an error occurs while copying the item at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyingItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410189-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:copyingItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1410189-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410788-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the move operation should continue after an error occurs while copying the item at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyingItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410788-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:copyingItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1410788-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411289-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the move operation should continue after an error occurs while moving the item at the specified URL.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "movingItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411289-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:movingItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1411289-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411878-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the file manager should move the specified item to the new URL. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldMoveItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411878-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldMoveItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1411878-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411918-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether the item at the specified URL should be deleted. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldRemoveItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411918-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldRemoveItemAt:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1411918-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412865-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the move operation should continue after an error occurs while moving the item at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "movingItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412865-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:movingItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1412865-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412994-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether the item at the specified path should be deleted. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldRemoveItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412994-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldRemoveItemAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1412994-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414699-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if a hard link should be created between the items at the two paths. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldLinkItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414699-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldLinkItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1414699-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414922-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the file manager should copy the specified item to the new path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCopyItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414922-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldCopyItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1414922-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1415627-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the operation should continue after an error occurs while linking to the item at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error, "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkingItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1415627-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:linkingItemAtPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1415627-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417589-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if a hard link should be created between the items at the two URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldLinkItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417589-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldLinkItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1417589-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417936-filemanager": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if the file manager should copy the specified item to the new URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCopyItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417936-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldCopyItemAt:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate/1417936-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+        "doc://com.apple.documentation/documentation/foundation/filemanager",
+        "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system"
+      ],
+      "title": "File system operations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661427",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411878-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1407734-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411289-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412865-filemanager"
+      ],
+      "kind": "taskGroup",
+      "title": "Moving  an Item"
+    },
+    {
+      "anchor": "1661509",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417936-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414922-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410788-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1410189-filemanager"
+      ],
+      "kind": "taskGroup",
+      "title": "Copying  an Item"
+    },
+    {
+      "anchor": "1661592",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1411918-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1412994-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408660-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1409791-filemanager"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing an Item"
+    },
+    {
+      "anchor": "1661657",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1417589-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1414699-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1408003-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate/1415627-filemanager"
+      ],
+      "kind": "taskGroup",
+      "title": "Linking an Item"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

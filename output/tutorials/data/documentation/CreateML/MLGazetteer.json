@@ -1,0 +1,1577 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of terms and their labels, which augments a tagger that analyzes natural language text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML11MLGazetteerV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLGazetteer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLGazetteer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MLGazetteer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLGazetteer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure a gazetteer and save it to a file, which you then add to your app in Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app uses the gazetteer file at runtime to create an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLGazetteer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which augments an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tag specific terms with a label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure a gazetteer with a dictionary, keyed by labels. Each value in the dictionary is an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of terms (words or phrases) for each label. For example, you can store the names of real and fictional planets in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gazetteer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let planets = [",
+            "    \"real planet\": [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"],",
+            "    \"fictional planet\" : [\"Arrakis\", \"Hoth\", \"Vulcan\", \"Pandora\", \"Tatooine\", \"Bajor\", \"Alderaan\", \"Romulus\"]",
+            "]",
+            "",
+            "let parameters = MLGazetteer.ModelParameters(language: .english)",
+            "let planetGazetteer = try! MLGazetteer(dictionary: planets, parameters: parameters)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve configured an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", save it to an ",
+              "type": "text"
+            },
+            {
+              "code": ".mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to include in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try planetGazetteer.write(toFile: \"~/Desktop/PlanetGazetteer.mlmodel\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gazetteer file can efficiently store many labels, and many terms for each label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer": {
+      "abstract": [
+        {
+          "text": "A collection of terms and their labels, which augments a tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLGazetteer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLGazetteer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLGazetteer",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomPlaygroundDisplayConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomPlaygroundDisplayConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomPlaygroundDisplayConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/customplaygrounddisplayconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/customstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/ModelParameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "The model configuration parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/ModelParameters-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLGazetteer.ModelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/modelparameters-swift.struct"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/debugDescription": {
+      "abstract": [
+        {
+          "text": "A text representation of the gazetteer that’s suitable for output during debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/debugdescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/description": {
+      "abstract": [
+        {
+          "text": "A text representation of the gazetteer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/description"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(dictionary:parameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a gazetteer from a dictionary of labels and terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV",
+          "text": "MLGazetteer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(dictionary:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionary:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/init(dictionary:parameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(labeledData:textColumn:labelColumn:parameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a gazetteer from a table of labels and terms.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "labeledData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "labelColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV",
+          "text": "MLGazetteer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(labeledData:textColumn:labelColumn:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(labeledData:textColumn:labelColumn:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/init(labeleddata:textcolumn:labelcolumn:parameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/model": {
+      "abstract": [
+        {
+          "text": "The gazetteer contained within a Core ML model file stored in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/modelParameters-swift.property": {
+      "abstract": [
+        {
+          "text": "The model configuration parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV",
+          "text": "MLGazetteer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLGazetteerV15ModelParametersV",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/modelParameters-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/modelparameters-swift.property"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/playgroundDescription": {
+      "abstract": [
+        {
+          "text": "A description of the gazetteer shown in a playground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/playgroundDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/playgrounddescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/prediction(from:)": {
+      "abstract": [
+        {
+          "text": "Predicts the label for the given term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/prediction(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prediction(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/prediction(from:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2jaui": {
+      "abstract": [
+        {
+          "text": "Predicts the labels for the given terms in the table column.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2jaui",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/predictions(from:)-2jaui"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2rej": {
+      "abstract": [
+        {
+          "text": "Predicts the labels for the given terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2rej",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/predictions(from:)-2rej"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(to:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the gazetteer as a Core ML model file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(toFile:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the gazetteer as a Core ML model file at the specified file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(toFile:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer/write(tofile:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTextClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding": {
+      "abstract": [
+        {
+          "text": "A map of strings in a vector space that enable your app to find similar",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strings by looking at a string’s neighbors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLWordEmbedding"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLWordEmbedding"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLWordEmbedding",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger": {
+      "abstract": [
+        {
+          "text": "A word-tagging model you train to classify natural language text at the word level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLWordTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLWordTagger"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLWordTagger",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordtagger"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a text classifier model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-a-text-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLGazetteer": {
+      "abstract": [
+        {
+          "text": "A collection of terms and their labels, which take precedence over a word tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLGazetteer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLGazetteer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLGazetteer",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLGazetteer"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger": {
+      "abstract": [
+        {
+          "text": "A tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLTagger",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLTagger"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to tag individual words in natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a word tagger model",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/creating-a-word-tagger-model"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type that supplies a custom description for playground logging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomPlaygroundDisplayConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomPlaygroundDisplayConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomPlaygroundDisplayConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model",
+        "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model",
+        "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding"
+      ],
+      "title": "Text Models"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-gazetteer",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(dictionary:parameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/init(labeledData:textColumn:labelColumn:parameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/ModelParameters-swift.struct",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/modelParameters-swift.property"
+      ],
+      "title": "Creating a gazetteer"
+    },
+    {
+      "anchor": "Testing-a-gazetteer",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/prediction(from:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2rej",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/predictions(from:)-2jaui"
+      ],
+      "title": "Testing a gazetteer"
+    },
+    {
+      "anchor": "Saving-a-gazetteer",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(to:metadata:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/write(toFile:metadata:)"
+      ],
+      "title": "Saving a gazetteer"
+    },
+    {
+      "anchor": "Describing-a-gazetteer",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/model",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/description",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/debugDescription",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/playgroundDescription"
+      ],
+      "title": "Describing a gazetteer"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomPlaygroundDisplayConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer/CustomStringConvertible-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLGazetteer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLGazetteer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTagger/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlgazetteer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

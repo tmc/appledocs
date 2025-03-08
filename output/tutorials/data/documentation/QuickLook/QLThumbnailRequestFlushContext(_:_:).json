@@ -1,0 +1,1961 @@
+{
+  "abstract": [
+    {
+      "text": "Flush the graphics context and sets the thumbnail response.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quicklook/documentation/QuickLook"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestFlushContext(_:_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@QLThumbnailRequestFlushContext",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "QLThumbnailRequestFlushContext"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+        "text": "QLThumbnailRequest"
+      },
+      {
+        "kind": "text",
+        "text": "!, "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CGContextRef",
+        "text": "CGContext"
+      },
+      {
+        "kind": "text",
+        "text": "!)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Quick Look"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "QLThumbnailRequestFlushContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.0",
+        "message": "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types.",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "QLThumbnailRequestFlushContext(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestFlushContext"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "thumbnail"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequest",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+              "text": "QLThumbnailRequest"
+            },
+            {
+              "kind": "text",
+              "text": "!, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CGContextRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGContextRef",
+              "text": "CGContext"
+            },
+            {
+              "kind": "text",
+              "text": "!)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The graphics context to flush.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should call this method after drawing in the graphics context created by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCreateContext(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the ",
+              "type": "text"
+            },
+            {
+              "code": "GenerateThumbnailForURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback was invoked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook": {
+      "abstract": [
+        {
+          "text": "Create previews of files to use inside your app, or perform simple edits on previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quick Look",
+      "type": "topic",
+      "url": "/documentation/quicklook"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequest": {
+      "abstract": [
+        {
+          "text": "An opaque reference that represents a thumbnail request object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequest",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequest"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyContentUTI(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the UTI for the thumbnail request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyContentUTI"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyContentUTI(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyContentUTI"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestCopyContentUTI(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestcopycontentuti(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyOptions(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the options specified for the thumbnail request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyOptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyOptions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestCopyOptions(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestcopyoptions(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyURL(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the URL of the document for which the thumbnail request is requested.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyURL(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCopyURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestCopyURL(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestcopyurl(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCreateContext(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a graphics context to draw the thumbnail in.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCreateContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCreateContext(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestCreateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestCreateContext(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestcreatecontext(_:_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestFlushContext(_:_:)": {
+      "abstract": [
+        {
+          "text": "Flush the graphics context and sets the thumbnail response.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestFlushContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestFlushContext(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestFlushContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestFlushContext(_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetDocumentObject(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the object that’s stored as part of a thumbnail request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetDocumentObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetDocumentObject(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetDocumentObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestGetDocumentObject(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestgetdocumentobject(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetGeneratorBundle(_:)": {
+      "abstract": [
+        {
+          "text": "Get the bundle of the generator receiving the thumbnail request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetGeneratorBundle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFBundleRef",
+          "text": "CFBundle"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetGeneratorBundle(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetGeneratorBundle"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestGetGeneratorBundle(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestgetgeneratorbundle(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetMaximumSize(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the maximum size (in points) specified for the thumbnail image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetMaximumSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetMaximumSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetMaximumSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestGetMaximumSize(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestgetmaximumsize(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Gets the type identifier for the ",
+          "type": "text"
+        },
+        {
+          "code": "QLThumbnailRequest",
+          "type": "codeVoice"
+        },
+        {
+          "text": " opaque type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestgettypeid()"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestIsCancelled(_:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the thumbnail request has been cancelled by the client.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestIsCancelled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestIsCancelled(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestIsCancelled"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestIsCancelled(_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestiscancelled(_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetDocumentObject(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Stores an object as part of a thumbnail request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetDocumentObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFArrayCallBacks",
+          "text": "CFArrayCallBacks"
+        },
+        {
+          "kind": "text",
+          "text": ">!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetDocumentObject(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetDocumentObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetDocumentObject(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetdocumentobject(_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImage(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the thumbnail request to a specified image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImage(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetImage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetimage(_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageAtURL(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the thumbnail request to contain the image at a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImageAtURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageAtURL(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImageAtURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetImageAtURL(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetimageaturl(_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageWithData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the response to the thumbnail request to image data saved within the document.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImageWithData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageWithData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetImageWithData"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetImageWithData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetimagewithdata(_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default image representation for an item with the provided data and specified file type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetThumbnailWithDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetThumbnailWithDataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetthumbnailwithdatarepresentation(_:_:_:_:_:)"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default image representation for an item of a given type at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetThumbnailWithURLRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+          "text": "QLThumbnailRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLThumbnailRequestSetThumbnailWithURLRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlthumbnailrequestsetthumbnailwithurlrepresentation(_:_:_:_:_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CGContextRef": {
+      "abstract": [
+        {
+          "text": "A Quartz 2D drawing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGContext"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CGContextRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContext",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-thumbnail-requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyContentUTI(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyOptions(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyURL(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCreateContext(_:_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetDocumentObject(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetGeneratorBundle(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetMaximumSize(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetTypeID()",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestIsCancelled(_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetDocumentObject(_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImage(_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageAtURL(_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageWithData(_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)"
+      ],
+      "title": "Handling thumbnail requests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "QLThumbnailRequestFlushContext"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestFlushContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quicklook/documentation/QuickLook"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-thumbnail-requests",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyContentUTI(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyOptions(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCopyURL(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestCreateContext(_:_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetDocumentObject(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetGeneratorBundle(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetMaximumSize(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestGetTypeID()",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestIsCancelled(_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetDocumentObject(_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImage(_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageAtURL(_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetImageWithData(_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)"
+              ],
+              "title": "Handling thumbnail requests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "QLThumbnailRequestFlushContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLThumbnailRequest",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@QLThumbnailRequestRef",
+                    "text": "QLThumbnailRequestRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "thumbnail"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CGContextRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CGContextRef",
+                    "text": "CGContextRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "context"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The graphics context to flush.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "context"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestIsCancelled(_:)/title",
+          "value": "QLThumbnailRequestIsCancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestIsCancelled(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestIsCancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyOptions(_:)/title",
+          "value": "QLThumbnailRequestCopyOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyOptions(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestCopyOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)/title",
+          "value": "QLThumbnailRequestSetThumbnailWithURLRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetThumbnailWithURLRepresentation(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetThumbnailWithURLRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetDocumentObject(_:)/title",
+          "value": "QLThumbnailRequestGetDocumentObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetDocumentObject(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestGetDocumentObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImageWithData(_:_:_:)/title",
+          "value": "QLThumbnailRequestSetImageWithData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImageWithData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetImageWithData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)/title",
+          "value": "QLThumbnailRequestSetThumbnailWithDataRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetThumbnailWithDataRepresentation(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetThumbnailWithDataRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestFlushContext(_:_:)/title",
+          "value": "QLThumbnailRequestFlushContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestFlushContext(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestFlushContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequest/title",
+          "value": "QLThumbnailRequestRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetGeneratorBundle(_:)/title",
+          "value": "QLThumbnailRequestGetGeneratorBundle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetGeneratorBundle(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestGetGeneratorBundle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyURL(_:)/title",
+          "value": "QLThumbnailRequestCopyURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyURL(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestCopyURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetMaximumSize(_:)/title",
+          "value": "QLThumbnailRequestGetMaximumSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetMaximumSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestGetMaximumSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetDocumentObject(_:_:_:)/title",
+          "value": "QLThumbnailRequestSetDocumentObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetDocumentObject(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetDocumentObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImage(_:_:_:)/title",
+          "value": "QLThumbnailRequestSetImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImage(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImageAtURL(_:_:_:)/title",
+          "value": "QLThumbnailRequestSetImageAtURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestSetImageAtURL(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestSetImageAtURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyContentUTI(_:)/title",
+          "value": "QLThumbnailRequestCopyContentUTI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCopyContentUTI(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestCopyContentUTI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCreateContext(_:_:_:_:)/title",
+          "value": "QLThumbnailRequestCreateContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestCreateContext(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestCreateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetTypeID()/title",
+          "value": "QLThumbnailRequestGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLThumbnailRequestGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLThumbnailRequestGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CGContextRef/title",
+          "value": "CGContextRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1031 @@
+{
+  "abstract": [
+    {
+      "text": "Raises a debugger signal upon receiving a failure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpointOnError()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Combine",
+    "externalID": "s:7Combine9PublisherPAAE17breakpointOnErrorAA10PublishersO10BreakpointVy_xGyF::SYNTHESIZED::s:17RealityFoundation11LoadRequestC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "breakpointOnError"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7Combine10PublishersO",
+        "text": "Publishers"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7Combine10PublishersO10BreakpointV",
+        "text": "Breakpoint"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": ">"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit",
+        "relatedModules": [
+          "Combine"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "breakpointOnError()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "breakpointOnError"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7Combine10PublishersO",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7Combine10PublishersO",
+              "text": "Publishers"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7Combine10PublishersO10BreakpointV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7Combine10PublishersO10BreakpointV",
+              "text": "Breakpoint"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A publisher that raises a debugger signal upon receiving a failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the upstream publisher fails with an error, this publisher raises the ",
+              "type": "text"
+            },
+            {
+              "code": "SIGTRAP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signal, which stops the process in the debugger. Otherwise, this publisher passes through values and completions as-is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example a ",
+              "type": "text"
+            },
+            {
+              "code": "PassthroughSubject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " publishes strings, but its downstream ",
+              "type": "text"
+            },
+            {
+              "code": "Publisher/tryMap(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator throws an error. This sends the error downstream as a ",
+              "type": "text"
+            },
+            {
+              "code": "Subscribers/Completion/failure(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "Publisher/breakpointOnError()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator receives this completion and stops the app in the debugger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " struct CustomError : Error {}",
+            " let publisher = PassthroughSubject<String?, Error>()",
+            " cancellable = publisher",
+            "     .tryMap { stringValue in",
+            "         throw CustomError()",
+            "     }",
+            "     .breakpointOnError()",
+            "     .sink(",
+            "         receiveCompletion: { completion in print(\"Completion: \\(String(describing: completion))\") },",
+            "         receiveValue: { aValue in print(\"Result: \\(String(describing: aValue))\") }",
+            "     )",
+            "",
+            " publisher.send(\"TEST DATA\")",
+            "",
+            " // Prints: \"error: Execution was interrupted, reason: signal SIGTRAP.\"",
+            " // Depending on your specific environment, the console messages may",
+            " // also include stack trace information, which is not shown here."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest": {
+      "abstract": [
+        {
+          "text": "A resource loader that acts as a publisher.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LoadRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LoadRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "LoadRequest",
+      "type": "topic",
+      "url": "/documentation/realitykit/loadrequest"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpoint(receiveSubscription:receiveOutput:receiveCompletion:)": {
+      "abstract": [
+        {
+          "text": "Raises a debugger signal when a provided closure needs to stop the process in the debugger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakpoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveSubscription"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine12SubscriptionP",
+          "text": "Subscription"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveOutput"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO10CompletionO",
+          "text": "Completion"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO10BreakpointV",
+          "text": "Breakpoint"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpoint(receiveSubscription:receiveOutput:receiveCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "breakpoint(receiveSubscription:receiveOutput:receiveCompletion:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/loadrequest/breakpoint(receivesubscription:receiveoutput:receivecompletion:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpointOnError()": {
+      "abstract": [
+        {
+          "text": "Raises a debugger signal upon receiving a failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "breakpointOnError"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO10BreakpointV",
+          "text": "Breakpoint"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpointOnError()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "breakpointOnError()",
+      "type": "topic",
+      "url": "/documentation/realitykit/loadrequest/breakpointonerror()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)": {
+      "abstract": [
+        {
+          "text": "Performs the specified closures when publisher events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveSubscription"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine12SubscriptionP",
+          "text": "Subscription"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveOutput"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO10CompletionO",
+          "text": "Completion"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveCancel"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO6DemandV",
+          "text": "Demand"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO12HandleEventsV",
+          "text": "HandleEvents"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/loadrequest/handleevents(receivesubscription:receiveoutput:receivecompletion:receivecancel:receiverequest:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/print(_:to:)": {
+      "abstract": [
+        {
+          "text": "Prints log messages for all publishing events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "print"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16TextOutputStreamP",
+          "text": "TextOutputStream"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO5PrintV",
+          "text": "Print"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/print(_:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "print(_:to:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/loadrequest/print(_:to:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine10PublishersO": {
+      "abstract": [
+        {
+          "text": "A namespace for types that serve as publishers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publishers"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine10PublishersO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers",
+      "type": "topic",
+      "url": "/documentation/Combine/Publishers"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine10PublishersO10BreakpointV": {
+      "abstract": [
+        {
+          "text": "A publisher that raises a debugger signal when a provided closure needs to stop the process in the debugger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Breakpoint"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Upstream"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Upstream"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine10PublishersO10BreakpointV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Publishers.Breakpoint",
+      "type": "topic",
+      "url": "/documentation/Combine/Publishers/Breakpoint"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/breakpoint(receiveSubscription:receiveOutput:receiveCompletion:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LoadRequest/print(_:to:)"
+      ],
+      "title": "Debugging"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/loadrequest/breakpointonerror()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

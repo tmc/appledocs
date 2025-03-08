@@ -1,0 +1,1049 @@
+{
+  "abstract": [
+    {
+      "text": "A registration for the collection view’s supplementary views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewSupplementaryRegistration",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewSupplementaryRegistration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewSupplementaryRegistration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewSupplementaryRegistration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewSupplementaryRegistration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a supplementary registration to register supplementary views, like headers and footers, with your collection view and configure each view for display. You create a supplementary registration with your supplementary view type and data item type as the registration’s generic parameters, passing in a registration handler to configure the view. In the registration handler, you specify how to configure the content and appearance of that type of supplementary view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a supplementary registration for a custom header view subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UICollectionViewSupplementaryRegistration *headerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[HeaderView class] elementKind:@\"Header\" configurationHandler:^(HeaderView *supplementaryView, NSString *elementKind, NSIndexPath *indexPath) {",
+            "    supplementaryView.label.text = [NSString stringWithFormat:@\"%@ for section %ld\", elementKind, (long)indexPath.section];",
+            "    supplementaryView.backgroundColor = UIColor.lightGrayColor;",
+            "}];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create a supplementary registration, you pass it in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which you call from your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/supplementaryViewProvider-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.dataSource.supplementaryViewProvider = ^UICollectionReusableView *(UICollectionView *collectionView, NSString *elementKind, NSIndexPath *indexPath) {",
+            "    return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:headerRegistration forIndexPath:indexPath];",
+            "};"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The registration occurs automatically when you pass the supplementary view registration to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t create your supplementary view registration inside a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " closure; doing so prevents reuse, and generates an exception in iOS 15 and higher.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:": {
+      "abstract": [
+        {
+          "text": "Dequeues a configured reusable supplementary view object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/dequeueconfiguredreusablesupplementaryviewwithregistration:forindexpath:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)": {
+      "abstract": [
+        {
+          "text": "Dequeues a reusable supplementary view located by its identifier and kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueReusableSupplementaryView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionReusableView",
+          "text": "UICollectionReusableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/dequeuereusablesupplementaryview(ofkind:withreuseidentifier:for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io": {
+      "abstract": [
+        {
+          "text": "Registers a class for use in creating supplementary views for the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSupplementaryViewOfKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerClass:forSupplementaryViewOfKind:withReuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:forSupplementaryViewOfKind:withReuseIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/register(_:forsupplementaryviewofkind:withreuseidentifier:)-661io"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73": {
+      "abstract": [
+        {
+          "text": "Registers a nib file for use in creating supplementary views for the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINib",
+          "text": "UINib"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSupplementaryViewOfKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withReuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerNib:forSupplementaryViewOfKind:withReuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:forSupplementaryViewOfKind:withReuseIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/register(_:forsupplementaryviewofkind:withreuseidentifier:)-9hn73"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/supplementaryViewProvider-swift.property": {
+      "abstract": [
+        {
+          "text": "The closure that configures and returns the collection view’s supplementary views, such as headers and footers, from the diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supplementaryViewProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit34UICollectionViewDiffableDataSourceC",
+          "text": "UICollectionViewDiffableDataSource"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit34UICollectionViewDiffableDataSourceC013SupplementaryC8Providera",
+          "text": "SupplementaryViewProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/supplementaryViewProvider-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supplementaryViewProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/supplementaryviewprovider-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures and returns a collection view’s supplementary view, such as a header or footer, from a diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereferencesupplementaryviewprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration": {
+      "abstract": [
+        {
+          "text": "A registration for the collection view’s supplementary views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewSupplementaryRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewSupplementaryRegistration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/configurationHandler": {
+      "abstract": [
+        {
+          "text": "The block that handles the supplementary view registration and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "configurationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/configurationHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/configurationhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/elementKind": {
+      "abstract": [
+        {
+          "text": "The supplementary view’s element kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "elementKind"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/elementKind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "elementKind",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/elementkind"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryClass:elementKind:configurationHandler:": {
+      "abstract": [
+        {
+          "text": "Creates a supplementary registration for the specified element kind with a registration handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registrationWithSupplementaryClass:elementKind:configurationHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryClass:elementKind:configurationHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registrationWithSupplementaryClass:elementKind:configurationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registrationWithSupplementaryClass:elementKind:configurationHandler:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/registrationwithsupplementaryclass:elementkind:configurationhandler:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryNib:elementKind:configurationHandler:": {
+      "abstract": [
+        {
+          "text": "Creates a supplementary registration for the specified element kind with a registration handler and nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registrationWithSupplementaryNib:elementKind:configurationHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryNib:elementKind:configurationHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registrationWithSupplementaryNib:elementKind:configurationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registrationWithSupplementaryNib:elementKind:configurationHandler:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/registrationwithsupplementarynib:elementkind:configurationhandler:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryClass": {
+      "abstract": [
+        {
+          "text": "The class associated with the supplementary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "supplementaryClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supplementaryClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/supplementaryclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryNib": {
+      "abstract": [
+        {
+          "text": "The nib file associated with the supplementary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "supplementaryNib"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryNib",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supplementaryNib",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistration/supplementarynib"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistrationConfigurationHandler": {
+      "abstract": [
+        {
+          "text": "A block that handles the supplementary view registration and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewSupplementaryRegistrationConfigurationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistrationConfigurationHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewSupplementaryRegistrationConfigurationHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewsupplementaryregistrationconfigurationhandler"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-headers-and-footers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)"
+      ],
+      "title": "Creating headers and footers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-supplementary-registration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryClass:elementKind:configurationHandler:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/registrationWithSupplementaryNib:elementKind:configurationHandler:",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistrationConfigurationHandler"
+      ],
+      "title": "Creating a supplementary registration"
+    },
+    {
+      "anchor": "Querying-a-supplementary-registration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/configurationHandler",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/elementKind",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryClass",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewSupplementaryRegistration/supplementaryNib"
+      ],
+      "title": "Querying a supplementary registration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/title",
+          "value": "UICollectionViewDiffableDataSourceSupplementaryViewProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSourceSupplementaryViewProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSourceSupplementaryViewProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io/title",
+          "value": "registerClass:forSupplementaryViewOfKind:withReuseIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-661io/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerClass:forSupplementaryViewOfKind:withReuseIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)/title",
+          "value": "dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1dequeueReusableSupplementaryView(ofKind:withReuseIdentifier:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73/title",
+          "value": "registerNib:forSupplementaryViewOfKind:withReuseIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1register(_:forSupplementaryViewOfKind:withReuseIdentifier:)-9hn73/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerNib:forSupplementaryViewOfKind:withReuseIdentifier:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewsupplementaryregistration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1225 @@
+{
+  "abstract": [
+    {
+      "text": "Render different ad styles in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Presenting ads in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionKit and StoreKit provide several ways to display in-app ads so you can customize ad display based on your app’s ad positioning or other advertising goals.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to presenting ads in your app is to initialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an impression in compact JSON Web Signature (JWS) format. For more information about generating JWS impressions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Record-view-through-impressions-using-custom-rendered-ads",
+          "level": 2,
+          "text": "Record view-through impressions using custom rendered ads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom rendered ads include ad content that overlays the app view. To record a view-through impression use the AdAttributionKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods as shown in the following SwiftUI example using the ",
+              "type": "text"
+            },
+            {
+              "code": "onAppear()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "onDisappear()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view modifiers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In UIKit, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods. Don’t use or rely on timer methods to determine when to end an ad impression view in either SwiftUI or UIKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "struct AdContentView: View {",
+            "    let impression: AppImpression",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            // Advertisement content",
+            "        }",
+            "        .onAppear(perform: { handleAdAppeared() })",
+            "        .onDisappear(perform: { handleAdDisappeared() })",
+            "        .onTapGesture(perform: { handleAdTapped() })",
+            "    }",
+            "",
+            "    init(impression: AppImpression) {",
+            "        self.impression = impression",
+            "    }",
+            "",
+            "    func handleAdAppeared() {",
+            "        Task {",
+            "            do {",
+            "                try await impression.beginView()",
+            "            }",
+            "            catch {",
+            "                print(\"Failed to begin view through impression: \\(error).\")",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "    func handleAdDisappeared() {",
+            "        Task {",
+            "            do {",
+            "                try await impression.endView()",
+            "            }",
+            "            catch {",
+            "                print(\"Failed to end view through impression: \\(error).\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Record-click-through-impressions-and-redirect-a-person-to-open-or-install-the-advertised-app",
+          "level": 2,
+          "text": "Record click-through impressions and redirect a person to open or install the advertised app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to a click-through interaction, first display a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " over your ad content. Once the ad receives a tap, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system then records a click-through impression, and if the app specified by the impression’s advertised item ID isn’t installed, the system launches the app’s product page on the App Store or alternative marketplace according to the user’s preferences in Settings. If the app is already installed, the system launches the app directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    func handleAdTapped(impression: AppImpression) async {",
+            "        do {",
+            "            // This fails if a person didn't tap `UIEventAttributionView`.",
+            "            try await impression.handleTap()",
+            "        }",
+            "        catch {",
+            "            print(\"Failed to perform click through impression: \\(error).\")",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-StoreKit-rendered-ads",
+          "level": 2,
+          "text": "Display StoreKit rendered ads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass an ",
+              "type": "text"
+            },
+            {
+              "code": "AppImpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when configuring a StoreKit rendered ad, and it handles recording a view-through impression after the framework displays it for 2 seconds; it records a click-through impression if a person taps through the ad. For more information on StoreKit rendered ads, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration/appImpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController/loadProduct(parameters:impression:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression": {
+      "abstract": [
+        {
+          "text": "A structure that represents an attributable impression the developer generates in response to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "person’s interaction with an ad in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppImpression",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()": {
+      "abstract": [
+        {
+          "text": "Begins recording a view-through impression when ad content corresponding to the impression becomes visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginView"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/beginView()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginView()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/beginview()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()": {
+      "abstract": [
+        {
+          "text": "Ends the view-through impression when the ad content corresponding to the impression disappears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endView"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/endView()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endView()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/endview()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()": {
+      "abstract": [
+        {
+          "text": "Processes click-through interactions on your custom rendered ad content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleTap"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/handleTap()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleTap()",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/handletap()"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability": {
+      "abstract": [
+        {
+          "text": "Learn how attribution APIs interact to deliver ad impressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding AdAttributionKit and SKAdNetwork interoperability",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/adattributionkit-skadnetwork-interoperability"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions": {
+      "abstract": [
+        {
+          "text": "Create a JSON Web Signature (JWS) for use with app impressions in AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JWS impressions",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/generating-jws-impressions"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Understand timeframes and priorities for ad impressions that result in ad attributions, and how impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with a downloaded profile",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-ad-attributions-with-a-downloaded-profile"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with Developer Mode",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-adattributionkit-with-developer-mode"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that represents the attributes of an overlay you use to recommend another app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKOverlay.AppConfiguration",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKOverlay/AppConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration/appImpression": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appImpression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit13AppImpressionV",
+          "text": "AppImpression"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKOverlay/AppConfiguration/appImpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appImpression",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKOverlay/AppConfiguration/appImpression"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides a page where customers can purchase media from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKStoreProductViewController",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKStoreProductViewController"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController/loadProduct(parameters:impression:)": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadProduct"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "impression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit13AppImpressionV",
+          "text": "AppImpression"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKStoreProductViewController/loadProduct(parameters:impression:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadProduct(parameters:impression:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKStoreProductViewController/loadProduct(parameters:impression:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView": {
+      "abstract": [
+        {
+          "text": "An overlay view that verifies user interaction for Web AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEventAttributionView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEventAttributionView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIEventAttributionView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIEventAttributionView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that its view was added to a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidAppear(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidAppear(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that its view is about to be removed from a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewWillDisappear(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewWillDisappear(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewWillDisappear(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/title",
+          "value": "viewDidAppear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidAppear:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewWillDisappear(_:)/title",
+          "value": "viewWillDisappear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewWillDisappear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillDisappear:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKStoreProductViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKOverlay~1AppConfiguration/title",
+          "value": "SKOverlayAppConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKOverlay~1AppConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKOverlayAppConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKOverlayConfiguration",
+              "text": "SKOverlayConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEventAttributionView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIEventAttributionView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/presenting-ads-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

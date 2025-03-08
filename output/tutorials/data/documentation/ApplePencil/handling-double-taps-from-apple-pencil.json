@@ -1,0 +1,1431 @@
+{
+  "abstract": [
+    {
+      "text": "Detect and respond to double taps a person makes on Apple Pencil.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ApplePencil/documentation/ApplePencil"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-double-taps-from-apple-pencil"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling double taps from Apple Pencil"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Apple Pencil interactions to allow people to access functionality in your app quickly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Double-tapping Apple Pencil lets a person perform actions such as switching between drawing tools without moving the pencil to another location on the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "apple-pencil-double-tap",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-for-a-double-tap",
+          "level": 3,
+          "text": "Register for a double tap",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to double taps from Apple Pencil in your app, you need to register your view to receive double-tap interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onPencilDoubleTap(perform:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view modifier to your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "MyView()",
+                    "    .onPencilDoubleTap { value in",
+                    "        // ...",
+                    "    }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, passing an object that implements the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteractionDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "delegate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Then, add the interaction to your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "class ViewController: UIViewController, UIPencilInteractionDelegate {",
+                    "   ",
+                    "   override func viewDidLoad() {",
+                    "       super.viewDidLoad()",
+                    "       ",
+                    "       // Register for a double tap.",
+                    "       let pencilInteraction = UIPencilInteraction(delegate: self) ",
+                    "       view.addInteraction(pencilInteraction)",
+                    "   }",
+                    "   // ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Check-the-preferred-double-tap-action",
+          "level": 3,
+          "text": "Check the preferred double-tap action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person can choose which action they prefer to perform when they double-tap Apple Pencil.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They choose this systemwide preference in Settings > Apple Pencil > Actions > Double Tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, you can check the value of this preferred action for double tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To check the preferred action, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " environment value. For possible values, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PencilPreferredAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@Environment(\\.preferredPencilDoubleTapAction) private var preferredAction"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To check the preferred action, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/preferredTapAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class property on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For possible values, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilPreferredAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "UIPencilInteraction.preferredTapAction"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Choose-the-action-to-perform",
+          "level": 3,
+          "text": "Choose the action to perform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When possible, perform the preferred action to provide a consistent user experience across apps that support double taps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the preferred action doesn’t make sense in your app, consider giving people a way to choose a custom action that’s suitable for your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For design guidance, read Human Interface Guidelines > Apple Pencil and Scribble > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble#Double-tap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows a snippet from a drawing app that provides custom drawing tools.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This app allows a person to configure a custom action to quickly swap to their favorite custom drawing tool instead of using the systemwide preferred action for double taps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This app also supports the preferred actions to ignore double taps, switch to the previous tool, and switch to the eraser tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "enum Tool {",
+                    "    case brush",
+                    "    case lasso",
+                    "    case eraser",
+                    "    case magnifier",
+                    "}",
+                    "",
+                    "enum CustomAction: String {",
+                    "    case switchLasso",
+                    "    case switchMagnifier",
+                    "}",
+                    "",
+                    "@State private var currentTool: Tool? = .brush",
+                    "@State private var previousTool: Tool?",
+                    "",
+                    "@Environment(\\.preferredPencilDoubleTapAction) private var preferredAction",
+                    "@AppStorage(\"customPencilDoubleTapAction\") private var customAction: CustomAction?",
+                    "",
+                    "var body: some View {",
+                    "    MyView()",
+                    "        .onPencilDoubleTap { value in",
+                    "            // Respect the systemwide preferred action to ignore double taps.",
+                    "            guard preferredAction != .ignore else { return }",
+                    "        ",
+                    "            // If the person chooses to override the systemwide",
+                    "            // double-tap action to perform a custom action in this app,",
+                    "            // check which custom action they prefer and perform that action.",
+                    "            if let customAction {",
+                    "                if customAction == .switchLasso, currentTool != .lasso {",
+                    "                    (currentTool, previousTool) = (.lasso, currentTool)",
+                    "                }",
+                    "                else if customAction == .switchMagnifier, currentTool != .magnifier {",
+                    "                    (currentTool, previousTool) = (.magnifier, currentTool)",
+                    "                }",
+                    "            }",
+                    "        ",
+                    "            // If the person prefers to use the systemwide double-tap action, ",
+                    "            // perform the actions that are appropriate in the context of this app: ",
+                    "            // switch to the previous tool, or switch to the eraser tool.",
+                    "            else if preferredAction == .switchPrevious {",
+                    "                (currentTool, previousTool) = (previousTool, currentTool)",
+                    "            }",
+                    "            else if preferredAction == .switchEraser, currentTool != .eraser {",
+                    "                (currentTool, previousTool) = (.eraser, currentTool)",
+                    "            }",
+                    "        }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "enum Tool {",
+                    "    case brush",
+                    "    case lasso",
+                    "    case eraser",
+                    "    case magnifier",
+                    "}",
+                    "",
+                    "enum CustomAction {",
+                    "    case switchLasso",
+                    "    case switchMagnifier",
+                    "}",
+                    "",
+                    "private var currentTool: Tool? = .brush",
+                    "private var previousTool: Tool?",
+                    "private var customAction: CustomAction?",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    // Register for a double tap.",
+                    "    let pencilInteraction = UIPencilInteraction(delegate: self)",
+                    "    view.addInteraction(pencilInteraction)",
+                    "}",
+                    "",
+                    "func pencilInteraction(_ interaction: UIPencilInteraction,",
+                    "                   didReceiveTap tap: UIPencilInteraction.Tap) {",
+                    "    let preferredAction = UIPencilInteraction.preferredTapAction",
+                    "    ",
+                    "    // Respect the systemwide preferred action to ignore double taps.",
+                    "    guard preferredAction != .ignore else { return }",
+                    "",
+                    "    // If the person chooses to override the systemwide",
+                    "    // double-tap action to perform a custom action in this app,",
+                    "    // check which custom action they prefer and perform that action.",
+                    "    if let customAction {",
+                    "        if customAction == .switchLasso, currentTool != .lasso {",
+                    "            (currentTool, previousTool) = (.lasso, currentTool)",
+                    "        }",
+                    "        else if customAction == .switchMagnifier, currentTool != .magnifier {",
+                    "            (currentTool, previousTool) = (.magnifier, currentTool)",
+                    "        }",
+                    "    }",
+                    "    ",
+                    "    // If the person prefers to use the systemwide double-tap action, ",
+                    "    // perform the actions that are appropriate in the context of this app: ",
+                    "    // switch to the previous tool, or switch to the eraser tool.",
+                    "    else if preferredAction == .switchPrevious {",
+                    "        (currentTool, previousTool) = (previousTool, currentTool)",
+                    "    }",
+                    "    else if preferredAction == .switchEraser, currentTool != .eraser {",
+                    "        (currentTool, previousTool) = (.eraser, currentTool)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-reference-in-SwiftUI",
+          "level": 4,
+          "text": "Related reference in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/SwiftUI/View/onPencilDoubleTap(perform:)",
+            "doc://com.apple.documentation/documentation/SwiftUI/PencilDoubleTapGestureValue",
+            "doc://com.apple.documentation/documentation/SwiftUI/PencilPreferredAction",
+            "doc://com.apple.documentation/documentation/SwiftUI/PencilHoverPose"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-reference-in-UIKit",
+          "level": 4,
+          "text": "Related reference in UIKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction",
+            "doc://com.apple.documentation/documentation/UIKit/UIPencilInteractionDelegate",
+            "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Tap",
+            "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Phase",
+            "doc://com.apple.documentation/documentation/UIKit/UIPencilHoverPose"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "apple-pencil-double-tap": {
+      "alt": "An illustration showing a hand double-tapping Apple Pencil with the index finger.",
+      "identifier": "apple-pencil-double-tap",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/796d7b73d68c0168b9105f002aa0984e/apple-pencil-double-tap@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e9471184e2655f4ddf1637ddb5da7532/apple-pencil-double-tap~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ApplePencil/documentation/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Enhance your iPad app’s user experience by supporting drawing, handwriting, and other features of Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/applepencil"
+    },
+    "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Detect and respond to squeezes a person makes on Apple Pencil Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil/handling-squeezes-from-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling squeezes from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/applepencil/handling-squeezes-from-apple-pencil"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction": {
+      "abstract": [
+        {
+          "text": "The action that the user prefers to perform after double-tapping their Apple Pencil, as selected in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPencilDoubleTapAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21PencilPreferredActionV",
+          "text": "PencilPreferredAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredPencilDoubleTapAction",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PencilDoubleTapGestureValue": {
+      "abstract": [
+        {
+          "text": "Describes the value of an Apple Pencil double-tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilDoubleTapGestureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PencilDoubleTapGestureValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PencilDoubleTapGestureValue",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PencilDoubleTapGestureValue"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PencilHoverPose": {
+      "abstract": [
+        {
+          "text": "A value describing the location and distance of an Apple Pencil hovering in the area above a view’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilHoverPose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PencilHoverPose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PencilHoverPose",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PencilHoverPose"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PencilPreferredAction": {
+      "abstract": [
+        {
+          "text": "An action that the user prefers to perform after double-tapping their Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilPreferredAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PencilPreferredAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PencilPreferredAction",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PencilPreferredAction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onPencilDoubleTap(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform after the user double-taps their Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onPencilDoubleTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27PencilDoubleTapGestureValueV",
+          "text": "PencilDoubleTapGestureValue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onPencilDoubleTap(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onPencilDoubleTap(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onPencilDoubleTap(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilHoverPose": {
+      "abstract": [
+        {
+          "text": "An object that describes the hover pose of Apple Pencil during an interaction like double tap or squeeze.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPencilHoverPose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilHoverPose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilHoverPose",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilHoverPose"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that tells your app when a person double-taps or squeezes Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPencilInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilInteraction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Phase": {
+      "abstract": [
+        {
+          "text": "Constants that describe the phases of an interaction on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Phase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Phase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilInteraction.Phase",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilInteraction/Phase"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Tap": {
+      "abstract": [
+        {
+          "text": "An interaction that represents a double tap on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/Tap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilInteraction.Tap",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilInteraction/Tap"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/preferredTapAction": {
+      "abstract": [
+        {
+          "text": "A person’s preferred double-tap action for Apple Pencil, as specified in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredTapAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIPencilPreferredAction",
+          "text": "UIPencilPreferredAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteraction/preferredTapAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredTapAction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilInteraction/preferredTapAction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "The interface an object implements to handle double taps or squeezes a person makes on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPencilInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilInteractionDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilInteractionDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPencilPreferredAction": {
+      "abstract": [
+        {
+          "text": "The actions Apple Pencil can perform after a person performs a double tap or squeeze.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPencilPreferredAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPencilPreferredAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPencilPreferredAction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPencilPreferredAction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble#Double-tap": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble#Double-tap",
+      "title": "Double tap",
+      "titleInlineContent": [
+        {
+          "text": "Double tap",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble#Double-tap"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction~1Tap/title",
+          "value": "UIPencilInteractionTap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction~1Tap/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteractionTap"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilPreferredAction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilPreferredAction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteractionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction~1Phase/title",
+          "value": "UIPencilInteractionPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction~1Phase/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteractionPhase"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilHoverPose/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilHoverPose"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction~1preferredTapAction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@UIPencilPreferredAction",
+              "text": "UIPencilPreferredAction"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredTapAction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPencilInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

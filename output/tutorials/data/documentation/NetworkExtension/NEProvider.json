@@ -1,0 +1,1998 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract base class for all NetworkExtension providers.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NEProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NEProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NEProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the documentation for the ",
+              "type": "text"
+            },
+            {
+              "code": "NEProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses for details about how to create Network Extension Provider extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NEProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class and its subclasses expose methods and properties that allow Network Extension Provider extensions to participate in and affect the network data path on iOS and macOS. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "handleNewFlow:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows Filter Data Provider extensions to make pass/block decisions on TCP connections as the connections are established on the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NEProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class should not be subclassed directly. Instead, you should create subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NEProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses (and in some cases subsubclasses).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Methods-to-Override",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/wake()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for an app proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a DNS proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a filter data provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterDataProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterdataprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by content filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class for all NetworkExtension providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)": {
+      "abstract": [
+        {
+          "text": "Create a TCP connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createTCPConnection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWEndpoint",
+          "text": "NWEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "enableTLS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tlsParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWTLSParameters",
+          "text": "NWTLSParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWTCPConnection",
+          "text": "NWTCPConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createTCPConnection(to:enableTLS:tlsParameters:delegate:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/createtcpconnection(to:enabletls:tlsparameters:delegate:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)": {
+      "abstract": [
+        {
+          "text": "Creates a UDP session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createUDPSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWEndpoint",
+          "text": "NWEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWUDPSession",
+          "text": "NWUDPSession"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createUDPSessionToEndpoint:fromEndpoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createUDPSession(to:from:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/createudpsession(to:from:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/defaultPath": {
+      "abstract": [
+        {
+          "text": "The current default network path used for connections created by the provider.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWPath",
+          "text": "NWPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/defaultPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultPath",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/defaultpath"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Call this method from your ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subclass if you want to display a message to the person using the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayMessage:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayMessage(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/displaymessage(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Handle a sleep event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sleepWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sleep(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/sleep(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/startSystemExtensionMode()": {
+      "abstract": [
+        {
+          "text": "Starts the Network Extension machinery from inside a System Extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSystemExtensionMode"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/startSystemExtensionMode()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSystemExtensionMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSystemExtensionMode()",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/startsystemextensionmode()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/wake()": {
+      "abstract": [
+        {
+          "text": "Handle a wake event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wake"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/wake()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wake"
+        }
+      ],
+      "role": "symbol",
+      "title": "wake()",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider/wake()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProviderStopReason": {
+      "abstract": [
+        {
+          "text": "Reasons why the provider extension was stopped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEProviderStopReason"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProviderStopReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEProviderStopReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEProviderStopReason",
+      "type": "topic",
+      "url": "/documentation/networkextension/neproviderstopreason"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings": {
+      "abstract": [
+        {
+          "text": "The configuration for a tunnel provider’s virtual interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelnetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-proxy-provider",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+      ],
+      "title": "App proxy provider"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-sleep-and-wake",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/wake()"
+      ],
+      "title": "Handling sleep and wake"
+    },
+    {
+      "anchor": "Creating-network-connections",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)"
+      ],
+      "title": "Creating network connections"
+    },
+    {
+      "anchor": "Monitoring-the-network-state",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/defaultPath"
+      ],
+      "title": "Monitoring the network state"
+    },
+    {
+      "anchor": "Supporting-system-extensions",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/startSystemExtensionMode()"
+      ],
+      "title": "Supporting system extensions"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProviderStopReason"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Displaying-messages",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)"
+      ],
+      "title": "Displaying messages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NEProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-sleep-and-wake",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/wake()"
+              ],
+              "title": "Handling sleep and wake"
+            },
+            {
+              "anchor": "Creating-network-connections",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)"
+              ],
+              "title": "Creating network connections"
+            },
+            {
+              "anchor": "Monitoring-the-network-state",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/defaultPath"
+              ],
+              "title": "Monitoring the network state"
+            },
+            {
+              "anchor": "Supporting-system-extensions",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/startSystemExtensionMode()"
+              ],
+              "title": "Supporting system extensions"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProviderStopReason"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Displaying-messages",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)"
+              ],
+              "title": "Displaying messages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-proxy-provider",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+              ],
+              "title": "App proxy provider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NEProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1wake()/title",
+          "value": "wake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1wake()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "wake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/title",
+          "value": "NETunnelProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/title",
+          "value": "NEFilterProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1createUDPSession(to:from:)/title",
+          "value": "createUDPSessionToEndpoint:fromEndpoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1createUDPSession(to:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createUDPSessionToEndpoint:fromEndpoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/title",
+          "value": "NEFilterDataProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1sleep(completionHandler:)/title",
+          "value": "sleepWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1sleep(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sleepWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1startSystemExtensionMode()/title",
+          "value": "startSystemExtensionMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1startSystemExtensionMode()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSystemExtensionMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1createTCPConnection(to:enableTLS:tlsParameters:delegate:)/title",
+          "value": "createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1createTCPConnection(to:enableTLS:tlsParameters:delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/title",
+          "value": "NEDNSProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/title",
+          "value": "NEProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/title",
+          "value": "NEAppProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProviderStopReason/title",
+          "value": "NEProviderStopReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProviderStopReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProviderStopReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProviderStopReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProviderStopReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1displayMessage(_:completionHandler:)/title",
+          "value": "displayMessage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1displayMessage(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayMessage:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1defaultPath/title",
+          "value": "defaultPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider~1defaultPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/title",
+          "value": "NETunnelNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/title",
+          "value": "NEAppPushProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/neprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/neprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "abstract": [
+    {
+      "text": "Begins scheduling the background activity.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412813-schedule"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412813,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSBackgroundActivityScheduler(im)scheduleWithBlock:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "schedule"
+      },
+      {
+        "kind": "text",
+        "text": "((NSBackgroundActivityScheduler.CompletionHandler) -> Void)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSBackgroundActivityScheduler"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "schedule(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "schedule"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@Sendable"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSBackgroundActivityScheduler",
+              "text": "NSBackgroundActivityScheduler"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/completionhandler",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSBackgroundActivityCompletionHandler",
+              "text": "CompletionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A block of code to execute when the scheduler runs. This block will be called on a serial background queue appropriate for the level of quality of service specified. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412688-qualityofservice",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your block is called, it’s passed a completion handler as an argument. Configure the block to invoke this handler, passing it a result of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate whether the activity finished (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/finished",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or should be deferred (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/deferred",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and rescheduled for a later time. Failure to invoke the completion handler results in the activity not being rescheduled. For work that will be deferred and rescheduled, the block may optionally adjust scheduler properties, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408819-interval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408138-tolerance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", before calling the completion handler. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler#1663318",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBackgroundActivityScheduler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler#1663318": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler#1663318",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Schedule Activity with scheduleWithBlock:",
+      "type": "section",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler#1663318"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408138-tolerance": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408138-tolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tolerance",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/1408138-tolerance"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408819-interval": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1408819-interval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interval",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/1408819-interval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412688-qualityofservice": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412688-qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/1412688-qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412813-schedule": {
+      "abstract": [
+        {
+          "text": "Begins scheduling the background activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "((NSBackgroundActivityScheduler.CompletionHandler) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/1412813-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/1412813-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/completionhandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBackgroundActivityScheduler.CompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/completionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBackgroundActivityScheduler.CompletionHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/completionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result": {
+      "abstract": [
+        {
+          "text": "These constants indicate whether background activity has been completed successfully or whether additional processing should be deferred until a more optimal time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBackgroundActivityScheduler.Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBackgroundActivityScheduler.Result",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/result"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/deferred": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/deferred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBackgroundActivityScheduler.Result.deferred",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/result/deferred"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/finished": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result/finished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBackgroundActivityScheduler.Result.finished",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbackgroundactivityscheduler/result/finished"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/completionhandler"
+      ],
+      "title": "Scheduling Activity"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbackgroundactivityscheduler/result"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsbackgroundactivityscheduler/1412813-schedulewithblock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsbackgroundactivityscheduler/1412813-schedule"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

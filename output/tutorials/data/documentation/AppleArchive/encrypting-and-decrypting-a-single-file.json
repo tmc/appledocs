@@ -1,0 +1,1197 @@
+{
+  "abstract": [
+    {
+      "text": "Encrypt a single file and save the result to the file system, then decrypt and recreate the original file from the archive file using Apple Encrypted Archive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applearchive/documentation/AppleArchive"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-a-single-file"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Archive"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Encrypting and Decrypting a Single File"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project implements the Apple Encrypted Archive library to compress and encrypt the contents of a single file using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CryptoKit/SymmetricKey",
+              "isActive": true,
+              "overridingTitle": "SymmetricKey",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SymmetricKey",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The sample saves the encrypted file to the user’s temporary directory and then calls a second function that decrypts the contents of the archive and recreates the original file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before running the sample code project in Xcode, ensure you have a file in your temporary directory (see: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+              "isActive": true,
+              "overridingTitle": "NSTemporaryDirectory()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSTemporaryDirectory()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ") named ",
+              "type": "text"
+            },
+            {
+              "code": "file.txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-File-Paths",
+          "level": 3,
+          "text": "Define File Paths",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project defines ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/System/FilePath",
+              "isActive": true,
+              "overridingTitle": "FilePath",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "FilePath",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structures that represent the locations of the source file, the encrypted version of the source file, and the recreated, unencrypted version of the source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The sample defines a `FilePath` structure that represents the path of",
+            "// the source file. Before running the same, you must have a file in",
+            "// your temporary directory named `file.txt`.",
+            "let sourceFilePath = FilePath(NSTemporaryDirectory() + \"file.txt\")",
+            "",
+            "// The sample writes the encrypted source file to the path defined by",
+            "// the `encryptedFilePath` file path structure.",
+            "let encryptedFilePath = FilePath(NSTemporaryDirectory() + \"file.encrypted\")",
+            "",
+            "// The sample defines a `FilePath` structure that represents the path of",
+            "// the decrypted recreation of the original file.",
+            "let decryptedFilePath = FilePath(NSTemporaryDirectory() + \"file.decrypted.txt\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-a-Symmetric-Key",
+          "level": 3,
+          "text": "Generate a Symmetric Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample imports the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CryptoKit",
+              "isActive": true,
+              "overridingTitle": "Apple CryptoKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple CryptoKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " framework to generate the symmetric cryptographic key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let key = SymmetricKey(size: SymmetricKeySize.bits256)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the same key for encryption and decryption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Context-for-Encryption",
+          "level": 3,
+          "text": "Create a Context for Encryption",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "ArchiveEncryptionContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object contains the parameters, keys, and other data that the Apple Encrypted Archive library requires to open an encrypted archive for encryption and decryption streams. The sample initializes the context with a profile and compression algorithm, and its symmetric key set for encryption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = ArchiveEncryptionContext(profile: .hkdf_sha256_aesctr_hmac__symmetric__none,",
+            "                                       compressionAlgorithm: .lzfse)",
+            "try context.setSymmetricKey(key)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Open-Source-and-Destination-File-Streams",
+          "level": 3,
+          "text": "Open Source and Destination File Streams",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/readOnly",
+              "isActive": true,
+              "overridingTitle": "readOnly",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "readOnly",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " file stream to read the source file, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly",
+              "isActive": true,
+              "overridingTitle": "writeOnly",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "writeOnly",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " file stream to write the encrypted file to the file system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sourceFileStream = ArchiveByteStream.fileStream(",
+            "        path: sourceFilePath,",
+            "        mode: .readOnly,",
+            "        options: [ ],",
+            "        permissions: FilePermissions(rawValue: 0o644)),",
+            "      let destinationFileStream = ArchiveByteStream.fileStream(",
+            "        path: destinationFilePath,",
+            "        mode: .writeOnly,",
+            "        options: [ .create, .truncate ],",
+            "        permissions: FilePermissions(rawValue: 0o644)) else {",
+            "    throw Error.unableToCreateFileStream",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-Encryption-Stream",
+          "level": 3,
+          "text": "Create the Encryption Stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The encryption stream uses the encryption context and the destination file stream to write the encrypted string to the file system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let encryptionStream = ArchiveByteStream.encryptionStream(",
+            "        writingTo: destinationFileStream,",
+            "        encryptionContext: context) else {",
+            "    throw Error.unableToCreateEncryptionStream",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Encrypt-the-File",
+          "level": 3,
+          "text": "Encrypt the File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)",
+              "isActive": true,
+              "overridingTitle": "process(readingFrom:writingTo:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "process(readingFrom:writingTo:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function sends the output of the file-reading stream to the encryption stream. In turn, the compression stream sends its output to the file-writing stream and writes the encrypted file to the file system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_ = try ArchiveByteStream.process(readingFrom: sourceFileStream,",
+            "                                  writingTo: encryptionStream)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Open-the-Source-File-Stream",
+          "level": 3,
+          "text": "Open the Source File Stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a source file stream to open the encrypted file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sourceFileStream = ArchiveByteStream.fileStream(",
+            "        path: sourceFilePath,",
+            "        mode: .readOnly,",
+            "        options: [ ],",
+            "        permissions: FilePermissions(rawValue: 0o644)) else {",
+            "    throw Error.unableToCreateFileStream",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Context-for-Decryption",
+          "level": 3,
+          "text": "Create a Context for Decryption",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The  ",
+              "type": "text"
+            },
+            {
+              "code": "ArchiveEncryptionContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for decryption derives its parameters, keys, and other data from the encrypted source file, and the sample sets the decryption context with the same symmetric key that was used for encryption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let decryptionContext = ArchiveEncryptionContext(from: sourceFileStream) else {",
+            "    throw Error.unableToCreateDecryptionContext",
+            "}",
+            "",
+            "// Set the key on the context.",
+            "try decryptionContext.setSymmetricKey(key)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-Decryption-Stream",
+          "level": 3,
+          "text": "Create the Decryption Stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The decryption stream uses the encryption context and the source file stream to read the encrypted string from the file system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let decryptionStream = ArchiveByteStream.decryptionStream(",
+            "    readingFrom: sourceFileStream,",
+            "    encryptionContext: decryptionContext) else {",
+            "    throw Error.unableToCreateFileStream",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Open-the-Destination-File-Stream",
+          "level": 3,
+          "text": "Open the Destination File Stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The destination file stream writes the encrypted file to the file system. In this case, the file stream’s mode is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly",
+              "isActive": true,
+              "overridingTitle": "writeOnly",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "writeOnly",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  The options specify that the stream creates the file if it doesn’t exist, and that if the file does exist, it should be truncated to zero bytes before the stream performs any operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let decryptedFileStream = ArchiveByteStream.fileStream(",
+            "    path: destinationFilePath,",
+            "    mode: .writeOnly,",
+            "    options: [ .create, .truncate ],",
+            "    permissions: FilePermissions(rawValue: 0o644)) else {",
+            "    throw Error.unableToCreateFileStream",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Decrypt-the-Source-Archive",
+          "level": 3,
+          "text": "Decrypt the Source Archive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method writes the output of the decryption stream to the file-writing stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_ = try ArchiveByteStream.process(readingFrom: decryptionStream,",
+            "                                  writingTo: decryptedFileStream)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "file.decrypted.txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exists in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+              "isActive": true,
+              "overridingTitle": "NSTemporaryDirectory()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSTemporaryDirectory()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and contains the decrypted contents of ",
+              "type": "text"
+            },
+            {
+              "code": "file.encrypted",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9fdd84f37897/EncryptingAndDecryptingASingleFile.zip": {
+      "checksum": "9fdd84f37897892b282056255de59c33ac0d471fdc661affc2b6939cdb071e9ebffae4228df3aa1a943784b65c60e3fd051c6147d2cd96b563c5d76d80eb634d",
+      "identifier": "9fdd84f37897/EncryptingAndDecryptingASingleFile.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9fdd84f37897/EncryptingAndDecryptingASingleFile.zip"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive": {
+      "abstract": [
+        {
+          "text": "Perform multithreaded lossless compression of directories, files, and data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Archive",
+      "type": "topic",
+      "url": "/documentation/applearchive"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)": {
+      "abstract": [
+        {
+          "text": "Processes data between two byte streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "readingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B10ByteStreamC",
+          "text": "ArchiveByteStream"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "writingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B10ByteStreamC",
+          "text": "ArchiveByteStream"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(readingFrom:writingTo:)",
+      "type": "topic",
+      "url": "/documentation/applearchive/archivebytestream/process(readingfrom:writingto:)"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveEncryptionContext": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates all parameters, keys, and data necessary to open an encrypted archive for both encryption and decryption streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArchiveEncryptionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveEncryptionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArchiveEncryptionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveEncryptionContext",
+      "type": "topic",
+      "url": "/documentation/applearchive/archiveencryptioncontext"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-a-string": {
+      "abstract": [
+        {
+          "text": "Encrypt the contents of a string and save the result to the file system, then decrypt and recreate the string from the archive file using Apple Encrypted Archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-a-string",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encrypting and Decrypting a String",
+      "type": "topic",
+      "url": "/documentation/applearchive/encrypting-and-decrypting-a-string"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-directories": {
+      "abstract": [
+        {
+          "text": "Compress and encrypt the contents of an entire directory or decompress and decrypt an archived directory  using Apple Encrypted Archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-directories",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encrypting and Decrypting Directories",
+      "type": "topic",
+      "url": "/documentation/applearchive/encrypting-and-decrypting-directories"
+    },
+    "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)": {
+      "abstract": [
+        {
+          "text": "Processes data between two byte streams.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "readingFrom"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B10ByteStreamC",
+          "text": "ArchiveByteStream"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "writingTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B10ByteStreamC",
+          "text": "ArchiveByteStream"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(readingFrom:writingTo:)",
+      "type": "topic",
+      "url": "/documentation/AppleArchive/ArchiveByteStream/process(readingFrom:writingTo:)"
+    },
+    "doc://com.apple.documentation/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/CryptoKit"
+    },
+    "doc://com.apple.documentation/documentation/CryptoKit/SymmetricKey": {
+      "abstract": [
+        {
+          "text": "A symmetric cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CryptoKit/SymmetricKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SymmetricKey",
+      "type": "topic",
+      "url": "/documentation/CryptoKit/SymmetricKey"
+    },
+    "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/readOnly": {
+      "abstract": [
+        {
+          "text": "Opens the file for reading only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/readOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readOnly",
+      "type": "topic",
+      "url": "/documentation/System/FileDescriptor/AccessMode/readOnly"
+    },
+    "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly": {
+      "abstract": [
+        {
+          "text": "Opens the file for writing only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeOnly",
+      "type": "topic",
+      "url": "/documentation/System/FileDescriptor/AccessMode/writeOnly"
+    },
+    "doc://com.apple.documentation/documentation/System/FilePath": {
+      "abstract": [
+        {
+          "text": "Represents a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/System/FilePath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FilePath",
+      "type": "topic",
+      "url": "/documentation/System/FilePath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path of the temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTemporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTemporaryDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1409211-nstemporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9fdd84f37897/EncryptingAndDecryptingASingleFile.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Apple-Encrypted-Archive-essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-a-string",
+        "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-directories",
+        "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveEncryptionContext"
+      ],
+      "title": "Apple Encrypted Archive essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Apple-Encrypted-Archive-essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-a-string",
+                "doc://com.apple.applearchive/documentation/AppleArchive/encrypting-and-decrypting-directories"
+              ],
+              "title": "Apple Encrypted Archive essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11409211-nstemporarydirectory/title",
+          "value": "NSTemporaryDirectory"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applearchive/encrypting-and-decrypting-a-single-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/applearchive/encrypting-and-decrypting-a-single-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

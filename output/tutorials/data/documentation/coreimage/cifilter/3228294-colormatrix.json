@@ -1,0 +1,1126 @@
+{
+  "abstract": [
+    {
+      "text": "Alters the colors in an image based on vectors provided.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3228294,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter(cm)colorMatrixFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "colorMatrix"
+      },
+      {
+        "kind": "text",
+        "text": "() -> any CIFilter & CIColorMatrix"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIFilter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "colorMatrix()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorMatrix"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIFilter",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " & "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolormatrix",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CIColorMatrix",
+              "text": "CIColorMatrix"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The modified image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method applies the color matrix filter to an image. The effect calculates the color matrix by multiplying the vector properties with the color values from the input image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The color matrix filter uses the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the amount of red to multiply the source color values by.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "rVector",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the amount of green to multiply the source color values by.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "gVector",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": false,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the amount of blue to multiply the source color values by.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "bVector",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": false,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the amount of alpha to multiply the source color values by.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "aVector",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+                        "isActive": false,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the amount of each vector that’s added to each color component.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "biasVector",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An image with the type ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "inputImage",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that adds a green hue to the input image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func colorMatrix(inputImage: CIImage) -> CIImage {",
+            "    let colorMatrixFilter = CIFilter.colorMatrix()",
+            "    colorMatrixFilter.inputImage = inputImage",
+            "    colorMatrixFilter.rVector = CIVector (x: 1, y: 0, z: 0.2, w: 0)",
+            "    colorMatrixFilter.gVector = CIVector (x: 0, y: 1, z: 0, w: 0.9)",
+            "    colorMatrixFilter.bVector = CIVector (x: 0, y: 0, z: 1, w: 0)",
+            "    colorMatrixFilter.aVector = CIVector (x: 0, y: 0, z: 0, w: 1)",
+            "    colorMatrixFilter.biasVector = CIVector (x: 0, y: 0, z: 0, w: 0)",
+            "    return colorMatrixFilter.outputImage!",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3540217",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3544998",
+              "metadata": {
+                "anchor": "3544998",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolormatrix": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolormatrix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColorMatrix",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolormatrix"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228284-colorclamp": {
+      "abstract": [
+        {
+          "text": "Alters the colors in an image based on color components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorClamp"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorClamp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228284-colorclamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorClamp()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228284-colorclamp"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228285-colorcontrols": {
+      "abstract": [
+        {
+          "text": "Alters the brightness, contrast, and saturation of an image’s colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorControls"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorControls"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228285-colorcontrols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorControls()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228285-colorcontrols"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix": {
+      "abstract": [
+        {
+          "text": "Alters the colors in an image based on vectors provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorMatrix()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228294-colormatrix"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix#3540217": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228294-colormatrix#3540217",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter/3228294-colormatrix#3540217"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228296-colorpolynomial": {
+      "abstract": [
+        {
+          "text": "Alters an image’s colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorPolynomial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228296-colorpolynomial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorPolynomial()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228296-colorpolynomial"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228309-depthtodisparity": {
+      "abstract": [
+        {
+          "text": "Converts from an image containing depth data to an image containing disparity data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthToDisparity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIDepthToDisparity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228309-depthtodisparity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthToDisparity()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228309-depthtodisparity"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228313-disparitytodepth": {
+      "abstract": [
+        {
+          "text": "Creates depth data from an image containing disparity data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disparityToDepth"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIDisparityToDepth"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228313-disparitytodepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disparityToDepth()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228313-disparitytodepth"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228324-exposureadjust": {
+      "abstract": [
+        {
+          "text": "Adjusts an image’s exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "exposureAdjust"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIExposureAdjust"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228324-exposureadjust",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exposureAdjust()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228324-exposureadjust"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228330-gammaadjust": {
+      "abstract": [
+        {
+          "text": "Alters an image’s transition between black and white.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "gammaAdjust"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIGammaAdjust"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228330-gammaadjust",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gammaAdjust()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228330-gammaadjust"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228340-hueadjust": {
+      "abstract": [
+        {
+          "text": "Modifies an image’s hue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hueAdjust"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIHueAdjust"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228340-hueadjust",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hueAdjust()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228340-hueadjust"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228352-lineartosrgbtonecurve": {
+      "abstract": [
+        {
+          "text": "Alters an image’s color intensity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearToSRGBToneCurve"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CILinearToSRGBToneCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228352-lineartosrgbtonecurve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearToSRGBToneCurve()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228352-lineartosrgbtonecurve"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228398-srgbtonecurvetolinear": {
+      "abstract": [
+        {
+          "text": "Converts the colors in an image from sRGB to linear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sRGBToneCurveToLinear"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CISRGBToneCurveToLinear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228398-srgbtonecurvetolinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sRGBToneCurveToLinear()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228398-srgbtonecurvetolinear"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228421-temperatureandtint": {
+      "abstract": [
+        {
+          "text": "Alters an image’s temperature and tint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "temperatureAndTint"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CITemperatureAndTint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228421-temperatureandtint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temperatureAndTint()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228421-temperatureandtint"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228424-tonecurve": {
+      "abstract": [
+        {
+          "text": "Alters an image’s tone curve according to a series of data points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "toneCurve"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIToneCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228424-tonecurve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toneCurve()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228424-tonecurve"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228429-vibrance": {
+      "abstract": [
+        {
+          "text": "Adjusts an image’s vibrancy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "vibrance"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIVibrance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228429-vibrance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vibrance()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228429-vibrance"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228432-whitepointadjust": {
+      "abstract": [
+        {
+          "text": "Adjusts the image’s white-point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitePointAdjust"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIWhitePointAdjust"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228432-whitepointadjust",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitePointAdjust()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228432-whitepointadjust"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3547119-colorabsolutedifference": {
+      "abstract": [
+        {
+          "text": "Calculates the absolute difference between each color component in the input images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorAbsoluteDifference"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorAbsoluteDifference"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3547119-colorabsolutedifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorAbsoluteDifference()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3547119-colorabsolutedifference"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3547120-colorthreshold": {
+      "abstract": [
+        {
+          "text": "Compares the red, green, and blue components of the input image to a threshold and sets them to 1 or 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorThreshold"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorThreshold"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3547120-colorthreshold",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorThreshold()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3547120-colorthreshold"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401855-colorthresholdotsu": {
+      "abstract": [
+        {
+          "text": "Compares the red, green, and blue components of the input image against a threshold calculated using Otsu’s algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorThresholdOtsu"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIColorThresholdOtsu"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401855-colorthresholdotsu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorThresholdOtsu()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401855-colorthresholdotsu"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/color_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/civector": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIVector",
+      "type": "topic",
+      "url": "/documentation/coreimage/civector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/color_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3544998": {
+      "identifier": "link-media-3544998",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter/3228294-colormatrix#3544998"
+    },
+    "media-3544998": {
+      "alt": "Two versions of a photograph side by side. The photo on the left shows a small bunch of flowers photographed close up, in focus, with good light and no effects. In the photo on the right, a color matrix filter is applied, transforming the colors in the image to have a green hue.",
+      "identifier": "media-3544998",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b5c7c1774/rendered2x-1582929816.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3547119-colorabsolutedifference",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228284-colorclamp",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228285-colorcontrols",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228296-colorpolynomial",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3547120-colorthreshold",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401855-colorthresholdotsu",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228309-depthtodisparity",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228313-disparitytodepth",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228324-exposureadjust",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228330-gammaadjust",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228340-hueadjust",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228352-lineartosrgbtonecurve",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228398-srgbtonecurvetolinear",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228421-temperatureandtint",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228424-tonecurve",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228429-vibrance",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228432-whitepointadjust"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228294-colormatrixfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228294-colormatrix"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

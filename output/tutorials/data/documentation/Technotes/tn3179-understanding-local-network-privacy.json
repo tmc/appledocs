@@ -1,0 +1,4406 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how local network privacy affects your software.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3179: Understanding local network privacy"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local network privacy puts people in control of which programs can interact with devices on their network.  The first time a program accesses the local network, the system displays an alert asking the user to approve that access.  The system records their decision, so future accesses don’t prompt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC 2020 Session 10110: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10110/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which introduced the feature on iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WWDC 2024 Session 10123: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2024/10123/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which introduced the feature on macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://support.apple.com/en-us/102229",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which explains local network privacy to people who use iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users configure local network privacy in Settings > Privacy & Security > Local Network (System Settings on macOS).  The OS adds an app to this list after it attempts to access a local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Device managers aren’t able to configure local network privacy using MDM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following platforms support local network privacy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Platform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Introduced",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPadOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPadOS 14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 15",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "visionOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "visionOS 1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local network privacy works the same on iOS, iPadOS, and visionOS.  Unless otherwise noted, assume that any info about iOS applies to all three platforms.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#iOS-considerations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information specific to these three platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local network privacy on macOS shares all of the same core concepts, but there are platform-specific differences.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#macOS-considerations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more on this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Essentials",
+          "level": 2,
+          "text": "Essentials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local network privacy regulates your program’s ability to perform local network operations.  If your program has local network access, the system allows the operation.  If not, the system blocks it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Local-network-operations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more precise definitions of ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "local network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "local network operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, the user controls local network access by way of the Local Network privilege.  This has three states:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Undetermined",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Denied",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your program starts in the undetermined state.  The first time it performs a local network operation, the system presents the local network alert.  The user chooses to either allow or deny the access.  The system records the user’s choice and applies it to subsequent operations.  The user can change this state at any time in Settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some programs have local network access based on factors other than the Local Network privilege.  For the details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#App-extension-considerations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#macOS-considerations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app accesses the local network, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to explain its behavior to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app allows people to enter an arbitrary network address, consider what happens if they enter a local network address.  For example, if you’re building an email client, check that it behaves correctly when the email server is on a local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app’s local network usage involves registering or browsing for specific Bonjour services, add a list of service types to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  For more information about the Bonjour operations that require this, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Bonjour-operations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, if your iOS app performs multicast operations, sign it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.  For information about what constitutes a multicast operation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multicast-operations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.  If you use Xcode’s automatic code signing, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/capabilities",
+              "isActive": true,
+              "overridingTitle": "Signing & Capabilities",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Signing & Capabilities",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " editor to enable this capability.  If not, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The multicast entitlement isn’t required on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re building an app extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#App-extension-considerations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re building some other sort of program for macOS—a ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " daemon or agent, a system extension, and so on—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#macOS-considerations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system presents a local network alert in response to one of your local network operations, it may deny the operation immediately, before the user has responded to the alert.  To handle this smoothly, use an API that supports waiting for connectivity, like Network framework or ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enabled.  If you can’t use one of these preferred APIs, add appropriate retry logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an overview of the networking APIs on Apple platforms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Local-network-operations",
+          "level": 2,
+          "text": "Local network operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A local network is an IP network associated with a broadcast-capable network interface.  Such interfaces include Wi-Fi and Ethernet, but not cellular (WWAN) or VPN.  A local network address is any address on a local network.  Traffic to a local network address goes directly; it’s not forwarded by a router.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, all multicast addresses (224.0.0.0/4, ff00::/8) and the IPv4 broadcast address (255.255.255.255) are local network addresses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Outgoing traffic to a local network address requires local network access.  The following table lists some common cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Making an outgoing TCP connection",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listening for and accepting incoming TCP connections",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP unicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP multicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP broadcast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connecting a UDP socket",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP unicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP multicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP broadcast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system implements these TCP and UDP checks deep in the networking stack, and thus they apply to all networking APIs.  This includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, BSD Sockets, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "overridingTitle": "URLSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URLSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and any APIs implemented on top of those.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note these exceptions to the rules above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your device’s DNS server is on a local network, traffic to it doesn’t require local network access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your device uses a network proxy and that proxy is on a local network, traffic to it doesn’t require local network access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Traffic originating from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and Safari doesn’t require local network access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "DNS-operations",
+          "level": 2,
+          "text": "DNS operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain DNS operations also require local network access.  The following table lists some common cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolving a local DNS name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolving a non-local DNS name with the system resolver",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This check applies to a wide variety of APIs including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dnssd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "<net_db.h>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and any APIs that use them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this context, a local DNS name is one ending with ",
+              "type": "text"
+            },
+            {
+              "code": ".local",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (or ",
+              "type": "text"
+            },
+            {
+              "code": ".local.",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), per ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc6762",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, Bonjour operations require local network access, as described in the next section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Bonjour-operations",
+          "level": 2,
+          "text": "Bonjour operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All Bonjour operations require local network access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Registering a service with Bonjour",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browsing for Bonjour services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolving a Bonjour service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These checks apply to all APIs that use Bonjour, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dnssd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, and Multipeer Connectivity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re using Multipeer Connectivity, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multipeer-Connectivity-considerations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "High-level services that use Bonjour internally don’t require local network access.  That’s because these services isolate your app from any details about the local network.  Such services include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AirPlay",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Printing via UIKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DeviceDiscoveryUI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AccessorySetupKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some specific Bonjour operations require the multicast entitlement as well.   See the next section for the details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Multicast-operations",
+          "level": 2,
+          "text": "Multicast operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sending or receiving multicast or broadcast traffic is a local network operation on all platforms, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Local-network-operations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  However, iOS puts additional restrictions on these operations.  To send or receive multicast or broadcast traffic, sign your app with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists some common cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP unicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP multicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a UDP broadcast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP unicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP multicast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving an incoming UDP broadcast",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some uncommon Bonjour operations also require the multicast entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Working with arbitrary Bonjour service types",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browsing for all advertised service types",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to browse for all advertised service types using a ",
+              "type": "text"
+            },
+            {
+              "code": "_services._dns-sd._udp.local.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query, see QA1337 ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/qa/qa1337/_index.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Multipeer-Connectivity-considerations",
+          "level": 2,
+          "text": "Multipeer Connectivity considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses Bonjour internally.  If your app uses Multipeer Connectivity, follow all the Bonjour guidance in this technote.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifically, list your Multipeer Connectivity service type in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.  To format that entry, take your Multipeer Connectivity service type and add a leading underscore (",
+              "type": "text"
+            },
+            {
+              "code": "_",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and a trailing ",
+              "type": "text"
+            },
+            {
+              "code": "._tcp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  For example, if you pass ",
+              "type": "text"
+            },
+            {
+              "code": "waffle-varnish",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "serviceType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", add ",
+              "type": "text"
+            },
+            {
+              "code": "_waffle-varnish._tcp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "App-extension-considerations",
+          "level": 2,
+          "text": "App extension considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, app extensions share the Local Network privilege state of their container app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some app extension types are assumed to be running in the background.  If such an extension performs a local network operation while its Local Network privilege is undetermined, the system denies that operation as it would for an iOS app running in the background.  For more on that, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#iOS-considerations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Network Extension packet tunnel provider, app proxy provider, and DNS proxy provider app extensions have local network access regardless of the Local Network privilege state of their container app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has app extensions, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", not to the app extension’s.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "iOS-considerations",
+          "level": 2,
+          "text": "iOS considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an iOS app is in the background and performs a local network operation while its Local Network privilege is undetermined, the system denies that operation without presenting the local network alert.  The system doesn’t record that decision.  If, later on, the app performs a local network operation while in the foreground, the system presents the alert to the user as if this were the first local network operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Clips can’t perform local network operations.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simulator doesn’t support local network privacy.  Test your local network privacy behavior on a real device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Shared iPad, all users share the same local network privacy state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "is",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " possible for your app to trigger the local network alert when the device is “off Wi-Fi”, that is, when there’s no Wi-Fi symbol in the status bar.  An easy way to demonstrate this is to perform a Bonjour operation with peer-to-peer Wi-Fi enabled, but there lots of other ways this can happen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above is true regardless of whether the device has cellular networking or not.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about peer-to-peer Wi-Fi, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "macOS-considerations",
+          "level": 2,
+          "text": "macOS considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS maintains separate local network privacy state for each user account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS automatically allows local network access by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any daemon started by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "launchd",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any program running as root",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Command-line tools run from Terminal or over SSH, including any child processes they spawn",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The exception for ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " daemons doesn’t apply to ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " agents.  If you’re building a ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " agent, see the discussion below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re creating some other type of program, expect the system to block its local network operations until the user grants it the Local Network privilege.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a process performs a local network operation, macOS tries to track down the responsible code.  For example, if your app spawns a helper tool and the helper tool performs a local network operation, macOS considers the app to be the responsible code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS uses the responsible code to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show a meaningful app name and usage description in the local network alert",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Record the user’s choice for the whole app, not just that specific helper tool",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present that choice in System Settings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you ship a ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " agent that’s not installed using ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", make macOS aware of the responsible code by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "AssociatedBundleIdentifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in your ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list.  See the ",
+              "type": "text"
+            },
+            {
+              "code": "launchd.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page for details.  For information on how to access that documentation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most standalone executables—that is, executables that aren’t the main executable for a bundle—don’t need the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property because they’re either:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatically allowed local network access, for example, daemons and command-line tools",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have an app that acts as their responsible code, for example, a helper tool",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you manage to create a standalone executable that does need the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, add it to an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s embedded in your executable.  In Xcode, set this up using the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/build-settings-reference#Create-Infoplist-Section-in-Binary",
+              "isActive": true,
+              "overridingTitle": "Create Info.plist Section in Binary",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Create Info.plist Section in Binary",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " build setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS 15.1 fixed a number of local network privacy bugs.  If you encounter local network privacy problems on macOS 15.0, retest on macOS 15.1 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People might see unexpected behavior in System Settings > Privacy & Security if they have multiple versions of the same app installed (FB15568200).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the latest news about local network privacy, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/macos-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-time-considerations",
+          "level": 2,
+          "text": "Build-time considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local network privacy uses your main executable UUID as part of its implementation.  If your main executable has no UUID, or shares a UUID with other programs, local network privacy may behave weirdly.  To fix that, make sure your main executable has a UUID and that it’s unique.  For more about this, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reset-local-network-state",
+          "level": 2,
+          "text": "Reset local network state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During testing, you might want to reset your program’s Local Network privilege to the undetermined state.  Your options for this vary by platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, the easiest option is to delete your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if you don’t want to delete your app for some reason, reset the entire privacy subsystem using Settings > General > Transfer or Reset > Reset > Reset Location & Privacy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS there’s no way to reset your program’s Local Network privilege to the undetermined state (FB14944392).  One alternative is to run your program in a virtual machine (VM).  To retest, restore the VM from a snapshot taken before you installed your program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, create a new user account and run your test there.  Remember that macOS maintains separate local network privacy state for each user account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Trigger-the-local-network-alert",
+          "level": 2,
+          "text": "Trigger the local network alert",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to do anything special to bring up the local network alert.  The system displays it automatically when your program performs a local network operation.  In most cases that’s the correct behavior.  The user is more likely to grant your program the Local Network privilege if they understand the context of the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, in specific circumstances it may be necessary to manually bring up the local network privacy alert.  For example, the user might have configured your program to perform a local network operation at some point in the future, when they’re not able to respond to the alert.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no API to explicitly bring up the local network alert (FB8711182), but you can do this implicitly by performing a local network operation.  One approach that works well is to connect a UDP socket to a local network address.  This triggers the local network alert without generating any network traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to do this in a general fashion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Attempts to trigger the local network privacy alert.",
+            "/// ",
+            "/// This builds a list of link-local IPv6 addresses and then creates a connected",
+            "/// UDP socket to each in turn.  Connecting a UDP socket triggers the local",
+            "/// network alert without actually sending any traffic.",
+            "/// ",
+            "/// This is a ‘best effort’ approach, and it handles errors by ignoring them.",
+            "/// There’s no guarantee that it’ll actually trigger the alert (FB8711182).",
+            "",
+            "func triggerLocalNetworkPrivacyAlert() {",
+            "    let addresses = selectedLinkLocalIPv6Addresses()",
+            "    for address in addresses {",
+            "        let sock6 = socket(AF_INET6, SOCK_DGRAM, 0)",
+            "        guard sock6 >= 0 else { return }",
+            "        defer { close(sock6) }",
+            "",
+            "        withUnsafePointer(to: address) { sa6 in",
+            "            sa6.withMemoryRebound(to: sockaddr.self, capacity: 1) { sa in",
+            "                _ = connect(sock6, sa, socklen_t(sa.pointee.sa_len)) >= 0",
+            "            }",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "/// Returns a selection of IPv6 addresses to connect to.",
+            "///",
+            "/// To build this list it:",
+            "///",
+            "/// 1. Finds the IPv6 address of every broadcast-capable interface.",
+            "///",
+            "/// 2. Filters out all the ones that aren’t link-local.",
+            "///",
+            "/// 3. Sets the port number to port 9, that is, the discard service.  Even",
+            "///    though the caller won’t actually send any traffic, this ensures that it",
+            "///    would be discarded if it were sent.",
+            "///",
+            "/// 4. Creates two copies of each address, and replaces the host part with a",
+            "///    random number.",
+            "",
+            "private func selectedLinkLocalIPv6Addresses() -> [sockaddr_in6]",
+            "{",
+            "    let r1 = (0..<8).map { _ in UInt8.random(in: 0...255) }",
+            "    let r2 = (0..<8).map { _ in UInt8.random(in: 0...255) }",
+            "    return Array(ipv6AddressesOfBroadcastCapableInterfaces()",
+            "        .filter { isIPv6AddressLinkLocal($0) }",
+            "        .map { var addr = $0 ; addr.sin6_port = UInt16(9).bigEndian ; return addr }",
+            "        .map { [setIPv6LinkLocalAddressHostPart(of: $0, to: r1), setIPv6LinkLocalAddressHostPart(of: $0, to: r2)] }",
+            "        .joined())",
+            "}",
+            "",
+            "/// Replaces the host part of an IPv6 link-local address with the supplied",
+            "/// value.",
+            "///",
+            "/// In this context, _host part_ refers to the bottom 64-bits of the address,",
+            "/// that is, the `interface ID` as defined in Section 2.5.6 of [RFC",
+            "/// 4291](https://tools.ietf.org/html/rfc4291)).  Thus, the host part parameter",
+            "/// must be exactly 8 bytes.",
+            "",
+            "private func setIPv6LinkLocalAddressHostPart(of address: sockaddr_in6, to hostPart: [UInt8]) -> sockaddr_in6 {",
+            "    precondition(hostPart.count == 8)",
+            "    var result = address",
+            "    withUnsafeMutableBytes(of: &result.sin6_addr) { buf in",
+            "        buf[8...].copyBytes(from: hostPart)",
+            "    }",
+            "    return result",
+            "}",
+            "",
+            "/// Returns whether the supplied IPv6 address is link-local.",
+            "///",
+            "/// Link-local address have the fe:c0/10 prefix.",
+            "",
+            "private func isIPv6AddressLinkLocal(_ address: sockaddr_in6) -> Bool {",
+            "    address.sin6_addr.__u6_addr.__u6_addr8.0 == 0xfe",
+            "        && (address.sin6_addr.__u6_addr.__u6_addr8.1 & 0xc0) == 0x80",
+            "}",
+            "",
+            "/// Returns the IPv6 address of every broadcast-capable interface.",
+            "",
+            "private func ipv6AddressesOfBroadcastCapableInterfaces() -> [sockaddr_in6] {",
+            "    var addrList: UnsafeMutablePointer<ifaddrs>? = nil",
+            "    let err = getifaddrs(&addrList)",
+            "    guard err == 0, let start = addrList else { return [] }",
+            "    defer { freeifaddrs(start) }",
+            "    return sequence(first: start, next: { $0.pointee.ifa_next })",
+            "        .compactMap { i -> sockaddr_in6? in",
+            "            guard",
+            "                (i.pointee.ifa_flags & UInt32(bitPattern: IFF_BROADCAST)) != 0,",
+            "                let sa = i.pointee.ifa_addr,",
+            "                sa.pointee.sa_family == AF_INET6,",
+            "                sa.pointee.sa_len >= MemoryLayout<sockaddr_in6>.size",
+            "            else { return nil }",
+            "            return UnsafeRawPointer(sa).load(as: sockaddr_in6.self)",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Check-for-local-network-access",
+          "level": 2,
+          "text": "Check for local network access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no general API that returns whether the current process has local network access (FB8711182).  There are, however, a couple of techniques you can use in specific circumstances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using Bonjour, check whether your operation is waiting with the ",
+              "type": "text"
+            },
+            {
+              "code": "kDNSServiceErr_PolicyDenied",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (-65570) error.  For example, for an ",
+              "type": "text"
+            },
+            {
+              "code": "NWBrowser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, your state update handler might look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " browser.stateUpdateHandler = { state in",
+            "    switch state {",
+            "    case .waiting(let error):",
+            "        switch error {",
+            "        case .dns(let code):",
+            "            switch Int(code) {",
+            "            case kDNSServiceErr_PolicyDenied:",
+            "                … no local network access …",
+            "            …",
+            "            }",
+            "        …",
+            "        }",
+            "    …",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your goal is to make a TCP connection to a local network address, manage that connection with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  If your program doesn’t have local network access, the connection enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/waiting(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state and the current path lists an unsatisfied reason of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWPath/UnsatisfiedReason-swift.enum/localNetworkDenied",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  To check for that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let connection: NWConnection = … your existing logic …",
+            "connection.stateUpdateHandler = { state in",
+            "    switch state {",
+            "    case .waiting(_):",
+            "        if case .localNetworkDenied? = connection.currentPath?.unsatisfiedReason {",
+            "            … no local network access …",
+            "        }",
+            "    … other states …",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user subsequently changes the Local Network privilege to grant your program local network access, the system automatically retries the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your program successfully made a TCP connection to a local network address and then the user changed the Local Network privilege to deny it local network access, the connection closes.  When you open a new connection, it enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/waiting(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state as described above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If these techniques don’t meet all of your requirements, file an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unexpected-local-network-alert",
+          "level": 2,
+          "text": "Unexpected local network alert",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases it’s easy to understand why you’re seeing the local network alert.  You do something in your program that performs a local network operation, and the system presents the alert.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, in some cases the local network alert shows up unexpectedly.  A common cause of this is third-party libraries, where a library performs a local network operation for no obvious reason.  For example, a library might access the local network as soon as you initialize it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no direct way to track down unexpected local network operations.  Your best option is to remove code from your program until it stops presenting the local network alert.  Once that happens, add smaller chunks of code back into your program to home in on the cause.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "That process might lead to a third-party library for which you don’t have the source code.  If that happens, raise this issue with the library’s vendor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-Wi-Fi-interface-correctly",
+          "level": 2,
+          "text": "Identify the Wi-Fi interface correctly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some iOS apps assume that the Wi-Fi interface name is always ",
+              "type": "text"
+            },
+            {
+              "code": "en0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  This isn’t a valid assumption.  BSD interface names, like ",
+              "type": "text"
+            },
+            {
+              "code": "en0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", aren’t considered API on any Apple platform.  If you write code based on this false assumption and deploy your app to a wide range of users, your app will fail for a small fraction of those users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reports from these users might suggest that local network privacy is misbehaving.  For example, a user might report that they did a local network operation and no local network alert showed up.  However, local network privacy is working correctly.  The real problem is that you’re assuming that ",
+              "type": "text"
+            },
+            {
+              "code": "en0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the Wi-Fi interface, and it isn’t.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To avoid problems like this, don’t hard code BSD interface names like ",
+                  "type": "text"
+                },
+                {
+                  "code": "en0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In many cases you can avoid this problem by reworking your code.  For example, if you’re building a custom service discovery protocol on top of UDP broadcasts, life will be easier if you use Bonjour instead.  For more information about Bonjour, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you can’t use Bonjour—perhaps you’re working with an accessory with legacy firmware—run your service discovery code on ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "all",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " broadcast-capable interfaces.  Not only does that avoid this problem, but folks who have their devices plugged into Ethernet will love you forever!",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you must work with a specific type of interface, call ",
+              "type": "text"
+            },
+            {
+              "code": "getifaddrs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get the full interface list and then filter that list by the interface type.  Get the functional type of the interface using the ",
+              "type": "text"
+            },
+            {
+              "code": "SIOCGIFFUNCTIONALTYPE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ioctl.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-10-31",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Rewritten and republished as TN3179.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2020-10-16",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First posted as the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Local Network Privacy FAQ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " on the Apple Developer Forums.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review frameworks available to App Clips and identify functionality that makes a great App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing the right functionality for your App Clip",
+      "type": "topic",
+      "url": "/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can send or receive IP multicast traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.networking.multicast",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices": {
+      "abstract": [
+        {
+          "text": "Bonjour service types browsed by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBonjourServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSBonjourServices"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalNetworkUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)": {
+      "abstract": [
+        {
+          "text": "Initializes an advertiser assistant object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "serviceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "discoveryInfo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCSession",
+          "text": "MCSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(serviceType:discoveryInfo:session:)",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)"
+    },
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/waiting(_:)": {
+      "abstract": [
+        {
+          "text": "The connection is waiting for a network path change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waiting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network7NWErrorO",
+          "text": "NWError"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection/State-swift.enum/waiting(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection.State.waiting(_:)",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection/State-swift.enum/waiting(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWPath/UnsatisfiedReason-swift.enum/localNetworkDenied": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localNetworkDenied"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWPath/UnsatisfiedReason-swift.enum/localNetworkDenied",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWPath.UnsatisfiedReason.localNetworkDenied",
+      "type": "topic",
+      "url": "/documentation/Network/NWPath/UnsatisfiedReason-swift.enum/localNetworkDenied"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api": {
+      "abstract": [
+        {
+          "text": "Learn which networking API is best for you.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3151: Choosing the right networking API",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3151-choosing-the-right-networking-api"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/build-settings-reference#Create-Infoplist-Section-in-Binary": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/build-settings-reference#Create-Infoplist-Section-in-Binary",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/Xcode/build-settings-reference"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications, Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/Xcode/capabilities"
+    },
+    "doc://com.apple.documentation/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the session should wait for connectivity to become available, or fail immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitsForConnectivity"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitsForConnectivity",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/2908812-waitsforconnectivity"
+    },
+    "doc://com.apple.documentation/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues": {
+      "abstract": [
+        {
+          "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3158: Resolving Xcode 15 device connection issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#App-extension-considerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#App-extension-considerations",
+      "kind": "section",
+      "title": "App extension considerations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#App-extension-considerations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Bonjour-operations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Bonjour-operations",
+      "kind": "section",
+      "title": "Bonjour operations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#Bonjour-operations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Local-network-operations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Local-network-operations",
+      "kind": "section",
+      "title": "Local network operations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#Local-network-operations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multicast-operations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multicast-operations",
+      "kind": "section",
+      "title": "Multicast operations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#Multicast-operations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multipeer-Connectivity-considerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#Multipeer-Connectivity-considerations",
+      "kind": "section",
+      "title": "Multipeer Connectivity considerations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#Multipeer-Connectivity-considerations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#iOS-considerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#iOS-considerations",
+      "kind": "section",
+      "title": "iOS considerations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#iOS-considerations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#macOS-considerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy#macOS-considerations",
+      "kind": "section",
+      "title": "macOS considerations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy#macOS-considerations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/bug-reporting/": {
+      "identifier": "https://developer.apple.com/bug-reporting/",
+      "title": "enhancement request",
+      "titleInlineContent": [
+        {
+          "text": "enhancement request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/"
+    },
+    "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities": {
+      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+      "title": "Developer Account > Reference > Provisioning with capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account > Reference > Provisioning with capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities"
+    },
+    "https://developer.apple.com/library/archive/qa/qa1337/_index.html": {
+      "identifier": "https://developer.apple.com/library/archive/qa/qa1337/_index.html",
+      "title": "Discovering all advertised Bonjour service types",
+      "titleInlineContent": [
+        {
+          "text": "Discovering all advertised Bonjour service types",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/qa/qa1337/_index.html"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10110/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10110/",
+      "title": "Support local network privacy in your app",
+      "titleInlineContent": [
+        {
+          "text": "Support local network privacy in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10110/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2024/10123/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2024/10123/",
+      "title": "What’s new in privacy",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in privacy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10123/"
+    },
+    "https://support.apple.com/en-us/102229": {
+      "identifier": "https://support.apple.com/en-us/102229",
+      "title": "If an app would like to connect to devices on your local network",
+      "titleInlineContent": [
+        {
+          "text": "If an app would like to connect to devices on your local network",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/102229"
+    },
+    "https://tools.ietf.org/html/rfc6762": {
+      "identifier": "https://tools.ietf.org/html/rfc6762",
+      "title": "RFC 6762",
+      "titleInlineContent": [
+        {
+          "text": "RFC 6762",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc6762"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+        "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant~1init(serviceType:discoveryInfo:session:)/title",
+          "value": "initWithServiceType:discoveryInfo:session:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant~1init(serviceType:discoveryInfo:session:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithServiceType:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "serviceType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "discoveryInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "info"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MCSession",
+              "text": "MCSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

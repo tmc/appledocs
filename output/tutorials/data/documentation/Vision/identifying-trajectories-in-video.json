@@ -1,0 +1,1290 @@
+{
+  "abstract": [
+    {
+      "text": "Gain new insights into your video data by using Vision to detect trajectories.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/identifying-trajectories-in-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying Trajectories in Video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 14, tvOS 14, and macOS 11, Vision provides the ability to detect the trajectories of objects in a video sequence. It detects multiple, simultaneous trajectories in a scene, following the path of objects, including those that are only a few pixels in size. This feature has wide-ranging uses, but can be of particular use in sports and fitness apps, where you commonly want to follow the trajectories of balls, pucks, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3618313",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision’s trajectory-detection algorithm requires a stable scene, meaning the camera is mounted on a tripod, and the camera and background remain stationary. The algorithm looks at the frame differentials in the video to detect any objects traveling along a parabolic path. Any camera movement introduces noise and motion blur, which reduces the accuracy of the detection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single object may produce multiple trajectories. For example, a bouncing ball forms a new trajectory with each bounce. Similarly, if a trajectory goes offscreen and comes back at a later time, Vision creates a new trajectory for the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-a-Request-to-Detect-Trajectories",
+          "level": 3,
+          "text": "Perform a Request to Detect Trajectories",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect trajectories in video, use an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This is a new ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stateful",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " request type that you use to build evidence over time. Most Vision requests are stateless, and because they require limited resources to create, you typically make new instances as needed. Because a request to detect trajectories maintains state, you instead create a single instance of it and perform the request multiple times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you pass it the following arguments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A frame analysis spacing, which lets you control the rate at which the request performs its analysis. You provide a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value that defines a millisecond interval value to wait between analysis runs. Setting this argument to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " processes all frames (if the device can keep up). Increasing the value reduces processor consumption, but may produce less accurate results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A trajectory length, which indicates the number of points you require to recognize a parabola. The minimum number is 5, but you can increase it to fit your needs. The value you set changes the number of points given in each observation. If you know you’re looking for a long throw, you could increase the length to filter out small, spurious movements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A completion handler to process the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to create and perform a request in an app thatʼs capturing live video from the camera. Note that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that contain timestamps so it can correctly calculate the trajectory observationʼs time range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Lazily create a single instance of VNDetectTrajectoriesRequest.",
+            "private lazy var request: VNDetectTrajectoriesRequest = {",
+            "    return VNDetectTrajectoriesRequest(frameAnalysisSpacing: .zero,",
+            "                                       trajectoryLength: 15,",
+            "                                       completionHandler: completionHandler)",
+            "}()",
+            "",
+            "// AVCaptureVideoDataOutputSampleBufferDelegate callback.",
+            "func captureOutput(_ output: AVCaptureOutput,",
+            "                   didOutput sampleBuffer: CMSampleBuffer,",
+            "                   from connection: AVCaptureConnection) {",
+            "    do {",
+            "        let requestHandler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer)",
+            "        try requestHandler.perform([request])",
+            "    } catch {",
+            "        // Handle the error.",
+            "    }",
+            "}",
+            "",
+            "func completionHandler(request: VNRequest, error: Error?) {",
+            "    // Process the results.",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can improve the performance and accuracy of the request by applying filtering criteria to it. If you know the approximate size of the objects you want to follow, you can set a minimum and maximum object size. You specify an object’s size as its normalized pixel diameters. Set the minimum size to filter out small, spurious movements like a bird flying through the scene. Likewise, set the maximum size to filter out larger objects. Like with all Vision requests, you can also set a region of interest (ROI) if you want to detect only those trajectories occurring in a particular region of the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the normalized (0.0 to 1.0) minimum and maximum object sizes.",
+            "request.minimumObjectSize = smallDiameter / videoWidth",
+            "request.maximumObjectSize = largeDiameter / videoWidth",
+            "",
+            "// Set the ROI to the left half of the image.",
+            "request.regionOfInterest = CGRect(x: 0, y: 0, width: 0.5, height: 1.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The minimum and maximum object sizes aren’t pixel accurate, but instead provide general guidelines to the algorithm. Setting a size that’s slightly smaller than your target ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/minimumObjectSize",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and slightly larger than your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/maximumObjectSize",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " may produce better results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Process-the-Results",
+          "level": 3,
+          "text": "Process the Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the handler performs the request, it calls the request’s completion closure, passing it the request and any errors that occurred. Retrieve the observations by querying the request object for its results, which it returns as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNTrajectoryObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func requestHandler(request: VNRequest, error: Error?) {",
+            "    guard let observations =",
+            "            request.results as? [VNTrajectoryObservation] else { return }",
+            "    ",
+            "    // Process the observations.",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the request builds evidence over time before it produces trajectory observations, the handler is called, but with no observations until the result has at least one trajectory with a high confidence score and a trajectory length matching the requested length.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3625760",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key pieces of data that a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNTrajectoryObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides are the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "detected",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "projected",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " points the object travels on the parabolic path. The detected points follow the centroids of the object in motion, which may not follow the parabolic path exactly, whereas the projected points represent the path precisely. You can retrieve the equation coefficients for the quadratic equation, f(x) = ax2 + bx + c, from the observation, which it provides as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/simd/simd_float3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each trajectory provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value that you can use to track it over time, which is useful when performing ongoing calculations on the data or drawing visualizations of it. For an example of how you can visualize trajectory data, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/building-a-feature-rich-app-for-sports-analysis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-Your-Business-Logic",
+          "level": 3,
+          "text": "Apply Your Business Logic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision gives you the tools to detect trajectories and retrieve the relevant data about them. How you use the data is unique to your app, and requires you to apply your own business logic. Some key things to keep in mind as you develop that logic:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filter out trajectories whose confidence scores don’t meet your criteria.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filter out irrelevant directional movement. If you only care about objects traveling in a certain direction, evaluate the direction of the path and eliminate irrelevant trajectories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Know where to look. If you know the specific region of the image you want to analyze, set the request’s region of interest. Doing so also reduces noise and enhances performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Know the size of what you’re looking for. Whenever possible, set a minimum and maximum object size. Doing so also reduces noise and enhances performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pick a camera resolution that’s appropriate for the size of object you want to track. For small objects, like a tennis or cricket ball, you may need 1080p resolution to achieve the results you want. Tracking larger objects, like a soccer ball, may require only VGA resolution for optimal results. Vision downscales the movie as needed, based on the minimum object size, to improve performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTime": {
+      "abstract": [
+        {
+          "text": "A structure that represents time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTime",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTime"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero": {
+      "abstract": [
+        {
+          "text": "A value that represents time zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zero"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zero",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTime/zero"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid": {
+      "abstract": [
+        {
+          "text": "Returns the UUID as bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uuid"
+        },
+        {
+          "kind": "text",
+          "text": ": (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid/1779678-uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uuid",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid/1779678-uuid"
+    },
+    "doc://com.apple.documentation/documentation/simd/simd_float3": {
+      "abstract": [
+        {
+          "text": "A vector of three 32-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/simd/simd_float3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simd_float3",
+      "type": "topic",
+      "url": "/documentation/simd/simd_float3"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects the trajectories of shapes moving along a parabolic path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectTrajectoriesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectTrajectoriesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectTrajectoriesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecttrajectoriesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/maximumObjectSize": {
+      "abstract": [
+        {
+          "text": "The maximum radius of the tracked shape’s bounding circle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumObjectSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/maximumObjectSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumObjectSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumObjectSize",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecttrajectoriesrequest/maximumobjectsize"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/minimumObjectSize": {
+      "abstract": [
+        {
+          "text": "The minimum radius of the tracked shape’s bounding circle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumObjectSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest/minimumObjectSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumObjectSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumObjectSize",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecttrajectoriesrequest/minimumobjectsize"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrajectoryObservation": {
+      "abstract": [
+        {
+          "text": "An observation that describes a detected trajectory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrajectoryObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrajectoryObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrajectoryObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrajectoryObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vntrajectoryobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/building-a-feature-rich-app-for-sports-analysis": {
+      "abstract": [
+        {
+          "text": "Detect and classify human activity in real time using computer vision and machine learning.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/building-a-feature-rich-app-for-sports-analysis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a feature-rich app for sports analysis",
+      "type": "topic",
+      "url": "/documentation/vision/building-a-feature-rich-app-for-sports-analysis"
+    },
+    "doc://com.apple.vision/documentation/Vision/detecting-moving-objects-in-a-video": {
+      "abstract": [
+        {
+          "text": "Identify the trajectory of a thrown object by using Vision.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/detecting-moving-objects-in-a-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting moving objects in a video",
+      "type": "topic",
+      "url": "/documentation/vision/detecting-moving-objects-in-a-video"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "media-3618313": {
+      "alt": "An image showing the trajectory of a soccer ball being kicked by a player.",
+      "identifier": "media-3618313",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae9522150ec7075ac9d05b9cb60f10bd/media-3618313@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae9522150ec7075ac9d05b9cb60f10bd/media-3618313~dark@2x.png"
+        }
+      ]
+    },
+    "media-3625760": {
+      "alt": "An illustration showing that a request must build evidence over time before it produces trajectory observations.",
+      "identifier": "media-3625760",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6e36239fa3aa111b86502cf27d63be08/media-3625760@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/048264519665707d8700aef32690aa5e/media-3625760~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Trajectory-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/detecting-moving-objects-in-a-video",
+        "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest"
+      ],
+      "title": "Trajectory detection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Trajectory-detection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/detecting-moving-objects-in-a-video",
+                "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest"
+              ],
+              "title": "Trajectory detection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest~1minimumObjectSize/title",
+          "value": "minimumObjectSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest~1minimumObjectSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumObjectSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest~1maximumObjectSize/title",
+          "value": "maximumObjectSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest~1maximumObjectSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumObjectSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1simd~1simd_float3/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:]3f",
+              "text": "float __attribute__((ext_vector_type(3)))"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "simd_float3"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/title",
+          "value": "CMSampleBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@opaqueCMSampleBuffer",
+              "text": "opaqueCMSampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrajectoryObservation/title",
+          "value": "VNTrajectoryObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrajectoryObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrajectoryObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrajectoryObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrajectoryObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime~1zero/title",
+          "value": "kCMTimeZero"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime~1zero/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CMTime",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCMTimeZero"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/title",
+          "value": "VNDetectTrajectoriesRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectTrajectoriesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectTrajectoriesRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/identifying-trajectories-in-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/identifying-trajectories-in-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

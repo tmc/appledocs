@@ -1,0 +1,962 @@
+{
+  "abstract": [
+    {
+      "text": "A resource manager you use to download content hosted on the App Store at the time your app needs it.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1614831,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSBundleResourceRequest",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSBundleResourceRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSBundleResourceRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSBundleResourceRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You identify on-demand resources during development by creating string identifiers known as tags and assigning one or more tags to each resource. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object manages the resources marked by one or more tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the resource request to inform the system when the managed tags are needed and when you have finished accessing them. The resource request manages the downloading of any resources marked with the managed tags that are not already on the device and informs your app when the resources are ready for use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This class ignores calls from Mac apps built with Mac Catalyst.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system will not attempt to purge the resources marked with a tag from on-device storage as long as at least one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is managing the tag. Apps can access resources after the completion handler of either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614840-beginaccessingresources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614834-conditionallybeginaccessingresou",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is called successfully. Management ends after a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614843-endaccessingresources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or after the resource request object is deallocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other properties and methods let you track the progress of a download, change the priority of a download, and check whether the resources marked by a set of tags are already on the device. Methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicate to the system the relative importance of preserving a tag in memory after it is no longer in use. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " object can only be used for one successful resource request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614839-preservationpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preservationPriority(forTag:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1614839-preservationpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPreservationPriority(_:forTags:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1614845-setpreservationpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleerrormaximum": {
+      "abstract": [
+        {
+          "text": "The end of the range of error codes reserved for bundle errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleErrorMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleerrormaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleErrorMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleerrormaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleerrorminimum": {
+      "abstract": [
+        {
+          "text": "The start of the range of error codes reserved for bundle errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleErrorMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleerrorminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleErrorMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleerrorminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror": {
+      "abstract": [
+        {
+          "text": "The application exceeded the amount of on-demand resources content in use at one time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleOnDemandResourceExceededMaximumSizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleOnDemandResourceExceededMaximumSizeError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceinvalidtagerror": {
+      "abstract": [
+        {
+          "text": "The application specified a tag that the system couldn’t find in the application tag manifest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleOnDemandResourceInvalidTagError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceinvalidtagerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleOnDemandResourceInvalidTagError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleondemandresourceinvalidtagerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceoutofspaceerror": {
+      "abstract": [
+        {
+          "text": "Insufficient space available to download the requested on-demand resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleOnDemandResourceOutOfSpaceError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceoutofspaceerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleOnDemandResourceOutOfSpaceError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleondemandresourceoutofspaceerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest": {
+      "abstract": [
+        {
+          "text": "A resource manager you use to download content hosted on the App Store at the time your app needs it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleResourceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleResourceRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614833-tags": {
+      "abstract": [
+        {
+          "text": "A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<String>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614833-tags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614833-tags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614834-conditionallybeginaccessingresou": {
+      "abstract": [
+        {
+          "text": "Checks whether the resources marked with the tags managed by the request are already on the device. If all of the resources are on the device, you can begin accessing those resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "conditionallyBeginAccessingResources"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Bool) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614834-conditionallybeginaccessingresou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "conditionallyBeginAccessingResources(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614834-conditionallybeginaccessingresou"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614837-init": {
+      "abstract": [
+        {
+          "text": "Initializes a resource request for managing the on-demand resources marked with any of the set of specified tags. The managed resources are loaded into the main bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<String>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614837-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tags:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614837-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress": {
+      "abstract": [
+        {
+          "text": "A reference to the progress object associated with the specified resource request. (read-only)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614838-progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614840-beginaccessingresources": {
+      "abstract": [
+        {
+          "text": "Requests access to the resources marked with the managed tags. If any of the resources are not on the device, they are requested from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginAccessingResources"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614840-beginaccessingresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginAccessingResources(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614840-beginaccessingresources"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614841-loadingpriority": {
+      "abstract": [
+        {
+          "text": "A hint to the system of the relative priority of the resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadingPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614841-loadingpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadingPriority",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614841-loadingpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614842-init": {
+      "abstract": [
+        {
+          "text": "Initializes a resource request for managing the on-demand resources marked with any of the set of specified tags. The managed resources are loaded into the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<String>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614842-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tags:bundle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614842-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614843-endaccessingresources": {
+      "abstract": [
+        {
+          "text": "Informs the system that you have finished accessing the resources marked with the tags managed by the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "endAccessingResources"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614843-endaccessingresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endAccessingResources()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614843-endaccessingresources"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614844-bundle": {
+      "abstract": [
+        {
+          "text": "A reference to the bundle used for storing the downloaded resources. (read-only)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614844-bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614844-bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleResourceRequestLoadingPriorityUrgent"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleResourceRequestLoadingPriorityUrgent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp": {
+      "abstract": [
+        {
+          "text": "Posted after the system detects that the amount of available disk space is getting low. The notification is posted to the default notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleResourceRequestLowDiskSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleResourceRequestLowDiskSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progressreporting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progressreporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProgressReporting",
+      "type": "topic",
+      "url": "/documentation/foundation/progressreporting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/resources": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resources",
+      "type": "topic",
+      "url": "/documentation/foundation/resources"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/progressreporting"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1663230",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614837-init",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614842-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Resource Request"
+    },
+    {
+      "anchor": "1663279",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614844-bundle",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614833-tags"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Configuration"
+    },
+    {
+      "anchor": "1663330",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614840-beginaccessingresources",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614834-conditionallybeginaccessingresou",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614843-endaccessingresources"
+      ],
+      "kind": "taskGroup",
+      "title": "Requesting Resources"
+    },
+    {
+      "anchor": "1663369",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614841-loadingpriority",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting the Download Priority"
+    },
+    {
+      "anchor": "1663397",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress"
+      ],
+      "kind": "taskGroup",
+      "title": "Tracking Progress"
+    },
+    {
+      "anchor": "1674123",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundleerrormaximum",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleerrorminimum",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceinvalidtagerror",
+        "doc://com.apple.documentation/documentation/foundation/nsbundleondemandresourceoutofspaceerror"
+      ],
+      "kind": "taskGroup",
+      "title": "Errors"
+    },
+    {
+      "anchor": "1674166",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614835-nsbundleresourcerequestlowdisksp"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsbundleresourcerequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsbundleresourcerequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

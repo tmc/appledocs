@@ -1,0 +1,625 @@
+{
+  "abstract": [
+    {
+      "text": "Get assets, asset collections, and collection lists matching a specified query.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fetching Objects and Requesting Changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of the model classes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represent the items a user works with in the Photos app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Assets",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Images, videos, and Live Photos",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Collections of assets",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Albums or Moments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Lists of collections",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Album folders or Moment clusters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of these classes are read-only and immutable, and contain only metadata. Use these classes to fetch a set of objects matching a specified query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Commit-Change-Requests-to-the-Shared-Photo-Library",
+          "level": 3,
+          "text": "Commit Change Requests to the Shared Photo Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fetch assets and collections you’re interested in, and use those objects to fetch the raw data you need to reference or edit. To make changes, create change request objects and explicitly commit them to the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This architecture makes it easy, safe, and efficient to work with the same assets from multiple threads or multiple apps and app extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Special-Assets",
+          "level": 3,
+          "text": "Handle Special Assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PhotoKit supports a number of Photos app features for working directly with a user’s Photos library. For example, Live Photos are special assets with additional data that your app can display differently, as a video or sequence of frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to find assets corresponding to the Moments hierarchy in the Photos App. Lists of collections are read-only, immutable, and contain only metadata. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to identify burst photos, Live Photos, panoramic photos, and high-frame-rate videos. When iCloud Photos is enabled, assets and collections in the Photos framework reflect content available across all devices on the same iCloud account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Live Photos, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions": {
+      "abstract": [
+        {
+          "text": "Provide custom functionality in the Photos app by bundling an app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Photo Editing Extensions",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-photo-editing-extensions"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos": {
+      "abstract": [
+        {
+          "text": "Provide the same interactive playback of Live Photos as in the iOS Photos app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Live Photos",
+      "type": "topic",
+      "url": "/documentation/photokit/displaying-live-photos"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails": {
+      "abstract": [
+        {
+          "text": "Request image, video, or Live Photos content, and cache for quick reuse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading and Caching Assets and Thumbnails",
+      "type": "topic",
+      "url": "/documentation/photokit/loading-and-caching-assets-and-thumbnails"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset": {
+      "abstract": [
+        {
+          "text": "A representation of an image, video, or Live Photo in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAsset",
+      "type": "topic",
+      "url": "/documentation/photos/phasset"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCollection": {
+      "abstract": [
+        {
+          "text": "A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCollection",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcollection"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList": {
+      "abstract": [
+        {
+          "text": "A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionList"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionList"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionList",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+        "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/title",
+          "value": "PHCollectionList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/title",
+          "value": "PHAssetCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/title",
+          "value": "PHAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

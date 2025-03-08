@@ -1,0 +1,1426 @@
+{
+  "abstract": [
+    {
+      "text": "A tokenizer, which is an object that allows the text input system to evaluate text units of different granularities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UITextInputTokenizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UITextInputTokenizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITextInputTokenizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UITextInputTokenizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextInputTokenizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Granularities of text units are always evaluated with reference to a storage or reference direction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Text-processing objects that conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol must hold a reference to a tokenizer (through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/tokenizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property). The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a default base implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Tokenizers of this class are suitable for most western-language keyboards. Apps with different requirements may adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and create their own tokenizers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDirection": {
+      "abstract": [
+        {
+          "text": "The direction of the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdirection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextGranularity": {
+      "abstract": [
+        {
+          "text": "The granularity of a unit of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextGranularity"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextGranularity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextGranularity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextGranularity",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextgranularity"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput/tokenizer": {
+      "abstract": [
+        {
+          "text": "An input tokenizer that provides information about the granularity of text units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenizer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextInputTokenizer",
+          "text": "UITextInputTokenizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/tokenizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenizer"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "tokenizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput/tokenizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer": {
+      "abstract": [
+        {
+          "text": "A base implementation of the text-input tokenizer protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputStringTokenizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputStringTokenizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputstringtokenizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer": {
+      "abstract": [
+        {
+          "text": "A tokenizer, which is an object that allows the text input system to evaluate text units of different granularities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputTokenizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputTokenizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputTokenizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtokenizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:atBoundary:inDirection:)": {
+      "abstract": [
+        {
+          "text": "Return whether a text position is at a boundary of a text unit of a specified granularity in a specified direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atBoundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextDirection",
+          "text": "UITextDirection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:atBoundary:inDirection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPosition:atBoundary:inDirection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isPosition(_:atBoundary:inDirection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtokenizer/isposition(_:atboundary:indirection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:withinTextUnit:inDirection:)": {
+      "abstract": [
+        {
+          "text": "Return whether a text position is within a text unit of a specified granularity in a specified direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withinTextUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextDirection",
+          "text": "UITextDirection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:withinTextUnit:inDirection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPosition:withinTextUnit:inDirection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isPosition(_:withinTextUnit:inDirection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtokenizer/isposition(_:withintextunit:indirection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/position(from:toBoundary:inDirection:)": {
+      "abstract": [
+        {
+          "text": "Return the next text position at a boundary of a text unit of the given granularity in a given direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toBoundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextDirection",
+          "text": "UITextDirection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/position(from:toBoundary:inDirection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "positionFromPosition:toBoundary:inDirection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "position(from:toBoundary:inDirection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtokenizer/position(from:toboundary:indirection:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/rangeEnclosingPosition(_:with:inDirection:)": {
+      "abstract": [
+        {
+          "text": "Return the range for the text enclosing a text position in a text unit of a given granularity in a given direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeEnclosingPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextGranularity",
+          "text": "UITextGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextDirection",
+          "text": "UITextDirection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/rangeEnclosingPosition(_:with:inDirection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rangeEnclosingPosition:withGranularity:inDirection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "rangeEnclosingPosition(_:with:inDirection:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtokenizer/rangeenclosingposition(_:with:indirection:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-tokenizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer"
+      ],
+      "title": "Text tokenizer"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Determining-text-positions-relative-to-unit-boundaries",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:atBoundary:inDirection:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:withinTextUnit:inDirection:)"
+      ],
+      "title": "Determining text positions relative to unit boundaries"
+    },
+    {
+      "anchor": "Computing-text-position-by-unit-boundaries",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/position(from:toBoundary:inDirection:)"
+      ],
+      "title": "Computing text position by unit boundaries"
+    },
+    {
+      "anchor": "Getting-ranges-of-specific-text-units",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/rangeEnclosingPosition(_:with:inDirection:)"
+      ],
+      "title": "Getting ranges of specific text units"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextDirection",
+        "doc://com.apple.uikit/documentation/UIKit/UITextGranularity"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UITextInputTokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Determining-text-positions-relative-to-unit-boundaries",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:atBoundary:inDirection:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/isPosition(_:withinTextUnit:inDirection:)"
+              ],
+              "title": "Determining text positions relative to unit boundaries"
+            },
+            {
+              "anchor": "Computing-text-position-by-unit-boundaries",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/position(from:toBoundary:inDirection:)"
+              ],
+              "title": "Computing text position by unit boundaries"
+            },
+            {
+              "anchor": "Getting-ranges-of-specific-text-units",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputTokenizer/rangeEnclosingPosition(_:with:inDirection:)"
+              ],
+              "title": "Getting ranges of specific text units"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextDirection",
+                "doc://com.apple.uikit/documentation/UIKit/UITextGranularity"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-tokenizer",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputStringTokenizer"
+              ],
+              "title": "Text tokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UITextInputTokenizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1isPosition(_:withinTextUnit:inDirection:)/title",
+          "value": "isPosition:withinTextUnit:inDirection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1isPosition(_:withinTextUnit:inDirection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPosition:withinTextUnit:inDirection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDirection/title",
+          "value": "UITextDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextGranularity/title",
+          "value": "UITextGranularity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextGranularity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextGranularity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextGranularity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextGranularity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1isPosition(_:atBoundary:inDirection:)/title",
+          "value": "isPosition:atBoundary:inDirection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1isPosition(_:atBoundary:inDirection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPosition:atBoundary:inDirection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer/title",
+          "value": "UITextInputTokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1position(from:toBoundary:inDirection:)/title",
+          "value": "positionFromPosition:toBoundary:inDirection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1position(from:toBoundary:inDirection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "positionFromPosition:toBoundary:inDirection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputStringTokenizer/title",
+          "value": "UITextInputStringTokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputStringTokenizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputStringTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputStringTokenizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputStringTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1rangeEnclosingPosition(_:with:inDirection:)/title",
+          "value": "rangeEnclosingPosition:withGranularity:inDirection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTokenizer~1rangeEnclosingPosition(_:with:inDirection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rangeEnclosingPosition:withGranularity:inDirection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1tokenizer/title",
+          "value": "tokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1tokenizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/title",
+          "value": "UITextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitextinputtokenizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uitextinputtokenizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

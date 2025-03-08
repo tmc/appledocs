@@ -1,0 +1,2151 @@
+{
+  "abstract": [
+    {
+      "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying geometric transforms to images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides a suite of functions to apply different geometric transforms to images. The image below shows examples of reflect, scale, rotate, and composite translate-rotate-scale transforms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682459",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, vImage uses the Lanczos-3 algorithm when resampling. If you need the higher-quality results of the Lanczos-5 algorithm and don’t mind slightly slower performance, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag to the geometric transform operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage geometry operations don’t work in-place, that is, you can’t use the same buffer as the source and destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re applying a geometric transform to an image with premultiplied alpha, you may see artifacts in high-frequency regions of the image. To avoid these artifacts, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageUnpremultiplyData_ARGB8888(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to remove the premultiplied alpha value from the image data before the operation. After the operation, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_ARGB8888(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to premultiply the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reflect-a-vImage-buffer",
+          "level": 3,
+          "text": "Reflect a vImage buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage reflect functions generate either a vertical or a horizontal reflection of the image. The image below shows the original buffer contents and the contents after vertical reflection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682698",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The destination buffer you pass to the vImage reflect functions needs to be the same size as the source buffer. The code below uses a precondition to ensure that both buffer sizes match:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func verticalReflectBuffer(source: vImage_Buffer,",
+            "                                  destination: inout vImage_Buffer) {",
+            "    ",
+            "    precondition(source.size == destination.size,",
+            "                 \"Source and destination buffers need to have the same size.\")",
+            "    ",
+            "    _ = withUnsafePointer(to: source) { srcPointer in",
+            "        vImageVerticalReflect_ARGB8888(srcPointer,",
+            "                                       &destination,",
+            "                                       vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about reflection functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-reflection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Shear-a-vImage-buffer",
+          "level": 3,
+          "text": "Shear a vImage buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage shear functions scale and offset an image in one dimension. These functions accept a resampling filter that you use for fine control over the resampling algorithm. For more information on resampling, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682695",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Control the amount of shear by specifying the ",
+              "type": "text"
+            },
+            {
+              "code": "shearSlope",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The functions define the shear slope as ",
+              "type": "text"
+            },
+            {
+              "code": "deltaᵧ/deltaₓ",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s the slope for a linear function ",
+              "type": "text"
+            },
+            {
+              "code": "y = slope * x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "verticalShearBuffer(source:destination:byAngleInDegrees:verticalScale:backgroundColor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function accepts the shear as an angle in degrees and performs the transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func verticalShearBuffer(source: vImage_Buffer,",
+            "                                destination: inout vImage_Buffer,",
+            "                                byAngleInDegrees angleInDegrees: Double,",
+            "                                verticalScale: Float = 1,",
+            "                                backgroundColor: [Pixel_8] = [0, 127, 127, 127]) {",
+            "    ",
+            "    // 1. Ensure the shear angle is valid.",
+            "    precondition(angleInDegrees > -90 && angleInDegrees < 90,",
+            "                 \"The shear angle needs to be greater than -90º and less than 90º.\")",
+            "    ",
+            "    // 2. Calculate `shearSlope` as the tangent of the specified angle.",
+            "    let angle = Measurement(value: angleInDegrees,",
+            "                            unit: UnitAngle.degrees)",
+            "    let radians = Float(angle.converted(to: .radians).value)",
+            "    let shearSlope = tan(radians)",
+            "",
+            "    // 3. Create a default resampling filter using the specified scale.",
+            "    let resamplingFilter = vImageNewResamplingFilter(verticalScale,",
+            "                                                     vImage_Flags(kvImageNoFlags))",
+            "    defer {",
+            "        vImageDestroyResamplingFilter(resamplingFilter)",
+            "    }",
+            "    ",
+            "    // 4. Apply the transform to `source` and write the result to `destination`.",
+            "    _ = withUnsafePointer(to: source) { srcPointer in",
+            "        vImageVerticalShear_ARGB8888(srcPointer,",
+            "                                     &destination,",
+            "                                     0, 0,",
+            "                                     0,",
+            "                                     shearSlope,",
+            "                                     resamplingFilter,",
+            "                                     backgroundColor,",
+            "                                     vImage_Flags(kvImageBackgroundColorFill))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fit the sheared image in a buffer with the same dimensions as the original image, specify a shear angle that’s the arctangent of the image’s height divided by twice its width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shearAngle = atan(Double(sourceImageBuffer.height) /",
+            "                      Double(sourceImageBuffer.width * 2)) *",
+            "                      180 / .pi",
+            "",
+            "verticalShearBuffer(source: sourceImageBuffer,",
+            "                    destination: &destinationImageBuffer,",
+            "                    byAngleInDegrees: shearAngle,",
+            "                    verticalScale: 0.5)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the destination buffer contains the image below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682697",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about shearing functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-shearing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rotate-a-vImage-buffer-by-multiples-of-90%C2%B0",
+          "level": 3,
+          "text": "Rotate a vImage buffer by multiples of 90°",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides 90° rotation functions that perform a simple 0°, 90°, 180°, or 270° rotation of an image around its center. The image below shows a buffer’s contents without any rotation, rotated 90° counterclockwise, rotated 180°, and rotated 90° clockwise:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682700",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the 90° and 270° rotations don’t rotate around the true center of the image when the parity (that is, whether an integer is even or odd) of the source width and destination height don’t match. The same is true if the parity of the source height and destination width don’t match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the source and destination buffers are different sizes, the 0° and 180° rotations require that the two heights have the same parity and the two widths have the same parity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 90° rotation function crops source pixels that lie outside the destination buffer and fills destination pixels with the specified background color when source pixels don’t cover them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function below applies a multiple of 90° rotation to a buffer and returns the result in a correctly oriented destination buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func rotateNinety(source: vImage_Buffer,",
+            "                         rotation: Int) -> vImage_Buffer? {",
+            "",
+            "    // 1. Create the destination buffer.",
+            "    guard var destination: vImage_Buffer = {",
+            "        switch rotation {",
+            "            case kRotate0DegreesClockwise, kRotate180DegreesClockwise:",
+            "                return try? vImage_Buffer(size: source.size,",
+            "                                          bitsPerPixel: 8 * 4)",
+            "            case kRotate90DegreesClockwise, kRotate270DegreesClockwise:",
+            "                return try? vImage_Buffer(width: Int(source.size.height),",
+            "                                          height: Int(source.size.width),",
+            "                                          bitsPerPixel: 8 * 4)",
+            "            default:",
+            "                NSLog(\"Unsupported rotation constant: \\(rotation).\")",
+            "                return nil",
+            "        }",
+            "    }() else {",
+            "        NSLog(\"Unable to initialize destination buffer.\")",
+            "        return nil",
+            "    }",
+            "    ",
+            "    // 2. Apply the transform to `source` and write the result to `destination`.",
+            "    _ = withUnsafePointer(to: source) { sourcePtr in",
+            "        vImageRotate90_ARGB8888(sourcePtr,",
+            "                                &destination,",
+            "                                UInt8(rotation),",
+            "                                [0],",
+            "                                vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "    ",
+            "    return destination",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about rotation functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-rotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rotate-a-vImage-buffer-by-an-arbitrary-angle",
+          "level": 3,
+          "text": "Rotate a vImage buffer by an arbitrary angle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides rotation functions that rotate an image by any angle around its center. The image below shows a buffer rotated 60° counterclockwise:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682702",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function below rotates a buffer by the specified angle and writes the result to the destination:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func rotateBuffer(source: vImage_Buffer,",
+            "                         destination: inout vImage_Buffer,",
+            "                         byAngleInDegrees angleInDegrees: Double,",
+            "                         backgroundColor: [Pixel_8] = [0, 127, 127, 127]) {",
+            "    ",
+            "    let angle = Measurement(value: angleInDegrees,",
+            "                            unit: UnitAngle.degrees)",
+            "    let radians = Float(angle.converted(to: .radians).value)",
+            "    ",
+            "    _ = withUnsafePointer(to: source) { srcPointer in",
+            "        vImageRotate_ARGB8888(srcPointer,",
+            "                              &destination,",
+            "                              nil,",
+            "                              radians,",
+            "                              backgroundColor,",
+            "                              vImage_Flags(kvImageBackgroundColorFill))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Scale-a-vImage-buffer",
+          "level": 3,
+          "text": "Scale a vImage buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides functions to scale the contents of an image buffer. The scaling can either be uniform, where the operation preserves the image’s aspect ratio, or nonuniform, where the operation stretches or condenses the image. The image below shows four scaled versions of the same photograph, with the second and third image scaled nonuniformly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682710",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage scale functions accept source and destination buffers as parameters and rescale the source to fill the destination buffer. The function below wraps ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageScale_ARGB8888(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a simple interface to the scale operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func scaleBuffer(source: vImage_Buffer,",
+            "                        destination: inout vImage_Buffer) {",
+            "    ",
+            "    _ = withUnsafePointer(to: source) { sourcePointer in",
+            "        vImageScale_ARGB8888(sourcePointer,",
+            "                             &destination,",
+            "                             nil,",
+            "                             vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about scaling functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-scaling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-a-simple-affine-transformation-to-a-vImage-buffer",
+          "level": 3,
+          "text": "Apply a simple affine transformation to a vImage buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an affine transformation to apply composite transformation, such as a scale and a translate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A 3-by-3 matrix represents an affine transformation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682473",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the third column is always ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data structure contains values for only the first two columns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform a scale transformation, set the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "a",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "d",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " parameters of the matrix to the required scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682474",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the translate transformation, set the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tx",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ty",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " parameters of the matrix to the required offset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682475",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "scaleAndCenterBuffer(source:destination:to:backgroundColor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function accepts a scale parameter and sets that parameter as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "a",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "d",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " parameters of the matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func scaleAndCenterBuffer(source: vImage_Buffer,",
+            "                                 destination: inout vImage_Buffer,",
+            "                                 to scale: Double,",
+            "                                 backgroundColor: [Pixel_8] = [0, 127, 127, 127]) {",
+            "    ",
+            "    // 1. Calculate the translate required to center the scaled buffer.",
+            "    let sourceCenter = SIMD2<Double>(",
+            "        x: Double(source.size.width / 2),",
+            "        y: Double(source.size.height / 2))",
+            "    ",
+            "    let desinationCenter = SIMD2<Double>(",
+            "        x: Double(destination.size.width / 2),",
+            "        y: Double(destination.size.height / 2))",
+            "    ",
+            "    let tx = desinationCenter.x - sourceCenter.x * scale",
+            "    let ty = desinationCenter.y - sourceCenter.y * scale",
+            "    ",
+            "    // 2. Create the affine transformation that represents the scale-translate.",
+            "    var vImageTransform = vImage_CGAffineTransform(",
+            "        a: scale, b: 0,",
+            "        c: 0,     d: scale,",
+            "        tx: tx,   ty: ty)",
+            "",
+            "    // 3. Apply the transform to `source` and write the result to `destination`.",
+            "    _ = withUnsafePointer(to: source) { srcPointer in",
+            "        vImageAffineWarpCG_ARGB8888(srcPointer,",
+            "                                    &destination,",
+            "                                    nil,",
+            "                                    &vImageTransform,",
+            "                                    backgroundColor,",
+            "                                    vImage_Flags(kvImageBackgroundColorFill))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the result of applying ",
+              "type": "text"
+            },
+            {
+              "code": "scaleAndCenterBuffer(_:to:backgroundColor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a scale of ",
+              "type": "text"
+            },
+            {
+              "code": "0.25",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682477",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about affine transformation functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-affine-transformations-to-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-a-complex-affine-transformation-to-a-vImage-buffer",
+          "level": 3,
+          "text": "Apply a complex affine transformation to a vImage buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For complex transformations, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to concatenate a series of transformations. For example, to rotate and scale an image to fit within its unrotated bounding box, your code needs to translate, rotate, scale, and translate again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "rotateAndScaleBuffer(source:destination:byAngleInDegrees:backgroundColor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to build the matrix required to rotate and scale an image to fit inside the bounding box of the destination buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func rotateAndScaleBuffer(source: vImage_Buffer,",
+            "                                 destination: inout vImage_Buffer,",
+            "                                 byAngleInDegrees angleInDegrees: Double,",
+            "                                 backgroundColor: [Pixel_8] = [0, 127, 127, 127]) {",
+            "    ",
+            "    // 1. Convert the specified angle in degrees to radians.",
+            "    let angle = Measurement(value: angleInDegrees,",
+            "                            unit: UnitAngle.degrees)",
+            "    let radians = CGFloat(angle.converted(to: .radians).value)",
+            "    ",
+            "    // 2. Calculate the scale based on the bounding box of the rotated image.",
+            "    let rotatedBoundingBox = CGRect(origin: .zero, size: source.size)",
+            "        .applying(CGAffineTransform(rotationAngle: radians))",
+            "    let scale = min(destination.size.width / rotatedBoundingBox.size.width,",
+            "                    destination.size.height / rotatedBoundingBox.size.height)",
+            "    ",
+            "    // 3. Create the composite affine transformation.",
+            "    let cgTransform = CGAffineTransform.identity",
+            "        .translatedBy(x: destination.size.width / 2,",
+            "                      y: destination.size.height / 2)",
+            "        .rotated(by: radians)",
+            "        .scaledBy(x: scale, y: scale)",
+            "        .translatedBy(x: -source.size.width / 2,",
+            "                      y: -source.size.height / 2)",
+            "    ",
+            "    // 4. Convert the `CGAffineTransform` to a `vImage_CGAffineTransform`.",
+            "    var vImageTransform = vImage_CGAffineTransform(",
+            "        a: Double(cgTransform.a),",
+            "        b: Double(cgTransform.b),",
+            "        c: Double(cgTransform.c),",
+            "        d: Double(cgTransform.d),",
+            "        tx: Double(cgTransform.tx),",
+            "        ty: Double(cgTransform.ty))",
+            "    ",
+            "    // 5. Apply the transform to `source` and write the result to `destination`.",
+            "    _ = withUnsafePointer(to: source) { srcPointer in",
+            "        vImageAffineWarpCG_ARGB8888(srcPointer,",
+            "                                    &destination,",
+            "                                    nil,",
+            "                                    &vImageTransform,",
+            "                                    backgroundColor,",
+            "                                    vImage_Flags(kvImageBackgroundColorFill))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the result of applying ",
+              "type": "text"
+            },
+            {
+              "code": "rotateAndScaleBuffer(_:byAngleInDegrees:backgroundColor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an angle of 30°:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682479",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-performance-with-temporary-buffers",
+          "level": 3,
+          "text": "Optimize performance with temporary buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage rotate, scale, and affine transform functions use multiple-pass algorithms that save intermediate pixel values between passes. In some cases, the destination buffer may not be large enough to store that intermediate data, so the operation requires additional, temporary storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the function to have vImage create and manage this temporary storage for you. For example, the scale function below relies on the operation to manage the temporary buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func scaleBuffer(source: vImage_Buffer,",
+            "                        destination: inout vImage_Buffer) {",
+            "    ",
+            "    _ = withUnsafePointer(to: source) { sourcePointer in",
+            "        vImageScale_ARGB8888(sourcePointer,",
+            "                             &destination,",
+            "                             nil,",
+            "                             vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In cases where your code calls the function frequently (for example, when processing video), create and manage this temporary buffer yourself and reuse it across function calls. Reusing a buffer avoids vImage allocating the temporary storage with each call. Pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your geometry function to calculate the size, in bytes, of the temporary buffer, and use that value to allocate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version of the ",
+              "type": "text"
+            },
+            {
+              "code": "scaleBuffer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function below shows an example of creating a temporary buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func scaleBuffer(source: vImage_Buffer,",
+            "                        destination: inout vImage_Buffer) {",
+            "    ",
+            "    withUnsafePointer(to: source) { sourcePointer in",
+            "        let bufferSize = vImageScale_ARGB8888(sourcePointer,",
+            "                                              &destination,",
+            "                                              nil,",
+            "                                              vImage_Flags(kvImageGetTempBufferSize))",
+            "        ",
+            "        if bufferSize < 0 {",
+            "            fatalError(\"Error calculating buffer size for scale operation (\\(bufferSize)).\")",
+            "        }",
+            "        ",
+            "        // In a real app, you reuse this buffer across multiple calls of `vImageScale_ARGB8888`.",
+            "        let temporaryBuffer = UnsafeMutableRawPointer.allocate(byteCount: bufferSize,",
+            "                                                               alignment: 64)",
+            "        defer {",
+            "            temporaryBuffer.deallocate()",
+            "        }",
+            "        ",
+            "        vImageScale_ARGB8888(sourcePointer,",
+            "                             &destination,",
+            "                             temporaryBuffer,",
+            "                             vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize": {
+      "abstract": [
+        {
+          "text": "A flag that returns the minimum temporary buffer size for the operation, given the parameters provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageGetTempBufferSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageGetTempBufferSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageGetTempBufferSize",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagegettempbuffersize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling": {
+      "abstract": [
+        {
+          "text": "A flag that uses a higher-quality, slower resampling filter for geometry operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageHighQualityResampling",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagehighqualityresampling"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_ARGB8888(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Transforms an 8-bit-per-channel, 4-channel ARGB buffer from nonpremultiplied alpha format to premultiplied alpha format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePremultiplyData_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePremultiplyData_ARGB8888(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePremultiplyData_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePremultiplyData_ARGB8888(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepremultiplydata_argb8888(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageScale_ARGB8888(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Scales an 8-bit-per-channel, 4-channel interleaved image to fit a destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageScale_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageScale_ARGB8888(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageScale_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageScale_ARGB8888(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagescale_argb8888(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageUnpremultiplyData_ARGB8888(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Transforms an 8-bit-per-channel, 4-channel ARGB buffer from premultiplied alpha format to nonpremultiplied alpha format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageUnpremultiplyData_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageUnpremultiplyData_ARGB8888(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageUnpremultiplyData_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageUnpremultiplyData_ARGB8888(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageunpremultiplydata_argb8888(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent a Core Graphics–compatible affine transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGAffineTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgaffinetransform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/applying-affine-transformations-to-images": {
+      "abstract": [
+        {
+          "text": "Translate, rotate, and scale images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-affine-transformations-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying affine transformations to images",
+      "type": "topic",
+      "url": "/documentation/Accelerate/applying-affine-transformations-to-images"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/image-reflection": {
+      "abstract": [
+        {
+          "text": "Reflect images horizontally and vertically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-reflection",
+      "kind": "article",
+      "role": "article",
+      "title": "Image reflection",
+      "type": "topic",
+      "url": "/documentation/Accelerate/image-reflection"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/image-rotation": {
+      "abstract": [
+        {
+          "text": "Rotate images by arbitrary angles or by multiples of 90 degrees.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-rotation",
+      "kind": "article",
+      "role": "article",
+      "title": "Image rotation",
+      "type": "topic",
+      "url": "/documentation/Accelerate/image-rotation"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/image-scaling": {
+      "abstract": [
+        {
+          "text": "Scale interlaced and planar images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-scaling",
+      "kind": "article",
+      "role": "article",
+      "title": "Image scaling",
+      "type": "topic",
+      "url": "/documentation/Accelerate/image-scaling"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/image-shearing": {
+      "abstract": [
+        {
+          "text": "Shear images horizontally and vertically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/image-shearing",
+      "kind": "article",
+      "role": "article",
+      "title": "Image shearing",
+      "type": "topic",
+      "url": "/documentation/Accelerate/image-shearing"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters": {
+      "abstract": [
+        {
+          "text": "Implement custom linear interpolation to prevent the ringing effects associated with scaling an image with the default Lanczos algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reducing artifacts with custom resampling filters",
+      "type": "topic",
+      "url": "/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters"
+    },
+    "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform": {
+      "abstract": [
+        {
+          "text": "An affine transformation matrix for use in drawing 2D graphics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgaffinetransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgaffinetransform"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3682459": {
+      "alt": "Four variations of the same photograph of flowers. The first is horizontally reflected. The second is scaled down. The third is rotated clockwise. The fourth is rotated counterclockwise and scaled down to fit within its bounding box.",
+      "identifier": "media-3682459",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/309bf547b80ae68f85e23a0d77eeaf11/media-3682459@2x.png"
+        }
+      ]
+    },
+    "media-3682473": {
+      "alt": "A 3-by-3 matrix.",
+      "identifier": "media-3682473",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad5f4a5c94518f9345389eb1608389cf/media-3682473@2x.png"
+        }
+      ]
+    },
+    "media-3682474": {
+      "alt": "A 3-by-3 matrix for scaling.",
+      "identifier": "media-3682474",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f887f1de9bbcb61af9992432fb821eb/media-3682474@2x.png"
+        }
+      ]
+    },
+    "media-3682475": {
+      "alt": "A 3 by 3 matrix for translation.",
+      "identifier": "media-3682475",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3f20158f45b6884521dea50065da09b/media-3682475@2x.png"
+        }
+      ]
+    },
+    "media-3682477": {
+      "alt": "A photograph of flowers that is scaled down against a colored background.",
+      "identifier": "media-3682477",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e05209f2bda166e82da0667c1a6cf73/media-3682477@2x.png"
+        }
+      ]
+    },
+    "media-3682479": {
+      "alt": "A rotated photograph of flowers that is scaled down to fit within its bounding box.",
+      "identifier": "media-3682479",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7e65b6d7548bc86dd7120968152052d/media-3682479@2x.png"
+        }
+      ]
+    },
+    "media-3682695": {
+      "alt": "A sheared photograph of flowers. The image appears as a diagonal stripe across its background.",
+      "identifier": "media-3682695",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d32725171f1a1966018c441f8967df27/media-3682695@2x.png"
+        }
+      ]
+    },
+    "media-3682697": {
+      "alt": "A sheared photograph of a rocky landscape. The image appears as a diagonal stripe across its background.",
+      "identifier": "media-3682697",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac3efa8af8ea29ca9a85257f5edd31fb/media-3682697@2x.png"
+        }
+      ]
+    },
+    "media-3682698": {
+      "alt": "Two variations of the same photograph of a rocky landscape. The second image is vertically reflected so that it appears upside down.",
+      "identifier": "media-3682698",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99488eea71ad42c75c291574b24371bc/media-3682698@2x.png"
+        }
+      ]
+    },
+    "media-3682700": {
+      "alt": "Four variations of a photograph of a flower, rotated in 90 degree counterclockwise increments.",
+      "identifier": "media-3682700",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0936b3bc110e1c8f6fe55732ce6d8d08/media-3682700@2x.png"
+        }
+      ]
+    },
+    "media-3682702": {
+      "alt": "A rotated photograph of some squashes.",
+      "identifier": "media-3682702",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37ab4672533109aaaa41288159836fbe/media-3682702@2x.png"
+        }
+      ]
+    },
+    "media-3682710": {
+      "alt": "Four variations of a scaled photograph of flowers.",
+      "identifier": "media-3682710",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac3522a7ff2cbc3fb7b20363ba958857/media-3682710@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageUnpremultiplyData_ARGB8888(_:_:_:)/title",
+          "value": "vImageUnpremultiplyData_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageUnpremultiplyData_ARGB8888(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageUnpremultiplyData_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/title",
+          "value": "kvImageHighQualityResampling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageHighQualityResampling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultiplyData_ARGB8888(_:_:_:)/title",
+          "value": "vImagePremultiplyData_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePremultiplyData_ARGB8888(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePremultiplyData_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/title",
+          "value": "vImage_CGAffineTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGAffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGAffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageScale_ARGB8888(_:_:_:_:)/title",
+          "value": "vImageScale_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageScale_ARGB8888(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageScale_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageGetTempBufferSize/title",
+          "value": "kvImageGetTempBufferSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageGetTempBufferSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageGetTempBufferSize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

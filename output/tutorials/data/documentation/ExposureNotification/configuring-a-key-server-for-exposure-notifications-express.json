@@ -1,0 +1,1062 @@
+{
+  "abstract": [
+    {
+      "text": "Support exposure key upload and download for app-less exposure notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring a Key Server for Exposure Notifications Express"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Key Servers accept key uploads from users with positive diagnoses and enable key downloads to devices to support exposure detection. Exposure Notifications apps must use a specific file format for key archives, but a Public Health Authority (PHA) determines the method by which the server and client app exchange those key archives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Exposure Notifications Express, key servers must implement key upload and download as specified in this article, and must use Apple Business Registry (ABR) to configure the upload and download URLs and set other configurable options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the key archive file formats, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Key-Server",
+          "level": 3,
+          "text": "Configure the Key Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Express works by reading configuration values for a PHA from Apple Business Registry (ABR). It uses these configuration values to locate a PHA’s servers and to adjust its calculations and behavior based on the values entered by that PHA. In order to support key upload and download in Exposure Notifications Express, you must configure the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Publish Interval",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tekPublishInterval",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter identifies how often your server publishes new key archives, which are specified in increments of 10 minutes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Local Download Index File",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tekLocalDownloadIndexFile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter points to an index of key archives that are currently available from the key server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Local Download Base Path",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tekLocalDownloadBasePath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value contains the base URL you use to retrieve key archives listed in the local download index. Exposure Notifications Express appends entries from the local download index file to this value to create a URL that points to the referenced file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Callback Interval in Minutes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "callbackIntervalInMin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter indicates how often iOS checks the key server for new archive files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Key Upload URL",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tekUploadURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value points to the key server’s upload endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of the configuration options available with Exposure Notifications Express, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Publish-an-Index-File",
+          "level": 3,
+          "text": "Publish an Index File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Exposure Notification Express, key servers must publish an index file at the Local Download Index File URL (",
+              "type": "text"
+            },
+            {
+              "code": "tekLocalDownloadIndexFile)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " registered in ABR. Index files are UTF-8 text files that contain one line per key archive that is currently available from the key server. The index lists archive files in chronological order, with the oldest key archive on the first line of the file. As the key server adds new files to the index, it also removes any entry pointing to archives more than 14–days old.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Publish-Key-Batches-as-Zip-Archives",
+          "level": 3,
+          "text": "Publish Key Batches as Zip Archives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Key servers periodically publish new key archives that contain any new diagnosis keys uploaded to the server since the last time it published an archive. Health Authorities register a configuration value (",
+              "type": "text"
+            },
+            {
+              "code": "callbackIntervalInMin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in ABR to control the frequency of the updates. When the server publishes a new key file, it adds the URL of that new archive (excluding the base URL) as the first entry in the local download index file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Express uses the same key archive file format as Exposure Notification client apps. Each archive contains one ",
+              "type": "text"
+            },
+            {
+              "code": ".dat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and one ",
+              "type": "text"
+            },
+            {
+              "code": ".sig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, as specified in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user enables COVID-19 exposure notifications, Exposure Notifications Express queries the key server’s local download index file to retrieve the index. Exposure Notifications Express then uses that index to retrieve all keys from the key server for the last 14 days. You don’t need to use a specific naming convention to publish key archives, but incorporating region, start time, and end time into the filename simplifies debugging and clarifies logging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-Key-Uploads",
+          "level": 3,
+          "text": "Accept Key Uploads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Exposure Notifications Express key uploads, a key server must implement the Key Upload URL (",
+              "type": "text"
+            },
+            {
+              "code": "tekUploadURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") configured in ABR. iOS uploads key batches to that URL by sending a JSON dictionary as the body of an HTTP POST request with all the data the key server needs to authenticate the keys and the diagnosis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request dictionary uses the keys listed below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of temporary exposure keys (",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "see below",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ").",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "temporaryExposureKeys",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An identifier string for the mobile application that submits the keys or a unique string that identifies the PHA when using Exposure Notifications Express.",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "healthAuthorityID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The verification certificate from the test verification server.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "verificationPayload",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A device-generated string containing a secret code the key server uses to recalculate the HMAC value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hmacKey",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer representing the interval number that aligns with the symptom onset date.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "symptomOnsetInterval",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An opaque string the key server returned in a previous call to this endpoint. If included, the key server uses this token to apply the data in the uploaded keys as an update to existing keys. When Exposure Notifications Express uploads only new keys, this field will contain an empty string.",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "revisionToken",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Random data iOS may populate to obscure the request size. Don’t process data in this field.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "padding",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "temporaryExposureKeys",
+              "type": "codeVoice"
+            },
+            {
+              "text": "array contains one JSON dictionary per key being uploaded. The per-exposure-key dictionary supports the keys listed below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The 16-byte exposure key as a Base64-encoded string. If a key is not exactly 16 bytes in length, the key server rejects the entire request, not just the key that is too long.",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "key",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer representing the interval number when the key’s",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EKRollingPeriod",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "started.",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "rollingStartNumber",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer representing the duration for which the key is valid, expressed as a number of ten–minute intervals.",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "rollingPeriod",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Risk of transmission associated with the person from which this key came. This field is deprecated and may be removed in a future release.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "transmissionRisk",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key server responds to these requests by returning a JSON dictionary that describes the result in the response body. The response dictionary uses the keys listed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A revision token string you use during future key uploads if the diagnosis associated with the uploaded keys changes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "revisionToken",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer representing the number of exposure keys the key server added to its database.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "insertedExposures",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the server encounters an error while processing the request, this string contains a description of the problem.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the server encounters an error while processing the request, this string contains a code that describes the error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "errorCode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String the server may populate with random data to obscure the response size. Don’t process data in this field.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "padding",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications": {
+      "abstract": [
+        {
+          "text": "Define how Exposure Notifications work for a region by assigning server-based key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Exposure Notifications",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/configuring-exposure-notifications"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server": {
+      "abstract": [
+        {
+          "text": "Ensure that your server meets the requirements for supporting Exposure Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Key Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-a-key-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server": {
+      "abstract": [
+        {
+          "text": "Validate positive diagnoses for app-less exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up an Exposure Notifications Express Test Verification Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-an-exposure-notifications-express-test-verification-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-express"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Server-Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server"
+      ],
+      "title": "Server Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Server-Configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server"
+              ],
+              "title": "Server Configuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/configuring-a-key-server-for-exposure-notifications-express"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/configuring-a-key-server-for-exposure-notifications-express"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

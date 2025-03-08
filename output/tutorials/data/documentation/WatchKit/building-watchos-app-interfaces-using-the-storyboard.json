@@ -1,0 +1,911 @@
+{
+  "abstract": [
+    {
+      "text": "Create the user interface for your watchOS app by nesting stacks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Building watchOS app Interfaces Using the Storyboard"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "watchOS apps use a simplified, stack-based layout model for their user interfaces. Xcode automatically groups elements into horizontal and vertical stacks, and you can fine-tune the layout by modifying the element’s attributes. Additionally, you can ensure that your interface works as expected on all Apple Watch sizes by using resizable elements and size-specific customizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you add items to the storyboard, Xcode stacks them vertically, with each item on its own line (",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3295988",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3295988",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Groups to create horizontal or vertical stacks (",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3172421",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Groups don’t have a default visual representation, but you can configure a background color or image as needed. Nest Groups, as necessary, to create more complex layouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3172421",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-Layout-Using-Attributes",
+          "level": 3,
+          "text": "Customize the Layout Using Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can fine-tune an interface element’s size and layout using the Attributes inspector. All interface elements have the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Configures the horizontal position of the item within the space provided by its container.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Horizontal",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Configures the vertical position of the item within the space provided by its container.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Vertical",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Determines how the system calculate’s the object’s width. This attribute has three possible values: Size to Fit Content, Relative to Container, and Fixed. Size to Fit Content sets the width based on the object’s content. Relative to Container sets the width to a percentage of the container’s width. Fixed sets the width to the specified size in points.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Width",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Determines how the system calculate’s the object’s height. This attribute has three possible values: Size to Fit Content, Relative to Container, and Fixed. Size to Fit Content sets the height based on the object’s content. Relative to Container sets the height to a percentage of the container’s height. Fixed sets the height to the specified size in points.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Height",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Groups provide additional options to manage their content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies the layout direction for items in the group. You can stack items horizontally or vertically, or have them overlap.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Layout",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the amount of space (in points) between the edges of the group and its child elements. Use Custom to specify different values for the top, bottom, left, and right edges.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Insets",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the spacing (in points) between child elements in the group. The default spacing is 2 points.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Spacing",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3172421": {
+      "identifier": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3172421",
+      "title": "Figure 2",
+      "titleInlineContent": [
+        {
+          "text": "Figure 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3172421"
+    },
+    "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3295988": {
+      "identifier": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3295988",
+      "title": "Figure 1",
+      "titleInlineContent": [
+        {
+          "text": "Figure 1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/watchkit/storyboard_support/building_watchos_app_interfaces_using_the_storyboard#3295988"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion": {
+      "abstract": [
+        {
+          "text": "An object that defines a portion of an image that you want to call out separately to an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityImageRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityImageRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityImageRegion",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityimageregion"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether reduced motion is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsReduceMotionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityIsReduceMotionEnabled()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityisreducemotionenabled()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether VoiceOver is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsVoiceOverRunning"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsVoiceOverRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityIsVoiceOverRunning()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityisvoiceoverrunning()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a button displayed in an alert or action sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAlertAction"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAlertAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAlertAction",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkalertaction"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController": {
+      "abstract": [
+        {
+          "text": "A class that provides the infrastructure for managing the interface in a watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceController",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code": {
+      "abstract": [
+        {
+          "text": "Connect the interface objects in your storyboard to outlets and action methods in your WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting Your User Interface to Your Code",
+      "type": "topic",
+      "url": "/documentation/watchkit/connecting-your-user-interface-to-your-code"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/navigating-between-scenes": {
+      "abstract": [
+        {
+          "text": "Help users navigate between interface controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/navigating-between-scenes",
+      "kind": "article",
+      "role": "article",
+      "title": "Navigating Between Scenes",
+      "type": "topic",
+      "url": "/documentation/watchkit/navigating-between-scenes"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support": {
+      "abstract": [
+        {
+          "text": "Connect your code to storyboard elements using interface controllers, interface objects, and event handlers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/storyboard-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storyboard support",
+      "type": "topic",
+      "url": "/documentation/watchkit/storyboard-support"
+    },
+    "media-3172421": {
+      "alt": "A screenshot with a Group containing a horizontal stack of buttons.",
+      "identifier": "media-3172421",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9799d1483038c93393bfd7c9cb936929/media-3172421@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9799d1483038c93393bfd7c9cb936929/media-3172421~dark@2x.png"
+        }
+      ]
+    },
+    "media-3295988": {
+      "alt": "A screenshot of a storyboard scene with three buttons stacked horizontally.",
+      "identifier": "media-3295988",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9100c5dcbc2e2dd9efdbda264280e41f/media-3295988@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9100c5dcbc2e2dd9efdbda264280e41f/media-3295988~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface-basics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()"
+      ],
+      "title": "User interface basics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Controls",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code"
+      ],
+      "title": "Controls"
+    },
+    {
+      "anchor": "Navigation",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/navigating-between-scenes"
+      ],
+      "title": "Navigation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Controls",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code"
+              ],
+              "title": "Controls"
+            },
+            {
+              "anchor": "Navigation",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/navigating-between-scenes"
+              ],
+              "title": "Navigation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface-basics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()"
+              ],
+              "title": "User interface basics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsReduceMotionEnabled()/title",
+          "value": "WKAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsReduceMotionEnabled()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityIsReduceMotionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/title",
+          "value": "WKAlertAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAlertAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAlertAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/title",
+          "value": "WKAccessibilityImageRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityImageRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityImageRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/title",
+          "value": "WKInterfaceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsVoiceOverRunning()/title",
+          "value": "WKAccessibilityIsVoiceOverRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsVoiceOverRunning()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityIsVoiceOverRunning"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/building-watchos-app-interfaces-using-the-storyboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/building-watchos-app-interfaces-using-the-storyboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

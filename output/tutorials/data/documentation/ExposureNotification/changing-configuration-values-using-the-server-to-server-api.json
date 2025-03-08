@@ -1,0 +1,705 @@
+{
+  "abstract": [
+    {
+      "text": "Update Exposure Notifications configuration values from a Public Health Authority’s server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Changing Configuration Values Using the Server‑to‑Server API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Exposure Notifications feature reads configuration values to customize behavior for each region based on values provided by that region’s Public Health Authority (PHA). PHAs can push changes to these configuration values from their servers using the Exposure Notifications server-to-server API. A PHA might use the server-to-server API, for example, to automate changes under certain conditions, such as changing the polling interval when experiencing unusually high activity, or providing a configuration portal hosted on their own servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications server-to-server API is located at the following URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://gateway.icloud.com/enservice/v2/update/app/config"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API expects a POST request with a content-type of ",
+              "type": "text"
+            },
+            {
+              "code": "application/json.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Requests must include both of the custom headers listed below to authenticate the request. The server rejects requests that the API can’t authenticate, and doesn’t make any changes to the existing configuration values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the Health Authority submitting the request as a Base64-encoded UTF-8 string.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "X-Apple-verification-data",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A digital signature of the string in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "X-Apple-verification-data",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " header, signed with the private key that corresponds to the most recent public key provided to Apple.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "X-Apple-signature",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The body of the POST request contains a JSON dictionary that uses the following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Identifier for the client app to which these configuration changes apply. This field isn’t needed when making changes that only apply to Exposure Notifications Express.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "appBundleID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The two-letter ISO country code that corresponds to the region for which these configuration changes apply.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "countryCode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The two-letter subdivision code that corresponds to the state, province, or other administrative division for which these configuration changes apply, if needed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that represents the version of the PHA’s public key, for use when authenticating requests using the custom headers, listed above.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "publicKeyVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON dictionary used to specify new configuration values. For a list of available keys and their expected values, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "config",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API responds with an HTTP response code, but won’t send a response body or any custom headers. If the API can make the requested changes, the API returns an HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response code. If the API can’t change the values, it returns one of the following codes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Can’t validate the JSON in the body of the request. This could be because the JSON is invalid, missing required keys, or includes unrecognized keys.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "400",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (Invalid Payload)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Can’t validate the PHA’s digital signature contained in the custom headers.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "401",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (Unauthorized)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Can’t find a configuration for the country and state (or subdivision) specified in the request JSON.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "404",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (Not Found)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Encountered some other error. This response code doesn’t necessarily indicate a problem with the request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "500",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " (Internal Server Error)",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion": {
+      "abstract": [
+        {
+          "text": "A number that specifies the version of the API to use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENAPIVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENAPIVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion": {
+      "abstract": [
+        {
+          "text": "A string that specifies the region that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENDeveloperRegion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENDeveloperRegion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager": {
+      "abstract": [
+        {
+          "text": "A class that manages exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENManager",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure": {
+      "abstract": [
+        {
+          "text": "Inform people when they may have been exposed to COVID-19.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an App to Notify Users of COVID-19 Exposure",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/building-an-app-to-notify-users-of-covid-19-exposure"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications": {
+      "abstract": [
+        {
+          "text": "Define how Exposure Notifications work for a region by assigning server-based key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Exposure Notifications",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/configuring-exposure-notifications"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server": {
+      "abstract": [
+        {
+          "text": "Ensure that your server meets the requirements for supporting Exposure Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Key Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-a-key-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-express"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5": {
+      "abstract": [
+        {
+          "text": "Prepare your Exposure Notifications app to run on a previous version of iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Exposure Notifications in iOS 12.5",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-in-ios-12-5"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later": {
+      "abstract": [
+        {
+          "text": "Perform end-to-end validation of Exposure Notifications apps on a device by manually loading configuration files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Exposure Notifications Apps in iOS 13.7 and Later",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/title",
+          "value": "ENManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/changing-configuration-values-using-the-server-to-server-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/changing-configuration-values-using-the-server-to-server-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

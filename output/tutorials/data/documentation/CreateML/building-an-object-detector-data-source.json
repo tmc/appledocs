@@ -1,0 +1,1809 @@
+{
+  "abstract": [
+    {
+      "text": "Arrange your training data for an object detector in one of several different",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "structured ways.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/building-an-object-detector-data-source"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building an object detector data source"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The general tasks for structuring data for training an object detector are the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Collect a set of images with sufficient size and diversity to reflect the data set",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you expect to predict on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create annotations for each image, containing labels and bounding boxes for each",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "labeled object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Structure these in a folder with an annotation file or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DataFrame",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "best suit your use case.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML accepts several data-source types for an object detector.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Two major kinds of data are inherent in any labeled data set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A collection of images that contain objects to train from.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Images",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Structured text data that defines the bounding box and labels of each object within the data set.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Annotations",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These kinds of data represent the two steps required to build an annotated data set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to train an object detector model. First, collect the images you wish to train on.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Second, annotate them with labeled bounding boxes that show the location of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects you want your model to recognize. Both of these steps, as well as how to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "combine this data into a data source, are detailed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the object detector data-source types the Create ML",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "API supports, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-images",
+          "level": 3,
+          "text": "Collect images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you train, ensure that the training set has sufficient sample size and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "diversity within each label. Make your data reflect what your model sees in practice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images can be any standard image format. After you collect your training set,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "put it in a common folder, and proceed with annotations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Format-a-bounding-box-JSON-annotation",
+          "level": 3,
+          "text": "Format a bounding box JSON annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Annotating images in an object detector teaches your model what objects it’s trying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to recognize. Define zero, one, or multiple bounding boxes within each image in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your training data set that show where an object is and what kind of object it is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is a training data image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an illustration of how a bounding box on a training data image is structured:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One way to structure your annotations is with a JSON annotation file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structured like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "imagefilename",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the image’s file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "annotation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of annotation JSON objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each JSON object in the ",
+              "type": "text"
+            },
+            {
+              "code": "annotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array must have the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "JSON object structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "label",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the annotated object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coordinates",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "JSON object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The location of the object and the area it occupies in the image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "coordinates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " JSON object must have the following structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-coordinate of the annotation’s anchor location with respect to the image origin, which ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MLBoundingBoxCoordinatesOrigin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " defines.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-coordinate of the annotation’s anchor location with respect to the image origin, which ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MLBoundingBoxCoordinatesOrigin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " defines.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "width",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The width of the annotation’s bounding box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "height",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The height of the annotation’s bounding box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When put together, a full object detector annotation file looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[",
+            "{",
+            "  \"imagefilename\": \"breakfast_0.png\",",
+            "  \"annotation\": [",
+            "    {",
+            "      \"coordinates\": {",
+            "        \"y\": 156.062,",
+            "        \"x\": 195.122,",
+            "        \"height\": 148.872,",
+            "        \"width\": 148.03",
+            "      },",
+            "      \"label\": \"Waffle\"",
+            "    }",
+            "  ]",
+            "},",
+            "{",
+            "  \"imagefilename\": \"breakfast_1.png\",",
+            "  \"annotation\": [",
+            "    {",
+            "      \"coordinates\": {",
+            "        \"y\": 98.9209,",
+            "        \"x\": 128.744,",
+            "        \"height\": 151.798,",
+            "        \"width\": 153.056",
+            "      },",
+            "      \"label\": \"Waffle\"",
+            "    },",
+            "    {",
+            "      \"coordinates\": {",
+            "        \"y\": 182.254,",
+            "        \"x\": 256.172,",
+            "        \"height\": 159.712,",
+            "        \"width\": 208.147",
+            "      },",
+            "      \"label\": \"Croissant\"",
+            "    }",
+            "  ]",
+            "},",
+            "{",
+            "  \"imagefilename\": \"breakfast_2.png\",",
+            "  \"annotation\": [",
+            "    {",
+            "      \"coordinates\": {",
+            "        \"y\": 116.875,",
+            "        \"x\": 354.375,",
+            "        \"height\": 98.7501,",
+            "        \"width\": 85",
+            "      },",
+            "      \"label\": \"Croissant\"",
+            "    }",
+            "  ]",
+            "},",
+            "{",
+            "  \"imagefilename\": \"breakfast_3.png\",",
+            "  \"annotation\": [",
+            "    {",
+            "      \"coordinates\": {",
+            "        \"y\": 149.75,",
+            "        \"x\": 182.114,",
+            "        \"height\": 76.3134,",
+            "        \"width\": 101.063",
+            "      },",
+            "      \"label\": \"Croissant\"",
+            "    }",
+            "  ]",
+            "}",
+            "]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-annotations",
+          "level": 3,
+          "text": "Customize annotations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element of the annotated JSON references one image with ",
+              "type": "text"
+            },
+            {
+              "code": "imagefilename",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and defines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one array of annotations in ",
+              "type": "text"
+            },
+            {
+              "code": "annotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Make sure to include the file extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the filename. You can define any number of labeled objects within a single image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each element of the array contains ",
+              "type": "text"
+            },
+            {
+              "code": "coordinates",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", consisting of the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-coordinate,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-coordinate, ",
+              "type": "text"
+            },
+            {
+              "code": "width",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "height",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the bounding box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define the origin from which x- and y-coordinates are specified as either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "bottom left",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "top left",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by using ",
+              "type": "text"
+            },
+            {
+              "code": "MLBoundingBoxCoordinatesOrigin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with ",
+              "type": "text"
+            },
+            {
+              "code": "top left",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a default value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you can define an ",
+              "type": "text"
+            },
+            {
+              "code": "MLBoundingBoxAnchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with possible values of ",
+              "type": "text"
+            },
+            {
+              "code": "center",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "top left",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "bottom left",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with ",
+              "type": "text"
+            },
+            {
+              "code": "center",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a default value. The anchor shows the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position of the bounding box relative to the origin, so if you select ",
+              "type": "text"
+            },
+            {
+              "code": "center",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the x- and y-values in the annotation point to the center of each bounding box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can define ",
+              "type": "text"
+            },
+            {
+              "code": "MLBoundingBoxUnits",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as either ",
+              "type": "text"
+            },
+            {
+              "code": "pixels",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "normalized",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default option is ",
+              "type": "text"
+            },
+            {
+              "code": "pixels",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which counts integer numbers of pixels from the origin.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In contrast, ",
+              "type": "text"
+            },
+            {
+              "code": "normalized",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is on a scale from 0.0 to 1.0 in both the x- and y-dimensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "MLBoundingBoxUnits",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to ",
+              "type": "text"
+            },
+            {
+              "code": "normalized",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the annotation might look like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"annotation\": [",
+            "{",
+            "  \"coordinates\": {",
+            "    \"y\": 0.13,",
+            "    \"x\": 0.16,",
+            "    \"height\": 0.12,",
+            "    \"width\": 0.12",
+            "  },",
+            "  \"label\": \"Waffle\"",
+            "}",
+            "]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is the full ",
+              "type": "text"
+            },
+            {
+              "code": "boundingBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " case defined in code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A typical annotation JSON file has many more objects in its base",
+            "/// array, one for each image file.",
+            "case boundingBox(units: MLBoundingBoxUnits = .pixel, origin: MLBoundingBoxCoordinatesOrigin = .topLeft, anchor: MLBoundingBoxAnchor = .center)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more detail, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/AnnotationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-data-source-from-images-and-annotations",
+          "level": 3,
+          "text": "Build a data source from images and annotations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest way to structure your data is using the ",
+              "type": "text"
+            },
+            {
+              "code": "directoryWithImagesAndJsonAnnotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "case. Take the collected images and exactly one JSON annotation file, and put them all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a single folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this folder to train an object detector. The Create ML App uses this case, and you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can drag a folder into a training well to train an object detector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you train a model in the Create ML app, you can generate bounding boxes from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trained model in the Preview tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-data-source-from-a-directory-with-images",
+          "level": 3,
+          "text": "Build a data source from a directory with images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " case ",
+              "type": "text"
+            },
+            {
+              "code": "directoryWithImages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is similar to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "directoryWithImagesAndJsonAnnotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", except you don’t need to nest the JSON",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "annotation file in the folder with the images. Instead, you call it by reference",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from any specified URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-data-source-from-a-data-frame",
+          "level": 3,
+          "text": "Build a data source from a data frame",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case ",
+              "type": "text"
+            },
+            {
+              "code": "frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you call an object detector from a single ",
+              "type": "text"
+            },
+            {
+              "code": "DataFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Rather",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than store your data in a directory structure, the format of this table is similar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the annotation file, where the ",
+              "type": "text"
+            },
+            {
+              "code": "DataFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the following columns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "imageColumn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": contains image file locations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "annotationColumn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": contains the annotations for that particular image, using the same JSON structure defined above.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-an-object-detector-data-source-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-an-object-detector-data-source-1": {
+      "alt": "Flow diagram of an annotated images data-source file arrangement. The parent folder contains images and one annotation file.",
+      "identifier": "building-an-object-detector-data-source-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a327e0401c9603058611ad3668f318e6/building-an-object-detector-data-source-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/508b87e9c3c027f9fca8bd3a664c6317/building-an-object-detector-data-source-1~dark@2x.png"
+        }
+      ]
+    },
+    "building-an-object-detector-data-source-2": {
+      "alt": "Flow diagram of an annotated images data-source file arrangement. The parent folder contains images with one annotation file separately.",
+      "identifier": "building-an-object-detector-data-source-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38848ccaa70c2284484c7a3a78487979/building-an-object-detector-data-source-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/743e6e129bb61780e8c2c75a1c2b9c9a/building-an-object-detector-data-source-2~dark@2x.png"
+        }
+      ]
+    },
+    "building-an-object-detector-data-source-3": {
+      "alt": "Overview of an DataFrame structured for an Object Detector Annotation, with one column with image filenames and a 2nd with annotations.",
+      "identifier": "building-an-object-detector-data-source-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c4006baa765fa154de69f53f6f51727f/building-an-object-detector-data-source-3@2x.png"
+        }
+      ]
+    },
+    "building-an-object-detector-data-source-4": {
+      "alt": "A picture of a croissant on a breakfast table.",
+      "identifier": "building-an-object-detector-data-source-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46c42d0543a634784b3727dde375217a/building-an-object-detector-data-source-4@2x.png"
+        }
+      ]
+    },
+    "building-an-object-detector-data-source-5": {
+      "alt": "A picture of a waffle on a breakfast table. This particular annotation has the origin in the top left.",
+      "identifier": "building-an-object-detector-data-source-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e554515229714e84c8f9efdfce9d309/building-an-object-detector-data-source-5@2x.png"
+        }
+      ]
+    },
+    "building-an-object-detector-data-source-7": {
+      "alt": "Screenshot of Create ML App showing a folder dragged into the training well for Object Detection.",
+      "identifier": "building-an-object-detector-data-source-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00aae46d22966c3c16840b9f7da115ac/building-an-object-detector-data-source-7@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector": {
+      "abstract": [
+        {
+          "text": "A model you train to classify one or more objects within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/AnnotationType": {
+      "abstract": [
+        {
+          "text": "The available types of image annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotationType"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/AnnotationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector.AnnotationType",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector/annotationtype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/building-an-object-detector-data-source"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

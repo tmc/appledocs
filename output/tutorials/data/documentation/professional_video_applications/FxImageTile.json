@@ -1,0 +1,2382 @@
+{
+  "abstract": [
+    {
+      "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)FxImageTile",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FxImageTile"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FxImageTile"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "FxPlug"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "FxImageTile"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Unsupported OS: FxPlug"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will receive all images as ",
+              "type": "text"
+            },
+            {
+              "code": "FxImageTile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. These are passed to effects to describe tiles within the full image that need to be rendered. The image data is contained in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This property may be nil during calls to the plug-in to gather information rather than rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually": {
+      "abstract": [
+        {
+          "text": "Create your own plug-in in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/building-an-fxplug-plug-in-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an FxPlug plug-in manually",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/building-an-fxplug-plug-in-manually"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Maintain consistent rendering at all resolutions and aspect ratios by using pixel transforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/optimizing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Register and render FxPlug plug-ins with Motion and Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/using-out-of-process-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Using out-of-process FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/using-out-of-process-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError": {
+      "abstract": [
+        {
+          "text": "Errors returned by plug-in hosts applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxError"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxError",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxerror"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxEyeType": {
+      "abstract": [
+        {
+          "text": "Identifies which eye is being sent from a stereoscopic project.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxEyeType"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxEyeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxEyeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxEyeType",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxeyetype"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile": {
+      "abstract": [
+        {
+          "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTile",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/colorSpace": {
+      "abstract": [
+        {
+          "text": "The CGColorSpaceRef that matches the color space used in creating the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/colorSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/colorspace"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID": {
+      "abstract": [
+        {
+          "text": "The registryID of the Metal device or OpenGL renderer used to create this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceRegistryID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceRegistryID"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceRegistryID",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/deviceregistryid"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/eyeType": {
+      "abstract": [
+        {
+          "text": "The stereoscopic eye type of the image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eyeType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@FxEyeType",
+          "text": "FxEyeType"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/eyeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eyeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "eyeType",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/eyetype"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/field": {
+      "abstract": [
+        {
+          "text": "Which field of the image this is.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "field"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxField",
+          "text": "FxField"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/field",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "field"
+        }
+      ],
+      "role": "symbol",
+      "title": "field",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/field"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/fieldOrder": {
+      "abstract": [
+        {
+          "text": "What the field order of the image is.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxFieldOrder",
+          "text": "FxFieldOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/fieldOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fieldOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "fieldOrder",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/fieldorder"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageOrigin": {
+      "abstract": [
+        {
+          "text": "The origin of the image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageOrigin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxImageOrigin",
+          "text": "FxImageOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageOrigin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageOrigin"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageOrigin",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/imageorigin"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imagePixelBounds": {
+      "abstract": [
+        {
+          "text": "The pixel bounds of the entire image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePixelBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imagePixelBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePixelBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePixelBounds",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/imagepixelbounds"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageSource": {
+      "abstract": [
+        {
+          "text": "Whether this image tile is from an effect source or an image well parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@FxImageTileRequestSource",
+          "text": "FxImageTileRequestSource"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageSource",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/imagesource"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/inversePixelTransform": {
+      "abstract": [
+        {
+          "text": "The inverse of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelTransform",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inversePixelTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxMatrix44",
+          "text": "FxMatrix44"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/inversePixelTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inversePixelTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "inversePixelTransform",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/inversepixeltransform"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface": {
+      "abstract": [
+        {
+          "text": "The surface object to cast as a surface reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IOSurface",
+          "text": "IOSurface"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        }
+      ],
+      "role": "symbol",
+      "title": "ioSurface",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/iosurface"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/mediaTime": {
+      "abstract": [
+        {
+          "text": "The media time of this image tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/mediaTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaTime",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/mediatime"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/metalTexture(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieve a Metal texture from the IOSurface for rendering on the passed-in device. The returned texture is autoreleased.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metalTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")!) -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/metalTexture(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metalTextureForDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metalTexture(for:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/metaltexture(for:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/openGLTexture(forContext:)": {
+      "abstract": [
+        {
+          "text": "Retrieve an OpenGL texture from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for rendering with the passed-in context. You are responsible for deleting this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openGLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGLContextObj",
+          "text": "CGLContextObj"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLuint",
+          "text": "GLuint"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/openGLTexture(forContext:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openGLTextureForContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openGLTexture(forContext:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/opengltexture(forcontext:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/parameterID": {
+      "abstract": [
+        {
+          "text": "The parameter ID of the image well parameter of the source of this image tile. ",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it is the effect source and not from a parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/parameterID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterID"
+        }
+      ],
+      "role": "symbol",
+      "title": "parameterID",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/parameterid"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelAspect": {
+      "abstract": [
+        {
+          "text": "The ratio of the width of each pixel to its height.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelAspect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelAspect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelAspect"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelAspect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/pixelaspect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelTransform": {
+      "abstract": [
+        {
+          "text": "The transformation between pixel units and idealized, 100% scale, square pixel image units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxMatrix44",
+          "text": "FxMatrix44"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelTransform",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/pixeltransform"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/requestError": {
+      "abstract": [
+        {
+          "text": "Any errors that occurred from the image request. Can be nil if there were no errors or errors are not applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/requestError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestError"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestError",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/requesterror"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleX": {
+      "abstract": [
+        {
+          "text": "The horizontal scale value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleX",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaleX"
+        }
+      ],
+      "role": "symbol",
+      "title": "scaleX",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/scalex"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleY": {
+      "abstract": [
+        {
+          "text": "The vertical scale value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleY",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaleY"
+        }
+      ],
+      "role": "symbol",
+      "title": "scaleY",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/scaley"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/tilePixelBounds": {
+      "abstract": [
+        {
+          "text": "The pixel bounds of this tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tilePixelBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/tilePixelBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tilePixelBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "tilePixelBounds",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile/tilepixelbounds"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest": {
+      "abstract": [
+        {
+          "text": "An image tile request object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTileRequest",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetilerequest"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequestSource": {
+      "abstract": [
+        {
+          "text": "An enumeration that identifies the requested frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequestSource"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequestSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequestSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTileRequestSource",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetilerequestsource"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Exchanging-Image-Tiles-Between-Host-and-Plug-in",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest"
+      ],
+      "title": "Exchanging Image Tiles Between Host and Plug-in"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/eyeType",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/field",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/fieldOrder",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageOrigin",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imagePixelBounds",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageSource",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/inversePixelTransform",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/mediaTime",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/parameterID",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelTransform",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/requestError",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/tilePixelBounds",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/colorSpace",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelAspect",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleX",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleY"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/metalTexture(for:)",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/openGLTexture(forContext:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxEyeType",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequestSource"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/deviceRegistryID",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/eyeType",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/field",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/fieldOrder",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageOrigin",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imagePixelBounds",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/imageSource",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/inversePixelTransform",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/ioSurface",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/mediaTime",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/parameterID",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelTransform",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/requestError",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/tilePixelBounds",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/colorSpace",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/pixelAspect",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleX",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/scaleY"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/metalTexture(for:)",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile/openGLTexture(forContext:)"
+              ],
+              "title": "Instance Methods"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxError",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxEyeType",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequestSource"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Exchanging-Image-Tiles-Between-Host-and-Plug-in",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest"
+              ],
+              "title": "Exchanging Image Tiles Between Host and Plug-in"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Unsupported OS: FxPlug"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "FxImageTile"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/title",
+          "value": "FxImageTileRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTileRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTileRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/title",
+          "value": "FxError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1eyeType/title",
+          "value": "eyeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1eyeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "eyeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1fieldOrder/title",
+          "value": "fieldOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1fieldOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fieldOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1mediaTime/title",
+          "value": "mediaTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1mediaTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1requestError/title",
+          "value": "requestError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1requestError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequestSource/title",
+          "value": "FxImageTileRequestSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequestSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTileRequestSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxEyeType/title",
+          "value": "FxEyeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxEyeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxEyeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imageSource/title",
+          "value": "imageSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imageSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1scaleX/title",
+          "value": "scaleX"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1scaleX/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scaleX"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imagePixelBounds/title",
+          "value": "imagePixelBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imagePixelBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imagePixelBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1field/title",
+          "value": "field"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1field/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "field"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1metalTexture(for:)/title",
+          "value": "metalTextureForDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1metalTexture(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "metalTextureForDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1pixelTransform/title",
+          "value": "pixelTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1pixelTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1parameterID/title",
+          "value": "parameterID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1parameterID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parameterID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1openGLTexture(forContext:)/title",
+          "value": "openGLTextureForContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1openGLTexture(forContext:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openGLTextureForContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imageOrigin/title",
+          "value": "imageOrigin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1imageOrigin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageOrigin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1inversePixelTransform/title",
+          "value": "inversePixelTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1inversePixelTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inversePixelTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1tilePixelBounds/title",
+          "value": "tilePixelBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1tilePixelBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tilePixelBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1deviceRegistryID/title",
+          "value": "deviceRegistryID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1deviceRegistryID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceRegistryID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1scaleY/title",
+          "value": "scaleY"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1scaleY/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scaleY"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1pixelAspect/title",
+          "value": "pixelAspect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1pixelAspect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelAspect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1colorSpace/title",
+          "value": "colorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1colorSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1ioSurface/title",
+          "value": "ioSurface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile~1ioSurface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ioSurface"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fximagetile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional_video_applications/fximagetile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

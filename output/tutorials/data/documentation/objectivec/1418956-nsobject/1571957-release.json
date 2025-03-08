@@ -1,0 +1,467 @@
+{
+  "abstract": [
+    {
+      "text": "Decrements the receiver’s reference count.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571957-release"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1571957,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSObject(im)release",
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "intfm",
+    "title": "release"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "oneway"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "release"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The receiver is sent a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message when its reference count reaches ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You would only implement this method to define your own reference-counting scheme. Such implementations should not invoke the inherited method; that is, they should not include a release message to ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the reference counting mechanism, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695206",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770407",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of using manual reference counting, you should adopt ARC—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746459",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695206": {
+      "identifier": "devLink-1695206",
+      "title": "Advanced Memory Management Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i"
+    },
+    "devLink-1746459": {
+      "identifier": "devLink-1746459",
+      "title": "Transitioning to ARC Release Notes",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain": {
+      "abstract": [
+        {
+          "text": "Increments the receiver’s reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "retain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "retain",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571946-retain"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571951-autorelease": {
+      "abstract": [
+        {
+          "text": "Decrements the receiver’s retain count at the end of the current autorelease pool block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "autorelease"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571951-autorelease",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "autorelease",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571951-autorelease"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571952-retaincount": {
+      "abstract": [
+        {
+          "text": "Do not use this method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "retainCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571952-retaincount",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "retainCount",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571952-retaincount"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571954-zone": {
+      "abstract": [
+        {
+          "text": "Zones are deprecated and ignored by most classes that have it as a parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "zone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571954-zone",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "zone",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571954-zone"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571957-release": {
+      "abstract": [
+        {
+          "text": "Decrements the receiver’s reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "release"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571957-release",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571957-release"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dealloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dealloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571947-dealloc"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain",
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571951-autorelease",
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571952-retaincount",
+        "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571954-zone"
+      ],
+      "title": "Obsolete Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/1418956-nsobject/1571957-release"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

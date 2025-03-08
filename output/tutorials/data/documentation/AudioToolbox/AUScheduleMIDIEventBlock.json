@@ -1,0 +1,1221 @@
+{
+  "abstract": [
+    {
+      "text": "A block to schedule MIDI events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUScheduleMIDIEventBlock"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@AUScheduleMIDIEventBlock",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AUScheduleMIDIEventBlock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AUScheduleMIDIEventBlock"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "AUScheduleMIDIEventBlock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AUScheduleMIDIEventBlock"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUEventSampleTime",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AUEventSampleTime",
+              "text": "AUEventSampleTime"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5UInt8V",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5UInt8V",
+              "text": "UInt8"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SP",
+              "text": "UnsafePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5UInt8V",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5UInt8V",
+              "text": "UInt8"
+            },
+            {
+              "kind": "text",
+              "text": ">) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The block takes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The sample time at which the MIDI event is to occur. When scheduling parameters during the render cycle, this time can be set to the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AUEventSampleTimeImmediate",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " value plus an optional buffer offset, in which case the event is scheduled at that position in the current render cycle.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "eventSampleTime",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The virtual cable number.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "cable",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of bytes of MIDI data in the provided event(s).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "length",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "One or more valid MIDI 1.0 events, except ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "sysex",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " which must always be sent as the only event in the chunk. Running status is not allowed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "midiBytes",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isMusicDeviceOrEffect": {
+      "abstract": [
+        {
+          "text": "Specifies whether an audio unit responds to MIDI events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMusicDeviceOrEffect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isMusicDeviceOrEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "musicDeviceOrEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMusicDeviceOrEffect",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/ismusicdeviceoreffect"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "midiOutputEventBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AUMIDIOutputEventBlock",
+          "text": "AUMIDIOutputEventBlock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIOutputEventBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "midiOutputEventBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/midioutputeventblock"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputNames": {
+      "abstract": [
+        {
+          "text": "The names of the MIDI outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "midiOutputNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputNames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIOutputNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "midiOutputNames",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/midioutputnames"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventBlock": {
+      "abstract": [
+        {
+          "text": "A block used to schedule MIDI events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleMIDIEventBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AUScheduleMIDIEventBlock",
+          "text": "AUScheduleMIDIEventBlock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleMIDIEventBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduleMIDIEventBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/schedulemidieventblock"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/virtualMIDICableCount": {
+      "abstract": [
+        {
+          "text": "The number of virtual MIDI cables implemented by a music device or effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "virtualMIDICableCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/virtualMIDICableCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualMIDICableCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "virtualMIDICableCount",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/virtualmidicablecount"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUEventSampleTime": {
+      "abstract": [
+        {
+          "text": "Expresses time as a sample count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUEventSampleTime"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUEventSampleTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUEventSampleTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUEventSampleTime",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/aueventsampletime"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUMIDIOutputEventBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUMIDIOutputEventBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUMIDIOutputEventBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUMIDIOutputEventBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUMIDIOutputEventBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/aumidioutputeventblock"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUScheduleMIDIEventBlock": {
+      "abstract": [
+        {
+          "text": "A block to schedule MIDI events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUScheduleMIDIEventBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUScheduleMIDIEventBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUScheduleMIDIEventBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUScheduleMIDIEventBlock",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auschedulemidieventblock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SP": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafePointer"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    },
+    "doc://com.externally.resolved.symbol/s:s5UInt8V": {
+      "abstract": [
+        {
+          "text": "An 8-bit unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5UInt8V",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt8",
+      "type": "topic",
+      "url": "/documentation/Swift/UInt8"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-MIDI-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isMusicDeviceOrEffect",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/virtualMIDICableCount",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventBlock",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputNames",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUMIDIOutputEventBlock"
+      ],
+      "title": "Managing MIDI Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AUScheduleMIDIEventBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUScheduleMIDIEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUScheduleMIDIEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-MIDI-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/isMusicDeviceOrEffect",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/virtualMIDICableCount",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/scheduleMIDIEventBlock",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputEventBlock",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/midiOutputNames",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUMIDIOutputEventBlock"
+              ],
+              "title": "Managing MIDI Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:BFv(#K#c#L#*1c)",
+                    "text": "void (^)(long long, unsigned char, long, const unsigned char *)"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AUScheduleMIDIEventBlock"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1virtualMIDICableCount/title",
+          "value": "virtualMIDICableCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1virtualMIDICableCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualMIDICableCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUEventSampleTime/title",
+          "value": "AUEventSampleTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUEventSampleTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUEventSampleTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUEventSampleTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUEventSampleTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUScheduleMIDIEventBlock/title",
+          "value": "AUScheduleMIDIEventBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUScheduleMIDIEventBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUScheduleMIDIEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUScheduleMIDIEventBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUScheduleMIDIEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1isMusicDeviceOrEffect/title",
+          "value": "musicDeviceOrEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1isMusicDeviceOrEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "musicDeviceOrEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1midiOutputNames/title",
+          "value": "MIDIOutputNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1midiOutputNames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIOutputNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1midiOutputEventBlock/title",
+          "value": "MIDIOutputEventBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1midiOutputEventBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIOutputEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1scheduleMIDIEventBlock/title",
+          "value": "scheduleMIDIEventBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit~1scheduleMIDIEventBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scheduleMIDIEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUMIDIOutputEventBlock/title",
+          "value": "AUMIDIOutputEventBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUMIDIOutputEventBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUMIDIOutputEventBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUMIDIOutputEventBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUMIDIOutputEventBlock"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/auschedulemidieventblock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/auschedulemidieventblock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

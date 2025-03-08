@@ -1,0 +1,2352 @@
+{
+  "abstract": [
+    {
+      "text": "Learn the Common Media Application Format as it applies to HLS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About the Common Media Application Format with HTTP Live Streaming (HLS)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Common Media Application Format (CMAF) for segmented media is an extensible standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the encoding and packaging of segmented media objects for delivery and decoding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on end user devices in adaptive multimedia presentations. Delivery and presentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are abstracted by a hypothetical application model that allows a wide range of implementations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including HLS and MPEG’s Dynamic Adaptive Streaming over HTTP (MPEG DASH). The CMAF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specification defines several logical media objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Track:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Tracks contain encoded media samples, including audio, video, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subtitles. Media samples are stored in a CMAF specified container derived from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ISO Base Media File Format. Media samples may optionally be protected by MPEG Common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Encryption. Tracks are made up of a CMAF Header and one or more CMAF Fragments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Switching Set:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Switching sets contain alternative tracks that can be switched",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and spliced at CMAF Fragment boundaries to adaptively stream the same content at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different bit rates and resolutions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Aligned CMAF Switching Set:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Two or more CMAF Switching Sets encoded from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same source with alternative encodings, for example, different codecs, and time aligned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Selection Set:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A group of switching sets of the same media type that may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include alternative content (for example, different languages or camera angles) or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "alternative encodings (for example, different codecs).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Presentation:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " One or more presentation time synchronized selection sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A presentation is the first point where different media types can be combined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CMAF Hypothetical Reference Model defines how tracks can be delivered, combined,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and synchronized in CMAF Presentations, but the model allows the use of any compatible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementation. It’s possible to create HLS Playlists and a DASH Media Presentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Description that share the same resources, CMAF Addressable Objects, thereby allowing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "efficient caching even when delivering to multiple platforms. CMAF Addressable Media",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects consist of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Header:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Headers contain information that includes information for initializing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Segment:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A sequence of one or more consecutive fragments from the same track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Chunk:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A chunk contains a sequential subset of samples from a fragment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "CMAF Track File:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A complete track in one ISO_BMFF file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "about-the-common-media-application-format-with-http-live-streaming-hls-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-for-CMAF",
+          "level": 3,
+          "text": "Support for CMAF",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple’s HLS specification is a published RFC, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.rfc-editor.org/info/rfc8216",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, HLS continues to evolve, so there’s an updated draft specification — ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HLS specification defined support for fragmented MPEG-4 Segments (ISO_BMFF) in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "September 2016. Clients based on earlier revisions will likely not be able to handle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CMAF content. Apple hardware running iOS 10.0, macOS 10.12, and tvOS 10.0 or later",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "OS versions should support CMAF content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "HLS was originally specified in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/draft-pantos-http-live-streaming",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "That document was superseded by RFC 8216.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manifests-resources-and-CMAF-presentations",
+          "level": 3,
+          "text": "Manifests, resources, and CMAF presentations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In HLS, the role of the Manifest is divided between the HLS Multivariant Playlist",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the Media Playlists it references. They describe a single CMAF Presentation or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a sequence of CMAF Presentations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an HLS Multivariant Playlist, ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags define different tiers of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the presentation. Tiers are distinguished by bit rate, required codecs, resolution,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and other attributes. Each tier specifies an HLS Media Playlist. Each tier may also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicate additional HLS Renditions, which are Media Playlists described in ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tags that are available for selection while playing that tier. For example, an audio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rendition can be used to supply audio if the tier’s Media Playlist only contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video; a group of audio Renditions can be used to offer a selection of different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "language tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because CMAF Segments can’t, in general, contain multiple media types, ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tags need to be used to associate audio and subtitle Playlists with video, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is usually in the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag’s Media Playlist. The same Rendition can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be used by several ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags; for instance, multiple video tiers can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify the same audio Rendition. Alternately, higher bit rate video tiers can specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "separate, higher bit rate audio Renditions so that audio quality scales with video",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "quality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "CMAF-Tracks-Segments-Headers-and-Fragments",
+          "level": 3,
+          "text": "CMAF Tracks, Segments, Headers, and Fragments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There should be one HLS Media Playlist per CMAF Track. In HLS Media Playlists, CMAF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Segments are used as HLS Segments. There has to be an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MAP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag applied to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each HLS Segment; the tag points to a CMAF Header that’s appropriate for all CMAF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Fragments inside the HLS Segment. Since all CMAF Fragments are independently decodable,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their HLS Playlists should contain an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-INDEPENDENT-SEGMENTS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "media is encrypted, EXT-X-SESSION-KEY tags should be included in the Multivariant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Playlist to enable prefetching of keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-BYTERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag can be used to indicate that an HLS Segment is a byte range",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside a larger resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Media Segments inside ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-I-FRAMES-ONLY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Playlists start on a CMAF Fragment boundary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The",
+              "type": "text"
+            },
+            {
+              "code": " EXT-X-DISCONTINUITY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag can be used to concatenate multiple CMAF Tracks of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same media type in a Media Playlist. Each discontinuity demarcates a boundary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between successive CMAF Presentations. A discontinuity allows the resetting of presentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timestamps and other characteristics. Many changes can require a discontinuity, for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, switching from Sample Encryption to unencrypted. A new ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MAP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "usually required after a discontinuity. For further information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "overridingTitle": "HLS specification",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HLS specification",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For fragmented MPEG-4 Segments, an ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXT-X-KEY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "METHOD=SAMPLE-AES",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "attribute indicates that the Segment is encrypted using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "‘cbcs’",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " scheme  in ISO/IEC",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "23001-7.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HLS supports all CMAF subtitle and caption formats, except for IMSC1 Image Tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include one or more Event Message boxes (",
+              "type": "text"
+            },
+            {
+              "code": "‘emsg’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in each segment. You must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use version 1 of the Event Message box standard found in ISO-23009-1. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values define the semantics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "https://aomedia.org/emsg/ID3",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to identify boxes that carry ID3v2 metadata.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scheme_id_uri",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The URI that defines the semantics of the ID field. Any relative URI is considered to be relative to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "scheme_id_uri",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "value",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Contains data compatible with ID3 version 2.x.x.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "message_data",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "CMAF-Switching-Sets",
+          "level": 3,
+          "text": "CMAF Switching Sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Track in a video CMAF Switching Set should appear in the Multivariant Playlist",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a Media Playlist URI prefixed by an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag describing it. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag should also specify any other renditions, such as audio that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are intended to play with the video by indicating an appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA GROUP-ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Track in an audio CMAF Switching Set should be represented in the Multivariant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Playlist by an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. The URI attribute of the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag should",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be a URI to that Track’s Media Playlist. It has to have a ",
+              "type": "text"
+            },
+            {
+              "code": "GROUP-ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allows it to be associated with one or more ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags, which specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video tiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "CMAF-Selection-Sets",
+          "level": 3,
+          "text": "CMAF Selection Sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In HLS, when multiple codecs are offered, ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags in the Multivariant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Playlist are typically arranged in sets of parallel tiers, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "low-bitrate-codec-A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "code": " high-bitrate-codec-A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "low-bitrate-codec-B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "high-bitrate-codec-B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CMAF Selection Sets generally offer either alternate encodings of the same source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content (for example, encoded with different codecs) or homogenous encodings of different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions of the source content (for example, different audio language tracks).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Selection Sets offering codec variants, each Switching Set in the Selection Set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should appear as a set of ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags, for video, or a set of ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tags, for other media types. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls#CMAF-Switching-Sets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Selection Sets offering source variants, each Track of a member Switching Set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should appear as an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. Tracks encoded with the same settings should",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "get the same ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA GROUP-ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, a Selection Set containing French",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and English Switching Sets, with just one Track in each Switching Set, should appear",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as two ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags with the same ",
+              "type": "text"
+            },
+            {
+              "code": "GROUP-ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more ",
+              "type": "text"
+            },
+            {
+              "code": "EXT_X_MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag rules,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.rfc-editor.org/info/rfc8216",
+              "isActive": true,
+              "overridingTitle": "RFC 8216",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "RFC 8216",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "overridingTitle": "HTTP Live Streaming 2nd Edition",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HTTP Live Streaming",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "2nd Edition",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "CMAF-Presentation-Profiles",
+          "level": 3,
+          "text": "CMAF Presentation Profiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CMAF specification defines three presentation profiles: unencrypted, encrypted",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "code": "‘cbcs’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and encrypted with ",
+              "type": "text"
+            },
+            {
+              "code": "‘cenc’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". HLS supports unencrypted and encrypted",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "code": "‘cbcs’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "HLS-example",
+          "level": 3,
+          "text": "HLS example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, there’s a video CMAF Track containing 29.97 fps video in 60-frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GOPs, each 2.002 seconds long. Each GOP forms a CMAF Fragment. The CMAF Fragments,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "V1, V2, V3, V4, and V5, total 10.010 seconds of video. Their CMAF Header is ",
+              "type": "text"
+            },
+            {
+              "code": "VH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accompanying the video is an English audio CMAF Track consisting of an English CMAF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Header, ",
+              "type": "text"
+            },
+            {
+              "code": "EH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and five audio CMAF Fragments: E1, E2, E3, E4, and E5, encoded at a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample rate of 44.1 Khz. Each CMAF Segment is 86 AAC frames, with a duration of 1.997",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "seconds each, except for E5, which has 87 frames, for a total of 10.008 seconds of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio. There are also five French audio CMAF Fragments — F1, F2, F3, F4, and F5 —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a French CMAF Header, ",
+              "type": "text"
+            },
+            {
+              "code": "FH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CMAF Fragments have been packaged into three CMAF Segments per track for delivery",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and those CMAF Resources identified as HLS segments: ",
+              "type": "text"
+            },
+            {
+              "code": "V1andV",
+              "type": "codeVoice"
+            },
+            {
+              "text": "2, ",
+              "type": "text"
+            },
+            {
+              "code": "V3andV4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "V5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ";",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "E1andE2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "E3andE4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "E5",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, there’s a high quality video Track containing CMAF Fragments: ",
+              "type": "text"
+            },
+            {
+              "code": "VHQ1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "VHQ2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "VHQ3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "VHQ4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "VHQ5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with Header ",
+              "type": "text"
+            },
+            {
+              "code": "VHQH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", packaged and identified similarly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two video Tracks, V and VHQ, are CMAF Switching Sets. Each audio Track can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be considered a Switching Set, with only one member. Together, both audio Switching",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Sets form a CMAF Selection Set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Media Playlists",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HLS Media Playlist for the regular video Track ",
+              "type": "text"
+            },
+            {
+              "code": "video.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would be as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:4",
+            "#EXT-X-VERSION:6",
+            "#EXT-X-PLAYLIST-TYPE:VOD",
+            "#EXT-X-MAP:URI=\"VH\"",
+            "#EXTINF:4.004,",
+            "V1andV2",
+            "#EXTINF:4.004,",
+            "V3andV4",
+            "#EXTINF:2.002,",
+            "V5",
+            "#EXT-X-ENDLIST"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Media Playlist for the high quality video Track ",
+              "type": "text"
+            },
+            {
+              "code": "video-hq.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would be similar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Media Playlist for the English audio Track ",
+              "type": "text"
+            },
+            {
+              "code": "english.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would be as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:4",
+            "#EXT-X-VERSION:6",
+            "#EXT-X-PLAYLIST-TYPE:VOD",
+            "#EXT-X-MAP:URI=\"EH\"",
+            "#EXTINF:3.9938,",
+            "E1andE2",
+            "#EXTINF:3.9938,",
+            "E3andE4",
+            "#EXTINF:2.0201,",
+            "E5",
+            "#EXT-X-ENDLIST"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Media Playlist the French audio Track ",
+              "type": "text"
+            },
+            {
+              "code": "french.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would be similar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Basic Multivariant Playlist",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HLS Multivariant Playlist might look like the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-VERSION:6",
+            "#EXT-X-INDEPENDENT-SEGMENTS",
+            "",
+            "#EXT-X-MEDIA:NAME=\"English\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-64\",LANGUAGE=\"en\",DEFAULT=YES,AUTOSELECT=YES,URI=\"english.m3u8\"",
+            "#EXT-X-MEDIA:NAME=\"Français\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-64\",LANGUAGE=\"fr\",DEFAULT=NO,AUTOSELECT=YES,URI=\"french.m3u8\"",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=1123000,CODECS=\"avc1.64001f,mp4a.40.2\",AUDIO=\"audio-stereo-64\",RESOLUTION=620x334",
+            "video.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=8123000,CODECS=\"avc1.640028,mp4a.40.2\",AUDIO=\"audio-stereo-64\",RESOLUTION=1916x1032",
+            "video-hq.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Multivariant Playlist with Codec Variants",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "We could also supply HEVC versions of ",
+              "type": "text"
+            },
+            {
+              "code": "video.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "video-hq.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and perhaps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "give the high-bandwidth tier better-quality audio. Then the Multivariant Playlist",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might look like the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-VERSION:6",
+            "#EXT-X-INDEPENDENT-SEGMENTS",
+            "",
+            "#EXT-X-MEDIA:NAME=\"English\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-64\",LANGUAGE=\"en\",DEFAULT=YES,AUTOSELECT=YES,URI=\"english.m3u8\"",
+            "#EXT-X-MEDIA:NAME=\"Français\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-64\",LANGUAGE=\"fr\",DEFAULT=NO,AUTOSELECT=YES,URI=\"french.m3u8\"",
+            "",
+            "#EXT-X-MEDIA:NAME=\"English\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-128\",LANGUAGE=\"en\",DEFAULT=YES,AUTOSELECT=YES,URI=\"english-hi.m3u8\"",
+            "#EXT-X-MEDIA:NAME=\"Français\",TYPE=AUDIO,GROUP-ID=\"audio-stereo-128\",LANGUAGE=\"fr\",DEFAULT=NO,AUTOSELECT=YES,URI=\"french-hi.m3u8\"",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=1123000,CODECS=\"avc1.64001f,mp4a.40.2\", AUDIO=\"audio-stereo-64\",RESOLUTION=620x334",
+            "video.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=8187000,CODECS=\"avc1.640028,mp4a.40.2\", AUDIO=\"audio-stereo-128\",RESOLUTION=1916x1032",
+            "video-hq.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=623000, CODECS=\"hvc1.1.6.L120.B0,mp4a.40.2\",AUDIO=\"audio-stereo-64\", RESOLUTION=620x334",
+            "hevc-video.m3u8",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=4187000, CODECS=\"hvc1.1.6.L120.B0,mp4a.40.2\",AUDIO=\"audio-stereo-128\", RESOLUTION=1916x1032",
+            "hevc-video-hq.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example illustrates how CMAF Selection Sets can appear as separate Renditions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "english.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "french.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or as separate sets of tiers distinguished by different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "required codecs: ",
+              "type": "text"
+            },
+            {
+              "code": "{video.m3u8, video-hq.m3u8}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the AVC Switching Set; ",
+              "type": "text"
+            },
+            {
+              "code": "{hevc-video.m3u8, hevc-video-hq.m3u8",
+              "type": "codeVoice"
+            },
+            {
+              "text": "} is the HEVC Switching Set. Together they form a Selection Set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that allows selection by codec.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "about-the-common-media-application-format-with-http-live-streaming-hls-1": {
+      "alt": "Flow diagram showing the relationship between specified CMAF objects and non-specified CMAF objects. Manifests have resources that point to addressable CMAF media objects.",
+      "identifier": "about-the-common-media-application-format-with-http-live-streaming-hls-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f5d2903e4044f39f21a7df734b9ef2e/about-the-common-media-application-format-with-http-live-streaming-hls-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c16d062ae472249b042d2ae0e6a6a93e/about-the-common-media-application-format-with-http-live-streaming-hls-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls#CMAF-Switching-Sets": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls#CMAF-Switching-Sets",
+      "kind": "section",
+      "title": "CMAF Switching Sets",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls#CMAF-Switching-Sets"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness": {
+      "abstract": [
+        {
+          "text": "Adjust anchor loudness when measurements of speech-gated loudness for a full mix",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may be inaccurate, such as when speech activity is low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting anchor loudness",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/adjusting-anchor-loudness"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Add Low-Latency HLS to your content streams to maintain scalability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Low-Latency HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos": {
+      "abstract": [
+        {
+          "text": "Review additional specifications and documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+      "kind": "article",
+      "role": "article",
+      "title": "Links to additional specifications and videos",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/links-to-additional-specifications-and-videos"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters": {
+      "abstract": [
+        {
+          "text": "Prepare JSON chapters for HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing JavaScript Object Notation (JSON) chapters",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-javascript-object-notation-json-chapters"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks": {
+      "abstract": [
+        {
+          "text": "Ensure volume normalization by including metadata for loudness and dynamic range",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing metadata for xHE-AAC video soundtracks",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-metadata-for-xhe-aac-video-soundtracks"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls": {
+      "abstract": [
+        {
+          "text": "Adding encryption keys to media playlists",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Using content protection systems with HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls": {
+      "abstract": [
+        {
+          "text": "Review informational videos about HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Videos about HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/videos-about-hls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+      "title": "draft-pantos-hls-rfc8216bis",
+      "titleInlineContent": [
+        {
+          "text": "draft-pantos-hls-rfc8216bis",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis"
+    },
+    "https://tools.ietf.org/html/draft-pantos-http-live-streaming": {
+      "identifier": "https://tools.ietf.org/html/draft-pantos-http-live-streaming",
+      "title": "draft-pantos-http-live-streaming",
+      "titleInlineContent": [
+        {
+          "text": "draft-pantos-http-live-streaming",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/draft-pantos-http-live-streaming"
+    },
+    "https://www.rfc-editor.org/info/rfc8216": {
+      "identifier": "https://www.rfc-editor.org/info/rfc8216",
+      "title": "RFC 8216",
+      "titleInlineContent": [
+        {
+          "text": "RFC 8216",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.rfc-editor.org/info/rfc8216"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifications-and-other-documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters"
+      ],
+      "title": "Specifications and other documents"
+    }
+  ]
+}

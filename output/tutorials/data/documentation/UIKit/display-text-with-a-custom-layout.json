@@ -1,0 +1,2528 @@
+{
+  "abstract": [
+    {
+      "text": "Lay out text in a custom-shaped container and apply glyph substitutions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/textkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/display-text-with-a-custom-layout"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Display text with a custom layout"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some apps, such as book and magazine readers, text editors, and games, may need to lay out their text in a way that better fits their app style. TextKit provides a set of APIs for these apps to implement a custom text layout. This sample demonstrates how to use the APIs to display text in a circular container and in a two-column container, how to set up an exclusive area for a text container, and how to substitute a glyph without changing the text storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-a-custom-shaped-text-container",
+          "level": 3,
+          "text": "Implement a custom-shaped text container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When laying out a line of text, TextKit calls the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineFragmentRect(forProposedRect:at:writingDirection:remaining:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the position and size of the line, which TextKit calls a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "line fragment rectangle",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". By creating a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to return a custom line fragment rectangle in the method, apps can implement a custom-shaped text container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "CircleTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to implement a circular text container. To calculate a line fragment rectangle that fits in the inscribed circle of the container’s bounds, the class calls the implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to retrieve the default rectangle, then adjusts its ",
+              "type": "text"
+            },
+            {
+              "code": "origin.x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " according to the current line origin and container size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func lineFragmentRect(forProposedRect proposedRect: CGRect,",
+            "                               at characterIndex: Int,",
+            "                               writingDirection baseWritingDirection: NSWritingDirection,",
+            "                               remaining remainingRect: UnsafeMutablePointer<CGRect>?) -> CGRect {",
+            "    let rect = super.lineFragmentRect(forProposedRect: proposedRect,",
+            "                                      at: characterIndex,",
+            "                                      writingDirection: baseWritingDirection,",
+            "                                      remaining: remainingRect)",
+            "    let containerWidth = Float(size.width), containerHeight = Float(size.height)",
+            "",
+            "    let diameter = fminf(containerWidth, containerHeight)",
+            "    let radius = diameter / 2.0",
+            "    ",
+            "    // Vertical distance from the line center to the container center.",
+            "    let yDistance = fabsf(Float(rect.origin.y + rect.size.height / 2.0) - radius)",
+            "    // The new line width.",
+            "    let width = (yDistance < radius) ? 2.0 * sqrt(radius * radius - yDistance * yDistance) : 0.0",
+            "    // Horizontal distance from rect.origin.x to the starting point of the line.",
+            "    let xOffset = (containerWidth > diameter) ? (containerWidth - diameter) / 2.0 : 0.0",
+            "    // The starting x of the line.",
+            "    let xPosition = CGFloat(xOffset + Float(rect.origin.x) + radius - width / 2.0)",
+            "    return CGRect(x: xPosition, y: CGFloat(rect.origin.y), width: CGFloat(width), height: rect.size.height)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Lay-out-text-with-a-custom-text-container",
+          "level": 3,
+          "text": "Lay out text with a custom text container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To lay out text with a custom text container, apps simply set up a text view with the container, and let TextKit do the rest. The  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView/init(frame:textContainer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " serves this purpose, and this sample uses it to create a ",
+              "type": "text"
+            },
+            {
+              "code": "UITextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance with its circular text container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let textContainer = CircleTextContainer(size: .zero)",
+            "textContainer.widthTracksTextView = true",
+            "",
+            "let layoutManager = NSLayoutManager()",
+            "layoutManager.addTextContainer(textContainer)",
+            "textStorage.addLayoutManager(layoutManager)",
+            "",
+            "textView = UITextView(frame: CGRect.zero, textContainer: textContainer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this configuration, the TextKit class that coordinates the layout and display of characters,  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", automatically uses the line fragment rectangles that ",
+              "type": "text"
+            },
+            {
+              "code": "CircleTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns to lay out the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSLayoutManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports laying out text in multiple text containers, so implementing a two-column layout is as easy as adding a second text container to the layout manager, as the code below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let firstTextContainer = NSTextContainer()",
+            "firstTextContainer.widthTracksTextView = true",
+            "firstTextContainer.heightTracksTextView = true",
+            "",
+            "let secondTextContainer = NSTextContainer()",
+            "secondTextContainer.widthTracksTextView = true",
+            "secondTextContainer.heightTracksTextView = true",
+            "secondTextContainer.lineBreakMode = .byTruncatingTail",
+            "",
+            "let layoutManager = NSLayoutManager()",
+            "layoutManager.addTextContainer(firstTextContainer)",
+            "layoutManager.addTextContainer(secondTextContainer)",
+            "",
+            "textStorage.addLayoutManager(layoutManager)",
+            "",
+            "let firstTextView = UITextView(frame: .zero, textContainer: firstTextContainer)",
+            "firstTextView.isScrollEnabled = false",
+            "view.addSubview(firstTextView)",
+            "",
+            "let secondTextView = UITextView(frame: .zero, textContainer: secondTextContainer)",
+            "secondTextView.isScrollEnabled = false",
+            "view.addSubview(secondTextView)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that after adding a second text container to the layout manager, the text views become uneditable and unselectable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reserve-an-area-in-a-text-container",
+          "level": 3,
+          "text": "Reserve an area in a text container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an appealing UI, some apps may have their text wrap around a certain shape. They can achieve that by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/exclusionPaths",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property from ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to reserve an exclusive area for the shape in a text container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses the following code to set up an exclusive area where ",
+              "type": "text"
+            },
+            {
+              "code": "translatedCirclePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBezierPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance using the text container’s coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "textView.textContainer.exclusionPaths = [translatedCirclePath]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Substitute-glyphs-without-changing-the-text-storage",
+          "level": 3,
+          "text": "Substitute glyphs without changing the text storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a text container doesn’t have enough space to display text, apps may need a way to indicate that the container has additional, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "overflow",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", text. A standard text container can use the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineBreakMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property from  ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add an ending ellipsis that helps handle this situation, but the property doesn’t completely support custom-shaped containers like ",
+              "type": "text"
+            },
+            {
+              "code": "CircleTextContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show an overflow indicator in its circular text container, as well as to demonstrate TextKit’s capability of glyph substitutions and layout adjustment, this sample substitutes the glyphs of the container’s ending characters with an ellipsis, and makes it the container’s last visible glyph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ending characters are the characters of the last words with a total width that is larger than an ellipsis. The characters have to be wider so that the text container has enough space to display the ellipsis. However, because they are wider, the text container has extra space after the glyph substitution, which can drag in more characters. To avoid showing text after the ellipsis, this sample implements a second glyph substitution by selecting the character next to the container’s last word, and substituting it with a control glyph that uses the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager/ControlCharacterAction/whitespace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action. Using this substitution, the character becomes a whitespace with a width that is flexible. With this flexible space character, the sample can fill up the extra space and push the extra characters to the next line, and then move the line out of the text container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The detailed implementation of the glyphs substitutions and the layout adjustment is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Begin the glyph substitutions by invalidating the glyphs and layout of the ending characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "layoutManager.invalidateGlyphs(forCharacterRange: endingWordsCharRange, changeInLength: 0,",
+            "                               actualCharacterRange: nil)",
+            "layoutManager.invalidateLayout(forCharacterRange: endingWordsCharRange,",
+            "                               actualCharacterRange: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to substitute the glyphs. TextKit calls this delegate method before storing the glyphs to give apps an opportunity to change the glyphs and their properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let ellipsisStartIndex = ellipsisIntersection.location",
+            "for index in ellipsisStartIndex..<ellipsisStartIndex + ellipsisIntersection.length {",
+            "    if index == ellipsisGlyphRange!.location {",
+            "        finalGlyphs[index - glyphRange.location] = myGlyphs[0]",
+            "    } else {",
+            "        finalProps[index - glyphRange.location] = .controlCharacter",
+            "    }",
+            "}",
+            "let flexibleSpaceStartIndex = flexibleSpaceIntersection.location",
+            "for index in  flexibleSpaceStartIndex..<flexibleSpaceStartIndex + flexibleSpaceIntersection.length {",
+            "    finalProps[index - glyphRange.location] = .controlCharacter",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldUse:forControlCharacterAt:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to return the  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSLayoutManager.ControlCharacterAction.whitespace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " action for the flexible space character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction,",
+            "                   forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {",
+            "    if let flexibleSpaceGlyphRange = self.flexibleSpaceGlyphRange,",
+            "        flexibleSpaceGlyphRange.contains(layoutManager.glyphIndexForCharacter(at: charIndex)) {",
+            "        return .whitespace",
+            "    }",
+            "    return action",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to return a bounding box that can fill up the current line fragment rectangle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func layoutManager(_ layoutManager: NSLayoutManager,",
+            "                   boundingBoxForControlGlyphAt glyphIndex: Int,",
+            "                   for textContainer: NSTextContainer,",
+            "                   proposedLineFragment proposedRect: CGRect,",
+            "                   glyphPosition: CGPoint,",
+            "                   characterIndex charIndex: Int) -> CGRect {",
+            "    guard let flexibleSpaceGlyphRange = self.flexibleSpaceGlyphRange,",
+            "        flexibleSpaceGlyphRange.contains(glyphIndex) else {",
+            "        return CGRect(x: glyphPosition.x, y: glyphPosition.y, width: 0, height: proposedRect.height)",
+            "    }",
+            "    let padding = textContainer.lineFragmentPadding * 2",
+            "    let width = proposedRect.width - (glyphPosition.x - proposedRect.minX) - padding",
+            "    let rect = CGRect(x: glyphPosition.x, y: glyphPosition.y, width: width, height: proposedRect.height)",
+            "    return rect",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to move the extra line out of the text container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func layoutManager(_ layoutManager: NSLayoutManager,",
+            "                   shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<CGRect>,",
+            "                   lineFragmentUsedRect: UnsafeMutablePointer<CGRect>,",
+            "                   baselineOffset: UnsafeMutablePointer<CGFloat>,",
+            "                   in textContainer: NSTextContainer,",
+            "                   forGlyphRange glyphRange: NSRange) -> Bool {",
+            "    guard let ellipsisGlyphRange = self.ellipsisGlyphRange,",
+            "        glyphRange.location > ellipsisGlyphRange.location else {",
+            "            return false",
+            "    }",
+            "    let originX = textContainer.size.width",
+            "    lineFragmentRect.pointee.origin = CGPoint(x: originX, y: lineFragmentRect.pointee.origin.y)",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "c94cdd160e47/DisplayTextWithACustomLayout.zip": {
+      "checksum": "c94cdd160e478b82d45b683c44a516bb8cc2c5e187906b7131b5cf106d19399fb03b0a3b61407ad491d238ff3547bf7408031c9c8979073bece31e7685219970",
+      "identifier": "c94cdd160e47/DisplayTextWithACustomLayout.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/c94cdd160e47/DisplayTextWithACustomLayout.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the layout and display of text characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutManager",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanager"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager/ControlCharacterAction/whitespace": {
+      "abstract": [
+        {
+          "text": "An action that adds whitespace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSControlCharacterAction",
+          "text": "ControlCharacterAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManager/ControlCharacterAction/whitespace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSControlCharacterActionWhitespace"
+        }
+      ],
+      "role": "symbol",
+      "title": "whitespace",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanager/controlcharacteraction/whitespace"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that delegates of layout manager objects implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanagerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)": {
+      "abstract": [
+        {
+          "text": "Returns the bounding rectangle for the specified control glyph with the specified parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundingBoxForControlGlyphAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedLineFragment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "glyphPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "characterIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:boundingboxforcontrolglyphat:for:proposedlinefragment:glyphposition:characterindex:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)": {
+      "abstract": [
+        {
+          "text": "Enables customization of the initial glyph generation process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldGenerateGlyphs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGGlyph",
+          "text": "CGGlyph"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSGlyphProperty",
+          "text": "GlyphProperty"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "characterIndexes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:shouldgenerateglyphs:properties:characterindexes:font:forglyphrange:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)": {
+      "abstract": [
+        {
+          "text": "Customizes the line fragment geometry before committing it to the layout cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldSetLineFragmentRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lineFragmentUsedRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baselineOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:shouldsetlinefragmentrect:linefragmentusedrect:baselineoffset:in:forglyphrange:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldUse:forControlCharacterAt:)": {
+      "abstract": [
+        {
+          "text": "Returns the control character action for the control character at the specified character index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldUse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSControlCharacterAction",
+          "text": "ControlCharacterAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forControlCharacterAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSControlCharacterAction",
+          "text": "ControlCharacterAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutManagerDelegate/layoutManager(_:shouldUse:forControlCharacterAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager:shouldUseAction:forControlCharacterAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager(_:shouldUse:forControlCharacterAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:shoulduse:forcontrolcharacterat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextContainer": {
+      "abstract": [
+        {
+          "text": "A region where text layout occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/exclusionPaths": {
+      "abstract": [
+        {
+          "text": "An array of path objects that represents the regions where text doesn’t display in the text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusionPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/exclusionPaths",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exclusionPaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "exclusionPaths",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextcontainer/exclusionpaths"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineBreakMode": {
+      "abstract": [
+        {
+          "text": "The behavior of the last line inside the text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineBreakMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLineBreakMode",
+          "text": "NSLineBreakMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineBreakMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineBreakMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineBreakMode",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextcontainer/linebreakmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineFragmentRect(forProposedRect:at:writingDirection:remaining:)": {
+      "abstract": [
+        {
+          "text": "Returns the bounds of a line fragment rectangle inside the text container for the proposed rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineFragmentRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forProposedRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "writingDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingDirection",
+          "text": "NSWritingDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "remaining"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextContainer/lineFragmentRect(forProposedRect:at:writingDirection:remaining:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineFragmentRect(forProposedRect:at:writingDirection:remaining:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextcontainer/linefragmentrect(forproposedrect:at:writingdirection:remaining:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutFragment",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutfragment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager": {
+      "abstract": [
+        {
+          "text": "The primary class that you use to manage text layout and presentation for custom text displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutManager",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutmanager"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the orientation of text for an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutOrientationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLayoutOrientationProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLayoutOrientationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlayoutorientationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment": {
+      "abstract": [
+        {
+          "text": "A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextLineFragment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextLineFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextLineFragment",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlinefragment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController": {
+      "abstract": [
+        {
+          "text": "Manages the layout process inside the viewport interacting with its delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextViewportLayoutController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewportLayoutController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextViewportLayoutController",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextviewportlayoutcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBezierPath": {
+      "abstract": [
+        {
+          "text": "A path that consists of straight and curved line segments that you can render in your custom views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBezierPath"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBezierPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBezierPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBezierPath",
+      "type": "topic",
+      "url": "/documentation/uikit/uibezierpath"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextView/init(frame:textContainer:)": {
+      "abstract": [
+        {
+          "text": "Creates a new text view with the specified text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView/init(frame:textContainer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:textContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(frame:textContainer:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextview/init(frame:textcontainer:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/textkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/uikit/textkit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-textkit-2-to-interact-with-text": {
+      "abstract": [
+        {
+          "text": "Interact with text by managing text selection and inserting custom text elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-textkit-2-to-interact-with-text",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using TextKit 2 to interact with text",
+      "type": "topic",
+      "url": "/documentation/uikit/using-textkit-2-to-interact-with-text"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "c94cdd160e47/DisplayTextWithACustomLayout.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/using-textkit-2-to-interact-with-text",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider"
+      ],
+      "title": "Layout"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Layout",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/using-textkit-2-to-interact-with-text",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutManager",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextContainer",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutFragment",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLineFragment",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextViewportLayoutController",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextLayoutOrientationProvider"
+              ],
+              "title": "Layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)/title",
+          "value": "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:boundingBoxForControlGlyphAt:for:proposedLineFragment:glyphPosition:characterIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)/title",
+          "value": "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:in:forGlyphRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldUse:forControlCharacterAt:)/title",
+          "value": "layoutManager:shouldUseAction:forControlCharacterAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldUse:forControlCharacterAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutManager:shouldUseAction:forControlCharacterAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/title",
+          "value": "NSTextViewportLayoutController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewportLayoutController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextViewportLayoutController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewportLayoutController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManager/title",
+          "value": "NSLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1exclusionPaths/title",
+          "value": "exclusionPaths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1exclusionPaths/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "exclusionPaths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1lineFragmentRect(forProposedRect:at:writingDirection:remaining:)/title",
+          "value": "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1lineFragmentRect(forProposedRect:at:writingDirection:remaining:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate/title",
+          "value": "NSLayoutManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManager~1ControlCharacterAction~1whitespace/title",
+          "value": "NSControlCharacterActionWhitespace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManager~1ControlCharacterAction~1whitespace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControlCharacterActionWhitespace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBezierPath/title",
+          "value": "UIBezierPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBezierPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBezierPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBezierPath/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBezierPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/title",
+          "value": "NSTextLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView~1init(frame:textContainer:)/title",
+          "value": "initWithFrame:textContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView~1init(frame:textContainer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFrame:textContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/title",
+          "value": "NSTextLayoutOrientationProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutOrientationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutOrientationProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutOrientationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/title",
+          "value": "NSTextLineFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLineFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLineFragment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLineFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)/title",
+          "value": "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutManagerDelegate~1layoutManager(_:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/title",
+          "value": "UITextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/title",
+          "value": "NSTextContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/title",
+          "value": "NSTextLayoutFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextLayoutFragment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextLayoutFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1lineBreakMode/title",
+          "value": "lineBreakMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextContainer~1lineBreakMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lineBreakMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/display-text-with-a-custom-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/display-text-with-a-custom-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

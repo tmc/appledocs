@@ -1,0 +1,3848 @@
+{
+  "abstract": [
+    {
+      "text": "The ",
+      "type": "text"
+    },
+    {
+      "code": "IMKCandidates",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class presents candidates to users and notifies the appropriate ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " object when the user selects a candidate. ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "Candidates",
+          "type": "text"
+        }
+      ],
+      "type": "strong"
+    },
+    {
+      "text": " are alternate characters for a given input sequence. The ",
+      "type": "text"
+    },
+    {
+      "code": "IMKCandidates",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class supports using a candidates window  in your input method; using ",
+      "type": "text"
+    },
+    {
+      "code": "IMKCandidates",
+      "type": "codeVoice"
+    },
+    {
+      "text": " is optional. Not all input methods require them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)IMKCandidates",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "IMKCandidates"
+      }
+    ],
+    "modules": [
+      {
+        "name": "InputMethodKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IMKCandidates"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IMKCandidates"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an ",
+              "type": "text"
+            },
+            {
+              "code": "IMKCandidates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, you attach it to the ",
+              "type": "text"
+            },
+            {
+              "code": "IMKServer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for your input method.  You then need to override the ",
+              "type": "text"
+            },
+            {
+              "code": "IMKInputController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods ",
+              "type": "text"
+            },
+            {
+              "code": "candidateSelectionChanged:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "candidateSelected:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well as implement a candidates method in your delegate object.  The ",
+              "type": "text"
+            },
+            {
+              "code": "IMKInputController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass supplies candidates to the ",
+              "type": "text"
+            },
+            {
+              "code": "IMKCandidates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object by implementing the candidates method. When you are ready to display a candidates window, call the candidates method to update candidates and to show the candidates window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit": {
+      "abstract": [
+        {
+          "text": "Develop input methods and manage communication with client applications, candidates windows, and input method modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "InputMethodKit",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatePanelType": {
+      "abstract": [
+        {
+          "text": "Types of candidates windows provide by the Input Method Kit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKCandidatePanelType"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatePanelType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKCandidatePanelType"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKCandidatePanelType",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidatepaneltype"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class presents candidates to users and notifies the appropriate ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object when the user selects a candidate. ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Candidates",
+              "type": "text"
+            }
+          ],
+          "type": "strong"
+        },
+        {
+          "text": " are alternate characters for a given input sequence. The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class supports using a candidates window  in your input method; using ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is optional. Not all input methods require them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKCandidates"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKCandidates"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKCandidates",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IMKCandidates",
+          "text": "IMKCandidates"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toCandidate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKStyleType",
+          "text": "IMKStyleType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attachChild:toCandidate:type:"
+        }
+      ],
+      "role": "symbol",
+      "title": "attachChild(_:toCandidate:type:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/attachchild(_:tocandidate:type:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attributes()": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary of the style attributes used for the candidates window..",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attributes()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/attributes()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateFrame()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "candidateFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateFrame()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "candidateFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "candidateFrame()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/candidateframe()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "candidateIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atLineNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "candidateIdentifierAtLineNumber:"
+        }
+      ],
+      "role": "symbol",
+      "title": "candidateIdentifier(atLineNumber:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/candidateidentifier(atlinenumber:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "candidateStringIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "candidateStringIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "candidateStringIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/candidatestringidentifier(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/clearSelection()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearSelection"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/clearSelection()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearSelection()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/clearselection()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/detachChild(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/detachChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detachChild:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detachChild(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/detachchild(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()": {
+      "abstract": [
+        {
+          "text": "Returns the state of the flag that determines whether the candidates window dismisses automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissesAutomatically"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissesAutomatically"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismissesAutomatically()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/dismissesautomatically()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hide()": {
+      "abstract": [
+        {
+          "text": "Hides a candidates window, if it is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hide"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hide()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hide"
+        }
+      ],
+      "role": "symbol",
+      "title": "hide()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/hide()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hideChild()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hideChild"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hideChild()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hideChild"
+        }
+      ],
+      "role": "symbol",
+      "title": "hideChild()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/hidechild()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)": {
+      "abstract": [
+        {
+          "text": "Returns the initialized ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "server"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IMKServer",
+          "text": "IMKServer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "panelType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKCandidatePanelType",
+          "text": "IMKCandidatePanelType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithServer:panelType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(server:panelType:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/init(server:paneltype:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "server"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)IMKServer",
+          "text": "IMKServer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "panelType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKCandidatePanelType",
+          "text": "IMKCandidatePanelType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "styleType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKStyleType",
+          "text": "IMKStyleType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithServer:panelType:styleType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(server:panelType:styleType:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/init(server:paneltype:styletype:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/isVisible()": {
+      "abstract": [
+        {
+          "text": "Returns whether or not the candidates window is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVisible"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/isVisible()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVisible()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/isvisible()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineNumberForCandidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lineNumberForCandidateWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lineNumberForCandidate(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/linenumberforcandidate(withidentifier:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/panelType()": {
+      "abstract": [
+        {
+          "text": "Returns the style of the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "panelType"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKCandidatePanelType",
+          "text": "IMKCandidatePanelType"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/panelType()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "panelType"
+        }
+      ],
+      "role": "symbol",
+      "title": "panelType()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/paneltype()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectCandidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectCandidate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectCandidate(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectcandidate(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectCandidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectCandidateWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectCandidate(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectcandidate(withidentifier:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidate()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedCandidate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedCandidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedCandidate()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectedcandidate()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedCandidateString"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedCandidateString"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedCandidateString()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectedcandidatestring()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeys()": {
+      "abstract": [
+        {
+          "text": "Returns an array of ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects where each ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object represents a virtual key code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionKeys"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeys()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionKeys()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectionkeys()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeysKeylayout()": {
+      "abstract": [
+        {
+          "text": "Returns the key layout that maps virtual key codes to selection keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionKeysKeylayout"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TISInputSourceRef",
+          "text": "TISInputSource"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeysKeylayout()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionKeysKeylayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionKeysKeylayout()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/selectionkeyskeylayout()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style attributes for the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setattributes(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCandidateData"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCandidateData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCandidateData(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setcandidatedata(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCandidateFrameTopLeft"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCandidateFrameTopLeft:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCandidateFrameTopLeft(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setcandidateframetopleft(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the state of the flag that determines whether the candidates window dismisses automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDismissesAutomatically"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDismissesAutomatically:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDismissesAutomatically(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setdismissesautomatically(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style of the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPanelType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKCandidatePanelType",
+          "text": "IMKCandidatePanelType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPanelType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPanelType(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setpaneltype(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the selection keys for the candidates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectionKeys"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectionKeys:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectionKeys(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setselectionkeys(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeysKeylayout(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the key layout that is used to map virtual key codes to characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectionKeysKeylayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@TISInputSourceRef",
+          "text": "TISInputSource"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeysKeylayout(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectionKeysKeylayout:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectionKeysKeylayout(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/setselectionkeyskeylayout(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showCandidates"
+        }
+      ],
+      "role": "symbol",
+      "title": "show()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/show()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show(_:)": {
+      "abstract": [
+        {
+          "text": "Shows the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IMKCandidatesLocationHint",
+          "text": "IMKCandidatesLocationHint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "show:"
+        }
+      ],
+      "role": "symbol",
+      "title": "show(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/show(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)": {
+      "abstract": [
+        {
+          "text": "Displays an annotation string in an annotation window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showAnnotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showAnnotation(_:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/showannotation(_:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showChild()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showChild"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showChild()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showChild"
+        }
+      ],
+      "role": "symbol",
+      "title": "showChild()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/showchild()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showSublist"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subListDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showSublist:subListDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showSublist(_:subListDelegate:)",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/showsublist(_:sublistdelegate:)"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/update()": {
+      "abstract": [
+        {
+          "text": "Updates the candidates that are displayed in the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/update()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateCandidates"
+        }
+      ],
+      "role": "symbol",
+      "title": "update()",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates/update()"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatesLocationHint": {
+      "abstract": [
+        {
+          "text": "Hints that suggest where to place the candidates window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKCandidatesLocationHint"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatesLocationHint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKCandidatesLocationHint"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKCandidatesLocationHint",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidateslocationhint"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKInputController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides a base class for custom input controller classes. The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "  class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding ",
+          "type": "text"
+        },
+        {
+          "code": "IMKInputController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKInputController"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKInputController"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKInputController",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkinputcontroller"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKServer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class manages client connections to your input method.  When you write the main function for your input method, you create an ",
+          "type": "text"
+        },
+        {
+          "code": "IMKServer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.  You should never need to override this class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKServer"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKServer"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKServer",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkserver"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkcandidatesopacityattributename": {
+      "abstract": [
+        {
+          "text": "The opacity level for a candidates window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkcandidatesopacityattributename",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IMKCandidatesOpacityAttributeName",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidatesopacityattributename"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSResponder"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSResponder"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Candidates-Window",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)"
+      ],
+      "title": "Initializing a Candidates Window"
+    },
+    {
+      "anchor": "Managing-Selection-Keys",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeys()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeysKeylayout(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeysKeylayout()"
+      ],
+      "title": "Managing Selection Keys"
+    },
+    {
+      "anchor": "Managing-Window-Visibility-and-Behavior",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hide()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/isVisible()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/update()"
+      ],
+      "title": "Managing Window Visibility and Behavior"
+    },
+    {
+      "anchor": "Managing-Window-Type-and-Text-Attributes",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/panelType()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attributes()"
+      ],
+      "title": "Managing Window Type and Text Attributes"
+    },
+    {
+      "anchor": "Showing-an-Annotation-Window",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)"
+      ],
+      "title": "Showing an Annotation Window"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatePanelType",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatesLocationHint",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkcandidatesopacityattributename"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateFrame()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/clearSelection()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/detachChild(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hideChild()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidate()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showChild()",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "IMKCandidates"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Candidates-Window",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)"
+              ],
+              "title": "Initializing a Candidates Window"
+            },
+            {
+              "anchor": "Managing-Selection-Keys",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeys()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setSelectionKeysKeylayout(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectionKeysKeylayout()"
+              ],
+              "title": "Managing Selection Keys"
+            },
+            {
+              "anchor": "Managing-Window-Visibility-and-Behavior",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hide()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/isVisible()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/update()"
+              ],
+              "title": "Managing Window Visibility and Behavior"
+            },
+            {
+              "anchor": "Managing-Window-Type-and-Text-Attributes",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/panelType()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attributes()"
+              ],
+              "title": "Managing Window Type and Text Attributes"
+            },
+            {
+              "anchor": "Showing-an-Annotation-Window",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)"
+              ],
+              "title": "Showing an Annotation Window"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatePanelType",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidatesLocationHint",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkcandidatesopacityattributename"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)"
+              ],
+              "title": "Initializers"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateFrame()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/clearSelection()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/detachChild(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/hideChild()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidate()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/show()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showChild()",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSResponder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "IMKCandidates"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSResponder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSResponder",
+                    "text": "NSResponder"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1detachChild(_:)/title",
+          "value": "detachChild:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1detachChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "detachChild:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateIdentifier(atLineNumber:)/title",
+          "value": "candidateIdentifierAtLineNumber:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateIdentifier(atLineNumber:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "candidateIdentifierAtLineNumber:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectionKeys()/title",
+          "value": "selectionKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectionKeys()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectionKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1update()/title",
+          "value": "updateCandidates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1update()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showChild()/title",
+          "value": "showChild"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showChild()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showChild"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setSelectionKeys(_:)/title",
+          "value": "setSelectionKeys:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setSelectionKeys(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectionKeys:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1lineNumberForCandidate(withIdentifier:)/title",
+          "value": "lineNumberForCandidateWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1lineNumberForCandidate(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lineNumberForCandidateWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setAttributes(_:)/title",
+          "value": "setAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setAttributes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectCandidate(withIdentifier:)/title",
+          "value": "selectCandidateWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectCandidate(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectCandidateWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showAnnotation(_:)/title",
+          "value": "showAnnotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showAnnotation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showAnnotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1clearSelection()/title",
+          "value": "clearSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1clearSelection()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clearSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/title",
+          "value": "IMKCandidates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectCandidate(_:)/title",
+          "value": "selectCandidate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectCandidate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectCandidate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectedCandidateString()/title",
+          "value": "selectedCandidateString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectedCandidateString()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedCandidateString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectedCandidate()/title",
+          "value": "selectedCandidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectedCandidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedCandidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1attributes()/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1attributes()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1panelType()/title",
+          "value": "panelType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1panelType()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "panelType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatesLocationHint/title",
+          "value": "IMKCandidatesLocationHint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatesLocationHint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidatesLocationHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatesLocationHint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidatesLocationHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1show()/title",
+          "value": "showCandidates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1show()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setCandidateFrameTopLeft(_:)/title",
+          "value": "setCandidateFrameTopLeft:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setCandidateFrameTopLeft(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCandidateFrameTopLeft:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1init(server:panelType:)/title",
+          "value": "initWithServer:panelType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1init(server:panelType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithServer:panelType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1show(_:)/title",
+          "value": "show:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1show(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "show:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1dismissesAutomatically()/title",
+          "value": "dismissesAutomatically"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1dismissesAutomatically()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissesAutomatically"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1isVisible()/title",
+          "value": "isVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1isVisible()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setSelectionKeysKeylayout(_:)/title",
+          "value": "setSelectionKeysKeylayout:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setSelectionKeysKeylayout(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectionKeysKeylayout:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setDismissesAutomatically(_:)/title",
+          "value": "setDismissesAutomatically:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setDismissesAutomatically(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDismissesAutomatically:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatePanelType/title",
+          "value": "IMKCandidatePanelType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatePanelType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidatePanelType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidatePanelType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidatePanelType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectionKeysKeylayout()/title",
+          "value": "selectionKeysKeylayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1selectionKeysKeylayout()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectionKeysKeylayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1attachChild(_:toCandidate:type:)/title",
+          "value": "attachChild:toCandidate:type:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1attachChild(_:toCandidate:type:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "attachChild:toCandidate:type:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateFrame()/title",
+          "value": "candidateFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "candidateFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1hideChild()/title",
+          "value": "hideChild"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1hideChild()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hideChild"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setCandidateData(_:)/title",
+          "value": "setCandidateData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setCandidateData(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCandidateData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showSublist(_:subListDelegate:)/title",
+          "value": "showSublist:subListDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1showSublist(_:subListDelegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showSublist:subListDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateStringIdentifier(_:)/title",
+          "value": "candidateStringIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1candidateStringIdentifier(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "candidateStringIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1hide()/title",
+          "value": "hide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1hide()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/title",
+          "value": "IMKServer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSResponder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1init(server:panelType:styleType:)/title",
+          "value": "initWithServer:panelType:styleType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1init(server:panelType:styleType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithServer:panelType:styleType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setPanelType(_:)/title",
+          "value": "setPanelType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates~1setPanelType(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPanelType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/title",
+          "value": "IMKInputController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKInputController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKInputController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/inputmethodkit/imkcandidates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/inputmethodkit/imkcandidates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

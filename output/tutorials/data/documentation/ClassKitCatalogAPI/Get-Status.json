@@ -1,0 +1,399 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch the status of an operation that you initiated earlier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:classkit_api:get:v1-status-{}",
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Status"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ClassKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Status"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://classkit-catalog.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/status/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{statusId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier of the operation for which you want to retrieve the status.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Status",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:classkit_api:Status",
+              "text": "Status"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request contained an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request wasn’t authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system can’t immediately complete a request, the ClassKit Catalog API may acknowledge that it received the request and respond with a HTTP response containing the status code ",
+              "type": "text"
+            },
+            {
+              "code": "202 ACCEPTED",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In this case, the response contains a header with the name “Location”. The corresponding value is a URL that points to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint, including a ",
+              "type": "text"
+            },
+            {
+              "code": "statusId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the last path parameter. The header item might look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Location: classkit-catalog.apple.com/v1/status/KGW7S5VLDDOQSYSE7DKGYBGXUU"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this ",
+              "type": "text"
+            },
+            {
+              "code": "statusID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ask the server for a status update at a later time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://classkit-catalog.apple.com/v1/status/KGW7S5VLDDOQSYSE7DKGYBGXUU "
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"statusId\": \"KGW7S5VLDDOQSYSE7DKGYBGXUU\",",
+                    "  \"teamId\": \"2X6UPAGN5A\",",
+                    "  \"state\": \"error\",",
+                    "  \"statusCode\": \"400\",",
+                    "  \"error\": {",
+                    "    \"id\": \"KGW7S5VLDDOQSYSE7DKGYBGXUU\",",
+                    "    \"code\": \"THUMBNAIL_NOT_REFERENCED\",",
+                    "    \"message\": \"The thumbnail with 'thumbnailId': unreferenced_image.png is not referenced by any context.\"",
+                    "  },",
+                    "  \"location\": \"classkit-catalog.apple.com/v1/status/KGW7S5VLDDOQSYSE7DKGYBGXUU\"",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status": {
+      "abstract": [
+        {
+          "text": "Fetch the status of an operation that you initiated earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Status",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-status"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Status": {
+      "abstract": [
+        {
+          "text": "The state of a request that the API previously accepted, but didn’t complete right away.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Status",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/status"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Retrieving-Status",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Status"
+      ],
+      "title": "Retrieving Status"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/get-status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

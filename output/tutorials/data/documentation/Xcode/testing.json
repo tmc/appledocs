@@ -1,0 +1,609 @@
+{
+  "abstract": [
+    {
+      "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/testing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Testing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An important part of software development is testing your code. To catch issues early and deliver the highest quality products, use the frameworks and features Xcode provides to develop tests, understand code coverage, and evaluate your test results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 16 and later includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a new testing framework you can use to write unit tests that takes advantage of the powerful and expressive language capabilities of Swift with output that is expressive and actionable. Xcode continues to include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to facilitate writing UI tests that control your app’s UI using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCUIAutomation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A good testing strategy combines multiple types of tests, to maximize the benefits of each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Aim for a “pyramid” distribution of tests, as shown in the figure below. Include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a large number of fast, well-isolated unit tests to cover your app’s logic, a smaller",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number of integration tests to demonstrate that smaller parts connect together",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properly, and UI tests to assert the correct behavior of common use cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tests-testing-pyramid",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UI tests are the ultimate indicator your app works the way you expect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but they take longer to run than other kinds of tests. There are various app variables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that can introduce a failure in the same UI test. The test pyramid balances high-fidelity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests that demonstrate that people can complete their tasks, with tightly-focused",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests that give you fast feedback about the correctness of your app’s logic and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "impact of changes you make.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the test pyramid, write performance tests to provide regression coverage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of performance-critical regions of code. To learn about the process of identifying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance-critical code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-tests-pageimage-card.png": {
+      "alt": "Artistic rendering of an iPhone laying face up next to a green checkmark.",
+      "identifier": "adding-tests-pageimage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74aabcd2e16d1e9023a4aa6b55fec34b/adding-tests-pageimage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d44d4f36b4bf35927e88c40edaf34ab/adding-tests-pageimage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Include test targets that build code to test the logic in your functions, check for integration issues, automate UI workflows, and measure performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project",
+      "images": [
+        {
+          "identifier": "adding-tests-pageimage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tests to your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-tests-to-your-xcode-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover": {
+      "abstract": [
+        {
+          "text": "Use code coverage to focus new test development on areas that lack adequate testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining how much code your tests cover",
+      "type": "topic",
+      "url": "/documentation/xcode/determining-how-much-code-your-tests-cover"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/devices-and-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance": {
+      "abstract": [
+        {
+          "text": "Model, measure, and boost the performance of your app by using a continuous-improvement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your app’s performance",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-your-app-s-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback": {
+      "abstract": [
+        {
+          "text": "Control the information you receive from your tests at different stages in the software engineering process by creating and configuring test plans.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving code assessment by organizing tests into test plans",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-tests-to-improve-feedback"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results": {
+      "abstract": [
+        {
+          "text": "Determine whether your project’s code behaves as you expect by running tests and understanding the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results",
+      "kind": "article",
+      "role": "article",
+      "title": "Running tests and interpreting results",
+      "type": "topic",
+      "url": "/documentation/xcode/running-tests-and-interpreting-results"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/simulating-location-in-tests": {
+      "abstract": [
+        {
+          "text": "Improve test reliability and coverage when working with location-based code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/simulating-location-in-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Simulating location in tests",
+      "type": "topic",
+      "url": "/documentation/xcode/simulating-location-in-tests"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code": {
+      "abstract": [
+        {
+          "text": "Use the transaction manager within Xcode to test in-app purchases without requiring a connection to App Store servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing in-app purchases with StoreKit transaction manager in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-in-app-purchases-with-storekit-transaction-manager-in-code"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests": {
+      "abstract": [
+        {
+          "text": "Remove coupling between components to increase test coverage and reliability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating your existing codebase to accommodate unit tests",
+      "type": "topic",
+      "url": "/documentation/xcode/updating-your-existing-codebase-to-accommodate-unit-tests"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests": {
+      "abstract": [
+        {
+          "text": "Repeatably gather metrics on the performance of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing and running performance tests",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-and-running-performance-tests"
+    },
+    "doc://com.apple.documentation/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/Testing"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/XCUIAutomation": {
+      "abstract": [
+        {
+          "text": "Replicate sequences of interactions and make sure that your app’s user interface behaves as intended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCUIAutomation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCUIAutomation",
+      "type": "topic",
+      "url": "/documentation/XCUIAutomation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "tests-testing-pyramid": {
+      "alt": "Illustration showing the relative amount of unit, integration and UI testing to aim for on a project.",
+      "identifier": "tests-testing-pyramid",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3741da49e0f493f0925fefe17ca44fa1/tests-testing-pyramid@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a689e4db6d0ccd6decd5b643c1e5cad/tests-testing-pyramid~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tuning-and-debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ],
+      "title": "Tuning and debugging"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Test-development",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project",
+        "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+        "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback"
+      ],
+      "title": "Test development"
+    },
+    {
+      "anchor": "Execution-and-results",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results"
+      ],
+      "title": "Execution and results"
+    },
+    {
+      "anchor": "Performance-tests",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests"
+      ],
+      "title": "Performance tests"
+    },
+    {
+      "anchor": "Location",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/simulating-location-in-tests"
+      ],
+      "title": "Location"
+    },
+    {
+      "anchor": "StoreKit",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code"
+      ],
+      "title": "StoreKit"
+    }
+  ]
+}

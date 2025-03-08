@@ -1,0 +1,1442 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the synchronization of local and remote record data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKSyncEngine",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngine"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngine"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKSyncEngine"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle your app’s CloudKit sync operations and benefit from the performance and reliability it provides. To use the class, create an instance early in your app’s launch process and specify a database to sync. Thereafter, and depending on good system conditions, the sync engine will periodically push and pull database and record zone changes on the app’s behalf. To participate in those sync operations and to provide the engine with the changes to send, create an object that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assign an instance of it to the engine’s configuration. You can have multiple instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a single process, each targeting a different database. For example, you may have one syncing a person’s private database and another syncing their shared database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because periodic sync relies on good system conditions — adequate battery charge, an active network connection, a signed-in iCloud account, and so on — the engine’s sync schedule is indeterminate; if you need to sync immediately, like when you need to ensure your app has the most recent changes before continuing, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sync engine uses an opaque type to track its internal state, and it’s your responsibility to persist that state to disk and make it available across app launches so the engine can function properly. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires the CloudKit and Remote notifications entitlements. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to sync your app’s public database.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Send-changes-to-iCloud",
+          "level": 3,
+          "text": "Send changes to iCloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sync engine requires you to tell it about any changes to send, which you do by invoking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods on the engine’s state property. If there are no scheduled sync operations when you invoke these methods, the engine automatically schedules one. Database changes don’t require any additional input, but the sync engine does expect you to provide the individual record zone changes — in batches — and return them from your delegate’s implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:nextRecordZoneChangeBatchForContext:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After the engine sends the changes, it notifies your delegate about their success (or failure) by dispatching events of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-changes-from-iCloud",
+          "level": 3,
+          "text": "Fetch changes from iCloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a sync engine attempts to discover an existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the associated database and uses that to receive silent notifications about remote record changes. If the engine doesn’t find a subscription, it automatically creates one to use. On receipt of a notification, the engine schedules a sync operation to fetch the related changes. When that operation runs, the engine dispatches an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your delegate. As it receives fetched changes, the engine dispatches ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", accordingly. After the operation finishes, the sync engine notifies your delegate by dispatching an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You handle all dispatched events in your delegate’s implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A sample code project for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is available on GitHub here: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://github.com/apple/sample-cloudkit-sync-engine",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription": {
+      "abstract": [
+        {
+          "text": "A subscription that generates push notifications when CloudKit modifies records in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabaseSubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabasesubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/cancelOperationsWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Cancels any in-progress or pending sync operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelOperationsWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/cancelOperationsWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelOperationsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelOperationsWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/canceloperationswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database": {
+      "abstract": [
+        {
+          "text": "The associated database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "database"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Fetches pending remote changes from the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Fetches pending remote changes from the server using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithOptions:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchChangesWithOptions:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithoptions:completionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/initWithConfiguration:": {
+      "abstract": [
+        {
+          "text": "Creates a sync engine with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/initWithConfiguration:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithConfiguration:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/initwithconfiguration:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Sends pending local changes to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Sends pending local changes to the server using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithOptions:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendChangesWithOptions:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithoptions:completionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state": {
+      "abstract": [
+        {
+          "text": "The sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/state"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that configures the attributes and behavior of a sync engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineConfiguration",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8": {
+      "abstract": [
+        {
+          "text": "An interface for providing record data to a sync engine and customizing that engine’s behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngineDelegate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-1q7g8"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p": {
+      "abstract": [
+        {
+          "text": "An interface for providing record data to a sync engine and customizing that engine’s behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineDelegate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-3c38p"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified sync event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncEngine:handleEvent:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:handleEvent:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "syncEngine:handleEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "syncEngine:handleEvent:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:handleevent:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:nextRecordZoneChangeBatchForContext:": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the next set of record changes to send to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncEngine:nextRecordZoneChangeBatchForContext:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p/syncEngine:nextRecordZoneChangeBatchForContext:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "syncEngine:nextRecordZoneChangeBatchForContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "syncEngine:nextRecordZoneChangeBatchForContext:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:nextrecordzonechangebatchforcontext:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents a completed database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineDidFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDidFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineDidFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedidfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions": {
+      "abstract": [
+        {
+          "text": "A set of options to use with a fetch operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchChangesOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchChangesOptions",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchchangesoptions"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about fetched database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchedDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchedDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetcheddatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about fetched record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchedRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchedRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchedRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchedrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions": {
+      "abstract": [
+        {
+          "text": "A set of options to use with a send operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSendChangesOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSendChangesOptions",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesendchangesoptions"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a sent batch of database changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSentDatabaseChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentDatabaseChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSentDatabaseChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesentdatabasechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about a sent batch of record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSentRecordZoneChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSentRecordZoneChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSentRecordZoneChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesentrecordzonechangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState": {
+      "abstract": [
+        {
+          "text": "An object that manages the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineState"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineState",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:": {
+      "abstract": [
+        {
+          "text": "Adds the specified database changes to the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPendingDatabaseChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPendingDatabaseChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPendingDatabaseChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/addpendingdatabasechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:": {
+      "abstract": [
+        {
+          "text": "Adds the specified record zone changes to the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPendingRecordZoneChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPendingRecordZoneChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPendingRecordZoneChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/addpendingrecordzonechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about an update to the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineStateUpdateEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineStateUpdateEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestateupdateevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents an imminent database fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineWillFetchChangesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineWillFetchChangesEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginewillfetchchangesevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/local-records": {
+      "abstract": [
+        {
+          "text": "Manipulate records on-device and save changes to the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/local-records"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/remote-records": {
+      "abstract": [
+        {
+          "text": "Use subscriptions and change tokens to efficiently manage modifications to remote records.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/remote-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Remote Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/remote-records"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/shared-records": {
+      "abstract": [
+        {
+          "text": "Share one or more records with other iCloud users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/shared-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/shared-records"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services": {
+      "abstract": [
+        {
+          "text": "Share user or app data among multiple instances of your app running on different devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring iCloud services",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-icloud-services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "https://github.com/apple/sample-cloudkit-sync-engine": {
+      "identifier": "https://github.com/apple/sample-cloudkit-sync-engine",
+      "title": "CloudKit Samples: CKSyncEngine",
+      "titleInlineContent": [
+        {
+          "text": "CloudKit Samples: CKSyncEngine",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/sample-cloudkit-sync-engine"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Records",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+        "doc://com.apple.cloudkit/documentation/CloudKit/remote-records",
+        "doc://com.apple.cloudkit/documentation/CloudKit/shared-records"
+      ],
+      "title": "Records"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-sync-engine",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/initWithConfiguration:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration"
+      ],
+      "title": "Creating a sync engine"
+    },
+    {
+      "anchor": "Accessing-the-engines-attributes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState"
+      ],
+      "title": "Accessing the engine’s attributes"
+    },
+    {
+      "anchor": "Participating-in-scheduled-sync-operations",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-3c38p"
+      ],
+      "title": "Participating in scheduled sync operations"
+    },
+    {
+      "anchor": "Invoking-manual-sync-operations",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesOptions",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesOptions"
+      ],
+      "title": "Invoking manual sync operations"
+    },
+    {
+      "anchor": "Canceling-operations",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/cancelOperationsWithCompletionHandler:"
+      ],
+      "title": "Canceling operations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/title",
+          "value": "CKDatabaseSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseSubscription"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncengine-4b4w9"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

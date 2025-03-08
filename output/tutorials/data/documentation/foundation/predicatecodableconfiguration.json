@@ -1,0 +1,932 @@
+{
+  "abstract": [
+    {
+      "text": "A specification of the expected types and key paths found in an archived predicate.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4227213,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation29PredicateCodableConfigurationV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "PredicateCodableConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PredicateCodableConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PredicateCodableConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this configuration when encoding and decoding a predicate to restrict what that predicate can contain.  If a predicate contains data types or keypaths that aren't allowed by the configuration, the encoding or decoding process throws an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var configuration = PredicateCodableConfiguration.standardConfiguration",
+            "configuration.allowType(Message.self, identifier: \"MyApp.Message\")",
+            "configuration.allowType(Person.self, identifier: \"MyApp.Person\")",
+            "configuration.allowKeyPath(\\Message.sender, identifier: \"MyApp.Message.sender\")",
+            "configuration.allowKeyPath(\\Person.firstName, identifier: \"MyApp.Person.firstName\")",
+            "configuration.allowKeyPath(\\Person.lastName, identifier: \"MyApp.Person.lastName\")",
+            "",
+            "struct MyRequest: Codable {",
+            "    let predicate: Predicate<Message>",
+            "    ",
+            "    func encode(to encoder: Encoder) throws {",
+            "        var container = encoder.container(keyedBy: CodingKeys.self)",
+            "        try container.encode(predicate, forKey: .predicate, configuration: configuration)",
+            "    }",
+            "    ",
+            "    init(from decoder: Decoder) throws {",
+            "        let container = try decoder.container(keyedBy: CodingKeys.self)",
+            "        predicate = try container.decode(Predicate<Message>.self, forKey: .predicate, configuration: configuration)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4265212",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate that evaluates logical combinations of other predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompoundPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompoundPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompoundpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatebindings": {
+      "abstract": [
+        {
+          "text": "A mapping from a predicates‘s input variables to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateBindings",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatebindings"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration": {
+      "abstract": [
+        {
+          "text": "A specification of the expected types and key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration#4265212": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration#4265212",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/predicatecodableconfiguration#4265212"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227214-allow": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allow"
+        },
+        {
+          "kind": "text",
+          "text": "(PredicateCodableConfiguration)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227214-allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allow(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227214-allow"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227216-allowkeypathsforpropertiesprovid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowKeyPathsForPropertiesProvided"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227216-allowkeypathsforpropertiesprovid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowKeyPathsForPropertiesProvided(by:recursive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227216-allowkeypathsforpropertiesprovid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227217-allowpartialtype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowPartialType"
+        },
+        {
+          "kind": "text",
+          "text": "(any Any.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227217-allowpartialtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowPartialType(_:identifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227217-allowpartialtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227218-allowtype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowType"
+        },
+        {
+          "kind": "text",
+          "text": "(any Any.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227218-allowtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowType(_:identifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227218-allowtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227219-debugdescription": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227219-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227219-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227221-disallowkeypathsforpropertiespro": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disallowKeyPathsForPropertiesProvided"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227221-disallowkeypathsforpropertiespro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disallowKeyPathsForPropertiesProvided(by:recursive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227221-disallowkeypathsforpropertiespro"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227222-disallowpartialtype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disallowPartialType"
+        },
+        {
+          "kind": "text",
+          "text": "(any Any.Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227222-disallowpartialtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disallowPartialType(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227222-disallowpartialtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227223-disallowtype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disallowType"
+        },
+        {
+          "kind": "text",
+          "text": "(any Any.Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227223-disallowtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disallowType(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227223-disallowtype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227224-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227224-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227224-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227225-standardconfiguration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227225-standardconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4227225-standardconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469453-allowkeypath": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "(any AnyKeyPath & Sendable, "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469453-allowkeypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowKeyPath(_:identifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4469453-allowkeypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469454-disallowkeypath": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disallowKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "(any AnyKeyPath & Sendable)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469454-disallowkeypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disallowKeyPath(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration/4469454-disallowkeypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding": {
+      "abstract": [
+        {
+          "text": "A type that provides the expected key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableKeyPathProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableKeyPathProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodablekeypathproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateerror": {
+      "abstract": [
+        {
+          "text": "An error thrown while evaluating a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateError",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions": {
+      "abstract": [
+        {
+          "text": "The expressions that make up a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpressions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate, and that's supported by the standard predicate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StandardPredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StandardPredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/standardpredicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate",
+        "doc://com.apple.documentation/documentation/foundation/predicateerror",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+        "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression",
+        "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate"
+      ],
+      "title": "Filltering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "4264485",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227224-init",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227225-standardconfiguration"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a configuration"
+    },
+    {
+      "anchor": "4264484",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227214-allow",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227216-allowkeypathsforpropertiesprovid",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227217-allowpartialtype",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227218-allowtype"
+      ],
+      "kind": "taskGroup",
+      "title": "Allowing types and key paths"
+    },
+    {
+      "anchor": "4264482",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227221-disallowkeypathsforpropertiespro",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227222-disallowpartialtype",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227223-disallowtype"
+      ],
+      "kind": "taskGroup",
+      "title": "Disallowing types and key paths"
+    },
+    {
+      "anchor": "4265213",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4227219-debugdescription"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a configuration"
+    },
+    {
+      "anchor": "4470559",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469453-allowkeypath",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration/4469454-disallowkeypath"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/predicatecodableconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1951 @@
+{
+  "abstract": [
+    {
+      "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Backyard-Birds-intro.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.2",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Backyard Birds: Building an app with SwiftData and widgets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Backyard Birds offers a rich environment in which you can watch the birds that visit your backyard garden.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can monitor their water and food supply to ensure they always have fresh water and plenty to eat,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or upgrade the game using an in-app purchase to provide tastier food for the birds to eat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements its data model using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData",
+              "isActive": true,
+              "overridingTitle": "SwiftData",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SwiftData",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for persistence, and integrates seamlessly with SwiftUI using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation",
+              "isActive": true,
+              "overridingTitle": "Observable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Observable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The game’s widgets implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "overridingTitle": "App Intents",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Intents",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for interactive and configurable widgets. The in-app purchase experience uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/ProductView",
+              "isActive": true,
+              "overridingTitle": "ProductView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ProductView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SubscriptionStoreView",
+              "isActive": true,
+              "overridingTitle": "SubscriptionStoreView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SubscriptionStoreView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from StoreKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access the source code for this sample",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/sample-backyard-birds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 102:",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/102/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the Backyard Birds app to run on your devices, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the project in Xcode 15 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edit the multiplatform target’s scheme, and on the Options tab, choose the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Store.storekit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for StoreKit configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat the previous step for the watchOS target’s scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the top-level Backyard Birds project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For all targets, choose your team from the Team menu in the Signing & Capabilities pane so Xcode can automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-a-data-driven-app",
+          "level": 3,
+          "text": "Create a data-driven app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app defines its data model by conforming the model objects to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/PersistentModel",
+              "isActive": true,
+              "overridingTitle": "PersistentModel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "PersistentModel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/Model()",
+              "isActive": true,
+              "overridingTitle": "Model",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Model",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+              "isActive": true,
+              "overridingTitle": "Attribute",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Attribute",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/Schema/Attribute/Option/unique",
+              "isActive": true,
+              "overridingTitle": "unique",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "unique",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option ensures that the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is unique.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Model public class BirdSpecies {",
+            "    @Attribute(.unique) public var id: String",
+            "    public var naturalScale: Double",
+            "    public var isEarlyAccess: Bool",
+            "    public var parts: [BirdPart]",
+            "    ",
+            "    @Relationship(deleteRule: .cascade, inverse: \\Bird.species)",
+            "    public var birds: [Bird] = []",
+            "    ",
+            "    public var info: BirdSpeciesInfo { BirdSpeciesInfo(rawValue: id) }",
+            "    ",
+            "    public init(info: BirdSpeciesInfo, naturalScale: Double = 1, isEarlyAccess: Bool = false, parts: [BirdPart]) {",
+            "        self.id = info.rawValue",
+            "        self.naturalScale = naturalScale",
+            "        self.isEarlyAccess = isEarlyAccess",
+            "        self.parts = parts",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Construct-interactive-widgets",
+          "level": 3,
+          "text": "Construct interactive widgets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Backyard Birds displays interactive widgets by presenting a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to refill a backyard’s supplies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the water and food are running low. The app does this by placing a ",
+              "type": "text"
+            },
+            {
+              "code": "Button",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the widget’s view,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and passing a ",
+              "type": "text"
+            },
+            {
+              "code": "ResupplyBackyardIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button/init(intent:label:)",
+              "isActive": true,
+              "overridingTitle": "init(intent:label:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "init(intent:label:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " initializer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button(intent: ResupplyBackyardIntent(backyard: BackyardEntity(from: snapshot.backyard))) {",
+            "    Label(\"Refill Water\", systemImage: \"arrow.clockwise\")",
+            "        .foregroundStyle(.secondary)",
+            "        .frame(maxWidth: .infinity)",
+            "        .padding(.vertical, 8)",
+            "        .padding(.horizontal, 12)",
+            "        .background(.quaternary, in: .containerRelative)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app allows for configuration of the widget by implementing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+              "isActive": true,
+              "overridingTitle": "WidgetConfigurationIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WidgetConfigurationIntent",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct BackyardWidgetIntent: WidgetConfigurationIntent {",
+            "    static let title: LocalizedStringResource = \"Backyard\"",
+            "    static let description = IntentDescription(\"Keep track of your backyards.\")",
+            "    ",
+            "    @Parameter(title: \"Backyards\", default: BackyardWidgetContent.all)",
+            "    var backyards: BackyardWidgetContent",
+            "    ",
+            "    @Parameter(title: \"Backyard\")",
+            "    var specificBackyard: BackyardEntity?",
+            "    ",
+            "    init(backyards: BackyardWidgetContent = .all, specificBackyard: BackyardEntity? = nil) {",
+            "        self.backyards = backyards",
+            "        self.specificBackyard = specificBackyard",
+            "    }",
+            "    ",
+            "    init() {",
+            "    }",
+            "    ",
+            "    static var parameterSummary: some ParameterSummary {",
+            "        When(\\.$backyards, .equalTo, BackyardWidgetContent.specific) {",
+            "            Summary {",
+            "                \\.$backyards",
+            "                \\.$specificBackyard",
+            "            }",
+            "        } otherwise: {",
+            "            Summary {",
+            "                \\.$backyards",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-a-new-in-app-purchase-experience",
+          "level": 3,
+          "text": "Provide a new in-app purchase experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/ProductView",
+              "isActive": true,
+              "overridingTitle": "ProductView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ProductView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to display several different bird food upgrades available for purchase on a store shelf.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To prominently feature an in-app purchase item, the app uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/storekit/productview/4202371-productviewstyle",
+              "isActive": true,
+              "overridingTitle": ".productViewStyle(.large)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".productViewStyle(.large)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductView(id: product.id) {",
+            "    BirdFoodProductIcon(birdFood: birdFood, quantity: product.quantity)",
+            "        .bestBirdFoodValueBadge()",
+            "}",
+            ".padding(.vertical)",
+            ".background(.background.secondary, in: .rect(cornerRadius: 20))",
+            ".productViewStyle(.large)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Backyard Birds Pass page displays renewable subscriptions using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SubscriptionStoreView",
+              "isActive": true,
+              "overridingTitle": "SubscriptionStoreView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SubscriptionStoreView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "PassMarketingContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view as the content of the ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SubscriptionStoreView(",
+            "    groupID: passGroupID,",
+            "    visibleRelationships: showPremiumUpgrade ? .upgrade : .all",
+            ") {",
+            "    PassMarketingContent(showPremiumUpgrade: showPremiumUpgrade)",
+            "        #if !os(watchOS)",
+            "        .containerBackground(for: .subscriptionStoreFullHeight) {",
+            "            SkyBackground()",
+            "        }",
+            "        #endif",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "7f06a68fb95e/BackyardBirdsBuildingAnAppWithSwiftDataAndWidgets.zip": {
+      "checksum": "7f06a68fb95ebeab50634c09ea865bbf1f1728b2506796184d5617daccf3f846e1b25abc3c2661ebc0a25908c09bf9ffdb4cf80a78c62521606e5dd4a909bf6e",
+      "identifier": "7f06a68fb95e/BackyardBirdsBuildingAnAppWithSwiftDataAndWidgets.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7f06a68fb95e/BackyardBirdsBuildingAnAppWithSwiftDataAndWidgets.zip"
+    },
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/swiftui/button"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle": {
+      "abstract": [
+        {
+          "text": "Use a scene-based life cycle in SwiftUI while keeping your existing codebase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating to the SwiftUI life cycle",
+      "type": "topic",
+      "url": "/documentation/swiftui/migrating-to-the-swiftui-life-cycle"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a WidgetKit widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/WidgetConfigurationIntent"
+    },
+    "doc://com.apple.documentation/documentation/Observation": {
+      "abstract": [
+        {
+          "text": "Make responsive apps that update the presentation when underlying data changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Observation",
+      "type": "topic",
+      "url": "/documentation/Observation"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/ProductView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises an individual In-App Purchase product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PlaceholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PlaceholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/ProductView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProductView",
+      "type": "topic",
+      "url": "/documentation/StoreKit/ProductView"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SubscriptionStoreView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/SwiftData"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/Attribute(_:originalName:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom behavior that SwiftData applies to the annotated property when managing the owning class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(peer) "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Attribute(_:originalName:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/SwiftData/Attribute(_:originalName:hashModifier:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(member, names: named(_$backingData), named(persistentBackingData), named(schemaMetadata), named(init), named(_$observationRegistrar), named(_SwiftDataNoType), named(access), named(withMutation)) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(memberAttribute) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(extension, conformances: "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/SwiftData/Model()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/PersistentModel": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to manage a Swift class as a stored model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP",
+          "text": "Identifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/PersistentModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PersistentModel",
+      "type": "topic",
+      "url": "/documentation/SwiftData/PersistentModel"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/Schema/Attribute/Option/unique": {
+      "abstract": [
+        {
+          "text": "Ensures the property’s value is unique across all models of the same type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unique"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/Schema/Attribute/Option/unique",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unique",
+      "type": "topic",
+      "url": "/documentation/SwiftData/Schema/Attribute/Option/unique"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button/init(intent:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a button that performs an `AppIntent`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button/init(intent:label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(intent:label:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button/init(intent:label:)"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/storekit/productview/4202371-productviewstyle": {
+      "abstract": [
+        {
+          "text": "Sets the style for In-App Purchase product views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "productViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "(ProductViewStyle) -> View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/storekit/productview/4202371-productviewstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/productview/4202371-productviewstyle"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app": {
+      "abstract": [
+        {
+          "text": "Create a single codebase and app target for Mac, iPad, and iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Food Truck: Building a SwiftUI multiplatform app",
+      "type": "topic",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "https://developer.apple.com/wwdc23/102/": {
+      "identifier": "https://developer.apple.com/wwdc23/102/",
+      "title": "State of the Union",
+      "titleInlineContent": [
+        {
+          "text": "State of the Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/102/"
+    },
+    "https://github.com/apple/sample-backyard-birds": {
+      "identifier": "https://github.com/apple/sample-backyard-birds",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/sample-backyard-birds"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "7f06a68fb95e/BackyardBirdsBuildingAnAppWithSwiftDataAndWidgets.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-an-app",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App"
+      ],
+      "title": "Creating an app"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-an-app",
+              "generated": true,
+              "identifiers": [],
+              "title": "Creating an app"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/backyard-birds-sample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/swiftui/backyard-birds-sample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

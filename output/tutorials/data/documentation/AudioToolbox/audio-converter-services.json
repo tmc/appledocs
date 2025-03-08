@@ -1,0 +1,2934 @@
+{
+  "abstract": [
+    {
+      "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Converter Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio converter objects convert between various linear PCM audio formats. They can also convert between linear PCM and compressed formats. Supported transformations include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM bit depth",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM sample rate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM floating point to and from PCM integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM interleaved to and from PCM deinterleaved",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM to and from compressed formats",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single audio converter may perform more than one of the listed transformations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533972-converter_audio_unit_properties": {
+      "abstract": [
+        {
+          "text": "Properties for the Apple AUConverter audio unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533972-converter_audio_unit_properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Converter Audio Unit Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1533972-converter_audio_unit_properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559923-sample-rate-conversion-complexit": {
+      "abstract": [
+        {
+          "text": "Specifiers for the sample rate conversion algorithm, used for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterComplexity",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559923-sample-rate-conversion-complexit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample Rate Conversion Complexity Identifiers",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559923-sample-rate-conversion-complexit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559924-sample-rate-conversion-quality-i": {
+      "abstract": [
+        {
+          "text": "Specifiers for sample rate conversion quality, used for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterQuality",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559924-sample-rate-conversion-quality-i",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample Rate Conversion Quality Identifiers",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559924-sample-rate-conversion-quality-i"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559925-audio-converter-properties-macos": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559925-audio-converter-properties-macos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Properties (macOS)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559925-audio-converter-properties-macos"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559927-converter-priming-constants": {
+      "abstract": [
+        {
+          "text": "Constants used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterPrimeMethod",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559927-converter-priming-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Converter Priming Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559927-converter-priming-constants"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559928-audio-converter-properties": {
+      "abstract": [
+        {
+          "text": "Audio converter properties, used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetPropertyInfo(_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetProperty(_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterSetProperty(_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559928-audio-converter-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559928-audio-converter-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559930-audio-converter-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559930-audio-converter-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559930-audio-converter-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559931-audio-converter-dithering-algori": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559931-audio-converter-dithering-algori",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Dithering Algorithms",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1559931-audio-converter-dithering-algori"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584145-converter_audio_unit_subtypes": {
+      "abstract": [
+        {
+          "text": "Audio data format converter audio unit subtypes for audio units provided by Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584145-converter_audio_unit_subtypes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Converter Audio Unit Subtypes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1584145-converter_audio_unit_subtypes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterComplexInputDataProc": {
+      "abstract": [
+        {
+          "text": "Supplies input data to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterComplexInputDataProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterComplexInputDataProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterComplexInputDataProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterComplexInputDataProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconvertercomplexinputdataproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data from one linear PCM format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterConvertBuffer(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data from one linear PCM format to another, where both use the same sample rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertComplexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterConvertComplexBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterConvertComplexBuffer(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterconvertcomplexbuffer(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of an audio converter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterdispose(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillBuffer": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterFillBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioConverterFillBuffer",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterfillbuffer"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts audio data supplied by a callback function, supporting non-interleaved and packetized formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterFillComplexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterComplexInputDataProc",
+          "text": "AudioConverterComplexInputDataProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterFillComplexBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets an audio converter property value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterGetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconvertergetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetPropertyInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets information about an audio converter property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetPropertyInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterGetPropertyInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconvertergetpropertyinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterInputDataProc": {
+      "abstract": [
+        {
+          "text": "Deprecated. Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterInputDataProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterInputDataProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterInputDataProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterInputDataProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterinputdataproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNew(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio converter object based on specified audio formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterNew"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNew(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterNew"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterNew(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverternew(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNewSpecific(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio converter object using a specified codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterNewSpecific"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioClassDescription",
+          "text": "AudioClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNewSpecific(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterNewSpecific"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterNewSpecific(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverternewspecific(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPrimeInfo": {
+      "abstract": [
+        {
+          "text": "Specifies priming information for an audio converter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterPrimeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPrimeInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterPrimeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterPrimeInfo",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterprimeinfo"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPropertyID": {
+      "abstract": [
+        {
+          "text": "An audio converter property identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterPropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterpropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterRef": {
+      "abstract": [
+        {
+          "text": "A reference to an audio converter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterRef"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterRef",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterref"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterReset(_:)": {
+      "abstract": [
+        {
+          "text": "Resets an audio converter object, clearing and flushing its buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterReset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterReset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterReset(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconverterreset(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterSetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of an audio converter object property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioConverterSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterRef",
+          "text": "AudioConverterRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterSetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioConverterSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioConverterSetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioconvertersetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments": {
+      "abstract": [
+        {
+          "text": "Ensure a smooth and immersive audio experience in your apps using Audio System Trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing audio performance with Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/analyzing-audio-performance-with-instruments"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec": {
+      "abstract": [
+        {
+          "text": "Translate audio data from one format to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-codec"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support": {
+      "abstract": [
+        {
+          "text": "Describe the properties that you associate with audio sessions and audio routes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Support",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-session-support"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging": {
+      "abstract": [
+        {
+          "text": "Obtain the internal state of Core Audio objects during the development and debugging of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Toolbox Debugging",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-toolbox-debugging"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities": {
+      "abstract": [
+        {
+          "text": "Manage time-related information associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clock Utilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/clock-utilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio": {
+      "abstract": [
+        {
+          "text": "Convert audio formats to efficiently manage data and quality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding and decoding audio",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/encoding-and-decoding-audio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_BadPropertySizeError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_BadPropertySizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_BadPropertySizeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_BadPropertySizeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_BadPropertySizeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_badpropertysizeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_FormatNotSupported": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_FormatNotSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_FormatNotSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_FormatNotSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_FormatNotSupported",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_formatnotsupported"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_HardwareInUse": {
+      "abstract": [
+        {
+          "text": "Returned from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function if the underlying hardware codec has become unavailable, probably due to an audio interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_HardwareInUse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_HardwareInUse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_HardwareInUse"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_HardwareInUse",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_hardwareinuse"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InputSampleRateOutOfRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InputSampleRateOutOfRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InputSampleRateOutOfRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InputSampleRateOutOfRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_InputSampleRateOutOfRange",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_inputsamplerateoutofrange"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidInputSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InvalidInputSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidInputSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InvalidInputSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_InvalidInputSize",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_invalidinputsize"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidOutputSize": {
+      "abstract": [
+        {
+          "text": "The byte size is not an integer multiple of the frame size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InvalidOutputSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidOutputSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_InvalidOutputSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_InvalidOutputSize",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_invalidoutputsize"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_NoHardwarePermission": {
+      "abstract": [
+        {
+          "text": "Returned from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNew(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function if the new converter would use a hardware codec which the application does not have permission to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_NoHardwarePermission"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_NoHardwarePermission",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_NoHardwarePermission"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_NoHardwarePermission",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_nohardwarepermission"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OperationNotSupported": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_OperationNotSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OperationNotSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_OperationNotSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_OperationNotSupported",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_operationnotsupported"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OutputSampleRateOutOfRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_OutputSampleRateOutOfRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OutputSampleRateOutOfRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_OutputSampleRateOutOfRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_OutputSampleRateOutOfRange",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_outputsamplerateoutofrange"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_PropertyNotSupported": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_PropertyNotSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_PropertyNotSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_PropertyNotSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_PropertyNotSupported",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_propertynotsupported"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_RequiresPacketDescriptionsError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_RequiresPacketDescriptionsError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_RequiresPacketDescriptionsError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_RequiresPacketDescriptionsError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_RequiresPacketDescriptionsError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_requirespacketdescriptionserror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_UnspecifiedError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_UnspecifiedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_UnspecifiedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterErr_UnspecifiedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterErr_UnspecifiedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertererr_unspecifiederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterPrimeMethod": {
+      "abstract": [
+        {
+          "text": "The priming method, usually for sample-rate conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterPrimeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterPrimeMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterPrimeMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterPrimeMethod",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconverterprimemethod"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterComplexity": {
+      "abstract": [
+        {
+          "text": "The sample rate conversion algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterSampleRateConverterComplexity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterComplexity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterSampleRateConverterComplexity"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterSampleRateConverterComplexity",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterQuality": {
+      "abstract": [
+        {
+          "text": "The rendering quality of the sample rate converter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterSampleRateConverterQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioConverterPropertyID",
+          "text": "AudioConverterPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterSampleRateConverterQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioConverterSampleRateConverterQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioConverterSampleRateConverterQuality",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioconvertersamplerateconverterquality"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Audio-Converter-Objects",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNew(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNewSpecific(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterReset(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterDispose(_:)"
+      ],
+      "title": "Managing Audio Converter Objects"
+    },
+    {
+      "anchor": "Configuring-Audio-Converter-Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetProperty(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetPropertyInfo(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterSetProperty(_:_:_:_:)"
+      ],
+      "title": "Configuring Audio Converter Properties"
+    },
+    {
+      "anchor": "Performing-Conversions",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"
+      ],
+      "title": "Performing Conversions"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterComplexInputDataProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterInputDataProc"
+      ],
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPrimeInfo",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterRef",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPropertyID"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559928-audio-converter-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559927-converter-priming-constants",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559924-sample-rate-conversion-quality-i",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559923-sample-rate-conversion-complexit"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533972-converter_audio_unit_properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584145-converter_audio_unit_subtypes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559931-audio-converter-dithering-algori",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559925-audio-converter-properties-macos",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559930-audio-converter-errors"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This table lists result codes defined for Audio Converter Services.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_FormatNotSupported",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OperationNotSupported",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_PropertyNotSupported",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidInputSize",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidOutputSize",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_UnspecifiedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_BadPropertySizeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_RequiresPacketDescriptionsError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InputSampleRateOutOfRange",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OutputSampleRateOutOfRange",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_HardwareInUse",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_NoHardwarePermission"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Audio-Converter-Objects",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNew(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterNewSpecific(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterReset(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterDispose(_:)"
+              ],
+              "title": "Managing Audio Converter Objects"
+            },
+            {
+              "anchor": "Configuring-Audio-Converter-Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetProperty(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterGetPropertyInfo(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterSetProperty(_:_:_:_:)"
+              ],
+              "title": "Configuring Audio Converter Properties"
+            },
+            {
+              "anchor": "Performing-Conversions",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/encoding-and-decoding-audio",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertBuffer(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillComplexBuffer(_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterConvertComplexBuffer(_:_:_:_:)"
+              ],
+              "title": "Performing Conversions"
+            },
+            {
+              "anchor": "Deprecated-Functions",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterFillBuffer"
+              ],
+              "title": "Deprecated Functions"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterComplexInputDataProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterInputDataProc"
+              ],
+              "title": "Callbacks"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPrimeInfo",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterRef",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioConverterPropertyID"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559928-audio-converter-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559927-converter-priming-constants",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559924-sample-rate-conversion-quality-i",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559923-sample-rate-conversion-complexit"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1533972-converter_audio_unit_properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1584145-converter_audio_unit_subtypes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559931-audio-converter-dithering-algori",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559925-audio-converter-properties-macos",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1559930-audio-converter-errors"
+              ],
+              "title": "Enumerations"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This table lists result codes defined for Audio Converter Services.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_FormatNotSupported",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OperationNotSupported",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_PropertyNotSupported",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidInputSize",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InvalidOutputSize",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_UnspecifiedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_BadPropertySizeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_RequiresPacketDescriptionsError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_InputSampleRateOutOfRange",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_OutputSampleRateOutOfRange",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_HardwareInUse",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioConverterErr_NoHardwarePermission"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Utilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_FormatNotSupported/title",
+          "value": "kAudioConverterErr_FormatNotSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_FormatNotSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_FormatNotSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InputSampleRateOutOfRange/title",
+          "value": "kAudioConverterErr_InputSampleRateOutOfRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InputSampleRateOutOfRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_InputSampleRateOutOfRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_OutputSampleRateOutOfRange/title",
+          "value": "kAudioConverterErr_OutputSampleRateOutOfRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_OutputSampleRateOutOfRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_OutputSampleRateOutOfRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InvalidInputSize/title",
+          "value": "kAudioConverterErr_InvalidInputSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InvalidInputSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_InvalidInputSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterSetProperty(_:_:_:_:)/title",
+          "value": "AudioConverterSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterSetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/title",
+          "value": "AudioConverterFillComplexBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterFillComplexBuffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterFillComplexBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_RequiresPacketDescriptionsError/title",
+          "value": "kAudioConverterErr_RequiresPacketDescriptionsError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_RequiresPacketDescriptionsError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_RequiresPacketDescriptionsError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_NoHardwarePermission/title",
+          "value": "kAudioConverterErr_NoHardwarePermission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_NoHardwarePermission/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_NoHardwarePermission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterRef/title",
+          "value": "AudioConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterReset(_:)/title",
+          "value": "AudioConverterReset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterReset(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterReset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterComplexInputDataProc/title",
+          "value": "AudioConverterComplexInputDataProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterComplexInputDataProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterComplexInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterComplexInputDataProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterComplexInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPrimeInfo/title",
+          "value": "AudioConverterPrimeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPrimeInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPrimeInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterDispose(_:)/title",
+          "value": "AudioConverterDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_PropertyNotSupported/title",
+          "value": "kAudioConverterErr_PropertyNotSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_PropertyNotSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_PropertyNotSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterInputDataProc/title",
+          "value": "AudioConverterInputDataProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterInputDataProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterInputDataProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InvalidOutputSize/title",
+          "value": "kAudioConverterErr_InvalidOutputSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_InvalidOutputSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_InvalidOutputSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPropertyID/title",
+          "value": "AudioConverterPropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterPropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterGetPropertyInfo(_:_:_:_:)/title",
+          "value": "AudioConverterGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterGetPropertyInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/title",
+          "value": "AudioConverterConvertComplexBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertComplexBuffer(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterConvertComplexBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterSampleRateConverterQuality/title",
+          "value": "kAudioConverterSampleRateConverterQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterSampleRateConverterQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterSampleRateConverterQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_HardwareInUse/title",
+          "value": "kAudioConverterErr_HardwareInUse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_HardwareInUse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_HardwareInUse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterGetProperty(_:_:_:_:)/title",
+          "value": "AudioConverterGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterGetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/title",
+          "value": "AudioConverterConvertBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterConvertBuffer(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterConvertBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_UnspecifiedError/title",
+          "value": "kAudioConverterErr_UnspecifiedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_UnspecifiedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_UnspecifiedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_BadPropertySizeError/title",
+          "value": "kAudioConverterErr_BadPropertySizeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_BadPropertySizeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_BadPropertySizeError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterPrimeMethod/title",
+          "value": "kAudioConverterPrimeMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterPrimeMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterPrimeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterNewSpecific(_:_:_:_:_:)/title",
+          "value": "AudioConverterNewSpecific"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterNewSpecific(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterNewSpecific"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_OperationNotSupported/title",
+          "value": "kAudioConverterErr_OperationNotSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterErr_OperationNotSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterErr_OperationNotSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterSampleRateConverterComplexity/title",
+          "value": "kAudioConverterSampleRateConverterComplexity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioConverterSampleRateConverterComplexity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioConverterSampleRateConverterComplexity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterNew(_:_:_:)/title",
+          "value": "AudioConverterNew"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioConverterNew(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioConverterNew"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-converter-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-converter-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,854 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit",
+        "doc://com.apple.webkit/documentation/WebKit/deprecated-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/working-with-frames-legacy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Working with Frames (legacy)"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebDataSource": {
+      "abstract": [
+        {
+          "code": "WebDataSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " encapsulates the web content to be displayed in a web frame view. A ",
+          "type": "text"
+        },
+        {
+          "code": "WebDataSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object has a representation object, conforming to the ",
+          "type": "text"
+        },
+        {
+          "code": "WebDocumentRepresentation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol, that holds the data in an appropriate format depending on the MIME type. You can extend WebKit to support new MIME types by implementing your own view and representation classes, and specifying the mapping between them using the  ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class method.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebDataSource",
+      "type": "topic",
+      "url": "/documentation/webkit/webdatasource"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebDocumentView": {
+      "abstract": [
+        {
+          "text": "This protocol is adopted by the document view of a ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". You can extend WebKit to support additional MIME types by implementing your own document view and document representation classes to render data for specific MIME types. You register those classes using the WebFrame ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method. Classes that adopt this protocol are expected to be subclasses of ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebDocumentView"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDocumentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebDocumentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebDocumentView",
+      "type": "topic",
+      "url": "/documentation/webkit/webdocumentview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object encapsulates the data displayed in a ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object. There is one ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object per frame displayed in a ",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". An entire webpage is represented by a hierarchy of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects in which the root object is called the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "main frame",
+              "type": "text"
+            }
+          ],
+          "type": "strong"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrame",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrameLoadDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrameLoadDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrameLoadDelegate",
+      "type": "topic",
+      "url": "/documentation/webkit/webframeloaddelegate"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrameView": {
+      "abstract": [
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects and their subviews display the web content contained in a frame. You never create instances of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " directly—",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects create and manage a hierarchy of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects, one for each frame. ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects use a scroll view whose document view conforms to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDocumentView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrameView"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrameView"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrameView",
+      "type": "topic",
+      "url": "/documentation/webkit/webframeview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)": {
+      "abstract": [
+        {
+          "text": "Specifies the view and representation objects to be used for specific MIME types.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerClass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representationClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMIMEType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerViewClass:representationClass:forMIMEType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerClass(_:representationClass:forMIMEType:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webview/registerclass(_:representationclass:formimetype:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/accessing-previous-webpages-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/accessing-previous-webpages-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessing Previous Webpages (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/accessing-previous-webpages-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/archiving-webpages-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/archiving-webpages-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archiving Webpages (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/archiving-webpages-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/webkit/deprecated-symbols"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/document-object-models-api-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/document-object-models-api-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Document Object Models API (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/document-object-models-api-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/downloading-information-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/downloading-information-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Downloading Information (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/downloading-information-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/implementing-plugins-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/implementing-plugins-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Plugins (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/implementing-plugins-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/incorporating-scripts-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/incorporating-scripts-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Incorporating Scripts (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/incorporating-scripts-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/loading-resources-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/loading-resources-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Loading Resources (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/loading-resources-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/opening-a-file-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/opening-a-file-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Opening a File (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/opening-a-file-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/setting-policies-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/setting-policies-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting Policies (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/setting-policies-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/setting-up-a-web-view-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/setting-up-a-web-view-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting Up a Web View (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/setting-up-a-web-view-legacy"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/working-with-document-web-views-legacy": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/working-with-document-web-views-legacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Working With Document Web Views (Legacy)",
+      "type": "topic",
+      "url": "/documentation/webkit/working-with-document-web-views-legacy"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "WebKit-Legacy-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/document-object-models-api-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/setting-up-a-web-view-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/accessing-previous-webpages-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/archiving-webpages-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/loading-resources-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/downloading-information-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/opening-a-file-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/setting-policies-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/implementing-plugins-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/incorporating-scripts-legacy",
+        "doc://com.apple.webkit/documentation/WebKit/working-with-document-web-views-legacy"
+      ],
+      "title": "WebKit Legacy APIs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Frames-Legacy",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame",
+        "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate"
+      ],
+      "title": "Working with Frames (Legacy)"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Frames-Legacy",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame",
+                "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate"
+              ],
+              "title": "Working with Frames (Legacy)"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "WebKit-Legacy-APIs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/document-object-models-api-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/setting-up-a-web-view-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/accessing-previous-webpages-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/archiving-webpages-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/loading-resources-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/downloading-information-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/opening-a-file-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/setting-policies-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/implementing-plugins-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/incorporating-scripts-legacy",
+                "doc://com.apple.webkit/documentation/WebKit/working-with-document-web-views-legacy"
+              ],
+              "title": "WebKit Legacy APIs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1registerClass(_:representationClass:forMIMEType:)/title",
+          "value": "registerViewClass:representationClass:forMIMEType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1registerClass(_:representationClass:forMIMEType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerViewClass:representationClass:forMIMEType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/title",
+          "value": "WebFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/title",
+          "value": "WebFrameView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/title",
+          "value": "WebFrameLoadDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameLoadDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameLoadDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/title",
+          "value": "WebDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/title",
+          "value": "WebDocumentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDocumentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDocumentView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/working-with-frames-legacy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/working-with-frames-legacy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

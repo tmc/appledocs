@@ -1,0 +1,303 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a reference to an opaque Unicode to text converter object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/unicodetotextinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433497,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@UnicodeToTextInfo",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "UnicodeToTextInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "OpaqueUnicodeToTextInfo"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "identifier",
+              "text": "UnicodeToTextInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many of the Unicode Converter functions that perform conversions require a Unicode converter object containing information used for the conversion process. There are three types of Unicode converter objects used for different types of conversions. You use the ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeToTextInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, described here, for converting from Unicode to text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because your application cannot directly create or modify the contents of the private Unicode converter object, the Unicode Converter provides functions to create and dispose of it. To create a Unicode converter object for converting from Unicode to text, your application must first call either the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433522-createunicodetotextinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then pass this object to the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to identify the information used to perform the actual conversion. After you have finished using the object, you should release the memory allocated for it by calling the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433564-disposeunicodetotextinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Unicode converter object for this purpose is defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeToTextInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433522-createunicodetotextinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433522-createunicodetotextinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433522-createunicodetotextinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433542-convertfromunicodetotext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextInfoByEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433550-createunicodetotextinfobyencodin"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433564-disposeunicodetotextinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433564-disposeunicodetotextinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeUnicodeToTextInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433564-disposeunicodetotextinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToPString",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433581-convertfromunicodetopstring"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/unicodetotextinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

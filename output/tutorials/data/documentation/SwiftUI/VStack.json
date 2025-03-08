@@ -1,0 +1,971 @@
+{
+  "abstract": [
+    {
+      "text": "A view that arranges its subviews in a vertical line.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI6VStackV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VStack"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VStack"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "VStack"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VStack"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Within-a-Stack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which only renders the views when your app needs to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display them, a ",
+              "type": "text"
+            },
+            {
+              "code": "VStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " renders the views all at once, regardless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of whether they are on- or offscreen. Use the regular ",
+              "type": "text"
+            },
+            {
+              "code": "VStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a small number of subviews or don’t want the delayed rendering behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the “lazy” version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a simple vertical stack of 10 text views:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    VStack(",
+            "        alignment: .leading,",
+            "        spacing: 10",
+            "    ) {",
+            "        ForEach(",
+            "            1...10,",
+            "            id: \\.self",
+            "        ) {",
+            "            Text(\"Item \\($0)\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-VStack-simple.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you need a vertical stack that conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "protocol, like when you want to create a conditional layout using",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyLayout",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStackLayout",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-VStack-simple.png": {
+      "alt": "Ten text views, named Item 1 through Item 10, arranged in a",
+      "identifier": "SwiftUI-VStack-simple.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93d31b000cb6f5419689a7b765474401/SwiftUI-VStack-simple@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58a70651b3c1b0e694cfb9295f2843df/SwiftUI-VStack-simple~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View": {
+      "abstract": [
+        {
+          "text": "Compose a background behind your view and extend it beyond the safe area insets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a background to your view",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-a-background-to-your-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks": {
+      "abstract": [
+        {
+          "text": "Create a custom alignment and use it to align views across multiple stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Across-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Aligning views across stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/aligning-views-across-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Within-a-Stack": {
+      "abstract": [
+        {
+          "text": "Position views inside a stack using alignment guides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Aligning-Views-Within-a-Stack",
+      "kind": "article",
+      "role": "article",
+      "title": "Aligning views within a stack",
+      "type": "topic",
+      "url": "/documentation/swiftui/aligning-views-within-a-stack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyLayout": {
+      "abstract": [
+        {
+          "text": "A type-erased instance of the layout protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyLayout",
+      "type": "topic",
+      "url": "/documentation/swiftui/anylayout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views": {
+      "abstract": [
+        {
+          "text": "Adjust the characteristics of a view by applying view modifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring views",
+      "type": "topic",
+      "url": "/documentation/swiftui/configuring-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks": {
+      "abstract": [
+        {
+          "text": "Display large numbers of repeated views efficiently with scroll views, stack",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views, and lazy stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating performant scrollable stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating-performant-scrollable-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View": {
+      "abstract": [
+        {
+          "text": "Define views and assemble them into a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring a custom view",
+      "type": "topic",
+      "url": "/documentation/swiftui/declaring-a-custom-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout": {
+      "abstract": [
+        {
+          "text": "Determine the position and extent of a view using Xcode previews or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding temporary borders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting view layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/inspecting-view-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout": {
+      "abstract": [
+        {
+          "text": "A type that defines the geometry of a collection of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows vertically,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content": {
+      "abstract": [
+        {
+          "text": "Build flexible user interfaces by using stacks, grids, lists, and forms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content",
+      "kind": "article",
+      "role": "article",
+      "title": "Picking container views for your content",
+      "type": "topic",
+      "url": "/documentation/swiftui/picking-container-views-for-your-content"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a vertical line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack/init(alignment:spacing:content:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance with the given spacing and horizontal alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HorizontalAlignmentV",
+          "text": "HorizontalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack/init(alignment:spacing:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(alignment:spacing:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack/init(alignment:spacing:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStackLayout": {
+      "abstract": [
+        {
+          "text": "A vertical container that you can use in conditional layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStackLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStackLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStackLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStackLayout",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstacklayout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Statically-arranging-views-in-one-dimension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack"
+      ],
+      "title": "Statically arranging views in one dimension"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-stack",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack/init(alignment:spacing:content:)"
+      ],
+      "title": "Creating a stack"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/vstack"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

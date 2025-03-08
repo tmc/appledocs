@@ -1,0 +1,2716 @@
+{
+  "abstract": [
+    {
+      "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-matrix-multiplication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adjusting saturation and applying tone mapping"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project allows you to apply saturation adjustments to an image without affecting luminosity, and change the luminance response curve without affecting color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many image-processing techniques, such as saturation adjustment and tone mapping, are simpler to implement when you can work on an image’s luminance data separately from its color data. This article explains how you can convert an RGB image — with its pixels represented as red, green, and blue values — to YpCbCr, which stores luminance and chrominance discretely. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Yp",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in YpCbCr refers to the luminance, and the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Cb",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Cr",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refer to the blue-luminance difference, and red-luminance difference, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app converts an ARGB image to YpCbCr and applies adjustments based on user-interface controls. When you decrease the saturation, the sample app applies gamma to the CbCr buffers. When you increase the saturation, the sample app scales the CbCr buffers, and when you change contrast, the sample app applies gamma to the Yp buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following images show two photographs with a range of saturation adjustments that illustrate the variety of color changes you can make using the sample code app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, try building and running the app to familiarize yourself with the effect of the different transformations on the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-source-and-destination-ARGB-pixel-buffers",
+          "level": 3,
+          "text": "Create source and destination ARGB pixel buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample declares two 8-bit, four-channel pixel buffers. The ",
+              "type": "text"
+            },
+            {
+              "code": "argbSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pixel buffer stores the source image, and the ",
+              "type": "text"
+            },
+            {
+              "code": "argbDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stores the transformed image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private lazy var argbSource: vImage.PixelBuffer<vImage.Interleaved8x4> = {",
+            "    return try! vImage.PixelBuffer<vImage.Interleaved8x4>(cgImage: sourceCGImage,",
+            "                                                          cgImageFormat: &format)",
+            "}()",
+            "",
+            "private lazy var argbDestination: vImage.PixelBuffer<vImage.Interleaved8x4> = {",
+            "    return vImage.PixelBuffer<vImage.Interleaved8x4>(width: self.width,",
+            "                                                     height: self.height)",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-YpCbCr-buffers",
+          "level": 3,
+          "text": "Create the YpCbCr buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The conversion routine that this sample uses creates a YpCbCr result with a chroma of 4:2:0, which means there is one Cb and one Cr pixel for every four luminance pixels. That is, each chrominance buffer is half of the width, and half of the height of the luminance channel. Reducing the resolution for the chrominance channels is known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "chroma subsampling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and it relies on the fact that human vision is less sensitive to color than luminance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows that a 4 x 2 image is represented by a 4 x 2 luminance channel, but each chrominance channel is 2 x 1 pixels:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "subsampling_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the 4:2:0 YpCbCr representation of the source image, the sample project defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Yp8CbCr8PixelBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that contains two pixel buffers. The luminance buffer is the same size as the source buffer. The chrominance buffer’s height is half the source height, and its width is the same as the source width. This size enables the chrominance buffer to store both the Cb and Cr data as interleaved pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Yp8CbCr8PixelBuffers {",
+            "    /// The luminance pixel buffer.",
+            "    let yp: vImage.PixelBuffer<vImage.Planar8>",
+            "    ",
+            "    /// The chrominance pixel buffer.",
+            "    let cbcr: vImage.PixelBuffer<vImage.Planar8>",
+            "    ",
+            "    init(width: Int, height: Int) {",
+            "        yp = vImage.PixelBuffer<vImage.Planar8>(width: width,",
+            "                                                height: height)",
+            "        ",
+            "        cbcr = vImage.PixelBuffer<vImage.Planar8>(width: width,",
+            "                                                  height: height / 2)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates two ",
+              "type": "text"
+            },
+            {
+              "code": "Yp8CbCr8PixelBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures that contain a representation of the source image before and after saturation adjustment and tone mapping:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lazy private var ypCbCrPreTransformBuffers: Yp8CbCr8PixelBuffers = {",
+            "    return Yp8CbCr8PixelBuffers(width: width, height: height)",
+            "}()",
+            "",
+            "lazy private var ypCbCrPostTransformBuffers: Yp8CbCr8PixelBuffers = {",
+            "    return Yp8CbCr8PixelBuffers(width: width, height: height)",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-RGB-to-YpCbCr-conversion",
+          "level": 3,
+          "text": "Define the RGB-to-YpCbCr conversion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure defines the range and clamping information for the destination YpCbCr format. The destination buffer is 8-bit, therefore, the minimum and maximum values for luminance and chrominance are ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively. ",
+              "type": "text"
+            },
+            {
+              "code": "CbCr_bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the middle of the CbCr range (that is, where the blue-luminance difference or red-luminance difference is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and the sample sets that to ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let pixelRange = vImage_YpCbCrPixelRange(Yp_bias: 0,",
+            "                                                 CbCr_bias: 128,",
+            "                                                 YpRangeMax: 255,",
+            "                                                 CbCrRangeMax: 255,",
+            "                                                 YpMax: 255,",
+            "                                                 YpMin: 0,",
+            "                                                 CbCrMax: 255,",
+            "                                                 CbCrMin: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Yp8CbCr8PixelBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate the conversion from ARGB to YpCbCr. The sample calculates the conversion of RGB values using the conversion matrix for ITU Recommendation BT.709-2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var argbToYpCbCr: vImage_ARGBToYpCbCr {",
+            "    var outInfo = vImage_ARGBToYpCbCr()",
+            "    ",
+            "    withUnsafePointer(to: pixelRange) { ptr in",
+            "        _ = vImageConvert_ARGBToYpCbCr_GenerateConversion(",
+            "            kvImage_ARGBToYpCbCrMatrix_ITU_R_709_2,",
+            "            ptr,",
+            "            &outInfo,",
+            "            kvImageARGB8888,",
+            "            kvImage420Yp8_CbCr8,",
+            "            vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "    return outInfo",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-the-RGB-to-YpCbCr-conversion",
+          "level": 3,
+          "text": "Perform the RGB-to-YpCbCr conversion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function populates two vImage buffers — one that contains luminance data and one that contains chrominance data — from the contents of a single ARGB buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func convert(from source: vImage.PixelBuffer<vImage.Interleaved8x4>) {",
+            "    source.withUnsafePointerToVImageBuffer { src in",
+            "        withUnsafePointer(to: argbToYpCbCr) { info in",
+            "            self.yp.withUnsafePointerToVImageBuffer { yp in",
+            "                self.cbcr.withUnsafePointerToVImageBuffer { cbcr in",
+            "                    _ = vImageConvert_ARGB8888To420Yp8_CbCr8(",
+            "                        src,",
+            "                        yp,",
+            "                        cbcr,",
+            "                        info,",
+            "                        [3, 2, 1, 0],",
+            "                        vImage_Flags(kvImagePrintDiagnosticsToConsole))",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the luminance result on the left and the interleaved chrominance result on the right. Because the interleaved chrominance result contains both the Cb and Cr information, it’s half the height of the luminance channel, but has the same width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ycbcrBuffers.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-saturation-adjustment-to-the-image",
+          "level": 3,
+          "text": "Apply saturation adjustment to the image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses two techniques to adjust saturation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiply CbCr values to decrease saturation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply gamma to CbCr to increase saturation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It performs the tone mapping by applying gamma to the luminance channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if saturation > 1 {",
+            "    applyGammaToCbCr(gamma: 1 / saturation)",
+            "} else {",
+            "    applyLinearToCbCr(saturation: saturation)",
+            "}",
+            "",
+            "applyGammaToLuma(lumaGamma: lumaGamma)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Multiply-CbCr-values-to-decrease-saturation",
+          "level": 3,
+          "text": "Multiply CbCr values to decrease saturation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following formula describes how to adjust the color saturation of a YpCbCr image, without affecting its luminance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "saturationFormula.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-4q614",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function performs this math on the source chrominance buffer. The function passes the saturation to the matrix multiply function as a single-element matrix, and passes the chrominance buffer as the source and destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Reduces saturation.",
+            "private func applyLinearToCbCr(saturation: Float) {",
+            "    let preBias = -128",
+            "    let divisor = 0x1000",
+            "    let postBias = 128 * divisor",
+            "    ",
+            "    let factor = Int(saturation * Float(divisor))",
+            "    ",
+            "    ypCbCrPreTransformBuffers.cbcr.multiply(by: factor,",
+            "                                            divisor: divisor,",
+            "                                            preBias: preBias,",
+            "                                            postBias: postBias,",
+            "                                            destination: ypCbCrPostTransformBuffers.cbcr)",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows two photographs, from left to right, with saturations of ",
+              "type": "text"
+            },
+            {
+              "code": "0.25",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "0.75",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (that is, the rightmost image has an unchanged saturation).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "decreaseSaturation.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-gamma-to-CbCr-to-increase-saturation",
+          "level": 3,
+          "text": "Apply gamma to CbCr to increase saturation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simple linear adjustment that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-7jo6v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides is fine for desaturating an image, however, when increasing saturation, multiplication can clip the CbCr values, leading to areas of solid color. An alternative technique to increase saturation is to apply an exponential adjustment. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(_:destination:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function applies a gamma value to the CbCr values to increase saturation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Increases saturation.",
+            "private func applyGammaToCbCr(gamma: Float) {",
+            "    ",
+            "    // Convert 8-bit CbCr values to 32-bit.",
+            "    ypCbCrPreTransformBuffers.cbcr.convert(to: gammaDestination)",
+            "    ",
+            "    // Scale 32-bit values from `0.0 ... 1.0` to `-1.0 ... 1.0`.",
+            "    gammaDestination.multiply(by: 2,",
+            "                              preBias: 0, postBias: -1,",
+            "                              destination: gammaDestination)",
+            "    ",
+            "    // Apply gamma to 32-bit values.",
+            "    gammaDestination.applyGamma(.fullPrecision(gamma),",
+            "                                destination: gammaDestination)",
+            "    ",
+            "    // Scale 32-bit transformed values from `-1.0 ... 1.0` to `0 ... 1.0`.",
+            "    gammaDestination.multiply(by: 0.5,",
+            "                              preBias: 1, postBias: 0,",
+            "                              destination: gammaDestination)",
+            "    ",
+            "    // Convert 32-bit transformed CbCr values to 8-bit.",
+            "    gammaDestination.convert(to: ypCbCrPostTransformBuffers.cbcr)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows two photographs, from left to right, with a saturation of 1.0 (that is, the leftmost image has an unchanged saturation), 1.5, and 2.0:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "increaseSaturation.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When decreasing the saturation, the gamma function is not appropriate because pixels with very saturated color will desaturate very little, or not at all.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-gamma-to-luminance-to-perform-tone-mapping",
+          "level": 3,
+          "text": "Apply gamma to luminance to perform tone mapping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app adjusts the contrast of an image, with a technique known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tone mapping",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", by applying a gamma adjustment to the luminance channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adjusting contrast is discussed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", however, applying a gamma adjustment to red, green, and blue channels changes both the color and tonal values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function applies a piecewise gamma tranformation on the planar ",
+              "type": "text"
+            },
+            {
+              "code": "ypDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " buffer, which contains the luminance data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func applyGammaToLuma(lumaGamma: Float) {",
+            "    ",
+            "    ypCbCrPreTransformBuffers.yp.applyGamma(",
+            "        linearParameters: (scale: 1, bias: 0),",
+            "        exponentialParameters: (scale: 1, preBias: 0, gamma: lumaGamma, postBias: 0),",
+            "        boundary: 0,",
+            "        destination: ypCbCrPostTransformBuffers.yp)",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows two photographs, from left to right, with a gamma applied to the luminance channel of 2.5, 0.0 (that is, the center image is unchanged), and 0.5:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lumaGamma.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-YpCbCr-to-RGB-conversion",
+          "level": 3,
+          "text": "Define the YpCbCr-to-RGB conversion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample app completes the YpCbCr representation, it converts the YpCbCr data to RGB. The process is very similar to the RGB to YpCbCr conversion and uses the same pixel range, but the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function generates the conversion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var ypCbCrToARGB: vImage_YpCbCrToARGB {",
+            "    var outInfo = vImage_YpCbCrToARGB()",
+            "    ",
+            "    withUnsafePointer(to: pixelRange) { ptr in",
+            "        _ = vImageConvert_YpCbCrToARGB_GenerateConversion(",
+            "            kvImage_YpCbCrToARGBMatrix_ITU_R_709_2,",
+            "            ptr,",
+            "            &outInfo,",
+            "            kvImage420Yp8_CbCr8,",
+            "            kvImageARGB8888,",
+            "            vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "    ",
+            "    return outInfo",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Yp8CbCr8PixelBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure exposes a method for converting to ARGB.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x4>) {",
+            "    _ = withUnsafePointer(to: ypCbCrToARGB) { info in",
+            "        self.cbcr.withUnsafePointerToVImageBuffer { cbcrDest in",
+            "            self.yp.withUnsafePointerToVImageBuffer { ypDest in",
+            "                destination.withUnsafePointerToVImageBuffer { argbDest in",
+            "                    vImageConvert_420Yp8_CbCr8ToARGB8888(",
+            "                        ypDest,",
+            "                        cbcrDest,",
+            "                        argbDest,",
+            "                        info,",
+            "                        [3, 2, 1, 0],",
+            "                        255,",
+            "                        vImage_Flags(kvImagePrintDiagnosticsToConsole))",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Correct-gamma-before-applying-operations",
+          "level": 3,
+          "text": "Correct gamma before applying operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many vImage operations provide optimal results when working on images with a linear response curve. The sample app includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " control that applies a reciprocal gamma to the sRGB image, performs the saturation adjustments and tone mapping, and applies the original gamma.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vImage provides predefined gamma functions for converting from linear to sRGB, and from sRGB to linear. The sample implements the following function as an extension to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and remaps the buffer’s contents in-place in the specified direction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension vImage.PixelBuffer where Format == vImage.Interleaved8x4 {",
+            "    ",
+            "    enum Remap {",
+            "        case linearToSRGB",
+            "        case sRGBToLinear",
+            "        ",
+            "        var gammaType: vImage.Gamma {",
+            "            switch self {",
+            "                case .linearToSRGB:",
+            "                    return .sRGBForwardHalfPrecision",
+            "                case .sRGBToLinear:",
+            "                    return .sRGBReverseHalfPrecision",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    func remap(_ remap: Remap) {",
+            "        self.applyGamma(remap.gammaType,",
+            "                        intermediateBuffer: nil,",
+            "                        destination: self)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5d13fb23a632/AdjustingSaturationAndApplyingToneMapping.zip": {
+      "checksum": "5d13fb23a6321cc62fb838623338cdf374a8251170e3af7d3f643fdeef03cee59b86afca19d8730c2078a7336d9c5e8a4a03a5288d2d3d6a142641296e33aea8",
+      "identifier": "5d13fb23a632/AdjustingSaturationAndApplyingToneMapping.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5d13fb23a632/AdjustingSaturationAndApplyingToneMapping.zip"
+    },
+    "decreaseSaturation.png": {
+      "alt": "Two photographs arranged in two rows. Each row contains three variations of the photographs that transition from very desaturated to unchanged.",
+      "identifier": "decreaseSaturation.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79a985fc01a5dfa4cce921ccb7efc1ca/decreaseSaturation.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image": {
+      "abstract": [
+        {
+          "text": "Use a gamma function to apply a linear or exponential curve.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the brightness and contrast of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-brightness-and-contrast-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image": {
+      "abstract": [
+        {
+          "text": "Convert an image to L*a*b* color space and apply hue adjustment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the hue of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-hue-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images": {
+      "abstract": [
+        {
+          "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying tone curve adjustments to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-tone-curve-adjustments-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/histogram": {
+      "abstract": [
+        {
+          "text": "Calculate or manipulate an image’s histogram.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/histogram",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Histogram",
+      "type": "topic",
+      "url": "/documentation/accelerate/histogram"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage": {
+      "abstract": [
+        {
+          "text": "Calculate the histogram of one image, and apply it to a second image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Specifying histograms with vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/specifying-histograms-with-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function": {
+      "abstract": [
+        {
+          "text": "Use gamma functions to apply color transformations to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transforming with a gamma function",
+      "type": "topic",
+      "url": "/documentation/accelerate/transforming-with-a-gamma-function"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-matrix-multiplication": {
+      "abstract": [
+        {
+          "text": "Use matrix multiplication to apply color transformations to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-matrix-multiplication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transforming with matrix multiplication",
+      "type": "topic",
+      "url": "/documentation/accelerate/transforming-with-matrix-multiplication"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(_:destination:)": {
+      "abstract": [
+        {
+          "text": "Applies a gamma function to a 32-bit pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyGamma"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO5GammaO",
+          "text": "Gamma"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(_:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyGamma(_:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applygamma(_:destination:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro": {
+      "abstract": [
+        {
+          "text": "Applies a piecewise gamma calculation to a 32-bit pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyGamma"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "linearParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": (scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exponentialParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": (scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", preBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", gamma"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", postBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyGamma(linearParameters:exponentialParameters:boundary:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applygamma(linearparameters:exponentialparameters:boundary:destination:)-8r0ro"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-4q614": {
+      "abstract": [
+        {
+          "text": "Multiplies each four channel pixel in an 8-bit-per channel, 4-channel pixel buffer by a four element matrix to produce a single channel result.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preBias"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "postBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-4q614",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(by:divisor:preBias:postBias:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/multiply(by:divisor:prebias:postbias:destination:)-4q614"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-7jo6v": {
+      "abstract": [
+        {
+          "text": "Multiplies each pixel in an 8-bit planar pixel buffer by the specified factor.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "postBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/multiply(by:divisor:preBias:postBias:destination:)-7jo6v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(by:divisor:preBias:postBias:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/multiply(by:divisor:prebias:postbias:destination:)-7jo6v"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts an 8-bit-per-channel, 4-channel ARGB buffer to a planar Yp buffer and a 2-channel CbCr buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGB8888To420Yp8_CbCr8"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_ARGBToYpCbCr",
+          "text": "vImage_ARGBToYpCbCr"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGB8888To420Yp8_CbCr8"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_argb8888to420yp8_cbcr8(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates the information that describes the conversion from ARGB to YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_ARGBToYpCbCrMatrix",
+          "text": "vImage_ARGBToYpCbCrMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrPixelRange",
+          "text": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_ARGBToYpCbCr",
+          "text": "vImage_ARGBToYpCbCr"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageARGBType",
+          "text": "vImageARGBType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageYpCbCrType",
+          "text": "vImageYpCbCrType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_argbtoypcbcr_generateconversion(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates the information that describes the conversion from YpCbCr to ARGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGBMatrix",
+          "text": "vImage_YpCbCrToARGBMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrPixelRange",
+          "text": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGB",
+          "text": "vImage_YpCbCrToARGB"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageYpCbCrType",
+          "text": "vImageYpCbCrType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageARGBType",
+          "text": "vImageARGBType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_ypcbcrtoargb_generateconversion(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange": {
+      "abstract": [
+        {
+          "text": "The description of range and clamping information for YpCbCr pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_YpCbCrPixelRange",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toggle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "increaseSaturation.png": {
+      "alt": "Two photographs arranged in two rows. Each row contains three variations of the photographs that transition from unchanged to very saturated.",
+      "identifier": "increaseSaturation.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c2c6c83b87edc71a6638137c4c5b6de/increaseSaturation.png"
+        }
+      ]
+    },
+    "lumaGamma.png": {
+      "alt": "Two photographs arranged in two rows. Each row contains three variations of the photographs that transition from high contrast to low contrast.",
+      "identifier": "lumaGamma.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be3a74012f2b63f50678223448930c2f/lumaGamma.png"
+        }
+      ]
+    },
+    "overview.png": {
+      "alt": "Two photographs arranged in two rows. Each row contains six variations of the photographs that transition from very desaturated to very saturated. ",
+      "identifier": "overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56b73f1fcb0e746e770c8076b25d7b0f/overview.png"
+        }
+      ]
+    },
+    "saturationFormula.png": {
+      "alt": "A mathematical formula that describes saturation adjustment. Cb prime equals cb minus 128 multiplied by saturation plus 128. Cr prime equals cr minus 128 multiplied by saturation plus 128",
+      "identifier": "saturationFormula.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76523f3754570bc631adc76fe7db1b3f/saturationFormula.png"
+        }
+      ]
+    },
+    "subsampling_2x.png": {
+      "alt": "A diagram showing source RGB pixels converted to discrete luminance and chrominance pixels arranged as two-times-two tiles.",
+      "identifier": "subsampling_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7004bc5cddead7f7f75870e0ff1c61cc/subsampling_2x.png"
+        }
+      ]
+    },
+    "ycbcrBuffers.png": {
+      "alt": "Two black-and-white photographs of a rainbow over the ocean at a sandy beach with palm trees in the foreground. The photo on the right has a square overlay of vertical stripes on top of it.",
+      "identifier": "ycbcrBuffers.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7867381ba91df8e8fcdf7908036675e1/ycbcrBuffers.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5d13fb23a632/AdjustingSaturationAndApplyingToneMapping.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Color-and-Tone-Adjustment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+        "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+        "doc://com.apple.accelerate/documentation/Accelerate/histogram"
+      ],
+      "title": "Color and Tone Adjustment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/title",
+          "value": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_ARGB8888To420Yp8_CbCr8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGB8888To420Yp8_CbCr8(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_ARGB8888To420Yp8_CbCr8"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,443 @@
+{
+  "abstract": [
+    {
+      "text": "Generates and returns information about windows with the specified window IDs.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455215,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGWindowListCreateDescriptionFromArray",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGWindowListCreateDescriptionFromArray"
+      },
+      {
+        "kind": "text",
+        "text": "(CFArray?) -> CFArray?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGWindowListCreateDescriptionFromArray(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGWindowListCreateDescriptionFromArray"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "windowArray"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArray"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArray"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgwindowid",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " types, each of which corresponds to a window whose information you want to retrieve. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "windowArray"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types, each of which contains information about one of the windows in the current user session. If there are no windows matching the desired criteria, the function returns an empty array. If you call this function from outside of a GUI security session or when no window server is running, this function returns ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function ignores any window IDs in the ",
+              "type": "text"
+            },
+            {
+              "code": "windowArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter that refer to windows that no longer exist. (This can occur if the user closes a window between the time you retrieve its ID and the time you call this function.) You should therefore not assume that the returned array of dictionaries contains the same number of entries as this parameter. To make it easier to associate window IDs with the correct information, however, each dictionary does contain a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgwindownumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key whose value is the corresponding window ID. For the list of keys and values that may be present in the dictionary, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/required_window_list_keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/optional_window_list_keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo": {
+      "abstract": [
+        {
+          "text": "Generates and returns information about the selected windows in the current user session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGWindowListCopyWindowInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(CGWindowListOption, CGWindowID) -> CFArray?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGWindowListCopyWindowInfo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro": {
+      "abstract": [
+        {
+          "text": "Generates and returns information about windows with the specified window IDs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGWindowListCreateDescriptionFromArray"
+        },
+        {
+          "kind": "text",
+          "text": "(CFArray?) -> CFArray?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGWindowListCreateDescriptionFromArray(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgwindowid": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgwindowid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGWindowID",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgwindowid"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Graphics Functions",
+      "type": "topic",
+      "url": "/documentation/coregraphics/core_graphics_functions"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/kcgwindownumber": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/kcgwindownumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGWindowNumber",
+      "type": "topic",
+      "url": "/documentation/coregraphics/kcgwindownumber"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Quartz Window Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_window_services"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/optional_window_list_keys": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/optional_window_list_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Optional Window List Keys",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_window_services/optional_window_list_keys"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/required_window_list_keys": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_window_services/required_window_list_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Required Window List Keys",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_window_services/required_window_list_keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo"
+      ],
+      "title": "Getting Window Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/1455215-cgwindowlistcreatedescriptionfro"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

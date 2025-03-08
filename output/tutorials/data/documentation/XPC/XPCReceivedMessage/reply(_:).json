@@ -1,0 +1,536 @@
+{
+  "abstract": [
+    {
+      "text": "Sends a reply to the originator of the message.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC",
+        "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/reply(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:3XPC18XPCReceivedMessageV5replyyyxSERzlF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "reply"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "genericParameter",
+        "text": "Message"
+      },
+      {
+        "kind": "text",
+        "text": ">("
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Message"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "reply(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "reply"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Message"
+            },
+            {
+              "kind": "text",
+              "text": ">("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "object"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Message"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Message"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SE",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SE",
+              "text": "Encodable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A message to send back to the client that sent the original message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "object"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a listener receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the message keeps track of the client that sent it. This function sends the specified reply message back to the originating client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t call this function more than once on a single message, and don’t call it on a message that wasn’t received from a client. Calling it more than once or sending a reply using a message that wasn’t received triggers an API misuse crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage": {
+      "abstract": [
+        {
+          "text": "A type that represents a message sent between a session and a listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCReceivedMessage",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/expectsReply": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if the client that sent the message expects a reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expectsReply"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/expectsReply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expectsReply",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage/expectsreply"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/handoffReply(to:_:)": {
+      "abstract": [
+        {
+          "text": "Informs the system when message processing and response continues in a separate dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handoffReply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/handoffReply(to:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handoffReply(to:_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage/handoffreply(to:_:)"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/reply(_:)": {
+      "abstract": [
+        {
+          "text": "Sends a reply to the originator of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/reply(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reply(_:)",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage/reply(_:)"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Replying-to-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/expectsReply",
+        "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage/handoffReply(to:_:)"
+      ],
+      "title": "Replying to messages"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpcreceivedmessage/reply(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

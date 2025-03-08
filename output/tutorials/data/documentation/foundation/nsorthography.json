@@ -1,0 +1,988 @@
+{
+  "abstract": [
+    {
+      "text": "A description of the linguistic content of natural language text, typically used for spelling and grammar checking.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsorthography"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417547,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOrthography",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSOrthography"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSOrthography"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSOrthography"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to describe the linguistic content of a piece of text, including which scripts the text contains, a dominant language (and possibly other languages) for each script, and a dominant script and language for the text as a whole.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Scripts are uniformly described by four-letter ISO 15924 script codes, such as ",
+              "type": "text"
+            },
+            {
+              "code": "\"Latn\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "\"Grek\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "\"Cyrl\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The supertags ",
+              "type": "text"
+            },
+            {
+              "code": "\"Jpan\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"Kore\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are typically used for Japanese and Korean text, and ",
+              "type": "text"
+            },
+            {
+              "code": "\"Hans\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"Hant\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are typically used for Chinese text. The tag ",
+              "type": "text"
+            },
+            {
+              "code": "\"Zyyy\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is used if a specific script cannot be identified. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696204",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Languages are uniformly described by BCP-47 tags (preferably in canonical form). The tag ",
+              "type": "text"
+            },
+            {
+              "code": "\"und\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is used if a specific language cannot be determined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically work with orthography objects returned from methods and properties for classes like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770551",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses must override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1407965-dominantscript",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1409533-languagemap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. These properties are set using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1408708-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696204": {
+      "identifier": "devLink-1696204",
+      "title": "Internationalization and Localization Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSpellChecker",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspellchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string from a table that Xcode generates for you when exporting localizations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocalizedString"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString(_:tableName:bundle:value:comment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1418095-nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible": {
+      "abstract": [
+        {
+          "text": "A type that provides an out-of-process localizable description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomLocalizedStringResourceConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomLocalizedStringResourceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/customlocalizedstringresourceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale": {
+      "abstract": [
+        {
+          "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale",
+      "type": "topic",
+      "url": "/documentation/foundation/locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizedstringresource": {
+      "abstract": [
+        {
+          "text": "A reference to a localizable string, accessible from another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringResource",
+      "type": "topic",
+      "url": "/documentation/foundation/localizedstringresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography": {
+      "abstract": [
+        {
+          "text": "A description of the linguistic content of natural language text, typically used for spelling and grammar checking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOrthography"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrthography",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1407326-dominantlanguage": {
+      "abstract": [
+        {
+          "text": "Returns the dominant language for the specified script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1407326-dominantlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dominantLanguage(forScript:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1407326-dominantlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1407965-dominantscript": {
+      "abstract": [
+        {
+          "text": "The dominant script for the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1407965-dominantscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dominantScript",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1407965-dominantscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1408410-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1408410-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1408410-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1408708-init": {
+      "abstract": [
+        {
+          "text": "Creates an orthography object with the specified dominant script and language map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageMap"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : [String]])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1408708-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dominantScript:languageMap:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1408708-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1409533-languagemap": {
+      "abstract": [
+        {
+          "text": "A dictionary that maps script tags to arrays of language tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageMap"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : [String]]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1409533-languagemap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageMap",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1409533-languagemap"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1410722-allscripts": {
+      "abstract": [
+        {
+          "text": "The scripts appearing as keys in the language map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allScripts"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1410722-allscripts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allScripts",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1410722-allscripts"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1412606-languages": {
+      "abstract": [
+        {
+          "text": "Returns the list of languages for the specified script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "languages"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1412606-languages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languages(forScript:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1412606-languages"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1415229-dominantlanguage": {
+      "abstract": [
+        {
+          "text": "The first language in the list of languages for the dominant script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1415229-dominantlanguage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dominantLanguage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1415229-dominantlanguage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/1416205-alllanguages": {
+      "abstract": [
+        {
+          "text": "The languages appearing in values of the language map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/1416205-alllanguages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allLanguages",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/1416205-alllanguages"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorthography/2875843-defaultorthography": {
+      "abstract": [
+        {
+          "text": "Creates and returns an orthography object with the default language map for the specified language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultOrthography"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorthography/2875843-defaultorthography",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultOrthography(forLanguage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorthography/2875843-defaultorthography"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresource": {
+      "abstract": [
+        {
+          "text": "A resource located at a particular file URL within a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResource",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresource"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale",
+        "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+        "doc://com.apple.documentation/documentation/foundation/localizedstringresource",
+        "doc://com.apple.documentation/documentation/foundation/customlocalizedstringresourceconvertible",
+        "doc://com.apple.documentation/documentation/foundation/urlresource"
+      ],
+      "title": "Localization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661121",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/2875843-defaultorthography",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1408708-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Orthography Objects"
+    },
+    {
+      "anchor": "2929178",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1409533-languagemap",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1415229-dominantlanguage",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1407965-dominantscript",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1407326-dominantlanguage",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1412606-languages",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1410722-allscripts",
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1416205-alllanguages"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Correspondences Between Languages and Scripts"
+    },
+    {
+      "anchor": "2957473",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsorthography/1408410-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsorthography"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsorthography"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

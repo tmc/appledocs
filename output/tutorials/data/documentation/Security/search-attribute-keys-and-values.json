@@ -1,0 +1,2200 @@
+{
+  "abstract": [
+    {
+      "text": "Filter a keychain item search.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services",
+        "doc://com.apple.security/documentation/Security/keychain-items"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/search-attribute-keys-and-values"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Search attribute keys and values"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When looking for items using any of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemDelete(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions, you specify a ",
+              "type": "text"
+            },
+            {
+              "code": "query",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary containing both the item attributes to look for (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and additional search attributes that condition the search. For example, you can use the matching key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with value ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimitOne",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to restrict the output to include only the first result even when more than one item matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemCopyMatching(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemcopymatching(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemDelete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemdelete(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Modifies items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemUpdate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemupdate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values": {
+      "abstract": [
+        {
+          "text": "Specify the attributes of keychain items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Item attribute keys and values",
+      "type": "topic",
+      "url": "/documentation/security/item-attribute-keys-and-values"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchCaseInsensitive": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether case-insensitive matching is performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchCaseInsensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchCaseInsensitive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchCaseInsensitive"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchCaseInsensitive",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchcaseinsensitive"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchDiacriticInsensitive": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether diacritic-insensitive matching is performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchDiacriticInsensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchDiacriticInsensitive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchDiacriticInsensitive"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchDiacriticInsensitive",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchdiacriticinsensitive"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchEmailAddressIfPresent": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to match against a certificate or identity’s email address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchEmailAddressIfPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchEmailAddressIfPresent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchEmailAddressIfPresent"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchEmailAddressIfPresent",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchemailaddressifpresent"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchIssuers": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to match against a certificate or identity’s issuers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchIssuers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchIssuers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchIssuers"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchIssuers",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchissuers"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchItemList": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates a list of items to search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchItemList"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchItemList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchItemList"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchItemList",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchitemlist"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchLimit": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the match limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchLimit",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchlimit"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchLimitAll": {
+      "abstract": [
+        {
+          "text": "A value that corresponds to matching an unlimited number of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimitAll"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimitAll",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimitAll"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchLimitAll",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchlimitall"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchLimitOne": {
+      "abstract": [
+        {
+          "text": "A value that corresponds to matching exactly one item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimitOne"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchLimitOne",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchLimitOne"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchLimitOne",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchlimitone"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchPolicy": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates a policy with which a matching certificate or identity must verify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchPolicy",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchpolicy"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchSearchList": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates a list of items to search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSearchList"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchSearchList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSearchList"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchSearchList",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchsearchlist"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchSubjectContains": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to look for in a certificate or identity’s subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectContains"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchSubjectContains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectContains"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchSubjectContains",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchsubjectcontains"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchSubjectEndsWith": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to match against the end of a certificate or identity’s subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectEndsWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchSubjectEndsWith",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectEndsWith"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchSubjectEndsWith",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchsubjectendswith"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchSubjectStartsWith": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to match against the beginning of a certificate or identity’s subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectStartsWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchSubjectStartsWith",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectStartsWith"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchSubjectStartsWith",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchsubjectstartswith"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchSubjectWholeString": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string to exactly match a certificate or identity’s subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectWholeString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchSubjectWholeString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchSubjectWholeString"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchSubjectWholeString",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchsubjectwholestring"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchTrustedOnly": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether untrusted certificates should be returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchTrustedOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchTrustedOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchTrustedOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchTrustedOnly",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchtrustedonly"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchValidOnDate": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates the validity date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchValidOnDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchValidOnDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchValidOnDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchValidOnDate",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchvalidondate"
+    },
+    "doc://com.apple.security/documentation/Security/kSecMatchWidthInsensitive": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether width-insensitive matching is performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecMatchWidthInsensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecMatchWidthInsensitive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecMatchWidthInsensitive"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecMatchWidthInsensitive",
+      "type": "topic",
+      "url": "/documentation/security/ksecmatchwidthinsensitive"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseAuthenticationContext": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates a local authentication context to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseAuthenticationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseAuthenticationContext",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseauthenticationcontext"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUI": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates whether the user is prompted for authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUI"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUI",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseauthenticationui"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIAllow": {
+      "abstract": [
+        {
+          "text": "A value that indicates user authentication is allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUIAllow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIAllow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUIAllow"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUIAllow",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseauthenticationuiallow"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIFail": {
+      "abstract": [
+        {
+          "text": "A value that indicates user authentication is disallowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUIFail"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIFail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUIFail"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUIFail",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseauthenticationuifail"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUISkip": {
+      "abstract": [
+        {
+          "text": "A value that indicates items requiring user authentication should be skipped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUISkip"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUISkip",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUISkip"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUISkip",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseauthenticationuiskip"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates whether to treat macOS keychain items like iOS keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseDataProtectionKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseDataProtectionKeychain",
+      "type": "topic",
+      "url": "/documentation/security/ksecusedataprotectionkeychain"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseItemList": {
+      "abstract": [
+        {
+          "text": "A key whose value is an array of items to search.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseItemList"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseItemList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseItemList"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseItemList",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseitemlist"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseKeychain": {
+      "abstract": [
+        {
+          "text": "A key whose value is a keychain to operate on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseKeychain",
+      "type": "topic",
+      "url": "/documentation/security/ksecusekeychain"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseNoAuthenticationUI": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether to disallow UI authentication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseNoAuthenticationUI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseNoAuthenticationUI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseNoAuthenticationUI"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseNoAuthenticationUI",
+      "type": "topic",
+      "url": "/documentation/security/ksecusenoauthenticationui"
+    },
+    "doc://com.apple.security/documentation/Security/kSecUseOperationPrompt": {
+      "abstract": [
+        {
+          "text": "A key whose value is an operation prompt.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseOperationPrompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecUseOperationPrompt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecUseOperationPrompt"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecUseOperationPrompt",
+      "type": "topic",
+      "url": "/documentation/security/ksecuseoperationprompt"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-items": {
+      "abstract": [
+        {
+          "text": "Embed confidential information in items that you store in a keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-items",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain items",
+      "type": "topic",
+      "url": "/documentation/security/keychain-items"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Keys used to condition a keychain item search.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Item-search-matching-keys",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecMatchPolicy",
+        "doc://com.apple.security/documentation/Security/kSecMatchItemList",
+        "doc://com.apple.security/documentation/Security/kSecMatchSearchList",
+        "doc://com.apple.security/documentation/Security/kSecMatchIssuers",
+        "doc://com.apple.security/documentation/Security/kSecMatchEmailAddressIfPresent",
+        "doc://com.apple.security/documentation/Security/kSecMatchSubjectContains",
+        "doc://com.apple.security/documentation/Security/kSecMatchSubjectStartsWith",
+        "doc://com.apple.security/documentation/Security/kSecMatchSubjectEndsWith",
+        "doc://com.apple.security/documentation/Security/kSecMatchSubjectWholeString",
+        "doc://com.apple.security/documentation/Security/kSecMatchCaseInsensitive",
+        "doc://com.apple.security/documentation/Security/kSecMatchDiacriticInsensitive",
+        "doc://com.apple.security/documentation/Security/kSecMatchWidthInsensitive",
+        "doc://com.apple.security/documentation/Security/kSecMatchTrustedOnly",
+        "doc://com.apple.security/documentation/Security/kSecMatchValidOnDate",
+        "doc://com.apple.security/documentation/Security/kSecMatchLimit"
+      ],
+      "title": "Item search matching keys"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Keys used to limit the number of results returned.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Match-limit-values",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecMatchLimitOne",
+        "doc://com.apple.security/documentation/Security/kSecMatchLimitAll"
+      ],
+      "title": "Match limit values"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Keys used to specify additional keychain item search options.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Additional-item-search-keys",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecUseItemList",
+        "doc://com.apple.security/documentation/Security/kSecUseKeychain",
+        "doc://com.apple.security/documentation/Security/kSecUseOperationPrompt",
+        "doc://com.apple.security/documentation/Security/kSecUseNoAuthenticationUI",
+        "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUI",
+        "doc://com.apple.security/documentation/Security/kSecUseAuthenticationContext",
+        "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain"
+      ],
+      "title": "Additional item search keys"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Values you use to indicate whether to allow UI authentication.",
+          "type": "text"
+        }
+      ],
+      "anchor": "UI-authentication-values",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIAllow",
+        "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIFail",
+        "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUISkip"
+      ],
+      "title": "UI authentication values"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Keys used to condition a keychain item search.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Item-search-matching-keys",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecMatchPolicy",
+                "doc://com.apple.security/documentation/Security/kSecMatchItemList",
+                "doc://com.apple.security/documentation/Security/kSecMatchSearchList",
+                "doc://com.apple.security/documentation/Security/kSecMatchIssuers",
+                "doc://com.apple.security/documentation/Security/kSecMatchEmailAddressIfPresent",
+                "doc://com.apple.security/documentation/Security/kSecMatchSubjectContains",
+                "doc://com.apple.security/documentation/Security/kSecMatchSubjectStartsWith",
+                "doc://com.apple.security/documentation/Security/kSecMatchSubjectEndsWith",
+                "doc://com.apple.security/documentation/Security/kSecMatchSubjectWholeString",
+                "doc://com.apple.security/documentation/Security/kSecMatchCaseInsensitive",
+                "doc://com.apple.security/documentation/Security/kSecMatchDiacriticInsensitive",
+                "doc://com.apple.security/documentation/Security/kSecMatchWidthInsensitive",
+                "doc://com.apple.security/documentation/Security/kSecMatchTrustedOnly",
+                "doc://com.apple.security/documentation/Security/kSecMatchValidOnDate",
+                "doc://com.apple.security/documentation/Security/kSecMatchLimit"
+              ],
+              "title": "Item search matching keys"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Keys used to limit the number of results returned.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Match-limit-values",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecMatchLimitOne",
+                "doc://com.apple.security/documentation/Security/kSecMatchLimitAll"
+              ],
+              "title": "Match limit values"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Keys used to specify additional keychain item search options.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Additional-item-search-keys",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecUseItemList",
+                "doc://com.apple.security/documentation/Security/kSecUseKeychain",
+                "doc://com.apple.security/documentation/Security/kSecUseOperationPrompt",
+                "doc://com.apple.security/documentation/Security/kSecUseNoAuthenticationUI",
+                "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUI",
+                "doc://com.apple.security/documentation/Security/kSecUseAuthenticationContext",
+                "doc://com.apple.security/documentation/Security/kSecUseDataProtectionKeychain"
+              ],
+              "title": "Additional item search keys"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Values you use to indicate whether to allow UI authentication.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "UI-authentication-values",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIAllow",
+                "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUIFail",
+                "doc://com.apple.security/documentation/Security/kSecUseAuthenticationUISkip"
+              ],
+              "title": "UI authentication values"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchEmailAddressIfPresent/title",
+          "value": "kSecMatchEmailAddressIfPresent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchEmailAddressIfPresent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchEmailAddressIfPresent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectContains/title",
+          "value": "kSecMatchSubjectContains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectContains/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchSubjectContains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchItemList/title",
+          "value": "kSecMatchItemList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchItemList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchItemList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectStartsWith/title",
+          "value": "kSecMatchSubjectStartsWith"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectStartsWith/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchSubjectStartsWith"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimitAll/title",
+          "value": "kSecMatchLimitAll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimitAll/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchLimitAll"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseKeychain/title",
+          "value": "kSecUseKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchDiacriticInsensitive/title",
+          "value": "kSecMatchDiacriticInsensitive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchDiacriticInsensitive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchDiacriticInsensitive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUISkip/title",
+          "value": "kSecUseAuthenticationUISkip"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUISkip/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUISkip"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchCaseInsensitive/title",
+          "value": "kSecMatchCaseInsensitive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchCaseInsensitive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchCaseInsensitive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectWholeString/title",
+          "value": "kSecMatchSubjectWholeString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectWholeString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchSubjectWholeString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/title",
+          "value": "SecItemCopyMatching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemCopyMatching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseOperationPrompt/title",
+          "value": "kSecUseOperationPrompt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseOperationPrompt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseOperationPrompt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemUpdate(_:_:)/title",
+          "value": "SecItemUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemUpdate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectEndsWith/title",
+          "value": "kSecMatchSubjectEndsWith"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSubjectEndsWith/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchSubjectEndsWith"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUIAllow/title",
+          "value": "kSecUseAuthenticationUIAllow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUIAllow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUIAllow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/title",
+          "value": "kSecUseDataProtectionKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseDataProtectionKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseDataProtectionKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchTrustedOnly/title",
+          "value": "kSecMatchTrustedOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchTrustedOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchTrustedOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseItemList/title",
+          "value": "kSecUseItemList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseItemList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseItemList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchPolicy/title",
+          "value": "kSecMatchPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/title",
+          "value": "SecItemDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSearchList/title",
+          "value": "kSecMatchSearchList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchSearchList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchSearchList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationContext/title",
+          "value": "kSecUseAuthenticationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimitOne/title",
+          "value": "kSecMatchLimitOne"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimitOne/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchLimitOne"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchValidOnDate/title",
+          "value": "kSecMatchValidOnDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchValidOnDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchValidOnDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUI/title",
+          "value": "kSecUseAuthenticationUI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUIFail/title",
+          "value": "kSecUseAuthenticationUIFail"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseAuthenticationUIFail/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUIFail"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseNoAuthenticationUI/title",
+          "value": "kSecUseNoAuthenticationUI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecUseNoAuthenticationUI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecUseNoAuthenticationUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchWidthInsensitive/title",
+          "value": "kSecMatchWidthInsensitive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchWidthInsensitive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchWidthInsensitive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchIssuers/title",
+          "value": "kSecMatchIssuers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchIssuers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchIssuers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimit/title",
+          "value": "kSecMatchLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecMatchLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecMatchLimit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/search-attribute-keys-and-values"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/search-attribute-keys-and-values"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

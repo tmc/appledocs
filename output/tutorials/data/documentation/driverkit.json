@@ -1,0 +1,1213 @@
+{
+  "abstract": [
+    {
+      "text": "Develop device drivers that run in user space.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3132422,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DriverKit",
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "title": "DriverKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DriverKit framework defines the fundamental behaviors for device drivers in macOS and iPadOS. The C++ classes of this framework define your driver’s basic structure, and provide support for handling events and allocating memory. This framework also supports appropriate types for examining the numbers, strings, and other types of data in your driver’s I/O registry entry. Other frameworks, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provide the specific behaviors you need to support different types of devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The drivers you build with DriverKit run in user space, rather than as kernel extensions, which improves system stability and security. You create your driver as an app extension and deliver it inside your existing app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to install and upgrade your driver. In iPadOS, the system automatically discovers and upgrades drivers along with their host apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The base DriverKit framework is available in macOS for Apple silicon and Intel-based Mac computers, and in iPadOS for devices with an M-series chip. The availability of family frameworks like ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " varies by platform.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a macOS driver accepts user client connections from any application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS driver accepts calls from third-party user clients.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "DriverKit Allow Third Party User Clients",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-third-party-userclients",
+      "role": "symbol",
+      "title": "DriverKit Allow Third Party User Clients",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS app can communicate with drivers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Communicates with Drivers",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.communicates-with-drivers",
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent macOS driver extensions that may communicate with other DriverKit services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.userclient-access",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/c_runtime_support": {
+      "abstract": [
+        {
+          "text": "Examine low-level types that DriverKit uses to support kernel-level operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/c_runtime_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "C++ Runtime Support",
+      "type": "topic",
+      "url": "/documentation/driverkit/c_runtime_support"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app": {
+      "abstract": [
+        {
+          "text": "Send and receive different kinds of data securely by validating inputs and asynchronously by storing and using a callback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Communicating between a DriverKit extension and a client app",
+      "type": "topic",
+      "url": "/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk": {
+      "abstract": [
+        {
+          "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Driver Using the DriverKit SDK",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados": {
+      "abstract": [
+        {
+          "text": "Bring your drivers to iPadOS by using the platform’s DriverKit support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating drivers for iPadOS",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_drivers_for_ipados"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit Constants",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_constants"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit Data Types",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_data_types"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_enumerations": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit Enumerations",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_enumerations"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit Functions",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_functions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code": {
+      "abstract": [
+        {
+          "text": "Explore projects that demonstrate how to write macOS device drivers with the DriverKit family of frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit sample code",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_sample_code"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/impl": {
+      "abstract": [
+        {
+          "text": "Tells the system that the superclass implementation of this method runs in the kernel.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IMPL",
+      "type": "topic",
+      "url": "/documentation/driverkit/impl"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor": {
+      "abstract": [
+        {
+          "text": "A memory buffer allocated in the caller's address space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that manages a shared-memory data queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the serial execution of blocks. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodispatchsource": {
+      "abstract": [
+        {
+          "text": "The common base class for dispatch sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iofixed": {
+      "abstract": [
+        {
+          "text": "A fixed-point number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iofixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFixed",
+      "type": "topic",
+      "url": "/documentation/driverkit/iofixed"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iohistogramreporter": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iohistogramreporter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHistogramReporter",
+      "type": "topic",
+      "url": "/documentation/driverkit/iohistogramreporter"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that reports hardware-related interrupt events to your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The base class for describing a location in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iomemorymap": {
+      "abstract": [
+        {
+          "text": "A reference to an existing block of memory in the current process or in a different process. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iomemorymap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryMap",
+      "type": "topic",
+      "url": "/documentation/driverkit/iomemorymap"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioreporter": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioreporter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReporter",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioreporter"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioreportlegend": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioreportlegend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReportLegend",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioreportlegend"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iosimplereporter": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iosimplereporter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSimpleReporter",
+      "type": "topic",
+      "url": "/documentation/driverkit/iosimplereporter"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iostatereporter": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iostatereporter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOStateReporter",
+      "type": "topic",
+      "url": "/documentation/driverkit/iostatereporter"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that notifies your driver at a specific time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimerDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iotimerdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iouserclient": {
+      "abstract": [
+        {
+          "text": "A connection to another service that the system manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserClient",
+      "type": "topic",
+      "url": "/documentation/driverkit/iouserclient"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iouserserver": {
+      "abstract": [
+        {
+          "text": "A system-managed service. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserServer",
+      "type": "topic",
+      "url": "/documentation/driverkit/iouserserver"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kernel": {
+      "abstract": [
+        {
+          "text": "Tells the system that the class or method runs inside the kernel. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "KERNEL",
+      "type": "topic",
+      "url": "/documentation/driverkit/kernel"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/local": {
+      "abstract": [
+        {
+          "text": "Tells the system that the method runs locally in the driver extension's process space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/local",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LOCAL",
+      "type": "topic",
+      "url": "/documentation/driverkit/local"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/localonly": {
+      "abstract": [
+        {
+          "text": "Tells the system that the class or method runs locally in the driver extension's process space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/localonly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LOCALONLY",
+      "type": "topic",
+      "url": "/documentation/driverkit/localonly"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/memory_utilities": {
+      "abstract": [
+        {
+          "text": "Allocate and deallocate memory and manage memory pointers in different address spaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/memory_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Utilities",
+      "type": "topic",
+      "url": "/documentation/driverkit/memory_utilities"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "abstract": [
+        {
+          "text": "An object that executes your driver's custom behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray": {
+      "abstract": [
+        {
+          "text": "A container for an ordered, random-access collection of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osboolean": {
+      "abstract": [
+        {
+          "text": "A container for a true or false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBoolean",
+      "type": "topic",
+      "url": "/documentation/driverkit/osboolean"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osbundle": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osbundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBundle",
+      "type": "topic",
+      "url": "/documentation/driverkit/osbundle"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscollection": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit collection objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscontainer": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit data objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSContainer",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscontainer"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdata": {
+      "abstract": [
+        {
+          "text": "A container for untyped data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSData",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdata"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdictionary": {
+      "abstract": [
+        {
+          "text": "A container for a collection with elements that are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdynamiccast": {
+      "abstract": [
+        {
+          "text": "Casts an object safely to the specified type, if possible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdynamiccast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDynamicCast",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdynamiccast"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osmappedfile": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osmappedfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSMappedFile",
+      "type": "topic",
+      "url": "/documentation/driverkit/osmappedfile"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osnumber": {
+      "abstract": [
+        {
+          "text": "A container for an integer value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSNumber",
+      "type": "topic",
+      "url": "/documentation/driverkit/osnumber"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit objects",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osrequiredcast": {
+      "abstract": [
+        {
+          "text": "Casts the object to the specified type, stopping the process if the object isn’t of the correct type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osrequiredcast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSRequiredCast",
+      "type": "topic",
+      "url": "/documentation/driverkit/osrequiredcast"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization": {
+      "abstract": [
+        {
+          "text": "A container for one or more objects, serialized in a binary data format that is suitable for messaging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerialization",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osstring": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/driverkit/osstring"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ossymbol": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSymbol",
+      "type": "topic",
+      "url": "/documentation/driverkit/ossymbol"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/queuename": {
+      "abstract": [
+        {
+          "text": "Tells the system to execute a method on the dispatch queue with the specified name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/queuename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QUEUENAME",
+      "type": "topic",
+      "url": "/documentation/driverkit/queuename"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/superdispatch": {
+      "abstract": [
+        {
+          "text": "Tells the system to execute the superclass' implementation of the current method in the kernel. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SUPERDISPATCH",
+      "type": "topic",
+      "url": "/documentation/driverkit/superdispatch"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/type": {
+      "abstract": [
+        {
+          "text": "Annotates a method declaration to indicate that it conforms to an existing method signature.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TYPE",
+      "type": "topic",
+      "url": "/documentation/driverkit/type"
+    },
+    "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts": {
+      "abstract": [
+        {
+          "text": "Create drivers and system extensions to communicate with hardware and provide low-level services, and only use kernel extensions for a few tasks. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing drivers, system extensions, and kexts",
+      "type": "topic",
+      "url": "/documentation/kernel/implementing_drivers_system_extensions_and_kexts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservicestatenotificationdispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservicestatenotificationdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceStateNotificationDispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservicestatenotificationdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit": {
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit"
+    },
+    "doc://com.apple.serialdriverkit/documentation/SerialDriverKit": {
+      "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/serialdriverkit"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "article",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "3458171",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/implementing_drivers_system_extensions_and_kexts",
+        "doc://com.apple.documentation/documentation/driverkit/creating_drivers_for_ipados"
+      ],
+      "kind": "taskGroup",
+      "title": "Essentials"
+    },
+    {
+      "anchor": "4035024",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+      ],
+      "kind": "taskGroup",
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "3820685",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      "kind": "taskGroup",
+      "title": "Samples"
+    },
+    {
+      "anchor": "3616606",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+        "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice"
+      ],
+      "kind": "taskGroup",
+      "title": "Services"
+    },
+    {
+      "anchor": "3458169",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchqueue",
+        "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iodispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/osaction"
+      ],
+      "kind": "taskGroup",
+      "title": "Event management"
+    },
+    {
+      "anchor": "3458172",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+        "doc://com.apple.documentation/documentation/driverkit/iomemorydescriptor",
+        "doc://com.apple.documentation/documentation/driverkit/iomemorymap",
+        "doc://com.apple.documentation/documentation/driverkit/memory_utilities"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory management"
+    },
+    {
+      "anchor": "3458168",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osarray",
+        "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+        "doc://com.apple.documentation/documentation/driverkit/osboolean",
+        "doc://com.apple.documentation/documentation/driverkit/osdata",
+        "doc://com.apple.documentation/documentation/driverkit/osnumber",
+        "doc://com.apple.documentation/documentation/driverkit/osstring",
+        "doc://com.apple.documentation/documentation/driverkit/osserialization",
+        "doc://com.apple.documentation/documentation/driverkit/oscollection",
+        "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+        "doc://com.apple.documentation/documentation/driverkit/osobject",
+        "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+        "doc://com.apple.documentation/documentation/driverkit/iofixed"
+      ],
+      "kind": "taskGroup",
+      "title": "Registry data types"
+    },
+    {
+      "anchor": "3458173",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iouserclient",
+        "doc://com.apple.documentation/documentation/driverkit/iouserserver",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+        "doc://com.apple.documentation/documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app"
+      ],
+      "kind": "taskGroup",
+      "title": "External drivers"
+    },
+    {
+      "anchor": "3458170",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osdynamiccast",
+        "doc://com.apple.documentation/documentation/driverkit/osrequiredcast",
+        "doc://com.apple.documentation/documentation/driverkit/impl",
+        "doc://com.apple.documentation/documentation/driverkit/type",
+        "doc://com.apple.documentation/documentation/driverkit/queuename",
+        "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+        "doc://com.apple.documentation/documentation/driverkit/kernel",
+        "doc://com.apple.documentation/documentation/driverkit/local",
+        "doc://com.apple.documentation/documentation/driverkit/localonly",
+        "doc://com.apple.documentation/documentation/driverkit/error_codes",
+        "doc://com.apple.documentation/documentation/driverkit/c_runtime_support"
+      ],
+      "kind": "taskGroup",
+      "title": "Runtime support"
+    },
+    {
+      "anchor": "3760601",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iohistogramreporter",
+        "doc://com.apple.documentation/documentation/driverkit/ioreportlegend",
+        "doc://com.apple.documentation/documentation/driverkit/ioreporter",
+        "doc://com.apple.documentation/documentation/kernel/ioservicestatenotificationdispatchsource",
+        "doc://com.apple.documentation/documentation/driverkit/iosimplereporter",
+        "doc://com.apple.documentation/documentation/driverkit/iostatereporter",
+        "doc://com.apple.documentation/documentation/driverkit/osbundle",
+        "doc://com.apple.documentation/documentation/driverkit/osmappedfile"
+      ],
+      "kind": "taskGroup",
+      "title": "Classes"
+    },
+    {
+      "anchor": "3517277",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_enumerations",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_constants",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_functions",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_data_types"
+      ],
+      "kind": "taskGroup",
+      "title": "Reference"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

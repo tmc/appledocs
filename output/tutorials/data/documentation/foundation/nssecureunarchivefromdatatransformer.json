@@ -1,0 +1,755 @@
+{
+  "abstract": [
+    {
+      "text": "A value transformer that converts data to and from classes that support secure coding.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2962886,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSecureUnarchiveFromDataTransformer",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSecureUnarchiveFromDataTransformer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "5.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSSecureUnarchiveFromDataTransformer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSecureUnarchiveFromDataTransformer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSValueTransformer",
+              "text": "ValueTransformer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides a default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation for secure decoding. This class attempts to decode data into the classes listed within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuuid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To archive or unarchive other classes that support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create a subclass and override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to list the classes to transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use the name of this class, or the name of a subclass you implement, as the name of the transformer for an entity’s attribute within a Core Data Model. If you use your own transformer subclass, register it with your app before intializing your persistent container with Core Data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/handling-different-data-types-in-core-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which has a ",
+              "type": "text"
+            },
+            {
+              "code": "ColorToDataTransformer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class that transforms ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and the reverse, to support archiving instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "article",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/handling-different-data-types-in-core-data": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/handling-different-data-types-in-core-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Different Data Types in Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata/handling-different-data-types-in-core-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnull": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNull",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnull"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer": {
+      "abstract": [
+        {
+          "text": "A value transformer that converts data to and from classes that support secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureUnarchiveFromDataTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureUnarchiveFromDataTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecureunarchivefromdatatransformer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses": {
+      "abstract": [
+        {
+          "text": "A list of allowed classes the top-level object in an archive must conform to, for encoding and decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedTopLevelClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedTopLevelClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuuid": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUUID",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuuid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/valuetransformer": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ValueTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/valuetransformer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/valuetransformer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nscoder"
+      ],
+      "title": "Keyed Archivers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3741782",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer/2962887-allowedtoplevelclasses"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About a Transformer"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nssecureunarchivefromdatatransformer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nssecureunarchivefromdatatransformer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

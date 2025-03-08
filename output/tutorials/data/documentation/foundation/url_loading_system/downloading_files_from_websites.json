@@ -1,0 +1,1095 @@
+{
+  "abstract": [
+    {
+      "text": "Download files directly to the filesystem.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites"
+  },
+  "kind": "article",
+  "legacy_identifier": 3037341,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Downloading files from websites"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For network resources that are already stored as files, like images and documents, you can use download tasks to fetch these items directly to the local filesystem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also configure download tasks to operate while your application is suspended or terminated in the background. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3038357",
+          "level": 3,
+          "text": "For simple downloads, use a completion handler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To download files, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you don’t care about receiving progress updates or other delegate callbacks during the download, you can use a completion handler. The task calls the completion handler when the download ends, either at the end of a successful download or when downloading fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your completion handler may receive a client-side error, indicating a local problem like not being able to reach the network. If there is no client-side error, you also receive a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which you should inspect to ensure that it indicates a successful response from the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the download is successful, your completion handler receives a URL indicating the location of the downloaded file on the local filesystem. This storage is temporary. If you want to preserve the file, you ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " copy or move it from this location before returning from the completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038356",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows a simple example of creating a download task with a completion handler. If no errors are indicated, the completion handler moves the downloaded file to the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Start the task by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let downloadTask = URLSession.shared.downloadTask(with: url) {",
+            "    urlOrNil, responseOrNil, errorOrNil in",
+            "    // check for and handle errors:",
+            "    // * errorOrNil should be nil",
+            "    // * responseOrNil should be an HTTPURLResponse with statusCode in 200..<299",
+            "    ",
+            "    guard let fileURL = urlOrNil else { return }",
+            "    do {",
+            "        let documentsURL = try",
+            "            FileManager.default.url(for: .documentDirectory,",
+            "                                    in: .userDomainMask,",
+            "                                    appropriateFor: nil,",
+            "                                    create: false)",
+            "        let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)",
+            "        try FileManager.default.moveItem(at: fileURL, to: savedURL)",
+            "    } catch {",
+            "        print (\"file error: \\(error)\")",
+            "    }",
+            "}",
+            "downloadTask.resume()",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a download task with a completion handler",
+                "type": "text"
+              }
+            ],
+            "anchor": "3038356",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038356",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " creates the download task with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", which simply takes a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " parameter. If you need to customize the request you send to the server, create the task with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and pass in a customized ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3038358",
+          "level": 3,
+          "text": "To receive progress updates, use a delegate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to receive progress updates as the download proceeds, you must use a delegate. Instead of receiving the results in a completion handler, you receive callbacks to your implementations of methods from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create your own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and set its ",
+              "type": "text"
+            },
+            {
+              "code": "delegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038353",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows a lazily instantiated ",
+              "type": "text"
+            },
+            {
+              "code": "urlSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that sets ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private lazy var urlSession = URLSession(configuration: .default,",
+            "                                         delegate: self,",
+            "                                         delegateQueue: nil)",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a URL session with a delegate",
+                "type": "text"
+              }
+            ],
+            "anchor": "3038353",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start downloading, use this ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and then start the task by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038360",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func startDownload(url: URL) {",
+            "    let downloadTask = urlSession.downloadTask(with: url)",
+            "    downloadTask.resume()",
+            "    self.downloadTask = downloadTask",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating and starting a download task that uses a delegate",
+                "type": "text"
+              }
+            ],
+            "anchor": "3038360",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3087626",
+          "level": 3,
+          "text": "Receive progress updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the download starts, you receive periodic progress updates in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can use the byte counts provided by this callback to update a progress UI in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3087625",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows an implementation of this callback method. This implementation calculates the fractional progress of the download, and uses it to update a label that shows progress as a percentage. Because the callback is performed on an unknown Grand Central Dispatch queue, you ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " explicitly perform the UI update on the main queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func urlSession(_ session: URLSession,",
+            "                downloadTask: URLSessionDownloadTask,",
+            "                didWriteData bytesWritten: Int64,",
+            "                totalBytesWritten: Int64,",
+            "                totalBytesExpectedToWrite: Int64) {",
+            "     if downloadTask == self.downloadTask {",
+            "        let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)",
+            "        DispatchQueue.main.async {",
+            "            self.progressLabel.text = self.percentFormatter.string(from:",
+            "                NSNumber(value: calculatedProgress))",
+            "    }",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Using a delegate method to update download progress in a UI",
+                "type": "text"
+              }
+            ],
+            "anchor": "3087625",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the only UI update you need to perform during the download is to update a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", then use the task’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2908821-progress",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property instead of performing your own progress calculations. This property is an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that you can assign to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " property ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView/observedProgress",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " when you create the task to get automatic updating of the progress view.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3038359",
+          "level": 3,
+          "text": "Handle download completion or errors in your delegate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a delegate instead of a completion handler, you handle the completion of the download by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Check the ",
+              "type": "text"
+            },
+            {
+              "code": "downloadTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1410586-response",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ensure that the server response indicates success. If so, the ",
+              "type": "text"
+            },
+            {
+              "code": "location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter provides a local URL where the file has been stored. This location is valid only until the end of the callback. This means you ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " either read the file immediately, or move it to another location such as the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory before you return from the callback method. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038355",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how to preserve the downloaded file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func urlSession(_ session: URLSession,",
+            "                downloadTask: URLSessionDownloadTask,",
+            "                didFinishDownloadingTo location: URL) {",
+            "    // check for and handle errors:",
+            "    // * downloadTask.response should be an HTTPURLResponse with statusCode in 200..<299",
+            "",
+            "    do {",
+            "        let documentsURL = try",
+            "            FileManager.default.url(for: .documentDirectory,",
+            "                                    in: .userDomainMask,",
+            "                                    appropriateFor: nil,",
+            "                                    create: false)",
+            "        let savedURL = documentsURL.appendingPathComponent(",
+            "            location.lastPathComponent)",
+            "        try FileManager.default.moveItem(at: location, to: savedURL)",
+            "    } catch {",
+            "        // handle filesystem error",
+            "    }",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Saving the downloaded file in the delegate callback",
+                "type": "text"
+              }
+            ],
+            "anchor": "3038355",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a client-side error occurs, your delegate receives it in a callback to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. On the other hand, if the download completes successfully, this method is called after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and the error is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Progress",
+      "type": "topic",
+      "url": "/documentation/foundation/progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites": {
+      "abstract": [
+        {
+          "text": "Download files directly to the filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files from websites",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038353": {
+      "abstract": [
+        {
+          "text": "Creating a URL session with a delegate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038353",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites#3038353"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038355": {
+      "abstract": [
+        {
+          "text": "Saving the downloaded file in the delegate callback",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038355",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites#3038355"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038356": {
+      "abstract": [
+        {
+          "text": "Creating a download task with a completion handler",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038356",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites#3038356"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038360": {
+      "abstract": [
+        {
+          "text": "Creating and starting a download task that uses a delegate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3038360",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites#3038360"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3087625": {
+      "abstract": [
+        {
+          "text": "Using a delegate method to update download progress in a UI",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites#3087625",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites#3087625"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads": {
+      "abstract": [
+        {
+          "text": "Allow the user to resume a download without starting over.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming downloads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_downloads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411481-downloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411481-downloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411482-downloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411482-downloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate/1409408-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:downloadTask:didFinishDownloadingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloaddelegate/1411575-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDownloadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1410586-response": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1410586-response",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "response",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1410586-response"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2908821-progress": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/2908821-progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/2908821-progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIProgressView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIProgressView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprogressview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIProgressView/observedProgress": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView/observedProgress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "observedProgress",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprogressview/observedprogress"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+      ],
+      "title": "Downloading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/downloading_files_from_websites"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/downloading_files_from_websites"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

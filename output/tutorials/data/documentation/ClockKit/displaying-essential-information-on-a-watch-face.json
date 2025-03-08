@@ -1,0 +1,1414 @@
+{
+  "abstract": [
+    {
+      "text": "Implement complications in a watch app to display essential information on a watch face.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+        "doc://com.apple.clockkit/documentation/ClockKit/graphic"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/displaying-essential-information-on-a-watch-face"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "6.1",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying essential information on a watch face"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to present time-based information on the Infograph or Infograph Modular watch face using Graphic Corner, Graphic Circular, Graphic Bezel, and Graphic Rectangular complication families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complications are small elements that display essential information (like weather, calendar, and activity tracking) right on the watch face. Each complication needs a data source, or a timeline, that describes what content to present and when. In this sample, the timeline contains 24 events named E00, E01, ……, E23, each of which lasts one hour and occurs every day. Each complication presents the progress and other essential information of the currently occurring event in its own visual form.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A complication family can have multiple variants, and so this sample app provides a list for users to select and play with different variants. You can run the app on a watch that supports graphic complications, tap a family and pick a variant, then tap the Apply button to save the configuration and refresh the complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project, do the following in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Complications",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, then change the bundle ID to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Select the appropriate team to let Xcode automatically manage your provisioning profile. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution#Assign-the-project-to-a-team",
+                      "isActive": true,
+                      "overridingTitle": "Assign the project to a team",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "Assign the project to a team",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat step 1 for the WatchKit app and WatchKit Extension target. The bundle IDs should be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp.watchkitextension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WatchKit Extension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, navigate to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtension > NSExtensionAttributes > WKAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, and change the value of the key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Complications WatchKit App",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target and the device in Xcode’s schema field, then build and run the target on your device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show a complication on the watch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Infograph or Infograph Modular watch face on the watch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Firmly press the watch face to show the customization screen, then tap the Customize button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe left to show the complication configuration screen, then tap a complication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rotate the Digital Crown to choose the Complications app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the Digital Crown and tap the screen to go back to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/watch/customize-the-watch-face-apda6559ad78/watchos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Apple Watch User Guide to learn how to configure the watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-timeline-entries-for-the-complications",
+          "level": 3,
+          "text": "Provide timeline entries for the complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep the complications up to date, this sample implements the following ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to provide the supported timeline travel direction, the timeline end date, and the future timeline entries for all complications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " The sample implements this method and passes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".forward",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the handler to tell the system this app can provide future data entries for all its complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func getSupportedTimeTravelDirections(for complication: CLKComplication,",
+            "                                      withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {",
+            "    handler([.forward])",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " The sample implements this method to provide the end date of the prepared timeline. The system doesn’t attempt to retrieve the future timeline entries if this method doesn’t have an implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func getTimelineEndDate(for complication: CLKComplication,",
+            "                        withHandler handler: @escaping (Date?) -> Void) {",
+            "    let delegate: ExtensionDelegate! = WKExtension.shared().delegate as? ExtensionDelegate",
+            "    let endDateTime = delegate.timeline.endDateTime(after: Date())",
+            "    handler(endDateTime)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " The sample implements this method to provide the future timeline entries. Each time the system calls this method, the sample provides the entries for the next day after the specified date time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int,",
+            "                        withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {",
+            "    let entries = nextDayEntries(for: complication, after: date, limit: limit)",
+            "    handler(entries)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After getting the timeline entries from the app, the system caches them and progresses through them automatically. After progressing through a reasonable amount data, the system wakes up the watch app and calls ",
+              "type": "text"
+            },
+            {
+              "code": "getTimelineEntries(for:after:limit:withHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again for more entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-complication-templates",
+          "level": 3,
+          "text": "Create complication templates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each timeline entry an app provides to the system has to contain a complication template, which is an instance of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass describing the content and visual form of the complication. This sample provides a template for each variant of the graphic complication families. A real-world app may just support the variant that best fits the content it presents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a complication template involves creating a template object and setting up its properties. The following code creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCornerStackText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a graphic corner complication:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let template = CLKComplicationTemplateGraphicCornerStackText()",
+            "template.outerTextProvider = CLKSimpleTextProvider(text: event.name)",
+            "template.innerTextProvider = CLKRelativeDateTextProvider(date: event.startDateTime(onDate: Date()),",
+            "                                                         style: .natural,",
+            "                                                         units: [.hour, .minute, .second])",
+            "template.innerTextProvider.tintColor = .orange"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system supports multicolor text and full-color images, which can make a complication really vivid. Be aware that Infograph and Infograph Modular watch faces have multicolor and tinted modes that users can select when customizing the faces, and that the system automatically desaturates images on a tinted watch face by default. To avoid showing a desaturated image, this sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide both full-color and tinted versions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tintedImageProvider = CLKImageProvider(onePieceImage: tintForground,",
+            "                                           twoPieceImageBackground: tintBackground,",
+            "                                           twoPieceImageForeground: tintForground)",
+            "let fullColorImageProvider = CLKFullColorImageProvider(fullColorImage: fullColorImage,",
+            "                                                       tintedImageProvider: tintedImageProvider)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multicolor text providers display a single color in the tinted mode. This sample uses the following code to create a piece of text for the ",
+              "type": "text"
+            },
+            {
+              "code": "body1TextProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " template, which highlights the relative date text in orange in the multicolor mode, and displays the white color in the tinted mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let part1 = CLKSimpleTextProvider(text: \"HAS \")",
+            "part1.tintColor = .blue",
+            "let part2 = CLKRelativeDateTextProvider(date: endDateTime, style: .naturalAbbreviated, units: [.minute])",
+            "part2.tintColor = .orange",
+            "let part3 = CLKSimpleTextProvider(text: \" TO GO\")",
+            "part3.tintColor = .green",
+            "template.body1TextProvider = CLKTextProvider(format: \"%@%@%@\", part1, part2, part3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "11090b519daa/DisplayingEssentialInformationOnAWatchFace.zip": {
+      "checksum": "11090b519daad47c2deff647dff17360350896ac1f97731d5526c2fd12e72f9dc3f1cd59233041544b34100f698aea96edbda0c48349afc69b0410b797ed6f1c",
+      "identifier": "11090b519daa/DisplayingEssentialInformationOnAWatchFace.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/11090b519daa/DisplayingEssentialInformationOnAWatchFace.zip"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines whether your complication can provide timeline entries for the future or the past.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSupportedTimeTravelDirections"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationTimeTravelDirections",
+          "text": "CLKComplicationTimeTravelDirections"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSupportedTimeTravelDirections(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getsupportedtimetraveldirections(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the last date for the data that your app can supply.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEndDate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineenddate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves future timeline entries for the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEntries(for:after:limit:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the base behavior for all templates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplate",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplate"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCornerStackText": {
+      "abstract": [
+        {
+          "text": "A template for displaying stacked text in the clock face’s corner.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicCornerStackText"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCornerStackText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicCornerStackText"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicCornerStackText",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphiccornerstacktext"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBody": {
+      "abstract": [
+        {
+          "text": "A template for displaying a large rectangle containing text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularStandardBody"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularStandardBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularStandardBody",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbody"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider": {
+      "abstract": [
+        {
+          "text": "A full-color image displayed by a complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKFullColorImageProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKFullColorImageProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKFullColorImageProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkfullcolorimageprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/graphic": {
+      "abstract": [
+        {
+          "text": "Display visually rich content on watch faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/graphic",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphic",
+      "type": "topic",
+      "url": "/documentation/clockkit/graphic"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution#Assign-the-project-to-a-team": {
+      "abstract": [
+        {
+          "text": "Configure the information property list and add icons before you distribute your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution#Assign-the-project-to-a-team",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app for distribution",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-for-distribution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/watch/customize-the-watch-face-apda6559ad78/watchos": {
+      "identifier": "https://support.apple.com/guide/watch/customize-the-watch-face-apda6559ad78/watchos",
+      "title": "Customize the watch face",
+      "titleInlineContent": [
+        {
+          "text": "Customize the watch face",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/watch/customize-the-watch-face-apda6559ad78/watchos"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "11090b519daa/DisplayingEssentialInformationOnAWatchFace.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/title",
+          "value": "getTimelineEndDateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEndDateForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/title",
+          "value": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicCornerStackText/title",
+          "value": "CLKComplicationTemplateGraphicCornerStackText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicCornerStackText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicCornerStackText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicCornerStackText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicCornerStackText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/title",
+          "value": "CLKFullColorImageProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKFullColorImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKFullColorImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/title",
+          "value": "CLKComplicationTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicRectangularStandardBody/title",
+          "value": "CLKComplicationTemplateGraphicRectangularStandardBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicRectangularStandardBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicRectangularStandardBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicRectangularStandardBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicRectangularStandardBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getSupportedTimeTravelDirections(for:withHandler:)/title",
+          "value": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getSupportedTimeTravelDirections(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/displaying-essential-information-on-a-watch-face"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/displaying-essential-information-on-a-watch-face"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

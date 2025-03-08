@@ -1,0 +1,1631 @@
+{
+  "abstract": [
+    {
+      "text": "Differentiate your notifications and add action buttons to the notification interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Declaring your actionable notification types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Actionable notifications let the user respond to a delivered notification without launching the corresponding app. Other notifications display information in a notification interface, but the user’s only course of action is to launch the app. For an actionable notification, the system displays one or more buttons in addition to the notification interface. Tapping a button sends the selected action to the app, which then processes the action in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2953609",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When someone performs a Double Tap gesture while viewing a notification on Apple Watch Series 9 or Apple Watch Ultra 2, the system invokes the first nondestructive action. A nondestructive action doesn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionOptions/destructive",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " option, and won’t delete user data or change the app irrevocably.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support actionable notifications, you must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare one or more notification categories at launch time from your iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign appropriate actions to your notification categories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle all actions that you register.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign category identifiers to notification payloads when generating notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system also uses categories to determine whether it should launch your notification service app extension or notification content app extension. For information about how to create a notification service app extension, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For information about how to create a notification content app extension, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Declare-your-custom-actions-and-notification-types",
+          "level": 3,
+          "text": "Declare your custom actions and notification types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because your app must handle all actions, you must declare the actions that your app supports at launch time. You declare actions using a combination of category and action objects. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects define the types of notifications that your app supports, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects define the buttons to display for each type. For example, a notification for a meeting invitation might include buttons to accept or reject the invitation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object has a unique identifier and options for how you want to handle notifications of that type. The string in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is the most important part of the category object. When generating notifications, you must include the same string in your notification’s payload. The system uses that string to locate the corresponding category object and any actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To associate actions with a notification category, assign one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to it. Each action object contains the localized string to display to the user and options indicating how you want that action handled. For example, when you tag an action as destructive, the system displays it with a different highlight to indicate its behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 shows how to register a custom category with two actions. In addition to a title and options, each action has a unique identifier. When the user selects the action, the system passes that identifier to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Registering actions and notification types",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the custom actions.",
+            "let acceptAction = UNNotificationAction(identifier: \"ACCEPT_ACTION\",",
+            "      title: \"Accept\", ",
+            "      options: [])",
+            "let declineAction = UNNotificationAction(identifier: \"DECLINE_ACTION\",",
+            "      title: \"Decline\", ",
+            "      options: [])",
+            "// Define the notification type",
+            "let meetingInviteCategory = ",
+            "      UNNotificationCategory(identifier: \"MEETING_INVITATION\",",
+            "      actions: [acceptAction, declineAction], ",
+            "      intentIdentifiers: [], ",
+            "      hiddenPreviewsBodyPlaceholder: \"\",",
+            "      options: .customDismissAction)",
+            "// Register the notification type.",
+            "let notificationCenter = UNUserNotificationCenter.current()",
+            "notificationCenter.setNotificationCategories([meetingInviteCategory])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "All of your action objects must have unique identifiers. When handling actions, the identifier is the only way to distinguish one action from another, even when those actions belong to different categories.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most actions result in a user selection, but text input actions also let the user type custom text-based responses. Your app can then incorporate the user’s typed response into your handling of the action. For example, a messaging app could send the typed text as the response to an incoming message. To create a text input action, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When the user taps the button for a text input action, the system displays an editable text field. When reporting the action to your app, the system includes the text that the user typed as part of the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Include-a-notification-category-in-the-payload",
+          "level": 3,
+          "text": "Include a notification category in the payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays actions only for notifications whose payload contains a valid category identifier string. The system uses the category identifier to look up your app’s registered categories and their associated actions. It then uses that information to add the action buttons to the notification interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To assign a category to a local notification, assign the appropriate string to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Listing 2 shows the creation of the content for a local notification. In addition to the basic information, this code also adds custom data to the notification’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary, which it uses later to process the invitation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Assigning a category to a local notification",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let content = UNMutableNotificationContent()",
+            "content.title = \"Weekly Staff Meeting\"",
+            "content.body = \"Every Tuesday at 2pm\"",
+            "content.userInfo = [\"MEETING_ID\" : meetingID, ",
+            "                    \"USER_ID\" : userID ]",
+            "content.categoryIdentifier = \"MEETING_INVITATION\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a category identifier to a remote notification, include the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the ",
+              "type": "text"
+            },
+            {
+              "code": "aps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary of your JSON payload, as shown in Listing 3. Set the value of this key to the appropriate category string. In the example, the category is set to the same meeting invitation category that was previously defined. As in the local notification example, the payload includes custom keys with the meeting ID and user ID, which are put into the payload’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. The app can use that information to accept or decline the invitation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3. Assigning a category to a remote notification",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"aps\" : {",
+            "      \"category\" : \"MEETING_INVITATION\"",
+            "      \"alert\" : {",
+            "         \"title\" : \"Weekly Staff Meeting\"",
+            "         \"body\" : \"Every Tuesday at 2pm\"",
+            "      },",
+            "   },",
+            "   \"MEETING_ID\" : \"123456789\",",
+            "   \"USER_ID\" : \"ABCD1234\"",
+            "",
+            "} "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-the-selected-action",
+          "level": 3,
+          "text": "Handle the selected action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must handle all of the actions that it defines. When the user selects an action, the system launches your app in the background and notifies the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which notifies its delegate. Use your delegate object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to identify the selected action and provide an appropriate response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 4 shows an implementation of the delegate method for an app that manages meeting invitations. The method uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse/actionIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the response to determine whether to accept or decline a given invitation. It also relies on custom data from the notification payload to process the notification successfully. Always call the completion handler after you finish handling the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 4. Performing a selected action",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func userNotificationCenter(_ center: UNUserNotificationCenter,",
+            "       didReceive response: UNNotificationResponse,",
+            "       withCompletionHandler completionHandler: ",
+            "         @escaping () -> Void) {",
+            "       ",
+            "   // Get the meeting ID from the original notification.",
+            "   let userInfo = response.notification.request.content.userInfo",
+            "   let meetingID = userInfo[\"MEETING_ID\"] as! String",
+            "   let userID = userInfo[\"USER_ID\"] as! String",
+            "        ",
+            "   // Perform the task associated with the action.",
+            "   switch response.actionIdentifier {",
+            "   case \"ACCEPT_ACTION\":",
+            "      sharedMeetingManager.acceptMeeting(user: userID, ",
+            "                                    meetingID: meetingID)",
+            "      break",
+            "        ",
+            "   case \"DECLINE_ACTION\":",
+            "      sharedMeetingManager.declineMeeting(user: userID, ",
+            "                                     meetingID: meetingID)",
+            "      break",
+            "        ",
+            "   // Handle other actions...",
+            "   default:",
+            "      break",
+            "   }",
+            "    ",
+            "   // Always call the completion handler when done.    ",
+            "   completionHandler()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your response to an action involves accessing files on disk, consider a different approach. Users can respond to actions while the device is locked, which would make files encrypted with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/fileprotectiontype/1616200-complete",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " option unavailable to your app. If that happens, you may need to save changes temporarily and integrate them into your app’s data structures later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications": {
+      "abstract": [
+        {
+          "text": "Customize the appearance of your iOS app’s notification alerts with a notification content app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Appearance of Notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/fileprotectiontype/1616200-complete": {
+      "abstract": [
+        {
+          "text": "The file is stored in an encrypted format on disk and cannot be read from or written to while the device is locked or booting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        },
+        {
+          "kind": "text",
+          "text": ": FileProtectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/fileprotectiontype/1616200-complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/foundation/fileprotectiontype/1616200-complete"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent": {
+      "abstract": [
+        {
+          "text": "The editable content for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNMutableNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the notification’s category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "categoryIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "categoryIdentifier",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent/categoryidentifier"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/userInfo": {
+      "abstract": [
+        {
+          "text": "The custom data to associate with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent/userinfo"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction": {
+      "abstract": [
+        {
+          "text": "A task your app performs in response to a notification that the system delivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationAction",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationaction"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionOptions/destructive": {
+      "abstract": [
+        {
+          "text": "The action performs a destructive task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destructive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationActionOptions",
+          "text": "UNNotificationActionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionOptions/destructive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationActionOptionDestructive"
+        }
+      ],
+      "role": "symbol",
+      "title": "destructive",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationactionoptions/destructive"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory": {
+      "abstract": [
+        {
+          "text": "A type of notification your app supports and the custom actions that the system displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcategory"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory/identifier": {
+      "abstract": [
+        {
+          "text": "The unique string assigned to the category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcategory/identifier"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/userInfo": {
+      "abstract": [
+        {
+          "text": "The custom data to associate with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontent/userinfo"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse/actionIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier string of the action that the user selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse/actionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionIdentifier",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationresponse/actionidentifier"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction": {
+      "abstract": [
+        {
+          "text": "An action that accepts user-typed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNTextInputNotificationAction",
+      "type": "topic",
+      "url": "/documentation/usernotifications/untextinputnotificationaction"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter": {
+      "abstract": [
+        {
+          "text": "The central object for managing notification-related activities for your app or app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to process the user’s response to a delivered notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+          "text": "UNUserNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationResponse",
+          "text": "UNNotificationResponse"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "userNotificationCenter(_:didReceive:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications": {
+      "abstract": [
+        {
+          "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying content in newly delivered notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+    },
+    "media-2953609": {
+      "alt": "A notification for a meeting app contains an invitation along with buttons for accepting or declining the invitation.",
+      "identifier": "media-2953609",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7551599d1d79bbde862870b8b2c59f2/media-2953609@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7551599d1d79bbde862870b8b2c59f2/media-2953609~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-categories-and-user-actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction"
+      ],
+      "title": "Notification categories and user actions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-categories-and-user-actions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction"
+              ],
+              "title": "Notification categories and user actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent~1categoryIdentifier/title",
+          "value": "categoryIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent~1categoryIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "categoryIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/title",
+          "value": "UNNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationResponse~1actionIdentifier/title",
+          "value": "actionIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationResponse~1actionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "actionIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/title",
+          "value": "UNMutableNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/title",
+          "value": "UNUserNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:didReceive:withCompletionHandler:)/title",
+          "value": "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:didReceive:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1fileprotectiontype~11616200-complete/title",
+          "value": "NSFileProtectionComplete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/title",
+          "value": "UNTextInputNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionOptions~1destructive/title",
+          "value": "UNNotificationActionOptionDestructive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionOptions~1destructive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationActionOptionDestructive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/title",
+          "value": "UNNotificationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationCategory"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/declaring-your-actionable-notification-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/declaring-your-actionable-notification-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

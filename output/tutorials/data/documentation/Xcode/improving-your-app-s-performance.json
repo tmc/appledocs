@@ -1,0 +1,2135 @@
+{
+  "abstract": [
+    {
+      "text": "Model, measure, and boost the performance of your app by using a continuous-improvement",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving your app’s performance"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People using your app expect it to perform well. An app that takes a long time to launch, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "responds slowly to input, may appear as if it isn’t working or is sluggish.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An app that makes a lot of large network requests may increase the user’s data charges",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and drain the device battery. Any of these behaviors can frustrate users and lead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them to uninstall the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plan and implement performance improvements by approaching the problem scientifically:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gather information about the problems your users are experiencing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Measure your app’s behavior to find the causes of the problems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plan one change to improve the situation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe whether the app’s performance improves.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These activities form a cycle of continuous improvement, as the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "illustration shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-your-app-s-performance-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Minimizing resource use benefits your users and improves their perceptions of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. Here are some specific benefits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decreasing app launch time improves the user experience, and reduces the chances",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the iOS watchdog timer terminating the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decreasing overall memory use reduces the likelihood of iOS freeing your app’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "memory in the background, and improves responsiveness when a user switches back to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reducing disk writes speeds up your app’s overall performance, makes it more responsive,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and reduces wear on users’ device storage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decreasing hang rate and hang duration improves your users’ perception of your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app’s performance and responsiveness.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reducing battery consumption and the use of power-hungry device features makes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your app more reliable, and helps ensure that the rest of the user’s device is available",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "when needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even when your measurements and observations show no pressing performance problems,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s a good idea to run through the performance-improvement cycle and do preventive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work to keep your app’s performance from regressing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Gather-data-about-your-apps-current-performance",
+          "level": 3,
+          "text": "Gather data about your app’s current performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To thoroughly understand your app’s performance, combine information from multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to view metrics for launch time, user-interface responsiveness, writes to storage,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "memory use, and energy use, as well as diagnostic reports for disk writes, crashes,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and energy. The Organizer lets you break down measurements by device model, app version,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and user percentile. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to gather metrics and record them in your own tools. These metrics",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "are in the form of histograms that record the frequency of observed values over a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "day. MetricKit goes beyond the metrics in the Metrics organizer to include",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "average pixel luminance, cellular network conditions, and durations associated with",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "custom ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OSSignpost",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " events in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get feedback from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/testflight/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " testers",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "about their experiences with beta versions of your app. Fill out the Test Information",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "page for your beta version, and request that testers provide feedback about the performance",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of your app. Include an email address so that testers can report their findings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Investigate feedback from your users about their experiences with released versions",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of your app. Invite users to send their feedback through email or a dedicated interface",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "within your app. Ask them about their experiences using the app — both what works well",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and any problems they encounter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Determine-the-most-important-aspect-to-improve",
+          "level": 3,
+          "text": "Determine the most important aspect to improve",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the information from your observations and your understanding of your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "purpose and expected use patterns to spot the greatest opportunities for improvement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Some performance issues are independent of the type of app under investigation. An",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app that takes a long time to launch, or is unresponsive to users’ attempts to manipulate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the interface, results in users feeling they have no control over the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The largest value for a metric you see in the Metrics organizer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or in MetricKit may not indicate the most important issue to address if that value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents expected app usage. For example, energy use associated with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background-audio playing is probably not a problem for a podcast player, which users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expect to play in the background. However, it would be surprising to see that metric",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dominate if your app is a game that has no background component to its gameplay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Seeing that value dominate the metric reports can indicate that efficiency savings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are possible, but the most impactful changes may be in the use of auxiliary services",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that don’t impact the app’s main features. The podcast player might infrequently",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to use coarse-grained location services to recommend local-interest podcasts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the listener, but the high-energy consumption associated with the frequent tracking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the user’s precise location may be a sign that a change is necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-your-app",
+          "level": 3,
+          "text": "Profile your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/instruments/mac/current/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to profile your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app with a profiling template that’s relevant to the metric you’re considering:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unresponsiveness and hangs: Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/dev44b2b437",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory issues: Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/10.0/#/dev7b8f6eb6",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/dev022f987b",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " templates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Power-consumption issues: Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/deva0db8947",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "I/O issues: Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/dev6983c7c4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Network-related issues: Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/10.0/#/dev209edacf",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You get higher-fidelity measurements by profiling on a device instead of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulator. If the information you gather shows that your app performs poorly on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particular class or model of device, profile on that device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Find the code that’s causing the performance problem, and create a plan for improving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it. Keep in mind that your change may not be localized to a particular line or even",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function, and you may need to make significant architectural changes to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to mitigate a hang that results from synchronously downloading network resources,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "introduce background operations to handle the networking (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "),",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and perform a UI update on the main thread when the downloads are complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-the-next-change",
+          "level": 3,
+          "text": "Make the next change",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the change you plan as a result of your investigation. Create an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "after",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " profile in Instruments that you can compare with the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "before",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " profile to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ensure your change results in an improvement. Consider writing a performance test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to protect against future",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regressions in performance, and to serve as a record that the problem existed and you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fixed it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compare-the-changed-behavior-with-your-original-data",
+          "level": 3,
+          "text": "Compare the changed behavior with your original data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you change your app to address the most important performance issue you observe,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "confirm that the change has the desired effect and that the level of improvement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is sufficient. Use the graphs of performance metrics for each version of your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode’s Metrics organizer to see whether the change results in an improvement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or a regression.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, decide whether the metric you’re working on is still the most important",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to address, or whether the data points to another metric for the next iteration of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the performance improvement cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Additional-resources",
+          "level": 3,
+          "text": "Additional resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following articles, Xcode Help topics, and WWDC session videos contain more information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about using Xcode and Instruments for measuring and improving app performance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Performance-tools-and-techniques",
+          "level": 4,
+          "text": "Performance tools and techniques",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10077",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/os/logging",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2015/230/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2018/407/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/dev44b2b437",
+                      "isActive": true,
+                      "overridingTitle": "Profile your app’s performance",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Profile your app’s performance",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2016/410/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10081",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Energy-consumption",
+          "level": 4,
+          "text": "Energy consumption",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2015/707/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2015/708/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929-CH15",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW14",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10057",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev94c128b7b",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/devf7f7c5fcd",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/instruments/mac/current/#/dev7b8f6eb6",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2018/228/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2017/238/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev36a5a9141",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "View power and performance metrics for apps you distribute through the App",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-the-performance-of-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests": {
+      "abstract": [
+        {
+          "text": "Repeatably gather metrics on the performance of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-and-running-performance-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing and running performance tests",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-and-running-performance-tests"
+    },
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/creating-a-performance-plan-for-visionos-app": {
+      "abstract": [
+        {
+          "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a performance plan for your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionOS/creating-a-performance-plan-for-visionos-app"
+    },
+    "doc://com.apple.documentation/tutorials/instruments": {
+      "abstract": [
+        {
+          "text": "Use Instruments to analyze the performance, resource usage, and behavior of your apps. Learn how to improve responsiveness, reduce memory usage, and analyze complex behavior over time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/instruments",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Profiling apps using Instruments",
+      "type": "topic",
+      "url": "/tutorials/instruments"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243",
+      "title": "Energy Efficiency Guide for iOS Apps",
+      "titleInlineContent": [
+        {
+          "text": "Energy Efficiency Guide for iOS Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929-CH15": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929-CH15",
+      "title": "Energy Efficiency and the User Experience",
+      "titleInlineContent": [
+        {
+          "text": "Energy Efficiency and the User Experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929-CH15"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW14": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW14",
+      "title": "Energy Efficiency Guide for Mac Apps",
+      "titleInlineContent": [
+        {
+          "text": "Energy Efficiency Guide for Mac Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW14"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2015/230/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2015/230/",
+      "title": "Performance on iOS and watchOS",
+      "titleInlineContent": [
+        {
+          "text": "Performance on iOS and watchOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2015/230/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2015/707/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2015/707/",
+      "title": "Achieving All-day Battery Life",
+      "titleInlineContent": [
+        {
+          "text": "Achieving All-day Battery Life",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2015/707/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2015/708/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2015/708/",
+      "title": "Debugging Energy Issues",
+      "titleInlineContent": [
+        {
+          "text": "Debugging Energy Issues",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2015/708/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2016/410/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2016/410/",
+      "title": "Visual Debugging with Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Visual Debugging with Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2016/410/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2017/238/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2017/238/",
+      "title": "Writing Energy Efficient Apps",
+      "titleInlineContent": [
+        {
+          "text": "Writing Energy Efficient Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2017/238/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/228/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/228/",
+      "title": "What’s New in Energy Debugging",
+      "titleInlineContent": [
+        {
+          "text": "What’s New in Energy Debugging",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/228/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/407/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/407/",
+      "title": "Practical Approaches to Great App Performance",
+      "titleInlineContent": [
+        {
+          "text": "Practical Approaches to Great App Performance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/407/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10057": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10057",
+      "title": "Identify Trends With the Power and Performance API",
+      "titleInlineContent": [
+        {
+          "text": "Identify Trends With the Power and Performance API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10057"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10076": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076",
+      "title": "Xcode Organizer",
+      "titleInlineContent": [
+        {
+          "text": "Xcode Organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10076"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10076/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076/",
+      "title": "Diagnose Performance Issues With the Xcode Organizer",
+      "titleInlineContent": [
+        {
+          "text": "Diagnose Performance Issues With the Xcode Organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10076/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10077": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10077",
+      "title": "Eliminate Animation Hitches With XCTest",
+      "titleInlineContent": [
+        {
+          "text": "Eliminate Animation Hitches With XCTest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10077"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10081": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10081",
+      "title": "What’s New in MetricKit",
+      "titleInlineContent": [
+        {
+          "text": "What’s New in MetricKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10081"
+    },
+    "https://help.apple.com/instruments/mac/10.0/#/dev209edacf": {
+      "identifier": "https://help.apple.com/instruments/mac/10.0/#/dev209edacf",
+      "title": "Network template",
+      "titleInlineContent": [
+        {
+          "text": "Network template",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/10.0/#/dev209edacf"
+    },
+    "https://help.apple.com/instruments/mac/10.0/#/dev7b8f6eb6": {
+      "identifier": "https://help.apple.com/instruments/mac/10.0/#/dev7b8f6eb6",
+      "title": "Allocations",
+      "titleInlineContent": [
+        {
+          "text": "Allocations",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/10.0/#/dev7b8f6eb6"
+    },
+    "https://help.apple.com/instruments/mac/current": {
+      "identifier": "https://help.apple.com/instruments/mac/current",
+      "title": "Instruments Help",
+      "titleInlineContent": [
+        {
+          "text": "Instruments Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current"
+    },
+    "https://help.apple.com/instruments/mac/current/": {
+      "identifier": "https://help.apple.com/instruments/mac/current/",
+      "title": "Instruments",
+      "titleInlineContent": [
+        {
+          "text": "Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/"
+    },
+    "https://help.apple.com/instruments/mac/current/#/dev022f987b": {
+      "identifier": "https://help.apple.com/instruments/mac/current/#/dev022f987b",
+      "title": "Leaks",
+      "titleInlineContent": [
+        {
+          "text": "Leaks",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/#/dev022f987b"
+    },
+    "https://help.apple.com/instruments/mac/current/#/dev44b2b437": {
+      "identifier": "https://help.apple.com/instruments/mac/current/#/dev44b2b437",
+      "title": "Time Profiler",
+      "titleInlineContent": [
+        {
+          "text": "Time Profiler",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/#/dev44b2b437"
+    },
+    "https://help.apple.com/instruments/mac/current/#/dev6983c7c4": {
+      "identifier": "https://help.apple.com/instruments/mac/current/#/dev6983c7c4",
+      "title": "File Activity",
+      "titleInlineContent": [
+        {
+          "text": "File Activity",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/#/dev6983c7c4"
+    },
+    "https://help.apple.com/instruments/mac/current/#/dev7b8f6eb6": {
+      "identifier": "https://help.apple.com/instruments/mac/current/#/dev7b8f6eb6",
+      "title": "Profile your app’s energy use",
+      "titleInlineContent": [
+        {
+          "text": "Profile your app’s energy use",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/#/dev7b8f6eb6"
+    },
+    "https://help.apple.com/instruments/mac/current/#/deva0db8947": {
+      "identifier": "https://help.apple.com/instruments/mac/current/#/deva0db8947",
+      "title": "Energy Log",
+      "titleInlineContent": [
+        {
+          "text": "Energy Log",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/#/deva0db8947"
+    },
+    "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev36a5a9141": {
+      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev36a5a9141",
+      "title": "Xcode Energy Organizer",
+      "titleInlineContent": [
+        {
+          "text": "Xcode Energy Organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev36a5a9141"
+    },
+    "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev94c128b7b": {
+      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev94c128b7b",
+      "title": "Monitor a running app using debug gauges",
+      "titleInlineContent": [
+        {
+          "text": "Monitor a running app using debug gauges",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/dev94c128b7b"
+    },
+    "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/devf7f7c5fcd": {
+      "identifier": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/devf7f7c5fcd",
+      "title": "Monitor your app’s energy usage",
+      "titleInlineContent": [
+        {
+          "text": "Monitor your app’s energy usage",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/index.html?localePath=en.lproj#/devf7f7c5fcd"
+    },
+    "improving-your-app-s-performance-1": {
+      "alt": "An illustration that shows performance improvement work as a cycle where you gather data about your app’s current performance, determine the most important aspect to improve, profile your app, make a change, and return to gathering data.",
+      "identifier": "improving-your-app-s-performance-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bebd5417a094f169e53eed1baac69c8c/improving-your-app-s-performance-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/tutorials/instruments",
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app",
+        "doc://com.apple.documentation/documentation/visionOS/creating-a-performance-plan-for-visionos-app"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "abstract": [
+    {
+      "text": "An array of extra protocol subclasses that handle requests in a session.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411050,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionConfiguration(py)protocolClasses",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLSessionConfiguration"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "protocolClasses"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(copy) "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSArray",
+              "text": "NSArray"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/class",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Class",
+              "text": "Class"
+            },
+            {
+              "kind": "text",
+              "text": "> *"
+            },
+            {
+              "kind": "identifier",
+              "text": "protocolClasses"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The objects in this array are ",
+              "type": "text"
+            },
+            {
+              "code": "Class",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects corresponding to custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses that you define. URL session objects support a number of common networking protocols by default. Use this array to extend the default set of common networking protocols available for use by a session with one or more custom protocols that you define. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to handling a request, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object searches the default protocols first and then checks your custom protocols until it finds one capable of handling the specified request. It uses the protocol whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", indicating that the class is capable of handling the specified request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You cannot use custom ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subclasses in conjunction with background sessions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is an empty array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol": {
+      "abstract": [
+        {
+          "text": "An abstract class that handles the loading of protocol-specific URL data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInitWithRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInitWithRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1411389-caninitwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that defines behavior and policies for a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses": {
+      "abstract": [
+        {
+          "text": "An array of extra protocol subclasses that handle requests in a session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocolClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/class": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Class",
+      "type": "topic",
+      "url": "/documentation/objectivec/class"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol"
+      ],
+      "title": "Supporting custom protocols"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionconfiguration/1411050-protocolclasses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

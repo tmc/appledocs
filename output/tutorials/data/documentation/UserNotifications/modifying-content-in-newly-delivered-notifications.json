@@ -1,0 +1,910 @@
+{
+  "abstract": [
+    {
+      "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Modifying content in newly delivered notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may want to modify the content of a remote notification on a user’s iOS device if you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decrypt data sent in an encrypted format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download images or other media attachments whose size would exceed the maximum payload size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the notification’s content, perhaps by incorporating data from the user’s device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modifying a remote notification requires a notification service app extension, which you include inside your iOS app bundle. The app extension receives the contents of your remote notifications before the system displays them to the user, giving you time to update the notification payload. You control which notifications your extension handles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Notification service app extensions only operate on remote notifications configured in the system to display an alert to the user. If alerts are disabled for your app, or if the payload specifies only the playing of a sound or the badging of an icon, the extension isn’t employed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-service-app-extension-to-your-project",
+          "level": 3,
+          "text": "Add a service app extension to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A notification service app extension ships as a separate bundle inside your iOS app. To add this extension to your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New > Target in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Notification Service Extension target from the iOS > Application section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a name and other configuration details for your app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Implement-your-extensions-handler-methods",
+          "level": 3,
+          "text": "Implement your extension’s handler methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification service app extension template provided by Xcode includes a default implementation for you to modify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object with the updated content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to terminate any payload-modification tasks that are still running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method has only about 30 seconds to modify the payload and call the provided completion handler. If your code takes longer than that, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, at which point you must return whatever you can to the system immediately. If you fail to call the completion handler from either method, the system displays the original contents of the notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 shows an implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that decrypts the contents of a secret message delivered using a remote notification. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method decrypts the data and returns a modified version of the notification’s content if it’s successful. If it’s unsuccessful, or if time expires, the extension returns content indicating that the data is still encrypted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Decrypting data contained in a remote notification",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Storage for the completion handler and content.",
+            "var contentHandler: ((UNNotificationContent) -> Void)?",
+            "var bestAttemptContent: UNMutableNotificationContent?",
+            "// Modify the payload contents.",
+            "override func didReceive(_ request: UNNotificationRequest,",
+            "         withContentHandler contentHandler: ",
+            "         @escaping (UNNotificationContent) -> Void) {",
+            "   self.contentHandler = contentHandler",
+            "   self.bestAttemptContent = (request.content.mutableCopy() ",
+            "         as? UNMutableNotificationContent)",
+            "   ",
+            "   // Try to decode the encrypted message data.",
+            "   let encryptedData = bestAttemptContent?.userInfo[\"ENCRYPTED_DATA\"]",
+            "   if let bestAttemptContent = bestAttemptContent {",
+            "      if let data = encryptedData as? String {",
+            "         let decryptedMessage = self.decrypt(data: data)",
+            "        bestAttemptContent.body = decryptedMessage",
+            "      }",
+            "      else {",
+            "         bestAttemptContent.body = \"(Encrypted)\"",
+            "      }",
+            "      ",
+            "      // Always call the completion handler when done.      ",
+            "      contentHandler(bestAttemptContent)",
+            "   }",
+            "}",
+            "    ",
+            "// Return something before time expires.",
+            "override func serviceExtensionTimeWillExpire() {",
+            "   if let contentHandler = contentHandler, ",
+            "      let bestAttemptContent = bestAttemptContent {",
+            "         ",
+            "      // Mark the message as still encrypted.   ",
+            "      bestAttemptContent.subtitle = \"(Encrypted)\"",
+            "      bestAttemptContent.body = \"\"",
+            "      contentHandler(bestAttemptContent)",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-payload-for-the-remote-notification",
+          "level": 3,
+          "text": "Configure the payload for the remote notification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system executes your notification service app extension only when a remote notification’s payload contains the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The payload must include the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mutable-content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The payload must include an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary with title, subtitle, or body information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2 shows the JSON data for a notification payload containing encrypted data. The ",
+              "type": "text"
+            },
+            {
+              "code": "mutable-content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag is set so that the user’s device knows to run the corresponding service app extension, the code for which is shown in .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Specifying the remote notification payload",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"aps\" : {",
+            "      \"category\" : \"SECRET\",",
+            "      \"mutable-content\" : 1,",
+            "      \"alert\" : {",
+            "         \"title\" : \"Secret Message!\",",
+            "         \"body\"  : \"(Encrypted)\"",
+            "     },",
+            "   },",
+            "   \"ENCRYPTED_DATA\" : \"Salted__·öîQÊ$UDì_¶Ù∞èΩ^¬%gq∞NÿÒQùw\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent": {
+      "abstract": [
+        {
+          "text": "The editable content for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNMutableNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension": {
+      "abstract": [
+        {
+          "text": "An object that modifies the content of a remote notification before it’s delivered to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationServiceExtension",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks you to make any needed changes to the notification and notify the system when you’re done.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+          "text": "UNNotificationContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveNotificationRequest:withContentHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceive(_:withContentHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()": {
+      "abstract": [
+        {
+          "text": "Tells you that the system is terminating your extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceExtensionTimeWillExpire"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serviceExtensionTimeWillExpire"
+        }
+      ],
+      "role": "symbol",
+      "title": "serviceExtensionTimeWillExpire()",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension/serviceextensiontimewillexpire()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-service-app-extension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension"
+      ],
+      "title": "Notification service app extension"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-service-app-extension",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension"
+              ],
+              "title": "Notification service app extension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1serviceExtensionTimeWillExpire()/title",
+          "value": "serviceExtensionTimeWillExpire"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1serviceExtensionTimeWillExpire()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "serviceExtensionTimeWillExpire"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/title",
+          "value": "UNMutableNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/title",
+          "value": "UNNotificationServiceExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/title",
+          "value": "didReceiveNotificationRequest:withContentHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotificationRequest:withContentHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

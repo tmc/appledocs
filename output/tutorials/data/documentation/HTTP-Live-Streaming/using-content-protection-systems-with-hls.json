@@ -1,0 +1,1573 @@
+{
+  "abstract": [
+    {
+      "text": "Adding encryption keys to media playlists",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using content protection systems with HLS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HTTP Live Streaming (HLS) supports content protection systems through the presence of ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags in playlists. HLS allows multiple ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags with diﬀerent ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes to apply to the same segments provided that each of the tags ultimately produces the same decryption key. This is necessary because you can only encrypt a media segment with one encryption method, using one encryption key, with a single IV (initialization vector).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While a playlist may contain ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags for more than one protection system, a player typically supports only one protection system. This means that every encrypted segment must have ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags for the same set of protection systems. The player refuses to play the playlist if it doesn’t handle any of the protection systems. If the player can handle more than one protection system, it chooses one. The playlist has no mechanism to convey a preference for a protection system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document provides general guidance on using such ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For convenience sake, this document refers to some details of the Google Widevine and Microsoft PlayReady protection systems. The documentation for those systems should be used to ensure accurate implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-playlist-key-tag",
+          "level": 2,
+          "text": "Set the playlist key tag",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag has three attributes that principally control its behavior. These are ",
+              "type": "text"
+            },
+            {
+              "code": "METHOD",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "URI",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Apple’s HLS encryption uses the AES block cipher algorithm and Cipher Block Chaining (CBC) mode. To guarantee compatibility with FairPlay, you must use the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "METHOD=SAMPLE-AES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". In terms of the Common Encryption standard (ISO/IEC 23001-7), this is the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "cbcs",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " protection scheme. If FairPlay isn’t involved you may use another ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "METHOD",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "METHOD",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use this attribute to convey how to obtain the key. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Choose-a-key-format",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for more detail. This can be modified by the attribute ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "KEYFORMATVERSIONS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". However, in most cases, this additional attribute should be either left oﬀ or set to the string value ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"1\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "KEYFORMAT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This contains the information needed to identify the specific key. The format of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "URI",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is determined by the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "KEYFORMAT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "URI",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Choose-a-key-format",
+          "level": 2,
+          "text": "Choose a key format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are four supported key formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FairPlay Streaming",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Widevine",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PlayReady",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All formats (except Identity) require a key server. That is, a server that uses some protocol to supply the keys. The key server isn’t specified by the playlist. Instead, the playback app is responsible for knowing the URI of the key server and the protocol for communicating with that server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identity",
+          "level": 3,
+          "text": "Identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This format is identified by a ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute with the value ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or by the lack of a ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "URI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute is the URI of the key file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because there is no key server involved, this protection system aﬀords only a minimal level of protection. For that reason you shouldn’t use identity keys in conjunction with any other protection system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This format is described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "FairPlay-Streaming",
+          "level": 3,
+          "text": "FairPlay Streaming",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This format is identified by a ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute with the value ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.streamingkeydelivery",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "URI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute typically has the form ",
+              "type": "text"
+            },
+            {
+              "code": "skd://<key-identifier>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (In theory this can use any custom URL scheme, but ",
+              "type": "text"
+            },
+            {
+              "code": "skd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is almost always used.) The key-identifier is an arbitrary string that is interpreted by the FairPlay Key Server. FairPlay does impose limits on the overall length of the key-identifier string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Further details about FairPlay Streaming are available at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/streaming/fps/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Widevine",
+          "level": 3,
+          "text": "Widevine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Widevine format has more than one version. However, the versions use diﬀerent key format values; from the HLS point of view, they are completely distinct. You should use what the Widevine documentation refers to as v2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This key format is identified by a ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute with the value ",
+              "type": "text"
+            },
+            {
+              "code": "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (The UUID in this URN is the Widevine System ID. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Widevine-PSSH-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "URI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute has the form ",
+              "type": "text"
+            },
+            {
+              "code": "data:text/plain;base64,<base64 encoded PSSH box>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Create-a-PSSH-box",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Widevine refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.widevine.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "PlayReady",
+          "level": 3,
+          "text": "PlayReady",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PlayReady format is defined by Microsoft.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This key format is identified by a ",
+              "type": "text"
+            },
+            {
+              "code": "KEYFORMAT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute with the value ",
+              "type": "text"
+            },
+            {
+              "code": "com.microsoft.playready",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "URI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the form ",
+              "type": "text"
+            },
+            {
+              "code": "data:text/plain;charset=UTF-16;base64,<base64 encoded PlayReady Object>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#PlayReady-PSSH-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a discussion of the PlayReady Object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information refer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://learn.microsoft.com/en-us/playready/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-key-identifiers",
+          "level": 2,
+          "text": "Select key identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All three of the key formats that use a key server - FairPlay Streaming, Widevine, PlayReady - contain something called a key identifier. The key identifier is the data sent to the server so it can return the correct key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FairPlay Streaming key identifier has no relationship to that used by the other formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Widevine and PlayReady key identifiers may be identical. Their value should be a UUID. Note that PlayReady does not store the UUID as a simple 16-byte array. (See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Example",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below for more detail.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-PSSH-box",
+          "level": 2,
+          "text": "Create a PSSH box",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Protection System Specific Header (‘pssh’) box is defined in ISO/IEC 23001-7.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is an ISO Base Media File Format (MP4) structure used to convey information about the protection system. It’s only necessary with Widevine and PlayReady. If you use those protection systems, you should include a PSSH box for each system you use in the media initialization sections of your stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is the layout of the version 0 PSSH box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PSSH box {",
+            "    UInt32 size               // Length of the whole box",
+            "    UInt32 type               // == ‘pssh’",
+            "    UInt32 version_and_flags  // == 0",
+            "    UInt8 SystemID[16]",
+            "    UInt32 DataSize",
+            "    UInt8 Data[DataSize]      // System specific data",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SystemID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a UUID that indicates how to parse the ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " portion of the PSSH.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Widevine-PSSH-data",
+          "level": 3,
+          "text": "Widevine PSSH data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Widevine ",
+              "type": "text"
+            },
+            {
+              "code": "SystemID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains a protocol buﬀer (that is, a mechanism for serializing structured data; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://protobuf.dev",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Widevine documentation details the specific messages that are possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data will contain the key identifier and the protection scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "PlayReady-PSSH-data",
+          "level": 3,
+          "text": "PlayReady PSSH data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PlayReady ",
+              "type": "text"
+            },
+            {
+              "code": "SystemID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "9a04f079-9840-4286-ab92-e65be0885f95",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field is PlayReady Object that contains a PlayReady Header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PlayReady Object is a binary data structure that contains one or more PlayReady Object Records. Each record has a type; one of these types is a PlayReady Header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PlayReady Header is a little-endian UTF-16 XML string.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This contains the header version, protection scheme, and key identifier. You should use the header version ",
+              "type": "text"
+            },
+            {
+              "code": "v4.3.0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as this is necessary to support the ‘cbcs’ protection scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 2,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an example of FairPlay Streaming, Widevine, and PlayReady keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"skd://test\",KEYFORMAT=\"com.apple.streamingkeydelivery\",KEYFORMATVERSIONS=\"1\"",
+            "#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;base64,AAAAOHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAABgSEAQUJDREVGR0hJSktMTU5PRI88aJmwY=\",KEYFORMAT=\"urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed\",KEYFORMATVERSIONS=\"1\"",
+            "#EXT-X-KEY:METHOD=SAMPLE-AES,URI=\"data:text/plain;charset=UTF-16;base64,vgEAAAEAAQC0ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADMALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAFMAPgA8AEsASQBEACAAQQBMAEcASQBEAD0AIgBBAEUAUwBDAEIAQwAiACAAVgBBAEwAVQBFAD0AIgBOAEMAUQBVAEIARgBSAEUAZABHAFMARQBsAEsAUwAwAHgATgBUAGsAOQBBAD0APQAiAD4APAAvAEsASQBEAD4APAAvAEsASQBEAFMAPgA8AC8AUABSAE8AVABFAEMAVABJAE4ARgBPAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=\",KEYFORMAT=\"com.microsoft.playready\",KEYFORMATVERSIONS=\"1\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "FairPlay",
+          "level": 3,
+          "text": "FairPlay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FairPlay Streaming URI value, except for the URL scheme prefix, is the key identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Widevine",
+          "level": 3,
+          "text": "Widevine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is the unpacked form of the Widevine base64 string (a PSSH box).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "00000000 00 00 00 38 70 73 73 68 00 00 00 00 ed ef 8b a9 |...8pssh........|",
+            "00000010 79 d6 4a ce a3 c8 27 dc d5 1d 21 ed 00 00 00 18 |y.J...'...!.....|",
+            "00000020 12 10 04 14 24 34 44 54 64 74 84 94 a4 b4 c4 d4 |....$4DTdt......|",
+            "00000030 e4 f4 48 f3 c6 89 9b 06                         |..H.....|",
+            "00000038"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The protocol buﬀer is the last 24 bytes. This buﬀer decodes into two fields: a ",
+              "type": "text"
+            },
+            {
+              "code": "key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (16 byte value ",
+              "type": "text"
+            },
+            {
+              "code": "(04 14 24 34 44 54 64 74 84 94 a4 b4 c4 d4 e4 f4)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a ",
+              "type": "text"
+            },
+            {
+              "code": "protection_scheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (a ",
+              "type": "text"
+            },
+            {
+              "code": "var-int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that decodes to ",
+              "type": "text"
+            },
+            {
+              "code": "63 62 63 73",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "‘cbcs’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). While this example contains only two fields, additional optional fields could be present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "PlayReady",
+          "level": 3,
+          "text": "PlayReady",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is unpacked form of the PlayReady base64 string (a PlayReady Object).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "00000000 be 01 00 00 01 00 01 00 b4 01 3c 00 57 00 52 00 |..........<.W.R.|",
+            "00000010 4d 00 48 00 45 00 41 00 44 00 45 00 52 00 20 00 |M.H.E.A.D.E.R. .|",
+            "00000020 78 00 6d 00 6c 00 6e 00 73 00 3d 00 22 00 68 00 |x.m.l.n.s.=.\".h.|",
+            "00000030 74 00 74 00 70 00 3a 00 2f 00 2f 00 73 00 63 00 |t.t.p.:././.s.c.|",
+            "00000040 68 00 65 00 6d 00 61 00 73 00 2e 00 6d 00 69 00 |h.e.m.a.s...m.i.|",
+            "00000050 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 2e 00 |c.r.o.s.o.f.t...|",
+            "00000060 63 00 6f 00 6d 00 2f 00 44 00 52 00 4d 00 2f 00 |c.o.m./.D.R.M./.|",
+            "00000070 32 00 30 00 30 00 37 00 2f 00 30 00 33 00 2f 00 |2.0.0.7./.0.3./.|",
+            "00000080 50 00 6c 00 61 00 79 00 52 00 65 00 61 00 64 00 |P.l.a.y.R.e.a.d.|",
+            "00000090 79 00 48 00 65 00 61 00 64 00 65 00 72 00 22 00 |y.H.e.a.d.e.r.\".|",
+            "000000a0 20 00 76 00 65 00 72 00 73 00 69 00 6f 00 6e 00 | .v.e.r.s.i.o.n.|",
+            "000000b0 3d 00 22 00 34 00 2e 00 33 00 2e 00 30 00 2e 00 |=.\".4...3...0...|",
+            "000000c0 30 00 22 00 3e 00 3c 00 44 00 41 00 54 00 41 00 |0.\".>.<.D.A.T.A.|",
+            "000000d0 3e 00 3c 00 50 00 52 00 4f 00 54 00 45 00 43 00 |>.<.P.R.O.T.E.C.|",
+            "000000e0 54 00 49 00 4e 00 46 00 4f 00 3e 00 3c 00 4b 00 |T.I.N.F.O.>.<.K.|",
+            "000000f0 49 00 44 00 53 00 3e 00 3c 00 4b 00 49 00 44 00 |I.D.S.>.<.K.I.D.|",
+            "00000100 20 00 41 00 4c 00 47 00 49 00 44 00 3d 00 22 00 | .A.L.G.I.D.=.\".|",
+            "00000110 41 00 45 00 53 00 43 00 42 00 43 00 22 00 20 00 |A.E.S.C.B.C.\". .|",
+            "00000120 56 00 41 00 4c 00 55 00 45 00 3d 00 22 00 4e 00 |V.A.L.U.E.=.\".N.|",
+            "00000130 43 00 51 00 55 00 42 00 46 00 52 00 45 00 64 00 |C.Q.U.B.F.R.E.d.|",
+            "00000140 47 00 53 00 45 00 6c 00 4b 00 53 00 30 00 78 00 |G.S.E.l.K.S.0.x.|",
+            "00000150 4e 00 54 00 6b 00 39 00 41 00 3d 00 3d 00 22 00 |N.T.k.9.A.=.=.\".|",
+            "00000160 3e 00 3c 00 2f 00 4b 00 49 00 44 00 3e 00 3c 00 |>.<./.K.I.D.>.<.|",
+            "00000170 2f 00 4b 00 49 00 44 00 53 00 3e 00 3c 00 2f 00 |/.K.I.D.S.>.<./.|",
+            "00000180 50 00 52 00 4f 00 54 00 45 00 43 00 54 00 49 00 |P.R.O.T.E.C.T.I.|",
+            "00000190 4e 00 46 00 4f 00 3e 00 3c 00 2f 00 44 00 41 00 |N.F.O.>.<./.D.A.|",
+            "000001a0 54 00 41 00 3e 00 3c 00 2f 00 57 00 52 00 4d 00 |T.A.>.<./.W.R.M.|",
+            "000001b0 48 00 45 00 41 00 44 00 45 00 52 00 3e 00       |H.E.A.D.E.R.>.|",
+            "000001be"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PlayReady Header is the string below. (Converted from UTF-16 with indentation and line breaks added for clarity.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<WRMHEADER xmlns=\"http://schemas.microsoft.com/DRM/2007/03/PlayReadyHeader\" version=\"4.3.0.0\">",
+            "    <DATA>",
+            "        <PROTECTINFO>",
+            "            <KIDS>",
+            "                <KID ALGID=\"AESCBC\" VALUE=\"NCQUBFREdGSElKS0xNTk9A==\">",
+            "                </KID>",
+            "            </KIDS>",
+            "        </PROTECTINFO>",
+            "    </DATA>",
+            "</WRMHEADER>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ALGID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute indicates the protection scheme is ‘cbcs’.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is the unpacked form of the ",
+              "type": "text"
+            },
+            {
+              "code": "KID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element’s ",
+              "type": "text"
+            },
+            {
+              "code": "VALUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, which is a base64 encoded string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "00000000 34 24 14 04 54 44 74 64 84 94 a4 b4 c4 d4 e4 f4 |4$..TDtd........|",
+            "00000010"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is a UUID in Microsoft’s GUID form. That is, three little-endian numbers (4 bytes, 2 bytes, 2 bytes) and an eight-byte sequence. In this example the same key identifier is used for PlayReady and Widevine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Learn the Common Media Application Format as it applies to HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "About the Common Media Application Format with HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness": {
+      "abstract": [
+        {
+          "text": "Adjust anchor loudness when measurements of speech-gated loudness for a full mix",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may be inaccurate, such as when speech activity is low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting anchor loudness",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/adjusting-anchor-loudness"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Add Low-Latency HLS to your content streams to maintain scalability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Low-Latency HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos": {
+      "abstract": [
+        {
+          "text": "Review additional specifications and documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+      "kind": "article",
+      "role": "article",
+      "title": "Links to additional specifications and videos",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/links-to-additional-specifications-and-videos"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters": {
+      "abstract": [
+        {
+          "text": "Prepare JSON chapters for HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing JavaScript Object Notation (JSON) chapters",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-javascript-object-notation-json-chapters"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks": {
+      "abstract": [
+        {
+          "text": "Ensure volume normalization by including metadata for loudness and dynamic range",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing metadata for xHE-AAC video soundtracks",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-metadata-for-xhe-aac-video-soundtracks"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Choose-a-key-format": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Choose-a-key-format",
+      "kind": "section",
+      "title": "Choose a key format",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls#Choose-a-key-format"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Create-a-PSSH-box": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Create-a-PSSH-box",
+      "kind": "section",
+      "title": "Create a PSSH box",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls#Create-a-PSSH-box"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Example": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Example",
+      "kind": "section",
+      "title": "Example",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls#Example"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#PlayReady-PSSH-data": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#PlayReady-PSSH-data",
+      "kind": "section",
+      "title": "PlayReady PSSH data",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls#PlayReady-PSSH-data"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Widevine-PSSH-data": {
+      "abstract": [],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls#Widevine-PSSH-data",
+      "kind": "section",
+      "title": "Widevine PSSH data",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls#Widevine-PSSH-data"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls": {
+      "abstract": [
+        {
+          "text": "Review informational videos about HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Videos about HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/videos-about-hls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/streaming/fps/": {
+      "identifier": "https://developer.apple.com/streaming/fps/",
+      "title": "FairPlay Streaming",
+      "titleInlineContent": [
+        {
+          "text": "FairPlay Streaming",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/streaming/fps/"
+    },
+    "https://learn.microsoft.com/en-us/playready/": {
+      "identifier": "https://learn.microsoft.com/en-us/playready/",
+      "title": "PlayReady documentation",
+      "titleInlineContent": [
+        {
+          "text": "PlayReady documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://learn.microsoft.com/en-us/playready/"
+    },
+    "https://protobuf.dev": {
+      "identifier": "https://protobuf.dev",
+      "title": "Protocol Buffers",
+      "titleInlineContent": [
+        {
+          "text": "Protocol Buffers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://protobuf.dev"
+    },
+    "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+      "title": "HTTP Live Streaming 2nd Edition",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming 2nd Edition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis"
+    },
+    "https://www.widevine.com": {
+      "identifier": "https://www.widevine.com",
+      "title": "Widevine Technologies",
+      "titleInlineContent": [
+        {
+          "text": "Widevine Technologies",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.widevine.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifications-and-other-documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters"
+      ],
+      "title": "Specifications and other documents"
+    }
+  ]
+}

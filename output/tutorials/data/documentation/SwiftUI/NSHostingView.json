@@ -1,0 +1,5015 @@
+{
+  "abstract": [
+    {
+      "text": "An AppKit view that hosts a SwiftUI view hierarchy.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI13NSHostingViewC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSHostingView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSHostingView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSHostingView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSHostingView"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "code": "NSHostingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to integrate SwiftUI views into your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "AppKit view hierarchies. A hosting view is an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that manages a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI view, which may itself contain other SwiftUI views. Because it is an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can integrate it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into your existing AppKit view hierarchies to implement portions of your UI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can use a hosting view to implement a custom control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A hosting view acts as a bridge between your SwiftUI views and your AppKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. During layout, the hosting view reports the content size",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "preferences of your SwiftUI views back to the AppKit layout system so that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it can size the view appropriately. The hosting view also coordinates event",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delivery.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations-PageImage-card.png": {
+      "alt": "A conceptual illustration of a disclosure indicator, shown animating frame by frame from its collapsed position to its expanded position.",
+      "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db26bd6bfe171a450c126a68c3bd92d4/Unifying-your-app-s-animations-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3559438f813d2163ecacac3918dbff5f/Unifying-your-app-s-animations-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController": {
+      "abstract": [
+        {
+          "text": "An AppKit view controller that hosts SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingController",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingcontroller"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu": {
+      "abstract": [
+        {
+          "text": "An AppKit menu with menu items that are defined by a SwiftUI View.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers manage aspects of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "associated window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSceneBridgingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingscenebridgingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions": {
+      "abstract": [
+        {
+          "text": "Options for how hosting views and controllers reflect their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content’s size into Auto Layout constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingSizingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingsizingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView": {
+      "abstract": [
+        {
+          "text": "An AppKit view that hosts a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHostingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHostingView",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstMouse(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptsFirstMouse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstMouse(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptsFirstMouse(for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/acceptsfirstmouse(for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstResponder": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptsFirstResponder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptsFirstResponder",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/acceptsfirstresponder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildren()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityChildren"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildren()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityChildren()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilitychildren()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildrenInNavigationOrder()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityChildrenInNavigationOrder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAccessibilityElement",
+          "text": "NSAccessibilityElementProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildrenInNavigationOrder()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityChildrenInNavigationOrder()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilitychildreninnavigationorder()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityFocusedUIElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFocusedUIElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityFocusedUIElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFocusedUIElement",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilityfocuseduielement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityHitTest(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityHitTest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHitTest(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilityhittest(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityRole()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityRole"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilityRole",
+          "text": "Role"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityRole()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityRole()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilityrole()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilitySubrole()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilitySubrole"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilitySubrole",
+          "text": "Subrole"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilitySubrole()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilitySubrole()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/accessibilitysubrole()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/clipsToBounds": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipsToBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/clipsToBounds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipsToBounds",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/clipstobounds"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/cursorUpdate(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/cursorUpdate(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cursorUpdate(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/cursorupdate(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didAddSubview(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didAddSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didAddSubview(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didAddSubview(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/didaddsubview(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didChangeValue(forKey:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didChangeValue(forKey:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/didchangevalue(forkey:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/doCommand(by:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/doCommand(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doCommand(by:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/docommand(by:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstBaselineOffsetFromTop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstBaselineOffsetFromTop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstBaselineOffsetFromTop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstBaselineOffsetFromTop",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/firstbaselineoffsetfromtop"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstTextLineCenter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstTextLineCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstTextLineCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstTextLineCenter",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/firsttextlinecenter"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/forwardingTarget(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardingTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/forwardingTarget(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardingTarget(for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/forwardingtarget(for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/hitTest(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/hitTest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hitTest(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/hittest(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a hosting view object from the contents of the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/init(coder:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:rootView:)": {
+      "abstract": [
+        {
+          "text": "Creates a hosting view object from an archive and the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rootView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:rootView:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:rootView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/init(coder:rootview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(rootView:)": {
+      "abstract": [
+        {
+          "text": "Creates a hosting view object that wraps the specified SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rootView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(rootView:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rootView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/init(rootview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/insertText(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/insertText(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertText(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/inserttext(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/intrinsicContentSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intrinsicContentSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/intrinsicContentSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intrinsicContentSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/intrinsiccontentsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isAccessibilityElement()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isAccessibilityElement()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccessibilityElement()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/isaccessibilityelement()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isFlipped": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isFlipped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFlipped",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/isflipped"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyDown(with:)": {
+      "abstract": [
+        {
+          "text": "Called when the user presses a key on the keyboard while this view is in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the responder chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyDown(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyDown(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/keydown(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyUp(with:)": {
+      "abstract": [
+        {
+          "text": "Called when the user releases a key on the keyboard while this view is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the responder chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyUp(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyUp(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/keyup(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/lastBaselineOffsetFromBottom": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastBaselineOffsetFromBottom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/lastBaselineOffsetFromBottom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastBaselineOffsetFromBottom",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/lastbaselineoffsetfrombottom"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layerContentsRedrawPolicy": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerContentsRedrawPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSViewLayerContentsRedrawPolicy",
+          "text": "LayerContentsRedrawPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layerContentsRedrawPolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layerContentsRedrawPolicy",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/layercontentsredrawpolicy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layout()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layout"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layout()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layout()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/layout()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/magnify(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magnify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/magnify(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "magnify(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/magnify(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/makeTouchBar()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBar",
+          "text": "NSTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/makeTouchBar()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeTouchBar()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/maketouchbar()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/menu(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/menu(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menu(for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/menu(for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDown(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDown(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mousedown(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDragged(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDragged(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mousedragged(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseEntered(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseEntered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseEntered(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseEntered(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mouseentered(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseExited(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseExited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseExited(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseExited(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mouseexited(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseMoved(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseMoved"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseMoved(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseMoved(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mousemoved(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseUp(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseUp(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/mouseup(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/needsPanelToBecomeKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsPanelToBecomeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/needsPanelToBecomeKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "needsPanelToBecomeKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/needspaneltobecomekey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/observeValue(forKeyPath:of:change:context:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "observeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "change"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSKeyValueChangeKey",
+          "text": "NSKeyValueChangeKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/observeValue(forKeyPath:of:change:context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "observeValue(forKeyPath:of:change:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/observevalue(forkeypath:of:change:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDown(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDown(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "otherMouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/othermousedown(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDragged(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDragged(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "otherMouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/othermousedragged(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseUp(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseUp(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "otherMouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/othermouseup(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/performKeyEquivalent(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performKeyEquivalent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/performKeyEquivalent(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performKeyEquivalent(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/performkeyequivalent(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/prepareForReuse()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareForReuse"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/prepareForReuse()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareForReuse()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/prepareforreuse()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/requiresConstraintBasedLayout": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresConstraintBasedLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/requiresConstraintBasedLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresConstraintBasedLayout",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/requiresconstraintbasedlayout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/responds(to:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "responds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/responds(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responds(to:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/responds(to:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDown(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDown(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rightMouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/rightmousedown(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDragged(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDragged(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rightMouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/rightmousedragged(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseUp(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseUp(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rightMouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/rightmouseup(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rootView": {
+      "abstract": [
+        {
+          "text": "The root view of the SwiftUI view hierarchy managed by this view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rootView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootView",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/rootview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rotate(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rotate(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotate(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/rotate(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/safeAreaRegions": {
+      "abstract": [
+        {
+          "text": "The safe area regions that this view controller adds to its view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaRegions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SafeAreaRegionsV",
+          "text": "SafeAreaRegions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/safeAreaRegions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaRegions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/safearearegions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sceneBridgingOptions": {
+      "abstract": [
+        {
+          "text": "The options for which aspects of the window will be managed by this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hosting view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneBridgingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29NSHostingSceneBridgingOptionsV",
+          "text": "NSHostingSceneBridgingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sceneBridgingOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneBridgingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/scenebridgingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/scrollWheel(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollWheel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/scrollWheel(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollWheel(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/scrollwheel(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/setFrameSize(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFrameSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/setFrameSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFrameSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/setframesize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/shouldDelayWindowOrdering(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDelayWindowOrdering"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/shouldDelayWindowOrdering(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldDelayWindowOrdering(for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/shoulddelaywindowordering(for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/showContextMenuForSelection(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showContextMenuForSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/showContextMenuForSelection(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showContextMenuForSelection(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/showcontextmenuforselection(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sizingOptions": {
+      "abstract": [
+        {
+          "text": "The options for how the hosting view creates and updates constraints",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "based on the size of its SwiftUI content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22NSHostingSizingOptionsV",
+          "text": "NSHostingSizingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sizingOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizingOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/sizingoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesBegan(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesBegan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesBegan(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchesBegan(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/touchesbegan(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesCancelled(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesCancelled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesCancelled(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchesCancelled(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/touchescancelled(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesEnded(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesEnded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesEnded(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchesEnded(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/touchesended(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesMoved(with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesMoved"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesMoved(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchesMoved(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/touchesmoved(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/updateConstraints()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/updateConstraints()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConstraints()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/updateconstraints()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/userInterfaceLayoutDirection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLayoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSUserInterfaceLayoutDirection",
+          "text": "NSUserInterfaceLayoutDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/userInterfaceLayoutDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInterfaceLayoutDirection",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/userinterfacelayoutdirection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/validRequestor(forSendType:returnType:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validRequestor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSendType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "returnType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/validRequestor(forSendType:returnType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validRequestor(forSendType:returnType:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/validrequestor(forsendtype:returntype:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeBackingProperties()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidChangeBackingProperties"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeBackingProperties()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidChangeBackingProperties()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/viewdidchangebackingproperties()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeEffectiveAppearance()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidChangeEffectiveAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeEffectiveAppearance()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidChangeEffectiveAppearance()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/viewdidchangeeffectiveappearance()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidMoveToWindow()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidMoveToWindow"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidMoveToWindow()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidMoveToWindow()",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/viewdidmovetowindow()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewWillMove(toWindow:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewWillMove(toWindow:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewWillMove(toWindow:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/viewwillmove(towindow:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/willRemoveSubview(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willRemoveSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/willRemoveSubview(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willRemoveSubview(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/nshostingview/willremovesubview(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations": {
+      "abstract": [
+        {
+          "text": "Create a consistent UI animation experience across SwiftUI, UIKit, and AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+      "images": [
+        {
+          "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Unifying your app’s animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/unifying-your-app-s-animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElementProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAnimatablePropertyContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAppearanceCustomization"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingDestination"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that are implemented by the source object in a dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingSource"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDraggingSource",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingSource"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceItemIdentification"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceValidations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceValidations"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingSource",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceValidations"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Displaying-SwiftUI-views-in-AppKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingController",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingMenu",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSizingOptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingSceneBridgingOptions"
+      ],
+      "title": "Displaying SwiftUI views in AppKit"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-hosting-view",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(rootView:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/prepareForReuse()"
+      ],
+      "title": "Creating a hosting view"
+    },
+    {
+      "anchor": "Getting-the-root-view",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rootView"
+      ],
+      "title": "Getting the root view"
+    },
+    {
+      "anchor": "Configuring-the-view-layout-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/requiresConstraintBasedLayout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/userInterfaceLayoutDirection",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isFlipped",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layerContentsRedrawPolicy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/updateConstraints()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/layout()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/safeAreaRegions"
+      ],
+      "title": "Configuring the view layout behavior"
+    },
+    {
+      "anchor": "Managing-keyboard-interaction",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyDown(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/keyUp(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/performKeyEquivalent(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/insertText(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didChangeValue(forKey:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/makeTouchBar()"
+      ],
+      "title": "Managing keyboard interaction"
+    },
+    {
+      "anchor": "Responding-to-mouse-events",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDown(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseUp(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDown(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseUp(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDown(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseUp(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseEntered(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseExited(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseDragged(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/mouseMoved(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/otherMouseDragged(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rightMouseDragged(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/cursorUpdate(with:)"
+      ],
+      "title": "Responding to mouse events"
+    },
+    {
+      "anchor": "Responding-to-touch-events",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesBegan(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesCancelled(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesEnded(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/touchesMoved(with:)"
+      ],
+      "title": "Responding to touch events"
+    },
+    {
+      "anchor": "Responding-to-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/magnify(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/rotate(with:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/scrollWheel(with:)"
+      ],
+      "title": "Responding to gestures"
+    },
+    {
+      "anchor": "Handling-drag-and-drop",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/validRequestor(forSendType:returnType:)"
+      ],
+      "title": "Handling drag and drop"
+    },
+    {
+      "anchor": "Providing-a-context-menu",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/menu(for:)"
+      ],
+      "title": "Providing a context menu"
+    },
+    {
+      "anchor": "Responding-to-actions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/responds(to:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/forwardingTarget(for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/doCommand(by:)"
+      ],
+      "title": "Responding to actions"
+    },
+    {
+      "anchor": "Configuring-the-responder-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstResponder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/needsPanelToBecomeKey"
+      ],
+      "title": "Configuring the responder behavior"
+    },
+    {
+      "anchor": "Managing-the-view-hierarchy",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewWillMove(toWindow:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidMoveToWindow()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeBackingProperties()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/viewDidChangeEffectiveAppearance()"
+      ],
+      "title": "Managing the view hierarchy"
+    },
+    {
+      "anchor": "Modifying-the-frame-rectangle",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/intrinsicContentSize",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/setFrameSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstBaselineOffsetFromTop",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/lastBaselineOffsetFromBottom",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sizingOptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/firstTextLineCenter"
+      ],
+      "title": "Modifying the frame rectangle"
+    },
+    {
+      "anchor": "Testing-for-hits",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/hitTest(_:)"
+      ],
+      "title": "Testing for hits"
+    },
+    {
+      "anchor": "Managing-accessibility-behaviors",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityFocusedUIElement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildren()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityChildrenInNavigationOrder()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityHitTest(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilityRole()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/accessibilitySubrole()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/isAccessibilityElement()"
+      ],
+      "title": "Managing accessibility behaviors"
+    },
+    {
+      "anchor": "Bridging-with-SwiftUI",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/sceneBridgingOptions"
+      ],
+      "title": "Bridging with SwiftUI"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/init(coder:rootView:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/clipsToBounds"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/acceptsFirstMouse(for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/didAddSubview(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/observeValue(forKeyPath:of:change:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/shouldDelayWindowOrdering(for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/showContextMenuForSelection(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NSHostingView/willRemoveSubview(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSDraggingSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDraggingSource"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/nshostingview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

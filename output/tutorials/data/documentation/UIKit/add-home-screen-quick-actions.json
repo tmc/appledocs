@@ -1,0 +1,1809 @@
+{
+  "abstract": [
+    {
+      "text": "Expose commonly used functionality with static or dynamic 3D Touch Home Screen quick actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/add-home-screen-quick-actions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Add Home Screen quick actions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the Home screen of a device running iOS 13 or later, apps can display Home Screen quick actions when users touch and hold the app icon (on a 3D Touch device, users press briefly on the icon).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Home Screen quick action includes a title, an icon on the left or right (depending on your app’s position on the Home Screen), and an optional subtitle. Define quick actions statically at build time from the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or dynamically configured at runtime. For information about the types of functionality you might expose using quick actions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/extensions/home-screen-actions/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample project is a basic contact manager that allows users to view and edit a small set of contacts. The initial view controller shows a list of contacts in a table view. Tapping any contact shows a detail screen where you can edit the name and email address, or tap to turn on the Favorite switch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you press the sample app’s Home Screen icon, several Home Screen quick actions are displayed. The first two give access to search and sharing functionality, and the rest provide shortcuts to favorite contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-static-quick-actions",
+          "level": 3,
+          "text": "Define static quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the quick actions appropriate for an app never change, define them as static quick actions using the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This sample project defines two static quick actions: one for searching and one for sharing. The ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file contains an array of two dictionaries that represent the two static quick actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>UIApplicationShortcutItems</key>",
+            "<array>",
+            "    <dict>",
+            "        <key>UIApplicationShortcutItemType</key>",
+            "        <string>SearchAction</string>",
+            "        <key>UIApplicationShortcutItemIconType</key>",
+            "        <string>UIApplicationShortcutIconTypeSearch</string>",
+            "        <key>UIApplicationShortcutItemTitle</key>",
+            "        <string>Search</string>",
+            "        <key>UIApplicationShortcutItemSubtitle</key>",
+            "        <string>Search for an item</string>",
+            "    </dict>",
+            "    <dict>",
+            "        <key>UIApplicationShortcutItemType</key>",
+            "        <string>ShareAction</string>",
+            "        <key>UIApplicationShortcutItemIconType</key>",
+            "        <string>UIApplicationShortcutIconTypeShare</string>",
+            "        <key>UIApplicationShortcutItemTitle</key>",
+            "        <string>Share</string>",
+            "        <key>UIApplicationShortcutItemSubtitle</key>",
+            "        <string>Share an item</string>",
+            "    </dict>",
+            "</array>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value for ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutItemType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be a unique string that the system passes to your app when a user invokes the quick action. When processing the selected quick action, the unique item type distinguishes between the defined quick actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about other ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys available for configuring Home Screen quick actions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-dynamic-quick-actions",
+          "level": 3,
+          "text": "Define dynamic quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dynamic quick actions depend on specific data or state of the app. Configure dynamic Home Screen quick actions by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set dynamic screen quick actions at any point, but the sample sets them in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneWillResignActive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function of the scene delegate. During the transition to a background state is a good time to update any dynamic quick actions, because the system executes this code before the user returns to the Home Screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sceneWillResignActive(_ scene: UIScene) {",
+            "    // Transform each favorite contact into a UIApplicationShortcutItem.",
+            "    let application = UIApplication.shared",
+            "    application.shortcutItems = ContactsData.shared.favoriteContacts.map { contact -> UIApplicationShortcutItem in",
+            "        return UIApplicationShortcutItem(type: ActionType.favoriteAction.rawValue,",
+            "                                         localizedTitle: contact.name,",
+            "                                         localizedSubtitle: contact.email,",
+            "                                         icon: UIApplicationShortcutIcon(systemImageName: \"star.fill\"),",
+            "                                         userInfo: contact.quickActionUserInfo)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t limit the number of quick actions provided to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, because the system displays only the number of items that fit the screen. For this reason, the implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "favoriteContacts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "ContactsData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class returns all contacts that have the ",
+              "type": "text"
+            },
+            {
+              "code": "favorite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-quick-action-icons",
+          "level": 3,
+          "text": "Define quick action icons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define quick action icons with ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutIcon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defined two different ways: with a template image or SF Symbol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a template image name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UIApplicationShortcutIcon(type: .favorite)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With an SF Symbol name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UIApplicationShortcutIcon(systemImageName: \"star.fill\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As mentioned earlier, this sample app creates two static quick actions in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with their icons set to ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutItemIconType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>UIApplicationShortcutItemIconType</key>",
+            "<string>UIApplicationShortcutIconTypeSearch</string>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a quick action icon with an SF Symbol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>UIApplicationShortcutItemIconSymbolName</key>",
+            "<string>square.stack.3d.up</string>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support older versions of iOS, you can specify multiple icon-related keys in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a given ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". iOS chooses the icon in the following order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIApplicationShortcutItemIconSymbolName",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIApplicationShortcutItemIconFile",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIApplicationShortcutItemIconType",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS prefers the symbol name icon if it’s defined, otherwise, the icon file if defined, otherwise the last choice is the icon type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-data-with-a-quick-action",
+          "level": 3,
+          "text": "Pass data with a quick action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dynamic quick actions in this sample all have the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " because they all perform the same action. However, the contact information associated with each is different and the sample passes it to through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var quickActionUserInfo: [String: NSSecureCoding] {",
+            "    /** Encode the name of the contact into the userInfo dictionary so it can be passed",
+            "        back when a quick action is triggered. Note: In the real world, it's more appropriate",
+            "        to encode a unique identifier for the contact than for the name.",
+            "    */",
+            "    return [ SceneDelegate.favoriteIdentifierInfoKey: self.identifier as NSSecureCoding ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Static Home Screen quick actions can also pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " data by including it in the ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationShortcutItemUserInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All values passed as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "overridingTitle": "NSSecureCoding",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSSecureCoding",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-triggered-quick-actions",
+          "level": 3,
+          "text": "Respond to triggered quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user triggers a Home Screen quick action, the app is notified in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the app isn’t already loaded, it’s launched and passes details of the shortcut item in through the connectionOptions parameter of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {",
+            "    /** Process the quick action if the user selected one to launch the app.",
+            "        Grab a reference to the shortcutItem to use in the scene.",
+            "    */",
+            "    if let shortcutItem = connectionOptions.shortcutItem {",
+            "        // Save it off for later when we become active.",
+            "        savedShortCutItem = shortcutItem",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app is already loaded, the system calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:performActionFor:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function of your scene delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func windowScene(_ windowScene: UIWindowScene,",
+            "                 performActionFor shortcutItem: UIApplicationShortcutItem,",
+            "                 completionHandler: @escaping (Bool) -> Void) {",
+            "    let handled = handleShortCutItem(shortcutItem: shortcutItem)",
+            "    completionHandler(handled)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this sample handles the quick action, it shows an alert, but in a real-world app the actual functionality would be executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-quick-actions-on-app-launch",
+          "level": 3,
+          "text": "Debug quick actions on app launch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Xcode to debug quick actions on app launch, an app needs to have the target’s scheme configured. Follow these instructions to debug quick actions at launch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app to make sure it’s installed on the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Quit the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a breakpoint in SceneDelegate.swift, function ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "scene(_:willConnectTo:options:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to be used when a shortcut will be chosen by the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode find the target’s Scheme: Open Product -> Scheme -> Edit Scheme",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Run Scheme, Info tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the Launch setting to “Wait for executable to be launched”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app again in Xcode (Xcode’s debugger will then wait).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to the Home Screen, tap and hold on the sample’s app icon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a quick action shortcut.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The breakpoint will then fire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "0a0ef64223f7/AddHomeScreenQuickActions.zip": {
+      "checksum": "0a0ef64223f7f950203e526f5be3b04ce2170410eb11acbfa0aac81dc755c22759efb68934fd376d426c05ec6a857234d1b59aee7049c5da2adb8b3c1de53cb3",
+      "identifier": "0a0ef64223f7/AddHomeScreenQuickActions.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0a0ef64223f7/AddHomeScreenQuickActions.zip"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems": {
+      "abstract": [
+        {
+          "text": "The Home screen dynamic quick actions for your app; available on devices that support 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortcutItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutItem",
+          "text": "UIApplicationShortcutItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shortcutItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "shortcutItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/shortcutitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon": {
+      "abstract": [
+        {
+          "text": "An image you can optionally associate with a Home Screen quick action to improve its appearance and usability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutIcon"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationShortcutIcon",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcuticon"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem": {
+      "abstract": [
+        {
+          "text": "An application shortcut item, also called a Home Screen dynamic quick action, that specifies a user-initiated action for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationShortcutItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type": {
+      "abstract": [
+        {
+          "text": "A required, app-specific string that you employ to identify the type of quick action to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/type"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo": {
+      "abstract": [
+        {
+          "text": "Optional, app-specific information that you can provide for use when your app performs the Home screen quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/userinfo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem": {
+      "abstract": [
+        {
+          "text": "A mutable Home Screen dynamic quick action, which is an item that specifies a configurable user-initiated action for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableApplicationShortcutItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableApplicationShortcutItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableApplicationShortcutItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableapplicationshortcutitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a scene to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willConnectTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene:willConnectToSession:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene(_:willConnectTo:options:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate/scene(_:willconnectto:options:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneWillResignActive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the scene is about to resign the active state and stop responding to user events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneWillResignActive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/sceneWillResignActive(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneWillResignActive:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneWillResignActive(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate/scenewillresignactive(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:performActionFor:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to perform the user-selected action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performActionFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutItem",
+          "text": "UIApplicationShortcutItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:performActionFor:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowScene:performActionForShortcutItem:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowScene(_:performActionFor:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscenedelegate/windowscene(_:performactionfor:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/extensions/home-screen-actions/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/extensions/home-screen-actions/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/extensions/home-screen-actions/"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36",
+      "title": "Information Property List Key Reference",
+      "titleInlineContent": [
+        {
+          "text": "Information Property List Key Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "0a0ef64223f7/AddHomeScreenQuickActions.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Home-Screen-quick-actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+      ],
+      "title": "Home Screen quick actions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Home-Screen-quick-actions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+                "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+              ],
+              "title": "Home Screen quick actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:performActionFor:completionHandler:)/title",
+          "value": "windowScene:performActionForShortcutItem:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:performActionFor:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowScene:performActionForShortcutItem:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/title",
+          "value": "scene:willConnectToSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:willConnectToSession:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1sceneWillResignActive(_:)/title",
+          "value": "sceneWillResignActive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1sceneWillResignActive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneWillResignActive:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1shortcutItems/title",
+          "value": "shortcutItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1shortcutItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shortcutItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/title",
+          "value": "UIApplicationShortcutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/title",
+          "value": "UIMutableApplicationShortcutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/title",
+          "value": "UIApplicationShortcutIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutIcon"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/add-home-screen-quick-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/add-home-screen-quick-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

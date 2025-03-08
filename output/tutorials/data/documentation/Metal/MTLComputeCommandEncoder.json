@@ -1,0 +1,5501 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for dispatching commands to encode in a compute pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLComputeCommandEncoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLComputeCommandEncoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLComputeCommandEncoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLComputeCommandEncoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+        "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create compute command encoders by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(dispatchType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance you’re using to encode your compute pass. You can encode multiple commands to execute as part of a single pass of the encoder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To encode kernel function calls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance with a kernel, using a method such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". See Creating Compute Pipeline States for all ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods that create a new pipeline state for your command encoder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the pipeline state with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setComputePipelineState(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method on your command encoder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide parameters for your compute kernel by binding information to kernel arguments._ _Examples of methods that bind data for access on the GPU are ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:index:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode compute commands that call your kernel by either Dispatching Kernel Calls Directly or Dispatching from Indirect Command Buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to finish encoding the kernel call of the compute pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on any existing compute command encoder before releasing it or creating one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding all commands to your compute command encoder, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to submit work to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()": {
+      "abstract": [
+        {
+          "text": "Submits the command buffer to run on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(dispatchType:)": {
+      "abstract": [
+        {
+          "text": "Creates a compute command encoder with a dispatch type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dispatchType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLDispatchType",
+          "text": "MTLDispatchType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputeCommandEncoder",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeComputeCommandEncoder(dispatchType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "computeCommandEncoderWithDispatchType:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputeCommandEncoder(dispatchType:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/makecomputecommandencoder(dispatchtype:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that writes GPU commands into a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "abstract": [
+        {
+          "text": "Declares that all command generation from the encoder is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a compute dispatch command using a grid aligned to threadgroup boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroups:threadsPerThreadgroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchThreadgroups(_:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchthreadgroups(_:threadsperthreadgroup:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a dispatch call for a compute pass, using an indirect buffer that defines the size of a grid that aligns to threadgroup boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchthreadgroups(indirectbuffer:indirectbufferoffset:threadsperthreadgroup:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a compute command using an arbitrarily sized grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreads"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchThreads:threadsPerThreadgroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchThreads(_:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchthreads(_:threadsperthreadgroup:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchType": {
+      "abstract": [
+        {
+          "text": "The dispatch type to use when submitting compute work to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLDispatchType",
+          "text": "MTLDispatchType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchType"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "dispatchType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/dispatchtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:indirectBuffer:indirectBufferOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer, using another buffer to provide the command range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommands"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:indirectBuffer:indirectBufferOffset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommands(in:indirectBuffer:indirectBufferOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommands(in:indirectbuffer:indirectbufferoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:with:)": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommands"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommands(in:with:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommands(in:with:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer, using another buffer to provide the command range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommandsInBuffer(_:indirectBuffer:offset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommandsinbuffer(_:indirectbuffer:offset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommandsInBuffer(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommandsinbuffer(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer, using another buffer to provide the command range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommandsinbuffer:indirectbuffer:indirectbufferoffset:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes an instruction to run commands from an indirect buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeCommandsInBuffer:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/executecommandsinbuffer:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(resources:)": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(resources:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memoryBarrier(resources:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/memorybarrier(resources:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(scope:)": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resource types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLBarrierScope",
+          "text": "MTLBarrierScope"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(scope:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithScope:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "memoryBarrier(scope:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/memorybarrier(scope:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrierWithResources:count:": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithResources:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrierWithResources:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithResources:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "memoryBarrierWithResources:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/memorybarrierwithresources:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command to sample hardware counters, providing performance information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCounters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSampleBuffer",
+          "text": "MTLCounterSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "barrier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setAccelerationStructure(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Binds an acceleration structure to the buffer argument table, allowing functions to access it on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLAccelerationStructure",
+          "text": "MTLAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setAccelerationStructure(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccelerationStructure:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setAccelerationStructure(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setaccelerationstructure(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:attributeStride:index:)": {
+      "abstract": [
+        {
+          "text": "Binds a buffer with a stride to the buffer argument table, allowing compute kernels to access its data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffer:offset:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBuffer(_:offset:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffer(_:offset:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Binds a buffer to the buffer argument table, allowing compute kernels to access its data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(_:index:)": {
+      "abstract": [
+        {
+          "text": "Changes where the data begins in a buffer already bound to the buffer argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBufferOffset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBufferOffset(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbufferoffset(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(offset:attributeStride:index:)": {
+      "abstract": [
+        {
+          "text": "Changes where the data begins and the distance between adjacent elements in a buffer already bound to the buffer argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(offset:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBufferOffset:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBufferOffset(offset:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbufferoffset(offset:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:attributeStrides:range:)": {
+      "abstract": [
+        {
+          "text": "Binds multiple buffers with data in stride to the buffer argument table at once, allowing compute kernels to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStrides"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:attributeStrides:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBuffers(_:offsets:attributeStrides:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffers(_:offsets:attributestrides:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Binds multiple buffers to the buffer argument table at once, allowing compute kernels to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:attributeStrides:withRange:": {
+      "abstract": [
+        {
+          "text": "Binds multiple buffers with data in stride to the buffer argument table at once, allowing compute kernels to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:attributeStrides:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:attributeStrides:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:attributeStrides:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBuffers:offsets:attributeStrides:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffers:offsets:attributestrides:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Binds multiple buffers to the buffer argument table at once, allowing compute kernels to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:attributeStride:index:)": {
+      "abstract": [
+        {
+          "text": "Copies data with a given stride directly to the GPU to populate an entry in the buffer argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBytes:length:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBytes(_:length:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbytes(_:length:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)": {
+      "abstract": [
+        {
+          "text": "Copies data directly to the GPU to populate an entry in the buffer argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBytes:length:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBytes(_:length:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setbytes(_:length:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setComputePipelineState(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the compute encoder with a pipeline state instance for subsequent kernel calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setComputePipelineState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setComputePipelineState(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setcomputepipelinestate(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setImageblockWidth(_:height:)": {
+      "abstract": [
+        {
+          "text": "Sets the size, in pixels, of imageblock data in tile memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImageblockWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setImageblockWidth(_:height:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImageblockWidth:height:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setImageblockWidth(_:height:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setimageblockwidth(_:height:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTable(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Binds an intersection function table to the buffer argument table, making it callable in your Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTable(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTable:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setIntersectionFunctionTable(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setintersectionfunctiontable(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables(_:bufferRange:)": {
+      "abstract": [
+        {
+          "text": "Binds multiple intersection function tables to the buffer argument table, allowing you to call their functions on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables(_:bufferRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIntersectionFunctionTables(_:bufferRange:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setintersectionfunctiontables(_:bufferrange:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables:withBufferRange:": {
+      "abstract": [
+        {
+          "text": "Binds multiple intersection function tables to the buffer argument table, allowing you to call their functions on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables:withBufferRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables:withBufferRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables:withBufferRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setIntersectionFunctionTables:withBufferRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setintersectionfunctiontables:withbufferrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a texture sampler, allowing compute kernels to use it for sampling textures on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSamplerState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:lodMinClamp:lodMaxClamp:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a texture sampler with a custom level of detail clamping, allowing compute kernels to use it for sampling textures on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstate(_:lodminclamp:lodmaxclamp:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:lodMinClamps:lodMaxClamps:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes multiple texture samplers for the compute function, specifying clamp values for the level of detail of each sampler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstates(_:lodminclamps:lodmaxclamps:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes multiple texture samplers to the sampler argument table, allowing compute kernels to use them for sampling textures on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSamplerStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:lodMinClamps:lodMaxClamps:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes multiple texture samplers with custom levels of detail clamping, allowing compute kernels to use them for sampling textures on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstates:lodminclamps:lodmaxclamps:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes multiple texture samplers, allowing compute kernels to use them for sampling textures on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSamplerStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setsamplerstates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegion(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the dimensions over the thread grid of how your compute kernel receives stage-in arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStageInRegion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegion(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStageInRegion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setStageInRegion(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setstageinregion(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)": {
+      "abstract": [
+        {
+          "text": "Sets the region of the stage-in attributes to apply to a compute kernel using an indirect buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStageInRegionWithIndirectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStageInRegionWithIndirectBuffer:indirectBufferOffset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setstageinregionwithindirectbuffer(_:indirectbufferoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Binds a texture to the texture argument table, allowing compute kernels to access its data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTexture"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTexture:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/settexture(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures(_:range:)": {
+      "abstract": [
+        {
+          "text": "Binds multiple textures to the texture argument table, allowing compute functions to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTextures"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTextures(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/settextures(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures:withRange:": {
+      "abstract": [
+        {
+          "text": "Binds multiple textures to the texture argument table, allowing compute kernels to access their data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTextures:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTextures:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTextures:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/settextures:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setThreadgroupMemoryLength(_:index:)": {
+      "abstract": [
+        {
+          "text": "Configures the size of a block of threadgroup memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setThreadgroupMemoryLength"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setThreadgroupMemoryLength(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setThreadgroupMemoryLength:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setThreadgroupMemoryLength(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setthreadgroupmemorylength(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTable(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Binds a visible function table to the buffer argument table, allowing you to call its functions on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTable(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVisibleFunctionTable(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setvisiblefunctiontable(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables(_:bufferRange:)": {
+      "abstract": [
+        {
+          "text": "Binds multiple visible function tables to the buffer argument table, allowing you to call their functions on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables(_:bufferRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVisibleFunctionTables(_:bufferRange:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setvisiblefunctiontables(_:bufferrange:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables:withBufferRange:": {
+      "abstract": [
+        {
+          "text": "Binds multiple visible function tables to the buffer argument table, allowing you to call their functions on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables:withBufferRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVisibleFunctionTables:withBufferRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/setvisiblefunctiontables:withbufferrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/updateFence(_:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to update a fence, allowing passes waiting on the fence to start or resume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/updateFence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateFence:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateFence(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/updatefence(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeap:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useHeap(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheap(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeaps(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheaps(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps:count:": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeaps:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "useHeaps:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheaps:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResource:usage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResource(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresource(_:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResources(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresources(_:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources:count:usage:": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources:count:usage:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources:count:usage:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResources:count:usage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "useResources:count:usage:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresources:count:usage:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/waitForFence(_:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to pause pass execution until a fence updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/waitForFence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waitForFence:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "waitForFence(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/waitforfence(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a GPU pipeline configuration for running kernels in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a compute pipeline state with a function instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithFunction:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(function:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(function:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes": {
+      "abstract": [
+        {
+          "text": "Calculate the optimum sizes for threadgroups and grids when dispatching compute-processing workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Calculating Threadgroup and Grid Sizes",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-threadgroup-and-grid-sizes"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups": {
+      "abstract": [
+        {
+          "text": "Learn how Metal organizes compute-processing workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Threads and Threadgroups",
+      "type": "topic",
+      "url": "/documentation/metal/creating-threads-and-threadgroups"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure": {
+      "abstract": [
+        {
+          "text": "Discover how Metal executes commands on a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Command Structure",
+      "type": "topic",
+      "url": "/documentation/metal/setting-up-a-command-structure"
+    },
+    "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets": {
+      "abstract": [
+        {
+          "text": "Organize your resources into groups and influence when they become accessible to the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying GPU Resource Management with Residency Sets",
+      "type": "topic",
+      "url": "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-a-Compute-Pass",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+        "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes"
+      ],
+      "title": "Encoding a Compute Pass"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Configure a compute pipeline state to describe the runtime environment of an encoder.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Configuring-the-Pipeline-State",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setComputePipelineState(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchType"
+      ],
+      "title": "Configuring the Pipeline State"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode buffers to provide their data on the GPU as kernel arguments.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:attributeStride:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers(_:offsets:attributeStrides:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(offset:attributeStride:index:)"
+      ],
+      "title": "Encoding Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode bytes directly from the CPU as a kernel argument, without creating an intermediate buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Raw-Bytes",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:attributeStride:index:)"
+      ],
+      "title": "Encoding Raw Bytes"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode textures to provide access on the GPU as kernel arguments.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Textures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures(_:range:)"
+      ],
+      "title": "Encoding Textures"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode texture samplers to provide access on the GPU as kernel arguments.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Texture-Sampler-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates(_:lodMinClamps:lodMaxClamps:range:)"
+      ],
+      "title": "Encoding Texture Sampler States"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode function information for use by a compute kernel, providing access to function pointers.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Function-Tables",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTable(_:bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables(_:bufferRange:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables(_:bufferRange:)"
+      ],
+      "title": "Encoding Function Tables"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access acceleration structure instances in an intersection function.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Acceleration-Structures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setAccelerationStructure(_:bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTable(_:bufferIndex:)"
+      ],
+      "title": "Encoding Acceleration Structures"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access resources that the CPU allocates on the GPU during your compute pass without a copy of the data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Resident-Resources",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)"
+      ],
+      "title": "Encoding Resident Resources"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Reserve space in GPU tile memory for threadgroups and imageblocks.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Tile-Memory-Usage",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setThreadgroupMemoryLength(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setImageblockWidth(_:height:)"
+      ],
+      "title": "Encoding Tile Memory Usage"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Set data in the stage-in region of a compute kernel for processing per-thread inputs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Stage-in-Data",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegion(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)"
+      ],
+      "title": "Encoding Stage-in Data"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode kernel function calls to run as part of your compute pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Dispatching-Kernel-Calls-Directly",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)"
+      ],
+      "title": "Dispatching Kernel Calls Directly"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Encode commands within an indirect command buffer to run as part of your compute pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Dispatching-from-Indirect-Command-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:indirectBuffer:indirectBufferOffset:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommands(in:with:)"
+      ],
+      "title": "Dispatching from Indirect Command Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Protect against hazards for untracked resources, using memory fences and barriers.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Synchronizing-Across-Command-Execution",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/waitForFence(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/updateFence(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(scope:)",
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(resources:)"
+      ],
+      "title": "Synchronizing Across Command Execution"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Sample real-time data on execution from the GPU’s hardware as it runs your compute pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Sample-Counters",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)"
+      ],
+      "title": "Encoding Sample Counters"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Configure a compute pipeline state to describe the runtime environment of an encoder.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Configuring-the-Pipeline-State",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setComputePipelineState(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchType"
+              ],
+              "title": "Configuring the Pipeline State"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode buffers to provide their data on the GPU as kernel arguments.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffer(_:offset:attributeStride:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBuffers:offsets:attributeStrides:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBufferOffset(offset:attributeStride:index:)"
+              ],
+              "title": "Encoding Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode bytes directly from the CPU as a kernel argument, without creating an intermediate buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Raw-Bytes",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:attributeStride:index:)"
+              ],
+              "title": "Encoding Raw Bytes"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode textures to provide access on the GPU as kernel arguments.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Textures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setTextures:withRange:"
+              ],
+              "title": "Encoding Textures"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode texture samplers to provide access on the GPU as kernel arguments.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Texture-Sampler-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+              ],
+              "title": "Encoding Texture Sampler States"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode function information for use by a compute kernel, providing access to function pointers.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Function-Tables",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTable(_:bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setVisibleFunctionTables:withBufferRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTables:withBufferRange:"
+              ],
+              "title": "Encoding Function Tables"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access acceleration structure instances in an intersection function.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Acceleration-Structures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setAccelerationStructure(_:bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setIntersectionFunctionTable(_:bufferIndex:)"
+              ],
+              "title": "Encoding Acceleration Structures"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Access resources that the CPU allocates on the GPU during your compute pass without a copy of the data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Resident-Resources",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources:count:usage:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps:count:"
+              ],
+              "title": "Encoding Resident Resources"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Reserve space in GPU tile memory for threadgroups and imageblocks.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Tile-Memory-Usage",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setThreadgroupMemoryLength(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setImageblockWidth(_:height:)"
+              ],
+              "title": "Encoding Tile Memory Usage"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Set data in the stage-in region of a compute kernel for processing per-thread inputs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Stage-in-Data",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegion(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)"
+              ],
+              "title": "Encoding Stage-in Data"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode kernel function calls to run as part of your compute pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Dispatching-Kernel-Calls-Directly",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(_:threadsPerThreadgroup:)"
+              ],
+              "title": "Dispatching Kernel Calls Directly"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Encode commands within an indirect command buffer to run as part of your compute pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Dispatching-from-Indirect-Command-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/executeCommandsInBuffer:withRange:"
+              ],
+              "title": "Dispatching from Indirect Command Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Protect against hazards for untracked resources, using memory fences and barriers.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Synchronizing-Across-Command-Execution",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/waitForFence(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/updateFence(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrier(scope:)",
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/memoryBarrierWithResources:count:"
+              ],
+              "title": "Synchronizing Across Command Execution"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Sample real-time data on execution from the GPU’s hardware as it runs your compute pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Sample-Counters",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)"
+              ],
+              "title": "Encoding Sample Counters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-a-Compute-Pass",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-threads-and-threadgroups",
+                "doc://com.apple.metal/documentation/Metal/calculating-threadgroup-and-grid-sizes"
+              ],
+              "title": "Encoding a Compute Pass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLComputeCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+                    "text": "MTLCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:attributeStride:index:)/title",
+          "value": "setBytes:length:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBytes:length:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder(dispatchType:)/title",
+          "value": "computeCommandEncoderWithDispatchType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeComputeCommandEncoder(dispatchType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "computeCommandEncoderWithDispatchType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setStageInRegion(_:)/title",
+          "value": "setStageInRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setStageInRegion(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStageInRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBufferOffset(offset:attributeStride:index:)/title",
+          "value": "setBufferOffset:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBufferOffset(offset:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBufferOffset:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(_:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreadgroups:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(_:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreadgroups:threadsPerThreadgroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setSamplerState(_:lodMinClamp:lodMaxClamp:index:)/title",
+          "value": "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setSamplerState(_:lodMinClamp:lodMaxClamp:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setComputePipelineState(_:)/title",
+          "value": "setComputePipelineState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setComputePipelineState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setComputePipelineState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/title",
+          "value": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/title",
+          "value": "useHeap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setIntersectionFunctionTable(_:bufferIndex:)/title",
+          "value": "setIntersectionFunctionTable:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setIntersectionFunctionTable(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setIntersectionFunctionTable:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/title",
+          "value": "MTLCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1memoryBarrier(scope:)/title",
+          "value": "memoryBarrierWithScope:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1memoryBarrier(scope:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "memoryBarrierWithScope:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1updateFence(_:)/title",
+          "value": "updateFence:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1updateFence(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateFence:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBuffer(_:offset:attributeStride:index:)/title",
+          "value": "setBuffer:offset:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBuffer(_:offset:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBuffer:offset:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1waitForFence(_:)/title",
+          "value": "waitForFence:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1waitForFence(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitForFence:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setThreadgroupMemoryLength(_:index:)/title",
+          "value": "setThreadgroupMemoryLength:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setThreadgroupMemoryLength(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setThreadgroupMemoryLength:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setTexture(_:index:)/title",
+          "value": "setTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTexture:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setAccelerationStructure(_:bufferIndex:)/title",
+          "value": "setAccelerationStructure:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setAccelerationStructure(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccelerationStructure:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setImageblockWidth(_:height:)/title",
+          "value": "setImageblockWidth:height:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setImageblockWidth(_:height:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImageblockWidth:height:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/title",
+          "value": "endEncoding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endEncoding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreads:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreads:threadsPerThreadgroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/title",
+          "value": "MTLComputePipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setVisibleFunctionTable(_:bufferIndex:)/title",
+          "value": "setVisibleFunctionTable:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setVisibleFunctionTable(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisibleFunctionTable:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBufferOffset(_:index:)/title",
+          "value": "setBufferOffset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBufferOffset(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBufferOffset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchType/title",
+          "value": "dispatchType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatchType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setSamplerState(_:index:)/title",
+          "value": "setSamplerState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setSamplerState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSamplerState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:index:)/title",
+          "value": "setBytes:length:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBytes:length:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)/title",
+          "value": "setStageInRegionWithIndirectBuffer:indirectBufferOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setStageInRegionWithIndirectBuffer(_:indirectBufferOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStageInRegionWithIndirectBuffer:indirectBufferOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/title",
+          "value": "useResource:usage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:usage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:)/title",
+          "value": "newComputePipelineStateWithFunction:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithFunction:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBuffer(_:offset:index:)/title",
+          "value": "setBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1setBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreadgroups(indirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlcomputecommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlcomputecommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

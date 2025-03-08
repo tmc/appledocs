@@ -1,0 +1,454 @@
+{
+  "abstract": [
+    {
+      "text": "Releases a printing object by decrementing its reference count.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1461402,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@PMRelease",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "PMRelease"
+      },
+      {
+        "kind": "text",
+        "text": "(PMObject?) -> OSStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "PMRelease(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMRelease"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "object"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PMObject",
+              "text": "PMObject"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "symbol-1480124",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The printing object you want to release.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "object"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application should use the ",
+              "type": "text"
+            },
+            {
+              "code": "PMRelease",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to release any printing objects it creates or retains. When an object’s reference count reaches 0, the object is deallocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to terminate a printing session created with the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", pass the associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to ",
+              "type": "text"
+            },
+            {
+              "code": "PMRelease",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To release printing objects created with the functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", pass the associated ",
+              "type": "text"
+            },
+            {
+              "code": "PMPageFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PMPrintSettings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to ",
+              "type": "text"
+            },
+            {
+              "code": "PMRelease",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459485-pmcreatepageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreatePageFormat(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459485-pmcreatepageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain": {
+      "abstract": [
+        {
+          "text": "Retains a printing object by incrementing its reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMRetain"
+        },
+        {
+          "kind": "text",
+          "text": "(PMObject?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMRetain(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460190-pmretain"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease": {
+      "abstract": [
+        {
+          "text": "Releases a printing object by decrementing its reference count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMRelease"
+        },
+        {
+          "kind": "text",
+          "text": "(PMObject?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461402-pmrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMRelease(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461402-pmrelease"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463239-pmcreateprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreatePrintSettings(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463239-pmcreateprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateSession(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463247-pmcreatesession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing#1670007"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmobject": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMObject",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmobject"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460190-pmretain"
+      ],
+      "title": "Releasing and Retaining Printing Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1461402-pmrelease"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1461402-pmrelease"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

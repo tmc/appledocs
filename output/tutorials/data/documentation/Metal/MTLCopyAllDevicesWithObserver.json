@@ -1,0 +1,638 @@
+{
+  "abstract": [
+    {
+      "text": "Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@MTLCopyAllDevicesWithObserver",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "MTLCopyAllDevicesWithObserver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLCopyAllDevicesWithObserver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "MTLCopyAllDevicesWithObserver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<MTLDevice>>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLCopyAllDevicesWithObserver"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)NSObject",
+              "text": "id<NSObject>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "observer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MTLDeviceNotificationHandler",
+              "text": "MTLDeviceNotificationHandler"
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an object instance the method sets to a new observer — which Metal retains — before returning.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "observer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A notification handler you implement that Metal calls when the system adds or removes a GPU device from the system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals",
+        "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep a copy of ",
+              "type": "text"
+            },
+            {
+              "code": "observer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your app after this function returns in case you want to stop receiving notifications. You can stop receiving notifications by passing ",
+              "type": "text"
+            },
+            {
+              "code": "observer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald": {
+      "abstract": [
+        {
+          "text": "Returns the GPU device instance that’s currently driving a display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDirectDisplayCopyCurrentMetalDevice"
+        },
+        {
+          "kind": "text",
+          "text": "(CGDirectDisplayID) -> (any MTLDevice)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDirectDisplayCopyCurrentMetalDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal device instances in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCopyAllDevices()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldevices()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevicesWithObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCopyAllDevicesWithObserver",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldeviceswithobserver"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler": {
+      "abstract": [
+        {
+          "text": "A Swift closure or an Objective-C block that Metal calls",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when the system adds or removes a GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDeviceNotificationHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that represents a change to a GPU device in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDeviceNotificationName",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationname"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a registered observer of device notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRemoveDeviceObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlremovedeviceobserver(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac": {
+      "abstract": [
+        {
+          "text": "Locate, identify, and choose suitable GPUs for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding Multiple GPUs on an Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/metal/finding-multiple-gpus-on-an-intel-based-mac"
+    },
+    "doc://com.apple.metal/documentation/Metal/getting-the-gpu-that-drives-a-views-display": {
+      "abstract": [
+        {
+          "text": "Keep up to date with the optimal device for your display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/getting-the-gpu-that-drives-a-views-display",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the GPU that Drives a View’s Display",
+      "type": "topic",
+      "url": "/documentation/metal/getting-the-gpu-that-drives-a-views-display"
+    },
+    "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals": {
+      "abstract": [
+        {
+          "text": "Register and respond to external GPU notifications that a person initiates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling External GPU Additions and Removals",
+      "type": "topic",
+      "url": "/documentation/metal/handling-external-gpu-additions-and-removals"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Locating-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+        "doc://com.apple.metal/documentation/Metal/getting-the-gpu-that-drives-a-views-display",
+        "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()",
+        "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+        "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+        "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName"
+      ],
+      "title": "Locating GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/title",
+          "value": "MTLDeviceNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCopyAllDevices()/title",
+          "value": "MTLCopyAllDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCopyAllDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCopyAllDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~11493900-cgdirectdisplaycopycurrentmetald/title",
+          "value": "CGDirectDisplayCopyCurrentMetalDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/title",
+          "value": "MTLDeviceNotificationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/title",
+          "value": "MTLRemoveDeviceObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRemoveDeviceObserver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlcopyalldeviceswithobserver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

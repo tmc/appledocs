@@ -1,0 +1,1250 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a portal window that displays a 3D environment and simulates entering a portal by using RealityKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-environment-through-a-portal"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-uiportal-1-main-view-poster.jpg",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying a 3D environment through a portal"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to view a 3D environment through a flat plane with the portal component, and transition into the portal by creating an immersive space. To create a portal, you first need to define an entity and set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/WorldComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to store the content of the portal. Next, you create a separate entity to represent the portal’s structure, such as the flat plane in the sample. Finally, you combine the two entities, assigning the portal content entity to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/PortalComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and setting it to the portal structure entity to create the portal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, the sample app creates the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A portal that displays a box environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A vertical stack that contains a line of text and a button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An immersive space that is ready to open.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "identifier": "sample-uiportal-1-main-view.mov",
+          "type": "video"
+        },
+        {
+          "anchor": "Set-up-the-3D-environment",
+          "level": 3,
+          "text": "Set up the 3D environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the 3D environment in two scenarios:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When creating the portal",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When loading the immersive space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "createEnvironment(on:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to create the box environment and apply image-based lighting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor func createEnvironment(on root: Entity) async throws {",
+            "    do {",
+            "        /// The root entity for the box environment.",
+            "        let assetRoot = try await Entity(named: \"CornellBox.usda\")",
+            "",
+            "        // Convert the image-based lighting file into a URL, and load it as an environment resource.",
+            "        guard let iblURL = Bundle.main.url(forResource: \"TeapotIBL\", withExtension: \"exr\") else {",
+            "            fatalError(\"Failed to load the Image-Based Lighting file.\")",
+            "        }",
+            "        let iblEnv = try await EnvironmentResource(fromImage: iblURL)",
+            "",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method starts by loading the box environment from the ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Then, it loads an image-based lighting file as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains the background and lighting information as a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply image-based lighting to the box environment, the app creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sets it to a placeholder ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This allows the app to later assign the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightReceiverComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the box environment to enable the environment with image-based lighting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor func createEnvironment(on root: Entity) async throws {",
+            "    do {",
+            "        // ...",
+            "",
+            "        /// The entity to perform image-based lighting on the environment.",
+            "        let iblEntity = Entity()",
+            "",
+            "        /// The image-based lighting component that contains background and lighting information.",
+            "        var iblComp = ImageBasedLightComponent(source: .single(iblEnv))",
+            "        iblComp.inheritsRotation = true",
+            "",
+            "        // Add the image-based lighting component to the entity.",
+            "        iblEntity.components.set(iblComp)",
+            "",
+            "        // Set up image-based lighting for the box environment.",
+            "        assetRoot.components.set(ImageBasedLightReceiverComponent(imageBasedLight: iblEntity))",
+            "",
+            "        // Add the image-based lighting entity to the box environment.",
+            "        assetRoot.addChild(iblEntity)",
+            "",
+            "        // Add the box environment to `root`.",
+            "        root.addChild(assetRoot)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app adds the placeholder entity containing the image-based lighting component to the box environment, and then adds the box environment to the root entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-portal-window",
+          "level": 3,
+          "text": "Create a portal window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a portal, the app defines the mesh of the portal by creating a flat plane to act as a window shape for it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The root entity for other entities within the scene.",
+            "private let root = Entity()",
+            "",
+            "/// A plane entity representing a portal.",
+            "private let portalPlane = ModelEntity(",
+            "    mesh: .generatePlane(width: 1.0, height: 1.0),",
+            "    materials: [PortalMaterial()]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "createPortal()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sets up the portal and adds it to the ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". First, it creates a ",
+              "type": "text"
+            },
+            {
+              "code": "world",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity to store the content within the portal and sets it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/WorldComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to separate the ",
+              "type": "text"
+            },
+            {
+              "code": "world",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity from the default world, enabling it to be visible only through a portal. Then, it creates the 3D box environment using ",
+              "type": "text"
+            },
+            {
+              "code": "createEnvironment(on:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and passes in the ",
+              "type": "text"
+            },
+            {
+              "code": "world",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor func createPortal() async {",
+            "    // Create the entity that stores the content within the portal.",
+            "    let world = Entity()",
+            "",
+            "    // Shrink the portal world and update the position",
+            "    // to make it fit into the portal view.",
+            "    world.scale *= 0.5",
+            "    world.position.y -= 0.5",
+            "    world.position.z -= 0.5",
+            "",
+            "    // Allow the entity to be visible only through a portal.",
+            "    world.components.set(WorldComponent())",
+            "",
+            "    do {",
+            "        // Create the box environment and add it to the root.",
+            "        try await createEnvironment(on: world)",
+            "        root.addChild(world)",
+            "",
+            "        // Set up the portal to show the content in the `world`.",
+            "        portalPlane.components.set(PortalComponent(target: world))",
+            "        root.addChild(portalPlane)",
+            "    } catch {",
+            "        fatalError(\"Failed to create environment: \\(error)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, it sets the ",
+              "type": "text"
+            },
+            {
+              "code": "portalPlane",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/PortalComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to transform it into a portal that renders the 3D environment within the ",
+              "type": "text"
+            },
+            {
+              "code": "world",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enter-the-3D-environment",
+          "level": 3,
+          "text": "Enter the 3D environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample app, a person can enter the portal by tapping a button. To achieve this, the app creates an immersive space and loads the 3D box environment in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ImmersiveView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // Create the box environment on the root entity.",
+            "            let root = Entity()",
+            "            do {",
+            "                try await createEnvironment(on: root)",
+            "            } catch {",
+            "                print(\"Failed to load environment: \\(error.localizedDescription)\")",
+            "            }",
+            "",
+            "            content.add(root)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the enter and exit actions of the portal, the sample creates a button to enter or exit the immersive space based on the current state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The button uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/dismissImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to open and close the immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because there are multiple paths to close the immersive space and there may be multiple paths to open the immersive space, your app can use the view life-cycle updates to keep track of the current state of the immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the root view of the immersive space to respond to these changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ImmersiveSpace(id: appModel.immersiveSpaceID) {",
+            "    ImmersiveView()",
+            "        .onAppear {",
+            "            appModel.immersiveSpaceState = .open",
+            "        }",
+            "        .onDisappear {",
+            "            appModel.immersiveSpaceState = .closed",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "226956929acc/DisplayingA3DEnvironmentThroughAPortal.zip": {
+      "checksum": "226956929accb74255c08f960ca2f53ad5558f444e63ad077466ebbc61acf474ae0ca6f09b61cbc5f3943d56ede8199a2de96794c49bb274df8a7055b4441458",
+      "identifier": "226956929acc/DisplayingA3DEnvironmentThroughAPortal.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/226956929acc/DisplayingA3DEnvironmentThroughAPortal.zip"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource": {
+      "abstract": [
+        {
+          "text": "An environmental resource that contains background and lighting information for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentResource",
+      "type": "topic",
+      "url": "/documentation/RealityKit/EnvironmentResource"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightComponent": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImageBasedLightComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ImageBasedLightComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightReceiverComponent": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightReceiverComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ImageBasedLightReceiverComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImageBasedLightReceiverComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ImageBasedLightReceiverComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/PortalComponent": {
+      "abstract": [
+        {
+          "text": "A component that turns mesh surfaces into portals to a different world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortalComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PortalComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PortalComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/PortalComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/WorldComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a portal world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/WorldComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WorldComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/WorldComponent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/dismissImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An immersive space dismissal action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DismissImmersiveSpaceActionV",
+          "text": "DismissImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/dismissImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismissImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/dismissImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform before this view appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onAppear(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onAppear(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform after this view disappears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDisappear(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onDisappear(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-uiportal-1-main-view-poster.jpg": {
+      "alt": null,
+      "identifier": "sample-uiportal-1-main-view-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1650d8a6f4f25d6471aafe07b4707fa1/sample-uiportal-1-main-view-poster.jpg"
+        }
+      ]
+    },
+    "sample-uiportal-1-main-view.mov": {
+      "alt": "A screen recording of the sample app rendering a portal that houses a 3D environment within it.",
+      "identifier": "sample-uiportal-1-main-view.mov",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d01e2739a7fac9b48d5a7913c0192e8c/sample-uiportal-1-main-view.mov"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "226956929acc/DisplayingA3DEnvironmentThroughAPortal.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

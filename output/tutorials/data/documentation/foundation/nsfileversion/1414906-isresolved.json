@@ -1,0 +1,528 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates the version object is not in conflict (",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": ") or is in conflict (",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": ").",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfileversion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1414906-isresolved"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414906,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileVersion(py)resolved",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "isResolved"
+      },
+      {
+        "kind": "text",
+        "text": ": Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileVersion"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "isResolved"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "isResolved"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system detects a conflict involving versions of a file, it sets this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate an unresolved conflict. After you resolve the conflict, set this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to tell the system it is resolved; you must then remove any versions of the file that are no longer useful.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you do not explicitly remove versions of a file that are no longer useful, iCloud continues to sync them to all a user’s devices and those versions continue to consume user iCloud quota.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove an unused version of a file, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1407486-remove",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To remove all unused versions of a file, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1411537-removeotherversionsofitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Never set the value of this property to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If you do, the system raises an exception. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resolving a conflict causes the file version object to be removed from any reports about conflicting versions, such as those returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1417854-unresolvedconflictversionsofitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion": {
+      "abstract": [
+        {
+          "text": "A snapshot of a file at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1407486-remove": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1407486-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1407486-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1409277-isconflict": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the contents of the version are in conflict with the contents of another version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConflict"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1409277-isconflict",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isConflict",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1409277-isconflict"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1411537-removeotherversionsofitem": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1411537-removeotherversionsofitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeOtherVersionsOfItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1411537-removeotherversionsofitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1414906-isresolved": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the version object is not in conflict (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") or is in conflict (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/false",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isResolved"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1414906-isresolved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isResolved",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1414906-isresolved"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1417854-unresolvedconflictversionsofitem": {
+      "abstract": [
+        {
+          "text": "Returns an array of version objects that are currently in conflict for the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unresolvedConflictVersionsOfItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> [NSFileVersion]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1417854-unresolvedconflictversionsofitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unresolvedConflictVersionsOfItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1417854-unresolvedconflictversionsofitem"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfileversion/1409277-isconflict",
+        "doc://com.apple.documentation/documentation/foundation/nsfileversion/1417854-unresolvedconflictversionsofitem"
+      ],
+      "title": "Handling Version Conflicts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfileversion/1414906-resolved"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsfileversion/1414906-isresolved"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

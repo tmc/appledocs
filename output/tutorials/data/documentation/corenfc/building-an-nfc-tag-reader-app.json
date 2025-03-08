@@ -1,0 +1,2008 @@
+{
+  "abstract": [
+    {
+      "text": "Read NFC tags with NDEF messages in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building an NFC Tag-Reader App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to use Core NFC in an app to read Near Field Communication (NFC) tags of types 1 through 5 that contains NFC Data Exchange Format (NDEF) data. To use this sample, download the project and build it using Xcode. Run the sample app on your iPhone. Tap the Scan button to start scanning for tags, then hold the phone near an NFC tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read a tag, the sample app creates an NFC NDEF reader session and provides a delegate. The running reader session polls for NFC tags and calls the delegate when it finds tags that contain NDEF messages, passing the messages to the delegate. The delegate then stores the messages so the user can view them later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-App-to-Detect-NFC-Tags",
+          "level": 3,
+          "text": "Configure the App to Detect NFC Tags",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin building your tag reader by configuring your app to detect NFC tags. Turn on Near Field Communication Tag Reading under the Capabilities tab for the project’s target (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). This step:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds the NFC tag-reading feature to the App ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the entitlements file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+              "isActive": true,
+              "overridingTitle": "NFCReaderUsageDescription",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NFCReaderUsageDescription",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " key as a string item to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For the value, enter a string that describes the reason the app needs access to the device’s NFC reader. If the app attempts to read a tag without providing this key and string, the app exits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-Reader-Session",
+          "level": 3,
+          "text": "Start a Reader Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession",
+              "isActive": true,
+              "overridingTitle": "NFCNDEFReaderSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NFCNDEFReaderSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession/init(delegate:queue:invalidateAfterFirstRead:)",
+              "isActive": true,
+              "overridingTitle": "init(delegate:queue:invalidateAfterFirstRead:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "init(delegate:queue:invalidateAfterFirstRead:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " initializer method and passing in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The reader session delegate object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The dispatch queue to use when calling methods on the delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "invalidateAfterFirstRead",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag to determine whether the reader session reads only a single tag or multiple tags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the reader session, give instructions to the user by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/alertMessage",
+              "isActive": true,
+              "overridingTitle": "alertMessage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "alertMessage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property. For example, you might tell users, “Hold your iPhone near the item to learn more about it.” The system displays this message to the user while the phone is scanning for NFC tags.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/begin()",
+              "isActive": true,
+              "overridingTitle": "begin()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "begin()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to start the reader session. This enables radio-frequency polling on the phone, and the phone begins scanning for tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app starts a reader session when the user taps the Scan button. The app configures the reader session to invalidate the session after reading the first tag. To read additional tags, the user taps the Scan button again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func beginScanning(_ sender: Any) {",
+            "    guard NFCNDEFReaderSession.readingAvailable else {",
+            "        let alertController = UIAlertController(",
+            "            title: \"Scanning Not Supported\",",
+            "            message: \"This device doesn't support tag scanning.\",",
+            "            preferredStyle: .alert",
+            "        )",
+            "        alertController.addAction(UIAlertAction(title: \"OK\", style: .default, handler: nil))",
+            "        self.present(alertController, animated: true, completion: nil)",
+            "        return",
+            "    }",
+            "",
+            "    session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)",
+            "    session?.alertMessage = \"Hold your iPhone near the item to learn more about it.\"",
+            "    session?.begin()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adopt-the-Reader-Session-Delegate-Protocol",
+          "level": 3,
+          "text": "Adopt the Reader Session Delegate Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reader session requires a delegate object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate",
+              "isActive": true,
+              "overridingTitle": "NFCNDEFReaderSessionDelegate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NFCNDEFReaderSessionDelegate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Adopting this protocol allows the delegate to receive notifications from the reader session when it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reads an NDEF message",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Becomes invalid due to ending the session or encountering an error",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDelegate {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-an-NDEF-Message",
+          "level": 3,
+          "text": "Read an NDEF Message",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the reader session retrieves a new NDEF message, the session sends the message to the delegate by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didDetectNDEFs:)",
+              "isActive": true,
+              "overridingTitle": "readerSession(_:didDetectNDEFs:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "readerSession(_:didDetectNDEFs:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. This is the app’s opportunity to do something useful with the data. For instance, the sample app stores the message so the user can view it later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {",
+            "    DispatchQueue.main.async {",
+            "        // Process detected NFCNDEFMessage objects.",
+            "        self.detectedMessages.append(contentsOf: messages)",
+            "        self.tableView.reloadData()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-an-Invalid-Reader-Session",
+          "level": 3,
+          "text": "Handle an Invalid Reader Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a reader session ends, it calls the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didInvalidateWithError:)",
+              "isActive": true,
+              "overridingTitle": "readerSession(_:didInvalidateWithError:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "readerSession(_:didInvalidateWithError:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and passes in an error object that gives the reason for ending the session. Possible reasons include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The phone successfully read an NFC tag with a reader session configured to invalidate the session after reading the first tag. The error code is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorFirstNDEFTagRead",
+                      "isActive": true,
+                      "overridingTitle": "NFCReaderError.Code.readerSessionInvalidationErrorFirstNDEFTagRead",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NFCReaderError.Code.readerSessionInvalidationErrorFirstNDEFTagRead",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user canceled the session, or the app called ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/invalidate()",
+                      "isActive": true,
+                      "overridingTitle": "invalidate()",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "invalidate()",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to end the session. The error code is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorUserCanceled",
+                      "isActive": true,
+                      "overridingTitle": "NFCReaderError.Code.readerSessionInvalidationErrorUserCanceled",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NFCReaderError.Code.readerSessionInvalidationErrorUserCanceled",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An error occurred during the reader session. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code",
+                      "isActive": true,
+                      "overridingTitle": "NFCReaderError.Code",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NFCReaderError.Code",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the complete list of error codes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample app, the delegate displays an alert when the reader session ends for any reason other than reading the first tag during a single-tag reader session, or the user canceling the session. Also, you cannot reuse an invalidated reader session, so the sample app sets ",
+              "type": "text"
+            },
+            {
+              "code": "self.session",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {",
+            "    // Check the invalidation reason from the returned error.",
+            "    if let readerError = error as? NFCReaderError {",
+            "        // Show an alert when the invalidation reason is not because of a",
+            "        // successful read during a single-tag read session, or because the",
+            "        // user canceled a multiple-tag read session from the UI or",
+            "        // programmatically using the invalidate method call.",
+            "        if (readerError.code != .readerSessionInvalidationErrorFirstNDEFTagRead)",
+            "            && (readerError.code != .readerSessionInvalidationErrorUserCanceled) {",
+            "            let alertController = UIAlertController(",
+            "                title: \"Session Invalidated\",",
+            "                message: error.localizedDescription,",
+            "                preferredStyle: .alert",
+            "            )",
+            "            alertController.addAction(UIAlertAction(title: \"OK\", style: .default, handler: nil))",
+            "            DispatchQueue.main.async {",
+            "                self.present(alertController, animated: true, completion: nil)",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "    // To read new tags, a new session instance is required.",
+            "    self.session = nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Write-an-NDEF-Message",
+          "level": 3,
+          "text": "Write an NDEF Message",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write to a tag, the sample app starts a new reader session. This session must be active to write an NDEF message to the tag, so this time, ",
+              "type": "text"
+            },
+            {
+              "code": "invalidateAfterFirstRead",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", preventing the session from becoming invalid after reading the tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func beginWrite(_ sender: Any) {",
+            "    session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)",
+            "    session?.alertMessage = \"Hold your iPhone near an NDEF tag to write the message.\"",
+            "    session?.begin()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the reader session detects a tag, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didDetectNDEFs:)",
+              "isActive": true,
+              "overridingTitle": "readerSession(_:didDetectNDEFs:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "readerSession(_:didDetectNDEFs:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. However, because the session doesn’t become invalid after reading the first tag, it’s possible for the session to detect more than one tag. The sample app writes to one tag only, so it checks that the session detected only one tag. If the session detected more than one, the app asks the user to remove the tags, and then restarts polling to scan for a new tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app confirms that it has only one tag, it connects to the tag and verifies that it’s writable. The app then writes the NDEF message it read earlier to the tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {",
+            "    if tags.count > 1 {",
+            "        // Restart polling in 500 milliseconds.",
+            "        let retryInterval = DispatchTimeInterval.milliseconds(500)",
+            "        session.alertMessage = \"More than 1 tag is detected. Please remove all tags and try again.\"",
+            "        DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval, execute: {",
+            "            session.restartPolling()",
+            "        })",
+            "        return",
+            "    }",
+            "    ",
+            "    // Connect to the found tag and write an NDEF message to it.",
+            "    let tag = tags.first!",
+            "    session.connect(to: tag, completionHandler: { (error: Error?) in",
+            "        if nil != error {",
+            "            session.alertMessage = \"Unable to connect to tag.\"",
+            "            session.invalidate()",
+            "            return",
+            "        }",
+            "        ",
+            "        tag.queryNDEFStatus(completionHandler: { (ndefStatus: NFCNDEFStatus, capacity: Int, error: Error?) in",
+            "            guard error == nil else {",
+            "                session.alertMessage = \"Unable to query the NDEF status of tag.\"",
+            "                session.invalidate()",
+            "                return",
+            "            }",
+            "",
+            "            switch ndefStatus {",
+            "            case .notSupported:",
+            "                session.alertMessage = \"Tag is not NDEF compliant.\"",
+            "                session.invalidate()",
+            "            case .readOnly:",
+            "                session.alertMessage = \"Tag is read only.\"",
+            "                session.invalidate()",
+            "            case .readWrite:",
+            "                tag.writeNDEF(self.message, completionHandler: { (error: Error?) in",
+            "                    if nil != error {",
+            "                        session.alertMessage = \"Write NDEF message fail: \\(error!)\"",
+            "                    } else {",
+            "                        session.alertMessage = \"Write NDEF message successful.\"",
+            "                    }",
+            "                    session.invalidate()",
+            "                })",
+            "            @unknown default:",
+            "                session.alertMessage = \"Unknown NDEF tag status.\"",
+            "                session.invalidate()",
+            "            }",
+            "        })",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Background-Tag-Reading",
+          "level": 3,
+          "text": "Support Background Tag Reading",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to set up your app to process tags that iOS reads in the background, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreNFC/adding-support-for-background-tag-reading",
+              "isActive": true,
+              "overridingTitle": "Adding Support for Background Tag Reading",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Adding Support for Background Tag Reading",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "14275bb79e91/BuildingAnNFCTagReaderApp.zip": {
+      "checksum": "14275bb79e9173cd6c1c9a2afdc2040e333814b36811c3769321c51ce7bdcb17e68df1b247ad1453f4ba23c05af46e863a0f5982670a4011eaf631af9436bcff",
+      "identifier": "14275bb79e91/BuildingAnNFCTagReaderApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/14275bb79e91/BuildingAnNFCTagReaderApp.zip"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/adding-support-for-background-tag-reading": {
+      "abstract": [
+        {
+          "text": "Allow users to scan NFC tags without an app using background tag reading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/adding-support-for-background-tag-reading",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Support for Background Tag Reading",
+      "type": "topic",
+      "url": "/documentation/corenfc/adding-support-for-background-tag-reading"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats": {
+      "abstract": [
+        {
+          "text": "The Near Field Communication data formats an app can read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Near Field Communication Tag Reader Session Formats Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.nfc.readersession.formats"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s NFC hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession": {
+      "abstract": [
+        {
+          "text": "A reader session for detecting NFC Data Exchange Format (NDEF) tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCNDEFReaderSession",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCNDEFReaderSession"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession/init(delegate:queue:invalidateAfterFirstRead:)": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a new NFC NDEF reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NFCNDEFReaderSessionDelegate",
+          "text": "NFCNDEFReaderSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "invalidateAfterFirstRead"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSession/init(delegate:queue:invalidateAfterFirstRead:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(delegate:queue:invalidateAfterFirstRead:)",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCNDEFReaderSession/init(delegate:queue:invalidateAfterFirstRead:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that an object implements to serve as an NDEF reader session delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFReaderSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCNDEFReaderSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCNDEFReaderSessionDelegate"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didDetectNDEFs:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session detected NFC tags with NDEF messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NFCNDEFReaderSession",
+          "text": "NFCNDEFReaderSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDetectNDEFs"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "messages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NFCNDEFMessage",
+          "text": "NFCNDEFMessage"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didDetectNDEFs:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readerSession(_:didDetectNDEFs:)",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didDetectNDEFs:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didInvalidateWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the reason for invalidating a reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NFCNDEFReaderSession",
+          "text": "NFCNDEFReaderSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didInvalidateWithError"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didInvalidateWithError:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readerSession(_:didInvalidateWithError:)",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCNDEFReaderSessionDelegate/readerSession(_:didInvalidateWithError:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Reader session and tag error codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderError.Code",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderError-swift.struct/Code"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorFirstNDEFTagRead": {
+      "abstract": [
+        {
+          "text": "The first NDEF tag read by this session is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerSessionInvalidationErrorFirstNDEFTagRead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorFirstNDEFTagRead",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderError.Code.readerSessionInvalidationErrorFirstNDEFTagRead",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorFirstNDEFTagRead"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorUserCanceled": {
+      "abstract": [
+        {
+          "text": "The user canceled the reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerSessionInvalidationErrorUserCanceled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorUserCanceled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderError.Code.readerSessionInvalidationErrorUserCanceled",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderError-swift.struct/Code/readerSessionInvalidationErrorUserCanceled"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/alertMessage": {
+      "abstract": [
+        {
+          "text": "A custom description that helps users understand how they can use NFC reader mode in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alertMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/alertMessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alertMessage",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderSessionProtocol/alertMessage"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/begin()": {
+      "abstract": [
+        {
+          "text": "Starts the reader session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/begin()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "begin()",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderSessionProtocol/begin()"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/invalidate()": {
+      "abstract": [
+        {
+          "text": "Closes the reader session, which prevents it from being reused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/NFCReaderSessionProtocol/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/NFCReaderSessionProtocol/invalidate()"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC/adding-support-for-background-tag-reading": {
+      "abstract": [
+        {
+          "text": "Allow users to scan NFC tags without an app using background tag reading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC/adding-support-for-background-tag-reading",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Support for Background Tag Reading",
+      "type": "topic",
+      "url": "/documentation/CoreNFC/adding-support-for-background-tag-reading"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev88ff319e7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7",
+      "title": "Add a capability to a target",
+      "titleInlineContent": [
+        {
+          "text": "Add a capability to a target",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "14275bb79e91/BuildingAnNFCTagReaderApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/adding-support-for-background-tag-reading",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/adding-support-for-background-tag-reading",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSessionDelegate~1readerSession(_:didDetectNDEFs:)/title",
+          "value": "readerSession:didDetectNDEFs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSessionDelegate~1readerSession(_:didDetectNDEFs:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "readerSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NFCNDEFReaderSession",
+              "text": "NFCNDEFReaderSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didDetectNDEFs:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NFCNDEFMessage *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "messages"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderSessionProtocol~1alertMessage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "alertMessage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSessionDelegate~1readerSession(_:didInvalidateWithError:)/title",
+          "value": "readerSession:didInvalidateWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSessionDelegate~1readerSession(_:didInvalidateWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "readerSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NFCNDEFReaderSession",
+              "text": "NFCNDEFReaderSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didInvalidateWithError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFReaderSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NFCReaderSession",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderSessionProtocol~1begin()/title",
+          "value": "beginSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderSessionProtocol~1begin()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginSession"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code~1readerSessionInvalidationErrorFirstNDEFTagRead/title",
+          "value": "NFCReaderSessionInvalidationErrorFirstNDEFTagRead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code~1readerSessionInvalidationErrorFirstNDEFTagRead/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSessionInvalidationErrorFirstNDEFTagRead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderSessionProtocol~1invalidate()/title",
+          "value": "invalidateSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderSessionProtocol~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateSession"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFReaderSessionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code~1readerSessionInvalidationErrorUserCanceled/title",
+          "value": "NFCReaderSessionInvalidationErrorUserCanceled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code~1readerSessionInvalidationErrorUserCanceled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSessionInvalidationErrorUserCanceled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSession~1init(delegate:queue:invalidateAfterFirstRead:)/title",
+          "value": "initWithDelegate:queue:invalidateAfterFirstRead:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCNDEFReaderSession~1init(delegate:queue:invalidateAfterFirstRead:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)NFCNDEFReaderSessionDelegate",
+              "text": "id<NFCNDEFReaderSessionDelegate>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "delegate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "queue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queue"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateAfterFirstRead:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "invalidateAfterFirstRead"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code/title",
+          "value": "NFCReaderError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreNFC~1NFCReaderError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NFCReaderError"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/building-an-nfc-tag-reader-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corenfc/building-an-nfc-tag-reader-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

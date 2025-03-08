@@ -1,0 +1,1384 @@
+{
+  "abstract": [
+    {
+      "text": "Add macros to your Objective-C types to group their values in Swift.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Grouping Related Objective-C Constants"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use one of the following macros to declare that several Objective-C constants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are related to each other:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NS_ENUM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for simple enumerations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NS_CLOSED_ENUM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for simple enumerations that can never gain new cases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NS_OPTIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for enumerations whose cases can be grouped into sets of options",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NS_TYPED_ENUM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for enumerations with a raw value type that you specify",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NS_TYPED_EXTENSIBLE_ENUM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for enumerations that you expect might gain more cases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Declare-Simple-Enumerations",
+          "level": 3,
+          "text": "Declare Simple Enumerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro for simple groups of constants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below uses the macro to declare a ",
+              "type": "text"
+            },
+            {
+              "code": "UITableViewCellStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that groups several different view styles for table views:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef NS_ENUM(NSInteger, UITableViewCellStyle) {",
+            "    UITableViewCellStyleDefault,",
+            "    UITableViewCellStyleValue1,",
+            "    UITableViewCellStyleValue2,",
+            "    UITableViewCellStyleSubtitle",
+            "};"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, the ",
+              "type": "text"
+            },
+            {
+              "code": "UITableViewCellStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration is imported like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum UITableViewCellStyle: Int {",
+            "    case `default`",
+            "    case value1",
+            "    case value2",
+            "    case subtitle",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enumerations imported using the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro won’t fail when you initialize one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a raw value that does not correspond to an enumeration case. This characteristic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "facilitates compatibility with C, which allows any value to be stored in an enumeration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including values used internally but not exposed in headers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NS_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro is the only enumeration macro that results in an actual enumeration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type when imported to Swift. The other enumeration macros generate structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-Closed-Enumerations",
+          "level": 3,
+          "text": "Declare Closed Enumerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_CLOSED_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro for a simple group of constants that you can never",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add new cases to. Closed enumerations are useful for representing a finite set of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "states that you expect people to switch over using a switch statement. The three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cases of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedascending",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedsame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/ordereddescending",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an example of a finite set. They’re the only logical cases for performing an ordered",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comparison during tasks like sorting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_CLOSED_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’ve ever added cases to an enumeration after its initial declaration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can think of additional cases you might add later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The enumeration has any private cases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In these scenarios, use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-Option-Sets",
+          "level": 3,
+          "text": "Declare Option Sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_OPTIONS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro when two or more constants in a grouping of constants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can be combined. For example, the output formatting for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance can be sorted and can use ample white space at the same time, so it’s valid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to specify both options in an option set: ",
+              "type": "text"
+            },
+            {
+              "code": "[.sorted, .prettyPrinted]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to apply the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_OPTIONS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro and assign raw values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are mutually exclusive:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) {",
+            "        UIViewAutoresizingNone                 = 0,",
+            "        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,",
+            "        UIViewAutoresizingFlexibleWidth        = 1 << 1,",
+            "        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,",
+            "        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,",
+            "        UIViewAutoresizingFlexibleHeight       = 1 << 4,",
+            "        UIViewAutoresizingFlexibleBottomMargin = 1 << 5",
+            "};"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The increasing sequence of nonnegative integers used along with the bitwise left",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shift operator (",
+              "type": "text"
+            },
+            {
+              "code": "<<",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") ensures that each option in the option set takes up a unique",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bit in the binary representation of the raw value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how the ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewAutoresizing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is imported to Swift:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct UIViewAutoresizing: OptionSet {",
+            "    public init(rawValue: UInt)",
+            "",
+            "    public static var flexibleLeftMargin: UIViewAutoresizing { get }",
+            "    public static var flexibleWidth: UIViewAutoresizing { get }",
+            "    public static var flexibleRightMargin: UIViewAutoresizing { get }",
+            "    public static var flexibleTopMargin: UIViewAutoresizing { get }",
+            "    public static var flexibleHeight: UIViewAutoresizing { get }",
+            "    public static var flexibleBottomMargin: UIViewAutoresizing { get }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Declare-Typed-Enumerations",
+          "level": 3,
+          "text": "Declare Typed Enumerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_TYPED_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to group constants with a raw value type that you specify.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "NS_TYPED_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for sets of constants that ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "can’t",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " logically have values added",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a Swift extension, and use ",
+              "type": "text"
+            },
+            {
+              "code": "NS_TYPED_EXTENSIBLE_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for sets of constants that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "can",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " be expanded in an extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below uses the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_TYPED_ENUM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro to declare the different colors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used by a traffic light:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Store the three traffic light color options as 0, 1, and 2.",
+            "typedef long TrafficLightColor NS_TYPED_ENUM;",
+            "",
+            "TrafficLightColor const TrafficLightColorRed;",
+            "TrafficLightColor const TrafficLightColorYellow;",
+            "TrafficLightColor const TrafficLightColorGreen;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of colors that a traffic light uses isn’t expected to grow, so it’s not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declared to be extensible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how the ",
+              "type": "text"
+            },
+            {
+              "code": "TrafficLightColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is imported to Swift:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TrafficLightColor: RawRepresentable, Equatable, Hashable {",
+            "    typealias RawValue = Int",
+            "",
+            "    init(rawValue: RawValue)",
+            "    var rawValue: RawValue { get }",
+            "",
+            "    static var red: TrafficLightColor { get }",
+            "    static var yellow: TrafficLightColor { get }",
+            "    static var green: TrafficLightColor { get }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Declare-Typed-Extensible-Enumerations",
+          "level": 4,
+          "text": "Declare Typed Extensible Enumerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensible enumerations are imported in a similar fashion to nonextensible ones,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "except that they receive an additional initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The examples below show how a ",
+              "type": "text"
+            },
+            {
+              "code": "FavoriteColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is declared, imported, and extended.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The first one declares the ",
+              "type": "text"
+            },
+            {
+              "code": "FavoriteColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type and adds a single enumeration case",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the color blue:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef long FavoriteColor NS_TYPED_EXTENSIBLE_ENUM;",
+            "FavoriteColor const FavoriteColorBlue;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The additional initializer omits the label requirement for its first parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FavoriteColor: RawRepresentable, Equatable, Hashable {",
+            "    typealias RawValue = Int",
+            "",
+            "    init(_ rawValue: RawValue)",
+            "    init(rawValue: RawValue)",
+            "    var rawValue: RawValue { get }",
+            "",
+            "    static var blue: FavoriteColor { get }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add extensions to extensible enumerations later in your Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below adds another favorite color:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension FavoriteColor {",
+            "    static var green: FavoriteColor {",
+            "        return FavoriteColor(1) // blue is 0, green is 1, and new favorite colors could follow",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You might encounter Objective-C code that uses the older ",
+                  "type": "text"
+                },
+                {
+                  "code": "NS_STRING_ENUM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and ",
+                  "type": "text"
+                },
+                {
+                  "code": "NS_EXTENSIBLE_STRING_ENUM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " macros, which were used to group string constants.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "code": "NS_TYPED_ENUM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "NS_TYPED_EXTENSIBLE_ENUM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when grouping related constants",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of any type, including string constants.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use nullability annotations or mark regions as annotated to control how Objective-C",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "declarations are imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Designating Nullability in Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/designating-nullability-in-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_REFINED_FOR_SWIFT",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to change how an API is imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Objective-C API Declarations for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/improving-objective-c-api-declarations-for-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_SWIFT_UNAVAILABLE",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to prevent an API from being used in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Making Objective-C APIs Unavailable in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/making-objective-c-apis-unavailable-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c": {
+      "abstract": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "code": "a",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to denote the availability of an Objective-C API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c",
+      "kind": "article",
+      "role": "article",
+      "title": "Marking API Availability in Objective-C",
+      "type": "topic",
+      "url": "/documentation/swift/marking-api-availability-in-objective-c"
+    },
+    "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization": {
+      "abstract": [
+        {
+          "text": "Apply macros to your Objective-C APIs to customize how they’re imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C and C Code Customization",
+      "type": "topic",
+      "url": "/documentation/swift/objective-c-and-c-code-customization"
+    },
+    "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_SWIFT_NAME",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to customize API names for Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Renaming Objective-C APIs for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/renaming-objective-c-apis-for-swift"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult": {
+      "abstract": [
+        {
+          "text": "Constants that indicate sort order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedascending": {
+      "abstract": [
+        {
+          "text": "The left operand is smaller than the right operand.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderedAscending"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedascending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult.orderedAscending",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult/orderedascending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult/ordereddescending": {
+      "abstract": [
+        {
+          "text": "The left operand is greater than the right operand.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderedDescending"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/ordereddescending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult.orderedDescending",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult/ordereddescending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedsame": {
+      "abstract": [
+        {
+          "text": "The two operands are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderedSame"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult/orderedsame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult.orderedSame",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult/orderedsame"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonencoder": {
+      "abstract": [
+        {
+          "text": "An object that encodes instances of a data type as JSON objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONEncoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonencoder"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-Objective-C-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+        "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c",
+        "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift"
+      ],
+      "title": "Customizing Objective-C APIs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1comparisonresult/title",
+          "value": "NSComparisonResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1comparisonresult~1orderedascending/title",
+          "value": "NSOrderedAscending"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1comparisonresult~1ordereddescending/title",
+          "value": "NSOrderedDescending"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1comparisonresult~1orderedsame/title",
+          "value": "NSOrderedSame"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1177 @@
+{
+  "abstract": [
+    {
+      "text": "Create pipelines for different levels of detail from a common shader source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/using-function-specialization-to-build-pipeline-variants"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using Function Specialization to Build Pipeline Variants"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A high-quality gaming experience has to manage trade-offs between great graphics and great performance. High-quality models look great, but their complexity requires a significant amount of processing power. By increasing or decreasing the level of detail (LOD) of a model, games can selectively manage both graphics and performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lod-with-function-constants-1-LODWithFunctionSpecialization",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of selecting a fixed LOD at build time, games can dynamically select between a range of LODs at runtime based on certain model-view conditions. For example, a focal-point foreground model could have a high LOD, whereas a fast-moving background model could have a low LOD.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates dynamic LOD selection for a fire truck model, based on its distance from the scene’s camera. When the model is closer to the camera, the renderer uses a higher LOD; when the model is further from the camera, the renderer uses a lower LOD.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lod-with-function-constants-2-LevelsOfDetail",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "GPU-Branch-Statements",
+          "level": 3,
+          "text": "GPU Branch Statements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike CPU code, graphics processing unit (GPU) branch statements like ",
+              "type": "text"
+            },
+            {
+              "code": "if",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "else",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are very expensive. The massively parallel architecture of GPUs isn’t particularly well suited to handling GPU functions that have many branches. More branches result in more register allocations and thus decrease the number of GPU threads that can execute concurrently. Nevertheless, branch statements are useful programming constructs, particularly for functions that share a lot of code. In fact, a common problem for graphics functions that share code is how to handle a branch condition that differs only between draw calls, not between individual threads executing within a single draw call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Traditionally, branches that differ between draw calls are mitigated in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Writing per-branch functions. Each branch is written as a complete and separate function, and the render loop determines which function to use at runtime. This approach greatly increases code duplication because all possible outcomes of each branch condition require their own standalone function. For example, a single ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " statement requires one function for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " outcome and another function for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " outcome.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using preprocessor directives. Instead of using a regular ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " statement, functions can use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#if",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " preprocessor directive that selectively compiles a function after evaluating its branch conditions. This approach avoids code duplication but reduces the performance benefits of precompiled Metal shading language code. Because the branch conditions can only be evaluated at runtime, the functions can’t be precompiled at build time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "function specialization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " feature reduces branch performance costs, avoids code duplication, and leverages build time compilation. Function specialization allows you to create multiple executable versions of a single source function. You create specialized functions by declaring ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "function constants",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in your Metal shading language code and setting their values at runtime. Doing so allows the front-end compiler to precompile your source function at build time and the back-end compiler to compile the specialized function at runtime, when the pipeline is created.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Your-LOD-Selection-Criteria",
+          "level": 3,
+          "text": "Define Your LOD Selection Criteria",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates function specialization by creating different render pipelines for different LODs. All of the pipelines share the same source function, but function constants determine LOD-specific paths and inputs for each pipeline. Specifically, the sample demonstrates dynamic LOD selection for a fire truck model, based on its distance from the scene’s camera. When the fire truck is close to the camera, it occupies more pixels on the screen; therefore, the sample uses a high-quality render pipeline. When the fire truck is far from the camera, it occupies fewer pixels on the screen; therefore, the sample uses a low-quality render pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fire truck model in this sample uses many types of textures, such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "albedo",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "normal",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "metallic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "roughness",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ambient occlusion",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "irradiance",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". It’s too wasteful to sample from each of these textures when the model is far from the camera because the detail provided by the full combination of textures isn’t seen. The sample uses various function constant values to create specialized functions that sample from more or fewer textures, depending on the selected LOD. Additionally, specialized functions that sample from fewer textures also perform less complex computations and result in a faster render pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "isTexturedProperty:atQualityLevel:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method controls whether a material property is set by sampling from a texture or by reading a constant value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+ (BOOL)isTexturedProperty:(AAPLFunctionConstant)propertyIndex atQualityLevel:(AAPLQualityLevel)quality",
+            "{",
+            "    AAPLQualityLevel minLevelForProperty = AAPLQualityLevelHigh;",
+            "    ",
+            "    switch(propertyIndex)",
+            "    {",
+            "        case AAPLFunctionConstantBaseColorMapIndex:",
+            "        case AAPLFunctionConstantIrradianceMapIndex:",
+            "            minLevelForProperty = AAPLQualityLevelMedium;",
+            "            break;",
+            "        default:",
+            "            break;",
+            "    }",
+            "    ",
+            "    return quality <= minLevelForProperty;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-Specialized-Functions",
+          "level": 3,
+          "text": "Implement Specialized Functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses six function constants to control the various inputs available to the ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentLighting",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fragment function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constant bool has_base_color_map        [[ function_constant(AAPLFunctionConstantBaseColorMapIndex) ]];",
+            "constant bool has_normal_map            [[ function_constant(AAPLFunctionConstantNormalMapIndex) ]];",
+            "constant bool has_metallic_map          [[ function_constant(AAPLFunctionConstantMetallicMapIndex) ]];",
+            "constant bool has_roughness_map         [[ function_constant(AAPLFunctionConstantRoughnessMapIndex) ]];",
+            "constant bool has_ambient_occlusion_map [[ function_constant(AAPLFunctionConstantAmbientOcclusionMapIndex) ]];",
+            "constant bool has_irradiance_map        [[ function_constant(AAPLFunctionConstantIrradianceMapIndex) ]];"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also declares a derived function constant, ",
+              "type": "text"
+            },
+            {
+              "code": "has_any_map",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that’s used in the ",
+              "type": "text"
+            },
+            {
+              "code": "vertexTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " vertex function. This value determines whether the render pipeline requires the vertex function to output a texture coordinate to the ",
+              "type": "text"
+            },
+            {
+              "code": "ColorInOut.texCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constant bool has_any_map = (has_base_color_map        ||",
+            "                             has_normal_map            ||",
+            "                             has_metallic_map          ||",
+            "                             has_roughness_map         ||",
+            "                             has_ambient_occlusion_map ||",
+            "                             has_irradiance_map);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the value of ",
+              "type": "text"
+            },
+            {
+              "code": "has_any_map",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the vertex function does not write a value to the ",
+              "type": "text"
+            },
+            {
+              "code": "texCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (has_any_map)",
+            "{",
+            "    out.texCoord = in.texCoord;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function constants control the source of a parameter to the lighting computation in the ",
+              "type": "text"
+            },
+            {
+              "code": "calculateParameters()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. When you use the  ",
+              "type": "text"
+            },
+            {
+              "code": "[[function_constant(index)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, this function can determine whether it should sample from a texture. The function only samples from a texture if the attribute indicates that a texture parameter is present; otherwise, it reads a value from the ",
+              "type": "text"
+            },
+            {
+              "code": "materialData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "LightingParameters calculateParameters(                 ColorInOut in,",
+            "                                       constant AAPLFrameData    & frameData,",
+            "                                       constant AAPLMaterialData & materialData,",
+            "                                       texture2d<float>   baseColorMap        [[ function_constant(has_base_color_map) ]],",
+            "                                       texture2d<float>   normalMap           [[ function_constant(has_normal_map) ]],",
+            "                                       texture2d<float>   metallicMap         [[ function_constant(has_metallic_map) ]],",
+            "                                       texture2d<float>   roughnessMap        [[ function_constant(has_roughness_map) ]],",
+            "                                       texture2d<float>   ambientOcclusionMap [[ function_constant(has_ambient_occlusion_map) ]],",
+            "                                       texturecube<float> irradianceMap       [[ function_constant(has_irradiance_map) ]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The corresponding inputs to the fragment function also use the same function constants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4",
+            "fragmentLighting(                 ColorInOut in           [[ stage_in ]],",
+            "                 constant AAPLFrameData    & frameData    [[ buffer(AAPLBufferIndexFrameData) ]],",
+            "                 constant AAPLMaterialData & materialData [[ buffer(AAPLBufferIndexMaterialData) ]],",
+            "                 texture2d<float>   baseColorMap          [[ texture(AAPLTextureIndexBaseColor),        function_constant(has_base_color_map) ]],",
+            "                 texture2d<float>   normalMap             [[ texture(AAPLTextureIndexNormal),           function_constant(has_normal_map) ]],",
+            "                 texture2d<float>   metallicMap           [[ texture(AAPLTextureIndexMetallic),         function_constant(has_metallic_map) ]],",
+            "                 texture2d<float>   roughnessMap          [[ texture(AAPLTextureIndexRoughness),        function_constant(has_roughness_map) ]],",
+            "                 texture2d<float>   ambientOcclusionMap   [[ texture(AAPLTextureIndexAmbientOcclusion), function_constant(has_ambient_occlusion_map) ]],",
+            "                 texturecube<float> irradianceMap         [[ texture(AAPLTextureIndexIrradianceMap),    function_constant(has_irradiance_map)]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Different-Pipelines",
+          "level": 3,
+          "text": "Create Different Pipelines",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses three different ",
+              "type": "text"
+            },
+            {
+              "code": "MTLRenderPipelineState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, each representing a different LOD. Specializing functions and building pipelines is expensive, so the sample performs these tasks asynchronously before starting the render loop. When the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is initialized, each LOD pipeline is created asynchronously by using dispatch groups, completion handlers, and notification blocks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates six specialized functions overall: one vertex and one fragment function for each of the three LODs. This task is monitored by the ",
+              "type": "text"
+            },
+            {
+              "code": "specializationGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dispatch group, and each function is specialized by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "newFunctionWithName:constantValues:completionHandler:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (uint qualityLevel = 0; qualityLevel < AAPLNumQualityLevels; qualityLevel++)",
+            "{",
+            "    dispatch_group_enter(specializationGroup);",
+            "",
+            "    MTLFunctionConstantValues* constantValues = [self functionConstantsForQualityLevel:qualityLevel];",
+            "",
+            "    [defaultLibrary newFunctionWithName:@\"fragmentLighting\" constantValues:constantValues",
+            "                      completionHandler:^(id<MTLFunction> newFunction, NSError *error )",
+            "     {",
+            "         NSAssert(newFunction, @\"Failed to specialize function: %@\", error);",
+            "",
+            "         self->_fragmentFunctions[qualityLevel] = newFunction;",
+            "         dispatch_group_leave(specializationGroup);",
+            "     }];",
+            "",
+            "    dispatch_group_enter(specializationGroup);",
+            "",
+            "    [defaultLibrary newFunctionWithName:@\"vertexTransform\" constantValues:constantValues",
+            "                      completionHandler:^(id<MTLFunction> newFunction, NSError *error )",
+            "     {",
+            "         NSAssert(newFunction, @\"Failed to specialize function: %@\", error);",
+            "",
+            "         self->_vertexFunctions[qualityLevel] = newFunction;",
+            "         dispatch_group_leave(specializationGroup);",
+            "     }];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "notifyBlock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block builds the three render pipelines. This task is monitored by the ",
+              "type": "text"
+            },
+            {
+              "code": "_pipelineCreationGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dispatch group, and each pipeline is built by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "newRenderPipelineStateWithDescriptor:completionHandler:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dispatch_group_enter(_pipelineCreationGroup);",
+            "",
+            "void (^notifyBlock)(void) = ^void()",
+            "{",
+            "    const id<MTLDevice> device  = self->_device;",
+            "    const dispatch_group_t pipelineCreationGroup = self->_pipelineCreationGroup;",
+            "",
+            "    MTLRenderPipelineDescriptor *pipelineStateDescriptors[AAPLNumQualityLevels];",
+            "",
+            "    dispatch_group_wait(specializationGroup, DISPATCH_TIME_FOREVER);",
+            "",
+            "    for (uint qualityLevel = 0; qualityLevel < AAPLNumQualityLevels; qualityLevel++)",
+            "    {",
+            "        dispatch_group_enter(pipelineCreationGroup);",
+            "",
+            "        pipelineStateDescriptors[qualityLevel] = [pipelineStateDescriptor copy];",
+            "        pipelineStateDescriptors[qualityLevel].fragmentFunction = self->_fragmentFunctions[qualityLevel];",
+            "        pipelineStateDescriptors[qualityLevel].vertexFunction = self->_vertexFunctions[qualityLevel];",
+            "",
+            "        [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptors[qualityLevel]",
+            "                                   completionHandler:^(id<MTLRenderPipelineState> newPipelineState, NSError *error )",
+            "         {",
+            "             NSAssert(newPipelineState, @\"Failed to create pipeline state, error %@\", error);",
+            "",
+            "             self->_pipelineStates[qualityLevel] = newPipelineState;",
+            "             dispatch_group_leave(pipelineCreationGroup);",
+            "         }];",
+            "    }",
+            "",
+            "    dispatch_group_leave(pipelineCreationGroup);",
+            "};",
+            "",
+            "dispatch_group_notify(specializationGroup, pipelineQueue, notifyBlock);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-with-a-Specific-LOD",
+          "level": 3,
+          "text": "Render with a Specific LOD",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the beginning of the render loop, for each frame, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "_calculateQualityAtDistance:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to update the ",
+              "type": "text"
+            },
+            {
+              "code": "_currentQualityLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. This value defines the LOD for the frame based on the distance between the model and the camera. The ",
+              "type": "text"
+            },
+            {
+              "code": "_calculateQualityAtDistance:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method also sets a ",
+              "type": "text"
+            },
+            {
+              "code": "_globalMapWeight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that creates a smooth transition between LOD boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)calculateQualityAtDistance:(float)distance",
+            "{",
+            "    static const float MediumQualityDepth     = 150.f;",
+            "    static const float LowQualityDepth        = 650.f;",
+            "    static const float TransitionDepthAmount  = 50.f;",
+            "",
+            "    assert(distance >= 0.0f);",
+            "    if (distance < MediumQualityDepth)",
+            "    {",
+            "        static const float TransitionDepth = MediumQualityDepth - TransitionDepthAmount;",
+            "        if(distance > TransitionDepth)",
+            "        {",
+            "            _globalMapWeight = distance - TransitionDepth;",
+            "            _globalMapWeight /= TransitionDepthAmount;",
+            "            _globalMapWeight = 1.0 - _globalMapWeight;",
+            "        }",
+            "        else",
+            "        {",
+            "            _globalMapWeight = 1.0;",
+            "        }",
+            "        _currentQualityLevel = AAPLQualityLevelHigh;",
+            "    }",
+            "    else if (distance < LowQualityDepth)",
+            "    {",
+            "        static const float TransitionDepth = LowQualityDepth - TransitionDepthAmount;",
+            "        if(distance > TransitionDepth)",
+            "        {",
+            "            _globalMapWeight = distance - (TransitionDepth);",
+            "            _globalMapWeight /= TransitionDepthAmount;",
+            "            _globalMapWeight = 1.0 - _globalMapWeight;",
+            "        }",
+            "        else",
+            "        {",
+            "            _globalMapWeight = 1.0;",
+            "        }",
+            "        _currentQualityLevel = AAPLQualityLevelMedium;",
+            "    }",
+            "    else",
+            "    {",
+            "        _currentQualityLevel = AAPLQualityLevelLow;",
+            "        _globalMapWeight = 0.0;",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The updated ",
+              "type": "text"
+            },
+            {
+              "code": "_currentQualityLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is used to set the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "MTLRenderPipelineState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setRenderPipelineState:_pipelineStates[_currentQualityLevel]];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The updated ",
+              "type": "text"
+            },
+            {
+              "code": "_globalMapWeight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is used to interpolate between quality levels and prevent abrupt LOD transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[submesh computeTextureWeightsForQualityLevel:_currentQualityLevel",
+            "                          withGlobalMapWeight:_globalMapWeight];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the render loop draws each submesh in the model with the specific LOD pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder drawIndexedPrimitives:metalKitSubmesh.primitiveType",
+            "                          indexCount:metalKitSubmesh.indexCount",
+            "                           indexType:metalKitSubmesh.indexType",
+            "                         indexBuffer:metalKitSubmesh.indexBuffer.buffer",
+            "                   indexBufferOffset:metalKitSubmesh.indexBuffer.offset];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "218db2aae525/UsingFunctionSpecializationToBuildPipelineVariants.zip": {
+      "checksum": "218db2aae525e59772e1319f8b5143f1294119f7fca4a2291c370d8ec304c8287ca3cd7a1cba9018f2f0dcc6223c35b1ff1758faf03048906aeaa2bf85ddd792",
+      "identifier": "218db2aae525/UsingFunctionSpecializationToBuildPipelineVariants.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/218db2aae525/UsingFunctionSpecializationToBuildPipelineVariants.zip"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/Xcode/Optimizing-GPU-performance"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs": {
+      "abstract": [
+        {
+          "text": "Find the cause of your bugs by watching variables change as you step through your source code in the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Stepping through code and inspecting variables to isolate bugs",
+      "type": "topic",
+      "url": "/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/logging-shader-debug-messages": {
+      "abstract": [
+        {
+          "text": "Print debugging messages that a shader generates using shader logging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/logging-shader-debug-messages",
+      "kind": "article",
+      "role": "article",
+      "title": "Logging shader debug messages",
+      "type": "topic",
+      "url": "/documentation/metal/logging-shader-debug-messages"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    },
+    "lod-with-function-constants-1-LODWithFunctionSpecialization": {
+      "alt": "LOD with Function Specialization",
+      "identifier": "lod-with-function-constants-1-LODWithFunctionSpecialization",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb6ef3f8d62dddb3c52f3f6e0241987b/lod-with-function-constants-1-LODWithFunctionSpecialization@2x.png"
+        }
+      ]
+    },
+    "lod-with-function-constants-2-LevelsOfDetail": {
+      "alt": "Levels of Detail",
+      "identifier": "lod-with-function-constants-2-LevelsOfDetail",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cb45549fabb172c758319ac9d4dd546/lod-with-function-constants-2-LevelsOfDetail@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "218db2aae525/UsingFunctionSpecializationToBuildPipelineVariants.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shaders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+        "doc://com.apple.documentation/documentation/Xcode/Optimizing-GPU-performance",
+        "doc://com.apple.metal/documentation/Metal/logging-shader-debug-messages",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries"
+      ],
+      "title": "Shaders"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shaders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/logging-shader-debug-messages",
+                "doc://com.apple.metal/documentation/Metal/shader-libraries"
+              ],
+              "title": "Shaders"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/using-function-specialization-to-build-pipeline-variants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/using-function-specialization-to-build-pipeline-variants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

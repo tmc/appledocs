@@ -1,0 +1,1675 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your Xcode project to support your alternative browser engine.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating browser extensions in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deliver your web browser as a browser app and a collection of extensions, described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create a separate target in your Xcode project for each of the three kinds of extension: web content extension, rendering extension, and networking extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-Xcode-project",
+          "level": 3,
+          "text": "Create your Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new Xcode project for your browser app and extensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose File > New Project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS App template, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give your project a name, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a location to save your project, and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-extension-targets-in-Xcode",
+          "level": 3,
+          "text": "Create extension targets in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open your Xcode project, and follow these steps for each of the three extension types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your Xcode project in the Project Navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add (+) button at the bottom of the targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS Generic Extension template, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the extension a name, and ensure your browser app is chosen for the Embed in Application setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish, then cancel the request to activate the extension target’s scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the new target in the Project Editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to the Info tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the disclosure triangle next to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXAppExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edit the value for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXExtensionPointIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and enter the appropriate value from the list based on the extension type:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.web-browser-engine.rendering",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Rendering extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.web-browser-engine.networking",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Networking extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.web-browser-engine.content",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Content extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Build-for-pointer-authentication",
+          "level": 3,
+          "text": "Build for pointer authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browser apps that include alternative browser engines must use the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set for all executables, including the extensions, in order to use the operating system’s pointer-authentication protection on devices that support it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Build your browser app as a universal binary that also supports the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set to target iPad models that support alternative browser engines and don’t support ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instructions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can develop and test your alternative browser engine using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instruction set.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To distribute your browser that includes an alternative browser engine, you need to support the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64e",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instruction set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your Xcode targets to use the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Xcode project in the Project Navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Build Settings Tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure button to the left of the Architectures build setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add (+) button that appears when you move the mouse pointer over the Debug build configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the SDK in the new row from “Any SDK” to “iOS”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64e",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the build setting for the iOS SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 5-7 for the Release build configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 2-8 for each target in your browser app project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if you use Xcode configuration files to manage build settings for your targets, add this line to your configuration file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ARCHS[sdk=iphoneos*]=arm64e"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t build your target with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64e",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instruction set for Simulator destinations.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Simulator for iPhone doesn’t support ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64e",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instructions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Xcode workspace includes Swift Packages as dependencies for your targets, use workspace settings to build the packages using the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Terminal, run these commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -create xml1 MyWorkspace.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+            "% plutil -insert iOSPackagesShouldBuildARM64e -bool YES MyWorkspace.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adopt-the-correct-entitlements",
+          "level": 3,
+          "text": "Adopt the correct entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To act as a person’s web browser, your app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, to manage extensions for an alternative browser engine, your app declares the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.web-browser-engine.host",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement with the value ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For a non-browser app that uses an alternative browser engine for in-app web browsing, add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.embedded-web-browser-engine",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlement with the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.web-browser",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your non-browser app includes the alternative web browser engine in its own executable or as a dynamic library, uses only the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instruction set (not ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64e",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "), and doesn’t include any web browser extensions.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The alternative web browser engine in a non-browser app can’t use just-in-time (JIT) compilation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Add the following keys and values to your non-browser app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "A string that names the alternative web browser engine you use.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "BEEmbeddedWebBrowserEngine",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "A string that represents the version number of your alternative web browser engine. You need to supply a version that matches this regular expression: ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "(v(ersion)?\\s?)?\\d+(\\.\\d+)*",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": ".",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "BEEmbeddedWebBrowserEngineVersion",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Add the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "embedded-web-browser-engine",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIRequiredDeviceCapabilities",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of your browser app’s extensions must use the appropriate entitlement from this list:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.developer.web-browser-engine.rendering",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Rendering extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.developer.web-browser-engine.networking",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Network extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "com.apple.developer.web-browser-engine.webcontent",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Content extension",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each case, set the value for the entitlement to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use these entitlements, your host app and its extensions must be compiled for the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set, described in the “Build for pointer authentication” section, above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on adding entitlements to targets in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, you may add the following entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To allow just-in-time (JIT) compilation of web site scripts, your content extension uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.cs.allow-jit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can’t give this entitlement to your browser app, rendering extension, or networking extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To transfer memory attribution between extensions, your content extension uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.memory.transfer_accept",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement and your rendering extension uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.memory.transfer_send",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement, both with the browser apps’ bundle identifier as the value.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To restrict access to the system notification service in your web content extension, add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.web-browser-engine.restrict.notifyd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "App Store Connect won’t accept your app if your non-browser app includes any of the entitlements for web browsers and their extensions described in this section, or you use the entitlements on other web browser components or with different values than those listed here.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must use all of the entitlements listed here only for the purposes described, for the relevant components of your browser app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Target-devices-with-required-capabilities",
+          "level": 3,
+          "text": "Target devices with required capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the string ",
+              "type": "text"
+            },
+            {
+              "code": "web-browser-engine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "UIRequiredDeviceCapabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, to ensure that people can only download your app on devices that support browser apps with alternative browser engines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your browser app only supports the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set, also add the string ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "UIRequiredDeviceCapabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/required-device-capabilities/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-web-browser",
+          "level": 3,
+          "text": "Test your web browser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Development of a web browser that uses an alternative browser engine can occur anywhere in the world.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode allows running development-signed or Ad-Hoc signed builds of the app on Simulator and all supported physical devices (iPhone and iPad).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension": {
+      "abstract": [
+        {
+          "text": "Adhere to operating-system limits on GPU memory use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Attributing memory to a content extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture": {
+      "abstract": [
+        {
+          "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your browser architecture",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/designing-your-browser-architecture"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Launch, communicate with, and invalidate browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension lifecycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions": {
+      "abstract": [
+        {
+          "text": "Reduce the impact of vulnerabilities in web content extensions by limiting privileges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Limiting resource access in web content extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time": {
+      "abstract": [
+        {
+          "text": "Toggle memory between being writable and executable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting code compiled just in time",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/protecting-code-compiled-just-in-time"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entitlements",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may access an extended address space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Extended Virtual Addressing Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the app can act as the user’s default web browser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.web-browser",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.web-browser"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser": {
+      "abstract": [
+        {
+          "text": "Configure your browser app so users can set it as the default on their device instead of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default web browser",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/required-device-capabilities/": {
+      "identifier": "https://developer.apple.com/support/required-device-capabilities/",
+      "title": "Required Device Capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Required Device Capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/required-device-capabilities/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Browser-extensions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ],
+      "title": "Browser extensions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Browser-extensions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+              ],
+              "title": "Browser extensions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/creating-browser-extensions-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/creating-browser-extensions-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "abstract": [
+    {
+      "text": "Start using continuous integration and delivery with Xcode Cloud as a team.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Xcode Cloud for your team"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adopt continuous integration and delivery (CI/CD) with Xcode Cloud, you’ll need to configure your project or workspace to use Xcode Cloud, create your first workflow, and then start your first build. However, starting to use Xcode Cloud as a team may require additional steps and coordination among team members and administrators — especially in a corporate context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To successfully configure your team’s project or workspace to use Xcode Cloud, first review required roles and permissions described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Depending on your role and permissions, you may need to coordinate with others to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Xcode Cloud to access your team’s Git repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an app record in App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have the required role and permissions to complete the above tasks or someone else has previously performed them, configure your team’s project or workspace to use Xcode Cloud as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, teams may limit the number of people who can administer their Git repositories and their App Store Connect account. In a corporate context, there might even be a dedicated infrastructure team, which means you need to work with them before you start using Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about using Xcode Cloud as a team, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc22/110375",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-Xcode-Cloud-to-an-admin-managed-Git-repository",
+          "level": 3,
+          "text": "Connect Xcode Cloud to an admin-managed Git repository",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start using Xcode Cloud, you need the permissions listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to grant Xcode Cloud access to your team’s Git repository. If you don’t have the required role or permission, work with your team’s source code management (SCM) administrator and ask them to configure your project to use Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You only need to work with your team’s SCM administrator when you onboard your team’s first app or framework to Xcode Cloud. When the SCM administrator configures Xcode Cloud for one project or workspace and connects your team’s SCM provider to Xcode Cloud, other projects you host with the same provider can use the configured connection. For example, say your team hosts its repositories on Bitbucket Cloud and your team’s administrator configures one project to use Xcode Cloud. When you start using Xcode Cloud for subsequent projects that use Bitbucket Cloud, you reuse the connection to Bitbucket Cloud that your administrator configured.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To connect Xcode Cloud to an admin-managed Git Repository:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your administrator to your team if they aren’t a member.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let your administrator configure your project to use Xcode Cloud. If your repository’s administrator doesn’t have expertise developing for Apple platforms, it’s OK to let them configure your project or workspace to use Xcode Cloud and to allow the first build to fail.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start using Xcode Cloud, as discussed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below, and fix any build issues as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you host your code using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://github.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://github.com/enterprise",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", Xcode Cloud helps you work with your GitHub organization’s administrator. Start the initial configuration as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". When Xcode Cloud asks for permission to access your team’s repository, you can request that the ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "organization owner",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " or someone with the ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "admin",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " role installs the Xcode Cloud GitHub app that manages access to your team’s repositories. When the they’ve installed the app, you can complete the initial configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-app-record-in-App-Store-Connect",
+          "level": 3,
+          "text": "Create an app record in App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud combines ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/xcode/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " into a powerful CI/CD system. As a result, you need an app record for your app in App Store Connect to use Xcode Cloud. If you haven’t created an app record for your app, Xcode helps you create one when you configure your project or workspace to use Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t need to create an app record to build a framework with Xcode Cloud.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the requirements for creating an app record, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Set-up-your-App-Store-Connect-account",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you can’t create an app record, let someone who has the required role or permission create an app record in App Store Connect. Then configure your project or workspace to use Xcode Cloud as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-your-personal-SCM-account-to-Xcode-Cloud",
+          "level": 3,
+          "text": "Connect your personal SCM account to Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud uses your personal SCM account to monitor the Git repository for changes. As a result, you need to connect your Xcode Cloud to your SCM account. To do this, open a project or workspace that another team member configured to use Xcode Cloud. If you haven’t connected your personal SCM account to Xcode Cloud, Xcode displays the Cloud Issues button in the toolbar. Click the button, and authorize Xcode Cloud to link your source control account with your Apple Account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-your-personal-SCM-account-to-Xcode-Cloud",
+      "kind": "section",
+      "title": "Connect your personal SCM account to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team#Connect-your-personal-SCM-account-to-Xcode-Cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow": {
+      "abstract": [
+        {
+          "text": "Set up your project or workspace to use Xcode Cloud and adopt continuous integration and delivery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your first Xcode Cloud workflow",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Remove your project from Xcode Cloud to delete app and workflow data, disconnect your Git repository, and remove the Slack integration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing your project from Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/removing-your-project-from-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds": {
+      "abstract": [
+        {
+          "text": "Start numbering builds from a custom build number for your existing Mac app to avoid version collisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the next build number for Xcode Cloud builds",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-the-next-build-number-for-xcode-cloud-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review account, project, and source control requirements before configuring your project or workspace to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up your project to use Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-your-project-to-use-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Set-up-your-App-Store-Connect-account": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud#Set-up-your-App-Store-Connect-account",
+      "kind": "section",
+      "title": "Set up your App Store Connect account",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-your-project-to-use-xcode-cloud#Set-up-your-App-Store-Connect-account"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Use custom aliases to share configurations with multiple workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing macOS and Xcode versions across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-custom-aliases-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Apply common configurations to multiple workflows by using shared environment variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing environment variables across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-environment-variables-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Add your Swift package or Swift Playgrounds app project to an Xcode project to build it in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages and Swift Playgrounds app projects with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app": {
+      "abstract": [
+        {
+          "text": "Add text files to your Xcode project to provide notes to beta testers about what to test.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Including notes for testers with a beta release of your app",
+      "type": "topic",
+      "url": "/documentation/xcode/including-notes-for-testers-with-a-beta-release-of-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/wwdc22/110375": {
+      "identifier": "https://developer.apple.com/wwdc22/110375",
+      "title": "Deep dive into Xcode Cloud for teams",
+      "titleInlineContent": [
+        {
+          "text": "Deep dive into Xcode Cloud for teams",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110375"
+    },
+    "https://developer.apple.com/xcode/": {
+      "identifier": "https://developer.apple.com/xcode/",
+      "title": "Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode/"
+    },
+    "https://github.com": {
+      "identifier": "https://github.com",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com"
+    },
+    "https://github.com/enterprise": {
+      "identifier": "https://github.com/enterprise",
+      "title": "GitHub Enterprise",
+      "titleInlineContent": [
+        {
+          "text": "GitHub Enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/enterprise"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup-and-maintenance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+        "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud"
+      ],
+      "title": "Setup and maintenance"
+    }
+  ]
+}

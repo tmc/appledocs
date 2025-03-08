@@ -1,0 +1,1809 @@
+{
+  "abstract": [
+    {
+      "text": "Define how the Metal translator builds binary archives without precompiled binaries as a starting source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Compiling Binary Archives from a Custom Configuration Script"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating binary archives for additional GPU architectures, as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes, requires a compiled binary archive. To bypass this restriction, you can hand-author JSON configuration scripts that represent a pipeline state for the Metal translator. Hand-authoring configuration scripts gives you control over defining your pipeline states, and allows you to provide a script section of the JSON for conditional compilation on a per-architecture basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article shows you how to create a Metal translator configuration script that represents a pipeline state, as the following code example demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "static let enableRayTracing = true",
+                    "",
+                    "do {",
+                    "    // Creating a variable to mirror the static constant allows for Objective-C bridging.",
+                    "    var rayTracingBridge = enableRayTracing",
+                    "",
+                    "    let device = MTLCreateSystemDefaultDevice()",
+                    "    let library = device.makeLibrary(url: Bundle.main.url(forResource: \"render\", withExtension: \"metallib\"))",
+                    "    let archiveDescriptor = MTLBinaryArchiveDescrptor(url: Bundle.main.url(forResource: \"render.binary\", withExtension: \"metallib\"))",
+                    "    let archive = device.makeBinaryArchive(descriptor: archiveDescriptor)",
+                    "",
+                    "    let renderPipelineDescriptor = makeRenderDescriptor(library: library, archive: archive)",
+                    "    let computePipelineDescriptor = makeComputeDescriptor(library: library, archive: archive, rayTracing: &rayTracingBridge)",
+                    "}",
+                    "catch {",
+                    "    FatalError(\"Error during Metal submission: \\(error)\")",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "static const BOOL enableRayTracing = YES;",
+                    "",
+                    "MTLRenderPipelineDescriptor *makeRenderDescriptor(id<MTLLibrary>, id<MTLBinaryArchive>, NSError**);",
+                    "MTLComputePipelineDescriptor *makeComputeDescriptor(id<MTLLibrary>, id<MTLBinaryArchive>, NSError**);",
+                    "",
+                    "NSError *error = nil;",
+                    "",
+                    "id<MTLDevice> device = MTLCreateSystemDefaultDevice()",
+                    "id<MTLLibrary> library = [device newLibraryWithURL:[[NSBundle main] URLForResource:@\"render\" withExtension:@\"metallib\"]",
+                    "    error:&error];",
+                    "",
+                    "MTLBinaryArchiveDescriptor *archiveDescriptor = [[MTLBinaryArchiveDescriptor alloc] init];",
+                    "archiveDescriptor.url = [[NSBundle main] URLForResource:@\"render.binary\" withExtension:@\"metallib\"];",
+                    "id<MTLBinaryArchive> archive = [device newBinaryArchiveWithDescriptor:archiveDescriptor error:&error];",
+                    "",
+                    "MTLRenderPipelineDescriptor *renderPipelineDescrptor = makeRenderDescriptor(library, archive);",
+                    "MTLComputePipelineDescriptor *computePipelineDescriptor = makeComputeDescriptor(library, archive);"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example above includes a render pipeline with a single-stage fragment and vertex shader, as well as a compute pipeline. The library ",
+              "type": "text"
+            },
+            {
+              "code": "render.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the Metal IR for the shaders, and ",
+              "type": "text"
+            },
+            {
+              "code": "render.binary.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the binary you generate from the Metal translator. The compute kernel optonally uses ray tracing, depending on the value of ",
+              "type": "text"
+            },
+            {
+              "code": "enableRayTracing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and enabling ray tracing uses intersection functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Your-Configuration-Script-and-Add-Libraries",
+          "level": 3,
+          "text": "Create Your Configuration Script and Add Libraries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a file named ",
+              "type": "text"
+            },
+            {
+              "code": "render.mtlp-json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the same directory as ",
+              "type": "text"
+            },
+            {
+              "code": "render.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and open it in a text editor. This is the configuration script the Metal translator uses to build your described pipeline states.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "metal-tt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool requires that all configuration scripts end with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "mtlp-json",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basic format of this file is a JSON dictionary containing at least two keys, ",
+              "type": "text"
+            },
+            {
+              "code": "libraries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "libraries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key defines which compiled Metal libraries contain your compiled shaders, as an array of paths. Each path is a dictionary with a label that defines how you refer to the library in the configuration script, and a path that points to the library itself. The following code example is the start of a configuration script that sets the alias ",
+              "type": "text"
+            },
+            {
+              "code": "LibRender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the Metal library ",
+              "type": "text"
+            },
+            {
+              "code": "render.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"libraries\": {",
+            "    \"paths\": [",
+            "      {",
+            "        \"label\": \"LibRender\",",
+            "        \"path\": \"./render.metallib\"",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Render-Pipeline-States",
+          "level": 3,
+          "text": "Add Render Pipeline States",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each pipeline in your configuration script needs a reference to shader functions and information about your app’s pipeline state when Metal invokes them. Any optional property that you omit from a pipeline description in the configuration script uses its default value, just as with a pipeline state descriptor instance in code. The code example below creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for both a ",
+              "type": "text"
+            },
+            {
+              "code": "vertexFunction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentFunction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This render pipeline also uses a nondefault ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pixel format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func makeRenderDescriptor(library: MTLLibrary, archive: MTLBinaryArchive) throws -> MTLRenderPipelineDescriptor {",
+                    "    let vertexFunctionDescriptor = MTLFunctionDescriptor()",
+                    "    vertexFunctionDescriptor.name = \"vertexShader\"",
+                    "    vertexFunctionDescriptor.binaryArchives = [ archive ]",
+                    "    let vertexFunction = library.makeFunction(descriptor: vertexFunctionDescriptor)",
+                    "",
+                    "    let fragmentFunctionDescriptor = MTLFunctionDescriptor()",
+                    "    fragmentFunctionDescriptor.name = \"fragmentShader\"",
+                    "    fragmentFunctionDescriptor.binaryArchives = [ archive ]",
+                    "    let fragmentFunction = library.makeFunction(descriptor: fragmentFunctionDescriptor)",
+                    "",
+                    "    let renderPipelineDescriptor = MTLRenderPipelineDescriptor()",
+                    "    renderPipelineDescriptor.vertexFunction = vertexFunction",
+                    "    renderPipelineDescriptor.fragmentFunction = fragmentFunction",
+                    "    renderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm",
+                    "    renderPipelineDescriptor.binaryArchives = [ archive ]",
+                    "",
+                    "    return renderPipelineDescriptor",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPipelineDescriptor *makeRenderDescriptor(id<MTLLibrary> library, id<MTLBinaryArchive> archive, NSError** error) {",
+                    "    MTLFunctionDescriptor* vertexDescriptor = [[MTLFunctionDescriptor alloc] init];",
+                    "    vertexDescriptor.name = @\"vertexShader\";",
+                    "    vertexDescriptor.binaryArchives = @[ archive ];",
+                    "    id<MTLFunction> vertexFunction = [library newFunctionWithDescriptor:descriptor error:error];",
+                    "",
+                    "    MTLFunctionDescriptor *fragmentDescriptor = [[MTLFunctionDescriptor alloc] init];",
+                    "    fragmentDescriptor.name = @\"fragmentShader\";",
+                    "    fragmentDescriptor.binaryArchives = @[ archive ];",
+                    "    id<MTLFunction> fragmentFunction = [library newFunctionWithDescriptor:descriptor error:error];",
+                    "",
+                    "    MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+                    "    pipelineStateDescriptor.vertexFunction = vertexFunction;",
+                    "    pipelineStateDescriptor.fragmentFunction = fragmentFunction;",
+                    "    pipelineStateDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;",
+                    "",
+                    "    return pipelineStateDescriptor",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your translator configuration script, the top-level ",
+              "type": "text"
+            },
+            {
+              "code": "pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains the definition for each pipeline. Inside this dictionary, the ",
+              "type": "text"
+            },
+            {
+              "code": "render_pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key contains an array of dictionaries describing your render pipelines. Function references use a format of ",
+              "type": "text"
+            },
+            {
+              "code": "alias:<library name>#<function name>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dictionaries describing render pipelines need both a ",
+              "type": "text"
+            },
+            {
+              "code": "vertex_function",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "fragment_function",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. The following code example is the JSON configuration script representation of the code above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"libraries\": {",
+            "    \"paths\": [",
+            "      {",
+            "        \"label\": \"LibRender\",",
+            "        \"path\": \"./render.metallib\"",
+            "      }",
+            "    ]",
+            "  },",
+            "  \"pipelines\": {",
+            "    \"render_pipelines\": [",
+            "      {",
+            "        \"vertex_function\": \"alias:LibRender#vertexShader\",",
+            "        \"fragment_function\": \"alias:LibRender#fragmentShader\",",
+            "        \"color_attachments\": [",
+            "          {",
+            "            \"pixel_format\": \"BGRA8Unorm\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Full documentation of the configuration script format, including how to conditionally control compilation to binary, is available by running ",
+                  "type": "text"
+                },
+                {
+                  "code": "man metal-pipelines-script",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Terminal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Compute-Pipeline-States-with-Visible-and-Intersection-Functions",
+          "level": 3,
+          "text": "Add Compute Pipeline States with Visible and Intersection Functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code example, the compute kernel uses the ray-tracing intersection function ",
+              "type": "text"
+            },
+            {
+              "code": "sphereIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the visible function ",
+              "type": "text"
+            },
+            {
+              "code": "evaluateGeometry",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func makeComputeDescriptor(library: MTLLibrary, archive: archive, rayTracing: UnsafePointer<Bool>) throws -> MTLComputePipelineDescriptor {",
+                    "    let sphereFuncDescriptor = MTLFunctionDescriptor()",
+                    "    sphereFuncDescriptor.name = \"sphereIntersection\"",
+                    "    sphereFuncDescriptor.binaryArchives = [ archive ]",
+                    "    let sphereFunc = library.makeFunction(descriptor: sphereFuncDescriptor)",
+                    "",
+                    "    let geometryFuncDescriptor = MTLFunctionDescriptor()",
+                    "    geometryFuncDescriptor.name = \"evaluateGeometry\"",
+                    "    geometryFuncDescriptor.binaryArchives = [ archive ]",
+                    "    let geometryFunc = library.makeFunction(descriptor: geometryFuncDescriptor)",
+                    "",
+                    "    let linkedFunctions = MTLLinkedFunctions()",
+                    "    linkedFunctions.functions = [sphereFunc, geometryFunc]",
+                    "    linkedFunctions.binaryFunctions = [sphereFunc, geometryFunc]",
+                    "",
+                    "    // The code example continues below."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLComputePipelineDescriptor* makeComputeDescriptor(id<MTLLibrary> library, id<MTLBinaryArchive> archive, NSError** error) {",
+                    "    fd.name = \"sphereIntersection\";",
+                    "    fd.options = MTLFunctionOptionCompileToBinary;",
+                    "    id<MTLFunction> sphereIntersectionFunction = [library newFunctionWithDescriptor:fd error:&error];",
+                    "",
+                    "    fd.name = \"evaluateGeometry\";",
+                    "    id<MTLFunction> evalGeometry = [library newFunctionWithDescriptor:fd error:&error];",
+                    "",
+                    "    MTLLinkedFunctions *mtlLinkedFunctions = [MTLLinkedFunctions new];",
+                    "    mtlLinkedFunctions.binaryFunctions = @[sphereIntersectionFunction, evalGeometry];",
+                    "",
+                    "    // The code example continues below."
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add ",
+              "type": "text"
+            },
+            {
+              "code": "sphereIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "evaluateGeometry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your binary archive, modify the top-level ",
+              "type": "text"
+            },
+            {
+              "code": "functions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your configuration script. This key’s value is a dictionary that describes the functions available to the Metal translator during compilation. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "intersection_functions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key for your intersection functions, and the v",
+              "type": "text"
+            },
+            {
+              "code": "isible_functions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key for visible functions. Each of these keys has an array of dictionaries containing the ",
+              "type": "text"
+            },
+            {
+              "code": "function",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, which holds a reference to the function your shaders call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example is the JSON configuration script representation of the code above for a compute kernel named ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Add the ",
+              "type": "text"
+            },
+            {
+              "code": "compute_pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key and value to your existing ",
+              "type": "text"
+            },
+            {
+              "code": "pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from adding the render pipeline, along with the new ",
+              "type": "text"
+            },
+            {
+              "code": "functions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"pipelines\": {",
+            "    \"compute_pipelines\": [",
+            "      {",
+            "        \"compute_function\": \"alias:LibRender#rayTracingKernel\",",
+            "        \"linked_functions\": {",
+            "          \"binary_functions\": [",
+            "            \"sphereIntersection\",",
+            "            \"evaluateGeometry\"",
+            "          ]",
+            "        }",
+            "      }",
+            "    ]",
+            "  },",
+            "  \"functions\": {",
+            "    \"intersection_functions\": [",
+            "      {",
+            "        \"function\": \"alias:LibRender#sphereIntersection\"",
+            "      }",
+            "    ],",
+            "    \"visible_functions\": [",
+            "      {",
+            "        \"function\": \"alias:LibRender#evaluateGeometry\"",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use function names in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "binary_functions",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array, not function aliases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Specialization-Constants-for-Your-Compute-Pipeline",
+          "level": 3,
+          "text": "Add Specialization Constants for Your Compute Pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this article’s code examples, the ",
+              "type": "text"
+            },
+            {
+              "code": "enableRayTracing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant controls whether the compute kernel uses ray-tracing support. In your app, you use ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the compute kernel’s name, but each constant specializes the function to a single binary representation that has its own name. The following code example sets the specialized function names ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingWithIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingNoIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", depending on the value of ",
+              "type": "text"
+            },
+            {
+              "code": "enableRayTracing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // Continuing from the code example above.",
+                    "    let computeSpecialization = MTLFunctionConstantValues()",
+                    "    computeSpecialization.setConstantValue(&rayTracingBridge, type: .bool, index: 0)",
+                    "",
+                    "    let rayTracingDescriptor: MTLFunctionDescriptor",
+                    "    rayTracingDescriptor.name = \"rayTracingKernel\"",
+                    "    rayTracingDescriptor.constantValues = computeSpecialization",
+                    "    rayTracingDescriptor.specializedName = enableRayTracing ? \"rayTracingWithIntersection\" : \"rayTracingNoIntersection\"",
+                    "    rayTracingDescriptor.binaryArchives = [ archive ]",
+                    "",
+                    "    let rayTracingKernel = library.makeFunction(descriptor: rayTracingDescriptor)",
+                    "",
+                    "    let computeDescriptor = MTLComputePipelineDescriptor()",
+                    "    computeDescriptor.computeFunction = rayTracingKernel",
+                    "    computeDescriptor.linkedFunctions = linkedFunctions",
+                    "    computeDescriptor.binaryArchives = [ archive ]",
+                    "",
+                    "    return computeDescriptor",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // Continuing from the code example above.    ",
+                    "    MTLFunctionConstantValues* computeSpecialization = [[MTLFunctionConstantValues alloc] init];",
+                    "    [computeSpecialization setConstantValue:&enableRayTracing type:MTLDataTypeBool atIndex:0];",
+                    "",
+                    "    MTLFunctionDescriptor *rayTracingDescriptor = [[MTLFunctionDescriptor alloc] init];",
+                    "    rayTracingDescriptor.name = @\"rayTracingKernel\";",
+                    "    rayTracingDescriptor.constantValues = computeSpecialization;",
+                    "    rayTracingDescriptor.binaryArchives = @[archive];",
+                    "",
+                    "    id<MTLFunction> rayTracingKernel = [library newFunctionWithDescriptor:rayTracingDescriptor error:&error];",
+                    "",
+                    "    MTLComputePipelineDescriptor *descriptor = [MTLComputePipelineDescriptor new];",
+                    "    descriptor.computeFunction = rayTracingKernel;",
+                    "    descriptor.threadGroupSizeIsMultipleOfThreadExecutionWidth = YES;",
+                    "    descriptor.linkedFunctions = mtlLinkedFunctions;",
+                    "    computeDescriptor.binaryArchives = @[ archive ];",
+                    "",
+                    "    return descriptor;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your Metal pipeline state contains any constants shaders use, so your JSON configuration script needs to map these constants to a specialized function name. In a Metal translator JSON configuration script, each constant has an ",
+              "type": "text"
+            },
+            {
+              "code": "id_type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that defines how the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resolves in your app. Constants also have a ",
+              "type": "text"
+            },
+            {
+              "code": "value_type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that defines the type of the constant, and a ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that provides the constant itself. When Metal doesn’t find a specialized function for a constant, the system falls back to compile shaders from Metal IR.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each constant value is for a ",
+              "type": "text"
+            },
+            {
+              "code": "FunctionConstantName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the identifier ",
+              "type": "text"
+            },
+            {
+              "code": "useIntersectionFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a type of ",
+              "type": "text"
+            },
+            {
+              "code": "ConstantBool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The only difference between the two specialized functions ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingWithIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingNoIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the ",
+              "type": "text"
+            },
+            {
+              "code": "value.data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, which is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingWithIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "rayTracingNoIntersection",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example is the JSON configuration script representation of the code above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"specialized_functions\":[",
+            "      {",
+            "        \"label\": \"rayTracingWithIntersection\",",
+            "        \"function\": \"alias:LibRender#rayTracingKernel\",",
+            "        \"constant_values\": [",
+            "          {",
+            "            \"id_type\": \"FunctionConstantName\",",
+            "            \"id\": \"useIntersectionFunctions\",",
+            "            \"value_type\": \"ConstantBool\",",
+            "            \"value\": {",
+            "              \"data\": true",
+            "            }",
+            "          }",
+            "        ]",
+            "      },",
+            "      {",
+            "        \"label\": \"rayTracingNoIntersection\",",
+            "        \"function\": \"alias:LibRender#rayTracingKernel\",",
+            "        \"constant_values\": [",
+            "          {",
+            "            \"id_type\": \"FunctionConstantName\",",
+            "            \"id\": \"useIntersectionFunctions\",",
+            "            \"value_type\": \"ConstantBool\",",
+            "            \"value\": {",
+            "              \"data\": false",
+            "            }",
+            "          }",
+            "        ]",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to including the specialized function definitions for your libraries, provide a separate ",
+              "type": "text"
+            },
+            {
+              "code": "pipelines.compute_pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry for each specialized kernel. Use the label of each specialized function definition, along with the name of your kernel, to refer to the specialization in your configuration script. Write aliases for specialized functions using the format of ",
+              "type": "text"
+            },
+            {
+              "code": "alias:<specialization>#<function name>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modify the existing ",
+              "type": "text"
+            },
+            {
+              "code": "compile_pipelines",
+              "type": "codeVoice"
+            },
+            {
+              "text": " section from the JSON configuration script examples to contain the specializations for your compute pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"pipelines\": {",
+            "    \"compute_pipelines\": [",
+            "      {",
+            "        \"compute_function\": \"alias:rayTracingWithIntersection#rayTracingKernel\",",
+            "        \"linked_functions\": {",
+            "          \"binary_functions\": [",
+            "            \"sphereIntersection\",",
+            "            \"evaluateGeometry\"",
+            "          ]",
+            "        }",
+            "      },",
+            "      {",
+            "        \"compute_function\": \"alias:rayTracingNoIntersection#rayTracingKernel\",",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Compile-Binary-Archives",
+          "level": 3,
+          "text": "Compile Binary Archives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the Metal IR library and a configuration script that describes a pipeline state matching your app’s code, the Metal translator can compile GPU-specific binaries for any device that supports Metal. In Terminal, run the following ",
+              "type": "text"
+            },
+            {
+              "code": "metal-tt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to build for GPUs targeting iOS 16:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk iphoneos metal-tt render.metallib render.mtlp-json -o render.binary.metallib -target air64-apple-ios16.0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, ",
+              "type": "text"
+            },
+            {
+              "code": "metal-tt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiles for all GPU architectures the target triple supports. Run the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool in Terminal to confirm the binary archive’s contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun metal-lipo render.binary.metallib -archs",
+            "applegpu_g10p applegpu_g5p applegpu_g9p applegpu_g9g applegpu_g11p applegpu_g12p applegpu_g13p applegpu_g13g applegpu_g14p applegpu_g14g applegpu_g16p applegpu_g15p"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-the-Compiled-Binary-Archive-to-Your-App",
+          "level": 3,
+          "text": "Add the Compiled Binary Archive to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use your compiled Metal binary archive, you need to add it to your Xcode project’s bundle resources. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "precompiled.binary.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " archive to your project’s Copy Bundle Resources build phase. For instructions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Select the “Copy items if needed” checkbox to ensure the created archive is in your project, and the system doesn’t overwrite or delete it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, load binary archives by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and add the resulting instances to your pipeline state descriptor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor/binaryArchives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For specialized, visible, and intersection functions, load them into an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor/binaryArchives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The code examples throughout this article include sections for linking binary archives when a function has a precompiled shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source files to compile, the scripts to run, and the resources to include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/Xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a Metal binary archive instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBinaryArchive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLBinaryArchiveDescriptor",
+          "text": "MTLBinaryArchiveDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBinaryArchive",
+          "text": "MTLBinaryArchive"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBinaryArchiveWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBinaryArchive(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makebinaryarchive(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a function object to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctiondescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor/binaryArchives": {
+      "abstract": [
+        {
+          "text": "The binary archives to search for a previously-compiled version of this function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "binaryArchives"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBinaryArchive",
+          "text": "MTLBinaryArchive"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionDescriptor/binaryArchives",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "binaryArchives"
+        }
+      ],
+      "role": "symbol",
+      "title": "binaryArchives",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctiondescriptor/binaryarchives"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm": {
+      "abstract": [
+        {
+          "text": "Ordinary format with four 8-bit normalized unsigned integer components in BGRA order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgra8Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGRA8Unorm"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra8Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgra8unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects": {
+      "abstract": [
+        {
+          "text": "Write your Metal pipeline states to a binary archive at app runtime, and build binaries for any supported GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Binary Archives from Device-Built Pipeline State Objects",
+      "type": "topic",
+      "url": "/documentation/metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+    },
+    "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Split precompiled binaries into individual slices, and combine them back together for targeted distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/manipulating-metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Distribute precompiled GPU-specific binaries as part of your app to avoid runtime compilation of Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-binary-archives",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Metal-Binary-Archives",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+        "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives"
+      ],
+      "title": "Working with Metal Binary Archives"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Binary-Archives",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+                "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives"
+              ],
+              "title": "Working with Metal Binary Archives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/title",
+          "value": "MTLFunctionDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBinaryArchive(descriptor:)/title",
+          "value": "newBinaryArchiveWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBinaryArchive(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBinaryArchiveWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor~1binaryArchives/title",
+          "value": "binaryArchives"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionDescriptor~1binaryArchives/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "binaryArchives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra8Unorm/title",
+          "value": "MTLPixelFormatBGRA8Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra8Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGRA8Unorm"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/compiling-binary-archives-from-a-custom-configuration-script"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/compiling-binary-archives-from-a-custom-configuration-script"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

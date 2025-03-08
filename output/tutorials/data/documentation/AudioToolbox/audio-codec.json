@@ -1,0 +1,3181 @@
+{
+  "abstract": [
+    {
+      "text": "Translate audio data from one format to another.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Codec"
+  },
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494050-audio-codec-delay-modes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494050-audio-codec-delay-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Delay Modes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494050-audio-codec-delay-modes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494068-audio-codec-properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494068-audio-codec-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494068-audio-codec-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494074-audio-codec-routine-selectors": {
+      "abstract": [
+        {
+          "text": "Selectors used by the Component Manager to call routines implemented by the codec and exposed to developers through the Audio Codec Services API. These selectors are for use by codec developers; if you are calling Audio Codec Services functions, you don’t need to use these constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494074-audio-codec-routine-selectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Routine Selectors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494074-audio-codec-routine-selectors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494076-audio-codec-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494076-audio-codec-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494076-audio-codec-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494094-dynamic-range-control-modes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494094-dynamic-range-control-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dynamic Range Control Modes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494094-dynamic-range-control-modes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494111-instance-codec-properties": {
+      "abstract": [
+        {
+          "text": "Properties that can be set or read on an instance of the audio codec.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494111-instance-codec-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Instance Codec Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494111-instance-codec-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494116-program-target-levels": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494116-program-target-levels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Program Target Levels",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494116-program-target-levels"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494121-global-codec-properties": {
+      "abstract": [
+        {
+          "text": "These read-only properties disclose the capabilities of the codec and remain the same for all instances of the codec.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494121-global-codec-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Global Codec Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494121-global-codec-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494122-output-status-constants": {
+      "abstract": [
+        {
+          "text": "Status values returned from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPackets(_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494122-output-status-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Output Status Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494122-output-status-constants"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494127-audio-codec-delays": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494127-audio-codec-delays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Delays",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494127-audio-codec-delays"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494130-audio-codec-quality-constants": {
+      "abstract": [
+        {
+          "text": "Sound quality settings to be used with the property ",
+          "type": "text"
+        },
+        {
+          "code": "kAudioCodecPropertyQualitySetting",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494130-audio-codec-quality-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Quality Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494130-audio-codec-quality-constants"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494144-bit-rate-control-mode-constants": {
+      "abstract": [
+        {
+          "text": "Bit rate control modes to be used with ",
+          "type": "text"
+        },
+        {
+          "code": "kAudioCodecPropertyBitRateControlMode",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494144-bit-rate-control-mode-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bit Rate Control Mode Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494144-bit-rate-control-mode-constants"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494154-audio-codec-priming-method-const": {
+      "abstract": [
+        {
+          "text": "Values used with ",
+          "type": "text"
+        },
+        {
+          "code": "kAudioCodecPropertyPrimeMethod",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494154-audio-codec-priming-method-const",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec Priming Method Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1494154-audio-codec-priming-method-const"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodec": {
+      "abstract": [
+        {
+          "text": "An instance of a Component Manager component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodec"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodec",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodec"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodec",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodec"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferList(_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputBufferList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferList(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputBufferList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecAppendInputBufferList(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecappendinputbufferlist(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferListProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputBufferListProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferListProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputBufferListProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecAppendInputBufferListProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecappendinputbufferlistproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputData(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Appends audio data to the codec’s input buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputData(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecAppendInputData(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecappendinputdata(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputDataProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputDataProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputDataProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecAppendInputDataProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecAppendInputDataProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecappendinputdataproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the value of a codec property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodecPropertyID",
+          "text": "AudioCodecPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecGetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecgetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves information about a codec property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodecPropertyID",
+          "text": "AudioCodecPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecGetPropertyInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecgetpropertyinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfoProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyInfoProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfoProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyInfoProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecGetPropertyInfoProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecgetpropertyinfoproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecGetPropertyProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecGetPropertyProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecgetpropertyproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitialize(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets up the specified codec to perform a data format translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecInitialize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitialize(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecInitialize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecInitialize(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecinitialize(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitializeProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecInitializeProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitializeProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecInitializeProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecInitializeProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecinitializeproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecMagicCookieInfo": {
+      "abstract": [
+        {
+          "text": "A structure holding magic cookie information needed by some codecs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecMagicCookieInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecMagicCookieInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecMagicCookieInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecMagicCookieInfo",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecmagiccookieinfo"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPrimeInfo": {
+      "abstract": [
+        {
+          "text": "A structure specifying the number of leading and trailing empty frames to be inserted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecPrimeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPrimeInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecPrimeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecPrimeInfo",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecprimeinfo"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferList(_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputBufferList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferList(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputBufferList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecProduceOutputBufferList(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecproduceoutputbufferlist(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferListProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputBufferListProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferListProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputBufferListProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecProduceOutputBufferListProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecproduceoutputbufferlistproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPackets(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves output data from a codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputPackets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPackets(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputPackets"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecProduceOutputPackets(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecproduceoutputpackets(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPacketsProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputPacketsProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPacketsProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecProduceOutputPacketsProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecProduceOutputPacketsProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecproduceoutputpacketsproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPropertyID": {
+      "abstract": [
+        {
+          "text": "An integer identifying an audio codec property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecPropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecPropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecpropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecReset(_:)": {
+      "abstract": [
+        {
+          "text": "Flushes all the audio data in the codec and clears the input buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecReset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecReset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecReset(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecreset(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecResetProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecResetProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecResetProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecResetProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecResetProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecresetproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of a codec property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodecPropertyID",
+          "text": "AudioCodecPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecSetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecsetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetPropertyProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecSetPropertyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetPropertyProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecSetPropertyProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecSetPropertyProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecsetpropertyproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitialize(_:)": {
+      "abstract": [
+        {
+          "text": "Moves the codec from the initialized state back to the uninitialized state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecUninitialize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioCodec",
+          "text": "AudioCodec"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitialize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecUninitialize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecUninitialize(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecuninitialize(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitializeProc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioCodecUninitializeProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitializeProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioCodecUninitializeProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioCodecUninitializeProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocodecuninitializeproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSettingsFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioSettingsFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSettingsFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioSettingsFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioSettingsFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiosettingsflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments": {
+      "abstract": [
+        {
+          "text": "Ensure a smooth and immersive audio experience in your apps using Audio System Trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing audio performance with Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/analyzing-audio-performance-with-instruments"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services": {
+      "abstract": [
+        {
+          "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-converter-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support": {
+      "abstract": [
+        {
+          "text": "Describe the properties that you associate with audio sessions and audio routes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Support",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-session-support"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging": {
+      "abstract": [
+        {
+          "text": "Obtain the internal state of Core Audio objects during the development and debugging of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Toolbox Debugging",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-toolbox-debugging"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities": {
+      "abstract": [
+        {
+          "text": "Manage time-related information associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clock Utilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/clock-utilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_AvailableValues": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_AvailableValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_AvailableValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_AvailableValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_AvailableValues",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_availablevalues"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_CurrentValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_CurrentValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_CurrentValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_CurrentValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_CurrentValue",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_currentvalue"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Hint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Hint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Hint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Hint"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_Hint",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_hint"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_LimitedValues": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_LimitedValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_LimitedValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_LimitedValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_LimitedValues",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_limitedvalues"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Parameters": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Parameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Parameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_SettingKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_SettingKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_SettingKey",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_settingkey"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_SettingName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_SettingName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_SettingName",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_settingname"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Summary": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Summary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Summary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Summary"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_Summary",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_summary"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_TopLevelKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_TopLevelKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_TopLevelKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_TopLevelKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_TopLevelKey",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_toplevelkey"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Unit": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Unit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Unit"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_Unit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_unit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_ValueType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_ValueType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_ValueType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_ValueType"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_ValueType",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_valuetype"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Version": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Version",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSettings_Version"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSettings_Version",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosettings_version"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-an-Audio-Codec",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitialize(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecReset(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitialize(_:)"
+      ],
+      "title": "Initializing an Audio Codec"
+    },
+    {
+      "anchor": "Configuring-Buffers",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferList(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferList(_:_:_:_:_:)"
+      ],
+      "title": "Configuring Buffers"
+    },
+    {
+      "anchor": "Accessing-the-Data",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputData(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPackets(_:_:_:_:_:_:)"
+      ],
+      "title": "Accessing the Data"
+    },
+    {
+      "anchor": "Accessing-Codec-Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetProperty(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfo(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetProperty(_:_:_:_:)"
+      ],
+      "title": "Accessing Codec Properties"
+    },
+    {
+      "anchor": "Codec-Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecMagicCookieInfo",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPrimeInfo",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodec",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferListProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputDataProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfoProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitializeProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferListProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPacketsProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecResetProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetPropertyProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitializeProc"
+      ],
+      "title": "Codec Types"
+    },
+    {
+      "anchor": "Audio-Settings",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSettingsFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_AvailableValues",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_CurrentValue",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Hint",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_LimitedValues",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Parameters",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingKey",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingName",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Summary",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_TopLevelKey",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Unit",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_ValueType",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Version"
+      ],
+      "title": "Audio Settings"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494122-output-status-constants",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494116-program-target-levels",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494094-dynamic-range-control-modes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494144-bit-rate-control-mode-constants",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494121-global-codec-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494111-instance-codec-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494154-audio-codec-priming-method-const",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494130-audio-codec-quality-constants",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494074-audio-codec-routine-selectors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494127-audio-codec-delays",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494050-audio-codec-delay-modes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494068-audio-codec-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494076-audio-codec-errors"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-an-Audio-Codec",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitialize(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecReset(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitialize(_:)"
+              ],
+              "title": "Initializing an Audio Codec"
+            },
+            {
+              "anchor": "Configuring-Buffers",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferList(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferList(_:_:_:_:_:)"
+              ],
+              "title": "Configuring Buffers"
+            },
+            {
+              "anchor": "Accessing-the-Data",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputData(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPackets(_:_:_:_:_:_:)"
+              ],
+              "title": "Accessing the Data"
+            },
+            {
+              "anchor": "Accessing-Codec-Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetProperty(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfo(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetProperty(_:_:_:_:)"
+              ],
+              "title": "Accessing Codec Properties"
+            },
+            {
+              "anchor": "Codec-Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecMagicCookieInfo",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPrimeInfo",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodec",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputBufferListProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecAppendInputDataProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyInfoProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecGetPropertyProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecInitializeProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputBufferListProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecProduceOutputPacketsProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecPropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecResetProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecSetPropertyProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioCodecUninitializeProc"
+              ],
+              "title": "Codec Types"
+            },
+            {
+              "anchor": "Audio-Settings",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSettingsFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_AvailableValues",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_CurrentValue",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Hint",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_LimitedValues",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Parameters",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingKey",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_SettingName",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Summary",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_TopLevelKey",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Unit",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_ValueType",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSettings_Version"
+              ],
+              "title": "Audio Settings"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494122-output-status-constants",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494116-program-target-levels",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494094-dynamic-range-control-modes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494144-bit-rate-control-mode-constants",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494121-global-codec-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494111-instance-codec-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494154-audio-codec-priming-method-const",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494130-audio-codec-quality-constants",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494074-audio-codec-routine-selectors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494127-audio-codec-delays",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494050-audio-codec-delay-modes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494068-audio-codec-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1494076-audio-codec-errors"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Utilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Version/title",
+          "value": "kAudioSettings_Version"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Version/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_Version"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecInitializeProc/title",
+          "value": "AudioCodecInitializeProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecInitializeProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecInitializeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecInitializeProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecInitializeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPrimeInfo/title",
+          "value": "AudioCodecPrimeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPrimeInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPrimeInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyInfoProc/title",
+          "value": "AudioCodecGetPropertyInfoProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyInfoProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetPropertyInfoProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyInfoProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetPropertyInfoProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_TopLevelKey/title",
+          "value": "kAudioSettings_TopLevelKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_TopLevelKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_TopLevelKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyProc/title",
+          "value": "AudioCodecGetPropertyProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetPropertyProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetPropertyProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecSetPropertyProc/title",
+          "value": "AudioCodecSetPropertyProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecSetPropertyProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecSetPropertyProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecSetPropertyProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecSetPropertyProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputBufferListProc/title",
+          "value": "AudioCodecAppendInputBufferListProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputBufferListProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputBufferListProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputBufferListProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputBufferListProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputPackets(_:_:_:_:_:_:)/title",
+          "value": "AudioCodecProduceOutputPackets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputPackets(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputPackets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecInitialize(_:_:_:_:_:)/title",
+          "value": "AudioCodecInitialize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecInitialize(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecInitialize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecResetProc/title",
+          "value": "AudioCodecResetProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecResetProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecResetProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecResetProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecResetProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_SettingName/title",
+          "value": "kAudioSettings_SettingName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_SettingName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_SettingName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Parameters/title",
+          "value": "kAudioSettings_Parameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Parameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_Parameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyInfo(_:_:_:_:)/title",
+          "value": "AudioCodecGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetPropertyInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecReset(_:)/title",
+          "value": "AudioCodecReset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecReset(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecReset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Summary/title",
+          "value": "kAudioSettings_Summary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Summary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_Summary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_SettingKey/title",
+          "value": "kAudioSettings_SettingKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_SettingKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_SettingKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecUninitializeProc/title",
+          "value": "AudioCodecUninitializeProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecUninitializeProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecUninitializeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecUninitializeProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecUninitializeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputBufferListProc/title",
+          "value": "AudioCodecProduceOutputBufferListProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputBufferListProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputBufferListProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputBufferListProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputBufferListProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputPacketsProc/title",
+          "value": "AudioCodecProduceOutputPacketsProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputPacketsProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputPacketsProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputPacketsProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputPacketsProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Unit/title",
+          "value": "kAudioSettings_Unit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Unit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_Unit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPropertyID/title",
+          "value": "AudioCodecPropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecPropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputBufferList(_:_:_:_:_:)/title",
+          "value": "AudioCodecProduceOutputBufferList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecProduceOutputBufferList(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecProduceOutputBufferList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecMagicCookieInfo/title",
+          "value": "AudioCodecMagicCookieInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecMagicCookieInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecMagicCookieInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecMagicCookieInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecMagicCookieInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetProperty(_:_:_:_:)/title",
+          "value": "AudioCodecGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecGetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_ValueType/title",
+          "value": "kAudioSettings_ValueType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_ValueType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_ValueType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecSetProperty(_:_:_:_:)/title",
+          "value": "AudioCodecSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecSetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodec/title",
+          "value": "AudioCodec"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodec/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodec"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodec/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodec"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_AvailableValues/title",
+          "value": "kAudioSettings_AvailableValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_AvailableValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_AvailableValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputDataProc/title",
+          "value": "AudioCodecAppendInputDataProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputDataProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputDataProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputDataProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSettingsFlags/title",
+          "value": "AudioSettingsFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSettingsFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSettingsFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSettingsFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSettingsFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_LimitedValues/title",
+          "value": "kAudioSettings_LimitedValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_LimitedValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_LimitedValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputBufferList(_:_:_:_:_:)/title",
+          "value": "AudioCodecAppendInputBufferList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputBufferList(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputBufferList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Hint/title",
+          "value": "kAudioSettings_Hint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_Hint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_Hint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecUninitialize(_:)/title",
+          "value": "AudioCodecUninitialize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecUninitialize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecUninitialize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputData(_:_:_:_:_:)/title",
+          "value": "AudioCodecAppendInputData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioCodecAppendInputData(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioCodecAppendInputData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_CurrentValue/title",
+          "value": "kAudioSettings_CurrentValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSettings_CurrentValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSettings_CurrentValue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-codec"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-codec"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

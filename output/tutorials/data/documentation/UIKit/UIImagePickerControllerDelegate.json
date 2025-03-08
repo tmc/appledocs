@@ -1,0 +1,1469 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that your delegate object must implement to interact with the image picker interface.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIImagePickerControllerDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIImagePickerControllerDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIImagePickerControllerDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIImagePickerControllerDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods of this protocol notify your delegate when the user either picks an image or movie, or cancels the picker operation. The delegate methods are responsible for dismissing the picker when the operation completes. To dismiss the picker, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the parent controller responsible for displaying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To save a still image to the user’s Camera Roll album, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function from within the body of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To save a movie to the user’s Camera Roll album, instead call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. These functions, described in ",
+              "type": "text"
+            },
+            {
+              "code": "UIKit Functions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", save the image or movie only; they don’t save metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write additional metadata when saving an image to the Camera Roll, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class from the Photos framework. See the description for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/mediaMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAssetChangeRequest",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetChangeRequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey": {
+      "abstract": [
+        {
+          "text": "Keys you use to retrieve information from the editing dictionary about the media that the user selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.InfoKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/infokey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/mediaMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata for a newly-captured photograph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIImagePickerControllerInfoKey",
+          "text": "InfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/mediaMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerMediaMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaMetadata",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/infokey/mediametadata"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate": {
+      "abstract": [
+        {
+          "text": "The image picker’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIImagePickerControllerDelegate",
+          "text": "UIImagePickerControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UINavigationControllerDelegate",
+          "text": "UINavigationControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that your delegate object must implement to interact with the image picker interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user picked a still image or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishPickingMediaWithInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIImagePickerControllerInfoKey",
+          "text": "InfoKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePickerController:didFinishPickingMediaWithInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller(_:didfinishpickingmediawithinfo:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController:didFinishPickingImage:editingInfo:": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user picked an image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePickerController:didFinishPickingImage:editingInfo:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController:didFinishPickingImage:editingInfo:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePickerController:didFinishPickingImage:editingInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePickerController:didFinishPickingImage:editingInfo:",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller:didfinishpickingimage:editinginfo:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user canceled the pick operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imagePickerControllerDidCancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imagePickerControllerDidCancel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "imagePickerControllerDidCancel(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontrollerdidcancel(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified image to the user’s Camera Roll album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageWriteToSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageWriteToSavedPhotosAlbum"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagewritetosavedphotosalbum(_:_:_:_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the movie from the specified path to the user’s Camera Roll album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISaveVideoAtPathToSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISaveVideoAtPathToSavedPhotosAlbum"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisavevideoatpathtosavedphotosalbum(_:_:_:_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissViewControllerAnimated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-interactions-with-the-picker",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate"
+      ],
+      "title": "Responding to interactions with the picker"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Closing-the-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)"
+      ],
+      "title": "Closing the picker"
+    },
+    {
+      "anchor": "Getting-the-editing-information",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey"
+      ],
+      "title": "Getting the editing information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIImagePickerControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Closing-the-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController(_:didFinishPickingMediaWithInfo:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerControllerDidCancel(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate/imagePickerController:didFinishPickingImage:editingInfo:"
+              ],
+              "title": "Closing the picker"
+            },
+            {
+              "anchor": "Getting-the-editing-information",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey"
+              ],
+              "title": "Getting the editing information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-interactions-with-the-picker",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate"
+              ],
+              "title": "Responding to interactions with the picker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIImagePickerControllerDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey~1mediaMetadata/title",
+          "value": "UIImagePickerControllerMediaMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey~1mediaMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerMediaMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey/title",
+          "value": "UIImagePickerControllerInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerController(_:didFinishPickingMediaWithInfo:)/title",
+          "value": "imagePickerController:didFinishPickingMediaWithInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerController(_:didFinishPickingMediaWithInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imagePickerController:didFinishPickingMediaWithInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHChangeRequest",
+              "text": "PHChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerControllerDidCancel(_:)/title",
+          "value": "imagePickerControllerDidCancel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate~1imagePickerControllerDidCancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imagePickerControllerDidCancel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)/title",
+          "value": "UISaveVideoAtPathToSavedPhotosAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISaveVideoAtPathToSavedPhotosAlbum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/title",
+          "value": "UIImagePickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/title",
+          "value": "UIImagePickerControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageWriteToSavedPhotosAlbum(_:_:_:_:)/title",
+          "value": "UIImageWriteToSavedPhotosAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageWriteToSavedPhotosAlbum(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageWriteToSavedPhotosAlbum"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiimagepickercontrollerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiimagepickercontrollerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

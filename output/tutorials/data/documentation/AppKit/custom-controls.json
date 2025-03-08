@@ -1,0 +1,1865 @@
+{
+  "abstract": [
+    {
+      "text": "Support accessibility for custom user interface elements by adopting a role-specific protocol and implementing its methods.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/custom-controls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Custom Controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Role-specific accessibility protocols represent the most common control types found in apps. Adopt a role-specific accessibility protocol if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re creating a custom control that’s a subclass of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and you want to modify the control’s behavior beyond what AppKit provides by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re working with a specialized control that doesn’t subclass ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " first.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, identify the role-specific protocol that best matches your control’s intended behavior. For example, if your control is something that triggers actions when the user clicks it, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you select an appropriate protocol, adopt that protocol. The compiler may ask you to reimplement some of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol’s accessor or action methods. Simply implement these methods, and your control is ready to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitybutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityCheckBox": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a checkbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityCheckBox"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityCheckBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityCheckBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityCheckBox",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitycheckbox"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitycolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityContainsTransientUI": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to support dynamic UI changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityContainsTransientUI"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityContainsTransientUI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityContainsTransientUI"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityContainsTransientUI",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitycontainstransientui"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class": {
+      "abstract": [
+        {
+          "text": "The basic infrastructure necessary for interacting with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelement-swift.class"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementLoading": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to support loading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementLoading",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementloading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityGroup": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to act as a container for other user interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityGroup",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitygroup"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityImage": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutArea": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a layout area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityLayoutArea"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutArea",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityLayoutArea"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityLayoutArea",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitylayoutarea"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a layout item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityLayoutItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityLayoutItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityLayoutItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitylayoutitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityList": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a list view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityList"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityList"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityList",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitylist"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as navigable static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityNavigableStaticText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityNavigableStaticText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityNavigableStaticText",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitynavigablestatictext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOutline": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as an outline view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityOutline"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOutline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityOutline"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityOutline",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityoutline"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProgressIndicator": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a progress indicator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProgressIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProgressIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProgressIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProgressIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprogressindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRadioButton": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a radio button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRadioButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRadioButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRadioButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityRadioButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityradiobutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRow": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a row for a table, list, or outline view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityRow",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityrow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySlider": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a slider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySlider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilitySlider",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityslider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStaticText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStaticText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityStaticText",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitystatictext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStepper": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a stepper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStepper"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityStepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityStepper",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitystepper"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySwitch": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a switch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilitySwitch",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityswitch"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityTable": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityTable"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityTable",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitytable"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit": {
+      "abstract": [
+        {
+          "text": "Make your AppKit apps accessible to everyone who uses macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-for-appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-functions": {
+      "abstract": [
+        {
+          "text": "Global accessibility functions for custom views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility Functions",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-functions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-View-Subclasses",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-functions"
+      ],
+      "title": "Custom View Subclasses"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Buttons",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRadioButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySwitch",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityCheckBox"
+      ],
+      "title": "Buttons"
+    },
+    {
+      "anchor": "Value-Controls",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStepper",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySlider"
+      ],
+      "title": "Value Controls"
+    },
+    {
+      "anchor": "Groups",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityGroup"
+      ],
+      "title": "Groups"
+    },
+    {
+      "anchor": "Lists",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityTable",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityList",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOutline",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRow"
+      ],
+      "title": "Lists"
+    },
+    {
+      "anchor": "Text",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText"
+      ],
+      "title": "Text"
+    },
+    {
+      "anchor": "Images-and-Color",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityImage",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor"
+      ],
+      "title": "Images and Color"
+    },
+    {
+      "anchor": "Loading",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProgressIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementLoading"
+      ],
+      "title": "Loading"
+    },
+    {
+      "anchor": "Dynamic-Elements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityContainsTransientUI"
+      ],
+      "title": "Dynamic Elements"
+    },
+    {
+      "anchor": "Layout-Elements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutArea",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem"
+      ],
+      "title": "Layout Elements"
+    },
+    {
+      "anchor": "Supporting-Types",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Buttons",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRadioButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySwitch",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityCheckBox"
+              ],
+              "title": "Buttons"
+            },
+            {
+              "anchor": "Value-Controls",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStepper",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySlider"
+              ],
+              "title": "Value Controls"
+            },
+            {
+              "anchor": "Groups",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityGroup"
+              ],
+              "title": "Groups"
+            },
+            {
+              "anchor": "Lists",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityTable",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityList",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOutline",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRow"
+              ],
+              "title": "Lists"
+            },
+            {
+              "anchor": "Text",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStaticText",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityNavigableStaticText"
+              ],
+              "title": "Text"
+            },
+            {
+              "anchor": "Images-and-Color",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityImage",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor"
+              ],
+              "title": "Images and Color"
+            },
+            {
+              "anchor": "Loading",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProgressIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementLoading"
+              ],
+              "title": "Loading"
+            },
+            {
+              "anchor": "Dynamic-Elements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityContainsTransientUI"
+              ],
+              "title": "Dynamic Elements"
+            },
+            {
+              "anchor": "Layout-Elements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutArea",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem"
+              ],
+              "title": "Layout Elements"
+            },
+            {
+              "anchor": "Supporting-Types",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol"
+              ],
+              "title": "Supporting Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-View-Subclasses",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/accessibility-functions"
+              ],
+              "title": "Custom View Subclasses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStepper/title",
+          "value": "NSAccessibilityStepper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStepper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStepper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityList/title",
+          "value": "NSAccessibilityList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProgressIndicator/title",
+          "value": "NSAccessibilityProgressIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProgressIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProgressIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRow/title",
+          "value": "NSAccessibilityRow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySlider/title",
+          "value": "NSAccessibilitySlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/title",
+          "value": "NSAccessibilityButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutArea/title",
+          "value": "NSAccessibilityLayoutArea"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutArea/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityLayoutArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutArea/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityLayoutArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityTable/title",
+          "value": "NSAccessibilityTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/title",
+          "value": "NSAccessibilityStaticText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityStaticText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOutline/title",
+          "value": "NSAccessibilityOutline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOutline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOutline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOutline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOutline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRadioButton/title",
+          "value": "NSAccessibilityRadioButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRadioButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRadioButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRadioButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRadioButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementLoading/title",
+          "value": "NSAccessibilityElementLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementLoading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElementLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementLoading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElementLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutItem/title",
+          "value": "NSAccessibilityLayoutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityLayoutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityLayoutItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityLayoutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/title",
+          "value": "NSAccessibilityNavigableStaticText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNavigableStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityNavigableStaticText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNavigableStaticText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/title",
+          "value": "NSAccessibilityColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityContainsTransientUI/title",
+          "value": "NSAccessibilityContainsTransientUI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityContainsTransientUI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityContainsTransientUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityContainsTransientUI/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityContainsTransientUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityGroup/title",
+          "value": "NSAccessibilityGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityImage/title",
+          "value": "NSAccessibilityImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySwitch/title",
+          "value": "NSAccessibilitySwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityCheckBox/title",
+          "value": "NSAccessibilityCheckBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityCheckBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityCheckBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityCheckBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityCheckBox"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/custom-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/custom-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

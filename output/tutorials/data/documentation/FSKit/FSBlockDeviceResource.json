@@ -1,0 +1,2661 @@
+{
+  "abstract": [
+    {
+      "text": "A resource that represents a block storage disk partition.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://FSKit/documentation/FSKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)FSBlockDeviceResource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FSBlockDeviceResource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FSKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FSBlockDeviceResource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "FSBlockDeviceResource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "FSBlockDeviceResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can exist in either a proxied or nonproxied version.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Only the ",
+              "type": "text"
+            },
+            {
+              "code": "fskitd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " daemon creates “real” (nonproxied) instances of this class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Client applications and daemons create proxy objects for requests, and ",
+              "type": "text"
+            },
+            {
+              "code": "fskitd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " opens the underlying device during the processing of the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class wraps a file descriptor for a disk device or partition.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Its fundamental identifier is the BSD disk name (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/bsdName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") for the underlying IOMedia object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t expose the underlying file descriptor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, it provides accessor methods that can read from and write to the partition, either directly or using the kernel buffer cache.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a ",
+              "type": "text"
+            },
+            {
+              "code": "FSBlockDeviceResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your file system implementation also conforms to a maintenance operation protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These protocols add support for checking, repairing, and optionally formatting file systems.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system doesn’t mount block device file systems until they pass a file system check.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that uses ",
+              "type": "text"
+            },
+            {
+              "code": "FSBlockDeviceResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", conform to ",
+              "type": "text"
+            },
+            {
+              "code": "FSManageableResourceMaintenanceOperations",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://FSKit/documentation/FSKit": {
+      "abstract": [
+        {
+          "text": "Implement a file system that runs in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FSKit",
+      "type": "topic",
+      "url": "/documentation/fskit"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource": {
+      "abstract": [
+        {
+          "text": "A resource that represents a block storage disk partition.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSBlockDeviceResource",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/asynchronousMetadataFlush()": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asynchronousMetadataFlush"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/asynchronousMetadataFlush()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "asynchronousMetadataFlushWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "asynchronousMetadataFlush()",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/asynchronousmetadataflush()"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockCount": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blockCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blockCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "blockCount",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/blockcount"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockSize": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blockSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blockSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "blockSize",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/blocksize"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/bsdName": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bsdName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/bsdName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BSDName"
+        }
+      ],
+      "role": "symbol",
+      "title": "bsdName",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/bsdname"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWrite(from:startingAt:length:)": {
+      "abstract": [
+        {
+          "text": "Writes file system metadata from a buffer to a cache, prior to flushing it to the resource.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delayedMetadataWrite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWrite(from:startingAt:length:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delayedMetadataWrite(from:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/delayedmetadatawrite(from:startingat:length:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWriteFrom:startingAt:length:error:": {
+      "abstract": [
+        {
+          "text": "Writes file system metadata from a buffer to a cache, prior to flushing it to the resource.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "delayedMetadataWriteFrom:startingAt:length:error:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWriteFrom:startingAt:length:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delayedMetadataWriteFrom:startingAt:length:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "delayedMetadataWriteFrom:startingAt:length:error:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/delayedmetadatawritefrom:startingat:length:error:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/isWritable": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/isWritable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isWritable",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/iswritable"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataClear"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSMetadataRange",
+          "text": "FSMetadataRange"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDelayedWrites"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataClear:withDelayedWrites:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataClear(_:withDelayedWrites:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadataclear(_:withdelayedwrites:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataFlush()": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataFlush"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataFlush()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataFlushWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataFlush()",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadataflush()"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataPurge"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSMetadataRange",
+          "text": "FSMetadataRange"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataPurge:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataPurge(_:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadatapurge(_:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataRead(into:startingAt:length:)": {
+      "abstract": [
+        {
+          "text": "Synchronously reads file system metadata from the resource into a buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataRead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataRead(into:startingAt:length:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metadataRead(into:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadataread(into:startingat:length:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataReadInto:startingAt:length:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously reads file system metadata from the resource into a buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataReadInto:startingAt:length:error:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataReadInto:startingAt:length:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataReadInto:startingAt:length:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataReadInto:startingAt:length:error:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadatareadinto:startingat:length:error:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWrite(from:startingAt:length:)": {
+      "abstract": [
+        {
+          "text": "Synchronously writes file system metadata from a buffer to the resource.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataWrite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWrite(from:startingAt:length:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metadataWrite(from:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadatawrite(from:startingat:length:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWriteFrom:startingAt:length:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously writes file system metadata from a buffer to the resource.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadataWriteFrom:startingAt:length:error:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWriteFrom:startingAt:length:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataWriteFrom:startingAt:length:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadataWriteFrom:startingAt:length:error:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/metadatawritefrom:startingat:length:error:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalBlockSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicalBlockSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "physicalBlockSize",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/physicalblocksize"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-4ax6s": {
+      "abstract": [
+        {
+          "text": "Synchronously reads data from the resource into a buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-4ax6s",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(into:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/read(into:startingat:length:)-4ax6s"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-5yozi": {
+      "abstract": [
+        {
+          "text": "Asychronously reads data from the resource into a buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-5yozi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(into:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/read(into:startingat:length:)-5yozi"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Reads data from the resource into a buffer and executes a closure afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(into:startingAt:length:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/read(into:startingat:length:completionhandler:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Reads data from the resource into a buffer and executes a block afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInto:startingAt:length:completionHandler:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readInto:startingAt:length:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readInto:startingAt:length:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/readinto:startingat:length:completionhandler:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously reads data from the resource into a buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInto:startingAt:length:error:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readInto:startingAt:length:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readInto:startingAt:length:error:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/readinto:startingat:length:error:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-2fmgt": {
+      "abstract": [
+        {
+          "text": "Synchronously writes data from from a buffer to the resource and executes a block afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-2fmgt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(from:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/write(from:startingat:length:)-2fmgt"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-9oa1x": {
+      "abstract": [
+        {
+          "text": "Asynchronously writes data from from a buffer to the resource.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-9oa1x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(from:startingAt:length:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/write(from:startingat:length:)-9oa1x"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Writes data from from a buffer to the resource and executes a closure afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@off_t",
+          "text": "off_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(from:startingAt:length:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/write(from:startingat:length:completionhandler:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Writes data from from a buffer to the resource and executes a block afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeFrom:startingAt:length:completionHandler:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeFrom:startingAt:length:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeFrom:startingAt:length:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/writefrom:startingat:length:completionhandler:"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously writes data from from a buffer to the resource and executes a block afterwards.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeFrom:startingAt:length:error:"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeFrom:startingAt:length:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeFrom:startingAt:length:error:",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource/writefrom:startingat:length:error:"
+    },
+    "doc://FSKit/documentation/FSKit/FSResource": {
+      "abstract": [
+        {
+          "text": "An abstract resource a file system uses to provide data for a volume.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSResource"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSResource",
+      "type": "topic",
+      "url": "/documentation/fskit/fsresource"
+    },
+    "doc://FSKit/documentation/FSKit/FSUnaryFileSystem": {
+      "abstract": [
+        {
+          "text": "An abstract base class for implementing a minimal file system.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSUnaryFileSystem",
+      "type": "topic",
+      "url": "/documentation/fskit/fsunaryfilesystem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSResource"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resources",
+      "generated": true,
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSResource"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-resource-properties",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/bsdName",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/isWritable",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockCount",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockSize",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize"
+      ],
+      "title": "Accessing resource properties"
+    },
+    {
+      "anchor": "Reading-and-writing-data",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-4ax6s",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:)-5yozi",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/read(into:startingAt:length:completionHandler:)",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-2fmgt",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:)-9oa1x",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/write(from:startingAt:length:completionHandler:)"
+      ],
+      "title": "Reading and writing data"
+    },
+    {
+      "anchor": "Reading-and-writing-data-with-kernel-buffer-cache",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataRead(into:startingAt:length:)",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWrite(from:startingAt:length:)",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWrite(from:startingAt:length:)",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataFlush()",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/asynchronousMetadataFlush()",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)"
+      ],
+      "title": "Reading and writing data with kernel buffer cache"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "FSBlockDeviceResource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://FSKit/documentation/FSKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-resource-properties",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/bsdName",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/isWritable",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockCount",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/blockSize",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize"
+              ],
+              "title": "Accessing resource properties"
+            },
+            {
+              "anchor": "Reading-and-writing-data",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:error:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:completionHandler:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:error:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:completionHandler:"
+              ],
+              "title": "Reading and writing data"
+            },
+            {
+              "anchor": "Reading-and-writing-data-with-kernel-buffer-cache",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataReadInto:startingAt:length:error:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataWriteFrom:startingAt:length:error:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWriteFrom:startingAt:length:error:",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataFlush()",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/asynchronousMetadataFlush()",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)"
+              ],
+              "title": "Reading and writing data with kernel buffer cache"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSResource"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resources",
+              "generated": true,
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSResource"
+              ],
+              "title": "Resources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "FSBlockDeviceResource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://FSKit/documentation/FSKit/FSResource",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)FSResource",
+                    "text": "FSResource"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1bsdName/title",
+          "value": "BSDName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1bsdName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BSDName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1physicalBlockSize/title",
+          "value": "physicalBlockSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1physicalBlockSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicalBlockSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1blockCount/title",
+          "value": "blockCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1blockCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blockCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataClear(_:withDelayedWrites:)/title",
+          "value": "metadataClear:withDelayedWrites:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataClear(_:withDelayedWrites:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataClear:withDelayedWrites:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataPurge(_:)/title",
+          "value": "metadataPurge:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataPurge(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataPurge:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataFlush()/title",
+          "value": "metadataFlushWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1metadataFlush()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataFlushWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1isWritable/title",
+          "value": "writable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1isWritable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "writable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/title",
+          "value": "FSUnaryFileSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1asynchronousMetadataFlush()/title",
+          "value": "asynchronousMetadataFlushWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1asynchronousMetadataFlush()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "asynchronousMetadataFlushWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/title",
+          "value": "FSBlockDeviceResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1blockSize/title",
+          "value": "blockSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource~1blockSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blockSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/title",
+          "value": "FSResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSResource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fskit/fsblockdeviceresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fskit/fsblockdeviceresource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

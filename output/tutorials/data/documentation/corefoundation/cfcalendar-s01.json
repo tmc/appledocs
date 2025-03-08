@@ -1,0 +1,1710 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1667073,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFCalendar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CFCalendar opaque type represents a calendar system. The associated API provides information about a calendar and supports calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFAbsoluteTime is the operational lingua franca of CFCalendar—to do calendar arithmetic, you start and end with an absolute time; to convert between a decomposed date in one calendar and another calendar, you first convert to an absolute time. CFAbsoluteTime provides the absolute scale and epoch for dates and times, which can then be rendered into a particular calendar, for calendrical computations or user display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a calendar, day, week, weekday, month, and year numbers are generally 1-based, but there may be calendar-specific exceptions. Ordinal numbers, where they occur, are 1-based. Some calendars represented by this API may have to map their basic unit concepts into year/month/week/day/… nomenclature. For example, a calendar composed of 4 quarters in a year instead of 12 months uses the “month” unit to represent quarters. The particular values of the unit are defined by each calendar, and are not necessarily “consistent with” or have a “correspondence with,” values for that unit in another calendar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several CFCalendar functions (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533489-cfcalendarcomposeabsolutetime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533506-cfcalendardecomposeabsolutetime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533487-cfcalendaraddcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533470-cfcalendargetcomponentdifference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") take a description string that describes the calendrical components provided in a varargs parameter area. You can provide as many components as you need (or choose to), in whatever order you choose. When there is incomplete information to compute an absolute time, default values similar to 0 and 1 are usually chosen by a calendar, but this is a calendar-specific choice. If you provide inconsistent information, calendar-specific disambiguation is performed (which may involve ignoring one or more of the parameters). The characters of the description string specify the units and order of the parameters which follow. The characters are adopted from the corresponding format characters used by CFDateFormatter when possible, as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar#1966683",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Calendrical components parameter descriptors",
+                "type": "text"
+              }
+            ],
+            "anchor": "1966683",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Meaning",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "y",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "year",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "M",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "month",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "d",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "day",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "H",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "hour",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "m",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "minute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "s",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "second",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "int",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Information related to formatting dates and times and name-related calendar information is managed by CFDateFormatter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFCalendar is subject to some limitations. There is no leap second handling—the existence of leap seconds is ignored as in the other CoreFoundation API. In general, historical accuracy of calendars is not guaranteed. There is currently no API for defining your own calendars.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFCalendar is “toll-free bridged” with its Cocoa Foundation counterpart, NSCalendar. This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendar *",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "CFCalendarRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and in a function where you see a ",
+              "type": "text"
+            },
+            {
+              "code": "CFCalendarRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in an NSCalendar instance. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744898",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696117": {
+      "identifier": "devLink-1696117",
+      "title": "Date and Time Programming Guide for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDatesAndTimes/CFDatesAndTimes.html#//apple_ref/doc/uid/10000125i"
+    },
+    "devLink-1696204": {
+      "identifier": "devLink-1696204",
+      "title": "Internationalization and Localization Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i"
+    },
+    "devLink-1744898": {
+      "identifier": "devLink-1744898",
+      "title": "Toll-Free Bridged Types",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533470-cfcalendargetcomponentdifference": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533470-cfcalendargetcomponentdifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetComponentDifference",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533470-cfcalendargetcomponentdifference"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533471-cfcalendargetfirstweekday": {
+      "abstract": [
+        {
+          "text": "Returns the index of first weekday for a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetFirstWeekday"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533471-cfcalendargetfirstweekday",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetFirstWeekday(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533471-cfcalendargetfirstweekday"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533472-cfcalendarsetlocale": {
+      "abstract": [
+        {
+          "text": "Sets the locale for a calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarSetLocale"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFLocale!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533472-cfcalendarsetlocale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarSetLocale(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533472-cfcalendarsetlocale"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533477-cfcalendargetminimumdaysinfirstw": {
+      "abstract": [
+        {
+          "text": "Returns the minimum number of days in the first week of a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetMinimumDaysInFirstWeek"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533477-cfcalendargetminimumdaysinfirstw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetMinimumDaysInFirstWeek(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533477-cfcalendargetminimumdaysinfirstw"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533479-cfcalendarsetminimumdaysinfirstw": {
+      "abstract": [
+        {
+          "text": "Sets the minimum number of days in the first week of a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarSetMinimumDaysInFirstWeek"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFIndex)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533479-cfcalendarsetminimumdaysinfirstw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarSetMinimumDaysInFirstWeek(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533479-cfcalendarsetminimumdaysinfirstw"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533482-cfcalendargetrangeofunit": {
+      "abstract": [
+        {
+          "text": "Returns the range of values that one unit can take on within a larger unit during which a specific absolute time occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetRangeOfUnit"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFCalendarUnit, CFCalendarUnit, CFAbsoluteTime) -> CFRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533482-cfcalendargetrangeofunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetRangeOfUnit(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533482-cfcalendargetrangeofunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533487-cfcalendaraddcomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533487-cfcalendaraddcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarAddComponents",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533487-cfcalendaraddcomponents"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533489-cfcalendarcomposeabsolutetime": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533489-cfcalendarcomposeabsolutetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarComposeAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533489-cfcalendarcomposeabsolutetime"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533491-cfcalendargetordinalityofunit": {
+      "abstract": [
+        {
+          "text": "Returns the ordinal number of a calendrical unit within a larger unit at a specified absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetOrdinalityOfUnit"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFCalendarUnit, CFCalendarUnit, CFAbsoluteTime) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533491-cfcalendargetordinalityofunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetOrdinalityOfUnit(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533491-cfcalendargetordinalityofunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533495-cfcalendargetidentifier": {
+      "abstract": [
+        {
+          "text": "Returns the given calendar’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!) -> CFCalendarIdentifier!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533495-cfcalendargetidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533495-cfcalendargetidentifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533497-cfcalendarcopycurrent": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the logical calendar for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarCopyCurrent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFCalendar!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533497-cfcalendarcopycurrent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarCopyCurrent()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533497-cfcalendarcopycurrent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533499-cfcalendarcopytimezone": {
+      "abstract": [
+        {
+          "text": "Returns a time zone object for a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarCopyTimeZone"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!) -> CFTimeZone!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533499-cfcalendarcopytimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarCopyTimeZone(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533499-cfcalendarcopytimezone"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533501-cfcalendargettimerangeofunit": {
+      "abstract": [
+        {
+          "text": "Returns by reference the start time and duration of a given calendar unit that contains a given absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetTimeRangeOfUnit"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFCalendarUnit, CFAbsoluteTime, UnsafeMutablePointer<CFAbsoluteTime>!, UnsafeMutablePointer<CFTimeInterval>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533501-cfcalendargettimerangeofunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetTimeRangeOfUnit(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533501-cfcalendargettimerangeofunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533506-cfcalendardecomposeabsolutetime": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533506-cfcalendardecomposeabsolutetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarDecomposeAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533506-cfcalendardecomposeabsolutetime"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533509-cfcalendargetmaximumrangeofunit": {
+      "abstract": [
+        {
+          "text": "Returns the maximum range limits of the values that a specified unit can take on in a given calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetMaximumRangeOfUnit"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFCalendarUnit) -> CFRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533509-cfcalendargetmaximumrangeofunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetMaximumRangeOfUnit(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533509-cfcalendargetmaximumrangeofunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533511-cfcalendarcreatewithidentifier": {
+      "abstract": [
+        {
+          "text": "Returns a calendar object for the calendar identified by a calendar identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarCreateWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFCalendarIdentifier!) -> CFCalendar!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533511-cfcalendarcreatewithidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarCreateWithIdentifier(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533511-cfcalendarcreatewithidentifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533515-cfcalendarcopylocale": {
+      "abstract": [
+        {
+          "text": "Returns a locale object for a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarCopyLocale"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!) -> CFLocale!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533515-cfcalendarcopylocale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarCopyLocale(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533515-cfcalendarcopylocale"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533517-cfcalendarsettimezone": {
+      "abstract": [
+        {
+          "text": "Sets the time zone for a calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarSetTimeZone"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFTimeZone!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533517-cfcalendarsettimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarSetTimeZone(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533517-cfcalendarsettimezone"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533522-cfcalendargettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CFCalendar opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533522-cfcalendargettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533522-cfcalendargettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533524-cfcalendarsetfirstweekday": {
+      "abstract": [
+        {
+          "text": "Sets the first weekday for a calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarSetFirstWeekday"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFIndex)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533524-cfcalendarsetfirstweekday",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarSetFirstWeekday(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533524-cfcalendarsetfirstweekday"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1533525-cfcalendargetminimumrangeofunit": {
+      "abstract": [
+        {
+          "text": "Returns the minimum range limits of the values that a specified unit can take on in a given calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarGetMinimumRangeOfUnit"
+        },
+        {
+          "kind": "text",
+          "text": "(CFCalendar!, CFCalendarUnit) -> CFRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533525-cfcalendargetminimumrangeofunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarGetMinimumRangeOfUnit(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1533525-cfcalendargetminimumrangeofunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfattributedstring-s1s"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBinaryHeap",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbinaryheap-s11"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbitvector-s0t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean-s0p"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar": {
+      "abstract": [
+        {
+          "text": "A reference to a CFCalendar object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar#1966683": {
+      "abstract": [
+        {
+          "text": "Calendrical components parameter descriptors",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar#1966683",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/corefoundation/cfcalendar#1966683"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar-s01"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar/1533520-component_wrapping_options": {
+      "abstract": [
+        {
+          "text": "The wrapping option specifies overflow behavior for calendar components in calendrical calculations—see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533487-cfcalendaraddcomponents",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1533470-cfcalendargetcomponentdifference",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar/1533520-component_wrapping_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Wrapping Options",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar/1533520-component_wrapping_options"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit": {
+      "abstract": [
+        {
+          "text": "CFCalendarUnit constants are used to specify calendrical units, such as day or month, in various calendar calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFCalendarUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFCalendarUnit",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendarunit"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcharacterset-rvm"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate-rv5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDateFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdateformatter-rv6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3": {
+      "abstract": [
+        {
+          "text": "The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFFileDescriptor",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cffiledescriptor-ru3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFLocale",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cflocale-rsj"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMachPort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmachport-rsc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMessagePort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmessageport-rs2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray-rrk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring-rqp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebag-rqn"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebitvector-rqf"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset-rq3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledata-rps"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary-rpl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset-rpe"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablestring-rn7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnotificationcenter-rkv"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnull-rkr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber-rjd"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumberformatter-rjs"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugIn",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugin-rip"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugInInstance",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugininstance-rja"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPropertyList",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfpropertylist-rif"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream-ri6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopObserver",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopobserver-ri3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopSource",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopsource-rhr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSocket",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsocket-rg7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring-rfh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone-rec"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftree-rds": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftree-rds"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftype": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftype",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUUID",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfuuid-rci"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream-rc8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLNode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlnode-rbu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLParser",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlparser-rc1"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmltree-rbh"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+        "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+        "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+        "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+        "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+        "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+        "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+        "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+        "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+        "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+        "doc://com.apple.documentation/documentation/corefoundation/cftype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+        "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh"
+      ],
+      "title": "Opaque Types"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696117",
+        "devLink-1696204"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1667109",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533497-cfcalendarcopycurrent",
+        "doc://com.apple.documentation/documentation/corefoundation/1533511-cfcalendarcreatewithidentifier"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Calendar"
+    },
+    {
+      "anchor": "1667192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533482-cfcalendargetrangeofunit",
+        "doc://com.apple.documentation/documentation/corefoundation/1533491-cfcalendargetordinalityofunit",
+        "doc://com.apple.documentation/documentation/corefoundation/1533501-cfcalendargettimerangeofunit",
+        "doc://com.apple.documentation/documentation/corefoundation/1533509-cfcalendargetmaximumrangeofunit",
+        "doc://com.apple.documentation/documentation/corefoundation/1533525-cfcalendargetminimumrangeofunit"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Ranges of Units"
+    },
+    {
+      "anchor": "1667267",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533499-cfcalendarcopytimezone",
+        "doc://com.apple.documentation/documentation/corefoundation/1533517-cfcalendarsettimezone"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting the Time Zone"
+    },
+    {
+      "anchor": "1667318",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533495-cfcalendargetidentifier"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Identifier"
+    },
+    {
+      "anchor": "1667349",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533515-cfcalendarcopylocale",
+        "doc://com.apple.documentation/documentation/corefoundation/1533472-cfcalendarsetlocale"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting the Locale"
+    },
+    {
+      "anchor": "1667408",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533471-cfcalendargetfirstweekday",
+        "doc://com.apple.documentation/documentation/corefoundation/1533524-cfcalendarsetfirstweekday",
+        "doc://com.apple.documentation/documentation/corefoundation/1533477-cfcalendargetminimumdaysinfirstw",
+        "doc://com.apple.documentation/documentation/corefoundation/1533479-cfcalendarsetminimumdaysinfirstw"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting Day Information"
+    },
+    {
+      "anchor": "1667495",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1533522-cfcalendargettypeid"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Type ID"
+    },
+    {
+      "anchor": "1667522",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1667557",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar/1533520-component_wrapping_options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfcalendar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfcalendar-s01"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2792 @@
+{
+  "abstract": [
+    {
+      "text": "A set of Unicode character values for use in search operations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/characterset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1779622,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation12CharacterSetV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "CharacterSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CharacterSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CharacterSet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents a set of Unicode-compliant characters. Foundation types use ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to group characters together for searching operations, so that they can find any of a particular set of characters during a search.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This type provides “copy-on-write” behavior, and is also bridged to the Objective-C ",
+              "type": "text"
+            },
+            {
+              "code": "NSCharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAlgebra",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset": {
+      "abstract": [
+        {
+          "text": "A set of Unicode character values for use in search operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779603-debugdescription": {
+      "abstract": [
+        {
+          "text": "A textual description of the character set suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779603-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779603-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779632-alphanumerics": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Categories L*, M*, and N*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alphanumerics"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779632-alphanumerics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alphanumerics",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779632-alphanumerics"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779641-decimaldigits": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in the category of Decimal Numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimalDigits"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779641-decimaldigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779641-decimaldigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779655-isstrictsuperset": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether this set is a strict superset of the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStrictSuperset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779655-isstrictsuperset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isStrictSuperset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779655-isstrictsuperset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779708-issuperset": {
+      "abstract": [
+        {
+          "text": "Returns true if ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a superset of ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSuperset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779708-issuperset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSuperset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779708-issuperset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779728-hasmember": {
+      "abstract": [
+        {
+          "text": "Returns true if the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " has a member in the specified plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMember"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "inPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt8) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779728-hasmember",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasMember(inPlane:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779728-hasmember"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Ll.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowercaseLetters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercaseLetters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779790-lowercaseletters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779801-whitespacesandnewlines": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing characters in Unicode General Category Z*, ",
+          "type": "text"
+        },
+        {
+          "code": "U+000A ~ U+000D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "U+0085",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespacesAndNewlines"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779801-whitespacesandnewlines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitespacesAndNewlines",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779801-whitespacesandnewlines"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779809-symmetricdifference": {
+      "abstract": [
+        {
+          "text": "Returns an exclusive or of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "symmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet) -> CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779809-symmetricdifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779809-symmetricdifference"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779844-decomposables": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of “standard decomposition” in version 3.2 of the Unicode character encoding standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decomposables"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779844-decomposables",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decomposables",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779844-decomposables"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779846-controlcharacters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Cc and Cf.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779846-controlcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlCharacters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779846-controlcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779849-bitmaprepresentation": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in binary format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779849-bitmaprepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bitmapRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779849-bitmaprepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779866-insert": {
+      "abstract": [
+        {
+          "text": "Insert the values from the specified string into the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779866-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779866-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Lu and Lt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uppercaseLetters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercaseLetters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779880-uppercaseletters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779881-invert": {
+      "abstract": [
+        {
+          "text": "Invert the contents of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invert"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779881-invert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invert()",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779881-invert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779887-formsymmetricdifference": {
+      "abstract": [
+        {
+          "text": "Sets the value to an exclusive or of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formSymmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779887-formsymmetricdifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formSymmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779887-formsymmetricdifference"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779927-capitalizedletters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Lt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "capitalizedLetters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779927-capitalizedletters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capitalizedLetters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779927-capitalizedletters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779929-intersection": {
+      "abstract": [
+        {
+          "text": "Returns an intersection of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersection"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet) -> CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779929-intersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersection(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779929-intersection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779930-whitespaces": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Zs and ",
+          "type": "text"
+        },
+        {
+          "code": "CHARACTER TABULATION (U+0009)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespaces"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779930-whitespaces",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitespaces",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779930-whitespaces"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779931-formintersection": {
+      "abstract": [
+        {
+          "text": "Sets the value to an intersection of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIntersection"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779931-formintersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formIntersection(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779931-formintersection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779972-urlfragmentallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a fragment URL component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlFragmentAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779972-urlfragmentallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlFragmentAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779972-urlfragmentallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780027-symbols": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category S*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbols"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780027-symbols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbols",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780027-symbols"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780069-formunion": {
+      "abstract": [
+        {
+          "text": "Sets the value to a union of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formUnion"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780069-formunion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formUnion(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780069-formunion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780073-init": {
+      "abstract": [
+        {
+          "text": "Initialize an empty instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780073-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780073-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780102-isstrictsubset": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether this set is a strict subset of the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStrictSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780102-isstrictsubset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isStrictSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780102-isstrictsubset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780126-urlpasswordallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a password URL subcomponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlPasswordAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780126-urlpasswordallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlPasswordAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780126-urlpasswordallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780127-urlpathallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a path URL component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlPathAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780127-urlpathallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlPathAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780127-urlpathallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780146-subtracting": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " created by removing elements in ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtracting"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet) -> CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780146-subtracting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtracting(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780146-subtracting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780151-description": {
+      "abstract": [
+        {
+          "text": "A textual description of the character set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780151-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780151-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780202-urlhostallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a host URL subcomponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlHostAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780202-urlhostallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlHostAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780202-urlhostallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780205-isdisjoint": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the set has no members in common with the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDisjoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780205-isdisjoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDisjoint(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780205-isdisjoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780246-urluserallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a user URL subcomponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlUserAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780246-urluserallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlUserAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780246-urluserallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780269-remove": {
+      "abstract": [
+        {
+          "text": "Remove the values from the specified string from the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780269-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780269-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780270-hashvalue": {
+      "abstract": [
+        {
+          "text": "The computed hash value for the date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780270-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780270-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780288-nonbasecharacters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category M*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonBaseCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780288-nonbasecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nonBaseCharacters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780288-nonbasecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780295-union": {
+      "abstract": [
+        {
+          "text": "Returns a union of the ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with another ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet) -> CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780295-union",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "union(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780295-union"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780307-isempty": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the set has no elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEmpty"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780307-isempty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEmpty",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780307-isempty"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780325-newlines": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the newline characters (",
+          "type": "text"
+        },
+        {
+          "code": "U+000A ~ U+000D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "U+0085",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "U+2028",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "U+2029",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "newlines"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780325-newlines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newlines",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780325-newlines"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780358-issubset": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the set is a subset of another set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780358-issubset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780358-issubset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780390-letters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category L* & M*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "letters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780390-letters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "letters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780390-letters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780395-inverted": {
+      "abstract": [
+        {
+          "text": "Returns an inverted copy of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverted"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780395-inverted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inverted",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780395-inverted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780440-illegalcharacters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "illegalCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780440-illegalcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "illegalCharacters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780440-illegalcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1780474-urlqueryallowed": {
+      "abstract": [
+        {
+          "text": "Returns the character set for characters allowed in a query URL component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlQueryAllowed"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1780474-urlqueryallowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlQueryAllowed",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1780474-urlqueryallowed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2293730": {
+      "abstract": [
+        {
+          "text": "Returns true if the two ",
+          "type": "text"
+        },
+        {
+          "code": "CharacterSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet, CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2293730",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2293730"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2427402-punctuationcharacters": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category P*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "punctuationCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2427402-punctuationcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "punctuationCharacters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2427402-punctuationcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2882998": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet, CharacterSet) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2882998",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2882998"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908794-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908794-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908794-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908795-remove": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": ClosedRange<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908795-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908795-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908798-remove": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908798-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908798-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908822-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": ClosedRange<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908822-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908822-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908829-insert": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "(Unicode.Scalar) -> ("
+        },
+        {
+          "kind": "identifier",
+          "text": "inserted"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "memberAfterInsert"
+        },
+        {
+          "kind": "text",
+          "text": ": Unicode.Scalar)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908829-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908829-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908835-contains": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "(Unicode.Scalar) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908835-contains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908835-contains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908836-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908836-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908836-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908840-insert": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": ClosedRange<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908840-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908840-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908841-insert": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<Unicode.Scalar>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908841-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908841-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908857-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908857-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908857-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908883-init": {
+      "abstract": [
+        {
+          "text": "Creates a set containing the elements of the given array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": Unicode.Scalar...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908883-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(arrayLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908883-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908884-remove": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Unicode.Scalar) -> Unicode.Scalar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908884-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908884-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2908885-update": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Unicode.Scalar) -> Unicode.Scalar?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2908885-update",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2908885-update"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/2963264-subtract": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtract"
+        },
+        {
+          "kind": "text",
+          "text": "(CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/2963264-subtract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtract(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/2963264-subtract"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/3126605-init": {
+      "abstract": [
+        {
+          "text": "Creates a new set from a finite sequence of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<S>(S)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/3126605-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/3126605-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/3126607-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/3126607-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitmapRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/3126607-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/3126608-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/3126608-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/3126608-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/3126609-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/3126609-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/3126609-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/3236714-hash": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/3236714-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/3236714-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/arrayliteralelement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterSet.ArrayLiteralElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/arrayliteralelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet.ArrayLiteralElement",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/arrayliteralelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/element": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterSet.Element"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet.Element",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterSet.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscharacterset": {
+      "abstract": [
+        {
+          "text": "An object representing a fixed set of Unicode character values that bridges to a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset": {
+      "abstract": [
+        {
+          "text": "An object representing a mutable set of Unicode character values that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/referenceconvertible": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReferenceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/referenceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/swift/unicodescalar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/unicodescalar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeScalar",
+      "type": "topic",
+      "url": "/documentation/swift/unicodescalar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swift/unicodescalar"
+      ],
+      "title": "Characters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2850991",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779632-alphanumerics",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779927-capitalizedletters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779846-controlcharacters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779641-decimaldigits",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779844-decomposables",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780440-illegalcharacters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780390-letters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780325-newlines",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780288-nonbasecharacters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2427402-punctuationcharacters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780027-symbols",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779930-whitespaces",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779801-whitespacesandnewlines"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Standard Character Sets"
+    },
+    {
+      "anchor": "2902136",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779972-urlfragmentallowed",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780202-urlhostallowed",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780126-urlpasswordallowed",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780127-urlpathallowed",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780474-urlqueryallowed",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780246-urluserallowed"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Character Sets for URL Encoding"
+    },
+    {
+      "anchor": "2902135",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780073-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Custom Character Set"
+    },
+    {
+      "anchor": "2902134",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779849-bitmaprepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Managing Bitmap Representations"
+    },
+    {
+      "anchor": "2902140",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779881-invert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780395-inverted"
+      ],
+      "kind": "taskGroup",
+      "title": "Inverting a Character Set"
+    },
+    {
+      "anchor": "2850992",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779931-formintersection",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779887-formsymmetricdifference",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780069-formunion",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779728-hasmember",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779866-insert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779929-intersection",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779881-invert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780205-isdisjoint",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780102-isstrictsubset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779655-isstrictsuperset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780358-issubset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779708-issuperset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780269-remove",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780146-subtracting",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779809-symmetricdifference",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780295-union"
+      ],
+      "kind": "taskGroup",
+      "title": "Combining Character Sets"
+    },
+    {
+      "anchor": "2902137",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779866-insert"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding Characters"
+    },
+    {
+      "anchor": "2902138",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780269-remove",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780146-subtracting"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing Characters"
+    },
+    {
+      "anchor": "2902139",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779728-hasmember",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780205-isdisjoint",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780102-isstrictsubset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779655-isstrictsuperset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780358-issubset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779708-issuperset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780307-isempty"
+      ],
+      "kind": "taskGroup",
+      "title": "Testing Set Membership"
+    },
+    {
+      "anchor": "2850993",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/2882998",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2293730"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Character Sets"
+    },
+    {
+      "anchor": "2850990",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780151-description",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1779603-debugdescription",
+        "doc://com.apple.documentation/documentation/foundation/characterset/1780270-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a Character Set"
+    },
+    {
+      "anchor": "2878621",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/referencetype"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Reference Types"
+    },
+    {
+      "anchor": "3358629",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/arrayliteralelement",
+        "doc://com.apple.documentation/documentation/foundation/characterset/element"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "2909473",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/3126605-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908883-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/3126607-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908794-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908822-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/3126608-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/3126609-init",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908836-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2909474",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908835-contains",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908857-encode",
+        "doc://com.apple.documentation/documentation/foundation/characterset/3236714-hash",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908829-insert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908840-insert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908841-insert",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908884-remove",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908795-remove",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908798-remove",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2963264-subtract",
+        "doc://com.apple.documentation/documentation/foundation/characterset/2908885-update"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/characterset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

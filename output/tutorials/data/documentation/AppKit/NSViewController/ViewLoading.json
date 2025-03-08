@@ -1,0 +1,680 @@
+{
+  "abstract": [
+    {
+      "text": "A property wrapper that loads the view controller’s view before accessing the property.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "s:So16NSViewControllerC6AppKitE11ViewLoadingV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ViewLoading"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ViewLoading"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.1",
+        "name": "Swift",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "NSViewController.ViewLoading"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@propertyWrapper"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ViewLoading"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property wrapper on view controller properties that can be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before the view controller’s view loads. Wrapping view controller properties this way eliminates crashes that can occur from implicitly defining properties as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then referencing them before the view controller finishes loading.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses the ",
+              "type": "text"
+            },
+            {
+              "code": "NSViewController.ViewLoading",
+              "type": "codeVoice"
+            },
+            {
+              "text": " wrapper to ensure that ",
+              "type": "text"
+            },
+            {
+              "code": "dateLabel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " loads before referencing it in the ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property observer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class DateViewController: NSViewController {",
+            "    @ViewLoading private var dateLabel: NSTextField",
+            "    ",
+            "    var date: Date? {",
+            "        didSet {",
+            "            let dateFormatter = DateFormatter()",
+            "            dateFormatter.dateStyle = .full",
+            "            let dateString = dateFormatter.string(from: self.date ?? Date())",
+            "            self.dateLabel.stringValue = dateString",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After loading ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system can safely access and set the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dateViewController = DateViewController()",
+            "dateViewController.date = Date()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property wrapper over implicitly unwrapped optionals for ",
+              "type": "text"
+            },
+            {
+              "code": "IBOutlets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBOutlet @ViewLoading private var dateLabel: NSTextField"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextField": {
+      "abstract": [
+        {
+          "text": "Text the user can select or edit to send an action message to a target when the user presses the Return key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextField",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfield"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading": {
+      "abstract": [
+        {
+          "text": "A property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController.ViewLoading",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewloading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewloading/init()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init(wrappedValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "wrappedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init(wrappedValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(wrappedValue:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller/viewloading/init(wrappedvalue:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading": {
+      "abstract": [
+        {
+          "text": "A property wrapper that loads the receiver’s window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController.WindowLoading",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/windowloading"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Optional": {
+      "abstract": [
+        {
+          "text": "A type that represents either a wrapped value or the absence of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowController/WindowLoading"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-ViewLoading-Property-Wrapper",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init()",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController/ViewLoading/init(wrappedValue:)"
+      ],
+      "title": "Creating a ViewLoading Property Wrapper"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/title",
+          "value": "NSTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsviewcontroller/viewloading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1090 @@
+{
+  "abstract": [
+    {
+      "text": "Write a request and handle responses from the API.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling Requests and Responses"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding the appropriate tokens to the header, compose your request to get data from the API and handle responses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compose-a-Request",
+          "level": 3,
+          "text": "Compose a Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music API requests have common components. To compose a request, first specify the root path, ",
+              "type": "text"
+            },
+            {
+              "code": "https://api.music.apple.com/v1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow this part of the path with either ",
+              "type": "text"
+            },
+            {
+              "code": "/catalog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "/me",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/catalog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " path accesses the public Apple Music catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/me",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " path accesses personalized content for the user such as their music library, ratings and listening history.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow this path with any parameters that are specific to the endpoint. For example, to request information about a specific genre, construct a URL that includes the ID of the genre in the path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/{storefront}/genres/{id}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When requesting resources from the Apple Music catalog, you must include the storefront in the path. When requesting resources from the user’s personal library, replace the storefront information with the ",
+              "type": "text"
+            },
+            {
+              "code": "me",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string, as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/me/ratings/albums/{id}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every resource has a unique identifier in the Apple Music catalog. Resources in the user’s library have unique identifiers that are different than the Apple Music catalog identifiers. If a user removes an item from their music library but then adds it back later, it will have a new and different identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most requests return only the requested resource. For information about how to request related resources at the same time, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-a-Response",
+          "level": 3,
+          "text": "Handle a Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three kinds of responses: Resource Collection, Results, and Errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resource collections can come in multiple common forms which include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resource Collection (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://api.music.apple.com/v1/catalog/us/albums?ids=123,234",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paginated Resource Collection (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://api.music.apple.com/v1/me/library-albums",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Relationship Response (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://api.music.apple.com/v1/catalog/us/albums/123/tracks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Relationship View Response (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://api.music.apple.com/v1/catalog/us/albums/123/view/related-albums",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For results responses, there is always a top-level ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member object that contains the information for the response. Results responses are always unique to the endpoint, such as charts or a search response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/{storefront}/charts"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/{storefront}/search"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Error responses contain an array of one or more error objects that indicate any issues while handling the request. The status code of the response reflects the primary error. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/http-status-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default responses include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request is for an existing single resource object, the status code is 200 (OK) and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains the requested resource object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request is for a single resource object that doesn’t exist, the status code is 404 (Not Found) and the response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request is for multiple resource objects by ID, the status code is 200 (OK) and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array includes the existing resource objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request is for multiple resource objects by ID and none of the resources exist, the status code is 200 (OK) and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array is empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A successful response for a resource collection with additional results contains a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "next",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " link to the next page of fetched resources in the collection. See also ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A successful response for a relationship request is 200 OK and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains a paginated collection of resources contained in the relationship. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "next",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " link signifies that additional resources may be fetched from the relationship’s resource collection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A successful response for a relationship view request is 200 OK and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains a paginated collection of resources contained in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "view",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The relationship view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are included when requested using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "with",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "next",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " link signifies that additional resources may be fetched.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request contains successfully modified or deleted resources, the status code is 204 (No Content) and the body is empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you make a successful request to an endpoint that returns results, the status code is 200 (OK) and the response includes those results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request isn’t accepted because its authorization is missing or invalid due to an issue with the developer token, the status code is 401 (Unauthorized). In this case, the response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request isn’t accepted due to an issue with the media user token or because the request is using incorrect authentication, the status code is 403 (Forbidden). In this case, the response doesn’t contain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the request isn’t supported as specified, the status code is 400 (Bad Request) and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains an error object for any identified problem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The response status code is in the 500 range when errors are encountered on the server while processing the request. In this case, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "errors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains error objects for the errors for any identified problem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/EmptyBodyResponse": {
+      "abstract": [
+        {
+          "text": "A response object that contains no content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyBodyResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/EmptyBodyResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyBodyResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyBodyResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/emptybodyresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Error": {
+      "abstract": [
+        {
+          "text": "Information about an error that occurred while processing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/error"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse": {
+      "abstract": [
+        {
+          "text": "A response object composed of resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResourceCollectionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResourceCollectionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResourceCollectionResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/resourcecollectionresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page": {
+      "abstract": [
+        {
+          "text": "Use pagination to fetch the next set of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Resources by Page",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetching-resources-by-page"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens": {
+      "abstract": [
+        {
+          "text": "Generate a developer token needed to make requests to Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Developer Tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/generating-developer-tokens"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships": {
+      "abstract": [
+        {
+          "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Resource Representation and Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/http-status-codes": {
+      "abstract": [
+        {
+          "text": "Reference error codes returned by the Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/http-status-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "HTTP Status Codes",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/http-status-codes"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization": {
+      "abstract": [
+        {
+          "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storefronts and Localization",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts-and-localization"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Related-Objects",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/EmptyBodyResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse"
+      ],
+      "title": "Related Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/handling-requests-and-responses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

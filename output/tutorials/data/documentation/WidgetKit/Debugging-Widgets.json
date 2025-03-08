@@ -1,0 +1,759 @@
+{
+  "abstract": [
+    {
+      "text": "Set environment variables in Xcode to control your widget’s configuration in",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging Widgets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug your widget, select the widget-extension target in Xcode and choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Product > Run. Xcode automatically displays your widget on the target device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iPhone, on the Home Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iPad, in the Today view",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Mac, in the WidgetKit Simulator app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your Home Screen pages are full, Xcode instead uses the Today view.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug accessory widgets that appear on the iPhone Lock Screen or as complications on Apple Watch, build and run the app target, then manually add the widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure a specific widget configuration, use the Arguments pane of the widget extension’s scheme, shown here, to set environment variables as described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Debugging-Environment-Variables",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, use Xcode previews for iOS widgets as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-specific-widget-configurations",
+          "level": 2,
+          "text": "Debug specific widget configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug a specific family of your widget that’s not an accessory widget, edit the scheme for your widget extension target and set the ",
+              "type": "text"
+            },
+            {
+              "code": "_XCWidgetFamily",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable to ",
+              "type": "text"
+            },
+            {
+              "code": "small",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "medium",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "large",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "extralarge",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your widget extension supports multiple widgets using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", select the specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget to debug by setting ",
+              "type": "text"
+            },
+            {
+              "code": "_XCWidgetKind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a string that matches the ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the widget’s configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-watch-complications",
+          "level": 2,
+          "text": "Debug watch complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Debugging a watch complication you create with WidgetKit works the same as debugging a complication you create with ClockKit. To learn more about testing complications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/creating-complications-for-your-watchos-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-mac-widgets",
+          "level": 2,
+          "text": "Debug mac widgets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The WidgetKit Simulator app provides a flexible way to see all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your widget configurations in one place. Running your widget in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "WidgetKit Simulator app lets you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View your widget’s display name, description, kind, supported families, and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View multiple entries in your widget’s timeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View your widget’s snapshot representation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View placeholder views for all supported sizes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Quickly switch between supported sizes when viewing snapshots or timeline",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "entries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reload your widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To select the default view the WidgetKit Simulator app shows when you start a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "debug session, edit the scheme for your Widget extension target and set the ",
+              "type": "text"
+            },
+            {
+              "code": "_XCWidgetDefaultView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable to ",
+              "type": "text"
+            },
+            {
+              "code": "timeline",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "snapshot",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "placeholder",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Debugging-Environment-Variables": {
+      "alt": "Screenshot showing Xcode’s Arguments pane with environment variables.",
+      "identifier": "Debugging-Environment-Variables",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/009696971209e242dab9585ee95436dd/Debugging-Environment-Variables@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5c451941e7f5f1fa9ba21703a99ff66/Debugging-Environment-Variables~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros": {
+      "abstract": [
+        {
+          "text": "Use Swift macros to create widget previews in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preview macros",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview-macros"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode": {
+      "abstract": [
+        {
+          "text": "Use Xcode previews to iteratively develop, fine-tune, and troubleshoot widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing widgets and Live Activities in Xcode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/previewing-widgets-and-live-activities-in-xcode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext": {
+      "abstract": [
+        {
+          "text": "A specification for the context of a widget preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetPreviewContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetpreviewcontext"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/creating-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up and implement complications for your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/creating-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating complications for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/ClockKit/creating-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle": {
+      "abstract": [
+        {
+          "text": "A container used to expose multiple widgets from a single widget extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetBundle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetBundle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Widget-preview-and-debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+      ],
+      "title": "Widget preview and debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Widget-preview-and-debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+              ],
+              "title": "Widget preview and debugging"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/debugging-widgets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/debugging-widgets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
